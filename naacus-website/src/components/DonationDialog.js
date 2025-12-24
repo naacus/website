@@ -56,7 +56,7 @@ const useStyles = makeStyles({
     zIndex: 2147483001,
     width: '100%',
     maxWidth: '900px',
-    maxHeight: '70vh',
+    maxHeight: '90vh',
     overflowY: 'auto',
     backgroundColor: tokens.colorNeutralBackground1,
     boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
