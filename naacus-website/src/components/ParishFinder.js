@@ -4,11 +4,9 @@ import {
   makeStyles,
   shorthands,
   tokens,
-  Text,
   Input,
   Dropdown,
   Option,
-  Spinner,
 } from '@fluentui/react-components';
 import parishService from '../services/parishService';
 
@@ -108,7 +106,6 @@ function ParishFinder({ onParishSelect, formData }) {
   const [parishes, setParishes] = useState([]);
   const [selectedParish, setSelectedParish] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
 
   /**
    * Handle zip code input change
@@ -116,7 +113,6 @@ function ParishFinder({ onParishSelect, formData }) {
   const handleZipCodeChange = (event, data) => {
     const value = data.value;
     setZipCode(value);
-    setError(null);
 
     // Clear parishes when zip code changes
     if (value !== zipCode) {
@@ -130,17 +126,16 @@ function ParishFinder({ onParishSelect, formData }) {
    */
   const handleSearchParishes = async () => {
     if (!zipCode || zipCode.trim() === '') {
-      setError('Please enter a zip code');
+      console.warn('Please enter a zip code');
       return;
     }
 
     if (!/^\d{5}$/.test(zipCode)) {
-      setError('Please enter a valid 5-digit zip code');
+      console.warn('Please enter a valid 5-digit zip code');
       return;
     }
 
     setLoading(true);
-    setError(null);
     setParishes([]);
     setSelectedParish(null);
 
@@ -152,11 +147,10 @@ function ParishFinder({ onParishSelect, formData }) {
         setParishes(result.parishes);
         console.log(`Found ${result.parishes.length} parishes`);
       } else {
-        setError(`No parishes found for zip code ${zipCode}. Please try another zip code.`);
+        console.warn(`No parishes found for zip code ${zipCode}. Please try another zip code.`);
       }
     } catch (err) {
       console.error('Error searching parishes:', err);
-      setError(err.message || 'Failed to search parishes. Please try again.');
     } finally {
       setLoading(false);
     }
