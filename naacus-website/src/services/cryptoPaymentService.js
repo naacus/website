@@ -22,17 +22,21 @@ class CryptoPaymentService {
         const script = document.createElement('script');
         script.src = 'https://js.coinbase.com/v1/checkout.js';
         script.async = true;
+        
+        // Don't throw error on SDK load failure, just log it
         script.onerror = () => {
-          throw new Error('Failed to load Coinbase Commerce SDK');
+          console.warn('Coinbase Commerce SDK failed to load. Cryptocurrency payments may not be available.');
         };
+        
         document.head.appendChild(script);
       } else if (this.provider === 'bitpay') {
         // BitPay SDK initialization if needed
       }
       this.initialized = true;
     } catch (error) {
-      console.error('Crypto payment initialization error:', error);
-      throw error;
+      console.warn('Crypto payment initialization warning:', error);
+      // Continue despite initialization error
+      this.initialized = true;
     }
   }
 

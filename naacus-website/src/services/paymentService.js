@@ -24,20 +24,31 @@ class PaymentService {
 
   /**
    * Initialize all payment services
+   * Uses Promise.allSettled to allow app to continue even if some SDKs fail
    */
   async initialize() {
     if (this.initialized) return;
 
     try {
-      await Promise.all([
+      const results = await Promise.allSettled([
         stripePaymentService.initialize(),
         paypalPaymentService.initialize(),
         cryptoPaymentService.initialize(),
       ]);
+
+      // Log any failed initializations but don't throw
+      results.forEach((result, index) => {
+        if (result.status === 'rejected') {
+          const services = ['Stripe', 'PayPal', 'Crypto'];
+          console.warn(`${services[index]} service initialization failed:`, result.reason);
+        }
+      });
+
       this.initialized = true;
     } catch (error) {
-      console.error('Payment service initialization error:', error);
-      throw error;
+      console.warn('Payment service initialization warning:', error);
+      // Still mark as initialized to allow app to continue
+      this.initialized = true;
     }
   }
 

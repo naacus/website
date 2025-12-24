@@ -19,24 +19,36 @@ class StripePaymentService {
     if (this.initialized) return;
 
     try {
-      // Load Stripe library
+      // Check if Stripe is already loaded
+      if (window.Stripe) {
+        this.stripe = window.Stripe(paymentConfig.stripe.publishableKey);
+        this.initialized = true;
+        return;
+      }
+
       const script = document.createElement('script');
       script.src = 'https://js.stripe.com/v3/';
       script.async = true;
       
       script.onload = () => {
-        this.stripe = window.Stripe(paymentConfig.stripe.publishableKey);
-        this.initialized = true;
+        if (window.Stripe) {
+          this.stripe = window.Stripe(paymentConfig.stripe.publishableKey);
+          this.initialized = true;
+        } else {
+          console.warn('Stripe library loaded but Stripe object not found');
+          this.initialized = true;
+        }
       };
 
       script.onerror = () => {
-        throw new Error('Failed to load Stripe library');
+        console.warn('Stripe SDK failed to load. Credit card payments may not be available.');
+        this.initialized = true;
       };
 
       document.head.appendChild(script);
     } catch (error) {
-      console.error('Stripe initialization error:', error);
-      throw error;
+      console.warn('Stripe initialization warning:', error);
+      this.initialized = true;
     }
   }
 

@@ -26,14 +26,17 @@ class PayPalPaymentService {
         this.initialized = true;
       };
 
+      // Don't throw error on SDK load failure, just log it
       script.onerror = () => {
-        throw new Error('Failed to load PayPal SDK');
+        console.warn('PayPal SDK failed to load. PayPal payments may not be available.');
+        this.initialized = true;
       };
 
       document.head.appendChild(script);
     } catch (error) {
-      console.error('PayPal initialization error:', error);
-      throw error;
+      console.warn('PayPal initialization warning:', error);
+      // Continue despite initialization error
+      this.initialized = true;
     }
   }
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Button,
@@ -6,7 +6,10 @@ import {
   makeStyles,
   shorthands,
   tokens,
+  Spinner,
 } from '@fluentui/react-components';
+import paymentService from '../services/paymentService';
+import { trackCTAEvent } from '../services/analyticsService';
 
 const useStyles = makeStyles({
   donateButtonContainer: {
@@ -185,15 +188,67 @@ const useStyles = makeStyles({
     padding: '16px 24px',
     borderTop: `1px solid ${tokens.colorNeutralStroke1}`,
   },
+  errorMessage: {
+    color: '#d13438',
+    fontSize: '0.85rem',
+    marginTop: '4px',
+    padding: '8px 12px',
+    backgroundColor: 'rgba(209, 52, 56, 0.1)',
+    borderRadius: '6px',
+  },
+  successMessage: {
+    color: '#107c10',
+    fontSize: '0.85rem',
+    marginTop: '4px',
+    padding: '8px 12px',
+    backgroundColor: 'rgba(16, 124, 16, 0.1)',
+    borderRadius: '6px',
+  },
+  warningMessage: {
+    color: '#ff8c00',
+    fontSize: '0.85rem',
+    marginTop: '4px',
+    padding: '8px 12px',
+    backgroundColor: 'rgba(255, 140, 0, 0.1)',
+    borderRadius: '6px',
+  },
+  processingTime: {
+    fontSize: '0.75rem',
+    color: tokens.colorNeutralForeground3,
+    marginTop: '2px',
+  },
+  paymentMethodCard: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: '8px',
+    textAlign: 'center',
+  },
+  paymentMethodIcon: {
+    fontSize: '1.5rem',
+    marginBottom: '4px',
+  },
+  loadingSpinner: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '8px',
+    padding: '8px',
+  },
 });
 
 export function DonationDialog() {
   const styles = useStyles();
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+  const [supportedMethods, setSupportedMethods] = useState([]);
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
+    phone: '',
     amount: '',
     message: '',
   });
@@ -202,14 +257,69 @@ export function DonationDialog() {
 
   const amountPresets = [25, 50, 100, 250];
 
-  const paymentMethods = [
-    { id: 'card', label: t('donation.creditDebit') },
-    { id: 'paypal', label: t('donation.paypal') },
-    { id: 'apple', label: t('donation.applePay') },
-    { id: 'google', label: t('donation.googlePay') },
-    { id: 'bank', label: t('donation.bankTransfer') },
-    { id: 'crypto', label: t('donation.bitcoin') },
-  ];
+  // Payment method configurations with icons
+  const paymentMethodsConfig = {
+    card: {
+      id: 'card',
+      label: t('donation.creditDebit', 'Credit/Debit Card'),
+      icon: '💳',
+      processingTime: t('donation.instant', 'Instant'),
+    },
+    applePay: {
+      id: 'applePay',
+      label: t('donation.applePay', 'Apple Pay'),
+      icon: '🍎',
+      processingTime: t('donation.instant', 'Instant'),
+    },
+    googlePay: {
+      id: 'googlePay',
+      label: t('donation.googlePay', 'Google Pay'),
+      icon: '🔵',
+      processingTime: t('donation.instant', 'Instant'),
+    },
+    paypal: {
+      id: 'paypal',
+      label: t('donation.paypal', 'PayPal'),
+      icon: '🅿️',
+      processingTime: t('donation.instant', 'Instant'),
+    },
+    bank: {
+      id: 'bank',
+      label: t('donation.bankTransfer', 'Bank Transfer'),
+      icon: '🏦',
+      processingTime: t('donation.processingTime', '1-5 business days'),
+    },
+    crypto: {
+      id: 'crypto',
+      label: t('donation.bitcoin', 'Bitcoin/Crypto'),
+      icon: '₿',
+      processingTime: t('donation.blockchainConfirm', 'Blockchain confirmed'),
+    },
+  };
+
+  // Initialize payment service and get supported methods
+  useEffect(() => {
+    const initPayments = async () => {
+      try {
+        await paymentService.initialize();
+        const methods = paymentService.getSupportedPaymentMethods();
+        setSupportedMethods(methods);
+        // If no methods available, show warning
+        if (!methods || methods.length === 0) {
+          setError(t('donation.paymentFailed', 'Payment methods not available. Please try again later.'));
+        }
+      } catch (err) {
+        console.warn('Payment initialization warning:', err);
+        // Still try to load methods even if initialization had issues
+        const methods = paymentService.getSupportedPaymentMethods();
+        setSupportedMethods(methods);
+      }
+    };
+
+    if (open) {
+      initPayments();
+    }
+  }, [open, t]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -217,6 +327,7 @@ export function DonationDialog() {
       ...prev,
       [name]: value,
     }));
+    setError('');
   };
 
   const handleAmountSelect = (amount) => {
@@ -225,37 +336,111 @@ export function DonationDialog() {
       ...prev,
       amount: amount.toString(),
     }));
+    setError('');
   };
 
-  const handleDonate = () => {
-    // Validate form
-    if (!formData.fullName || !formData.email || !formData.amount) {
-      alert('Please fill in all required fields');
-      return;
+  const handleDonate = async () => {
+    setError('');
+    setSuccess('');
+
+    try {
+      // Validate form
+      if (!formData.fullName || !formData.email || !formData.amount) {
+        setError(t('donation.requiredFields', 'Please fill in all required fields'));
+        return;
+      }
+
+      setLoading(true);
+      setError('');
+
+      // Process payment based on selected method
+      try {
+        await paymentService.processPayment(formData, selectedPayment);
+      } catch (paymentErr) {
+        console.error('Payment processing error:', paymentErr);
+        throw new Error(
+          paymentErr.message || `${selectedPayment} payment processing failed. Please check your information and try again.`
+        );
+      }
+
+      // Track donation event
+      try {
+        await trackCTAEvent({
+          category: 'donation',
+          action: 'donation_initiated',
+          label: selectedPayment,
+          value: formData.amount,
+        });
+      } catch (analyticsErr) {
+        console.warn('Analytics tracking warning:', analyticsErr);
+      }
+
+      // Track donation
+      try {
+        await paymentService.trackDonation(formData, selectedPayment, 'success');
+      } catch (trackErr) {
+        console.warn('Donation tracking warning:', trackErr);
+      }
+
+      // Show success message based on payment method
+      let successMsg = '';
+
+      if (selectedPayment === 'bank') {
+        successMsg = t('donation.bankSuccess', 'Bank transfer initiated. Check your email for payment instructions.');
+      } else if (selectedPayment === 'crypto') {
+        successMsg = t('donation.cryptoSuccess', 'Cryptocurrency charge created. Please complete the transaction on the payment page.');
+      } else {
+        successMsg = t('donation.paymentSuccess', 'Thank you! Your donation is being processed.');
+      }
+
+      setSuccess(successMsg);
+
+      // Send confirmation email
+      try {
+        await paymentService.sendConfirmationEmail(formData, selectedPayment, 'processing');
+      } catch (emailErr) {
+        console.warn('Email sending warning:', emailErr);
+      }
+
+      // Close dialog after 2 seconds
+      setTimeout(() => {
+        setOpen(false);
+        resetForm();
+      }, 2000);
+    } catch (err) {
+      const errorMsg = err.message || t('donation.paymentFailed', 'Payment processing failed. Please try again.');
+      setError(errorMsg);
+      console.error('Donation error:', err);
+
+      // Track failed donation
+      try {
+        await paymentService.trackDonation(formData, selectedPayment, 'failed');
+      } catch (trackErr) {
+        console.warn('Failed donation tracking warning:', trackErr);
+      }
+    } finally {
+      setLoading(false);
     }
-
-    // Here you would integrate with actual payment processors
-    console.log('Donation data:', {
-      ...formData,
-      paymentMethod: selectedPayment,
-    });
-
-    // For now, show success message
-    alert(`Thank you for your donation of $${formData.amount}! We will process your ${selectedPayment} payment shortly.`);
-    setOpen(false);
-    resetForm();
   };
 
   const resetForm = () => {
     setFormData({
       fullName: '',
       email: '',
+      phone: '',
       amount: '',
       message: '',
     });
     setSelectedAmount('');
     setSelectedPayment('card');
+    setError('');
+    setSuccess('');
   };
+
+  const paymentMethods = supportedMethods.map(method => ({
+    ...paymentMethodsConfig[method.id],
+    ...method,
+  }));
 
   return (
     <>
@@ -272,7 +457,7 @@ export function DonationDialog() {
           }}
           onClick={() => setOpen(true)}
         >
-          💝 {t('header.donate')}
+          💝 {t('header.donate', 'Donate')}
         </Button>
       </div>
 
@@ -289,7 +474,7 @@ export function DonationDialog() {
         }}
         onClick={() => setOpen(true)}
       >
-        💝 {t('header.donate')}
+        💝 {t('header.donate', 'Donate')}
       </Button>
 
       {open && (
@@ -297,46 +482,78 @@ export function DonationDialog() {
           <div className={styles.dialogWrapper} onClick={e => e.stopPropagation()}>
             <div className={styles.dialogContent}>
               <div style={{ position: 'relative', marginBottom: '20px' }}>
-                <h2 className={styles.dialogTitle}>{t('donation.title')}</h2>
+                <h2 className={styles.dialogTitle}>{t('donation.title', 'Make a Donation')}</h2>
                 <button 
                   className={styles.closeButton}
                   onClick={() => { setOpen(false); resetForm(); }}
+                  disabled={loading}
                 >
                   ✕
                 </button>
               </div>
 
+              {/* Error Message */}
+              {error && (
+                <div className={styles.errorMessage}>
+                  ⚠️ {error}
+                </div>
+              )}
+
+              {/* Success Message */}
+              {success && (
+                <div className={styles.successMessage}>
+                  ✓ {success}
+                </div>
+              )}
+
               {/* Full Name */}
               <div className={styles.formField}>
                 <label className={styles.label}>
-                  {t('donation.fullName')} <span className={styles.required}>*</span>
+                  {t('donation.fullName', 'Full Name')} <span className={styles.required}>*</span>
                 </label>
                 <Input
                   name="fullName"
                   value={formData.fullName}
                   onChange={handleInputChange}
-                  placeholder={t('donation.fullName')}
+                  placeholder={t('donation.fullName', 'Full Name')}
+                  disabled={loading}
                 />
               </div>
 
               {/* Email */}
               <div className={styles.formField}>
                 <label className={styles.label}>
-                  {t('donation.email')} <span className={styles.required}>*</span>
+                  {t('donation.email', 'Email')} <span className={styles.required}>*</span>
                 </label>
                 <Input
                   name="email"
                   type="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  placeholder={t('donation.email')}
+                  placeholder={t('donation.email', 'Email')}
+                  disabled={loading}
+                />
+              </div>
+
+              {/* Phone (Optional) */}
+              <div className={styles.formField}>
+                <label className={styles.label}>
+                  {t('donation.phone', 'Phone Number')} ({t('donation.optional', 'Optional')})
+                </label>
+                <Input
+                  name="phone"
+                  type="tel"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  placeholder={t('donation.phone', 'Phone Number')}
+                  disabled={loading}
                 />
               </div>
 
               {/* Amount */}
               <div className={styles.formField}>
                 <label className={styles.label}>
-                  {t('donation.selectAmount')} <span className={styles.required}>*</span>
+                  {t('donation.selectAmount', 'Amount')} <span className={styles.required}>*</span>
                 </label>
                 <div className={styles.amountPresets}>
                   {amountPresets.map(amount => (
@@ -346,6 +563,8 @@ export function DonationDialog() {
                         selectedAmount === amount ? styles.amountButtonSelected : ''
                       }`}
                       onClick={() => handleAmountSelect(amount)}
+                      disabled={loading}
+                      style={{ opacity: loading ? 0.6 : 1 }}
                     >
                       ${amount}
                     </button>
@@ -356,15 +575,32 @@ export function DonationDialog() {
                   type="number"
                   value={formData.amount}
                   onChange={handleInputChange}
-                  placeholder={t('donation.customAmount')}
+                  placeholder={t('donation.customAmount', 'Enter custom amount')}
                   min="1"
+                  disabled={loading}
+                />
+              </div>
+
+              {/* Message (Optional) */}
+              <div className={styles.formField}>
+                <label className={styles.label}>
+                  {t('donation.message', 'Message')} ({t('donation.optional', 'Optional')})
+                </label>
+                <Input
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  placeholder={t('donation.messagePlaceholder', 'Share why you support NAACUS')}
+                  disabled={loading}
+                  multiline
+                  rows={2}
                 />
               </div>
 
               {/* Payment Method */}
               <div className={styles.formField}>
                 <label className={styles.label}>
-                  {t('donation.paymentMethod')} <span className={styles.required}>*</span>
+                  {t('donation.paymentMethod', 'Payment Method')} <span className={styles.required}>*</span>
                 </label>
                 <div className={styles.paymentMethods}>
                   {paymentMethods.map(method => (
@@ -373,18 +609,36 @@ export function DonationDialog() {
                       className={`${styles.paymentOption} ${
                         selectedPayment === method.id ? styles.paymentOptionSelected : ''
                       }`}
-                      onClick={() => setSelectedPayment(method.id)}
+                      onClick={() => !loading && setSelectedPayment(method.id)}
+                      style={{ opacity: loading ? 0.6 : 1, cursor: loading ? 'not-allowed' : 'pointer' }}
                     >
                       <div className={`${styles.radioButton} ${
                         selectedPayment === method.id ? styles.radioButtonSelected : ''
                       }`}>
                         {selectedPayment === method.id && <div className={styles.radioButtonInner}></div>}
                       </div>
-                      <span>{method.label}</span>
+                      <div className={styles.paymentMethodCard}>
+                        <div className={styles.paymentMethodIcon}>{method.icon}</div>
+                        <span>{method.label}</span>
+                        <div className={styles.processingTime}>{method.processingTime}</div>
+                      </div>
                     </div>
                   ))}
                 </div>
               </div>
+
+              {/* Payment Processing Info */}
+              {selectedPayment === 'bank' && (
+                <div className={styles.warningMessage}>
+                  ℹ️ {t('donation.bankInfo', 'You will receive payment instructions via email')}
+                </div>
+              )}
+
+              {selectedPayment === 'crypto' && (
+                <div className={styles.warningMessage}>
+                  ℹ️ {t('donation.cryptoInfo', 'Cryptocurrency charges are processed securely on blockchain')}
+                </div>
+              )}
 
               {/* Actions */}
               <div className={styles.dialogActions}>
@@ -394,17 +648,27 @@ export function DonationDialog() {
                     resetForm();
                   }}
                   appearance="secondary"
+                  disabled={loading}
                 >
-                  {t('donation.cancel')}
+                  {t('donation.cancel', 'Cancel')}
                 </Button>
                 <Button
                   onClick={handleDonate}
                   appearance="primary"
                   style={{
                     backgroundColor: '#2d5a7b',
+                    opacity: loading ? 0.7 : 1,
                   }}
+                  disabled={loading}
                 >
-                  {t('donation.donate')}
+                  {loading ? (
+                    <span className={styles.loadingSpinner}>
+                      <Spinner size="tiny" />
+                      {t('donation.processing', 'Processing')}
+                    </span>
+                  ) : (
+                    t('donation.donate', 'Donate Now')
+                  )}
                 </Button>
               </div>
             </div>
