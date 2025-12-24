@@ -97,6 +97,7 @@ const useStyles = makeStyles({
     color: tokens.colorNeutralForeground2,
     display: 'block',
     marginBottom: '16px',
+    textAlign: 'center',
   },
   ministryEmail: {
     fontSize: '0.85rem',
