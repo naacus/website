@@ -147,7 +147,7 @@ function PrivacyPage() {
             <Text
               className={`${styles.sectionTitle} ${styles.subsectionTitle}`}
             >
-              2.1 Information You Provide Directly
+              2.1. Information You Provide Directly
             </Text>
             <Text
               className={`${styles.paragraph} ${styles.subsectionParagraph}`}
@@ -190,7 +190,7 @@ function PrivacyPage() {
             <Text
               className={`${styles.sectionTitle} ${styles.subsectionTitleWithMargin}`}
             >
-              2.2 Information Collected Automatically
+              2.2. Information Collected Automatically
             </Text>
             <Text
               className={`${styles.paragraph} ${styles.subsectionParagraph}`}
@@ -242,7 +242,7 @@ function PrivacyPage() {
             <Text
               className={`${styles.sectionTitle} ${styles.subsectionTitleWithMargin}`}
             >
-              3.1 Service Delivery
+              3.1. Service Delivery
             </Text>
             <div className={styles.list}>
               <div className={styles.listItem}>
@@ -265,7 +265,7 @@ function PrivacyPage() {
             <Text
               className={`${styles.sectionTitle} ${styles.subsectionTitleWithMargin}`}
             >
-              3.2 Analytics and Improvement
+              3.2. Analytics and Improvement
             </Text>
             <div className={styles.list}>
               <div className={styles.listItem}>

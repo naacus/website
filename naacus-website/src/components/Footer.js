@@ -103,6 +103,25 @@ const useStyles = makeStyles({
     color: '#90e0ef',
     fontWeight: '500',
   },
+  footerBottomLinks: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    ...shorthands.gap('12px'),
+    marginBottom: '16px',
+    '@media (max-width: 768px)': {
+      flexDirection: 'column',
+      ...shorthands.gap('8px'),
+    },
+  },
+  footerSeparator: {
+    color: tokens.colorNeutralForegroundInverted,
+    opacity: 0.5,
+    '@media (max-width: 768px)': {
+      display: 'none',
+    },
+  },
 });
 
 function Footer() {
@@ -258,7 +277,7 @@ function Footer() {
         </div>
       </div>
       <div className={styles.footerBottom}>
-        <div style={{ display: 'flex', gap: '20px', marginBottom: '16px', flexWrap: 'wrap', alignItems: 'center' }}>
+        <div className={styles.footerBottomLinks}>
           <Link 
             className={styles.footerLink}
             onClick={() => handleNavigationHelper('/privacy')}
@@ -266,6 +285,7 @@ function Footer() {
           >
             {t('footer.privacyPolicy') || 'Privacy Policy'}
           </Link>
+          <span className={styles.footerSeparator}>|</span>
           <button 
             onClick={() => window.showCookieConsent?.()}
             style={{
@@ -283,10 +303,11 @@ function Footer() {
           >
             {t('footer.cookieSettings') || 'Cookie Settings'}
           </button>
+          <span className={styles.footerSeparator}>|</span>
+          <span style={{ color: tokens.colorNeutralForegroundInverted, opacity: 0.8, fontSize: '0.95rem' }}>
+            © {currentYear} NAACUS. All rights reserved.
+          </span>
         </div>
-        <Text as="p" className={styles.footerBottomText}>
-          {t('footer.copyright', { year: currentYear })}
-        </Text>
       </div>
     </footer>
   );
