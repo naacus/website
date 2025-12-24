@@ -59,6 +59,7 @@ const useStyles = makeStyles({
     maxWidth: '900px',
     maxHeight: '90vh',
     overflowY: 'auto',
+    overflowX: 'hidden',
     backgroundColor: tokens.colorNeutralBackground1,
     boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
     ...shorthands.borderRadius(themeTokens.borderRadius.md),
@@ -66,15 +67,17 @@ const useStyles = makeStyles({
     flexDirection: 'column',
     ...shorthands.padding(themeTokens.spacing.lg),
     transition: 'max-height 0.3s ease, height 0.3s ease',
+    boxSizing: 'border-box',
     '@media (max-width: 968px)': {
-      maxWidth: '95%',
+      maxWidth: '95vw',
       maxHeight: '95vh',
       ...shorthands.padding(themeTokens.spacing.md),
     },
     '@media (max-width: 768px)': {
       maxHeight: '98vh',
-      width: '95%',
-      maxWidth: 'none',
+      width: '95vw',
+      maxWidth: '95vw',
+      minWidth: 0,
       ...shorthands.padding(themeTokens.spacing.sm),
       top: '50%',
       transform: 'translate(-50%, -50%)',
@@ -86,7 +89,9 @@ const useStyles = makeStyles({
     ...shorthands.gap(themeTokens.spacing['2xl']),
     ...shorthands.padding(themeTokens.spacing.lg),
     overflowY: 'auto',
+    overflowX: 'hidden',
     flex: 1,
+    minWidth: 0,
     '@media (max-width: 968px)': {
       ...shorthands.gap(themeTokens.spacing.lg),
       ...shorthands.padding(themeTokens.spacing.md),
@@ -101,16 +106,20 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
     ...shorthands.gap(themeTokens.spacing.md),
+    minWidth: 0,
   },
   paymentSection: {
     display: 'flex',
     flexDirection: 'column',
+    minWidth: 0,
   },
   formField: {
     display: 'flex',
     flexDirection: 'column',
     ...shorthands.gap(themeTokens.spacing.xs),
     marginBottom: themeTokens.spacing.sm,
+    minWidth: 0,
+    width: '100%',
   },
   label: {
     fontSize: themeTokens.typography.fontSize.xs,
@@ -320,6 +329,23 @@ const useStyles = makeStyles({
     ...shorthands.padding('8px', '0'),
     marginTop: themeTokens.spacing.xs,
     marginBottom: '0',
+  },
+  twoColGridEven: {
+    display: 'grid',
+    gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr)',
+    gap: '12px',
+    minWidth: 0,
+    width: '100%',
+  },
+  twoColGridWideNarrow: {
+    display: 'grid',
+    gridTemplateColumns: 'minmax(0, 2fr) minmax(0, 1fr)',
+    gap: '12px',
+    minWidth: 0,
+    width: '100%',
+  },
+  fullWidthInput: {
+    width: '100%',
   },
 });
 
@@ -644,7 +670,7 @@ export function DonationDialog() {
                 contentBefore={cardType}
               />
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+            <div className={styles.twoColGridEven}>
               <div className={styles.formField}>
                 <label className={styles.label}>
                   {t('donation.expiry', 'Expiry')} <span className={styles.required}>*</span>
@@ -655,6 +681,7 @@ export function DonationDialog() {
                   onChange={handleInputChange}
                   placeholder="MM/YY"
                   disabled={loading}
+                  className={styles.fullWidthInput}
                 />
               </div>
               <div className={styles.formField}>
@@ -667,6 +694,7 @@ export function DonationDialog() {
                   onChange={handleInputChange}
                   placeholder="123"
                   disabled={loading}
+                  className={styles.fullWidthInput}
                 />
               </div>
             </div>
@@ -685,9 +713,10 @@ export function DonationDialog() {
                 onChange={handleInputChange}
                 placeholder={t('donation.accountHolder', 'Account Holder Name')}
                 disabled={loading}
+                className={styles.fullWidthInput}
               />
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '12px' }}>
+            <div className={styles.twoColGridWideNarrow}>
               <div className={styles.formField}>
                 <label className={styles.label}>
                   {t('donation.accountNumber', 'Account Number')} <span className={styles.required}>*</span>
@@ -698,6 +727,7 @@ export function DonationDialog() {
                   onChange={handleInputChange}
                   placeholder={t('donation.accountNumber', 'Account Number')}
                   disabled={loading}
+                  className={styles.fullWidthInput}
                 />
               </div>
               <div className={styles.formField}>
@@ -710,6 +740,7 @@ export function DonationDialog() {
                   onChange={handleInputChange}
                   placeholder={t('donation.routingNumber', 'Routing Number')}
                   disabled={loading}
+                  className={styles.fullWidthInput}
                 />
               </div>
             </div>
