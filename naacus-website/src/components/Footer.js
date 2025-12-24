@@ -10,10 +10,11 @@ import {
 } from '@fluentui/react-components';
 import { handleNavigation } from '../services/navigationService';
 import { useAnalytics } from '../hooks/useAnalytics';
+import { colors } from '../config/theme';
 
 const useStyles = makeStyles({
   footer: {
-    backgroundColor: '#252423',
+    backgroundColor: colors.ui.footerBg,
     color: tokens.colorNeutralForegroundInverted,
     ...shorthands.padding('64px', '20px', '24px'),
     '@media (max-width: 768px)': {

@@ -5,6 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NAACUS AI Chatbot Demo</title>
     <style>
+        /* Design Tokens - Colors */
+        :root {
+            --color-chat-primary: #0f6cbd;
+            --color-chat-dark: #0a5299;
+            --color-background: #ffffff;
+            --color-text: #333333;
+            --color-border: #e0e0e0;
+            --color-success-bg: #dff6dd;
+            --color-success-text: #06310e;
+            --color-chat-bg: #e6f2fb;
+            --color-chat-text: #0f2940;
+            --color-panel-bg: #f5f7fb;
+            --color-input-bg: #f0f0f0;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -22,7 +37,7 @@
         }
 
         .demo-container {
-            background: white;
+            background: var(--color-background);
             border-radius: 16px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             max-width: 1200px;
@@ -31,7 +46,7 @@
         }
 
         .demo-header {
-            background: #0f6cbd;
+            background: var(--color-chat-primary);
             color: white;
             padding: 24px;
             text-align: center;
@@ -58,14 +73,14 @@
         }
 
         .demo-panel:first-child {
-            border-right: 1px solid #e0e0e0;
+            border-right: 1px solid var(--color-border);
         }
 
         .panel-title {
             font-size: 18px;
             font-weight: 600;
             margin-bottom: 16px;
-            color: #333;
+            color: var(--color-text);
         }
 
         .test-questions {
@@ -75,7 +90,7 @@
         }
 
         .question-btn {
-            background: #f0f0f0;
+            background: var(--color-input-bg);
             border: 1px solid #ddd;
             border-radius: 8px;
             padding: 12px 16px;
@@ -86,13 +101,13 @@
         }
 
         .question-btn:hover {
-            background: #e6f2fb;
-            border-color: #0f6cbd;
+            background: var(--color-chat-bg);
+            border-color: var(--color-chat-primary);
             transform: translateX(4px);
         }
 
         .chat-container {
-            background: #f5f7fb;
+            background: var(--color-panel-bg);
             border-radius: 12px;
             height: 400px;
             display: flex;
@@ -118,15 +133,15 @@
         }
 
         .message.user {
-            background: #dff6dd;
-            color: #06310e;
+            background: var(--color-success-bg);
+            color: var(--color-success-text);
             align-self: flex-end;
             margin-left: auto;
         }
 
         .message.bot {
-            background: #e6f2fb;
-            color: #0f2940;
+            background: var(--color-chat-bg);
+            color: var(--color-chat-text);
             align-self: flex-start;
         }
 
@@ -144,7 +159,7 @@
         .related-questions div {
             margin-top: 4px;
             cursor: pointer;
-            color: #0f6cbd;
+            color: var(--color-chat-primary);
         }
 
         .related-questions div:hover {
@@ -156,7 +171,7 @@
             gap: 8px;
             padding: 12px;
             background: white;
-            border-top: 1px solid #e0e0e0;
+            border-top: 1px solid var(--color-border);
         }
 
         .chat-input input {
@@ -168,7 +183,7 @@
         }
 
         .chat-input button {
-            background: #0f6cbd;
+            background: var(--color-chat-primary);
             color: white;
             border: none;
             border-radius: 8px;
@@ -179,7 +194,7 @@
         }
 
         .chat-input button:hover {
-            background: #0a5299;
+            background: var(--color-chat-dark);
         }
 
         .stats {
@@ -202,7 +217,7 @@
 
         .stats-value {
             font-weight: 600;
-            color: #0f6cbd;
+            color: var(--color-chat-primary);
         }
 
         @media (max-width: 768px) {

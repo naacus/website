@@ -331,7 +331,6 @@
     "messageLabel": "Message",
     "messagePlaceholder": "Dites-nous comment nous pouvons vous aider...",
     "sendButton": "Envoyer le Message",
-    "formNote": "* Intégration Microsoft 365 prête - les soumissions de formulaires seront traitées via les services sécurisés de Microsoft",
     "required": "*"
   },
   "chat": {

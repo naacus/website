@@ -7,7 +7,7 @@ export const leadershipData = {
     { name: 'Mrs. Sally Stovall', title: 'President', phone: '317-727-5736', email: 'sally.stovall@naacus.org', photo: '' },
     { name: 'Mr. Kwame Frimpong', title: 'Vice President', phone: '240-731-1526', email: 'kwame.frimpong@naacus.org', photo: '' },
     { name: 'Mr. Alex Nana Danso', title: 'General Secretary', phone: '571-337-9797', email: 'alex.danso@naacus.org', photo: '' },
-    { name: 'Mr. Fessahaye Mebrahtu', title: 'Assistant General Secretary', phone: '414-526-0385', email: 'fessahaye.mebrahtu@naacus.org', photo: '' },
+    { name: 'Sr. Dr. Maddy Claire Takyala', title: 'Assistant General Secretary', phone: '219-259-6940', email: 'maddy.takyala@naacus.org', photo: '' },
     { name: 'Mr. Bosco Miller', title: 'Publicity Secretary', phone: '210-315-2547', email: 'bosco.miller@naacus.org', photo: '' },
     { name: 'Mrs. Reine Marie Assana', title: 'Assistant Publicity Secretary', phone: '414-614-4907', email: 'reine.assana@naacus.org', photo: '' },
     { name: 'Sr. Henrietta Okoro HHCJ', title: 'Treasurer', phone: '832-605-5426', email: 'henrietta.okoro@naacus.org', photo: '' },

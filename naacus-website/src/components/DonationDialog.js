@@ -10,6 +10,7 @@ import {
 } from '@fluentui/react-components';
 import paymentService from '../services/paymentService';
 import { trackCTAEvent } from '../services/analyticsService';
+import { themeTokens, colors } from '../config/theme';
 
 const useStyles = makeStyles({
   donateButtonContainer: {
@@ -20,12 +21,12 @@ const useStyles = makeStyles({
     display: 'none',
   },
   donateButton: {
-    backgroundColor: '#2d5a7b',
-    color: 'white',
-    fontWeight: '600',
+    backgroundColor: colors.primary.dark,
+    color: colors.neutral.white,
+    fontWeight: themeTokens.typography.fontWeight.semibold,
     '@media (max-width: 768px)': {
-      padding: '4px 8px',
-      fontSize: '11px',
+      ...shorthands.padding(themeTokens.spacing.xs, themeTokens.spacing.sm),
+      fontSize: themeTokens.typography.fontSize.xs,
       whiteSpace: 'nowrap',
       minWidth: 'auto',
       height: '24px',
@@ -33,8 +34,8 @@ const useStyles = makeStyles({
     },
     '@media (min-width: 769px)': {
       minWidth: '100px',
-      padding: '10px 16px',
-      fontSize: '0.95rem',
+      ...shorthands.padding(themeTokens.spacing.md, themeTokens.spacing.lg),
+      fontSize: themeTokens.typography.fontSize['0.95rem'],
     },
   },
   dialogBackdrop: {
@@ -43,7 +44,7 @@ const useStyles = makeStyles({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: themeTokens.colors.overlay.darkOverlay,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -61,10 +62,10 @@ const useStyles = makeStyles({
     overflowY: 'hidden',
     backgroundColor: tokens.colorNeutralBackground1,
     boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
-    borderRadius: '12px',
+    ...shorthands.borderRadius(themeTokens.borderRadius.md),
     display: 'flex',
     flexDirection: 'column',
-    ...shorthands.padding('20px'),
+    ...shorthands.padding(themeTokens.spacing.lg),
     transition: 'max-height 0.3s ease, height 0.3s ease',
     '@media (max-width: 968px)': {
       maxWidth: '95%',
@@ -78,20 +79,20 @@ const useStyles = makeStyles({
   dialogContent: {
     display: 'grid',
     gridTemplateColumns: '1fr 1fr',
-    gap: '24px',
-    padding: '16px',
+    ...shorthands.gap(themeTokens.spacing['2xl']),
+    ...shorthands.padding(themeTokens.spacing.lg),
     overflowY: 'auto',
     flex: 1,
     '@media (max-width: 768px)': {
       gridTemplateColumns: '1fr',
-      gap: '16px',
-      padding: '12px',
+      ...shorthands.gap(themeTokens.spacing.lg),
+      ...shorthands.padding(themeTokens.spacing.md),
     },
   },
   formSection: {
     display: 'flex',
     flexDirection: 'column',
-    gap: '12px',
+    ...shorthands.gap(themeTokens.spacing.md),
   },
   paymentSection: {
     display: 'flex',
@@ -100,36 +101,36 @@ const useStyles = makeStyles({
   formField: {
     display: 'flex',
     flexDirection: 'column',
-    ...shorthands.gap('4px'),
-    marginBottom: '6px',
+    ...shorthands.gap(themeTokens.spacing.xs),
+    marginBottom: themeTokens.spacing.sm,
   },
   label: {
-    fontSize: '0.8rem',
-    fontWeight: '600',
+    fontSize: themeTokens.typography.fontSize.xs,
+    fontWeight: themeTokens.typography.fontWeight.semibold,
     color: tokens.colorNeutralForeground1,
   },
   required: {
-    color: '#d13438',
+    color: themeTokens.colors.status.error,
   },
   paymentMethods: {
     display: 'grid',
-    gridTemplateColumns: '1fr',
-    ...shorthands.gap('4px'),
-    marginBottom: '16px',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(80px, 1fr))',
+    ...shorthands.gap(themeTokens.spacing.xs),
+    marginBottom: themeTokens.spacing.lg,
     '@media (max-width: 600px)': {
-      gridTemplateColumns: '1fr',
+      gridTemplateColumns: 'repeat(auto-fit, minmax(60px, 1fr))',
     },
   },
   paymentMethodCategory: {
     gridColumn: '1 / -1',
-    fontSize: '0.85rem',
-    fontWeight: '700',
+    fontSize: themeTokens.typography.fontSize['0.85rem'],
+    fontWeight: themeTokens.typography.fontWeight.bold,
     color: tokens.colorBrandBackground,
     textTransform: 'uppercase',
     letterSpacing: '0.5px',
-    marginTop: '8px',
-    marginBottom: '4px',
-    paddingBottom: '4px',
+    marginTop: themeTokens.spacing.sm,
+    marginBottom: themeTokens.spacing.xs,
+    paddingBottom: themeTokens.spacing.xs,
     borderBottomColor: tokens.colorNeutralStroke1,
     borderBottomWidth: '1px',
     borderBottomStyle: 'solid',
@@ -139,64 +140,43 @@ const useStyles = makeStyles({
   },
   paymentOption: {
     display: 'flex',
-    flexDirection: 'row',
+    flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    ...shorthands.borderRadius('8px'),
+    justifyContent: 'center',
     cursor: 'pointer',
-    backgroundColor: tokens.colorNeutralBackground1,
     transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
     position: 'relative',
-    minHeight: '20px',
-    width: 'fit-content',
-    padding: '2px 6px',
-    '&:hover': {
-      borderTopColor: tokens.colorBrandBackground,
-      borderRightColor: tokens.colorBrandBackground,
-      borderBottomColor: tokens.colorBrandBackground,
-      borderLeftColor: tokens.colorBrandBackground,
-      backgroundColor: 'rgba(45, 90, 123, 0.08)',
-      transform: 'translateY(-2px)',
-      boxShadow: '0 4px 12px rgba(45, 90, 123, 0.1)',
-    },
+    minHeight: 'auto',
+    width: 'auto',
+    ...shorthands.padding(themeTokens.spacing.xs, themeTokens.spacing.xs),
   },
-  paymentOptionSelected: {
-    borderTopColor: tokens.colorBrandBackground,
-    borderRightColor: tokens.colorBrandBackground,
-    borderBottomColor: tokens.colorBrandBackground,
-    borderLeftColor: tokens.colorBrandBackground,
-    backgroundColor: 'rgba(45, 90, 123, 0.12)',
-    boxShadow: '0 4px 12px rgba(45, 90, 123, 0.15)',
-  },
+  paymentOptionSelected: {},
   speedBadge: {
     backgroundColor: tokens.colorBrandBackground,
-    color: 'white',
-    fontSize: '0.6rem',
-    fontWeight: '700',
-    paddingLeft: '4px',
-    paddingRight: '4px',
-    paddingTop: '2px',
-    paddingBottom: '2px',
-    borderRadius: '3px',
+    color: colors.neutral.white,
+    fontSize: '0.5rem',
+    fontWeight: themeTokens.typography.fontWeight.bold,
+    ...shorthands.padding('2px', themeTokens.spacing.xs),
+    ...shorthands.borderRadius('3px'),
     textTransform: 'uppercase',
     letterSpacing: '0.3px',
-    marginLeft: '6px',
     whiteSpace: 'nowrap',
+    flexShrink: 0,
   },
   amountPresets: {
     display: 'grid',
     gridTemplateColumns: 'repeat(4, 1fr)',
-    ...shorthands.gap('4px'),
-    marginBottom: '8px',
+    ...shorthands.gap(themeTokens.spacing.xs),
+    marginBottom: themeTokens.spacing.sm,
   },
   amountButton: {
-    padding: '4px',
+    ...shorthands.padding(themeTokens.spacing.xs),
     border: `1px solid ${tokens.colorNeutralStroke1}`,
-    ...shorthands.borderRadius('6px'),
+    ...shorthands.borderRadius(themeTokens.borderRadius.sm),
     cursor: 'pointer',
     backgroundColor: tokens.colorNeutralBackground1,
-    fontSize: '0.8rem',
-    fontWeight: '500',
+    fontSize: themeTokens.typography.fontSize.xs,
+    fontWeight: themeTokens.typography.fontWeight.medium,
     transition: 'all 0.2s ease',
     '&:hover': {
       borderTopColor: tokens.colorBrandBackground,
@@ -214,58 +194,58 @@ const useStyles = makeStyles({
     borderLeftColor: tokens.colorBrandBackground,
   },
   dialogTitle: {
-    fontSize: '1.2rem',
-    fontWeight: '700',
+    fontSize: themeTokens.typography.fontSize['1.2rem'],
+    fontWeight: themeTokens.typography.fontWeight.bold,
     color: tokens.colorNeutralForeground1,
   },
   closeButton: {
     position: 'absolute',
-    top: '12px',
-    right: '12px',
+    top: themeTokens.spacing.md,
+    right: themeTokens.spacing.md,
     background: 'none',
     border: 'none',
     cursor: 'pointer',
-    fontSize: '1.5rem',
-    padding: '4px',
+    fontSize: themeTokens.typography.fontSize['1.5rem'],
+    ...shorthands.padding(themeTokens.spacing.xs),
   },
   dialogActions: {
     display: 'flex',
-    gap: '12px',
+    ...shorthands.gap(themeTokens.spacing.md),
     justifyContent: 'flex-end',
-    padding: '16px 24px',
+    ...shorthands.padding(themeTokens.spacing.lg, themeTokens.spacing['2xl']),
     borderTop: `1px solid ${tokens.colorNeutralStroke1}`,
   },
   errorMessage: {
-    color: '#d13438',
-    fontSize: '0.85rem',
-    marginTop: '4px',
-    padding: '8px 12px',
-    backgroundColor: 'rgba(209, 52, 56, 0.1)',
-    borderRadius: '6px',
+    color: themeTokens.colors.status.error,
+    fontSize: themeTokens.typography.fontSize['0.85rem'],
+    marginTop: themeTokens.spacing.xs,
+    ...shorthands.padding(themeTokens.spacing.sm, themeTokens.spacing.md),
+    backgroundColor: themeTokens.colors.overlay.errorOverlay,
+    ...shorthands.borderRadius(themeTokens.borderRadius.sm),
   },
   successMessage: {
-    color: '#107c10',
-    fontSize: '0.85rem',
-    marginTop: '4px',
-    padding: '8px 12px',
-    backgroundColor: 'rgba(16, 124, 16, 0.1)',
-    borderRadius: '6px',
+    color: themeTokens.colors.status.success,
+    fontSize: themeTokens.typography.fontSize['0.85rem'],
+    marginTop: themeTokens.spacing.xs,
+    ...shorthands.padding(themeTokens.spacing.sm, themeTokens.spacing.md),
+    backgroundColor: themeTokens.colors.overlay.successOverlay,
+    ...shorthands.borderRadius(themeTokens.borderRadius.sm),
   },
   warningMessage: {
     color: '#ff8c00',
-    fontSize: '0.85rem',
-    marginTop: '4px',
-    padding: '8px 12px',
-    backgroundColor: 'rgba(255, 140, 0, 0.1)',
-    borderRadius: '6px',
+    fontSize: themeTokens.typography.fontSize['0.85rem'],
+    marginTop: themeTokens.spacing.xs,
+    ...shorthands.padding(themeTokens.spacing.sm, themeTokens.spacing.md),
+    backgroundColor: themeTokens.colors.overlay.warningOverlay,
+    ...shorthands.borderRadius(themeTokens.borderRadius.sm),
   },
   infoMessage: {
     color: '#0078d4',
-    fontSize: '0.85rem',
-    marginTop: '4px',
-    padding: '8px 12px',
+    fontSize: themeTokens.typography.fontSize['0.85rem'],
+    marginTop: themeTokens.spacing.xs,
+    ...shorthands.padding(themeTokens.spacing.sm, themeTokens.spacing.md),
     backgroundColor: 'rgba(0, 120, 212, 0.1)',
-    borderRadius: '6px',
+    ...shorthands.borderRadius(themeTokens.borderRadius.sm),
   },
   processingTime: {
     fontSize: '0.8rem',
@@ -275,19 +255,28 @@ const useStyles = makeStyles({
   },
   paymentMethodCard: {
     display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-    marginRight: '1px',
-    marginLeft: '1px',
-    textAlign: 'left',
-    width: '100%',
-    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: tokens.colorNeutralBackground1,
+    ...shorthands.borderRadius(themeTokens.borderRadius.sm),
+    ...shorthands.padding(themeTokens.spacing.xs, themeTokens.spacing.xs),
+    boxShadow: themeTokens.shadows.card,
+    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+    '&:hover': {
+      backgroundColor: 'rgba(45, 90, 123, 0.08)',
+      boxShadow: themeTokens.shadows.cardHover,
+    },
+  },
+  paymentMethodCardSelected: {
+    backgroundColor: 'rgba(45, 90, 123, 0.12)',
+    boxShadow: themeTokens.shadows.cardHover,
   },
   paymentMethodIconLabel: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     gap: '4px',
+    textAlign: 'center',
   },
   paymentMethodIcon: {
     width: '24px',
@@ -297,31 +286,33 @@ const useStyles = makeStyles({
     alignItems: 'center',
     justifyContent: 'center',
     filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08))',
-    fontSize: '0.9rem',
+    fontSize: themeTokens.typography.fontSize['0.9rem'],
     flexShrink: 0,
   },
   paymentMethodLabel: {
-    fontSize: '0.7rem',
-    fontWeight: '700',
+    fontSize: '0.6rem',
+    fontWeight: themeTokens.typography.fontWeight.semibold,
     color: tokens.colorNeutralForeground1,
-    lineHeight: '1.1',
+    lineHeight: themeTokens.typography.lineHeight.tight,
+    whiteSpace: 'nowrap',
   },
   paymentMethodTime: {
-    fontSize: '0.75rem',
+    fontSize: themeTokens.typography.fontSize['0.75rem'],
     color: tokens.colorNeutralForeground3,
-    fontWeight: '500',
-    marginTop: '2px',
+    fontWeight: themeTokens.typography.fontWeight.medium,
+    marginTop: themeTokens.spacing.xs,
   },
   loadingSpinner: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: '8px',
-    padding: '8px',
+    ...shorthands.gap(themeTokens.spacing.sm),
+    ...shorthands.padding(themeTokens.spacing.sm),
   },
   paymentMethodFormSection: {
-    padding: '8px 0',
-    marginTop: '4px',
+    gridColumn: '1 / -1',
+    ...shorthands.padding('8px', '0'),
+    marginTop: themeTokens.spacing.xs,
     marginBottom: '0',
   },
 });
@@ -915,44 +906,44 @@ export function DonationDialog() {
 
               {/* Payment Method Section */}
               <div className={styles.paymentSection}>
-                <label className={styles.label}>
-                  {t('donation.paymentMethod', 'Payment Method')} <span className={styles.required}>*</span>
-                </label>
+                <div style={{ display: 'flex', alignItems: 'center', gap: themeTokens.spacing.sm, marginBottom: themeTokens.spacing.sm }}>
+                  <label className={styles.label} style={{ marginBottom: 0 }}>
+                    {t('donation.paymentMethod', 'Payment Method')} <span className={styles.required}>*</span>
+                  </label>
+                  {selectedPayment && (
+                    <div className={styles.speedBadge}>
+                      {getSpeedBadge(selectedPayment)}
+                    </div>
+                  )}
+                </div>
                 <div className={styles.paymentMethods}>
-                  {organizePaymentMethods(paymentMethods).map((group) => (
-                    <React.Fragment key={group.category}>
-                      {group.methods.map(method => (
-                        <React.Fragment key={method.id}>
-                          <div
-                            className={`${styles.paymentOption} ${
-                              selectedPayment === method.id ? styles.paymentOptionSelected : ''
-                            }`}
-                            onClick={() => !loading && setSelectedPayment(method.id)}
-                            style={{ opacity: loading ? 0.6 : 1, cursor: loading ? 'not-allowed' : 'pointer' }}
-                          >
-                            <div className={styles.paymentMethodCard}>
-                              <div className={styles.paymentMethodIconLabel}>
-                                {method.iconPath || method.icon ? (
-                                  <img 
-                                    src={method.iconPath || method.icon} 
-                                    alt={method.label}
-                                    className={styles.paymentMethodIcon}
-                                  />
-                                ) : (
-                                  <div className={styles.paymentMethodIcon}>💳</div>
-                                )}
-                                <span className={styles.paymentMethodLabel}>{method.label}</span>
-                                {selectedPayment === method.id && (
-                                  <div className={styles.speedBadge}>
-                                    {getSpeedBadge(method.id)}
-                                  </div>
-                                )}
-                              </div>
-                            </div>
+                  {paymentMethods.map(method => (
+                    <React.Fragment key={method.id}>
+                      <div
+                        className={`${styles.paymentOption} ${
+                          selectedPayment === method.id ? styles.paymentOptionSelected : ''
+                        }`}
+                        onClick={() => !loading && setSelectedPayment(method.id)}
+                        style={{ opacity: loading ? 0.6 : 1, cursor: loading ? 'not-allowed' : 'pointer' }}
+                      >
+                        <div className={`${styles.paymentMethodCard} ${
+                          selectedPayment === method.id ? styles.paymentMethodCardSelected : ''
+                        }`}>
+                          <div className={styles.paymentMethodIconLabel}>
+                            {method.iconPath || method.icon ? (
+                              <img 
+                                src={method.iconPath || method.icon} 
+                                alt={method.label}
+                                className={styles.paymentMethodIcon}
+                              />
+                            ) : (
+                              <div className={styles.paymentMethodIcon}>💳</div>
+                            )}
+                            <span className={styles.paymentMethodLabel}>{method.label}</span>
                           </div>
-                          {selectedPayment === method.id && renderPaymentMethodForm(method.id)}
-                        </React.Fragment>
-                      ))}
+                        </div>
+                      </div>
+                      {selectedPayment === method.id && renderPaymentMethodForm(method.id)}
                     </React.Fragment>
                   ))}
                 </div>

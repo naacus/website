@@ -8,17 +8,18 @@ import {
   Card,
   CardHeader
 } from '@fluentui/react-components';
+import { themeTokens } from '../config/theme';
 
 const useStyles = makeStyles({
   about: {
-    backgroundColor: '#faf9f8',
+    backgroundColor: themeTokens.colors.background.light,
     ...shorthands.padding('50px', '20px'),
     '@media (max-width: 768px)': {
       padding: '40px 0',
     },
   },
   aboutTitle: {
-    fontSize: '2rem',
+    fontSize: themeTokens.typography.fontSize['2rem'],
     textAlign: 'center',
     marginBottom: '16px',
     color: tokens.colorNeutralForeground1,
@@ -26,7 +27,7 @@ const useStyles = makeStyles({
     display: 'block',
     letterSpacing: '-0.02em',
     '@media (max-width: 768px)': {
-      fontSize: '1.5rem',
+      fontSize: themeTokens.typography.fontSize['1.5rem'],
     },
   },
   aboutContent: {
@@ -34,8 +35,8 @@ const useStyles = makeStyles({
     ...shorthands.margin('0', 'auto'),
   },
   aboutIntro: {
-    fontSize: '1.125rem',
-    lineHeight: '1.7',
+    fontSize: themeTokens.typography.fontSize['1.125rem'],
+    lineHeight: themeTokens.typography.lineHeight.relaxed,
     color: tokens.colorNeutralForeground2,
     textAlign: 'center',
     marginBottom: '40px',
@@ -53,11 +54,11 @@ const useStyles = makeStyles({
     ...shorthands.padding('40px', '32px'),
     ...shorthands.transition('all', '0.3s', 'ease'),
     backgroundColor: tokens.colorNeutralBackground1,
-    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.06)',
+    boxShadow: themeTokens.shadows.card,
     ...shorthands.borderRadius('8px'),
     '&:hover': {
       transform: 'translateY(-8px)',
-      boxShadow: '0 8px 24px rgba(0, 0, 0, 0.12)',
+      boxShadow: themeTokens.shadows.cardHover,
     },
   },
   icon: {
@@ -66,14 +67,14 @@ const useStyles = makeStyles({
     display: 'block',
   },
   itemTitle: {
-    fontSize: '1.375rem',
+    fontSize: themeTokens.typography.fontSize['1.375rem'],
     marginBottom: '12px',
     color: tokens.colorNeutralForeground1,
-    fontWeight: '600',
+    fontWeight: themeTokens.typography.fontWeight.semibold,
   },
   itemText: {
-    fontSize: '1rem',
-    lineHeight: '1.6',
+    fontSize: themeTokens.typography.fontSize['1rem'],
+    lineHeight: themeTokens.typography.lineHeight.normal,
     color: tokens.colorNeutralForeground2,
   },
 });

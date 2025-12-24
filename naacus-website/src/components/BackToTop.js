@@ -6,22 +6,23 @@ import {
   Button
 } from '@fluentui/react-components';
 import { ArrowUp24Regular } from '@fluentui/react-icons';
+import { themeTokens, colors } from '../config/theme';
 
 const useStyles = makeStyles({
   backToTop: {
     position: 'fixed',
-    bottom: '88px',
-    right: '4px',
-    zIndex: 1200,
+    bottom: themeTokens.componentPositioning.backToTop.bottom,
+    right: themeTokens.componentPositioning.backToTop.right,
+    zIndex: themeTokens.componentPositioning.backToTop.zIndex,
     opacity: 0,
     transform: 'translateY(20px)',
     visibility: 'hidden',
     transitionProperty: 'opacity, visibility, transform',
-    transitionDuration: '0.3s',
+    transitionDuration: themeTokens.typography.fontSize.md,
     transitionTimingFunction: 'ease-in-out',
     '@media (max-width: 768px)': {
-      bottom: '80px',
-      right: '4px',
+      bottom: themeTokens.componentPositioning.backToTop.bottomMobile,
+      right: themeTokens.componentPositioning.backToTop.right,
     },
   },
   visible: {
@@ -32,17 +33,17 @@ const useStyles = makeStyles({
   button: {
     ...shorthands.padding('14px', '28px'),
     ...shorthands.borderRadius('50px'),
-    backgroundColor: '#0067b8',
-    color: '#ffffff',
-    boxShadow: '0 6px 16px rgba(0, 103, 184, 0.35)',
-    fontSize: '15px',
-    fontWeight: '600',
+    backgroundColor: colors.button.primary,
+    color: colors.button.text,
+    boxShadow: themeTokens.shadows.md,
+    fontSize: themeTokens.typography.fontSize.md,
+    fontWeight: themeTokens.typography.fontWeight.semibold,
     border: 'none',
     minWidth: 'fit-content',
     ':hover': {
       transform: 'translateY(-3px)',
-      boxShadow: '0 8px 20px rgba(0, 103, 184, 0.45)',
-      backgroundColor: '#005a9e',
+      boxShadow: themeTokens.shadows.hover,
+      backgroundColor: colors.button.primaryHover,
     },
     '@media (max-width: 768px)': {
       ...shorthands.padding('12px'),

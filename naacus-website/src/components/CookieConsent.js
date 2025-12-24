@@ -7,6 +7,7 @@ import {
   Button,
   Text,
 } from '@fluentui/react-components';
+import { themeTokens } from '../config/theme';
 
 const useStyles = makeStyles({
   cookieBanner: {
@@ -16,7 +17,7 @@ const useStyles = makeStyles({
     right: 0,
     backgroundColor: tokens.colorNeutralBackground1,
     borderTop: `2px solid ${tokens.colorBrandForeground1}`,
-    ...shorthands.padding('20px'),
+    ...shorthands.padding(themeTokens.spacing.xl),
     zIndex: 1400,
     animation: 'slideUp 0.3s ease-in-out',
     boxShadow: '0 -2px 8px rgba(0, 0, 0, 0.1)',
@@ -28,16 +29,16 @@ const useStyles = makeStyles({
     justifyContent: 'space-between',
     alignItems: 'center',
     flexWrap: 'wrap',
-    gap: '16px',
+    ...shorthands.gap(themeTokens.spacing.lg),
   },
   content: {
     flex: '1',
     minWidth: '250px',
   },
   text: {
-    fontSize: '14px',
+    fontSize: themeTokens.typography.fontSize.base,
     color: tokens.colorNeutralForeground1,
-    marginBottom: '8px',
+    marginBottom: themeTokens.spacing.sm,
   },
   link: {
     color: tokens.colorBrandForeground1,
@@ -49,7 +50,7 @@ const useStyles = makeStyles({
   },
   buttons: {
     display: 'flex',
-    gap: '12px',
+    ...shorthands.gap(themeTokens.spacing.md),
     alignItems: 'center',
     flexWrap: 'wrap',
   },
@@ -111,7 +112,7 @@ function CookieConsent() {
             {t('cookies.message') || 
               'We use cookies to enhance your experience and analyze site traffic. By continuing to use this site, you consent to our use of cookies.'}
           </Text>
-          <Text as="div" className={styles.text} style={{ fontSize: '12px', color: tokens.colorNeutralForeground2 }}>
+          <Text as="div" className={styles.text} style={{ fontSize: themeTokens.typography.fontSize.sm, color: tokens.colorNeutralForeground2 }}>
             {t('cookies.learnMore') || 'Learn more about our'} <a href="/privacy" className={styles.link}>{t('cookies.privacyPolicy') || 'privacy policy'}</a>
           </Text>
         </div>

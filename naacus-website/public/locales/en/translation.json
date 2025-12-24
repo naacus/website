@@ -334,7 +334,6 @@
     "messageLabel": "Message",
     "messagePlaceholder": "Tell us how we can help...",
     "sendButton": "Send Message",
-    "formNote": "* Microsoft 365 integration ready - form submissions will be processed through secure Microsoft services",
     "required": "*"
   },
   "events": {

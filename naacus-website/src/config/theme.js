@@ -54,6 +54,25 @@ export const colors = {
     primaryHover: '#005a9e',
     text: '#ffffff',
   },
+  
+  // Domain-Specific UI Colors
+  ui: {
+    chatPrimary: '#0f6cbd',      // Chat widget primary color
+    analyticsDark: '#0f4c81',    // Analytics dashboard dark color
+    footerBg: '#252423',         // Footer background color
+  },
+  
+  // Overlay/Transparency Colors
+  overlay: {
+    lightOverlay: 'rgba(255, 255, 255, 0.95)',
+    darkOverlay: 'rgba(0, 0, 0, 0.5)',
+    cardShadow: 'rgba(0, 0, 0, 0.06)',
+    cardShadowHover: 'rgba(0, 0, 0, 0.12)',
+    accentOverlay: 'rgba(45, 90, 123, 0.08)',
+    successOverlay: 'rgba(16, 124, 16, 0.1)',
+    errorOverlay: 'rgba(209, 52, 56, 0.1)',
+    warningOverlay: 'rgba(255, 140, 0, 0.1)',
+  },
 };
 
 // Typography Sizes
@@ -115,6 +134,87 @@ export const spacing = {
   '2xl': '24px',
   '3xl': '32px',
   '4xl': '40px',
+  '5xl': '50px',
+  '6xl': '60px',
+  '7xl': '64px',
+};
+
+// Component-Specific Spacing
+export const componentSpacing = {
+  section: {
+    paddingDesktop: '50px 20px',
+    paddingMobile: '40px 0',
+  },
+  card: {
+    padding: '40px 32px',
+    gap: '30px',
+  },
+  button: {
+    paddingDesktop: '14px 28px',
+    paddingMobile: '12px',
+    minSizeDesktop: 'fit-content',
+    minSizeMobile: '52px',
+  },
+};
+
+// Component-Specific Positioning
+export const componentPositioning = {
+  backToTop: {
+    bottom: '88px',
+    right: '4px',
+    zIndex: 1200,
+    bottomMobile: '80px',
+  },
+  chatWidget: {
+    right: '4px',
+    bottom: '4px',
+    zIndex: 1300,
+  },
+};
+
+// Component-Specific Chat Widget Styles
+export const componentChat = {
+  colors: {
+    primary: '#0f6cbd',
+    avatarBg: '#ffffff',
+    panelBg: '#ffffff',
+    textBg: '#000000',
+    botBubbleBg: '#e6f2fb',
+    botBubbleText: '#0f2940',
+    userBubbleBg: '#dff6dd',
+    userBubbleText: '#06310e',
+    panelInputBg: '#f8f8f8',
+    relatedBg: '#e0e0e0',
+  },
+  sizes: {
+    teaserCardWidth: '300px',
+    teaserCardWidthMobile: 'auto',
+    panelWidth: '380px',
+    panelHeight: '520px',
+    avatarSize: '52px',
+    avatarInnerSize: '42px',
+    avatarBadgeSize: '20px',
+  },
+  spacing: {
+    containerGap: '12px',
+    teaserCardGap: '10px',
+    teaserCardPadding: '12px 16px',
+    teaserCardPaddingMobile: '12px',
+    messageInputGap: '10px',
+    messageInputPadding: '14px 16px',
+  },
+  shadows: {
+    teaser: '0 8px 20px rgba(0,0,0,0.18)',
+    panel: '0 16px 48px rgba(0,0,0,0.2)',
+    input: '0 2px 8px rgba(0,0,0,0.2)',
+  },
+  borderRadius: {
+    teaser: '16px',
+    panel: '16px',
+    bubble: '12px',
+    input: '8px',
+    badge: '50%',
+  },
 };
 
 // Border Radius
@@ -133,6 +233,8 @@ export const shadows = {
   md: '0 6px 16px rgba(0, 103, 184, 0.35)',
   lg: '0 20px 60px rgba(0, 0, 0, 0.3)',
   hover: '0 8px 20px rgba(0, 103, 184, 0.45)',
+  card: '0 2px 8px rgba(0, 0, 0, 0.06)',
+  cardHover: '0 8px 24px rgba(0, 0, 0, 0.12)',
 };
 
 // Gradients
@@ -186,6 +288,21 @@ export const customTheme = createLightTheme({
   colorButtonPrimary: colors.button.primary,
   colorButtonPrimaryHover: colors.button.primaryHover,
   colorButtonText: colors.button.text,
+  
+  // UI Color Tokens
+  colorUiChatPrimary: colors.ui.chatPrimary,
+  colorUiAnalyticsDark: colors.ui.analyticsDark,
+  colorUiFooterBg: colors.ui.footerBg,
+  
+  // Overlay Color Tokens
+  colorOverlayLight: colors.overlay.lightOverlay,
+  colorOverlayDark: colors.overlay.darkOverlay,
+  colorCardShadow: colors.overlay.cardShadow,
+  colorCardShadowHover: colors.overlay.cardShadowHover,
+  colorAccentOverlay: colors.overlay.accentOverlay,
+  colorSuccessOverlay: colors.overlay.successOverlay,
+  colorErrorOverlay: colors.overlay.errorOverlay,
+  colorWarningOverlay: colors.overlay.warningOverlay,
   
   // Typography - Font Size Tokens
   fontSizeXs: typography.fontSize.xs,
@@ -252,6 +369,8 @@ export const customTheme = createLightTheme({
   shadowMd: shadows.md,
   shadowLg: shadows.lg,
   shadowHover: shadows.hover,
+  shadowCard: shadows.card,
+  shadowCardHover: shadows.cardHover,
   
   // Gradient Tokens
   gradientPrimaryHero: gradients.primaryHero,
@@ -264,6 +383,9 @@ export const themeTokens = {
   colors,
   typography,
   spacing,
+  componentSpacing,
+  componentPositioning,
+  componentChat,
   borderRadius,
   shadows,
   gradients,

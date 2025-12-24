@@ -33,6 +33,7 @@ import {
   exportAnalyticsCSV,
   getAnalyticsEvents,
 } from '../services/analyticsService';
+import { colors } from '../config/theme';
 
 const useStyles = makeStyles({
   container: {
@@ -83,7 +84,7 @@ const useStyles = makeStyles({
   statValue: {
     fontSize: '2.5rem',
     fontWeight: '700',
-    color: '#0f4c81',
+    color: colors.ui.analyticsDark,
     display: 'block',
   },
   chartsGrid: {
@@ -124,13 +125,13 @@ const useStyles = makeStyles({
   chartValue: {
     fontSize: '0.95rem',
     fontWeight: '600',
-    color: '#0f4c81',
+    color: colors.ui.analyticsDark,
     minWidth: '40px',
     textAlign: 'right',
   },
   bar: {
     height: '6px',
-    backgroundColor: '#0f4c81',
+    backgroundColor: colors.ui.analyticsDark,
     borderRadius: '3px',
     marginTop: '4px',
   },
@@ -141,7 +142,7 @@ const useStyles = makeStyles({
     flexWrap: 'wrap',
   },
   refreshButton: {
-    backgroundColor: '#0f4c81',
+    backgroundColor: colors.ui.analyticsDark,
     color: '#ffffff',
     border: 'none',
     padding: '10px 20px',
@@ -210,7 +211,7 @@ const useStyles = makeStyles({
   },
   eventType: {
     fontWeight: '600',
-    color: '#0f4c81',
+    color: colors.ui.analyticsDark,
     marginRight: '12px',
   },
   lastUpdated: {

@@ -11,97 +11,92 @@ import {
   Field
 } from '@fluentui/react-components';
 import { useAnalytics } from '../hooks/useAnalytics';
+import { themeTokens } from '../config/theme';
 
 const useStyles = makeStyles({
   contact: {
-    backgroundColor: '#faf9f8',
-    ...shorthands.padding('50px', '20px'),
+    backgroundColor: themeTokens.colors.background.light,
+    ...shorthands.padding(themeTokens.spacing['5xl'], themeTokens.spacing.lg),
     '@media (max-width: 768px)': {
-      padding: '40px 16px',
+      ...shorthands.padding(themeTokens.spacing['4xl'], themeTokens.spacing.lg),
     },
   },
   contactTitle: {
-    fontSize: '2rem',
+    fontSize: themeTokens.typography.fontSize['2rem'],
     textAlign: 'center',
-    marginBottom: '40px',
+    marginBottom: themeTokens.spacing['4xl'],
     color: tokens.colorNeutralForeground1,
-    fontWeight: '600',
+    fontWeight: themeTokens.typography.fontWeight.semibold,
     display: 'block',
     letterSpacing: '-0.02em',
     '@media (max-width: 768px)': {
-      fontSize: '1.5rem',
-      marginBottom: '32px',
+      fontSize: themeTokens.typography.fontSize['1.5rem'],
+      marginBottom: themeTokens.spacing['2xl'],
     },
   },
   contactContent: {
     display: 'grid',
     gridTemplateColumns: '1fr 1fr',
-    ...shorthands.gap('60px'),
+    ...shorthands.gap(themeTokens.spacing['6xl']),
     maxWidth: '1000px',
     ...shorthands.margin('0', 'auto'),
     '@media (max-width: 768px)': {
       gridTemplateColumns: '1fr',
-      ...shorthands.gap('40px'),
-      ...shorthands.padding('0', '8px'),
+      ...shorthands.gap(themeTokens.spacing['4xl']),
+      ...shorthands.padding('0', themeTokens.spacing.sm),
     },
   },
   contactInfoTitle: {
-    fontSize: '1.875rem',
-    marginBottom: '16px',
+    fontSize: themeTokens.typography.fontSize['1.875rem'],
+    marginBottom: themeTokens.spacing.lg,
     color: tokens.colorNeutralForeground1,
-    fontWeight: '600',
+    fontWeight: themeTokens.typography.fontWeight.semibold,
     display: 'block',
     '@media (max-width: 768px)': {
-      fontSize: '1.5rem',
+      fontSize: themeTokens.typography.fontSize['1.5rem'],
     },
   },
   contactInfoText: {
-    fontSize: '1rem',
+    fontSize: themeTokens.typography.fontSize['1rem'],
     color: tokens.colorNeutralForeground2,
     lineHeight: '1.6',
-    marginBottom: '32px',
+    marginBottom: themeTokens.spacing['3xl'],
     display: 'block',
   },
   contactDetails: {
     display: 'flex',
     flexDirection: 'column',
-    ...shorthands.gap('25px'),
+    ...shorthands.gap(themeTokens.spacing.xl),
   },
   contactItem: {
     display: 'flex',
     alignItems: 'center',
-    ...shorthands.gap('20px'),
+    ...shorthands.gap(themeTokens.spacing.xl),
   },
   contactIcon: {
-    fontSize: '2rem',
+    fontSize: themeTokens.typography.fontSize['2rem'],
   },
   contactItemTitle: {
-    fontSize: '1.1rem',
-    fontWeight: '600',
+    fontSize: themeTokens.typography.fontSize['1.1rem'],
+    fontWeight: themeTokens.typography.fontWeight.semibold,
     color: tokens.colorNeutralForeground1,
-    marginBottom: '5px',
+    marginBottom: themeTokens.spacing.sm,
     display: 'block',
     '@media (max-width: 768px)': {
-      fontSize: '1rem',
+      fontSize: themeTokens.typography.fontSize['1rem'],
     },
   },
   contactItemText: {
-    fontSize: '1rem',
+    fontSize: themeTokens.typography.fontSize['1rem'],
     color: tokens.colorNeutralForeground2,
     display: 'block',
     '@media (max-width: 768px)': {
-      fontSize: '0.9rem',
+      fontSize: themeTokens.typography.fontSize['0.9rem'],
     },
   },
   formContainer: {
     backgroundColor: tokens.colorNeutralBackground1,
-  },
-  formNote: {
-    fontSize: '0.85rem',
-    color: tokens.colorNeutralForeground3,
-    marginTop: '20px',
-    fontStyle: 'italic',
-  },
+  }
 });
 
 function Contact() {
@@ -217,9 +212,6 @@ function Contact() {
           >
             {t('contact.sendButton')}
           </Button>
-          <Text as="p" className={styles.formNote}>
-            {t('contact.formNote')}
-          </Text>
         </div>
       </div>
     </section>
