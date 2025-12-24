@@ -16,10 +16,13 @@
       "about": "About",
       "leadership": "Leadership",
       "objectives": "Objectives",
-      "events": "Events",
       "ministries": "Ministries",
-      "gallery": "Gallery",
+      "programs": "Activities",
+      "events": "Events",
+      "membership": "Membership",
+      "volunteer": "Volunteer",
       "resources": "Resources",
+      "newsletters": "Newsletters",
       "contact": "Contact"
     },
     "searchPlaceholder": "Search",
@@ -339,6 +342,7 @@
     "subtitle": "Gatherings that strengthen our faith, celebrate our heritage, and unite our community",
     "upcomingEvents": "Upcoming Events",
     "pastEvents": "Past Events",
+    "moreUpcomingEvents": "More Upcoming Events",
     "registerNow": "Register Now",
     "viewDetails": "View Details",
     "expectedAttendees": "Expected Attendees",
@@ -346,8 +350,12 @@
     "noUpcomingEvents": "No upcoming events at this time. Please check back soon!",
     "noPastEvents": "No past events to display.",
     "date": "Date",
+    "dates": "Dates",
     "location": "Location",
-    "description": "Description"
+    "attendees": "Attendees",
+    "description": "Description",
+    "more": "more",
+    "whatToExpect": "What to Expect"
   },
   "chat": {
     "greeting": "Hi there! Need help? Let's chat.",

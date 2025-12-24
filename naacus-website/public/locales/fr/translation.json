@@ -15,10 +15,13 @@
       "about": "À Propos",
       "leadership": "Direction",
       "objectives": "Objectifs",
-      "events": "Événements",
       "ministries": "Ministères",
-      "gallery": "Galerie",
+      "programs": "Activités",
+      "events": "Événements",
+      "membership": "Adhésion",
+      "volunteer": "Bénévole",
       "resources": "Ressources",
+      "newsletters": "Bulletins",
       "contact": "Contact"
     },
     "searchPlaceholder": "Recherche",
@@ -465,5 +468,25 @@
     "cashappSuccess": "Paiement Cash App initié. Merci pour votre don !",
     "bankInfo": "Vous recevrez les instructions de paiement par e-mail",
     "cryptoInfo": "Les frais de crypto-monnaie sont traités de manière sécurisée sur la blockchain"
+  },
+  "events": {
+    "title": "Nos Événements",
+    "subtitle": "Des rassemblements qui renforcent notre foi, célèbrent notre héritage et unissent notre communauté",
+    "upcomingEvents": "Événements à Venir",
+    "pastEvents": "Événements Passés",
+    "moreUpcomingEvents": "Plus d'Événements à Venir",
+    "registerNow": "S'Inscrire",
+    "viewDetails": "Voir les Détails",
+    "expectedAttendees": "Participants Attendus",
+    "highlights": "Points Forts",
+    "noUpcomingEvents": "Aucun événement à venir pour le moment. Veuillez revenir bientôt !",
+    "noPastEvents": "Aucun événement passé à afficher.",
+    "date": "Date",
+    "dates": "Dates",
+    "location": "Lieu",
+    "attendees": "Participants",
+    "description": "Description",
+    "more": "plus",
+    "whatToExpect": "À Quoi S'attendre"
   }
 }

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { 
+import { useTranslation } from 'react-i18next';
+import {
   makeStyles,
   shorthands,
   tokens,
@@ -29,6 +30,11 @@ const useStyles = makeStyles({
     textAlign: 'center',
     marginBottom: '40px',
     overflow: 'hidden',
+    '@media (min-width: 1200px)': {
+      marginLeft: '40px',
+      marginRight: '40px',
+      ...shorthands.borderRadius('12px'),
+    },
   },
   heroBadge: {
     display: 'inline-block',
@@ -69,6 +75,24 @@ const useStyles = makeStyles({
   },
   sectionTitle: {
     fontSize: '2.5rem',
+    fontWeight: '700',
+    marginBottom: '40px',
+    color: '#1a3a52',
+    position: 'relative',
+    paddingBottom: '20px',
+    '&::after': {
+      content: '""',
+      position: 'absolute',
+      bottom: '0',
+      left: '0',
+      width: '80px',
+      height: '4px',
+      backgroundColor: '#E8D4C0',
+      ...shorthands.borderRadius('2px'),
+    },
+  },
+  subsectionTitle: {
+    fontSize: '1.5rem',
     fontWeight: '700',
     marginBottom: '40px',
     color: '#1a3a52',
@@ -204,21 +228,22 @@ const useStyles = makeStyles({
   },
   tabsContainer: {
     display: 'flex',
-    ...shorthands.gap('16px'),
+    justifyContent: 'center',
+    alignItems: 'center',
+    ...shorthands.gap('8px'),
     marginBottom: '40px',
-    borderBottom: `2px solid ${tokens.colorNeutralStroke1}`,
-    overflowX: 'auto',
+    padding: '0 20px',
+    flexWrap: 'wrap',
   },
   tab: {
-    padding: '12px 24px',
-    fontSize: '1rem',
+    padding: '12px 32px',
+    fontSize: '1.05rem',
     fontWeight: '600',
     color: '#999999',
     backgroundColor: 'transparent',
     border: 'none',
     cursor: 'pointer',
     position: 'relative',
-    whiteSpace: 'nowrap',
     transition: 'all 0.3s ease',
     '&:hover': {
       color: '#2d5a7b',
@@ -226,29 +251,14 @@ const useStyles = makeStyles({
   },
   tabActive: {
     color: '#1a3a52',
-    fontWeight: '800',
-    backgroundColor: 'rgba(232, 212, 192, 0.12)',
+    fontWeight: '700',
+    backgroundColor: '#E8D4C0',
     ...shorthands.borderRadius('8px'),
-    '&::after': {
-      content: '""',
-      position: 'absolute',
-      bottom: '-2px',
-      left: '12px',
-      right: '12px',
-      height: '4px',
-      backgroundColor: '#E8D4C0',
-      transition: 'all 0.3s ease',
-      ...shorthands.borderRadius('2px'),
-      boxShadow: '0 2px 8px rgba(232, 212, 192, 0.4)',
-    },
   },
   featuredEventSection: {
     width: '100vw',
     position: 'relative',
-    left: '50%',
-    right: '50%',
-    marginLeft: '-50vw',
-    marginRight: '-50vw',
+    left: 'calc(-50vw + 50%)',
     marginTop: '50px',
     marginBottom: '40px',
   },
@@ -256,7 +266,10 @@ const useStyles = makeStyles({
     position: 'relative',
     background: `linear-gradient(135deg, #1a3a52 0%, #2d5a7b 30%, #3d6fa8 100%)`,
     color: tokens.colorNeutralForegroundInverted,
-    ...shorthands.padding('32px'),
+    ...shorthands.padding('60px', '20px'),
+    maxWidth: '1400px',
+    marginLeft: 'auto',
+    marginRight: 'auto',
     boxShadow: '0 20px 60px rgba(26, 58, 82, 0.35), inset 0 1px 0 rgba(255,255,255,0.1)',
     overflow: 'hidden',
     border: '1px solid rgba(232, 212, 192, 0.15)',
@@ -444,6 +457,7 @@ const useStyles = makeStyles({
 });
 
 export function Events() {
+  const { t } = useTranslation();
   const styles = useStyles();
   const [activeTab, setActiveTab] = useState('upcoming');
 
@@ -470,13 +484,13 @@ export function Events() {
             className={`${styles.tab} ${activeTab === 'upcoming' ? styles.tabActive : ''}`}
             onClick={() => setActiveTab('upcoming')}
           >
-            Upcoming Events
+            {t('events.upcomingEvents')}
           </button>
           <button
             className={`${styles.tab} ${activeTab === 'past' ? styles.tabActive : ''}`}
             onClick={() => setActiveTab('past')}
           >
-            Past Events
+            {t('events.pastEvents')}
           </button>
         </div>
 
@@ -486,8 +500,8 @@ export function Events() {
             {/* Other Upcoming Events */}
             {otherUpcomingEvents.length > 0 && (
               <>
-                <h2 className={styles.otherEventsTitle}>
-                  More Upcoming Events
+                <h2 className={styles.subsectionTitle}>
+                  {t('events.moreUpcomingEvents')}
                 </h2>
                 <div className={styles.eventsGrid}>
                   {otherUpcomingEvents.map(event => (
@@ -502,8 +516,8 @@ export function Events() {
         {/* Past Events Section */}
         {activeTab === 'past' && (
           <div className={styles.sectionContainer}>
-            <h2 className={styles.sectionTitle}>
-              {pastEvents.length} Past Events
+            <h2 className={styles.subsectionTitle}>
+              {pastEvents.length} {t('events.pastEvents')}
             </h2>
             {pastEvents.length > 0 ? (
               <div className={styles.eventsGrid}>
@@ -513,7 +527,7 @@ export function Events() {
               </div>
             ) : (
               <div className={styles.noEvents}>
-                No past events to display.
+                {t('events.noPastEvents')}
               </div>
             )}
           </div>
@@ -524,6 +538,7 @@ export function Events() {
 }
 
 function EventCard({ event, isUpcoming }) {
+  const { t } = useTranslation();
   const styles = useStyles();
 
   return (
@@ -543,14 +558,14 @@ function EventCard({ event, isUpcoming }) {
         </div>
         {event.attendees && (
           <div className={styles.attendees}>
-            Expected Attendees: {event.attendees}
+            {t('events.expectedAttendees')}: {event.attendees}
           </div>
         )}
       </div>
 
       {event.highlights && event.highlights.length > 0 && (
         <div className={styles.highlights}>
-          <span className={styles.highlightsTitle}>Highlights</span>
+          <span className={styles.highlightsTitle}>{t('events.highlights')}</span>
           <ul className={styles.highlightsList}>
             {event.highlights.slice(0, 3).map((highlight, index) => (
               <li key={index} className={styles.highlightItem}>
@@ -559,7 +574,7 @@ function EventCard({ event, isUpcoming }) {
             ))}
             {event.highlights.length > 3 && (
               <li className={styles.highlightItem}>
-                + {event.highlights.length - 3} more
+                + {event.highlights.length - 3} {t('events.more')}
               </li>
             )}
           </ul>
@@ -571,14 +586,14 @@ function EventCard({ event, isUpcoming }) {
           className={styles.ctaButton}
           appearance="primary"
         >
-          Register Now <ChevronRight24Regular />
+          {t('events.registerNow')} <ChevronRight24Regular />
         </Button>
       ) : (
         <Button
           className={styles.ctaButton}
           appearance="secondary"
         >
-          View Details <ChevronRight24Regular />
+          {t('events.viewDetails')} <ChevronRight24Regular />
         </Button>
       )}
     </div>
@@ -586,6 +601,7 @@ function EventCard({ event, isUpcoming }) {
 }
 
 function FeaturedEventCard({ event }) {
+  const { t } = useTranslation();
   const styles = useStyles();
 
   return (
@@ -596,24 +612,24 @@ function FeaturedEventCard({ event }) {
       <div className={styles.featuredEventInfo}>
         <div className={styles.featuredEventInfoItem}>
           <Calendar24Regular className={styles.featuredInfoIcon} />
-          <span className={styles.featuredEventLabel}>Dates</span>
+          <span className={styles.featuredEventLabel}>{t('events.dates')}</span>
           <span className={styles.featuredEventValue}>{event.date}</span>
         </div>
         <div className={styles.featuredEventInfoItem}>
           <Location24Regular className={styles.featuredInfoIcon} />
-          <span className={styles.featuredEventLabel}>Location</span>
+          <span className={styles.featuredEventLabel}>{t('events.location')}</span>
           <span className={styles.featuredEventValue}>{event.location}</span>
         </div>
         <div className={styles.featuredEventInfoItem}>
           <ChevronRight24Regular className={styles.featuredInfoIcon} />
-          <span className={styles.featuredEventLabel}>Attendees</span>
+          <span className={styles.featuredEventLabel}>{t('events.attendees')}</span>
           <span className={styles.featuredEventValue}>{event.attendees}</span>
         </div>
       </div>
 
       {event.highlights && event.highlights.length > 0 && (
         <div className={styles.featuredEventHighlights}>
-          <div className={styles.featuredHighlightsTitle}>What to Expect</div>
+          <div className={styles.featuredHighlightsTitle}>{t('events.whatToExpect')}</div>
           <ul className={styles.featuredHighlightsList}>
             {event.highlights.map((highlight, index) => (
               <li key={index} className={styles.featuredHighlightItem}>
@@ -626,7 +642,7 @@ function FeaturedEventCard({ event }) {
 
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <button className={styles.featuredCtaButton}>
-          Register Now <ChevronRight24Regular style={{ fontSize: '1.2rem' }} />
+          {t('events.registerNow')} <ChevronRight24Regular style={{ fontSize: '1.2rem' }} />
         </button>
       </div>
     </div>

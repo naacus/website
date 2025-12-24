@@ -13,18 +13,28 @@ import { trackCTAEvent } from '../services/analyticsService';
 
 const useStyles = makeStyles({
   donateButtonContainer: {
-    position: 'fixed',
-    top: '70px',
-    right: '16px',
-    zIndex: 999,
-    '@media (max-width: 768px)': {
-      display: 'none',
-    },
+    display: 'flex',
+    alignItems: 'center',
   },
   donateButtonMobileHeader: {
     display: 'none',
+  },
+  donateButton: {
+    backgroundColor: '#2d5a7b',
+    color: 'white',
+    fontWeight: '600',
     '@media (max-width: 768px)': {
-      display: 'flex',
+      padding: '4px 8px',
+      fontSize: '11px',
+      whiteSpace: 'nowrap',
+      minWidth: 'auto',
+      height: '24px',
+      lineHeight: '24px',
+    },
+    '@media (min-width: 769px)': {
+      minWidth: '100px',
+      padding: '10px 16px',
+      fontSize: '0.95rem',
     },
   },
   dialogBackdrop: {
@@ -47,7 +57,7 @@ const useStyles = makeStyles({
     zIndex: 10000,
     width: '100%',
     maxWidth: '900px',
-    maxHeight: '98vh',
+    maxHeight: '70vh',
     overflowY: 'hidden',
     backgroundColor: tokens.colorNeutralBackground1,
     boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
@@ -767,35 +777,12 @@ export function DonationDialog() {
       <div className={styles.donateButtonContainer}>
         <Button
           appearance="primary"
-          style={{
-            backgroundColor: '#2d5a7b',
-            color: 'white',
-            minWidth: '100px',
-            padding: '10px 16px',
-            fontSize: '0.95rem',
-            fontWeight: '600',
-          }}
+          className={styles.donateButton}
           onClick={() => setOpen(true)}
         >
           💝 {t('header.donate', 'Donate')}
         </Button>
       </div>
-
-      <Button
-        appearance="primary"
-        className={styles.donateButtonMobileHeader}
-        style={{
-          backgroundColor: '#2d5a7b',
-          color: 'white',
-          padding: '6px 8px',
-          fontSize: '11px',
-          fontWeight: '600',
-          whiteSpace: 'nowrap',
-        }}
-        onClick={() => setOpen(true)}
-      >
-        💝 {t('header.donate', 'Donate')}
-      </Button>
 
       {open && (
         <div className={styles.dialogBackdrop} onClick={() => { setOpen(false); resetForm(); }}>

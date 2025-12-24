@@ -181,22 +181,22 @@ const useStyles = makeStyles({
     color: '#ffffff',
     fontWeight: '600',
     fontSize: '13px',
-    ...shorthands.padding('8px', '16px'),
+    ...shorthands.padding('6px', '12px'),
     border: 'none',
     ...shorthands.borderRadius('2px'),
     cursor: 'pointer',
     transition: 'background-color 0.2s ease',
-    height: '32px',
+    height: '28px',
     '&:hover': {
       backgroundColor: '#004578',
     },
     '@media (max-width: 768px)': {
-      padding: '1px 4px',
+      padding: '2px 6px',
       fontSize: '9px',
       whiteSpace: 'nowrap',
       minWidth: 'auto',
-      height: '20px',
-      lineHeight: '20px',
+      height: '18px',
+      lineHeight: '18px',
     },
   },
   mobileMenuItemActive: {
@@ -259,13 +259,13 @@ function Header() {
               onClick={() => handleNavigationHelper('/fellowship-ministries', null, 'fellowship_ministries')}
               className={`${styles.navLink} ${isActivePathHelper('/fellowship-ministries') ? styles.navLinkActive : ''}`}
             >
-              Ministries
+              {t('header.nav.ministries')}
             </button>
             <button 
               onClick={() => handleNavigationHelper('/programs-activities', null, 'programs_activities')}
               className={`${styles.navLink} ${isActivePathHelper('/programs-activities') ? styles.navLinkActive : ''}`}
             >
-              Activities
+              {t('header.nav.programs')}
             </button>
             <button 
               onClick={() => handleNavigationHelper('/events', null, 'events')}
@@ -277,13 +277,13 @@ function Header() {
               onClick={() => handleNavigationHelper('/membership', null, 'membership')}
               className={`${styles.navLink} ${isActivePathHelper('/membership') ? styles.navLinkActive : ''}`}
             >
-              Membership
+              {t('header.nav.membership')}
             </button>
             <button 
               onClick={() => handleNavigationHelper('/volunteer', null, 'volunteer')}
               className={`${styles.navLink} ${isActivePathHelper('/volunteer') ? styles.navLinkActive : ''}`}
             >
-              Volunteer
+              {t('header.nav.volunteer')}
             </button>
             <button 
               onClick={() => handleNavigationHelper('/resources', null, 'resources')}
@@ -295,7 +295,7 @@ function Header() {
               onClick={() => handleNavigationHelper('/newsletters', null, 'newsletters')}
               className={`${styles.navLink} ${isActivePathHelper('/newsletters') ? styles.navLinkActive : ''}`}
             >
-              Newsletters
+              {t('header.nav.newsletters')}
             </button>
             <button 
               onClick={() => handleNavigationHelper('/contact', null, 'contact')}

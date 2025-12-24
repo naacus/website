@@ -92,12 +92,18 @@ const useStyles = makeStyles({
     color: '#d13438',
   },
   checkboxGroup: {
-    display: 'flex',
-    flexDirection: 'column',
+    display: 'grid',
+    gridTemplateColumns: 'repeat(3, 1fr)',
     ...shorthands.gap('12px'),
     ...shorthands.padding('12px'),
     backgroundColor: tokens.colorNeutralBackground2,
     ...shorthands.borderRadius('8px'),
+    '@media (max-width: 1024px)': {
+      gridTemplateColumns: 'repeat(2, 1fr)',
+    },
+    '@media (max-width: 768px)': {
+      gridTemplateColumns: '1fr',
+    },
   },
   submitButton: {
     marginTop: '32px',
