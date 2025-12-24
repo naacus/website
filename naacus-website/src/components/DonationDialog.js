@@ -795,7 +795,21 @@ export function DonationDialog() {
           <div className={styles.dialogWrapper} onClick={e => e.stopPropagation()}>
             {/* Title and Close Button */}
             <div style={{ position: 'relative', marginBottom: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <h2 className={styles.dialogTitle}>{t('donation.title', 'Make a Donation')}</h2>
+              <div style={{ display: 'flex', alignItems: 'center', gap: themeTokens.spacing.sm, flexWrap: 'wrap' }}>
+                <h2 className={styles.dialogTitle}>{t('donation.title', 'Make a Donation')}</h2>
+                <div
+                  className={styles.warningMessage}
+                  style={{
+                    marginBottom: 0,
+                    paddingTop: themeTokens.spacing.xs,
+                    paddingBottom: themeTokens.spacing.xs,
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                  }}
+                >
+                  ⚠️ {t('donation.demoDisclaimer', 'Demo only: please do not enter real payment information.')}
+                </div>
+              </div>
               <button 
                 className={styles.closeButton}
                 onClick={() => { setOpen(false); resetForm(); }}
