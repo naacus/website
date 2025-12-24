@@ -445,10 +445,19 @@ export function DonationDialog() {
     setSuccess('');
   };
 
-  const paymentMethods = supportedMethods.map(method => ({
-    ...paymentMethodsConfig[method.id],
-    ...method,
-  }));
+  const paymentMethods = supportedMethods
+    .map(method => {
+      const config = paymentMethodsConfig[method.id];
+      if (!config) {
+        console.warn(`No UI config found for payment method: ${method.id}`);
+        return null;
+      }
+      return {
+        ...config,
+        ...method,
+      };
+    })
+    .filter(method => method !== null);
 
   return (
     <>

@@ -207,11 +207,18 @@ class PaymentService {
     ];
 
     return allMethods
-      .map(method => ({
-        id: method,
-        ...this.getPaymentMethodConfig(method),
-      }))
-      .filter(method => method.supported);
+      .map(method => {
+        const config = this.getPaymentMethodConfig(method);
+        if (!config) {
+          console.warn(`No configuration found for payment method: ${method}`);
+          return null;
+        }
+        return {
+          id: method,
+          ...config,
+        };
+      })
+      .filter(method => method && method.supported);
   }
 
   /**
