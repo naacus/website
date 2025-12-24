@@ -986,7 +986,7 @@ export function DonationDialog() {
                 {selectedPayment && renderPaymentMethodForm(selectedPayment)}
                 {selectedPayment && getMethodFeeInfo(selectedPayment) && (
                   <div className={styles.infoMessage} style={{ marginTop: themeTokens.spacing.sm, backgroundColor: 'rgba(255, 193, 7, 0.1)', borderLeft: `3px solid ${themeTokens.colors.status.warning || '#ffc107'}`, fontSize: themeTokens.typography.fontSize.sm }}>
-                    ⚠️ {t('donation.feeWarning', 'This payment method may apply a fee')} - {getMethodFeeInfo(selectedPayment)}
+                    ⚠️ {getPaymentLabel(selectedPayment)} {t('donation.feeWarning', 'may apply a fee')} - {getMethodFeeInfo(selectedPayment)}
                   </div>
                 )}
                 {selectedPayment && requiresAuthentication(selectedPayment) && (
