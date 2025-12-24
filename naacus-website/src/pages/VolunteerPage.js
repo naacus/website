@@ -157,6 +157,7 @@ function VolunteerPage() {
     preferredRole: '',
     backgroundCheckConsent: false,
     emergencyName: '',
+    emergencyRelationship: '',
     emergencyPhone: '',
     specialSkills: '',
     whyVolunteer: '',
@@ -189,6 +190,17 @@ function VolunteerPage() {
     { key: 'Friday', label: t('volunteer.friday') },
     { key: 'Saturday', label: t('volunteer.saturday') },
     { key: 'Sunday', label: t('volunteer.sunday') },
+  ];
+
+  const relationshipOptions = [
+    { key: 'Spouse', label: t('volunteer.relationshipOptions.spouse') },
+    { key: 'Child', label: t('volunteer.relationshipOptions.child') },
+    { key: 'Parent', label: t('volunteer.relationshipOptions.parent') },
+    { key: 'Sibling', label: t('volunteer.relationshipOptions.sibling') },
+    { key: 'Grandparent', label: t('volunteer.relationshipOptions.grandparent') },
+    { key: 'Grandchild', label: t('volunteer.relationshipOptions.grandchild') },
+    { key: 'Friend', label: t('volunteer.relationshipOptions.friend') },
+    { key: 'Other', label: t('volunteer.relationshipOptions.other') },
   ];
 
   const handleInputChange = (field, value) => {
@@ -481,6 +493,21 @@ function VolunteerPage() {
                   value={formData.emergencyName}
                   onChange={(e) => handleInputChange('emergencyName', e.target.value)}
                 />
+              </div>
+              <div className={styles.formField}>
+                <label className={styles.label}>
+                  {t('volunteer.relationship')} <span className={styles.required}>{t('volunteer.required')}</span>
+                </label>
+                <Dropdown
+                  required
+                  value={formData.emergencyRelationship}
+                  onOptionSelect={(e, data) => handleInputChange('emergencyRelationship', data.optionValue || '')}
+                >
+                  <Option value="">Select a relationship</Option>
+                  {relationshipOptions.map(option => (
+                    <Option key={option.key} value={option.key}>{option.label}</Option>
+                  ))}
+                </Dropdown>
               </div>
               <div className={styles.formField}>
                 <label className={styles.label}>

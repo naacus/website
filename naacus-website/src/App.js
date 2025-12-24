@@ -16,14 +16,19 @@ import ProgramsActivitiesPage from './pages/ProgramsActivitiesPage';
 import ResourcesPage from './pages/ResourcesPage';
 import NewslettersPage from './pages/NewslettersPage';
 import ContactPage from './pages/ContactPage';
+import PrivacyPage from './pages/PrivacyPage';
 import Footer from './components/Footer';
 import BackToTop from './components/BackToTop';
 import ChatWidget from './components/ChatWidget';
+import CookieConsent from './components/CookieConsent';
 
 function App() {
   useEffect(() => {
-    // Initialize Google Analytics on app load
-    initializeGoogleAnalytics();
+    // Only initialize Google Analytics if user has accepted cookies
+    const cookieConsent = localStorage.getItem('cookieConsent');
+    if (cookieConsent === 'accepted') {
+      initializeGoogleAnalytics();
+    }
   }, []);
 
   return (
@@ -44,10 +49,12 @@ function App() {
             <Route path="/resources" element={<ResourcesPage />} />
             <Route path="/newsletters" element={<NewslettersPage />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/privacy" element={<PrivacyPage />} />
           </Routes>
           <Footer />
           <BackToTop />
           <ChatWidget />
+          <CookieConsent />
         </div>
       </Router>
     </FluentProvider>

@@ -258,6 +258,32 @@ function Footer() {
         </div>
       </div>
       <div className={styles.footerBottom}>
+        <div style={{ display: 'flex', gap: '20px', marginBottom: '16px', flexWrap: 'wrap', alignItems: 'center' }}>
+          <Link 
+            className={styles.footerLink}
+            onClick={() => handleNavigationHelper('/privacy')}
+            style={{ cursor: 'pointer' }}
+          >
+            {t('footer.privacyPolicy') || 'Privacy Policy'}
+          </Link>
+          <button 
+            onClick={() => window.showCookieConsent?.()}
+            style={{
+              background: 'none',
+              border: 'none',
+              color: tokens.colorNeutralForegroundInverted,
+              textDecoration: 'none',
+              opacity: 0.9,
+              fontSize: '0.95rem',
+              cursor: 'pointer',
+              padding: 0,
+            }}
+            onMouseEnter={(e) => e.target.style.opacity = '1'}
+            onMouseLeave={(e) => e.target.style.opacity = '0.9'}
+          >
+            {t('footer.cookieSettings') || 'Cookie Settings'}
+          </button>
+        </div>
         <Text as="p" className={styles.footerBottomText}>
           {t('footer.copyright', { year: currentYear })}
         </Text>
