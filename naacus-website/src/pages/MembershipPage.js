@@ -93,12 +93,18 @@ const useStyles = makeStyles({
     color: '#d13438',
   },
   checkboxGroup: {
-    display: 'flex',
-    flexDirection: 'column',
+    display: 'grid',
+    gridTemplateColumns: 'repeat(3, 1fr)',
     ...shorthands.gap('12px'),
     ...shorthands.padding('12px'),
     backgroundColor: tokens.colorNeutralBackground2,
     ...shorthands.borderRadius('8px'),
+    '@media (max-width: 1024px)': {
+      gridTemplateColumns: 'repeat(2, 1fr)',
+    },
+    '@media (max-width: 640px)': {
+      gridTemplateColumns: '1fr',
+    },
   },
   submitButton: {
     marginTop: '32px',
@@ -186,6 +192,28 @@ function MembershipPage() {
     { key: 'Phone', label: t('membership.commPhone') },
     { key: 'Text Message', label: t('membership.commText') },
     { key: 'Mail', label: t('membership.commMail') },
+  ];
+
+  const hearAboutOptions = [
+    { key: 'Friend or Family Member', label: t('membership.hearAboutOptions.friend') },
+    { key: 'Website', label: t('membership.hearAboutOptions.website') },
+    { key: 'Social Media', label: t('membership.hearAboutOptions.socialMedia') },
+    { key: 'NAACUS Event', label: t('membership.hearAboutOptions.event') },
+    { key: 'Church or Parish', label: t('membership.hearAboutOptions.church') },
+    { key: 'News Media or Publication', label: t('membership.hearAboutOptions.media') },
+    { key: 'Conference or Seminar', label: t('membership.hearAboutOptions.conference') },
+    { key: 'Other', label: t('membership.hearAboutOptions.other') },
+  ];
+
+  const relationshipOptions = [
+    { key: 'Spouse', label: t('membership.relationshipOptions.spouse') },
+    { key: 'Child', label: t('membership.relationshipOptions.child') },
+    { key: 'Parent', label: t('membership.relationshipOptions.parent') },
+    { key: 'Sibling', label: t('membership.relationshipOptions.sibling') },
+    { key: 'Grandparent', label: t('membership.relationshipOptions.grandparent') },
+    { key: 'Grandchild', label: t('membership.relationshipOptions.grandchild') },
+    { key: 'Friend', label: t('membership.relationshipOptions.friend') },
+    { key: 'Other', label: t('membership.relationshipOptions.other') },
   ];
 
   const handleInputChange = (field, value) => {
@@ -469,10 +497,15 @@ function MembershipPage() {
               </div>
               <div className={styles.formField}>
                 <label className={styles.label}>{t('membership.relationship')}</label>
-                <Input
+                <Dropdown
                   value={formData.emergencyRelationship}
-                  onChange={(e) => handleInputChange('emergencyRelationship', e.target.value)}
-                />
+                  onOptionSelect={(e, data) => handleInputChange('emergencyRelationship', data.optionValue || '')}
+                >
+                  <Option value="">Select a relationship</Option>
+                  {relationshipOptions.map(option => (
+                    <Option key={option.key} value={option.key}>{option.label}</Option>
+                  ))}
+                </Dropdown>
               </div>
               <div className={`${styles.formField} ${styles.formFieldFull}`}>
                 <label className={styles.label}>{t('membership.emergencyPhone')}</label>
@@ -504,10 +537,15 @@ function MembershipPage() {
               </div>
               <div className={`${styles.formField} ${styles.formFieldFull}`}>
                 <label className={styles.label}>{t('membership.hearAbout')}</label>
-                <Input
+                <Dropdown
                   value={formData.hearAbout}
-                  onChange={(e) => handleInputChange('hearAbout', e.target.value)}
-                />
+                  onOptionSelect={(e, data) => handleInputChange('hearAbout', data.optionValue || '')}
+                >
+                  <Option value="">Select an option</Option>
+                  {hearAboutOptions.map(option => (
+                    <Option key={option.key} value={option.key}>{option.label}</Option>
+                  ))}
+                </Dropdown>
               </div>
               <div className={`${styles.formField} ${styles.formFieldFull}`}>
                 <label className={styles.label}>{t('membership.whyJoin')}</label>
