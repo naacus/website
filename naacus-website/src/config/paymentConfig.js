@@ -78,7 +78,9 @@ export const paymentConfig = {
     timeZone: 'America/New_York',
     minAmount: 1,
     maxAmount: 999999.99,
-    apiBaseUrl: process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001/api/v1',
+    // Use environment variable if set, otherwise empty string (triggers demo mode)
+    // Set REACT_APP_API_BASE_URL=http://localhost:3001/api/v1 to use backend
+    apiBaseUrl: process.env.REACT_APP_API_BASE_URL || '',
   },
 
   // Webhook Configuration

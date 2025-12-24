@@ -45,9 +45,9 @@ const useStyles = makeStyles({
     left: '50%',
     transform: 'translate(-50%, -50%)',
     zIndex: 10000,
-    width: '90%',
-    maxWidth: '500px',
-    maxHeight: '90vh',
+    width: '100%',
+    maxWidth: '900px',
+    maxHeight: '98vh',
     overflowY: 'hidden',
     backgroundColor: tokens.colorNeutralBackground1,
     boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
@@ -55,11 +55,37 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
     ...shorthands.padding('20px'),
+    transition: 'max-height 0.3s ease, height 0.3s ease',
+    '@media (max-width: 968px)': {
+      maxWidth: '95%',
+    },
     '@media (max-width: 768px)': {
-      maxHeight: '80vh',
+      maxHeight: '98vh',
       width: '95%',
       maxWidth: 'none',
     },
+  },
+  dialogContent: {
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr',
+    gap: '24px',
+    padding: '16px',
+    overflowY: 'auto',
+    flex: 1,
+    '@media (max-width: 768px)': {
+      gridTemplateColumns: '1fr',
+      gap: '16px',
+      padding: '12px',
+    },
+  },
+  formSection: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '12px',
+  },
+  paymentSection: {
+    display: 'flex',
+    flexDirection: 'column',
   },
   formField: {
     display: 'flex',
@@ -77,62 +103,74 @@ const useStyles = makeStyles({
   },
   paymentMethods: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(2, 1fr)',
-    ...shorthands.gap('12px'),
+    gridTemplateColumns: '1fr',
+    ...shorthands.gap('4px'),
     marginBottom: '16px',
     '@media (max-width: 600px)': {
       gridTemplateColumns: '1fr',
     },
   },
+  paymentMethodCategory: {
+    gridColumn: '1 / -1',
+    fontSize: '0.85rem',
+    fontWeight: '700',
+    color: tokens.colorBrandBackground,
+    textTransform: 'uppercase',
+    letterSpacing: '0.5px',
+    marginTop: '8px',
+    marginBottom: '4px',
+    paddingBottom: '4px',
+    borderBottomColor: tokens.colorNeutralStroke1,
+    borderBottomWidth: '1px',
+    borderBottomStyle: 'solid',
+  },
+  paymentCategoryFirst: {
+    marginTop: '0',
+  },
   paymentOption: {
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    ...shorthands.padding('16px'),
-    border: `2px solid ${tokens.colorNeutralStroke2}`,
+    justifyContent: 'space-between',
     ...shorthands.borderRadius('12px'),
     cursor: 'pointer',
     backgroundColor: tokens.colorNeutralBackground1,
     transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
     position: 'relative',
-    minHeight: '160px',
+    minHeight: '32px',
+    width: 'fit-content',
     '&:hover': {
-      borderColor: tokens.colorBrandBackground,
-      backgroundColor: 'rgba(45, 90, 123, 0.04)',
+      borderTopColor: tokens.colorBrandBackground,
+      borderRightColor: tokens.colorBrandBackground,
+      borderBottomColor: tokens.colorBrandBackground,
+      borderLeftColor: tokens.colorBrandBackground,
+      backgroundColor: 'rgba(45, 90, 123, 0.08)',
       transform: 'translateY(-2px)',
-      boxShadow: '0 8px 16px rgba(0, 0, 0, 0.12)',
+      boxShadow: '0 4px 12px rgba(45, 90, 123, 0.1)',
     },
   },
   paymentOptionSelected: {
-    borderColor: tokens.colorBrandBackground,
-    backgroundColor: 'rgba(45, 90, 123, 0.1)',
+    borderTopColor: tokens.colorBrandBackground,
+    borderRightColor: tokens.colorBrandBackground,
+    borderBottomColor: tokens.colorBrandBackground,
+    borderLeftColor: tokens.colorBrandBackground,
+    backgroundColor: 'rgba(45, 90, 123, 0.12)',
     boxShadow: '0 4px 12px rgba(45, 90, 123, 0.15)',
   },
-  radioButton: {
-    position: 'absolute',
-    top: '12px',
-    right: '12px',
-    width: '22px',
-    height: '22px',
-    borderRadius: '50%',
-    border: `2px solid ${tokens.colorNeutralStroke2}`,
-    flexShrink: 0,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    transition: 'all 0.2s ease',
-  },
-  radioButtonSelected: {
-    borderColor: tokens.colorBrandBackground,
+  speedBadge: {
     backgroundColor: tokens.colorBrandBackground,
-    boxShadow: '0 0 0 2px rgba(45, 90, 123, 0.2)',
-  },
-  radioButtonInner: {
-    width: '8px',
-    height: '8px',
-    borderRadius: '50%',
-    backgroundColor: 'white',
+    color: 'white',
+    fontSize: '0.6rem',
+    fontWeight: '700',
+    paddingLeft: '4px',
+    paddingRight: '4px',
+    paddingTop: '2px',
+    paddingBottom: '2px',
+    borderRadius: '3px',
+    textTransform: 'uppercase',
+    letterSpacing: '0.3px',
+    marginLeft: '6px',
+    whiteSpace: 'nowrap',
   },
   amountPresets: {
     display: 'grid',
@@ -164,15 +202,9 @@ const useStyles = makeStyles({
     borderBottomColor: tokens.colorBrandBackground,
     borderLeftColor: tokens.colorBrandBackground,
   },
-  dialogContent: {
-    padding: '16px',
-    overflowY: 'auto',
-    flex: 1,
-  },
   dialogTitle: {
     fontSize: '1.2rem',
     fontWeight: '700',
-    marginBottom: '8px',
     color: tokens.colorNeutralForeground1,
   },
   closeButton: {
@@ -216,6 +248,14 @@ const useStyles = makeStyles({
     backgroundColor: 'rgba(255, 140, 0, 0.1)',
     borderRadius: '6px',
   },
+  infoMessage: {
+    color: '#0078d4',
+    fontSize: '0.85rem',
+    marginTop: '4px',
+    padding: '8px 12px',
+    backgroundColor: 'rgba(0, 120, 212, 0.1)',
+    borderRadius: '6px',
+  },
   processingTime: {
     fontSize: '0.8rem',
     color: tokens.colorNeutralForeground3,
@@ -225,19 +265,41 @@ const useStyles = makeStyles({
   paymentMethodCard: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
-    textAlign: 'center',
+    alignItems: 'flex-start',
+    marginRight: '4px',
+    marginLeft: '4px',
+    textAlign: 'left',
     width: '100%',
+    flex: 1,
+  },
+  paymentMethodIconLabel: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: '8px',
   },
   paymentMethodIcon: {
-    width: '48px',
-    height: '48px',
-    marginBottom: '12px',
+    width: '36px',
+    height: '36px',
     color: tokens.colorBrandBackground,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08))',
+    fontSize: '1.4rem',
+    flexShrink: 0,
+  },
+  paymentMethodLabel: {
+    fontSize: '0.8rem',
+    fontWeight: '700',
+    color: tokens.colorNeutralForeground1,
+    lineHeight: '1.2',
+  },
+  paymentMethodTime: {
+    fontSize: '0.75rem',
+    color: tokens.colorNeutralForeground3,
+    fontWeight: '500',
+    marginTop: '2px',
   },
   loadingSpinner: {
     display: 'flex',
@@ -245,6 +307,11 @@ const useStyles = makeStyles({
     justifyContent: 'center',
     gap: '8px',
     padding: '8px',
+  },
+  paymentMethodFormSection: {
+    padding: '8px 0',
+    marginTop: '4px',
+    marginBottom: '0',
   },
 });
 
@@ -262,11 +329,42 @@ export function DonationDialog() {
     phone: '',
     amount: '',
     message: '',
+    // Payment method specific fields
+    cardNumber: '',
+    cardExpiry: '',
+    cardCVV: '',
+    bankAccountHolder: '',
+    bankAccountNumber: '',
+    bankRoutingNumber: '',
+    cryptoWalletAddress: '',
+    cashappUsername: '',
   });
   const [selectedPayment, setSelectedPayment] = useState('card');
   const [selectedAmount, setSelectedAmount] = useState('');
+  const [cardType, setCardType] = useState('');
 
   const amountPresets = [25, 50, 100, 250];
+
+  // Detect card type based on card number
+  const detectCardType = (cardNumber) => {
+    const num = cardNumber.replace(/\D/g, '');
+    if (!num) return '';
+    
+    // Visa: starts with 4
+    if (/^4/.test(num)) return '💳 Visa';
+    // Mastercard: starts with 5[1-5]
+    if (/^5[1-5]/.test(num)) return '💳 Mastercard';
+    // American Express: starts with 3[47]
+    if (/^3[47]/.test(num)) return '💳 Amex';
+    // Discover: starts with 6011
+    if (/^6011/.test(num)) return '💳 Discover';
+    // Diners Club: starts with 3[068]
+    if (/^3[068]/.test(num)) return '💳 Diners';
+    // JCB: starts with 35
+    if (/^35/.test(num)) return '💳 JCB';
+    
+    return '💳';
+  };
 
   // Payment method configurations with icons
   const paymentMethodsConfig = {
@@ -338,12 +436,38 @@ export function DonationDialog() {
     }
   }, [open, t]);
 
+  // Format expiry date as MM/YY
+  const formatExpiryDate = (value) => {
+    const cleaned = value.replace(/\D/g, '');
+    if (cleaned.length === 0) return '';
+    if (cleaned.length <= 2) return cleaned;
+    return `${cleaned.slice(0, 2)}/${cleaned.slice(2, 4)}`;
+  };
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    let formattedValue = value;
+    
+    // Apply expiry date masking
+    if (name === 'cardExpiry') {
+      formattedValue = formatExpiryDate(value);
+    }
+    
+    // Remove $ from cashapp username if user types it
+    if (name === 'cashappUsername') {
+      formattedValue = value.replace(/\$/g, '').trim();
+    }
+    
     setFormData(prev => ({
       ...prev,
-      [name]: value,
+      [name]: formattedValue,
     }));
+    
+    // Detect card type when card number changes
+    if (name === 'cardNumber') {
+      setCardType(detectCardType(value));
+    }
+    
     setError('');
   };
 
@@ -371,12 +495,10 @@ export function DonationDialog() {
       setError('');
 
       // Process payment based on selected method
-      try {
-        await paymentService.processPayment(formData, selectedPayment);
-      } catch (paymentErr) {
-        console.error('Payment processing error:', paymentErr);
+      const paymentResult = await paymentService.processPayment(formData, selectedPayment);
+      if (!paymentResult || !paymentResult.success) {
         throw new Error(
-          paymentErr.message || `${selectedPayment} payment processing failed. Please check your information and try again.`
+          paymentResult?.message || `${selectedPayment} payment processing failed. Please check your information and try again.`
         );
       }
 
@@ -449,11 +571,155 @@ export function DonationDialog() {
       phone: '',
       amount: '',
       message: '',
+      cardNumber: '',
+      cardExpiry: '',
+      cardCVV: '',
+      bankAccountHolder: '',
+      bankAccountNumber: '',
+      bankRoutingNumber: '',
+      cryptoWalletAddress: '',
+      cashappUsername: '',
     });
     setSelectedAmount('');
     setSelectedPayment('card');
+    setCardType('');
     setError('');
     setSuccess('');
+  };
+
+  const renderPaymentMethodForm = (methodId) => {
+    switch (methodId) {
+      case 'card':
+        return (
+          <div className={styles.paymentMethodFormSection}>
+            <div className={styles.formField}>
+              <label className={styles.label}>
+                {t('donation.cardNumber', 'Card Number')} <span className={styles.required}>*</span>
+              </label>
+              <Input
+                name="cardNumber"
+                value={formData.cardNumber}
+                onChange={handleInputChange}
+                placeholder={t('donation.cardNumberPlaceholder', '1234 5678 9012 3456')}
+                disabled={loading}
+                contentBefore={cardType}
+              />
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+              <div className={styles.formField}>
+                <label className={styles.label}>
+                  {t('donation.expiry', 'Expiry')} <span className={styles.required}>*</span>
+                </label>
+                <Input
+                  name="cardExpiry"
+                  value={formData.cardExpiry}
+                  onChange={handleInputChange}
+                  placeholder="MM/YY"
+                  disabled={loading}
+                />
+              </div>
+              <div className={styles.formField}>
+                <label className={styles.label}>
+                  {t('donation.cvv', 'CVV')} <span className={styles.required}>*</span>
+                </label>
+                <Input
+                  name="cardCVV"
+                  value={formData.cardCVV}
+                  onChange={handleInputChange}
+                  placeholder="123"
+                  disabled={loading}
+                />
+              </div>
+            </div>
+          </div>
+        );
+      case 'bank':
+        return (
+          <div className={styles.paymentMethodFormSection}>
+            <div className={styles.formField}>
+              <label className={styles.label}>
+                {t('donation.accountHolder', 'Account Holder Name')} <span className={styles.required}>*</span>
+              </label>
+              <Input
+                name="bankAccountHolder"
+                value={formData.bankAccountHolder}
+                onChange={handleInputChange}
+                placeholder={t('donation.accountHolder', 'Account Holder Name')}
+                disabled={loading}
+              />
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '12px' }}>
+              <div className={styles.formField}>
+                <label className={styles.label}>
+                  {t('donation.accountNumber', 'Account Number')} <span className={styles.required}>*</span>
+                </label>
+                <Input
+                  name="bankAccountNumber"
+                  value={formData.bankAccountNumber}
+                  onChange={handleInputChange}
+                  placeholder={t('donation.accountNumber', 'Account Number')}
+                  disabled={loading}
+                />
+              </div>
+              <div className={styles.formField}>
+                <label className={styles.label}>
+                  {t('donation.routingNumber', 'Routing Number')} <span className={styles.required}>*</span>
+                </label>
+                <Input
+                  name="bankRoutingNumber"
+                  value={formData.bankRoutingNumber}
+                  onChange={handleInputChange}
+                  placeholder={t('donation.routingNumber', 'Routing Number')}
+                  disabled={loading}
+                />
+              </div>
+            </div>
+            <div className={styles.infoMessage}>
+              ℹ️ {t('donation.paymentInstructions', 'You will receive payment instructions via email')}
+            </div>
+          </div>
+        );
+      case 'crypto':
+        return (
+          <div className={styles.paymentMethodFormSection}>
+            <div className={styles.formField}>
+              <label className={styles.label}>
+                {t('donation.walletAddress', 'Wallet Address')} <span className={styles.required}>*</span>
+              </label>
+              <Input
+                name="cryptoWalletAddress"
+                value={formData.cryptoWalletAddress}
+                onChange={handleInputChange}
+                placeholder={t('donation.walletAddressPlaceholder', 'Enter your Bitcoin/Crypto wallet address')}
+                disabled={loading}
+              />
+            </div>
+            <div className={styles.infoMessage}>
+              ℹ️ {t('donation.cryptoSecure', 'Cryptocurrency charges are processed securely on blockchain')}
+            </div>
+          </div>
+        );
+      case 'cashapp':
+        return (
+          <div className={styles.paymentMethodFormSection}>
+            <div className={styles.formField}>
+              <label className={styles.label}>
+                {t('donation.cashappUsername', 'Cash App Username')} <span className={styles.required}>*</span>
+              </label>
+              <Input
+                name="cashappUsername"
+                value={formData.cashappUsername}
+                onChange={handleInputChange}
+                placeholder={t('donation.cashappUsernamePlaceholder', 'username')}
+                disabled={loading}
+                contentBefore="$"
+              />
+            </div>
+          </div>
+        );
+      default:
+        return null;
+    }
   };
 
   const paymentMethods = supportedMethods
@@ -469,6 +735,32 @@ export function DonationDialog() {
       };
     })
     .filter(method => method !== null);
+
+  // Organize payment methods by category
+  const organizePaymentMethods = (methods) => {
+    const instantIds = ['card', 'applePay', 'googlePay', 'paypal', 'cashapp'];
+    const traditionalIds = ['bank'];
+    const blockchainIds = ['crypto'];
+    
+    const instant = methods.filter(m => instantIds.includes(m.id));
+    const traditional = methods.filter(m => traditionalIds.includes(m.id));
+    const blockchain = methods.filter(m => blockchainIds.includes(m.id));
+    
+    return [
+      { category: t('donation.instantMethods', 'Instant Payment'), methods: instant },
+      { category: t('donation.traditionalMethods', 'Bank Transfer'), methods: traditional },
+      { category: t('donation.cryptoMethods', 'Cryptocurrency'), methods: blockchain },
+    ].filter(group => group.methods.length > 0);
+  };
+
+  const getSpeedBadge = (methodId) => {
+    if (methodId === 'bank') {
+      return '📅 1-5 days';
+    } else if (methodId === 'crypto') {
+      return '⛓️ Blockchain';
+    }
+    return '⚡ Fast';
+  };
 
   return (
     <>
@@ -508,31 +800,36 @@ export function DonationDialog() {
       {open && (
         <div className={styles.dialogBackdrop} onClick={() => { setOpen(false); resetForm(); }}>
           <div className={styles.dialogWrapper} onClick={e => e.stopPropagation()}>
-            <div className={styles.dialogContent}>
-              <div style={{ position: 'relative', marginBottom: '20px' }}>
-                <h2 className={styles.dialogTitle}>{t('donation.title', 'Make a Donation')}</h2>
-                <button 
-                  className={styles.closeButton}
-                  onClick={() => { setOpen(false); resetForm(); }}
-                  disabled={loading}
-                >
-                  ✕
-                </button>
+            {/* Title and Close Button */}
+            <div style={{ position: 'relative', marginBottom: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <h2 className={styles.dialogTitle}>{t('donation.title', 'Make a Donation')}</h2>
+              <button 
+                className={styles.closeButton}
+                onClick={() => { setOpen(false); resetForm(); }}
+                disabled={loading}
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* Error Message */}
+            {error && (
+              <div className={styles.errorMessage}>
+                ⚠️ {error}
               </div>
+            )}
 
-              {/* Error Message */}
-              {error && (
-                <div className={styles.errorMessage}>
-                  ⚠️ {error}
-                </div>
-              )}
+            {/* Success Message */}
+            {success && (
+              <div className={styles.successMessage}>
+                ✓ {success}
+              </div>
+            )}
 
-              {/* Success Message */}
-              {success && (
-                <div className={styles.successMessage}>
-                  ✓ {success}
-                </div>
-              )}
+            {/* Main Content Grid */}
+            <div className={styles.dialogContent}>
+              {/* Form Section */}
+              <div className={styles.formSection}>
 
               {/* Full Name */}
               <div className={styles.formField}>
@@ -606,6 +903,7 @@ export function DonationDialog() {
                   placeholder={t('donation.customAmount', 'Enter custom amount')}
                   min="1"
                   disabled={loading}
+                  contentBefore="$"
                 />
               </div>
 
@@ -625,56 +923,55 @@ export function DonationDialog() {
                 />
               </div>
 
-              {/* Payment Method */}
-              <div className={styles.formField}>
+              </div>
+
+              {/* Payment Method Section */}
+              <div className={styles.paymentSection}>
                 <label className={styles.label}>
                   {t('donation.paymentMethod', 'Payment Method')} <span className={styles.required}>*</span>
                 </label>
                 <div className={styles.paymentMethods}>
-                  {paymentMethods.map(method => (
-                    <div
-                      key={method.id}
-                      className={`${styles.paymentOption} ${
-                        selectedPayment === method.id ? styles.paymentOptionSelected : ''
-                      }`}
-                      onClick={() => !loading && setSelectedPayment(method.id)}
-                      style={{ opacity: loading ? 0.6 : 1, cursor: loading ? 'not-allowed' : 'pointer' }}
-                    >
-                      <div className={`${styles.radioButton} ${
-                        selectedPayment === method.id ? styles.radioButtonSelected : ''
-                      }`}>
-                        {selectedPayment === method.id && <div className={styles.radioButtonInner}></div>}
-                      </div>
-                      <div className={styles.paymentMethodCard}>
-                        {method.iconPath || method.icon ? (
-                          <img 
-                            src={method.iconPath || method.icon} 
-                            alt={method.label}
-                            className={styles.paymentMethodIcon}
-                          />
-                        ) : (
-                          <div className={styles.paymentMethodIcon}>💳</div>
-                        )}
-                        <span style={{ fontSize: '0.95rem', fontWeight: '500' }}>{method.label}</span>
-                        <div className={styles.processingTime}>{method.processingTime}</div>
-                      </div>
-                    </div>
+                  {organizePaymentMethods(paymentMethods).map((group) => (
+                    <React.Fragment key={group.category}>
+                      {group.methods.map(method => (
+                        <React.Fragment key={method.id}>
+                          <div
+                            className={`${styles.paymentOption} ${
+                              selectedPayment === method.id ? styles.paymentOptionSelected : ''
+                            }`}
+                            onClick={() => !loading && setSelectedPayment(method.id)}
+                            style={{ opacity: loading ? 0.6 : 1, cursor: loading ? 'not-allowed' : 'pointer' }}
+                          >
+                            <div className={styles.paymentMethodCard}>
+                              <div className={styles.paymentMethodIconLabel}>
+                                {method.iconPath || method.icon ? (
+                                  <img 
+                                    src={method.iconPath || method.icon} 
+                                    alt={method.label}
+                                    className={styles.paymentMethodIcon}
+                                  />
+                                ) : (
+                                  <div className={styles.paymentMethodIcon}>💳</div>
+                                )}
+                                <span className={styles.paymentMethodLabel}>{method.label}</span>
+                                {selectedPayment === method.id && (
+                                  <div className={styles.speedBadge}>
+                                    {getSpeedBadge(method.id)}
+                                  </div>
+                                )}
+                              </div>
+                              {!['instant', 'bank', 'crypto'].includes(method.id) && method.processingTime !== t('donation.instant', 'Instant') && (
+                                <div className={styles.paymentMethodTime}>{method.processingTime}</div>
+                              )}
+                            </div>
+                          </div>
+                          {selectedPayment === method.id && renderPaymentMethodForm(method.id)}
+                        </React.Fragment>
+                      ))}
+                    </React.Fragment>
                   ))}
                 </div>
               </div>
-
-              {/* Payment Processing Info */}
-              {selectedPayment === 'bank' && (
-                <div className={styles.warningMessage}>
-                  ℹ️ {t('donation.bankInfo', 'You will receive payment instructions via email')}
-                </div>
-              )}
-
-              {selectedPayment === 'crypto' && (
-                <div className={styles.warningMessage}>
-                  ℹ️ {t('donation.cryptoInfo', 'Cryptocurrency charges are processed securely on blockchain')}
-                </div>
-              )}
 
               {/* Actions */}
               <div className={styles.dialogActions}>

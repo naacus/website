@@ -135,6 +135,12 @@ class StripePaymentService {
         requestPayerPhone: true,
       });
 
+      // Check if Payment Request API is available before calling show()
+      const canMakePayment = await session.canMakePayment();
+      if (!canMakePayment) {
+        throw new Error('Apple Pay is not available on this device. Please use another payment method.');
+      }
+
       const { error, paymentMethod } = await session.show();
 
       if (error) {
@@ -180,6 +186,12 @@ class StripePaymentService {
         requestPayerEmail: true,
         requestPayerPhone: true,
       });
+
+      // Check if Payment Request API is available before calling show()
+      const canMakePayment = await session.canMakePayment();
+      if (!canMakePayment) {
+        throw new Error('Google Pay is not available on this device. Please use another payment method.');
+      }
 
       const { error, paymentMethod } = await session.show();
 

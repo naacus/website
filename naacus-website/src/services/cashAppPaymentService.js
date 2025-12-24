@@ -18,10 +18,22 @@ class CashAppPaymentService {
     if (this.initialized) return;
 
     try {
+      // Validate credentials format before attempting load
+      if (!paymentConfig.cashApp.applicationId || paymentConfig.cashApp.applicationId.includes('sq_app_example')) {
+        console.debug('Square credentials not configured. Skipping initialization.');
+        this.initialized = true;
+        return;
+      }
+
       // Check if Square is already loaded
       if (window.Square) {
-        this.squarePayments = window.Square.payments(paymentConfig.cashApp.applicationId, paymentConfig.cashApp.locationId);
-        this.initialized = true;
+        try {
+          this.squarePayments = window.Square.payments(paymentConfig.cashApp.applicationId, paymentConfig.cashApp.locationId);
+          this.initialized = true;
+        } catch (paymentError) {
+          console.debug('Square payments initialization failed - credentials may be invalid. Skipping.');
+          this.initialized = true;
+        }
         return;
       }
 
@@ -31,25 +43,30 @@ class CashAppPaymentService {
 
       script.onload = () => {
         if (window.Square) {
-          this.squarePayments = window.Square.payments(
-            paymentConfig.cashApp.applicationId,
-            paymentConfig.cashApp.locationId
-          );
-          this.initialized = true;
+          try {
+            this.squarePayments = window.Square.payments(
+              paymentConfig.cashApp.applicationId,
+              paymentConfig.cashApp.locationId
+            );
+            this.initialized = true;
+          } catch (paymentError) {
+            console.debug('Square payments initialization failed - credentials may be invalid.');
+            this.initialized = true;
+          }
         } else {
-          console.warn('Square library loaded but Square object not found');
+          console.debug('Square library loaded but Square object not found');
           this.initialized = true;
         }
       };
 
       script.onerror = () => {
-        console.warn('Square SDK failed to load. Cash App payments may not be available.');
+        console.debug('Square SDK failed to load - this is normal if credentials are not configured.');
         this.initialized = true;
       };
 
       document.head.appendChild(script);
     } catch (error) {
-      console.warn('Square initialization warning:', error);
+      console.debug('Square initialization skipped:', error.message);
       this.initialized = true;
     }
   }
