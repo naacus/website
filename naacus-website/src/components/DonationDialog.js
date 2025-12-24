@@ -78,51 +78,55 @@ const useStyles = makeStyles({
   paymentMethods: {
     display: 'grid',
     gridTemplateColumns: 'repeat(2, 1fr)',
-    ...shorthands.gap('4px'),
-    marginBottom: '6px',
+    ...shorthands.gap('12px'),
+    marginBottom: '16px',
+    '@media (max-width: 600px)': {
+      gridTemplateColumns: '1fr',
+    },
   },
   paymentOption: {
     display: 'flex',
+    flexDirection: 'column',
     alignItems: 'center',
-    ...shorthands.gap('6px'),
-    padding: '4px 6px',
-    border: `1px solid ${tokens.colorNeutralStroke1}`,
-    ...shorthands.borderRadius('6px'),
+    justifyContent: 'center',
+    ...shorthands.padding('16px'),
+    border: `2px solid ${tokens.colorNeutralStroke2}`,
+    ...shorthands.borderRadius('12px'),
     cursor: 'pointer',
     backgroundColor: tokens.colorNeutralBackground1,
-    transition: 'all 0.2s ease',
-    fontSize: '0.8rem',
+    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+    position: 'relative',
+    minHeight: '160px',
     '&:hover': {
-      borderTopColor: tokens.colorBrandBackground,
-      borderRightColor: tokens.colorBrandBackground,
-      borderBottomColor: tokens.colorBrandBackground,
-      borderLeftColor: tokens.colorBrandBackground,
-      backgroundColor: '#f3f2f1',
+      borderColor: tokens.colorBrandBackground,
+      backgroundColor: 'rgba(45, 90, 123, 0.04)',
+      transform: 'translateY(-2px)',
+      boxShadow: '0 8px 16px rgba(0, 0, 0, 0.12)',
     },
   },
   paymentOptionSelected: {
-    borderTopColor: tokens.colorBrandBackground,
-    borderRightColor: tokens.colorBrandBackground,
-    borderBottomColor: tokens.colorBrandBackground,
-    borderLeftColor: tokens.colorBrandBackground,
-    backgroundColor: 'rgba(45, 90, 123, 0.08)',
+    borderColor: tokens.colorBrandBackground,
+    backgroundColor: 'rgba(45, 90, 123, 0.1)',
+    boxShadow: '0 4px 12px rgba(45, 90, 123, 0.15)',
   },
   radioButton: {
-    width: '20px',
-    height: '20px',
+    position: 'absolute',
+    top: '12px',
+    right: '12px',
+    width: '22px',
+    height: '22px',
     borderRadius: '50%',
-    border: `2px solid ${tokens.colorNeutralStroke1}`,
+    border: `2px solid ${tokens.colorNeutralStroke2}`,
     flexShrink: 0,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    transition: 'all 0.2s ease',
   },
   radioButtonSelected: {
-    borderTopColor: tokens.colorBrandBackground,
-    borderRightColor: tokens.colorBrandBackground,
-    borderBottomColor: tokens.colorBrandBackground,
-    borderLeftColor: tokens.colorBrandBackground,
+    borderColor: tokens.colorBrandBackground,
     backgroundColor: tokens.colorBrandBackground,
+    boxShadow: '0 0 0 2px rgba(45, 90, 123, 0.2)',
   },
   radioButtonInner: {
     width: '8px',
@@ -213,20 +217,27 @@ const useStyles = makeStyles({
     borderRadius: '6px',
   },
   processingTime: {
-    fontSize: '0.75rem',
+    fontSize: '0.8rem',
     color: tokens.colorNeutralForeground3,
-    marginTop: '2px',
+    marginTop: '6px',
+    fontWeight: '500',
   },
   paymentMethodCard: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    padding: '8px',
     textAlign: 'center',
+    width: '100%',
   },
   paymentMethodIcon: {
-    fontSize: '1.5rem',
-    marginBottom: '4px',
+    width: '48px',
+    height: '48px',
+    marginBottom: '12px',
+    color: tokens.colorBrandBackground,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08))',
   },
   loadingSpinner: {
     display: 'flex',
@@ -262,43 +273,43 @@ export function DonationDialog() {
     card: {
       id: 'card',
       label: t('donation.creditDebit', 'Credit/Debit Card'),
-      icon: '💳',
+      iconPath: '/icons/credit-card.svg',
       processingTime: t('donation.instant', 'Instant'),
     },
     applePay: {
       id: 'applePay',
       label: t('donation.applePay', 'Apple Pay'),
-      icon: '🍎',
+      iconPath: '/icons/apple-pay.svg',
       processingTime: t('donation.instant', 'Instant'),
     },
     googlePay: {
       id: 'googlePay',
       label: t('donation.googlePay', 'Google Pay'),
-      icon: '🔵',
+      iconPath: '/icons/google-pay.svg',
       processingTime: t('donation.instant', 'Instant'),
     },
     paypal: {
       id: 'paypal',
       label: t('donation.paypal', 'PayPal'),
-      icon: '🅿️',
+      iconPath: '/icons/paypal.svg',
       processingTime: t('donation.instant', 'Instant'),
     },
     bank: {
       id: 'bank',
       label: t('donation.bankTransfer', 'Bank Transfer'),
-      icon: '🏦',
+      iconPath: '/icons/bank-transfer.svg',
       processingTime: t('donation.processingTime', '1-5 business days'),
     },
     crypto: {
       id: 'crypto',
       label: t('donation.bitcoin', 'Bitcoin/Crypto'),
-      icon: '₿',
+      iconPath: '/icons/bitcoin.svg',
       processingTime: t('donation.blockchainConfirm', 'Blockchain confirmed'),
     },
     cashapp: {
       id: 'cashapp',
       label: t('donation.cashapp', 'Cash App'),
-      icon: '💵',
+      iconPath: '/icons/cash-app.svg',
       processingTime: t('donation.instant', 'Instant'),
     },
   };
@@ -635,8 +646,16 @@ export function DonationDialog() {
                         {selectedPayment === method.id && <div className={styles.radioButtonInner}></div>}
                       </div>
                       <div className={styles.paymentMethodCard}>
-                        <div className={styles.paymentMethodIcon}>{method.icon}</div>
-                        <span>{method.label}</span>
+                        {method.iconPath || method.icon ? (
+                          <img 
+                            src={method.iconPath || method.icon} 
+                            alt={method.label}
+                            className={styles.paymentMethodIcon}
+                          />
+                        ) : (
+                          <div className={styles.paymentMethodIcon}>💳</div>
+                        )}
+                        <span style={{ fontSize: '0.95rem', fontWeight: '500' }}>{method.label}</span>
                         <div className={styles.processingTime}>{method.processingTime}</div>
                       </div>
                     </div>
