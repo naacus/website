@@ -25,7 +25,6 @@ const useStyles = makeStyles({
     color: colors.neutral.white,
     fontWeight: themeTokens.typography.fontWeight.semibold,
     '@media (max-width: 768px)': {
-      ...shorthands.padding(themeTokens.spacing.xs, themeTokens.spacing.sm),
       fontSize: themeTokens.typography.fontSize.xs,
       whiteSpace: 'nowrap',
       minWidth: 'auto',
@@ -34,7 +33,6 @@ const useStyles = makeStyles({
     },
     '@media (min-width: 769px)': {
       minWidth: '100px',
-      ...shorthands.padding(themeTokens.spacing.md, themeTokens.spacing.lg),
       fontSize: themeTokens.typography.fontSize['0.95rem'],
     },
   },
