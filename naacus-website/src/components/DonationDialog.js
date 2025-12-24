@@ -104,7 +104,7 @@ const useStyles = makeStyles({
     marginBottom: '6px',
   },
   label: {
-    fontSize: '0.95rem',
+    fontSize: '0.8rem',
     fontWeight: '600',
     color: tokens.colorNeutralForeground1,
   },
@@ -142,13 +142,14 @@ const useStyles = makeStyles({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    ...shorthands.borderRadius('12px'),
+    ...shorthands.borderRadius('8px'),
     cursor: 'pointer',
     backgroundColor: tokens.colorNeutralBackground1,
     transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
     position: 'relative',
-    minHeight: '32px',
+    minHeight: '20px',
     width: 'fit-content',
+    padding: '2px 6px',
     '&:hover': {
       borderTopColor: tokens.colorBrandBackground,
       borderRightColor: tokens.colorBrandBackground,
@@ -276,8 +277,8 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-start',
-    marginRight: '4px',
-    marginLeft: '4px',
+    marginRight: '1px',
+    marginLeft: '1px',
     textAlign: 'left',
     width: '100%',
     flex: 1,
@@ -286,24 +287,24 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    gap: '8px',
+    gap: '4px',
   },
   paymentMethodIcon: {
-    width: '36px',
-    height: '36px',
+    width: '24px',
+    height: '24px',
     color: tokens.colorBrandBackground,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08))',
-    fontSize: '1.4rem',
+    fontSize: '0.9rem',
     flexShrink: 0,
   },
   paymentMethodLabel: {
-    fontSize: '0.8rem',
+    fontSize: '0.7rem',
     fontWeight: '700',
     color: tokens.colorNeutralForeground1,
-    lineHeight: '1.2',
+    lineHeight: '1.1',
   },
   paymentMethodTime: {
     fontSize: '0.75rem',
@@ -947,9 +948,6 @@ export function DonationDialog() {
                                   </div>
                                 )}
                               </div>
-                              {!['instant', 'bank', 'crypto'].includes(method.id) && method.processingTime !== t('donation.instant', 'Instant') && (
-                                <div className={styles.paymentMethodTime}>{method.processingTime}</div>
-                              )}
                             </div>
                           </div>
                           {selectedPayment === method.id && renderPaymentMethodForm(method.id)}
