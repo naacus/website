@@ -48,18 +48,18 @@ const useStyles = makeStyles({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    zIndex: 9999,
+    zIndex: 2147483000,
   },
   dialogWrapper: {
     position: 'fixed',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    zIndex: 10000,
+    zIndex: 2147483001,
     width: '100%',
     maxWidth: '900px',
     maxHeight: '70vh',
-    overflowY: 'hidden',
+    overflowY: 'auto',
     backgroundColor: tokens.colorNeutralBackground1,
     boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
     ...shorthands.borderRadius(themeTokens.borderRadius.md),
@@ -69,11 +69,16 @@ const useStyles = makeStyles({
     transition: 'max-height 0.3s ease, height 0.3s ease',
     '@media (max-width: 968px)': {
       maxWidth: '95%',
+      maxHeight: '95vh',
+      ...shorthands.padding(themeTokens.spacing.md),
     },
     '@media (max-width: 768px)': {
       maxHeight: '98vh',
       width: '95%',
       maxWidth: 'none',
+      ...shorthands.padding(themeTokens.spacing.sm),
+      top: '50%',
+      transform: 'translate(-50%, -50%)',
     },
   },
   dialogContent: {
@@ -83,10 +88,14 @@ const useStyles = makeStyles({
     ...shorthands.padding(themeTokens.spacing.lg),
     overflowY: 'auto',
     flex: 1,
-    '@media (max-width: 768px)': {
-      gridTemplateColumns: '1fr',
+    '@media (max-width: 968px)': {
       ...shorthands.gap(themeTokens.spacing.lg),
       ...shorthands.padding(themeTokens.spacing.md),
+    },
+    '@media (max-width: 768px)': {
+      gridTemplateColumns: '1fr',
+      ...shorthands.gap(themeTokens.spacing.md),
+      ...shorthands.padding(themeTokens.spacing.sm),
     },
   },
   formSection: {
@@ -113,13 +122,11 @@ const useStyles = makeStyles({
     color: themeTokens.colors.status.error,
   },
   paymentMethods: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(80px, 1fr))',
-    ...shorthands.gap(themeTokens.spacing.xs),
+    display: 'flex',
+    flexWrap: 'wrap',
+    alignItems: 'flex-start',
+    ...shorthands.gap(themeTokens.spacing.sm),
     marginBottom: themeTokens.spacing.lg,
-    '@media (max-width: 600px)': {
-      gridTemplateColumns: 'repeat(auto-fit, minmax(60px, 1fr))',
-    },
   },
   paymentMethodCategory: {
     gridColumn: '1 / -1',
@@ -375,42 +382,54 @@ export function DonationDialog() {
       label: t('donation.creditDebit', 'Credit/Debit Card'),
       iconPath: '/icons/credit-card.svg',
       processingTime: t('donation.instant', 'Instant'),
+      hasFee: true,
+      feeInfo: t('donation.cardFee', '2-3% processing fee'),
     },
     applePay: {
       id: 'applePay',
       label: t('donation.applePay', 'Apple Pay'),
       iconPath: '/icons/apple-pay.svg',
       processingTime: t('donation.instant', 'Instant'),
+      hasFee: true,
+      feeInfo: t('donation.applePayFee', 'Fee depends on payment method'),
     },
     googlePay: {
       id: 'googlePay',
       label: t('donation.googlePay', 'Google Pay'),
       iconPath: '/icons/google-pay.svg',
       processingTime: t('donation.instant', 'Instant'),
+      hasFee: true,
+      feeInfo: t('donation.googlePayFee', 'Fee depends on payment method'),
     },
     paypal: {
       id: 'paypal',
       label: t('donation.paypal', 'PayPal'),
       iconPath: '/icons/paypal.svg',
       processingTime: t('donation.instant', 'Instant'),
+      hasFee: true,
+      feeInfo: t('donation.paypalFee', '2.2% + $0.30 fee'),
     },
     bank: {
       id: 'bank',
       label: t('donation.bankTransfer', 'Bank Transfer'),
       iconPath: '/icons/bank-transfer.svg',
       processingTime: t('donation.processingTime', '1-5 business days'),
+      hasFee: false,
     },
     crypto: {
       id: 'crypto',
       label: t('donation.bitcoin', 'Bitcoin/Crypto'),
       iconPath: '/icons/bitcoin.svg',
       processingTime: t('donation.blockchainConfirm', 'Blockchain confirmed'),
+      hasFee: true,
+      feeInfo: t('donation.cryptoFee', 'Network fees apply'),
     },
     cashapp: {
       id: 'cashapp',
       label: t('donation.cashapp', 'Cash App'),
       iconPath: '/icons/cash-app.svg',
       processingTime: t('donation.instant', 'Instant'),
+      hasFee: false,
     },
   };
 
@@ -738,23 +757,6 @@ export function DonationDialog() {
     })
     .filter(method => method !== null);
 
-  // Organize payment methods by category
-  const organizePaymentMethods = (methods) => {
-    const instantIds = ['card', 'applePay', 'googlePay', 'paypal', 'cashapp'];
-    const traditionalIds = ['bank'];
-    const blockchainIds = ['crypto'];
-    
-    const instant = methods.filter(m => instantIds.includes(m.id));
-    const traditional = methods.filter(m => traditionalIds.includes(m.id));
-    const blockchain = methods.filter(m => blockchainIds.includes(m.id));
-    
-    return [
-      { category: t('donation.instantMethods', 'Instant Payment'), methods: instant },
-      { category: t('donation.traditionalMethods', 'Bank Transfer'), methods: traditional },
-      { category: t('donation.cryptoMethods', 'Cryptocurrency'), methods: blockchain },
-    ].filter(group => group.methods.length > 0);
-  };
-
   const getSpeedBadge = (methodId) => {
     if (methodId === 'bank') {
       return '📅 1-5 days';
@@ -762,6 +764,18 @@ export function DonationDialog() {
       return '⛓️ Blockchain';
     }
     return '⚡ Fast';
+  };
+
+  // Check if method requires authentication (no additional form)
+  const requiresAuthentication = (methodId) => {
+    const methodsWithForm = ['card', 'bank', 'crypto', 'cashapp'];
+    return !methodsWithForm.includes(methodId);
+  };
+
+  // Get fee information for a payment method
+  const getMethodFeeInfo = (methodId) => {
+    const config = paymentMethodsConfig[methodId];
+    return config?.feeInfo;
   };
 
   return (
@@ -918,35 +932,46 @@ export function DonationDialog() {
                 </div>
                 <div className={styles.paymentMethods}>
                   {paymentMethods.map(method => (
-                    <React.Fragment key={method.id}>
-                      <div
-                        className={`${styles.paymentOption} ${
-                          selectedPayment === method.id ? styles.paymentOptionSelected : ''
-                        }`}
-                        onClick={() => !loading && setSelectedPayment(method.id)}
-                        style={{ opacity: loading ? 0.6 : 1, cursor: loading ? 'not-allowed' : 'pointer' }}
-                      >
-                        <div className={`${styles.paymentMethodCard} ${
-                          selectedPayment === method.id ? styles.paymentMethodCardSelected : ''
-                        }`}>
-                          <div className={styles.paymentMethodIconLabel}>
-                            {method.iconPath || method.icon ? (
-                              <img 
-                                src={method.iconPath || method.icon} 
-                                alt={method.label}
-                                className={styles.paymentMethodIcon}
-                              />
-                            ) : (
-                              <div className={styles.paymentMethodIcon}>💳</div>
-                            )}
-                            <span className={styles.paymentMethodLabel}>{method.label}</span>
-                          </div>
+                    <div
+                      key={method.id}
+                      className={`${styles.paymentOption} ${
+                        selectedPayment === method.id ? styles.paymentOptionSelected : ''
+                      }`}
+                      onClick={() => !loading && setSelectedPayment(method.id)}
+                      style={{ opacity: loading ? 0.6 : 1, cursor: loading ? 'not-allowed' : 'pointer', display: 'inline-flex' }}
+                    >
+                      <div className={`${styles.paymentMethodCard} ${
+                        selectedPayment === method.id ? styles.paymentMethodCardSelected : ''
+                      }`}>
+                        <div className={styles.paymentMethodIconLabel}>
+                          {method.iconPath || method.icon ? (
+                            <img 
+                              src={method.iconPath || method.icon} 
+                              alt={method.label}
+                              className={styles.paymentMethodIcon}
+                            />
+                          ) : (
+                            <div className={styles.paymentMethodIcon}>💳</div>
+                          )}
+                          <span className={styles.paymentMethodLabel}>{method.label}</span>
                         </div>
                       </div>
-                      {selectedPayment === method.id && renderPaymentMethodForm(method.id)}
-                    </React.Fragment>
+                    </div>
                   ))}
                 </div>
+
+                {/* Payment Method Form - Outside payment methods container */}
+                {selectedPayment && renderPaymentMethodForm(selectedPayment)}
+                {selectedPayment && getMethodFeeInfo(selectedPayment) && (
+                  <div className={styles.infoMessage} style={{ marginTop: themeTokens.spacing.sm, backgroundColor: 'rgba(255, 193, 7, 0.1)', borderLeft: `3px solid ${themeTokens.colors.status.warning || '#ffc107'}`, fontSize: themeTokens.typography.fontSize.sm }}>
+                    ⚠️ {t('donation.feeWarning', 'This payment method may apply a fee')} - {getMethodFeeInfo(selectedPayment)}
+                  </div>
+                )}
+                {selectedPayment && requiresAuthentication(selectedPayment) && (
+                  <div className={styles.infoMessage} style={{ marginTop: themeTokens.spacing.sm }}>
+                    🔐 {t('donation.authenticationRequired', 'You will be redirected to authenticate your payment securely')}
+                  </div>
+                )}
               </div>
 
               {/* Actions */}

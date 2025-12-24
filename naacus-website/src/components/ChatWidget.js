@@ -11,7 +11,7 @@ import {
 } from '@fluentui/react-components';
 import { Chat24Regular, Dismiss24Regular, Send24Filled } from '@fluentui/react-icons';
 import { processMessage, logConversation, initializeCopilotStudio } from '../services/chatbotService';
-import { colors, themeTokens } from '../config/theme';
+import { themeTokens } from '../config/theme';
 
 const useStyles = makeStyles({
   container: {

@@ -11,22 +11,13 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
 import {
   makeStyles,
   shorthands,
   tokens,
   Text,
-  Button,
-  Card,
-  Dialog,
-  DialogTrigger,
-  DialogContent,
-  DialogBody,
-  DialogTitle,
-  DialogActions,
 } from '@fluentui/react-components';
-import { Download24Regular, Dismiss24Regular } from '@fluentui/react-icons';
+import { Download24Regular } from '@fluentui/react-icons';
 import {
   getAnalyticsSummary,
   downloadAnalyticsData,
@@ -222,7 +213,6 @@ const useStyles = makeStyles({
 });
 
 function AnalyticsDashboard() {
-  const { t } = useTranslation();
   const styles = useStyles();
   const [summary, setSummary] = useState(null);
   const [events, setEvents] = useState([]);
