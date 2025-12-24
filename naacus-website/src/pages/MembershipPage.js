@@ -15,6 +15,7 @@ import {
   Spinner,
 } from '@fluentui/react-components';
 import PageWrapper from '../components/PageWrapper';
+import ParishFinder from '../components/ParishFinder';
 import { submitMembershipToSharePoint } from '../services/m365Service';
 import { useAnalytics } from '../hooks/useAnalytics';
 
@@ -200,6 +201,16 @@ function MembershipPage() {
     }));
   };
 
+  const handleParishSelect = (parishData) => {
+    setFormData(prev => ({
+      ...prev,
+      parishName: parishData.parishName,
+      parishCity: parishData.parishCity,
+      parishState: parishData.parishState,
+      diocese: parishData.diocese,
+    }));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -370,39 +381,7 @@ function MembershipPage() {
           {/* Parish Information */}
           <Card className={styles.formCard}>
             <Text className={styles.sectionTitle}>{t('membership.parishInfo')}</Text>
-            <div className={styles.formGrid}>
-              <div className={styles.formField}>
-                <label className={styles.label}>
-                  {t('membership.parishName')} <span className={styles.required}>{t('membership.required')}</span>
-                </label>
-                <Input
-                  required
-                  value={formData.parishName}
-                  onChange={(e) => handleInputChange('parishName', e.target.value)}
-                />
-              </div>
-              <div className={styles.formField}>
-                <label className={styles.label}>{t('membership.diocese')}</label>
-                <Input
-                  value={formData.diocese}
-                  onChange={(e) => handleInputChange('diocese', e.target.value)}
-                />
-              </div>
-              <div className={styles.formField}>
-                <label className={styles.label}>{t('membership.city')}</label>
-                <Input
-                  value={formData.parishCity}
-                  onChange={(e) => handleInputChange('parishCity', e.target.value)}
-                />
-              </div>
-              <div className={styles.formField}>
-                <label className={styles.label}>{t('membership.state')}</label>
-                <Input
-                  value={formData.parishState}
-                  onChange={(e) => handleInputChange('parishState', e.target.value)}
-                />
-              </div>
-            </div>
+            <ParishFinder onParishSelect={handleParishSelect} formData={formData} />
           </Card>
 
           {/* Background Information */}
