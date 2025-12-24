@@ -104,7 +104,6 @@ const useStyles = makeStyles({
 });
 
 function PrivacyPage() {
-  const { t } = useTranslation();
   const styles = useStyles();
 
   return (
