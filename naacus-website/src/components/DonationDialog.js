@@ -295,6 +295,12 @@ export function DonationDialog() {
       icon: '₿',
       processingTime: t('donation.blockchainConfirm', 'Blockchain confirmed'),
     },
+    cashapp: {
+      id: 'cashapp',
+      label: t('donation.cashapp', 'Cash App'),
+      icon: '💵',
+      processingTime: t('donation.instant', 'Instant'),
+    },
   };
 
   // Initialize payment service and get supported methods
@@ -389,6 +395,8 @@ export function DonationDialog() {
         successMsg = t('donation.bankSuccess', 'Bank transfer initiated. Check your email for payment instructions.');
       } else if (selectedPayment === 'crypto') {
         successMsg = t('donation.cryptoSuccess', 'Cryptocurrency charge created. Please complete the transaction on the payment page.');
+      } else if (selectedPayment === 'cashapp') {
+        successMsg = t('donation.cashappSuccess', 'Cash App payment initiated. Thank you for your donation!');
       } else {
         successMsg = t('donation.paymentSuccess', 'Thank you! Your donation is being processed.');
       }

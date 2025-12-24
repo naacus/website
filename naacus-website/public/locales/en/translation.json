@@ -419,6 +419,7 @@
     "paypal": "PayPal",
     "bankTransfer": "Bank Transfer",
     "bitcoin": "Bitcoin/Crypto",
+    "cashapp": "Cash App",
     "instant": "Instant",
     "processingTime": "1-5 business days",
     "blockchainConfirm": "Blockchain confirmed",
@@ -431,6 +432,7 @@
     "paymentSuccess": "Thank you! Your donation is being processed.",
     "bankSuccess": "Bank transfer initiated. Check your email for payment instructions.",
     "cryptoSuccess": "Cryptocurrency charge created. Please complete the transaction on the payment page.",
+    "cashappSuccess": "Cash App payment initiated. Thank you for your donation!",
     "bankInfo": "You will receive payment instructions via email",
     "cryptoInfo": "Cryptocurrency charges are processed securely on blockchain"
   }

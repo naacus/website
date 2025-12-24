@@ -62,6 +62,15 @@ export const paymentConfig = {
     webhookSecret: process.env.REACT_APP_CRYPTO_WEBHOOK_SECRET || '',
   },
 
+  // Cash App Configuration (Square)
+  cashApp: {
+    applicationId: process.env.REACT_APP_SQUARE_APPLICATION_ID || 'sq_app_example',
+    locationId: process.env.REACT_APP_SQUARE_LOCATION_ID || 'location_id_example',
+    enabled: true,
+    currency: 'USD',
+    supportedCountries: ['US'],
+  },
+
   // General Configuration
   general: {
     currency: 'USD',
@@ -77,6 +86,7 @@ export const paymentConfig = {
     stripe: process.env.REACT_APP_STRIPE_WEBHOOK_SECRET || '',
     paypal: process.env.REACT_APP_PAYPAL_WEBHOOK_ID || '',
     crypto: process.env.REACT_APP_CRYPTO_WEBHOOK_SECRET || '',
+    square: process.env.REACT_APP_SQUARE_WEBHOOK_SECRET || '',
   },
 
   // Error Handling

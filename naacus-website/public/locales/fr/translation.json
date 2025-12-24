@@ -435,6 +435,7 @@
     "paypal": "PayPal",
     "bankTransfer": "Virement Bancaire",
     "bitcoin": "Bitcoin/Crypto-monnaie",
+    "cashapp": "Cash App",
     "instant": "Instantané",
     "processingTime": "1-5 jours ouvrables",
     "blockchainConfirm": "Confirmé sur la Blockchain",
@@ -447,6 +448,7 @@
     "paymentSuccess": "Merci ! Votre don est en cours de traitement.",
     "bankSuccess": "Virement bancaire initié. Consultez votre e-mail pour les instructions de paiement.",
     "cryptoSuccess": "Frais de crypto-monnaie créés. Veuillez terminer la transaction sur la page de paiement.",
+    "cashappSuccess": "Paiement Cash App initié. Merci pour votre don !",
     "bankInfo": "Vous recevrez les instructions de paiement par e-mail",
     "cryptoInfo": "Les frais de crypto-monnaie sont traités de manière sécurisée sur la blockchain"
   }

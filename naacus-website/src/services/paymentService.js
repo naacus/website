@@ -7,6 +7,7 @@ import stripePaymentService from './stripePaymentService';
 import paypalPaymentService from './paypalPaymentService';
 import bankTransferPaymentService from './bankTransferPaymentService';
 import cryptoPaymentService from './cryptoPaymentService';
+import cashAppPaymentService from './cashAppPaymentService';
 import paymentConfig from '../config/paymentConfig';
 
 class PaymentService {
@@ -18,6 +19,7 @@ class PaymentService {
       paypal: paypalPaymentService,
       bank: bankTransferPaymentService,
       crypto: cryptoPaymentService,
+      cashapp: cashAppPaymentService,
     };
     this.initialized = false;
   }
@@ -34,12 +36,13 @@ class PaymentService {
         stripePaymentService.initialize(),
         paypalPaymentService.initialize(),
         cryptoPaymentService.initialize(),
+        cashAppPaymentService.initialize(),
       ]);
 
       // Log any failed initializations but don't throw
       results.forEach((result, index) => {
         if (result.status === 'rejected') {
-          const services = ['Stripe', 'PayPal', 'Crypto'];
+          const services = ['Stripe', 'PayPal', 'Crypto', 'Cash App'];
           console.warn(`${services[index]} service initialization failed:`, result.reason);
         }
       });
@@ -81,6 +84,9 @@ class PaymentService {
 
         case 'crypto':
           return await cryptoPaymentService.createCharge(donationData);
+
+        case 'cashapp':
+          return await cashAppPaymentService.processCashAppPayment(donationData);
 
         default:
           throw new Error(`Unknown payment method: ${paymentMethod}`);
@@ -175,6 +181,12 @@ class PaymentService {
         supported: paymentConfig.crypto.enabled,
         processingTime: 'Varies by network',
       },
+      cashapp: {
+        name: 'Cash App',
+        icon: '💵',
+        supported: paymentConfig.cashApp.enabled,
+        processingTime: 'Instant',
+      },
     };
 
     return configs[method] || null;
@@ -191,6 +203,7 @@ class PaymentService {
       'paypal',
       'bank',
       'crypto',
+      'cashapp',
     ];
 
     return allMethods
