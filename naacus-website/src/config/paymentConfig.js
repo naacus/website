@@ -81,6 +81,9 @@ export const paymentConfig = {
     // Use environment variable if set, otherwise empty string (triggers demo mode)
     // Set REACT_APP_API_BASE_URL=http://localhost:3001/api/v1 to use backend
     apiBaseUrl: process.env.REACT_APP_API_BASE_URL || '',
+    // Payment processing mode - set to true when ready to go live
+    // When false, all payment submissions will succeed without actual processing
+    liveMode: false,
   },
 
   // Webhook Configuration

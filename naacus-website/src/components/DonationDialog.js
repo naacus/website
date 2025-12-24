@@ -9,6 +9,7 @@ import {
   Spinner,
 } from '@fluentui/react-components';
 import paymentService from '../services/paymentService';
+import paymentConfig from '../config/paymentConfig';
 import { trackCTAEvent } from '../services/analyticsService';
 import { themeTokens, colors } from '../config/theme';
 
@@ -352,6 +353,9 @@ export function DonationDialog() {
 
   const amountPresets = [25, 50, 100, 250];
 
+  // Backend calls are only allowed when liveMode is enabled and an API base URL is configured
+  const canCallBackend = paymentConfig.general.liveMode && Boolean(paymentConfig.general.apiBaseUrl);
+
   // Detect card type based on card number
   const detectCardType = (cardNumber) => {
     const num = cardNumber.replace(/\D/g, '');
@@ -513,18 +517,26 @@ export function DonationDialog() {
       setLoading(true);
       setError('');
 
-      // Process payment based on selected method
-      const paymentResult = await paymentService.processPayment(formData, selectedPayment);
-      if (!paymentResult || !paymentResult.success) {
-        const paymentLabel = getPaymentLabel(selectedPayment);
-        throw new Error(
-          paymentResult?.message ||
-            t(
-              'donation.paymentProcessingFailed',
-              '{{paymentMethod}} payment processing failed. Please check your information and try again.',
-              { paymentMethod: paymentLabel }
-            )
-        );
+      // Process payment based on liveMode configuration
+      // When liveMode is false, always succeed since app is under construction
+      let paymentResult;
+      
+      if (!paymentConfig.general.liveMode) {
+        // Mock successful payment when not in live mode
+        paymentResult = { success: true, message: 'Construction mode - payment bypassed' };
+      } else {
+        paymentResult = await paymentService.processPayment(formData, selectedPayment);
+        if (!paymentResult || !paymentResult.success) {
+          const paymentLabel = getPaymentLabel(selectedPayment);
+          throw new Error(
+            paymentResult?.message ||
+              t(
+                'donation.paymentProcessingFailed',
+                '{{paymentMethod}} payment processing failed. Please check your information and try again.',
+                { paymentMethod: paymentLabel }
+              )
+          );
+        }
       }
 
       // Track donation event
@@ -539,11 +551,13 @@ export function DonationDialog() {
         console.warn('Analytics tracking warning:', analyticsErr);
       }
 
-      // Track donation
-      try {
-        await paymentService.trackDonation(formData, selectedPayment, 'success');
-      } catch (trackErr) {
-        console.warn('Donation tracking warning:', trackErr);
+      // Track donation only when backend is available
+      if (canCallBackend) {
+        try {
+          await paymentService.trackDonation(formData, selectedPayment, 'success');
+        } catch (trackErr) {
+          console.warn('Donation tracking warning:', trackErr);
+        }
       }
 
       // Show success message based on payment method
@@ -561,28 +575,28 @@ export function DonationDialog() {
 
       setSuccess(successMsg);
 
-      // Send confirmation email
-      try {
-        await paymentService.sendConfirmationEmail(formData, selectedPayment, 'processing');
-      } catch (emailErr) {
-        console.warn('Email sending warning:', emailErr);
+      // Send confirmation email only when backend is available
+      if (canCallBackend) {
+        try {
+          await paymentService.sendConfirmationEmail(formData, selectedPayment, 'processing');
+        } catch (emailErr) {
+          console.warn('Email sending warning:', emailErr);
+        }
       }
 
-      // Close dialog after 2 seconds
-      setTimeout(() => {
-        setOpen(false);
-        resetForm();
-      }, 2000);
+      // Keep dialog open in construction mode; user can close manually when ready
     } catch (err) {
       const errorMsg = err.message || t('donation.paymentFailed', 'Payment processing failed. Please try again.');
       setError(errorMsg);
       console.error('Donation error:', err);
 
-      // Track failed donation
-      try {
-        await paymentService.trackDonation(formData, selectedPayment, 'failed');
-      } catch (trackErr) {
-        console.warn('Failed donation tracking warning:', trackErr);
+      // Track failed donation only when backend is available
+      if (canCallBackend) {
+        try {
+          await paymentService.trackDonation(formData, selectedPayment, 'failed');
+        } catch (trackErr) {
+          console.warn('Failed donation tracking warning:', trackErr);
+        }
       }
     } finally {
       setLoading(false);
