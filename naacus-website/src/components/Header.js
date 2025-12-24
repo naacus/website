@@ -59,6 +59,18 @@ const useStyles = makeStyles({
     cursor: 'pointer',
     ...shorthands.padding('0', '12px', '0', '0'),
   },
+  logoImage: {
+    height: '48px',
+    width: '48px',
+    objectFit: 'contain',
+    ...shorthands.margin('0', '12px', '0', '0'),
+    borderRadius: '50%',
+    '@media (max-width: 768px)': {
+      height: '40px',
+      width: '40px',
+      marginRight: '8px',
+    },
+  },
   logoTitle: {
     fontSize: '15px',
     fontWeight: '600',
@@ -233,6 +245,11 @@ function Header() {
         {/* Left Section: Logo + Navigation */}
         <div className={styles.leftSection}>
           <div className={styles.logo} onClick={() => handleNavigationHelper(null, 'home', 'logo_home')}>
+            <img
+              src="/images/naacus-logo.jpg"
+              alt={t('header.title')}
+              className={styles.logoImage}
+            />
             <Text as="h1" className={styles.logoTitle}>{t('header.title')}</Text>
           </div>
           
