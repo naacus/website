@@ -63,40 +63,7 @@
     },
     "resources": {
       "title": "Ressources et Liens",
-      "subtitle": "Accédez aux brochures, bulletins d'information, formulaires d'adhésion et documents de plaidoyer qui soutiennent la mission de NAACUS et autonomisent les communautés catholiques africaines.",
-      "items": {
-        "brochure": {
-          "title": "Brochure NAACUS",
-          "description": "Téléchargez notre brochure pour en savoir plus sur la mission, les objectifs de NAACUS et comment vous impliquer.",
-          "buttonText": "Télécharger la Brochure"
-        },
-        "newsletters": {
-          "title": "Bulletins d'Information",
-          "description": "Restez informé avec nos derniers bulletins d'information présentant les actualités de la communauté, les événements et les réflexions spirituelles.",
-          "buttonText": "Voir les Bulletins"
-        },
-        "membership": {
-          "title": "Formulaire d'Adhésion",
-          "description": "Rejoignez la communauté NAACUS ! Téléchargez et remplissez notre formulaire d'adhésion pour devenir membre.",
-          "buttonText": "Obtenir le Formulaire"
-        },
-        "advocacy": {
-          "title": "Documents de Plaidoyer",
-          "description": "Accédez à nos ressources de plaidoyer soutenant les catholiques africains et promouvant la justice sociale.",
-          "buttonText": "Voir les Documents"
-        }
-      },
-      "partners": {
-        "title": "Organisations Partenaires",
-        "description": "NAACUS collabore avec diverses organisations catholiques, diocèses et ministères pour soutenir les catholiques africains aux États-Unis.",
-        "organizations": {
-          "usccb": "Conférence des Évêques Catholiques des États-Unis",
-          "dioceses": "Bureaux Diocésains Locaux",
-          "african": "Ministères Catholiques Africains et Haïtiens",
-          "national": "Organisations Catholiques Nationales",
-          "intercultural": "Programmes de Ministère Interculturel"
-        }
-      }
+      "description": "Accédez aux matériels éducatifs, ressources de prière et liens pour soutenir votre parcours spirituel et votre vie de famille."
     },
     "spiritual": {
       "title": "Croissance Spirituelle",
