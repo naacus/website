@@ -489,6 +489,13 @@
     "cryptoSuccess": "Cryptocurrency charge created. Please complete the transaction on the payment page.",
     "cashappSuccess": "Cash App payment initiated. Thank you for your donation!",
     "bankInfo": "You will receive payment instructions via email",
-    "cryptoInfo": "Cryptocurrency charges are processed securely on blockchain"
+    "cryptoInfo": "Cryptocurrency charges are processed securely on blockchain",
+    "paymentInstructions": "You will receive payment instructions via email",
+    "cryptoSecure": "Cryptocurrency charges are processed securely on blockchain",
+    "bankSpeed": "📅 1-5 days",
+    "cryptoSpeed": "⛓️ Blockchain",
+    "fastSpeed": "⚡ Fast",
+    "paymentMethodUnknown": "Selected payment method",
+    "paymentProcessingFailed": "{{paymentMethod}} payment processing failed. Please check your information and try again."
   }
 }

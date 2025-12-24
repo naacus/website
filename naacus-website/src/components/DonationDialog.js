@@ -518,8 +518,14 @@ export function DonationDialog() {
       // Process payment based on selected method
       const paymentResult = await paymentService.processPayment(formData, selectedPayment);
       if (!paymentResult || !paymentResult.success) {
+        const paymentLabel = getPaymentLabel(selectedPayment);
         throw new Error(
-          paymentResult?.message || `${selectedPayment} payment processing failed. Please check your information and try again.`
+          paymentResult?.message ||
+            t(
+              'donation.paymentProcessingFailed',
+              '{{paymentMethod}} payment processing failed. Please check your information and try again.',
+              { paymentMethod: paymentLabel }
+            )
         );
       }
 
@@ -759,11 +765,15 @@ export function DonationDialog() {
 
   const getSpeedBadge = (methodId) => {
     if (methodId === 'bank') {
-      return '📅 1-5 days';
+      return t('donation.bankSpeed', '📅 1-5 days');
     } else if (methodId === 'crypto') {
-      return '⛓️ Blockchain';
+      return t('donation.cryptoSpeed', '⛓️ Blockchain');
     }
-    return '⚡ Fast';
+    return t('donation.fastSpeed', '⚡ Fast');
+  };
+
+  const getPaymentLabel = (methodId) => {
+    return paymentMethodsConfig[methodId]?.label || t('donation.paymentMethodUnknown', 'Selected payment method');
   };
 
   // Check if method requires authentication (no additional form)

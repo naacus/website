@@ -466,7 +466,14 @@
     "cryptoSuccess": "Frais de crypto-monnaie créés. Veuillez terminer la transaction sur la page de paiement.",
     "cashappSuccess": "Paiement Cash App initié. Merci pour votre don !",
     "bankInfo": "Vous recevrez les instructions de paiement par e-mail",
-    "cryptoInfo": "Les frais de crypto-monnaie sont traités de manière sécurisée sur la blockchain"
+    "cryptoInfo": "Les frais de crypto-monnaie sont traités de manière sécurisée sur la blockchain",
+    "paymentInstructions": "Vous recevrez les instructions de paiement par e-mail",
+    "cryptoSecure": "Les frais de crypto-monnaie sont traités de manière sécurisée sur la blockchain",
+    "bankSpeed": "📅 1-5 jours",
+    "cryptoSpeed": "⛓️ Blockchain",
+    "fastSpeed": "⚡ Rapide",
+    "paymentMethodUnknown": "Méthode de paiement sélectionnée",
+    "paymentProcessingFailed": "Le traitement du paiement {{paymentMethod}} a échoué. Veuillez vérifier vos informations et réessayer."
   },
   "events": {
     "title": "Nos Événements",
