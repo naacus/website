@@ -338,4 +338,5 @@ class CryptoPaymentService {
   }
 }
 
-export default new CryptoPaymentService();
+const cryptoPaymentService = new CryptoPaymentService();
+export default cryptoPaymentService;

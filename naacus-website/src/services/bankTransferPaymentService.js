@@ -251,4 +251,5 @@ class BankTransferPaymentService {
   }
 }
 
-export default new BankTransferPaymentService();
+const bankTransferPaymentService = new BankTransferPaymentService();
+export default bankTransferPaymentService;

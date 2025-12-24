@@ -201,4 +201,5 @@ class PayPalPaymentService {
   }
 }
 
-export default new PayPalPaymentService();
+const paypalPaymentService = new PayPalPaymentService();
+export default paypalPaymentService;
