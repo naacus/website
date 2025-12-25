@@ -15,6 +15,7 @@ import {
   trackFormInGA,
   trackDownloadInGA,
   trackScrollInGA,
+  trackMinistryInterest,
 } from './googleAnalyticsService';
 
 import {
@@ -236,6 +237,19 @@ export const trackScrollDepth = async () => {
  */
 export const resetScrollDepthTracking = () => {
   scrollDepthTracked.clear();
+};
+
+/**
+ * Track ministry interest
+ * @param {string} ministryName - Name of the ministry
+ * @param {string} action - Action taken (view, email_click, etc.)
+ */
+export const trackMinistryEvent = (ministryName, action = 'view') => {
+  trackMinistryInterest(ministryName, action);
+
+  if (process.env.NODE_ENV === 'development') {
+    console.log('🏛️ Ministry Interest:', ministryName, action);
+  }
 };
 
 

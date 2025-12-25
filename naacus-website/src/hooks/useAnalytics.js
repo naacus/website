@@ -11,6 +11,7 @@ import {
   trackScrollToSection,
   trackPageView,
   trackDownload,
+  trackMinistryEvent,
   CTA_CATEGORIES,
 } from '../services/analyticsService';
 
@@ -134,6 +135,13 @@ export const useAnalytics = () => {
     trackPageView(pageName);
   }, []);
 
+  /**
+   * Track ministry interest
+   */
+  const trackMinistry = useCallback((ministryName, action = 'view') => {
+    trackMinistryEvent(ministryName, action);
+  }, []);
+
   return {
     trackCTA,
     trackMembershipCTA,
@@ -148,5 +156,6 @@ export const useAnalytics = () => {
     trackScroll,
     trackResourceDownload,
     trackPageViewEvent,
+    trackMinistry,
   };
 };

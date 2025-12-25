@@ -238,3 +238,15 @@ export const updateLanguageProperty = (newLanguage) => {
     console.log('📊 GA Language property updated:', languageCode);
   }
 };
+
+/**
+ * Track ministry interest/view
+ * @param {string} ministryName - Name of the ministry (e.g., "Women's Ministry")
+ * @param {string} action - Action taken (view, email_click, etc.)
+ */
+export const trackMinistryInterest = (ministryName, action = 'view') => {
+  sendToGoogleAnalytics('ministry_interest', {
+    ministry_name: ministryName,
+    ministry_action: action,
+  });
+};

@@ -74,9 +74,11 @@ const useStyles = makeStyles({
     flexDirection: 'column',
     alignItems: 'center',
     textAlign: 'center',
+    cursor: 'pointer',
     '&:hover': {
       boxShadow: '0 4px 16px rgba(0, 0, 0, 0.12)',
       transform: 'translateY(-4px)',
+      backgroundColor: tokens.colorNeutralBackground1Hover,
     },
   },
   ministryIcon: {
@@ -137,14 +139,26 @@ const useStyles = makeStyles({
 function Ministries() {
   const { t } = useTranslation();
   const styles = useStyles();
-  const { trackMinistryCTA } = useAnalytics();
+  const { trackMinistryCTA, trackMinistry } = useAnalytics();
 
   // Get ministry data from service
   const ministriesData = dataService.getMinistries();
 
   const handleMinistryEmail = (ministryTitle) => {
     trackMinistryCTA(`Email ${ministryTitle}`, 'ministry_email_link');
+    trackMinistry(ministryTitle, 'email_click');
   };
+
+  const handleMinistryCardClick = (ministryTitle) => {
+    trackMinistry(ministryTitle, 'card_click');
+  };
+
+  // Track ministry view on mount
+  React.useEffect(() => {
+    ministriesData.forEach((ministry) => {
+      trackMinistry(ministry.title, 'view');
+    });
+  }, [ministriesData, trackMinistry]);
 
   // Map icons to ministries by iconKey
   const iconMap = {
@@ -178,7 +192,18 @@ function Ministries() {
 
         <div className={styles.ministriesGrid}>
           {ministries.map((ministry, index) => (
-            <div key={index} className={styles.ministryCard}>
+            <div 
+              key={index} 
+              className={styles.ministryCard}
+              onClick={() => handleMinistryCardClick(ministry.title)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  handleMinistryCardClick(ministry.title);
+                }
+              }}
+            >
               <div className={styles.ministryIcon}>
                 {ministry.icon}
               </div>
@@ -188,7 +213,10 @@ function Ministries() {
                 <a 
                   href={`mailto:${ministry.email}`} 
                   className={styles.ministryEmail}
-                  onClick={() => handleMinistryEmail(ministry.title)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleMinistryEmail(ministry.title);
+                  }}
                 >
                   <Mail24Regular />
                   <span>{ministry.email}</span>
