@@ -339,7 +339,7 @@ const useStyles = makeStyles({
   },
   twoColGridWideNarrow: {
     display: 'grid',
-    gridTemplateColumns: 'minmax(0, 2fr) minmax(0, 1fr)',
+    gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr)',
     gap: '12px',
     minWidth: 0,
     width: '100%',
