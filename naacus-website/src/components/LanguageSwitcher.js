@@ -10,6 +10,7 @@ import {
   makeStyles,
   tokens
 } from '@fluentui/react-components';
+import { updateLanguageProperty } from '../services/googleAnalyticsService';
 
 const useStyles = makeStyles({
   button: {
@@ -28,6 +29,8 @@ function LanguageSwitcher() {
 
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
+    // Update GA user property when language changes
+    updateLanguageProperty(lng);
   };
 
   const languages = {

@@ -220,3 +220,21 @@ export const setDefaultUserProperties = () => {
 
   setUserPropertiesInGA(userProperties);
 };
+
+/**
+ * Update user properties when language changes (call from LanguageSwitcher)
+ * @param {string} newLanguage - New language code (e.g., 'en', 'fr')
+ */
+export const updateLanguageProperty = (newLanguage) => {
+  if (!hasGtag()) return;
+
+  const languageCode = newLanguage ? newLanguage.split('-')[0] : 'en';
+  
+  setUserPropertiesInGA({
+    preferred_language: languageCode,
+  });
+
+  if (process.env.NODE_ENV === 'development') {
+    console.log('📊 GA Language property updated:', languageCode);
+  }
+};
