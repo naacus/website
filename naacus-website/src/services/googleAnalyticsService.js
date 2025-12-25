@@ -38,9 +38,13 @@ export const sendToGoogleAnalytics = (eventName, eventData = {}) => {
   }
 
   try {
-    window?.gtag?.('event', eventName, eventData);
+    const payload = {
+      ...(process.env.NODE_ENV === 'development' ? { debug_mode: true } : {}),
+      ...eventData,
+    };
+    window?.gtag?.('event', eventName, payload);
     if (process.env.NODE_ENV === 'development') {
-      console.log('📊 GA Event sent:', eventName, eventData);
+      console.log('📊 GA Event sent:', eventName, payload);
     }
   } catch (error) {
     console.error('Error sending to Google Analytics:', error);
@@ -79,7 +83,7 @@ export const trackPageViewInGA = (pageName, pageTitle = '') => {
  * @param {string} eventType - 'start' or 'submit'
  */
 export const trackFormInGA = (formName, eventType) => {
-  const eventName = eventType === 'start' ? 'form_begin' : 'form_submit';
+  const eventName = eventType === 'start' ? 'form_start' : 'form_submit';
   sendToGoogleAnalytics(eventName, {
     form_name: formName,
     form_id: formName,
