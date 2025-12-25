@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import { FluentProvider, webLightTheme } from '@fluentui/react-components';
 import './App.css';
 import { initializeGoogleAnalytics } from './services/googleAnalyticsService';
-import { trackPageRefresh, trackScrollDepth, resetScrollDepthTracking } from './services/analyticsService';
+import { trackPageRefresh, trackScrollDepth, resetScrollDepthTracking, trackPageView } from './services/analyticsService';
 import Header from './components/Header';
 import HomePage from './pages/HomePage';
 import Event2025Page from './pages/Event2025Page';
@@ -30,6 +30,8 @@ function AppContent() {
   useEffect(() => {
     // Reset scroll depth tracking when route changes
     resetScrollDepthTracking();
+    // Send a page_view for route changes
+    trackPageView(document.title || location.pathname);
   }, [location.pathname]);
 
   useEffect(() => {
@@ -74,6 +76,8 @@ function App() {
     const cookieConsent = localStorage.getItem('cookieConsent');
     if (cookieConsent === 'accepted') {
       initializeGoogleAnalytics();
+      // Ensure we send an initial page_view on first load
+      trackPageView(document.title || window.location.pathname);
     }
 
     // Track page refresh/reload
