@@ -567,12 +567,12 @@ export function DonationDialog() {
 
       // Track donation event
       try {
-        await trackCTAEvent({
-          category: 'donation',
-          action: 'donation_initiated',
-          label: selectedPayment,
-          value: formData.amount,
-        });
+        await trackCTAEvent(
+          'donation',
+          'donation_initiated',
+          selectedPayment,
+          { value: formData.amount }
+        );
       } catch (analyticsErr) {
         console.warn('Analytics tracking warning:', analyticsErr);
       }

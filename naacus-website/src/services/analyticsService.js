@@ -55,6 +55,8 @@ export const EVENT_TYPES = {
   PAGE_VIEW: 'page_view',
   SCROLL_TO_SECTION: 'scroll_to_section',
   DOWNLOAD: 'download',
+  PAGE_REFRESH: 'page_refresh',
+  SCROLL_DEPTH: 'scroll_depth',
 };
 
 /**
@@ -65,27 +67,6 @@ export const EVENT_TYPES = {
  * @param {object} metadata - Additional metadata (optional)
  */
 export const trackCTAEvent = async (category, action, label, metadata = {}) => {
-  const event = {
-    timestamp: new Date().toISOString(),
-    type: EVENT_TYPES.CTA_CLICK,
-    category,
-    action,
-    label,
-    url: window.location.pathname,
-    userAgent: navigator.userAgent,
-    ...metadata,
-  };
-
-  // Store in localStorage for analytics
-  const existingEvents = JSON.parse(
-    localStorage.getItem(ANALYTICS_STORAGE_KEY) || '[]'
-  );
-  existingEvents.push(event);
-
-  // Keep only last 500 events to avoid storage bloat
-  const recentEvents = existingEvents.slice(-500);
-  localStorage.setItem(ANALYTICS_STORAGE_KEY, JSON.stringify(recentEvents));
-
   // Send to Google Analytics
   trackCTAInGA(category, action, label);
 
@@ -104,13 +85,9 @@ export const trackCTAEvent = async (category, action, label, metadata = {}) => {
       category,
       action,
       label,
-      timestamp: event.timestamp,
-      url: event.url,
+      url: window.location.pathname,
     });
   }
-
-  // TODO: Send to analytics backend (Segment, Mixpanel, etc.)
-  // sendToAnalyticsBackend(event);
 };
 
 /**
@@ -118,23 +95,6 @@ export const trackCTAEvent = async (category, action, label, metadata = {}) => {
  * @param {string} pageName - Name of the page/section
  */
 export const trackPageView = async (pageName) => {
-  const event = {
-    timestamp: new Date().toISOString(),
-    type: EVENT_TYPES.PAGE_VIEW,
-    page: pageName,
-    url: window.location.pathname,
-  };
-
-  // Store in localStorage for analytics
-  const existingEvents = JSON.parse(
-    localStorage.getItem(ANALYTICS_STORAGE_KEY) || '[]'
-  );
-  existingEvents.push(event);
-
-  // Keep only last 500 events to avoid storage bloat
-  const recentEvents = existingEvents.slice(-500);
-  localStorage.setItem(ANALYTICS_STORAGE_KEY, JSON.stringify(recentEvents));
-
   // Send to Google Analytics
   trackPageViewInGA(pageName);
 
@@ -182,24 +142,6 @@ export const trackScrollToSection = async (sectionId) => {
  * @param {string} resourceType - Type of resource (pdf, doc, image, etc.)
  */
 export const trackDownload = async (resourceName, resourceType = '') => {
-  const event = {
-    timestamp: new Date().toISOString(),
-    type: EVENT_TYPES.DOWNLOAD,
-    resource: resourceName,
-    resourceType,
-    url: window.location.pathname,
-  };
-
-  // Store in localStorage for analytics
-  const existingEvents = JSON.parse(
-    localStorage.getItem(ANALYTICS_STORAGE_KEY) || '[]'
-  );
-  existingEvents.push(event);
-
-  // Keep only last 500 events to avoid storage bloat
-  const recentEvents = existingEvents.slice(-500);
-  localStorage.setItem(ANALYTICS_STORAGE_KEY, JSON.stringify(recentEvents));
-
   // Send to Google Analytics
   trackDownloadInGA(resourceName, resourceType);
 
@@ -224,26 +166,6 @@ export const trackDownload = async (resourceName, resourceType = '') => {
  * @param {object} formData - Form data (optional, sanitized)
  */
 export const trackFormEvent = async (formName, eventType, formData = {}) => {
-  const event = {
-    timestamp: new Date().toISOString(),
-    type:
-      eventType === 'start' ? EVENT_TYPES.FORM_START : EVENT_TYPES.FORM_SUBMIT,
-    form: formName,
-    url: window.location.pathname,
-    // Don't store sensitive data, just field names
-    fields: Object.keys(formData),
-  };
-
-  // Store in localStorage for analytics
-  const existingEvents = JSON.parse(
-    localStorage.getItem(ANALYTICS_STORAGE_KEY) || '[]'
-  );
-  existingEvents.push(event);
-
-  // Keep only last 500 events to avoid storage bloat
-  const recentEvents = existingEvents.slice(-500);
-  localStorage.setItem(ANALYTICS_STORAGE_KEY, JSON.stringify(recentEvents));
-
   // Send to Google Analytics
   trackFormInGA(formName, eventType);
 
@@ -258,125 +180,71 @@ export const trackFormEvent = async (formName, eventType, formData = {}) => {
 
   // Only log form_submit events to avoid console spam from form_start
   if (process.env.NODE_ENV === 'development' && eventType === 'submit') {
-    console.log('📝 Form Event:', event.type, formName);
+    console.log('📝 Form Event:', eventType === 'start' ? 'form_start' : 'form_submit', formName);
+  }
+};
+
+
+
+/**
+ * Track page refresh/reload
+ */
+export const trackPageRefresh = async () => {
+  // Send to Google Analytics
+  if (window.gtag) {
+    window.gtag('event', 'page_refresh', {
+      page_path: window.location.pathname,
+    });
+  }
+
+  if (process.env.NODE_ENV === 'development') {
+    console.log('🔄 Page Refresh:', window.location.pathname);
   }
 };
 
 /**
- * Get all analytics events
- * @returns {array} Array of tracked events
+ * Track scroll depth (25%, 50%, 75%, 100%)
  */
-export const getAnalyticsEvents = () => {
-  return JSON.parse(localStorage.getItem(ANALYTICS_STORAGE_KEY) || '[]');
-};
+let scrollDepthTracked = new Set();
 
-/**
- * Get analytics summary
- * @returns {object} Summary of analytics data
- */
-export const getAnalyticsSummary = () => {
-  const events = getAnalyticsEvents();
+export const trackScrollDepth = async () => {
+  const scrollPercentage = Math.round(
+    ((window.scrollY + window.innerHeight) / document.documentElement.scrollHeight) * 100
+  );
 
-  // Group by category
-  const byCategory = events.reduce((acc, event) => {
-    if (event.category) {
-      acc[event.category] = (acc[event.category] || 0) + 1;
+  const milestones = [25, 50, 75, 100];
+  const milestone = milestones.find(
+    m => scrollPercentage >= m && !scrollDepthTracked.has(m)
+  );
+
+  if (milestone) {
+    scrollDepthTracked.add(milestone);
+
+    // Send to Google Analytics
+    if (window.gtag) {
+      window.gtag('event', 'scroll_depth', {
+        page_path: window.location.pathname,
+        scroll_depth: milestone,
+      });
     }
-    return acc;
-  }, {});
 
-  // Group by action
-  const byAction = events.reduce((acc, event) => {
-    if (event.action) {
-      acc[event.action] = (acc[event.action] || 0) + 1;
+    if (process.env.NODE_ENV === 'development') {
+      console.log('📜 Scroll Depth:', milestone + '%');
     }
-    return acc;
-  }, {});
-
-  // Group by page
-  const byPage = events.reduce((acc, event) => {
-    const page = event.url || 'unknown';
-    acc[page] = (acc[page] || 0) + 1;
-    return acc;
-  }, {});
-
-  return {
-    totalEvents: events.length,
-    eventsByCategory: byCategory,
-    eventsByAction: byAction,
-    eventsByPage: byPage,
-    latestEvents: events.slice(-10),
-  };
-};
-
-/**
- * Clear all analytics data
- */
-export const clearAnalytics = () => {
-  localStorage.removeItem(ANALYTICS_STORAGE_KEY);
-  console.log('✓ Analytics data cleared');
-};
-
-/**
- * Export analytics data as CSV
- * @returns {string} CSV formatted data
- */
-export const exportAnalyticsCSV = () => {
-  const events = getAnalyticsEvents();
-
-  if (events.length === 0) {
-    return 'No analytics data to export';
   }
-
-  // Create CSV headers
-  const headers = [
-    'Timestamp',
-    'Type',
-    'Category',
-    'Action',
-    'Label',
-    'URL',
-    'Form',
-  ];
-  const rows = events.map((event) => [
-    event.timestamp,
-    event.type,
-    event.category || '',
-    event.action || '',
-    event.label || '',
-    event.url || '',
-    event.form || '',
-  ]);
-
-  // Combine headers and rows
-  const csv = [
-    headers.join(','),
-    ...rows.map((row) =>
-      row.map((cell) => `"${String(cell).replace(/"/g, '""')}"`).join(',')
-    ),
-  ].join('\n');
-
-  return csv;
 };
 
 /**
- * Download analytics data
+ * Reset scroll depth tracking (call when page changes)
  */
-export const downloadAnalyticsData = () => {
-  const csv = exportAnalyticsCSV();
-  const element = document.createElement('a');
-  element.setAttribute(
-    'href',
-    'data:text/csv;charset=utf-8,' + encodeURIComponent(csv)
-  );
-  element.setAttribute(
-    'download',
-    `naacus-analytics-${new Date().toISOString().split('T')[0]}.csv`
-  );
-  element.style.display = 'none';
-  document.body.appendChild(element);
-  element.click();
-  document.body.removeChild(element);
-
-  console.log('✓ Analytics data downloaded');
+export const resetScrollDepthTracking = () => {
+  scrollDepthTracked.clear();
 };
+
+
+
+
+
+
+
+

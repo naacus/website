@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { FluentProvider, webLightTheme } from '@fluentui/react-components';
 import './App.css';
 import { initializeGoogleAnalytics } from './services/googleAnalyticsService';
+import { trackPageRefresh, trackScrollDepth, resetScrollDepthTracking } from './services/analyticsService';
 import Header from './components/Header';
 import HomePage from './pages/HomePage';
 import Event2025Page from './pages/Event2025Page';
@@ -22,6 +23,51 @@ import BackToTop from './components/BackToTop';
 import ChatWidget from './components/ChatWidget';
 import CookieConsent from './components/CookieConsent';
 
+// Component to handle scroll tracking and page changes
+function AppContent() {
+  const location = useLocation();
+
+  useEffect(() => {
+    // Reset scroll depth tracking when route changes
+    resetScrollDepthTracking();
+  }, [location.pathname]);
+
+  useEffect(() => {
+    // Track scroll depth
+    const handleScroll = () => {
+      trackScrollDepth();
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <div className="App">
+      <Header />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/2025" element={<Event2025Page />} />
+        <Route path="/events" element={<EventsPage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/leadership" element={<LeadershipPage />} />
+        <Route path="/fellowship-ministries" element={<FellowshipMinistriesPage />} />
+        <Route path="/programs-activities" element={<ProgramsActivitiesPage />} />
+        <Route path="/membership" element={<MembershipPage />} />
+        <Route path="/volunteer" element={<VolunteerPage />} />
+        <Route path="/resources" element={<ResourcesPage />} />
+        <Route path="/newsletters" element={<NewslettersPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/privacy" element={<PrivacyPage />} />
+      </Routes>
+      <Footer />
+      <BackToTop />
+      <ChatWidget />
+      <CookieConsent />
+    </div>
+  );
+}
+
 function App() {
   useEffect(() => {
     // Only initialize Google Analytics if user has accepted cookies
@@ -29,33 +75,18 @@ function App() {
     if (cookieConsent === 'accepted') {
       initializeGoogleAnalytics();
     }
+
+    // Track page refresh/reload
+    const navigationEntries = performance.getEntriesByType('navigation');
+    if (navigationEntries.length > 0 && navigationEntries[0].type === 'reload') {
+      trackPageRefresh();
+    }
   }, []);
 
   return (
     <FluentProvider theme={webLightTheme}>
       <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-        <div className="App">
-          <Header />
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/2025" element={<Event2025Page />} />
-            <Route path="/events" element={<EventsPage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/leadership" element={<LeadershipPage />} />
-            <Route path="/fellowship-ministries" element={<FellowshipMinistriesPage />} />
-            <Route path="/programs-activities" element={<ProgramsActivitiesPage />} />
-            <Route path="/membership" element={<MembershipPage />} />
-            <Route path="/volunteer" element={<VolunteerPage />} />
-            <Route path="/resources" element={<ResourcesPage />} />
-            <Route path="/newsletters" element={<NewslettersPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/privacy" element={<PrivacyPage />} />
-          </Routes>
-          <Footer />
-          <BackToTop />
-          <ChatWidget />
-          <CookieConsent />
-        </div>
+        <AppContent />
       </Router>
     </FluentProvider>
   );
