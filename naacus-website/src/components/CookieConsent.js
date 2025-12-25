@@ -48,6 +48,10 @@ const useStyles = makeStyles({
       textDecoration: 'underline',
     },
   },
+  smallText: {
+    fontSize: themeTokens.typography.fontSize.sm,
+    color: tokens.colorNeutralForeground2,
+  },
   buttons: {
     display: 'flex',
     ...shorthands.gap(themeTokens.spacing.md),
@@ -112,9 +116,11 @@ function CookieConsent() {
             {t('cookies.message') || 
               'We use cookies to enhance your experience and analyze site traffic. By continuing to use this site, you consent to our use of cookies.'}
           </Text>
-          <Text as="div" className={styles.text} style={{ fontSize: themeTokens.typography.fontSize.sm, color: tokens.colorNeutralForeground2 }}>
-            {t('cookies.learnMore') || 'Learn more about our'} <a href="/privacy" className={styles.link}>{t('cookies.privacyPolicy') || 'privacy policy'}</a>
-          </Text>
+          <div>
+            <Text as="div" className={styles.smallText}>
+                {t('cookies.learnMore') || 'Learn more about our'} <a href="/privacy" className={styles.link}>{t('cookies.privacyPolicy') || 'privacy policy'}</a>
+            </Text>
+          </div>
         </div>
         <div className={styles.buttons}>
           <Button
