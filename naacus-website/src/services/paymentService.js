@@ -9,6 +9,7 @@ import bankTransferPaymentService from './bankTransferPaymentService';
 import cryptoPaymentService from './cryptoPaymentService';
 import cashAppPaymentService from './cashAppPaymentService';
 import { trackFormEvent } from './analyticsService';
+import { trackPurchaseInGA } from './googleAnalyticsService';
 import paymentConfig from '../config/paymentConfig';
 
 class PaymentService {
@@ -258,6 +259,17 @@ class PaymentService {
         status,
         timestamp: new Date().toISOString(),
       });
+
+      // Track successful donations as purchases in GA4
+      if (status === 'success') {
+        trackPurchaseInGA({
+          amount: donationData.amount,
+          currency: 'USD',
+          transactionId: `donation_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+          paymentMethod: paymentMethod,
+          itemName: donationData.donationType === 'monthly' ? 'Monthly Donation' : 'One-Time Donation',
+        });
+      }
     } catch (error) {
       console.error('Donation tracking error:', error);
     }

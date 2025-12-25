@@ -128,6 +128,40 @@ export const trackConversionInGA = (conversionName, value = 1) => {
 };
 
 /**
+ * Track purchase/donation event (GA4 recommended e-commerce event)
+ * @param {object} purchaseData - Purchase details
+ * @param {number} purchaseData.amount - Donation amount
+ * @param {string} purchaseData.currency - Currency code (default: USD)
+ * @param {string} purchaseData.transactionId - Unique transaction ID
+ * @param {string} purchaseData.paymentMethod - Payment method used
+ * @param {string} purchaseData.itemName - Item/donation type
+ */
+export const trackPurchaseInGA = (purchaseData) => {
+  const {
+    amount,
+    currency = 'USD',
+    transactionId,
+    paymentMethod = 'unknown',
+    itemName = 'Donation',
+  } = purchaseData;
+
+  sendToGoogleAnalytics('purchase', {
+    transaction_id: transactionId,
+    value: parseFloat(amount) || 0,
+    currency: currency,
+    payment_type: paymentMethod,
+    items: [
+      {
+        item_id: transactionId,
+        item_name: itemName,
+        price: parseFloat(amount) || 0,
+        quantity: 1,
+      },
+    ],
+  });
+};
+
+/**
  * Set user properties in Google Analytics
  * @param {object} userProperties - User properties to set
  */
