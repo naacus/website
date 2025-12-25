@@ -4,15 +4,23 @@
  * Make sure to replace 'G-XXXXXXXXXX' in public/index.html with your actual GA4 Measurement ID
  */
 
+// Lightweight guard so we avoid repeating window checks
+const hasGtag = () => typeof window !== 'undefined' && typeof window?.gtag === 'function';
+
 /**
  * Initialize Google Analytics
  * Call this once on app startup
  */
 export const initializeGoogleAnalytics = () => {
-  if (typeof window !== 'undefined' && window.gtag) {
+  if (!hasGtag()) {
     if (process.env.NODE_ENV === 'development') {
-      console.log('✓ Google Analytics initialized');
+      console.warn('⚠️ Google Analytics not initialized: gtag missing');
     }
+    return;
+  }
+
+  if (process.env.NODE_ENV === 'development') {
+    console.log('✓ Google Analytics initialized');
   }
 };
 
@@ -22,15 +30,20 @@ export const initializeGoogleAnalytics = () => {
  * @param {object} eventData - Event parameters
  */
 export const sendToGoogleAnalytics = (eventName, eventData = {}) => {
-  if (typeof window !== 'undefined' && window.gtag) {
-    try {
-      window.gtag('event', eventName, eventData);
-      if (process.env.NODE_ENV === 'development') {
-        console.log('📊 GA Event sent:', eventName, eventData);
-      }
-    } catch (error) {
-      console.error('Error sending to Google Analytics:', error);
+  if (!hasGtag()) {
+    if (process.env.NODE_ENV === 'development') {
+      console.warn('⚠️ GA event skipped (gtag not available):', eventName, eventData);
     }
+    return;
+  }
+
+  try {
+    window?.gtag?.('event', eventName, eventData);
+    if (process.env.NODE_ENV === 'development') {
+      console.log('📊 GA Event sent:', eventName, eventData);
+    }
+  } catch (error) {
+    console.error('Error sending to Google Analytics:', error);
   }
 };
 
@@ -112,13 +125,13 @@ export const trackConversionInGA = (conversionName, value = 1) => {
  * @param {object} userProperties - User properties to set
  */
 export const setUserPropertiesInGA = (userProperties = {}) => {
-  if (typeof window !== 'undefined' && window.gtag) {
-    try {
-      window.gtag('set', {
-        user_properties: userProperties,
-      });
-    } catch (error) {
-      console.error('Error setting user properties in Google Analytics:', error);
-    }
+  if (!hasGtag()) return;
+
+  try {
+    window?.gtag?.('set', {
+      user_properties: userProperties,
+    });
+  } catch (error) {
+    console.error('Error setting user properties in Google Analytics:', error);
   }
 };
