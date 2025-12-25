@@ -30,9 +30,6 @@ import {
 // Client Credentials OAuth cannot work in browser (CORS + security issues)
 const ENABLE_M365_ANALYTICS = false;
 
-// Local storage key for analytics data
-const ANALYTICS_STORAGE_KEY = 'naacus_analytics_events';
-
 // CTA Categories
 export const CTA_CATEGORIES = {
   MEMBERSHIP: 'membership',
