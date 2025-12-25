@@ -19,8 +19,11 @@ export const initializeGoogleAnalytics = () => {
     return;
   }
 
+  // Set default user properties
+  setDefaultUserProperties();
+
   if (process.env.NODE_ENV === 'development') {
-    console.log('✓ Google Analytics initialized');
+    console.log('✓ Google Analytics initialized with user properties');
   }
 };
 
@@ -135,7 +138,51 @@ export const setUserPropertiesInGA = (userProperties = {}) => {
     window?.gtag?.('set', {
       user_properties: userProperties,
     });
+    if (process.env.NODE_ENV === 'development') {
+      console.log('📊 GA User Properties set:', userProperties);
+    }
   } catch (error) {
     console.error('Error setting user properties in Google Analytics:', error);
   }
+};
+
+/**
+ * Initialize default user properties based on browser/session context
+ */
+export const setDefaultUserProperties = () => {
+  if (!hasGtag()) return;
+
+  const userProperties = {};
+
+  // Language preference
+  const language = localStorage.getItem('i18nextLng') || navigator.language || 'en';
+  userProperties.preferred_language = language.split('-')[0]; // 'en' or 'fr'
+
+  // Visitor type (new vs returning)
+  const hasVisited = localStorage.getItem('ga_has_visited');
+  if (!hasVisited) {
+    userProperties.visitor_type = 'new';
+    localStorage.setItem('ga_has_visited', 'true');
+  } else {
+    userProperties.visitor_type = 'returning';
+  }
+
+  // Session count
+  let sessionCount = parseInt(localStorage.getItem('ga_session_count') || '0', 10);
+  sessionCount += 1;
+  localStorage.setItem('ga_session_count', sessionCount.toString());
+  userProperties.session_count = sessionCount;
+
+  // User engagement level (based on session count)
+  if (sessionCount === 1) {
+    userProperties.engagement_level = 'new';
+  } else if (sessionCount <= 5) {
+    userProperties.engagement_level = 'casual';
+  } else if (sessionCount <= 15) {
+    userProperties.engagement_level = 'regular';
+  } else {
+    userProperties.engagement_level = 'loyal';
+  }
+
+  setUserPropertiesInGA(userProperties);
 };
