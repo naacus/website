@@ -80,8 +80,8 @@ export const faqData = [
     id: 'events-1',
     category: faqCategories.EVENTS,
     question: 'When is the next NAACUS conference?',
-    keywords: ['conference', 'next conference', 'when conference', 'biannual', '2027'],
-    answer: 'NAACUS hosts a biannual national conference. The next conference is NAACUS 2027. Please subscribe to our newsletter or check our website regularly for updates on dates, location, and registration details.'
+    keywords: ['conference', 'next conference', 'when conference', 'biennial', '2027'],
+    answer: 'NAACUS hosts a biennial national conference. The next conference is NAACUS 2027. Please subscribe to our newsletter or check our website regularly for updates on dates, location, and registration details.'
   },
   {
     id: 'events-2',
@@ -102,7 +102,7 @@ export const faqData = [
     category: faqCategories.EVENTS,
     question: 'Are there other events besides the conference?',
     keywords: ['other events', 'workshops', 'gatherings', 'activities'],
-    answer: 'Yes! In addition to our biannual conference, NAACUS organizes community gatherings, workshops, leadership formation programs, and various fellowship activities throughout the year. Check our Events and Programs sections for upcoming activities.'
+    answer: 'Yes! In addition to our biennial conference, NAACUS organizes community gatherings, workshops, leadership formation programs, and various fellowship activities throughout the year. Check our Events and Programs sections for upcoming activities.'
   },
 
   // PROGRAMS

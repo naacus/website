@@ -189,7 +189,7 @@ function Conference() {
     <section id="conference" className={styles.conference}>
       <Text as="h2" className={styles.conferenceTitle}>National Conference</Text>
       <div className={styles.conferenceBanner}>
-        <Text as="h3" className={styles.bannerTitle}>Biannual National Conference</Text>
+        <Text as="h3" className={styles.bannerTitle}>Biennial National Conference</Text>
         <Text as="p" className={styles.conferenceDate}>Unity in Christ • Evangelization • African Heritage</Text>
       </div>
       <div className={styles.conferenceContent}>
@@ -222,7 +222,7 @@ function Conference() {
         <div className={styles.conferenceDescription}>
           <Text as="h3" className={styles.descriptionTitle}>A Gathering of Faith and Heritage</Text>
           <Text as="p" className={styles.descriptionText}>
-            Our biannual national conference brings together African Catholics from across the United States 
+            Our biennial national conference brings together African Catholics from across the United States 
             for an inspiring experience of worship, learning, fellowship, and cultural celebration. This 
             signature event focuses on unity in Christ and evangelization while honoring the rich heritage 
             of African Catholics.

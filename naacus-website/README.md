@@ -157,7 +157,7 @@ For questions or issues:
 - Email: info@naacus.org
 - Website: Coming soon
 
-## 📅 Biannual National Conference
+## 📅 Biennial National Conference
 
 Join us for our next national conference!
 

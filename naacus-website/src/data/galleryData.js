@@ -5,7 +5,7 @@
 export const galleryData = [
   {
     id: 1,
-    title: 'Biannual National Conference',
+    title: 'Biennial National Conference',
     description: 'Photos from our national gatherings featuring keynote speakers, workshops, and cultural celebrations.',
     type: 'photos'
   },
