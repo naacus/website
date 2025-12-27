@@ -249,7 +249,7 @@ function MemberBenefits() {
   };
 
   const handleViewCalendar = () => {
-    handleNavigation({ path: '/events', sectionId: null, currentPathname: '/', navigate });
+    handleNavigation({ path: '/events', sectionId: 'more-upcoming-events', currentPathname: '/', navigate });
   };
 
   return (

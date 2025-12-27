@@ -496,7 +496,7 @@ export function Events() {
 
         {/* Upcoming Events Section */}
         {activeTab === 'upcoming' && (
-          <div className={styles.sectionContainer}>
+          <div className={styles.sectionContainer} id="more-upcoming-events">
             {/* Other Upcoming Events */}
             {otherUpcomingEvents.length > 0 && (
               <>
