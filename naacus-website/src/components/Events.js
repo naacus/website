@@ -541,6 +541,20 @@ function EventCard({ event, isUpcoming }) {
   const { t } = useTranslation();
   const styles = useStyles();
 
+  const handleRegisterNow = () => {
+    if (event.registrationLink && event.registrationLink !== '#') {
+      window.open(event.registrationLink, '_blank', 'noopener,noreferrer');
+    } else {
+      // If no registration link is available, show contact info
+      alert(t('events.registrationNotAvailable', 'Registration is not yet available. Please contact us at info@naacus.org for more information.'));
+    }
+  };
+
+  const handleViewDetails = () => {
+    // For past events, could show more details or a modal
+    // For now, you could implement this further
+  };
+
   return (
     <div className={styles.eventCard}>
       <span className={styles.eventYear}>{event.year}</span>
@@ -585,6 +599,7 @@ function EventCard({ event, isUpcoming }) {
         <Button
           className={styles.ctaButton}
           appearance="primary"
+          onClick={handleRegisterNow}
         >
           {t('events.registerNow')} <ChevronRight24Regular />
         </Button>
@@ -592,6 +607,7 @@ function EventCard({ event, isUpcoming }) {
         <Button
           className={styles.ctaButton}
           appearance="secondary"
+          onClick={handleViewDetails}
         >
           {t('events.viewDetails')} <ChevronRight24Regular />
         </Button>
