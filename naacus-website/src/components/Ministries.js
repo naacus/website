@@ -1,11 +1,13 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { 
   makeStyles,
   shorthands,
   tokens,
   Text
 } from '@fluentui/react-components';
+import { handleNavigation } from '../services/navigationService';
 import { 
   Heart24Regular,
   People24Regular,
@@ -120,6 +122,7 @@ const useStyles = makeStyles({
     ...shorthands.borderRadius('8px'),
     textAlign: 'center',
     boxShadow: '0 2px 8px rgba(0, 0, 0, 0.06)',
+    marginBottom: '32px',
   },
   ctaTitle: {
     fontSize: '1.75rem',
@@ -134,10 +137,54 @@ const useStyles = makeStyles({
     color: tokens.colorNeutralForeground2,
     display: 'block',
   },
+  getInvolved: {
+    ...shorthands.padding('40px', '30px'),
+    backgroundColor: tokens.colorBrandBackground,
+    ...shorthands.borderRadius('8px'),
+    textAlign: 'center',
+    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.06)',
+  },
+  getInvolvedTitle: {
+    fontSize: '1.75rem',
+    fontWeight: '600',
+    marginBottom: '16px',
+    color: tokens.colorNeutralForegroundOnBrand,
+    display: 'block',
+  },
+  getInvolvedText: {
+    fontSize: '1.125rem',
+    lineHeight: '1.6',
+    color: tokens.colorNeutralForegroundOnBrand,
+    display: 'block',
+    marginBottom: '24px',
+  },
+  volunteerLink: {
+    display: 'inline-block',
+    ...shorthands.padding('12px', '32px'),
+    backgroundColor: tokens.colorNeutralBackground1,
+    color: tokens.colorBrandBackground,
+    textDecoration: 'none',
+    fontWeight: '600',
+    fontSize: '1rem',
+    ...shorthands.borderRadius('4px'),
+    ...shorthands.transition('all', '0.2s', 'ease'),
+    cursor: 'pointer',
+    border: 'none',
+    '&:hover': {
+      backgroundColor: tokens.colorNeutralBackground1Hover,
+      boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+      cursor: 'pointer',
+    },
+    '&:active': {
+      transform: 'scale(0.98)',
+      cursor: 'pointer',
+    },
+  },
 });
 
 function Ministries() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const styles = useStyles();
   const { trackMinistryCTA, trackMinistry } = useAnalytics();
 
@@ -151,6 +198,11 @@ function Ministries() {
 
   const handleMinistryCardClick = (ministryTitle) => {
     trackMinistry(ministryTitle, 'card_click');
+  };
+
+  const handleGetInvolvedClick = () => {
+    trackMinistryCTA('Register Volunteer', 'get_involved_cta');
+    handleNavigation({ path: '/volunteer', sectionId: null, currentPathname: '/fellowship-ministries', navigate });
   };
 
   // Track ministry view on mount
@@ -227,11 +279,17 @@ function Ministries() {
           ))}
         </div>
 
-        <div className={styles.callToAction}>
-          <Text className={styles.ctaTitle}>{t('ministries.ctaTitle')}</Text>
-          <Text className={styles.ctaText}>
+        <div className={styles.getInvolved} id="get-involved">
+          <Text className={styles.getInvolvedTitle}>{t('ministries.ctaTitle')}</Text>
+          <Text className={styles.getInvolvedText}>
             {t('ministries.ctaText')}
           </Text>
+          <button 
+            className={styles.volunteerLink} 
+            onClick={handleGetInvolvedClick}
+          >
+            {t('memberBenefits.becomeVolunteerButton')}
+          </button>
         </div>
       </div>
     </section>

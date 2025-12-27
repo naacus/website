@@ -157,15 +157,18 @@ const useStyles = makeStyles({
   },
   featuredHighlightsList: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
     ...shorthands.gap('12px'),
     justifyItems: 'center',
+    width: '100%',
   },
   featuredHighlightItem: {
     fontSize: '1.05rem',
     position: 'relative',
     lineHeight: '1.5',
     opacity: 0.95,
+    wordWrap: 'break-word',
+    overflowWrap: 'break-word',
   },
   featuredCtaButton: {
     backgroundColor: '#E8D4C0',
@@ -185,9 +188,10 @@ const useStyles = makeStyles({
     boxShadow: '0 8px 24px rgba(232, 212, 192, 0.3)',
     margin: '0 auto',
     '&:hover': {
-      backgroundColor: '#ffffff',
+      backgroundColor: '#f5e6d3',
       transform: 'translateY(-3px)',
       boxShadow: '0 14px 36px rgba(232, 212, 192, 0.4)',
+      color: '#1a3a52',
     },
     '&:active': {
       transform: 'translateY(-1px)',
