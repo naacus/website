@@ -198,7 +198,7 @@ function Leadership() {
         </div>
 
         <Text as="h3" className={styles.sectionTitle}>{t('leadership.nationalAdvisoryBoard')}</Text>
-        <div className={styles.boardGrid}>
+        <div id="national-advisory-board" className={styles.boardGrid}>
           {spiritualAdvisers.map((member) => (
             <Card key={member.name} className={styles.boardMember}>
               {member.photo ? (

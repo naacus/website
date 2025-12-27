@@ -194,6 +194,7 @@ function Ministries() {
           {ministries.map((ministry, index) => (
             <div 
               key={index} 
+              id={ministry.iconKey}
               className={styles.ministryCard}
               onClick={() => handleMinistryCardClick(ministry.title)}
               role="button"
