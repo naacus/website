@@ -18,6 +18,7 @@ import ResourcesPage from './pages/ResourcesPage';
 import NewslettersPage from './pages/NewslettersPage';
 import ContactPage from './pages/ContactPage';
 import PrivacyPage from './pages/PrivacyPage';
+import DonationPage from './pages/DonationPage';
 import Footer from './components/Footer';
 import BackToTop from './components/BackToTop';
 import ChatWidget from './components/ChatWidget';
@@ -49,6 +50,7 @@ function AppContent() {
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/donation" element={<DonationPage />} />
         <Route path="/2025" element={<Event2025Page />} />
         <Route path="/events" element={<EventsPage />} />
         <Route path="/about" element={<AboutPage />} />

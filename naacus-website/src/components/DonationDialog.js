@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSearchParams } from 'react-router-dom';
 import {
   Button,
   Input,
@@ -352,6 +353,7 @@ const useStyles = makeStyles({
 export function DonationDialog() {
   const styles = useStyles();
   const { t } = useTranslation();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -378,6 +380,16 @@ export function DonationDialog() {
   const [cardType, setCardType] = useState('');
 
   const amountPresets = [25, 50, 100, 250];
+
+  // Check for openDonation query parameter to auto-open dialog
+  useEffect(() => {
+    if (searchParams.get('openDonation') === 'true') {
+      setOpen(true);
+      // Remove the query parameter from URL
+      searchParams.delete('openDonation');
+      setSearchParams(searchParams, { replace: true });
+    }
+  }, [searchParams, setSearchParams]);
 
   // Backend calls are only allowed when liveMode is enabled and an API base URL is configured
   const canCallBackend = paymentConfig.general.liveMode && Boolean(paymentConfig.general.apiBaseUrl);
