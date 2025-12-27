@@ -7,6 +7,8 @@ import {
   Text,
   Card
 } from '@fluentui/react-components';
+import { useNavigate } from 'react-router-dom';
+import { handleNavigation } from '../services/navigationService';
 import { dataService } from '../services/dataService';
 
 const useStyles = makeStyles({
@@ -133,10 +135,36 @@ const useStyles = makeStyles({
     display: 'block',
     textAlign: 'center',
   },
+  visionActions: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: '20px',
+  },
+  visionButton: {
+    display: 'inline-block',
+    ...shorthands.padding('12px', '28px'),
+    backgroundColor: tokens.colorNeutralBackground1,
+    color: tokens.colorBrandBackground,
+    textDecoration: 'none',
+    fontWeight: '600',
+    fontSize: '1rem',
+    ...shorthands.borderRadius('4px'),
+    ...shorthands.transition('all', '0.2s', 'ease'),
+    cursor: 'pointer',
+    border: 'none',
+    '&:hover': {
+      backgroundColor: tokens.colorNeutralBackground1Hover,
+      boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+    },
+    '&:active': {
+      transform: 'scale(0.98)',
+    },
+  },
 });
 
 function Objectives() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const styles = useStyles();
 
   const objectives = dataService.getObjectives().map((obj, index) => (
@@ -145,6 +173,10 @@ function Objectives() {
       description: obj.description
     }
   ));
+
+  const handleMemberClick = () => {
+    handleNavigation({ path: '/membership', sectionId: null, currentPathname: '/objectives', navigate });
+  };
 
   return (
     <section id="objectives" className={styles.objectives}>
@@ -172,6 +204,11 @@ function Objectives() {
           <Text as="p" className={styles.visionText}>
             {t('objectives.visionDescription')}
           </Text>
+          <div className={styles.visionActions}>
+            <button className={styles.visionButton} onClick={handleMemberClick}>
+              {t('memberBenefits.becomeMemberButton')}
+            </button>
+          </div>
         </div>
       </div>
     </section>
