@@ -75,6 +75,8 @@ const useStyles = makeStyles({
   },
   contactIcon: {
     fontSize: themeTokens.typography.fontSize['2rem'],
+    color: tokens.colorNeutralForeground2,
+    filter: 'grayscale(100%) contrast(1.1)',
   },
   contactItemTitle: {
     fontSize: themeTokens.typography.fontSize['1.1rem'],

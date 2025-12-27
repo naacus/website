@@ -379,18 +379,18 @@ function Hero() {
         
         <div className={styles.membershipHighlight}>
           <Text className={styles.membershipText}>
-            <span style={{ fontSize: '1.8rem', filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3))' }}>✨</span> 
+            <span style={{ fontSize: '1.8rem', filter: 'grayscale(100%) contrast(1.1) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3))' }}>✨</span> 
             {t('hero.membershipTeaser')}
           </Text>
           <div className={styles.benefitsList}>
             <span className={styles.benefitItem}>
-              <span style={{ fontSize: '1.2rem', color: '#ffd700' }}>✓</span> {t('hero.benefit1')}
+              <span style={{ fontSize: '1.2rem', color: 'rgba(255, 255, 255, 0.8)', filter: 'grayscale(100%) contrast(1.1)' }}>✓</span> {t('hero.benefit1')}
             </span>
             <span className={styles.benefitItem}>
-              <span style={{ fontSize: '1.2rem', color: '#ffd700' }}>✓</span> {t('hero.benefit2')}
+              <span style={{ fontSize: '1.2rem', color: 'rgba(255, 255, 255, 0.8)', filter: 'grayscale(100%) contrast(1.1)' }}>✓</span> {t('hero.benefit2')}
             </span>
             <span className={styles.benefitItem}>
-              <span style={{ fontSize: '1.2rem', color: '#ffd700' }}>✓</span> {t('hero.benefit3')}
+              <span style={{ fontSize: '1.2rem', color: 'rgba(255, 255, 255, 0.8)', filter: 'grayscale(100%) contrast(1.1)' }}>✓</span> {t('hero.benefit3')}
             </span>
           </div>
         </div>
@@ -402,7 +402,7 @@ function Hero() {
               onClick={handleJoinClick}
               className={styles.primaryButton}
             >
-              ✝ {t('heroButtons.joinCommunity')}
+              <span style={{ filter: 'grayscale(100%) contrast(1.1)' }}>✝</span> {t('heroButtons.joinCommunity')}
             </button>
           </div>
 
@@ -412,13 +412,13 @@ function Hero() {
               onClick={handleLearnMissionClick}
               className={styles.secondaryButton}
             >
-              🙏 {t('heroButtons.learnMission')}
+              <span style={{ filter: 'grayscale(100%) contrast(1.1)' }}>🙏</span> {t('heroButtons.learnMission')}
             </button>
             <button
               onClick={handleGetInvolvedClick}
               className={styles.secondaryButton}
             >
-              💫 {t('heroButtons.getInvolved')}
+              <span style={{ filter: 'grayscale(100%) contrast(1.1)' }}>💫</span> {t('heroButtons.getInvolved')}
             </button>
           </div>
         </div>

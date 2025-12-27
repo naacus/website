@@ -65,6 +65,8 @@ const useStyles = makeStyles({
     fontSize: '3rem',
     marginBottom: '20px',
     display: 'block',
+    color: tokens.colorNeutralForeground2,
+    filter: 'grayscale(100%) contrast(1.1)',
   },
   itemTitle: {
     fontSize: themeTokens.typography.fontSize['1.375rem'],

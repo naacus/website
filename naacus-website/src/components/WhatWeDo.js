@@ -64,14 +64,15 @@ const useStyles = makeStyles({
   iconWrapper: {
     fontSize: '2.5rem',
     marginBottom: '20px',
-    color: tokens.colorBrandBackground,
+    color: tokens.colorNeutralForeground2,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     width: '56px',
     height: '56px',
     ...shorthands.borderRadius('50%'),
-    backgroundColor: tokens.colorBrandBackground2,
+    backgroundColor: tokens.colorNeutralBackground6,
+    filter: 'grayscale(100%) contrast(1.1)',
   },
   cardTitle: {
     fontSize: '1.3rem',

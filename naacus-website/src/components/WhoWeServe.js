@@ -64,6 +64,8 @@ const useStyles = makeStyles({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    color: tokens.colorNeutralForeground2,
+    filter: 'grayscale(100%) contrast(1.1)',
   },
   communityText: {
     fontSize: '1.1rem',
