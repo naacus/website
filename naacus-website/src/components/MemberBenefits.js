@@ -123,9 +123,20 @@ const useStyles = makeStyles({
     marginBottom: '8px'
   },
   linkItem: {
-    display: 'inline',
+    display: 'inline-block',
     color: '#0067b8',
-    textDecoration: 'none'
+    textDecoration: 'none',
+    ...shorthands.padding('2px', '6px'),
+    ...shorthands.borderRadius('6px'),
+    ...shorthands.transition('background-color', '0.2s', 'ease'),
+    '&:hover': {
+      backgroundColor: '#e6f2ff',
+      color: tokens.colorBrandBackground,
+    },
+    '&:focus-visible': {
+      outline: '2px solid ' + tokens.colorBrandBackground,
+      outlineOffset: '2px'
+    }
   },
   linkSeparator: {
     display: 'inline',
