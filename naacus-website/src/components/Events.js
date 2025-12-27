@@ -1,25 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   makeStyles,
   shorthands,
   tokens,
   Button,
-  Dialog,
-  DialogSurface,
-  DialogContent,
-  DialogBody,
-  DialogTitle,
-  DialogActions,
-  Input,
-  Textarea,
 } from '@fluentui/react-components';
 import { 
   Calendar24Regular, 
   Location24Regular,
-  ChevronRight24Regular
+  ChevronRight24Regular,
 } from '@fluentui/react-icons';
 import { eventsData } from '../data/eventsData';
+import RegistrationDialog from './RegistrationDialog';
+import FeaturedEventCard from './FeaturedEventCard';
 
 const useStyles = makeStyles({
   container: {
@@ -263,186 +257,6 @@ const useStyles = makeStyles({
     backgroundColor: '#E8D4C0',
     ...shorthands.borderRadius('8px'),
   },
-  featuredEventSection: {
-    width: '100vw',
-    position: 'relative',
-    left: 'calc(-50vw + 50%)',
-    marginTop: '50px',
-    marginBottom: '40px',
-  },
-  featuredEventContainer: {
-    position: 'relative',
-    background: `linear-gradient(135deg, #1a3a52 0%, #2d5a7b 30%, #3d6fa8 100%)`,
-    color: tokens.colorNeutralForegroundInverted,
-    ...shorthands.padding('60px', '20px'),
-    maxWidth: '1400px',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    boxShadow: '0 20px 60px rgba(26, 58, 82, 0.35), inset 0 1px 0 rgba(255,255,255,0.1)',
-    overflow: 'hidden',
-    border: '1px solid rgba(232, 212, 192, 0.15)',
-    textAlign: 'center',
-    '&::before': {
-      content: '""',
-      position: 'absolute',
-      top: '-50%',
-      right: '-10%',
-      width: '400px',
-      height: '400px',
-      background: 'radial-gradient(circle, rgba(232, 212, 192, 0.08) 0%, transparent 70%)',
-      borderRadius: '50%',
-      pointerEvents: 'none',
-    },
-    '&::after': {
-      content: '""',
-      position: 'absolute',
-      bottom: '-5%',
-      left: '-5%',
-      width: '300px',
-      height: '300px',
-      background: 'radial-gradient(circle, rgba(232, 212, 192, 0.06) 0%, transparent 70%)',
-      borderRadius: '50%',
-      pointerEvents: 'none',
-    },
-    '@media (max-width: 768px)': {
-      ...shorthands.padding('24px', '16px'),
-    },
-  },
-  featuredEventBadge: {
-    display: 'inline-flex',
-    alignItems: 'center',
-    ...shorthands.gap('6px'),
-    backgroundColor: 'rgba(232, 212, 192, 0.25)',
-    color: '#E8D4C0',
-    fontSize: '0.7rem',
-    fontWeight: '800',
-    ...shorthands.padding('6px', '14px'),
-    ...shorthands.borderRadius('50px'),
-    marginBottom: '10px',
-    letterSpacing: '1.2px',
-    textTransform: 'uppercase',
-    border: '1px solid rgba(232, 212, 192, 0.3)',
-    backdropFilter: 'blur(8px)',
-    position: 'relative',
-    zIndex: 2,
-  },
-  featuredEventTitle: {
-    fontSize: '1.9rem',
-    fontWeight: '800',
-    marginBottom: '8px',
-    lineHeight: '1.15',
-    letterSpacing: '-0.02em',
-    textShadow: '0 4px 15px rgba(0, 0, 0, 0.4)',
-    position: 'relative',
-    zIndex: 2,
-    '@media (max-width: 768px)': {
-      fontSize: '1.2rem',
-    },
-  },
-  featuredEventDescription: {
-    fontSize: '1rem',
-    marginBottom: '18px',
-    lineHeight: '1.5',
-    opacity: 0.96,
-    maxWidth: '850px',
-    position: 'relative',
-    zIndex: 2,
-    fontWeight: '400',
-    letterSpacing: '0.2px',
-    margin: '0 auto 18px auto',
-  },
-  featuredEventInfo: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
-    ...shorthands.gap('12px'),
-    marginBottom: '18px',
-    maxWidth: '100%',
-    position: 'relative',
-    zIndex: 2,
-    margin: '0 auto 18px auto',
-  },
-  featuredEventInfoItem: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    ...shorthands.gap('8px'),
-    backgroundColor: 'rgba(255, 255, 255, 0.08)',
-    ...shorthands.padding('16px', '12px'),
-    ...shorthands.borderRadius('12px'),
-    border: '1px solid rgba(232, 212, 192, 0.15)',
-    backdropFilter: 'blur(10px)',
-  },
-  featuredInfoIcon: {
-    fontSize: '1.5rem',
-    color: '#E8D4C0',
-  },
-  featuredEventLabel: {
-    fontSize: '0.75rem',
-    fontWeight: '700',
-    opacity: 0.8,
-    textTransform: 'uppercase',
-    letterSpacing: '0.5px',
-    marginBottom: '2px',
-    color: '#E8D4C0',
-  },
-  featuredEventValue: {
-    fontSize: '1.1rem',
-    fontWeight: '800',
-    lineHeight: '1.2',
-    color: '#ffffff',
-  },
-  featuredEventHighlights: {
-    marginBottom: '14px',
-    position: 'relative',
-    zIndex: 2,
-  },
-  featuredHighlightsTitle: {
-    fontSize: '0.85rem',
-    fontWeight: '800',
-    marginBottom: '8px',
-    textTransform: 'uppercase',
-    letterSpacing: '0.7px',
-    opacity: 0.85,
-    color: '#E8D4C0',
-  },
-  featuredHighlightsList: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-    ...shorthands.gap('12px'),
-    justifyItems: 'center',
-  },
-  featuredHighlightItem: {
-    fontSize: '1.05rem',
-    position: 'relative',
-    lineHeight: '1.5',
-    opacity: 0.95
-  },
-  featuredCtaButton: {
-    backgroundColor: '#E8D4C0',
-    color: '#1a3a52',
-    border: 'none',
-    fontSize: '0.95rem',
-    fontWeight: '800',
-    padding: '11px 32px',
-    ...shorthands.borderRadius('12px'),
-    cursor: 'pointer',
-    transition: 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
-    position: 'relative',
-    zIndex: 2,
-    display: 'inline-flex',
-    alignItems: 'center',
-    ...shorthands.gap('6px'),
-    boxShadow: '0 8px 24px rgba(232, 212, 192, 0.3)',
-    margin: '0 auto',
-    '&:hover': {
-      backgroundColor: '#ffffff',
-      transform: 'translateY(-3px)',
-      boxShadow: '0 14px 36px rgba(232, 212, 192, 0.4)',
-    },
-    '&:active': {
-      transform: 'translateY(-1px)',
-    },
-  },
   otherEventsTitle: {
     fontSize: '1.4rem',
     fontWeight: '700',
@@ -462,27 +276,6 @@ const useStyles = makeStyles({
       ...shorthands.borderRadius('2px'),
     },
   },
-  registrationForm: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '16px',
-  },
-  formField: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '8px',
-  },
-  formLabel: {
-    fontWeight: '600',
-    fontSize: '0.875rem',
-    color: '#1a3a52',
-  },
-  formActions: {
-    display: 'flex',
-    gap: '12px',
-    marginTop: '16px',
-    justifyContent: 'flex-end',
-  },
 });
 
 export function Events() {
@@ -498,6 +291,8 @@ export function Events() {
     phone: '',
     message: ''
   });
+  const [formMessage, setFormMessage] = useState(null); // { type: 'success' | 'error' | 'warning', message: string }
+  const [submissionSuccess, setSubmissionSuccess] = useState(false);
 
   const upcomingEvents = eventsData.upcomingEvents;
   const pastEvents = eventsData.pastEvents;
@@ -506,14 +301,39 @@ export function Events() {
   const featuredEvent = upcomingEvents.find(event => event.year === 2027);
   const otherUpcomingEvents = upcomingEvents.filter(event => event.year !== 2027);
 
+  // Cleanup effect to restore scroll on unmount
+  useEffect(() => {
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, []);
+
   const handleOpenRegistration = (event) => {
     setSelectedEvent(event);
     setRegistrationDialogOpen(true);
+    // Prevent page scroll when dialog opens
+    document.body.style.overflow = 'hidden';
   };
 
   const handleCloseRegistration = () => {
     setRegistrationDialogOpen(false);
     setSelectedEvent(null);
+    setRegistrationForm({
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone: '',
+      message: ''
+    });
+    setFormMessage(null);
+    setSubmissionSuccess(false);
+    // Restore page scroll
+    document.body.style.overflow = 'auto';
+  };
+
+  const handleNewRegistration = () => {
+    setSubmissionSuccess(false);
+    setFormMessage(null);
     setRegistrationForm({
       firstName: '',
       lastName: '',
@@ -531,32 +351,62 @@ export function Events() {
   };
 
   const handleSubmitRegistration = () => {
-    // Create registration data object
-    const registrationData = {
-      eventTitle: selectedEvent.title,
-      eventDate: selectedEvent.date,
-      ...registrationForm,
-      submittedAt: new Date().toISOString()
-    };
+    // Reset any previous messages
+    setFormMessage(null);
 
-    // Send email or save registration
-    // For now, log to console and show success message
-    console.log('Registration submitted:', registrationData);
+    // Validate required fields
+    if (!registrationForm.firstName.trim()) {
+      setFormMessage({ type: 'error', message: t('events.errors.firstNameRequired', 'First name is required') });
+      return;
+    }
+    if (!registrationForm.lastName.trim()) {
+      setFormMessage({ type: 'error', message: t('events.errors.lastNameRequired', 'Last name is required') });
+      return;
+    }
+    if (!registrationForm.email.trim()) {
+      setFormMessage({ type: 'error', message: t('events.errors.emailRequired', 'Email is required') });
+      return;
+    }
 
-    // Send email to info@naacus.org with registration details
-    const mailtoLink = `mailto:info@naacus.org?subject=Event Registration - ${selectedEvent.title}&body=Name: ${registrationForm.firstName} ${registrationForm.lastName}%0AEmail: ${registrationForm.email}%0APhone: ${registrationForm.phone}%0AEvent: ${selectedEvent.title}%0ADate: ${selectedEvent.date}%0AMessage: ${registrationForm.message}`;
-    window.location.href = mailtoLink;
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(registrationForm.email)) {
+      setFormMessage({ type: 'error', message: t('events.errors.emailInvalid', 'Please enter a valid email address') });
+      return;
+    }
 
-    handleCloseRegistration();
+    try {
+      // Create registration data object
+      const registrationData = {
+        eventTitle: selectedEvent.title,
+        eventDate: selectedEvent.date,
+        ...registrationForm,
+        submittedAt: new Date().toISOString()
+      };
+
+      console.log('Registration submitted:', registrationData);
+
+      // Send email to info@naacus.org with registration details
+      const mailtoLink = `mailto:info@naacus.org?subject=Event Registration - ${selectedEvent.title}&body=Name: ${registrationForm.firstName} ${registrationForm.lastName}%0AEmail: ${registrationForm.email}%0APhone: ${registrationForm.phone}%0AEvent: ${selectedEvent.title}%0ADate: ${selectedEvent.date}%0AMessage: ${registrationForm.message}`;
+      window.location.href = mailtoLink;
+      
+      // Show success state and hide form
+      setSubmissionSuccess(true);
+      setFormMessage(null);
+    } catch (error) {
+      console.error('Error submitting registration:', error);
+      setFormMessage({ 
+        type: 'error', 
+        message: t('events.errors.submissionFailed', 'Failed to submit registration. Please try again.') 
+      });
+    }
   };
 
   return (
     <div className={styles.container}>
       {/* Featured 2027 Event - Full Width - Always Visible */}
       {featuredEvent && (
-        <div className={styles.featuredEventSection}>
-          <FeaturedEventCard event={featuredEvent} onRegister={handleOpenRegistration} />
-        </div>
+        <FeaturedEventCard event={featuredEvent} onRegister={handleOpenRegistration} />
       )}
 
       <div className={styles.maxWidth}>
@@ -617,88 +467,17 @@ export function Events() {
       </div>
 
       {/* Registration Dialog */}
-      {selectedEvent && (
-        <Dialog open={registrationDialogOpen} onOpenChange={(e, data) => data.open ? setRegistrationDialogOpen(true) : handleCloseRegistration()}>
-          <DialogSurface>
-            <DialogBody>
-              <DialogTitle>{t('events.registerForEvent', 'Register for Event')}</DialogTitle>
-              <DialogContent>
-                <div className={styles.registrationForm}>
-                  <div>
-                    <strong>{selectedEvent.title}</strong>
-                    <div style={{ fontSize: '0.875rem', color: '#666', marginTop: '4px' }}>
-                      {selectedEvent.date} • {selectedEvent.location}
-                    </div>
-                  </div>
-
-                  <div className={styles.formField}>
-                    <label className={styles.formLabel}>{t('events.firstName', 'First Name')} *</label>
-                    <Input
-                      value={registrationForm.firstName}
-                      onChange={(e) => handleFormChange('firstName', e.target.value)}
-                      placeholder="John"
-                      required
-                    />
-                  </div>
-
-                  <div className={styles.formField}>
-                    <label className={styles.formLabel}>{t('events.lastName', 'Last Name')} *</label>
-                    <Input
-                      value={registrationForm.lastName}
-                      onChange={(e) => handleFormChange('lastName', e.target.value)}
-                      placeholder="Doe"
-                      required
-                    />
-                  </div>
-
-                  <div className={styles.formField}>
-                    <label className={styles.formLabel}>{t('events.email', 'Email')} *</label>
-                    <Input
-                      type="email"
-                      value={registrationForm.email}
-                      onChange={(e) => handleFormChange('email', e.target.value)}
-                      placeholder="john.doe@example.com"
-                      required
-                    />
-                  </div>
-
-                  <div className={styles.formField}>
-                    <label className={styles.formLabel}>{t('events.phone', 'Phone')}</label>
-                    <Input
-                      type="tel"
-                      value={registrationForm.phone}
-                      onChange={(e) => handleFormChange('phone', e.target.value)}
-                      placeholder="(123) 456-7890"
-                    />
-                  </div>
-
-                  <div className={styles.formField}>
-                    <label className={styles.formLabel}>{t('events.message', 'Message')}</label>
-                    <Textarea
-                      value={registrationForm.message}
-                      onChange={(e) => handleFormChange('message', e.target.value)}
-                      placeholder="Any additional information..."
-                      rows={4}
-                    />
-                  </div>
-                </div>
-              </DialogContent>
-              <DialogActions>
-                <Button appearance="secondary" onClick={handleCloseRegistration}>
-                  {t('events.cancel', 'Cancel')}
-                </Button>
-                <Button 
-                  appearance="primary" 
-                  onClick={handleSubmitRegistration}
-                  disabled={!registrationForm.firstName || !registrationForm.lastName || !registrationForm.email}
-                >
-                  {t('events.submitRegistration', 'Submit Registration')}
-                </Button>
-              </DialogActions>
-            </DialogBody>
-          </DialogSurface>
-        </Dialog>
-      )}
+      <RegistrationDialog
+        open={Boolean(selectedEvent && registrationDialogOpen)}
+        selectedEvent={selectedEvent}
+        submissionSuccess={submissionSuccess}
+        formMessage={formMessage}
+        registrationForm={registrationForm}
+        onFormChange={handleFormChange}
+        onSubmit={handleSubmitRegistration}
+        onClose={handleCloseRegistration}
+        onNewRegistration={handleNewRegistration}
+      />
     </div>
   );
 }
@@ -707,7 +486,9 @@ function EventCard({ event, isUpcoming, onRegister }) {
   const { t } = useTranslation();
   const styles = useStyles();
 
-  const handleRegisterNow = () => {
+  const handleRegisterNow = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
     onRegister(event);
   };
 
@@ -773,59 +554,6 @@ function EventCard({ event, isUpcoming, onRegister }) {
           {t('events.viewDetails')} <ChevronRight24Regular />
         </Button>
       )}
-    </div>
-  );
-}
-
-function FeaturedEventCard({ event, onRegister }) {
-  const { t } = useTranslation();
-  const styles = useStyles();
-
-  const handleRegisterNow = () => {
-    onRegister(event);
-  };
-
-  return (
-    <div className={styles.featuredEventContainer}>
-      <h2 className={styles.featuredEventTitle}>{event.title}</h2>
-      <p className={styles.featuredEventDescription}>{event.description}</p>
-
-      <div className={styles.featuredEventInfo}>
-        <div className={styles.featuredEventInfoItem}>
-          <Calendar24Regular className={styles.featuredInfoIcon} />
-          <span className={styles.featuredEventLabel}>{t('events.dates')}</span>
-          <span className={styles.featuredEventValue}>{event.date}</span>
-        </div>
-        <div className={styles.featuredEventInfoItem}>
-          <Location24Regular className={styles.featuredInfoIcon} />
-          <span className={styles.featuredEventLabel}>{t('events.location')}</span>
-          <span className={styles.featuredEventValue}>{event.location}</span>
-        </div>
-        <div className={styles.featuredEventInfoItem}>
-          <ChevronRight24Regular className={styles.featuredInfoIcon} />
-          <span className={styles.featuredEventLabel}>{t('events.attendees')}</span>
-          <span className={styles.featuredEventValue}>{event.attendees}</span>
-        </div>
-      </div>
-
-      {event.highlights && event.highlights.length > 0 && (
-        <div className={styles.featuredEventHighlights}>
-          <div className={styles.featuredHighlightsTitle}>{t('events.whatToExpect')}</div>
-          <ul className={styles.featuredHighlightsList}>
-            {event.highlights.map((highlight, index) => (
-              <li key={index} className={styles.featuredHighlightItem}>
-                {highlight}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <button className={styles.featuredCtaButton} onClick={handleRegisterNow}>
-          {t('events.registerNow')} <ChevronRight24Regular style={{ fontSize: '1.2rem' }} />
-        </button>
-      </div>
     </div>
   );
 }

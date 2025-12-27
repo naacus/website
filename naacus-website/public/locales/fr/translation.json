@@ -508,6 +508,23 @@
     "phone": "Téléphone",
     "message": "Message",
     "cancel": "Annuler",
-    "submitRegistration": "Soumettre l'Inscription"
+    "submitRegistration": "Soumettre l'Inscription",
+    "close": "Fermer",
+    "submitAnother": "Soumettre une Autre Inscription",
+    "success": {
+      "title": "Succès!",
+      "registrationSubmitted": "Inscription soumise avec succès! Votre client de messagerie s'est ouvert pour envoyer l'inscription. Vous pouvez fermer ce dialogue ou soumettre une autre inscription."
+    },
+    "errors": {
+      "title": "Erreur",
+      "firstNameRequired": "Le prénom est requis",
+      "lastNameRequired": "Le nom est requis",
+      "emailRequired": "L'email est requis",
+      "emailInvalid": "Veuillez entrer une adresse email valide",
+      "submissionFailed": "Échec de la soumission de l'inscription. Veuillez réessayer."
+    },
+    "warnings": {
+      "title": "Avertissement"
+    }
   }
 }

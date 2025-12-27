@@ -369,7 +369,24 @@
     "phone": "Phone",
     "message": "Message",
     "cancel": "Cancel",
-    "submitRegistration": "Submit Registration"
+    "submitRegistration": "Submit Registration",
+    "close": "Close",
+    "submitAnother": "Submit Another Registration",
+    "success": {
+      "title": "Success!",
+      "registrationSubmitted": "Registration submitted successfully! Your email client has opened to send the registration. You may close this dialog or submit another registration."
+    },
+    "errors": {
+      "title": "Error",
+      "firstNameRequired": "First name is required",
+      "lastNameRequired": "Last name is required",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Please enter a valid email address",
+      "submissionFailed": "Failed to submit registration. Please try again."
+    },
+    "warnings": {
+      "title": "Warning"
+    }
   },
   "chat": {
     "greeting": "Hi there! Need help? Let's chat.",
