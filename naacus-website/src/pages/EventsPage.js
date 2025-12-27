@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Events } from '../components/Events';
+import { Events } from '../components/events/Events';
 import { useAnalytics } from '../hooks/useAnalytics';
 
 function EventsPage() {

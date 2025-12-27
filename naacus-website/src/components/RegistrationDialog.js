@@ -126,21 +126,21 @@ export default function RegistrationDialog({
             </div>
             
             <div className={styles.formActions}>
-              <a 
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  onNewRegistration();
-                }}
-                style={{ 
-                  color: '#2d5a7b', 
+              <button
+                type="button"
+                onClick={onNewRegistration}
+                style={{
+                  color: '#2d5a7b',
                   textDecoration: 'underline',
                   cursor: 'pointer',
-                  fontSize: '0.95rem'
+                  fontSize: '0.95rem',
+                  background: 'none',
+                  border: 'none',
+                  padding: 0,
                 }}
               >
                 {t('events.submitAnother', 'Submit Another Registration')}
-              </a>
+              </button>
             </div>
           </div>
         ) : (

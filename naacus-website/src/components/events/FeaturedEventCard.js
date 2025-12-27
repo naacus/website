@@ -245,8 +245,8 @@ export default function FeaturedEventCard({ event, onRegister }) {
         )}
 
         <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <Button 
-            className={styles.featuredCtaButton} 
+          <Button
+            className={styles.featuredCtaButton}
             onClick={handleRegisterNow}
             appearance="primary"
           >
