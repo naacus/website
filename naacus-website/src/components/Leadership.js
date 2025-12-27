@@ -141,6 +141,7 @@ function Leadership() {
 
   const executiveBoard = dataService.getLeadershipBoard();
   const spiritualAdvisers = dataService.getLeadershipAdvisers();
+  const ministryCoordinations = dataService.getLeadershipCoordinations();
 
   return (
     <section id="leadership" className={styles.leadership}>
@@ -150,7 +151,7 @@ function Leadership() {
           {t('leadership.intro')}
         </Text>
 
-        <Text as="h3" className={styles.sectionTitle}>{t('leadership.executiveBoard')}</Text>
+        <Text as="h3" className={styles.sectionTitle}>{t('leadership.nationalExecutiveOfficers')}</Text>
         <div className={styles.boardGrid}>
           {executiveBoard.map((member) => (
             <Card key={member.name} className={styles.boardMember}>
@@ -176,7 +177,27 @@ function Leadership() {
           ))}
         </div>
 
-        <Text as="h3" className={styles.sectionTitle}>{t('leadership.spiritualAdvisers')}</Text>
+        <Text as="h3" className={styles.sectionTitle}>{t('leadership.ministryCoordinations')}</Text>
+        <div className={styles.boardGrid}>
+          {ministryCoordinations.map((member) => (
+            <Card key={`${member.title}-${member.name}`} className={styles.boardMember}>
+              {member.photo ? (
+                <img src={member.photo} alt={member.name} className={styles.photo} />
+              ) : (
+                <div className={styles.photoPlaceholder} />
+              )}
+              <div className={styles.memberBody}>
+                <Text className={styles.memberName}>{member.name}</Text>
+                <Text className={styles.memberTitle}>{member.title}</Text>
+                {member.location && <Text className={styles.memberContact}>{member.location}</Text>}
+                {member.phone && <Text className={styles.memberContact}>{member.phone}</Text>}
+                {member.email && <Text className={styles.memberContact}><a href={`mailto:${member.email}`} style={{ color: '#0067b8', textDecoration: 'none' }}>{member.email}</a></Text>}
+              </div>
+            </Card>
+          ))}
+        </div>
+
+        <Text as="h3" className={styles.sectionTitle}>{t('leadership.nationalAdvisoryBoard')}</Text>
         <div className={styles.boardGrid}>
           {spiritualAdvisers.map((member) => (
             <Card key={member.name} className={styles.boardMember}>

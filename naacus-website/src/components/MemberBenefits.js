@@ -12,6 +12,8 @@ import {
 import { handleNavigation } from '../services/navigationService';
 import { dataService } from '../services/dataService';
 import { useAnalytics } from '../hooks/useAnalytics';
+import { siteLinks } from '../config/siteLinks';
+import { resourcesQuickLinks } from '../data/resourcesQuickLinks';
 import {
   People24Regular,
   Calendar24Regular,
@@ -101,6 +103,23 @@ const useStyles = makeStyles({
     lineHeight: '1.6',
     color: tokens.colorNeutralForeground2,
     display: 'block',
+  },
+  cardActions: {
+    marginTop: '16px',
+    display: 'flex',
+    justifyContent: 'center',
+    gap: '12px',
+    flexWrap: 'wrap'
+  },
+  linkList: {
+    marginTop: '16px',
+    textAlign: 'left'
+  },
+  linkItem: {
+    display: 'block',
+    marginTop: '6px',
+    color: '#0067b8',
+    textDecoration: 'none'
   },
   ctaSection: {
     textAlign: 'center',
@@ -218,6 +237,18 @@ function MemberBenefits() {
     handleNavigation({ path: '/volunteer', sectionId: null, currentPathname: '/', navigate });
   };
 
+  const handleViewCalendar = () => {
+    if (siteLinks.calendarUrl) {
+      window.open(siteLinks.calendarUrl, '_blank', 'noopener,noreferrer');
+    } else {
+      handleNavigation({ path: '/events', sectionId: null, currentPathname: '/', navigate });
+    }
+  };
+
+  const handleGoToLeadership = () => {
+    handleNavigation({ path: '/', sectionId: 'leadership', currentPathname: '/', navigate });
+  };
+
   return (
     <section id="member-benefits" className={styles.benefits}>
       <div className={styles.benefitsContent}>
@@ -253,6 +284,54 @@ function MemberBenefits() {
               <div className={styles.benefitIcon}>{benefit.icon}</div>
               <Text className={styles.benefitTitle}>{benefit.title}</Text>
               <Text className={styles.benefitDescription}>{benefit.description}</Text>
+
+              {benefit.key === 'events' && (
+                <div className={styles.cardActions}>
+                  <Button appearance="primary" onClick={handleViewCalendar}>
+                    {t('memberBenefits.events.cta', 'View Calendar')}
+                  </Button>
+                </div>
+              )}
+
+              {benefit.key === 'resources' && (
+                <div className={styles.linkList}>
+                  <Text weight="semibold">{t('memberBenefits.resources.linksTitle', 'Quick Links and Contacts')}</Text>
+                  {/* Contacts */}
+                  {resourcesQuickLinks.contacts.map((item, i) => {
+                    if (item.type === 'email') {
+                      return (
+                        <a key={`contact-${i}`} className={styles.linkItem} href={`mailto:${item.value}`}>{item.label}</a>
+                      );
+                    }
+                    if (item.type === 'internal') {
+                      return (
+                        <a key={`contact-${i}`} className={styles.linkItem} href="/#leadership" onClick={(e) => { e.preventDefault(); handleGoToLeadership(); }}>{item.label}</a>
+                      );
+                    }
+                    return null;
+                  })}
+                  {/* Support */}
+                  {resourcesQuickLinks.support.map((item, i) => (
+                    item.type === 'tel' ? (
+                      <a key={`support-${i}`} className={styles.linkItem} href={`tel:${item.value}`}>{item.label}</a>
+                    ) : (
+                      <a key={`support-${i}`} className={styles.linkItem} href={item.value} target="_blank" rel="noopener noreferrer">{item.label}</a>
+                    )
+                  ))}
+                  {/* Prayer */}
+                  {resourcesQuickLinks.prayer.map((item, i) => (
+                    <a key={`prayer-${i}`} className={styles.linkItem} href={item.value} target="_blank" rel="noopener noreferrer">{item.label}</a>
+                  ))}
+                </div>
+              )}
+
+              {benefit.key === 'community' && (
+                <div className={styles.cardActions}>
+                  <Button appearance="secondary" onClick={() => window.open(siteLinks.youtubeChannel, '_blank', 'noopener,noreferrer')}>
+                    {t('memberBenefits.community.youtubeCta', 'Visit YouTube Channel')}
+                  </Button>
+                </div>
+              )}
             </Card>
           ))}
         </div>
