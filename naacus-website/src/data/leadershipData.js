@@ -29,7 +29,7 @@ export const leadershipData = {
       name: 'Open',
       title: "Men's Ministry Coordinator",
       phone: '',
-      email: 'men@naacus.org',
+      email: '',
       location: '',
       photo: ''
     },
@@ -61,7 +61,7 @@ export const leadershipData = {
       name: 'Open',
       title: 'Fundraising/Development Committee Coordinator',
       phone: '',
-      email: 'fundraising@naacus.org',
+      email: '',
       location: '',
       photo: ''
     },
@@ -77,7 +77,7 @@ export const leadershipData = {
       name: 'Open',
       title: 'Advocacy Ministry Coordinator',
       phone: '',
-      email: 'advocacy@naacus.org',
+      email: '',
       location: '',
       photo: ''
     },
