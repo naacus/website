@@ -1,9 +1,9 @@
 export const resourcesQuickLinks = {
   contacts: [
-    { label: "Women's Ministry", type: 'email', value: 'women@naacus.org' },
-    { label: "Youth Ministry", type: 'email', value: 'youth@naacus.org' },
-    { label: "Men's Ministry", type: 'email', value: 'men@naacus.org' },
-    { label: 'Religious / Spiritual Advisers', type: 'internal', value: { path: '/', sectionId: 'leadership' } }
+    { label: "Women's Ministry", type: 'internal', value: { path: '/leadership', sectionId: 'ministry-coordinations' } },
+    { label: "Youth Ministry", type: 'internal', value: { path: '/leadership', sectionId: 'ministry-coordinations' } },
+    { label: "Men's Ministry", type: 'internal', value: { path: '/leadership', sectionId: 'ministry-coordinations' } },
+    { label: 'Religious / Spiritual Advisers', type: 'internal', value: { path: '/leadership', sectionId: 'spiritual-advisers' } }
   ],
   support: [
     { label: '988 Suicide & Crisis Lifeline', type: 'external', value: 'https://988lifeline.org' },

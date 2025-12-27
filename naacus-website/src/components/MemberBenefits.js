@@ -298,14 +298,29 @@ function MemberBenefits() {
                   <Text weight="semibold">{t('memberBenefits.resources.linksTitle', 'Quick Links and Contacts')}</Text>
                   {/* Contacts */}
                   {resourcesQuickLinks.contacts.map((item, i) => {
+                    if (item.type === 'internal') {
+                      return (
+                        <a 
+                          key={`contact-${i}`} 
+                          className={styles.linkItem} 
+                          href={`${item.value.path}#${item.value.sectionId}`}
+                          onClick={(e) => { 
+                            e.preventDefault(); 
+                            handleNavigation({ 
+                              path: item.value.path, 
+                              sectionId: item.value.sectionId, 
+                              currentPathname: '/', 
+                              navigate 
+                            }); 
+                          }}
+                        >
+                          {item.label}
+                        </a>
+                      );
+                    }
                     if (item.type === 'email') {
                       return (
                         <a key={`contact-${i}`} className={styles.linkItem} href={`mailto:${item.value}`}>{item.label}</a>
-                      );
-                    }
-                    if (item.type === 'internal') {
-                      return (
-                        <a key={`contact-${i}`} className={styles.linkItem} href="/#leadership" onClick={(e) => { e.preventDefault(); handleGoToLeadership(); }}>{item.label}</a>
                       );
                     }
                     return null;
