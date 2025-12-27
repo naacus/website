@@ -358,7 +358,15 @@
     "attendees": "Attendees",
     "description": "Description",
     "more": "more",
-    "whatToExpect": "What to Expect"
+    "whatToExpect": "What to Expect",
+    "registerForEvent": "Register for Event",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "phone": "Phone",
+    "message": "Message",
+    "cancel": "Cancel",
+    "submitRegistration": "Submit Registration"
   },
   "chat": {
     "greeting": "Hi there! Need help? Let's chat.",

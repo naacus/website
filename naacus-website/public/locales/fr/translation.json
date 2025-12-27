@@ -497,6 +497,14 @@
     "attendees": "Participants",
     "description": "Description",
     "more": "plus",
-    "whatToExpect": "À Quoi S'attendre"
+    "whatToExpect": "À Quoi S'attendre",
+    "registerForEvent": "S'inscrire à un Événement",
+    "firstName": "Prénom",
+    "lastName": "Nom de Famille",
+    "email": "Email",
+    "phone": "Téléphone",
+    "message": "Message",
+    "cancel": "Annuler",
+    "submitRegistration": "Soumettre l'Inscription"
   }
 }

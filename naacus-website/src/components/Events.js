@@ -5,6 +5,15 @@ import {
   shorthands,
   tokens,
   Button,
+  Dialog,
+  DialogTrigger,
+  DialogSurface,
+  DialogContent,
+  DialogBody,
+  DialogTitle,
+  DialogActions,
+  Input,
+  Textarea,
 } from '@fluentui/react-components';
 import { 
   Calendar24Regular, 
@@ -454,12 +463,42 @@ const useStyles = makeStyles({
       ...shorthands.borderRadius('2px'),
     },
   },
+  registrationForm: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '16px',
+  },
+  formField: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '8px',
+  },
+  formLabel: {
+    fontWeight: '600',
+    fontSize: '0.875rem',
+    color: '#1a3a52',
+  },
+  formActions: {
+    display: 'flex',
+    gap: '12px',
+    marginTop: '16px',
+    justifyContent: 'flex-end',
+  },
 });
 
 export function Events() {
   const { t } = useTranslation();
   const styles = useStyles();
   const [activeTab, setActiveTab] = useState('upcoming');
+  const [registrationDialogOpen, setRegistrationDialogOpen] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState(null);
+  const [registrationForm, setRegistrationForm] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    message: ''
+  });
 
   const upcomingEvents = eventsData.upcomingEvents;
   const pastEvents = eventsData.pastEvents;
@@ -468,12 +507,56 @@ export function Events() {
   const featuredEvent = upcomingEvents.find(event => event.year === 2027);
   const otherUpcomingEvents = upcomingEvents.filter(event => event.year !== 2027);
 
+  const handleOpenRegistration = (event) => {
+    setSelectedEvent(event);
+    setRegistrationDialogOpen(true);
+  };
+
+  const handleCloseRegistration = () => {
+    setRegistrationDialogOpen(false);
+    setSelectedEvent(null);
+    setRegistrationForm({
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone: '',
+      message: ''
+    });
+  };
+
+  const handleFormChange = (field, value) => {
+    setRegistrationForm(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
+
+  const handleSubmitRegistration = () => {
+    // Create registration data object
+    const registrationData = {
+      eventTitle: selectedEvent.title,
+      eventDate: selectedEvent.date,
+      ...registrationForm,
+      submittedAt: new Date().toISOString()
+    };
+
+    // Send email or save registration
+    // For now, log to console and show success message
+    console.log('Registration submitted:', registrationData);
+
+    // Send email to info@naacus.org with registration details
+    const mailtoLink = `mailto:info@naacus.org?subject=Event Registration - ${selectedEvent.title}&body=Name: ${registrationForm.firstName} ${registrationForm.lastName}%0AEmail: ${registrationForm.email}%0APhone: ${registrationForm.phone}%0AEvent: ${selectedEvent.title}%0ADate: ${selectedEvent.date}%0AMessage: ${registrationForm.message}`;
+    window.location.href = mailtoLink;
+
+    handleCloseRegistration();
+  };
+
   return (
     <div className={styles.container}>
       {/* Featured 2027 Event - Full Width - Always Visible */}
       {featuredEvent && (
         <div className={styles.featuredEventSection}>
-          <FeaturedEventCard event={featuredEvent} />
+          <FeaturedEventCard event={featuredEvent} onRegister={handleOpenRegistration} />
         </div>
       )}
 
@@ -505,7 +588,7 @@ export function Events() {
                 </h2>
                 <div className={styles.eventsGrid}>
                   {otherUpcomingEvents.map(event => (
-                    <EventCard key={event.id} event={event} isUpcoming={true} />
+                    <EventCard key={event.id} event={event} isUpcoming={true} onRegister={handleOpenRegistration} />
                   ))}
                 </div>
               </>
@@ -522,7 +605,7 @@ export function Events() {
             {pastEvents.length > 0 ? (
               <div className={styles.eventsGrid}>
                 {pastEvents.map(event => (
-                  <EventCard key={event.id} event={event} isUpcoming={false} />
+                  <EventCard key={event.id} event={event} isUpcoming={false} onRegister={handleOpenRegistration} />
                 ))}
               </div>
             ) : (
@@ -533,21 +616,100 @@ export function Events() {
           </div>
         )}
       </div>
+
+      {/* Registration Dialog */}
+      {selectedEvent && (
+        <Dialog open={registrationDialogOpen} onOpenChange={(e, data) => data.open ? setRegistrationDialogOpen(true) : handleCloseRegistration()}>
+          <DialogSurface>
+            <DialogBody>
+              <DialogTitle>{t('events.registerForEvent', 'Register for Event')}</DialogTitle>
+              <DialogContent>
+                <div className={styles.registrationForm}>
+                  <div>
+                    <strong>{selectedEvent.title}</strong>
+                    <div style={{ fontSize: '0.875rem', color: '#666', marginTop: '4px' }}>
+                      {selectedEvent.date} • {selectedEvent.location}
+                    </div>
+                  </div>
+
+                  <div className={styles.formField}>
+                    <label className={styles.formLabel}>{t('events.firstName', 'First Name')} *</label>
+                    <Input
+                      value={registrationForm.firstName}
+                      onChange={(e) => handleFormChange('firstName', e.target.value)}
+                      placeholder="John"
+                      required
+                    />
+                  </div>
+
+                  <div className={styles.formField}>
+                    <label className={styles.formLabel}>{t('events.lastName', 'Last Name')} *</label>
+                    <Input
+                      value={registrationForm.lastName}
+                      onChange={(e) => handleFormChange('lastName', e.target.value)}
+                      placeholder="Doe"
+                      required
+                    />
+                  </div>
+
+                  <div className={styles.formField}>
+                    <label className={styles.formLabel}>{t('events.email', 'Email')} *</label>
+                    <Input
+                      type="email"
+                      value={registrationForm.email}
+                      onChange={(e) => handleFormChange('email', e.target.value)}
+                      placeholder="john.doe@example.com"
+                      required
+                    />
+                  </div>
+
+                  <div className={styles.formField}>
+                    <label className={styles.formLabel}>{t('events.phone', 'Phone')}</label>
+                    <Input
+                      type="tel"
+                      value={registrationForm.phone}
+                      onChange={(e) => handleFormChange('phone', e.target.value)}
+                      placeholder="(123) 456-7890"
+                    />
+                  </div>
+
+                  <div className={styles.formField}>
+                    <label className={styles.formLabel}>{t('events.message', 'Message')}</label>
+                    <Textarea
+                      value={registrationForm.message}
+                      onChange={(e) => handleFormChange('message', e.target.value)}
+                      placeholder="Any additional information..."
+                      rows={4}
+                    />
+                  </div>
+                </div>
+              </DialogContent>
+              <DialogActions>
+                <Button appearance="secondary" onClick={handleCloseRegistration}>
+                  {t('events.cancel', 'Cancel')}
+                </Button>
+                <Button 
+                  appearance="primary" 
+                  onClick={handleSubmitRegistration}
+                  disabled={!registrationForm.firstName || !registrationForm.lastName || !registrationForm.email}
+                >
+                  {t('events.submitRegistration', 'Submit Registration')}
+                </Button>
+              </DialogActions>
+            </DialogBody>
+          </DialogSurface>
+        </Dialog>
+      )}
     </div>
   );
 }
 
-function EventCard({ event, isUpcoming }) {
+function EventCard({ event, isUpcoming, onRegister }) {
   const { t } = useTranslation();
   const styles = useStyles();
 
   const handleRegisterNow = () => {
-    if (event.registrationLink && event.registrationLink !== '#') {
-      window.open(event.registrationLink, '_blank', 'noopener,noreferrer');
-    } else {
-      // If no registration link is available, show contact info
-      alert(t('events.registrationNotAvailable', 'Registration is not yet available. Please contact us at info@naacus.org for more information.'));
-    }
+    onRegister(event);
   };
 
   const handleViewDetails = () => {
@@ -616,9 +778,13 @@ function EventCard({ event, isUpcoming }) {
   );
 }
 
-function FeaturedEventCard({ event }) {
+function FeaturedEventCard({ event, onRegister }) {
   const { t } = useTranslation();
   const styles = useStyles();
+
+  const handleRegisterNow = () => {
+    onRegister(event);
+  };
 
   return (
     <div className={styles.featuredEventContainer}>
@@ -657,7 +823,7 @@ function FeaturedEventCard({ event }) {
       )}
 
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <button className={styles.featuredCtaButton}>
+        <button className={styles.featuredCtaButton} onClick={handleRegisterNow}>
           {t('events.registerNow')} <ChevronRight24Regular style={{ fontSize: '1.2rem' }} />
         </button>
       </div>
