@@ -115,11 +115,22 @@ const useStyles = makeStyles({
     marginTop: '16px',
     textAlign: 'left'
   },
+  linksGroup: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    gap: '0',
+    marginBottom: '8px'
+  },
   linkItem: {
-    display: 'block',
-    marginTop: '6px',
+    display: 'inline',
     color: '#0067b8',
     textDecoration: 'none'
+  },
+  linkSeparator: {
+    display: 'inline',
+    margin: '0 8px',
+    color: '#333'
   },
   ctaSection: {
     textAlign: 'center',
@@ -238,11 +249,7 @@ function MemberBenefits() {
   };
 
   const handleViewCalendar = () => {
-    if (siteLinks.calendarUrl) {
-      window.open(siteLinks.calendarUrl, '_blank', 'noopener,noreferrer');
-    } else {
-      handleNavigation({ path: '/events', sectionId: null, currentPathname: '/', navigate });
-    }
+    handleNavigation({ path: '/events', sectionId: null, currentPathname: '/', navigate });
   };
 
   return (
@@ -291,48 +298,68 @@ function MemberBenefits() {
 
               {benefit.key === 'resources' && (
                 <div className={styles.linkList}>
-                  <Text weight="semibold">{t('memberBenefits.resources.linksTitle', 'Quick Links and Contacts')}</Text>
-                  {/* Contacts */}
-                  {resourcesQuickLinks.contacts.map((item, i) => {
-                    if (item.type === 'internal') {
-                      return (
-                        <a 
-                          key={`contact-${i}`} 
-                          className={styles.linkItem} 
-                          href={`${item.value.path}#${item.value.sectionId}`}
-                          onClick={(e) => { 
-                            e.preventDefault(); 
-                            handleNavigation({ 
-                              path: item.value.path, 
-                              sectionId: item.value.sectionId, 
-                              currentPathname: '/', 
-                              navigate 
-                            }); 
-                          }}
-                        >
-                          {item.label}
-                        </a>
-                      );
-                    }
-                    if (item.type === 'email') {
-                      return (
-                        <a key={`contact-${i}`} className={styles.linkItem} href={`mailto:${item.value}`}>{item.label}</a>
-                      );
-                    }
-                    return null;
-                  })}
-                  {/* Support */}
-                  {resourcesQuickLinks.support.map((item, i) => (
-                    item.type === 'tel' ? (
-                      <a key={`support-${i}`} className={styles.linkItem} href={`tel:${item.value}`}>{item.label}</a>
-                    ) : (
-                      <a key={`support-${i}`} className={styles.linkItem} href={item.value} target="_blank" rel="noopener noreferrer">{item.label}</a>
-                    )
-                  ))}
-                  {/* Prayer */}
-                  {resourcesQuickLinks.prayer.map((item, i) => (
-                    <a key={`prayer-${i}`} className={styles.linkItem} href={item.value} target="_blank" rel="noopener noreferrer">{item.label}</a>
-                  ))}
+                  <Text weight="semibold" style={{ width: '100%', marginBottom: '8px' }}>{t('memberBenefits.resources.linksTitle', 'Quick Links and Contacts')}</Text>
+                  
+                  {/* Contacts Group */}
+                  <div className={styles.linksGroup}>
+                    {resourcesQuickLinks.contacts.map((item, i) => {
+                      if (item.type === 'internal') {
+                        return (
+                          <React.Fragment key={`contact-${i}`}>
+                            {i > 0 && <span className={styles.linkSeparator}>/</span>}
+                            <a 
+                              className={styles.linkItem} 
+                              href={`${item.value.path}#${item.value.sectionId}`}
+                              onClick={(e) => { 
+                                e.preventDefault(); 
+                                handleNavigation({ 
+                                  path: item.value.path, 
+                                  sectionId: item.value.sectionId, 
+                                  currentPathname: '/', 
+                                  navigate 
+                                }); 
+                              }}
+                            >
+                              {item.label}
+                            </a>
+                          </React.Fragment>
+                        );
+                      }
+                      if (item.type === 'email') {
+                        return (
+                          <React.Fragment key={`contact-${i}`}>
+                            {i > 0 && <span className={styles.linkSeparator}>/</span>}
+                            <a className={styles.linkItem} href={`mailto:${item.value}`}>{item.label}</a>
+                          </React.Fragment>
+                        );
+                      }
+                      return null;
+                    })}
+                  </div>
+                  
+                  {/* Support Group */}
+                  <div className={styles.linksGroup}>
+                    {resourcesQuickLinks.support.map((item, i) => (
+                      <React.Fragment key={`support-${i}`}>
+                        {i > 0 && <span className={styles.linkSeparator}>/</span>}
+                        {item.type === 'tel' ? (
+                          <a className={styles.linkItem} href={`tel:${item.value}`}>{item.label}</a>
+                        ) : (
+                          <a className={styles.linkItem} href={item.value} target="_blank" rel="noopener noreferrer">{item.label}</a>
+                        )}
+                      </React.Fragment>
+                    ))}
+                  </div>
+                  
+                  {/* Prayer Group */}
+                  <div className={styles.linksGroup}>
+                    {resourcesQuickLinks.prayer.map((item, i) => (
+                      <React.Fragment key={`prayer-${i}`}>
+                        {i > 0 && <span className={styles.linkSeparator}>/</span>}
+                        <a className={styles.linkItem} href={item.value} target="_blank" rel="noopener noreferrer">{item.label}</a>
+                      </React.Fragment>
+                    ))}
+                  </div>
                 </div>
               )}
 
