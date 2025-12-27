@@ -27,7 +27,7 @@ export const activitiesData = {
     {
       icon: '🤝',
       title: 'Collaboration & Advocacy',
-      description: 'Collaborating widely—dialoguing with diocesan offices, national Catholic partners, and other ecclesial communities—and advocating for social justice in African communities and U.S. society.'
+      description: 'Collaborating widely—dialoguing with diocesan offices, national Catholic partners, and other ecclesial communities—and advocating for social justice in African communities in the U.S. and diaspora.'
     }
   ],
 
@@ -49,7 +49,7 @@ export const activitiesData = {
     { icon: '🎓', text: 'Students' },
     { icon: '💼', text: 'Professionals' },
     { icon: '👨‍👩‍👧‍👦', text: 'Families' },
-    { icon: '👴', text: 'Elders' },
+    { icon: '👴', text: 'Senior Citizens or Older Adults' },
     { icon: '🌟', text: 'Diaspora' }
   ],
 
