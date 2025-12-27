@@ -59,7 +59,7 @@ const useStyles = makeStyles({
     ...shorthands.padding('0', '12px', '0', '0'),
   },
   logoImage: {
-    height: '300px',
+    height: '100px',
     width: '100px',
     position: 'relative',
     top: '30px',
