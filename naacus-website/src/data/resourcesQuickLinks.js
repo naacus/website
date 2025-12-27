@@ -11,7 +11,7 @@ export const resourcesQuickLinks = {
   ],
   prayer: [
     { label: 'USCCB Daily Readings', type: 'external', value: 'https://bible.usccb.org/daily-bible-reading' },
-    { label: 'iBreviary', type: 'external', value: 'https://www.ibreviary.org/en/' }
+    { label: 'iBreviary', type: 'external', value: 'https://divineoffice.org/' }
   ]
 };
 
