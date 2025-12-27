@@ -23,7 +23,7 @@ The main component that presents:
    - Theme: United in Christ for Evangelization (1 Cor. 1:10-13)
    - Goal: African Catholics Faith and Culture in Action
    - Dates: July 18-20, 2025
-   - Location: Washington DC Area (St. Francis DeSales HS / St. Matthias School)
+   - Location: Columbus, OH
    - Host: Region 6
 
 2. **Event Schedule**: Complete listing of all 12 conference events including:
