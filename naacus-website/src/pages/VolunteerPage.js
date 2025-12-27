@@ -175,7 +175,10 @@ function VolunteerPage() {
 
   const volunteerInterestOptions = [
     { key: 'Event Planning & Coordination', label: t('volunteer.interestEventPlanning') },
-    { key: 'Youth & Children Programs', label: t('volunteer.interestYouth') },
+    { key: 'Women\'s Programs', label: t('volunteer.interestWomens') },
+    { key: 'Men\'s Programs', label: t('volunteer.interestMens') },
+    { key: 'Youth Programs', label: t('volunteer.interestYouth') },
+    { key: 'Young Adults Programs', label: t('volunteer.interestYoungAdults') },
     { key: 'Administrative Support', label: t('volunteer.interestAdmin') },
     { key: 'Communications & Social Media', label: t('volunteer.interestComms') },
     { key: 'Fundraising', label: t('volunteer.interestFundraising') },

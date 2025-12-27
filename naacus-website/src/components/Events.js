@@ -6,7 +6,6 @@ import {
   tokens,
   Button,
   Dialog,
-  DialogTrigger,
   DialogSurface,
   DialogContent,
   DialogBody,
