@@ -147,10 +147,13 @@ function MembershipPage() {
     trackPageViewEvent('MembershipPage');
   }, [trackPageViewEvent]);
   const [formData, setFormData] = useState({
+    // Essential fields only
     firstName: '',
     lastName: '',
     email: '',
     phone: '',
+    membershipType: 'individual',
+    // Optional fields moved to profile completion later
     dateOfBirth: '',
     street: '',
     city: '',
@@ -166,7 +169,6 @@ function MembershipPage() {
     yearsInUS: '',
     occupation: '',
     skills: '',
-    membershipType: 'individual',
     ministryInterests: [],
     emergencyName: '',
     emergencyRelationship: '',
@@ -295,9 +297,17 @@ function MembershipPage() {
         </div>
 
         <form onSubmit={handleSubmit}>
-          {/* Personal Information */}
+          {/* Simplified Essential Information Only */}
           <Card className={styles.formCard}>
             <Text className={styles.sectionTitle}>{t('membership.personalInfo')}</Text>
+            <Text style={{ 
+              fontSize: '0.95rem', 
+              color: tokens.colorNeutralForeground2, 
+              marginBottom: '20px',
+              display: 'block'
+            }}>
+              Join NAACUS today with just a few essential details. You can complete your full profile later.
+            </Text>
             <div className={styles.formGrid}>
               <div className={styles.formField}>
                 <label className={styles.label}>
@@ -341,7 +351,7 @@ function MembershipPage() {
                   onChange={(e) => handleInputChange('phone', e.target.value)}
                 />
               </div>
-              <div className={styles.formField}>
+              <div className={styles.formField} style={{ display: 'none' }}>
                 <label className={styles.label}>{t('membership.dateOfBirth')}</label>
                 <Input
                   type="date"
@@ -352,46 +362,42 @@ function MembershipPage() {
             </div>
           </Card>
 
-          {/* Address Information */}
-          <Card className={styles.formCard}>
+          {/* Address Information - Hidden */}
+          <Card className={styles.formCard} style={{ display: 'none' }}>
             <Text className={styles.sectionTitle}>{t('membership.address')}</Text>
             <div className={styles.formGrid}>
               <div className={`${styles.formField} ${styles.formFieldFull}`}>
                 <label className={styles.label}>
-                  {t('membership.streetAddress')} <span className={styles.required}>{t('membership.required')}</span>
+                  {t('membership.streetAddress')}
                 </label>
                 <Input
-                  required
                   value={formData.street}
                   onChange={(e) => handleInputChange('street', e.target.value)}
                 />
               </div>
               <div className={styles.formField}>
                 <label className={styles.label}>
-                  {t('membership.city')} <span className={styles.required}>{t('membership.required')}</span>
+                  {t('membership.city')}
                 </label>
                 <Input
-                  required
                   value={formData.city}
                   onChange={(e) => handleInputChange('city', e.target.value)}
                 />
               </div>
               <div className={styles.formField}>
                 <label className={styles.label}>
-                  {t('membership.state')} <span className={styles.required}>{t('membership.required')}</span>
+                  {t('membership.state')}
                 </label>
                 <Input
-                  required
                   value={formData.state}
                   onChange={(e) => handleInputChange('state', e.target.value)}
                 />
               </div>
               <div className={styles.formField}>
                 <label className={styles.label}>
-                  {t('membership.zipCode')} <span className={styles.required}>{t('membership.required')}</span>
+                  {t('membership.zipCode')}
                 </label>
                 <Input
-                  required
                   value={formData.zipCode}
                   onChange={(e) => handleInputChange('zipCode', e.target.value)}
                 />
@@ -412,8 +418,8 @@ function MembershipPage() {
             <ParishFinder onParishSelect={handleParishSelect} formData={formData} />
           </Card>
 
-          {/* Background Information */}
-          <Card className={styles.formCard}>
+          {/* Background Information - Hidden */}
+          <Card className={styles.formCard} style={{ display: 'none' }}>
             <Text className={styles.sectionTitle}>{t('membership.backgroundExperience')}</Text>
             <div className={styles.formGrid}>
               <div className={styles.formField}>
@@ -450,8 +456,8 @@ function MembershipPage() {
             </div>
           </Card>
 
-          {/* Membership Type & Interests */}
-          <Card className={styles.formCard}>
+          {/* Membership Type & Interests - Hidden */}
+          <Card className={styles.formCard} style={{ display: 'none' }}>
             <Text className={styles.sectionTitle}>{t('membership.membershipDetails')}</Text>
             <div className={styles.formGrid}>
               <div className={`${styles.formField} ${styles.formFieldFull}`}>
@@ -468,7 +474,7 @@ function MembershipPage() {
                   <Option value="senior">{t('membership.membershipTypeSenior')}</Option>
                 </Dropdown>
               </div>
-              <div className={`${styles.formField} ${styles.formFieldFull}`}>
+              <div className={`${styles.formField} ${styles.formFieldFull}`} style={{ display: 'none' }}>
                 <label className={styles.label}>{t('membership.ministryInterests')}</label>
                 <div className={styles.checkboxGroup}>
                   {ministryOptions.map((option) => (
@@ -484,8 +490,8 @@ function MembershipPage() {
             </div>
           </Card>
 
-          {/* Emergency Contact */}
-          <Card className={styles.formCard}>
+          {/* Emergency Contact - Hidden */}
+          <Card className={styles.formCard} style={{ display: 'none' }}>
             <Text className={styles.sectionTitle}>{t('membership.emergencyContact')}</Text>
             <div className={styles.formGrid}>
               <div className={styles.formField}>
