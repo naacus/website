@@ -74,18 +74,18 @@ export const leadershipData = {
       photo: ''
     },
     {
-      name: 'Celestin Mbuyamba',
-      title: 'IT Committee Coordinator',
-      phone: '347-553-0909',
-      email: 'celestin.mbuyamba@naacus.org',
-      location: '',
-      photo: ''
-    },
-    {
       name: 'Open',
       title: 'Advocacy Ministry Coordinator',
       phone: '',
       email: 'advocacy@naacus.org',
+      location: '',
+      photo: ''
+    },
+    {
+      name: 'Celestin Mbuyamba',
+      title: 'IT Committee Coordinator',
+      phone: '347-553-0909',
+      email: 'celestin.mbuyamba@naacus.org',
       location: '',
       photo: ''
     }
