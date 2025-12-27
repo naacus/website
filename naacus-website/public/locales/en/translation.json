@@ -69,15 +69,18 @@
     },
     "community": {
       "title": "Vibrant Community",
-      "description": "Connect with thousands of African Catholic families and individuals who share your faith and heritage."
+      "description": "Connect with thousands of African Catholic families and individuals who share your faith and heritage.",
+      "youtubeCta": "Visit YouTube Channel"
     },
     "events": {
       "title": "Exclusive Events",
-      "description": "Access to national conferences, workshops, cultural celebrations, and spiritual retreats throughout the year."
+      "description": "Access to national conferences, workshops, cultural celebrations, and spiritual retreats throughout the year.",
+      "cta": "View Calendar"
     },
     "resources": {
       "title": "Resources & Links",
-      "description": "Access educational materials, prayer resources, and links to support your spiritual journey and family life."
+      "description": "Access educational materials, prayer resources, and links to support your spiritual journey and family life.",
+      "linksTitle": "Quick Links and Contacts"
     },
     "spiritual": {
       "title": "Spiritual Growth",
@@ -407,6 +410,9 @@
     "intro": "Our dedicated leaders serve the NAACUS community with commitment and passion, guiding our mission to unite African Catholic communities across the United States.",
     "executiveBoard": "Executive Board",
     "spiritualAdvisers": "Spiritual Advisers",
+    "nationalExecutiveOfficers": "NATIONAL EXECUTIVE OFFICERS",
+    "ministryCoordinations": "MINISTRY/COMMITTEE COORDINATIONS",
+    "nationalAdvisoryBoard": "NATIONAL ADVISORY BOARD",
     "readMore": "Read More",
     "aboutLabel": "About",
     "contactLabel": "Contact Information",

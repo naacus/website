@@ -16,6 +16,7 @@ export const dataService = {
   // Leadership
   getLeadershipBoard: () => leadershipData.executiveBoard,
   getLeadershipAdvisers: () => leadershipData.spiritualAdvisers,
+  getLeadershipCoordinations: () => leadershipData.ministryCoordinations,
 
   // Ministries
   getMinistries: () => ministriesData,
