@@ -108,6 +108,7 @@ const useStyles = makeStyles({
   },
   submitButton: {
     marginTop: '32px',
+    marginBottom: '30px',
     width: '100%',
     height: '56px',
     fontSize: '1.15rem',
