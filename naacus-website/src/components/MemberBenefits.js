@@ -245,10 +245,6 @@ function MemberBenefits() {
     }
   };
 
-  const handleGoToLeadership = () => {
-    handleNavigation({ path: '/', sectionId: 'leadership', currentPathname: '/', navigate });
-  };
-
   return (
     <section id="member-benefits" className={styles.benefits}>
       <div className={styles.benefitsContent}>
