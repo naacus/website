@@ -42,8 +42,6 @@ const useStyles = makeStyles({
   },
   dialog: {
     width: '100%',
-    maxWidth: '1100px',
-    minHeight: '500px',
     '@media (max-width: 768px)': {
       maxWidth: '95vw',
       minHeight: '400px',
@@ -53,6 +51,11 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
     height: '100%',
+    width: '100%',
+    maxWidth: '900px',
+    '@media (max-width: 768px)': {
+      maxWidth: '95vw',
+    },
   },
   closeButton: {
     position: 'absolute',
@@ -296,10 +299,18 @@ const useStyles = makeStyles({
   dialogHeader: {
     display: 'flex',
     justifyContent: 'space-between',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     ...shorthands.padding('20px', '24px'),
     borderBottom: '1px solid #e5e5e5',
     flex: 'none',
+    gap: '16px',
+  },
+  dialogHeaderContent: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 1,
+    gap: '12px',
   },
   dialogTitle: {
     fontSize: '24px',
@@ -320,7 +331,7 @@ const useStyles = makeStyles({
   errorMessage: {
     backgroundColor: '#f8d7da',
     color: '#721c24',
-    ...shorthands.padding(themeTokens.spacing.sm, themeTokens.spacing.md),
+    ...shorthands.padding('15px', themeTokens.spacing.md),
     ...shorthands.borderRadius(themeTokens.borderRadius.sm),
     fontSize: themeTokens.typography.fontSize.xs,
     border: `1px solid #f5c6cb`,
@@ -851,7 +862,12 @@ export function DonationDialog() {
         <DialogSurface className={styles.dialogSurface}>
           {/* Header */}
           <div className={styles.dialogHeader}>
-            <h2 className={styles.dialogTitle}>{t('donation.title', 'Make a Donation')}</h2>
+            <div className={styles.dialogHeaderContent}>
+              <h2 className={styles.dialogTitle}>{t('donation.title', 'Make a Donation')}</h2>
+              <div className={styles.warningMessage}>
+                ⚠️ {t('donation.demoDisclaimer', 'Demo only: please do not enter real payment information.')}
+              </div>
+            </div>
             <button 
               className={styles.closeButton}
               onClick={() => { setOpen(false); resetForm(); }}
@@ -862,22 +878,21 @@ export function DonationDialog() {
             </button>
           </div>
 
-          {/* Warning and Messages */}
-          <div style={{ padding: '24px', backgroundColor: '#ffffff', flex: 'none' }}>
-            <div className={styles.warningMessage}>
-              ⚠️ {t('donation.demoDisclaimer', 'Demo only: please do not enter real payment information.')}
+          {/* Messages */}
+          {(error || success) && (
+            <div style={{ padding: '24px', backgroundColor: '#ffffff', flex: 'none' }}>
+              {error && (
+                <div className={styles.errorMessage}>
+                  ⚠️ {error}
+                </div>
+              )}
+              {success && (
+                <div className={styles.successMessage}>
+                  ✓ {success}
+                </div>
+              )}
             </div>
-            {error && (
-              <div className={styles.errorMessage}>
-                ⚠️ {error}
-              </div>
-            )}
-            {success && (
-              <div className={styles.successMessage}>
-                ✓ {success}
-              </div>
-            )}
-          </div>
+          )}
 
           {/* Main Content Grid */}
           <div className={styles.dialogContent}>

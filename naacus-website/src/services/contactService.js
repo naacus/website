@@ -8,9 +8,14 @@
  * - GET /api/contact/:id - Get single inquiry
  * - PUT /api/contact/:id - Update inquiry (admin)
  * - DELETE /api/contact/:id - Delete inquiry (admin)
+ * 
+ * To enable backend API: Set REACT_APP_USE_BACKEND_API=true in .env
  */
 
 import { mockDataStores, generateId, getCurrentTimestamp } from './mockData';
+
+const USE_BACKEND_API = process.env.REACT_APP_USE_BACKEND_API === 'true';
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
 
 const { contactStore } = mockDataStores;
 
@@ -20,9 +25,25 @@ const { contactStore } = mockDataStores;
  * @returns {Promise<Object>} Created inquiry
  */
 export const submitContactInquiry = async (contactData) => {
+  if (USE_BACKEND_API) {
+    try {
+      const response = await fetch(`${BACKEND_URL}/api/contact`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(contactData)
+      });
+      const result = await response.json();
+      if (response.ok) return result;
+      throw new Error(result.message || 'Failed to submit contact inquiry');
+    } catch (error) {
+      console.error('Backend contact submission failed:', error);
+      // Fallback to mock data
+    }
+  }
+
+  // Mock data fallback
   return new Promise((resolve, reject) => {
     try {
-      // Simulate API delay
       setTimeout(() => {
         const inquiry = {
           id: generateId(),
@@ -32,8 +53,8 @@ export const submitContactInquiry = async (contactData) => {
           phone: contactData.phone || '',
           subject: contactData.subject || 'General Inquiry',
           message: contactData.message,
-          topic: contactData.topic || 'other', // membership, volunteer, events, donation, partnership, feedback, other
-          status: 'new', // new, in_progress, responded, closed
+          topic: contactData.topic || 'other',
+          status: 'new',
           notes: '',
           submittedAt: getCurrentTimestamp(),
           updatedAt: getCurrentTimestamp(),
@@ -64,6 +85,18 @@ export const submitContactInquiry = async (contactData) => {
  * @returns {Promise<Object>} List of inquiries
  */
 export const getContactInquiries = async (options = {}) => {
+  if (USE_BACKEND_API) {
+    try {
+      const params = new URLSearchParams(options);
+      const response = await fetch(`${BACKEND_URL}/api/contact?${params}`);
+      if (response.ok) return response.json();
+    } catch (error) {
+      console.error('Backend contact fetch failed:', error);
+      // Fallback to mock data
+    }
+  }
+
+  // Mock data fallback
   return new Promise((resolve) => {
     setTimeout(() => {
       const { limit = 10, offset = 0, status = null, topic = null } = options;

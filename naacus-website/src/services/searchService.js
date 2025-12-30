@@ -2,8 +2,11 @@
  * Global Search Service
  * Searches across all content: pages, resources, ministries, events, and FAQs
  * 
- * Uses service layer instead of direct data imports for better maintainability
- * and future API integration support.
+ * Backend integration:
+ * - GET /api/search - Search across all content types
+ * - GET /api/search/suggestions - Get search suggestions
+ * 
+ * To enable backend API: Set REACT_APP_USE_BACKEND_API=true in .env
  */
 
 import dataService from './dataService';

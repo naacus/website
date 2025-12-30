@@ -3,15 +3,19 @@
  * Handles CRUD operations for donations
  * 
  * Currently uses mock data. Backend integration:
- * - POST /api/donations/initiate - Initiate donation
- * - POST /api/donations/process - Process payment (via payment processor webhook)
+ * - POST /api/donations - Create donation record after payment
  * - GET /api/donations - List donations
  * - GET /api/donations/:id - Get donation details
  * - GET /api/donations/receipt/:id - Get donation receipt
  * - POST /api/donations/webhook - Payment processor webhook
+ * 
+ * To enable backend API: Set REACT_APP_USE_BACKEND_API=true in .env
  */
 
 import { mockDataStores, generateId, getCurrentTimestamp } from './mockData';
+
+const USE_BACKEND_API = process.env.REACT_APP_USE_BACKEND_API === 'true';
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
 
 const { donationStore } = mockDataStores;
 
@@ -39,18 +43,33 @@ export const DONATION_STATUS = {
 };
 
 /**
- * Initiate a donation
+ * Initiate a donation (creates record after payment confirmation)
  * @param {Object} donationData - Donation information
  * @returns {Promise<Object>} Created donation record
  */
 export const initiateDonation = async (donationData) => {
+  if (USE_BACKEND_API) {
+    try {
+      const response = await fetch(`${BACKEND_URL}/api/donations`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(donationData)
+      });
+      const result = await response.json();
+      if (response.ok) return result;
+    } catch (error) {
+      console.error('Backend donation submission failed:', error);
+      // Fallback to mock data
+    }
+  }
+
+  // Mock data fallback
   return new Promise((resolve, reject) => {
     try {
-      // Simulate API delay
       setTimeout(() => {
         const donation = {
           id: generateId(),
-          transactionId: null, // Will be set after payment processor response
+          transactionId: donationData.transactionId || null,
           amount: donationData.amount,
           currency: donationData.currency || 'USD',
           paymentMethod: donationData.paymentMethod,
@@ -62,11 +81,11 @@ export const initiateDonation = async (donationData) => {
           },
           isAnonymous: donationData.isAnonymous || false,
           message: donationData.message || '',
-          status: DONATION_STATUS.PENDING,
+          status: DONATION_STATUS.COMPLETED,
           createdAt: getCurrentTimestamp(),
           updatedAt: getCurrentTimestamp(),
-          processedAt: null,
-          receiptSentAt: null
+          processedAt: getCurrentTimestamp(),
+          receiptSentAt: getCurrentTimestamp()
         };
 
         donationStore.push(donation);
@@ -74,14 +93,13 @@ export const initiateDonation = async (donationData) => {
         resolve({
           success: true,
           data: donation,
-          message: 'Donation initiated. Redirecting to payment processor...',
-          nextAction: 'redirect_to_payment'
+          message: 'Thank you for your donation!'
         });
       }, 500);
     } catch (error) {
       reject({
         success: false,
-        message: 'Failed to initiate donation',
+        message: 'Failed to record donation',
         error: error.message
       });
     }

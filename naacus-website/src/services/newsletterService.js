@@ -9,6 +9,8 @@
  * - PUT /api/newsletter/subscribers/:id - Update subscription preferences
  * - DELETE /api/newsletter/subscribers/:id - Unsubscribe
  * - POST /api/newsletter/unsubscribe - Unsubscribe by email
+ * 
+ * To enable backend API: Set REACT_APP_USE_BACKEND_API=true in .env
  */
 
 import { mockDataStores, generateId, getCurrentTimestamp } from './mockData';

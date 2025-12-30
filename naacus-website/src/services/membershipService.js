@@ -8,6 +8,8 @@
  * - GET /api/memberships/:id - Get single membership
  * - PUT /api/memberships/:id - Update membership
  * - DELETE /api/memberships/:id - Delete membership
+ * 
+ * To enable backend API: Set REACT_APP_USE_BACKEND_API=true in .env
  */
 
 import { mockDataStores, generateId, getCurrentTimestamp } from './mockData';

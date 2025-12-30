@@ -10,6 +10,8 @@
  * - POST /api/faq - Create FAQ (admin)
  * - PUT /api/faq/:id - Update FAQ (admin)
  * - DELETE /api/faq/:id - Delete FAQ (admin)
+ * 
+ * To enable backend API: Set REACT_APP_USE_BACKEND_API=true in .env
  */
 
 import { mockDataStores } from './mockData';

@@ -9,9 +9,14 @@
  * - PUT /api/events/:id - Update event (admin)
  * - DELETE /api/events/:id - Delete event (admin)
  * - POST /api/events/:id/register - Register for event
+ * 
+ * To enable backend API: Set REACT_APP_USE_BACKEND_API=true in .env
  */
 
 import { mockDataStores, generateId, getCurrentTimestamp } from './mockData';
+
+const USE_BACKEND_API = process.env.REACT_APP_USE_BACKEND_API === 'true';
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
 
 const { eventsStore } = mockDataStores;
 
@@ -21,6 +26,18 @@ const { eventsStore } = mockDataStores;
  * @returns {Promise<Object>} List of all events
  */
 export const getAllEvents = async (options = {}) => {
+  if (USE_BACKEND_API) {
+    try {
+      const params = new URLSearchParams(options);
+      const response = await fetch(`${BACKEND_URL}/api/events?${params}`);
+      if (response.ok) return response.json();
+    } catch (error) {
+      console.error('Backend events fetch failed:', error);
+      // Fallback to mock data
+    }
+  }
+
+  // Mock data fallback
   return new Promise((resolve) => {
     setTimeout(() => {
       const { type = null, year = null } = options;

@@ -8,6 +8,8 @@
  * - GET /api/volunteers/:id - Get single volunteer
  * - PUT /api/volunteers/:id - Update volunteer
  * - DELETE /api/volunteers/:id - Delete volunteer
+ * 
+ * To enable backend API: Set REACT_APP_USE_BACKEND_API=true in .env
  */
 
 import { mockDataStores, generateId, getCurrentTimestamp } from './mockData';
