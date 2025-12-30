@@ -9,8 +9,7 @@ import {
   MenuPopover,
   MenuList,
   MenuItem,
-  Button,
-  Input
+  Button
 } from '@fluentui/react-components';
 import { Navigation24Regular } from '@fluentui/react-icons';
 import LanguageSwitcher from './LanguageSwitcher';

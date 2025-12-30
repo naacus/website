@@ -1,21 +1,4 @@
-import React, { useEffect } from 'react';
-import { makeStyles } from '@fluentui/react-components';
-
-const useStyles = makeStyles({
-  errorContainer: {
-    padding: '20px',
-    backgroundColor: '#fff4f4',
-    border: '1px solid #ffcccc',
-    borderRadius: '4px',
-    color: '#c32030',
-    fontFamily: 'Segoe UI, sans-serif',
-  },
-  errorTitle: {
-    fontWeight: 'bold',
-    marginBottom: '10px',
-    fontSize: '16px',
-  },
-});
+import React from 'react';
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
