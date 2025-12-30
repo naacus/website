@@ -40,21 +40,18 @@ const useStyles = makeStyles({
       fontSize: themeTokens.typography.fontSize['0.95rem'],
     },
   },
-  dialogSurface: {
-    width: '100%',
+  dialog: {
     maxWidth: '900px',
-    maxHeight: '90vh',
-    overflow: 'auto',
-    '@media (max-width: 968px)': {
-      maxWidth: '95vw',
-      maxHeight: '95vh',
-    },
+    minHeight: '500px',
     '@media (max-width: 768px)': {
-      maxHeight: '98vh',
-      width: '95vw',
       maxWidth: '95vw',
-      minWidth: 0,
+      minHeight: '400px',
     },
+  },
+  dialogSurface: {
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%',
   },
   closeButton: {
     position: 'absolute',
@@ -86,6 +83,7 @@ const useStyles = makeStyles({
     overflowX: 'hidden',
     flex: 1,
     minWidth: 0,
+    minHeight: 0,
     '@media (max-width: 968px)': {
       ...shorthands.gap(themeTokens.spacing.lg),
       ...shorthands.padding(themeTokens.spacing.md),
@@ -202,49 +200,12 @@ const useStyles = makeStyles({
     borderBottomColor: tokens.colorBrandBackground,
     borderLeftColor: tokens.colorBrandBackground,
   },
-  dialogTitle: {
-    fontSize: themeTokens.typography.fontSize['1.2rem'],
-    fontWeight: themeTokens.typography.fontWeight.bold,
-    color: tokens.colorNeutralForeground1,
-  },
   dialogActions: {
     display: 'flex',
     ...shorthands.gap(themeTokens.spacing.md),
     justifyContent: 'flex-end',
     ...shorthands.padding(themeTokens.spacing.lg, themeTokens.spacing['2xl']),
     borderTop: `1px solid ${tokens.colorNeutralStroke1}`,
-  },
-  errorMessage: {
-    color: themeTokens.colors.status.error,
-    fontSize: themeTokens.typography.fontSize['0.85rem'],
-    marginTop: themeTokens.spacing.xs,
-    ...shorthands.padding(themeTokens.spacing.sm, themeTokens.spacing.md),
-    backgroundColor: themeTokens.colors.overlay.errorOverlay,
-    ...shorthands.borderRadius(themeTokens.borderRadius.sm),
-  },
-  successMessage: {
-    color: themeTokens.colors.status.success,
-    fontSize: themeTokens.typography.fontSize['0.85rem'],
-    marginTop: themeTokens.spacing.xs,
-    ...shorthands.padding(themeTokens.spacing.sm, themeTokens.spacing.md),
-    backgroundColor: themeTokens.colors.overlay.successOverlay,
-    ...shorthands.borderRadius(themeTokens.borderRadius.sm),
-  },
-  warningMessage: {
-    color: '#ff8c00',
-    fontSize: themeTokens.typography.fontSize['0.85rem'],
-    marginTop: themeTokens.spacing.xs,
-    ...shorthands.padding(themeTokens.spacing.sm, themeTokens.spacing.md),
-    backgroundColor: themeTokens.colors.overlay.warningOverlay,
-    ...shorthands.borderRadius(themeTokens.borderRadius.sm),
-  },
-  infoMessage: {
-    color: '#0078d4',
-    fontSize: themeTokens.typography.fontSize['0.85rem'],
-    marginTop: themeTokens.spacing.xs,
-    ...shorthands.padding(themeTokens.spacing.sm, themeTokens.spacing.md),
-    backgroundColor: 'rgba(0, 120, 212, 0.1)',
-    ...shorthands.borderRadius(themeTokens.borderRadius.sm),
   },
   processingTime: {
     fontSize: '0.8rem',
@@ -330,6 +291,48 @@ const useStyles = makeStyles({
   },
   fullWidthInput: {
     width: '100%',
+  },
+  dialogHeader: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    ...shorthands.padding('20px', '24px'),
+    borderBottom: '1px solid #e5e5e5',
+    flex: 'none',
+  },
+  dialogTitle: {
+    fontSize: '24px',
+    fontWeight: '600',
+    color: '#262626',
+    margin: '0',
+  },
+  warningMessage: {
+    backgroundColor: '#fff4ce',
+    color: '#856404',
+    ...shorthands.padding(themeTokens.spacing.sm, themeTokens.spacing.md),
+    ...shorthands.borderRadius(themeTokens.borderRadius.sm),
+    fontSize: themeTokens.typography.fontSize.xs,
+    border: `1px solid #ffc107`,
+    display: 'inline-flex',
+    alignItems: 'center',
+  },
+  errorMessage: {
+    backgroundColor: '#f8d7da',
+    color: '#721c24',
+    ...shorthands.padding(themeTokens.spacing.sm, themeTokens.spacing.md),
+    ...shorthands.borderRadius(themeTokens.borderRadius.sm),
+    fontSize: themeTokens.typography.fontSize.xs,
+    border: `1px solid #f5c6cb`,
+    marginBottom: themeTokens.spacing.sm,
+  },
+  successMessage: {
+    backgroundColor: '#d4edda',
+    color: '#155724',
+    ...shorthands.padding(themeTokens.spacing.sm, themeTokens.spacing.md),
+    ...shorthands.borderRadius(themeTokens.borderRadius.sm),
+    fontSize: themeTokens.typography.fontSize.xs,
+    border: `1px solid #c3e6cb`,
+    marginBottom: themeTokens.spacing.sm,
   },
 });
 
@@ -843,50 +846,40 @@ export function DonationDialog() {
           setOpen(false);
           resetForm();
         }
-      }}>
+      }} className={styles.dialog}>
         <DialogSurface className={styles.dialogSurface}>
-            {/* Title and Close Button */}
-            <div style={{ position: 'relative', marginBottom: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: themeTokens.spacing.sm, flexWrap: 'wrap' }}>
-                <h2 className={styles.dialogTitle}>{t('donation.title', 'Make a Donation')}</h2>
-                <div
-                  className={styles.warningMessage}
-                  style={{
-                    marginBottom: 0,
-                    paddingTop: themeTokens.spacing.xs,
-                    paddingBottom: themeTokens.spacing.xs,
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                  }}
-                >
-                  ⚠️ {t('donation.demoDisclaimer', 'Demo only: please do not enter real payment information.')}
-                </div>
-              </div>
-              <button 
-                className={styles.closeButton}
-                onClick={() => { setOpen(false); resetForm(); }}
-                disabled={loading}
-              >
-                ✕
-              </button>
-            </div>
+          {/* Header */}
+          <div className={styles.dialogHeader}>
+            <h2 className={styles.dialogTitle}>{t('donation.title', 'Make a Donation')}</h2>
+            <button 
+              className={styles.closeButton}
+              onClick={() => { setOpen(false); resetForm(); }}
+              disabled={loading}
+              aria-label={t('donation.close', 'Close')}
+            >
+              ✕
+            </button>
+          </div>
 
-            {/* Error Message */}
+          {/* Warning and Messages */}
+          <div style={{ padding: '24px', backgroundColor: '#ffffff', flex: 'none' }}>
+            <div className={styles.warningMessage}>
+              ⚠️ {t('donation.demoDisclaimer', 'Demo only: please do not enter real payment information.')}
+            </div>
             {error && (
               <div className={styles.errorMessage}>
                 ⚠️ {error}
               </div>
             )}
-
-            {/* Success Message */}
             {success && (
               <div className={styles.successMessage}>
                 ✓ {success}
               </div>
             )}
+          </div>
 
-            {/* Main Content Grid */}
-            <div className={styles.dialogContent}>
+          {/* Main Content Grid */}
+          <div className={styles.dialogContent}>
               {/* Form Section */}
               <div className={styles.formSection}>
 

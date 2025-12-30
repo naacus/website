@@ -20,15 +20,29 @@ const useStyles = makeStyles({
   dialogSurface: {
     maxWidth: '600px',
     minWidth: '300px',
+    maxHeight: '90vh',
+    display: 'flex',
+    flexDirection: 'column',
     '@media (max-width: 768px)': {
       maxWidth: '95vw',
       width: '95vw',
+      maxHeight: '95vh',
+      minHeight: '400px',
     },
   },
   dialogBody: {
     display: 'flex',
     flexDirection: 'column',
+    overflowY: 'auto',
+    flex: 1,
     ...shorthands.gap('16px'),
+  },
+  dialogHeader: {
+    position: 'sticky',
+    top: 0,
+    backgroundColor: '#ffffff',
+    zIndex: 10,
+    flex: 'none',
   },
   registrationForm: {
     display: 'flex',
@@ -85,36 +99,37 @@ export default function RegistrationDialog({
   return (
     <Dialog open={open} onOpenChange={handleDialogChange}>
       <DialogSurface className={styles.dialogSurface}>
+        {/* Sticky Header */}
+        {!submissionSuccess && (
+          <div className={styles.dialogHeader}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <h2 className={styles.dialogTitle}>
+                {t('events.registerForEvent', 'Register for Event')}
+              </h2>
+              <button 
+                onClick={onClose}
+                style={{
+                  position: 'relative',
+                  backgroundColor: 'transparent',
+                  border: 'none',
+                  cursor: 'pointer',
+                  padding: '4px',
+                  color: tokens.colorNeutralForeground2,
+                  fontSize: '24px',
+                  lineHeight: '1',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+                aria-label={t('events.close', 'Close')}
+              >
+                <Dismiss24Regular />
+              </button>
+            </div>
+          </div>
+        )}
+
         <DialogBody className={styles.dialogBody}>
-          {submissionSuccess && (
-            <button 
-              onClick={onClose}
-              style={{
-                position: 'absolute',
-                top: '12px',
-                right: '12px',
-                backgroundColor: 'transparent',
-                border: 'none',
-                cursor: 'pointer',
-                padding: '4px',
-                color: tokens.colorNeutralForeground2,
-                fontSize: '24px',
-                lineHeight: '1',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-              aria-label={t('events.close', 'Close')}
-            >
-              <Dismiss24Regular />
-            </button>
-          )}
-          
-          {!submissionSuccess && (
-            <h2 className={styles.dialogTitle}>
-              {t('events.registerForEvent', 'Register for Event')}
-            </h2>
-          )}
 
           {submissionSuccess ? (
             <div>
