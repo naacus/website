@@ -41,7 +41,8 @@ const useStyles = makeStyles({
     },
   },
   dialog: {
-    maxWidth: '900px',
+    width: '100%',
+    maxWidth: '1100px',
     minHeight: '500px',
     '@media (max-width: 768px)': {
       maxWidth: '95vw',

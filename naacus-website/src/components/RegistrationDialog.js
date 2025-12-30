@@ -6,7 +6,6 @@ import {
   DialogBody,
   makeStyles,
   shorthands,
-  tokens,
   Button,
   Input,
   Textarea,
@@ -17,31 +16,33 @@ import {
 import { Dismiss24Regular } from '@fluentui/react-icons';
 
 const useStyles = makeStyles({
-  dialogSurface: {
+  dialog: {
     maxWidth: '600px',
-    minWidth: '300px',
-    maxHeight: '90vh',
-    display: 'flex',
-    flexDirection: 'column',
+    minHeight: '500px',
     '@media (max-width: 768px)': {
       maxWidth: '95vw',
-      width: '95vw',
-      maxHeight: '95vh',
       minHeight: '400px',
     },
+  },
+  dialogSurface: {
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%',
   },
   dialogBody: {
     display: 'flex',
     flexDirection: 'column',
+    flex: '1',
     overflowY: 'auto',
-    flex: 1,
     ...shorthands.gap('16px'),
+    ...shorthands.padding('24px'),
   },
   dialogHeader: {
-    position: 'sticky',
-    top: 0,
-    backgroundColor: '#ffffff',
-    zIndex: 10,
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    ...shorthands.padding('20px', '24px'),
+    borderBottom: '1px solid #e5e5e5',
     flex: 'none',
   },
   registrationForm: {
@@ -61,15 +62,18 @@ const useStyles = makeStyles({
   },
   formActions: {
     display: 'flex',
-    gap: '12px',
-    marginTop: '16px',
+    ...shorthands.gap('12px'),
     justifyContent: 'flex-end',
+    ...shorthands.padding('24px'),
+    borderTop: '1px solid #e5e5e5',
+    flex: 'none',
+    marginTop: '0',
   },
   dialogTitle: {
-    fontSize: '1.5rem',
+    fontSize: '24px',
     fontWeight: '600',
-    marginBottom: '16px',
-    marginTop: '0',
+    color: '#262626',
+    margin: '0',
   },
 });
 
@@ -97,67 +101,33 @@ export default function RegistrationDialog({
   };
 
   return (
-    <Dialog open={open} onOpenChange={handleDialogChange}>
+    <Dialog open={open} onOpenChange={handleDialogChange} className={styles.dialog}>
       <DialogSurface className={styles.dialogSurface}>
-        {/* Sticky Header */}
+        {/* Header - shown only when not in success state */}
         {!submissionSuccess && (
           <div className={styles.dialogHeader}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <h2 className={styles.dialogTitle}>
-                {t('events.registerForEvent', 'Register for Event')}
-              </h2>
-              <button 
-                onClick={onClose}
-                style={{
-                  position: 'relative',
-                  backgroundColor: 'transparent',
-                  border: 'none',
-                  cursor: 'pointer',
-                  padding: '4px',
-                  color: tokens.colorNeutralForeground2,
-                  fontSize: '24px',
-                  lineHeight: '1',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-                aria-label={t('events.close', 'Close')}
-              >
-                <Dismiss24Regular />
-              </button>
-            </div>
+            <h2 className={styles.dialogTitle}>
+              {t('events.registerForEvent', 'Register for Event')}
+            </h2>
+            <Button
+              appearance="subtle"
+              icon={<Dismiss24Regular />}
+              onClick={onClose}
+              style={{ color: '#999999' }}
+            />
           </div>
         )}
 
         <DialogBody className={styles.dialogBody}>
-
           {submissionSuccess ? (
             <div>
-              <div style={{ padding: '24px 0', textAlign: 'center' }}>
+              <div style={{ textAlign: 'center' }}>
                 <MessageBar intent="success">
                   <MessageBarBody>
                     <MessageBarTitle>{t('events.success.title', 'Success!')}</MessageBarTitle>
                     {t('events.success.registrationStored', 'Registration submitted successfully! We will follow up via email.')}
                   </MessageBarBody>
                 </MessageBar>
-              </div>
-              
-              <div className={styles.formActions}>
-                <button
-                  type="button"
-                  onClick={onNewRegistration}
-                  style={{
-                    color: '#2d5a7b',
-                    textDecoration: 'underline',
-                    cursor: 'pointer',
-                    fontSize: '0.95rem',
-                    background: 'none',
-                    border: 'none',
-                    padding: 0,
-                  }}
-                >
-                  {t('events.submitAnother', 'Submit Another Registration')}
-                </button>
               </div>
             </div>
           ) : (
@@ -232,22 +202,36 @@ export default function RegistrationDialog({
                   rows={4}
                 />
               </div>
-
-              <div className={styles.formActions}>
-                <Button appearance="secondary" onClick={onClose}>
-                  {t('events.cancel', 'Cancel')}
-                </Button>
-                <Button 
-                  appearance="primary" 
-                  onClick={onSubmit}
-                  disabled={!registrationForm.firstName || !registrationForm.lastName || !registrationForm.email || isSubmitting}
-                >
-                  {isSubmitting ? t('events.submitting', 'Submitting...') : t('events.submitRegistration', 'Submit Registration')}
-                </Button>
-              </div>
             </div>
           )}
         </DialogBody>
+
+        {/* Form Actions - sticky footer */}
+        {!submissionSuccess && (
+          <div className={styles.formActions}>
+            <Button appearance="secondary" onClick={onClose}>
+              {t('events.cancel', 'Cancel')}
+            </Button>
+            <Button 
+              appearance="primary" 
+              onClick={onSubmit}
+              disabled={!registrationForm.firstName || !registrationForm.lastName || !registrationForm.email || isSubmitting}
+            >
+              {isSubmitting ? t('events.submitting', 'Submitting...') : t('events.submitRegistration', 'Submit Registration')}
+            </Button>
+          </div>
+        )}
+
+        {submissionSuccess && (
+          <div className={styles.formActions}>
+            <Button 
+              appearance="primary"
+              onClick={onNewRegistration}
+            >
+              {t('events.submitAnother', 'Submit Another Registration')}
+            </Button>
+          </div>
+        )}
       </DialogSurface>
     </Dialog>
   );
