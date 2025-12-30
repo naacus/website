@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
 import {
+  Dialog,
+  DialogSurface,
   Button,
   Input,
   makeStyles,
@@ -38,50 +40,41 @@ const useStyles = makeStyles({
       fontSize: themeTokens.typography.fontSize['0.95rem'],
     },
   },
-  dialogBackdrop: {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: themeTokens.colors.overlay.darkOverlay,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    zIndex: 2147483000,
-  },
-  dialogWrapper: {
-    position: 'fixed',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    zIndex: 2147483001,
+  dialogSurface: {
     width: '100%',
     maxWidth: '900px',
     maxHeight: '90vh',
-    overflowY: 'auto',
-    overflowX: 'hidden',
-    backgroundColor: tokens.colorNeutralBackground1,
-    boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
-    ...shorthands.borderRadius(themeTokens.borderRadius.md),
-    display: 'flex',
-    flexDirection: 'column',
-    ...shorthands.padding(themeTokens.spacing.lg),
-    transition: 'max-height 0.3s ease, height 0.3s ease',
-    boxSizing: 'border-box',
+    overflow: 'auto',
     '@media (max-width: 968px)': {
       maxWidth: '95vw',
       maxHeight: '95vh',
-      ...shorthands.padding(themeTokens.spacing.md),
     },
     '@media (max-width: 768px)': {
       maxHeight: '98vh',
       width: '95vw',
       maxWidth: '95vw',
       minWidth: 0,
-      ...shorthands.padding(themeTokens.spacing.sm),
-      top: '50%',
-      transform: 'translate(-50%, -50%)',
+    },
+  },
+  closeButton: {
+    position: 'absolute',
+    top: '16px',
+    right: '16px',
+    backgroundColor: 'transparent',
+    border: 'none',
+    cursor: 'pointer',
+    fontSize: '24px',
+    lineHeight: '1',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: tokens.colorNeutralForeground2,
+    '&:hover': {
+      color: tokens.colorNeutralForeground1,
+    },
+    '&:disabled': {
+      cursor: 'not-allowed',
+      opacity: 0.5,
     },
   },
   dialogContent: {
@@ -213,16 +206,6 @@ const useStyles = makeStyles({
     fontSize: themeTokens.typography.fontSize['1.2rem'],
     fontWeight: themeTokens.typography.fontWeight.bold,
     color: tokens.colorNeutralForeground1,
-  },
-  closeButton: {
-    position: 'absolute',
-    top: themeTokens.spacing.md,
-    right: themeTokens.spacing.md,
-    background: 'none',
-    border: 'none',
-    cursor: 'pointer',
-    fontSize: themeTokens.typography.fontSize['1.5rem'],
-    ...shorthands.padding(themeTokens.spacing.xs),
   },
   dialogActions: {
     display: 'flex',
@@ -855,11 +838,15 @@ export function DonationDialog() {
         </Button>
       </div>
 
-      {open && (
-        <div className={styles.dialogBackdrop} onClick={() => { setOpen(false); resetForm(); }}>
-          <div className={styles.dialogWrapper} onClick={e => e.stopPropagation()}>
+      <Dialog open={open} onOpenChange={(event, data) => {
+        if (!data.open) {
+          setOpen(false);
+          resetForm();
+        }
+      }}>
+        <DialogSurface className={styles.dialogSurface}>
             {/* Title and Close Button */}
-            <div style={{ position: 'relative', marginBottom: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div style={{ position: 'relative', marginBottom: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: themeTokens.spacing.sm, flexWrap: 'wrap' }}>
                 <h2 className={styles.dialogTitle}>{t('donation.title', 'Make a Donation')}</h2>
                 <div
@@ -1052,9 +1039,10 @@ export function DonationDialog() {
                   </div>
                 )}
               </div>
+            </div>
 
-              {/* Actions */}
-              <div className={styles.dialogActions}>
+            {/* Actions */}
+            <div className={styles.dialogActions}>
                 <Button
                   onClick={() => {
                     setOpen(false);
@@ -1084,10 +1072,8 @@ export function DonationDialog() {
                   )}
                 </Button>
               </div>
-            </div>
-          </div>
-        </div>
-      )}
+        </DialogSurface>
+      </Dialog>
     </>
   );
 }

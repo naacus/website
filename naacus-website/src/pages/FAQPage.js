@@ -177,7 +177,6 @@ const useStyles = makeStyles({
     fontSize: '14px',
     fontWeight: '600',
     color: '#262626',
-    ...shorthands.padding('10px', '14px'),
     backgroundColor: '#fafafa',
     cursor: 'pointer',
     transition: 'all 0.2s ease',
