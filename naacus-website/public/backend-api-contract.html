@@ -1,0 +1,2199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backend API Contract - NAACUS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin-left: 280px;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            background: linear-gradient(135deg, #2d5a7b 0%, #1a3a52 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        nav {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-right: 2px solid #ddd;
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            width: 280px;
+            overflow-y: auto;
+            z-index: 100;
+        }
+
+        nav h3 {
+            margin-bottom: 15px;
+            color: #2d5a7b;
+            font-size: 1.1em;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        nav a {
+            color: #2d5a7b;
+            text-decoration: none;
+            padding: 10px 12px;
+            display: block;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-size: 0.95em;
+        }
+
+        nav a:hover {
+            background-color: #e0e7f1;
+            padding-left: 20px;
+        }
+
+        nav a.active {
+            background-color: #2d5a7b;
+            color: white;
+            font-weight: bold;
+            border-left: 4px solid #ffffff;
+            padding-left: 16px;
+        }
+
+        main {
+            padding: 40px;
+        }
+
+        section {
+            margin-bottom: 40px;
+            scroll-margin-top: 60px;
+        }
+
+        h2 {
+            color: #2d5a7b;
+            border-bottom: 3px solid #2d5a7b;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        h3 {
+            color: #1a3a52;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        h4 {
+            color: #2d5a7b;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .overview-box {
+            background-color: #f0f7ff;
+            border-left: 4px solid #2d5a7b;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .overview-box ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .overview-box li {
+            margin-bottom: 8px;
+        }
+
+        .service-item {
+            background-color: #f9f9f9;
+            padding: 12px 15px;
+            margin: 8px 0;
+            border-radius: 4px;
+            border-left: 3px solid #2d5a7b;
+        }
+
+        .service-item strong {
+            color: #2d5a7b;
+        }
+
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #c7254e;
+        }
+
+        pre {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 15px 0;
+            line-height: 1.4;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        pre code {
+            background-color: transparent;
+            color: #f8f8f2;
+            padding: 0;
+        }
+
+        .endpoint {
+            background-color: #f0f7ff;
+            border: 1px solid #d0e5f5;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .endpoint-method {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: white;
+            margin-right: 10px;
+            font-family: monospace;
+        }
+
+        .method-post {
+            background-color: #28a745;
+        }
+
+        .method-get {
+            background-color: #007bff;
+        }
+
+        .method-put {
+            background-color: #ffc107;
+            color: #333;
+        }
+
+        .method-delete {
+            background-color: #dc3545;
+        }
+
+        .endpoint-path {
+            font-family: monospace;
+            font-size: 1.1em;
+            color: #2d5a7b;
+            font-weight: bold;
+        }
+
+        .endpoint-section {
+            margin-top: 15px;
+        }
+
+        .endpoint-section-header {
+            background-color: #e8f1f8;
+            padding: 10px 15px;
+            border-left: 3px solid #2d5a7b;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .endpoint-section-header:hover {
+            background-color: #d9e8f3;
+            padding-left: 20px;
+        }
+
+        .endpoint-section-header.open {
+            background-color: #d9e8f3;
+            border-left: 3px solid #1a3a52;
+        }
+
+        .section-toggle {
+            color: #2d5a7b;
+            font-weight: bold;
+            font-size: 1.2em;
+            transition: transform 0.3s ease;
+        }
+
+        .section-toggle.open {
+            transform: rotate(180deg);
+        }
+
+        .endpoint-section-content {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .endpoint-section-content.open {
+            display: block;
+        }
+
+        .checklist {
+            list-style: none;
+            margin-left: 20px;
+        }
+
+        .checklist li {
+            margin: 8px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .checklist li:before {
+            content: "☐";
+            position: absolute;
+            left: 0;
+            color: #2d5a7b;
+            font-weight: bold;
+        }
+
+        .warning {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+            color: #856404;
+        }
+
+        .success {
+            background-color: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+            color: #155724;
+        }
+
+        .info {
+            background-color: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+            color: #0c5460;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background-color: #f9f9f9;
+        }
+
+        th {
+            background-color: #2d5a7b;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .footer {
+            background-color: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            border-top: 2px solid #ddd;
+            color: #666;
+            margin-top: 40px;
+        }
+
+        .footer p {
+            margin: 5px 0;
+        }
+
+        .matrix {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .matrix-item {
+            background-color: #f0f7ff;
+            padding: 15px;
+            border-radius: 4px;
+            border-left: 4px solid #2d5a7b;
+        }
+
+        .matrix-item strong {
+            display: block;
+            color: #2d5a7b;
+            margin-bottom: 5px;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                position: static;
+                width: 100%;
+                height: auto;
+                padding: 15px;
+                border-right: none;
+                border-bottom: 2px solid #ddd;
+            }
+
+            nav h3 {
+                font-size: 1em;
+            }
+
+            nav ul {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+
+            nav a {
+                padding: 6px 10px;
+                font-size: 0.9em;
+            }
+
+            .container {
+                margin-left: 0;
+            }
+
+            main {
+                padding: 20px;
+            }
+
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .matrix {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .print-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #2d5a7b;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .print-button:hover {
+            background-color: #1a3a52;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        @print {
+            body {
+                background-color: white;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .print-button {
+                display: none;
+            }
+
+            section {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>NAACUS - Backend API Contract</h1>
+            <p>Microsoft Dataverse/SharePoint Architecture</p>
+        </header>
+
+        <nav>
+            <h3>Table of Contents</h3>
+            <ul>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#architecture">Architecture Notes</a></li>
+                <li><a href="#auth">Authentication</a></li>
+                <li><a href="#memberships">Memberships</a></li>
+                <li><a href="#volunteers">Volunteers</a></li>
+                <li><a href="#newsletter">Newsletter</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#donations">Donations</a></li>
+                <li><a href="#data">Data Retrieval</a></li>
+                <li><a href="#errors">Error Handling</a></li>
+                <li><a href="#security">Security</a></li>
+                <li><a href="#webhooks">Webhooks</a></li>
+                <li><a href="#checklist">Implementation Checklist</a></li>
+                <li><a href="#responsibilities">Responsibilities</a></li>
+                <li><a href="#env">Environment Variables</a></li>
+                <li><a href="#flows">Implementation Flows</a></li>
+                <li><a href="#schema">Dataverse Schema</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <!-- Overview Section -->
+            <section id="overview">
+                <h2>Overview</h2>
+                <p>This document defines the backend API endpoints needed to support the NAACUS website frontend.</p>
+
+                <h3>Frontend-Callable Services (NO Backend API Needed)</h3>
+                <div class="overview-box">
+                    <div class="service-item">✅ <strong>Google Analytics 4</strong> - Frontend calls directly via gtag.js</div>
+                    <div class="service-item">✅ <strong>Stripe</strong> - Frontend calls directly via Stripe.js with publishable key</div>
+                    <div class="service-item">✅ <strong>PayPal</strong> - Frontend calls directly via PayPal SDK</div>
+                    <div class="service-item">✅ <strong>Coinbase Commerce</strong> - Frontend calls directly via hosted payment link</div>
+                    <div class="service-item">✅ <strong>Square</strong> - Frontend calls directly via Web Payments SDK</div>
+                </div>
+
+                <h3>Services Requiring Backend APIs</h3>
+                <div class="overview-box">
+                    <ol>
+                        <li><strong>Contact Inquiries</strong> - Form submissions</li>
+                        <li><strong>Membership Management</strong> - Create, read, update membership records</li>
+                        <li><strong>Volunteer Applications</strong> - Manage volunteer submissions</li>
+                        <li><strong>Newsletter Subscriptions</strong> - Subscribe/unsubscribe management</li>
+                        <li><strong>Donation Recording</strong> - Store donation records after payment completion</li>
+                        <li><strong>Data Retrieval</strong> - Leadership, ministries, resources, testimonials, events, FAQs</li>
+                    </ol>
+                </div>
+
+                <h3>Architecture</h3>
+                <div class="overview-box">
+                    <p><strong>Data Storage:</strong> Microsoft Dataverse (primary), SharePoint (documents/content)</p>
+                    <p><strong>Frontend:</strong> Calls backend REST APIs OR directly to external payment/analytics services</p>
+                    <p><strong>Backend:</strong> Manages Dataverse/SharePoint access, stores business data, handles email/SMS notifications</p>
+                </div>
+            </section>
+
+            <!-- Architecture Notes -->
+            <section id="architecture">
+                <h2>Architecture Notes</h2>
+
+                <h3>Data Storage</h3>
+                <div class="overview-box">
+                    <p><strong>Primary Data:</strong> Microsoft Dataverse (members, volunteers, donations, events, contacts)</p>
+                    <p><strong>Content/Documents:</strong> SharePoint (resources, newsletters, FAQs, event materials)</p>
+                </div>
+
+                <h3>Frontend-Callable Services</h3>
+                <div class="overview-box">
+                    <p>Frontend <strong>CAN call directly</strong> (no backend proxy needed):</p>
+                    <ul>
+                        <li>✅ Google Analytics 4 (GA4) via gtag.js</li>
+                        <li>✅ Stripe via Stripe.js (card collection, payment intents)</li>
+                        <li>✅ PayPal via PayPal SDK/Checkout</li>
+                        <li>✅ Coinbase Commerce via hosted payment link</li>
+                        <li>✅ Square Web Payments SDK</li>
+                    </ul>
+                </div>
+
+                <h3>Backend-Only Services</h3>
+                <div class="overview-box">
+                    <p>Backend is responsible for:</p>
+                    <ul>
+                        <li>✅ Microsoft Dataverse access (service account with managed identity)</li>
+                        <li>✅ SharePoint access (service account with managed identity)</li>
+                        <li>✅ Email delivery (SendGrid, Azure Communication Services)</li>
+                        <li>✅ SMS delivery (if implemented)</li>
+                        <li>✅ Business logic APIs (memberships, volunteer management, contacts, etc.)</li>
+                    </ul>
+                </div>
+
+                <h3>Technology Stack</h3>
+                <div class="overview-box">
+                    <ul>
+                        <li><strong>Backend Framework:</strong> Node.js/Express, Python/Django, .NET (Azure), or Java</li>
+                        <li><strong>Database:</strong> Microsoft Dataverse (primary data)</li>
+                        <li><strong>Content Management:</strong> SharePoint (documents, rich content)</li>
+                        <li><strong>Authentication:</strong> Azure AD B2C or OAuth2</li>
+                        <li><strong>Hosting:</strong> Azure App Service or Functions</li>
+                        <li><strong>Frontend External Services:</strong> Configured with publishable/client-side keys only</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Authentication -->
+            <section id="auth">
+                <h2>Authentication & Authorization</h2>
+
+                <h3>Base URL</h3>
+                <pre><code>https://api.naacus.org/v1</code></pre>
+
+                <h3>Headers (All Requests)</h3>
+                <pre><code>Content-Type: application/json
+Authorization: Bearer {token}  // For authenticated endpoints
+X-API-Key: {api-key}          // For service-to-service calls</code></pre>
+            </section>
+
+            <!-- Memberships -->
+            <section id="memberships">
+                <h2>Membership Management</h2>
+
+                <div class="endpoint">
+                    <span class="endpoint-method method-post">POST</span>
+                    <span class="endpoint-path">/memberships</span>
+                    <p><strong>Description:</strong> Create a new membership record</p>
+                    
+                    <div class="endpoint-section">
+                        <div class="endpoint-section-header">
+                            <span><strong>Request Body</strong></span>
+                            <span class="section-toggle">▼</span>
+                        </div>
+                        <div class="endpoint-section-content">
+                            <pre><code>{
+  "firstName": "string",
+  "lastName": "string",
+  "email": "string (valid email)",
+  "phone": "string",
+  "dateOfBirth": "string (YYYY-MM-DD)",
+  "gender": "string (male/female/other)",
+  "address": "string",
+  "city": "string",
+  "state": "string",
+  "zipCode": "string",
+  "country": "string",
+  "parish": "string",
+  "diocese": "string",
+  "languagePreference": "string (en/fr)",
+  "interests": ["string"],
+  "emergencyContact": "string",
+  "emergencyPhone": "string"
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="endpoint-section">
+                        <div class="endpoint-section-header">
+                            <span><strong>Response (201 Created)</strong></span>
+                            <span class="section-toggle">▼</span>
+                        </div>
+                        <div class="endpoint-section-content">
+                            <pre><code>{
+  "success": true,
+  "data": {
+    "id": "uuid",
+    "memberId": "NAACUS-XXXXXX",
+    "firstName": "string",
+    "lastName": "string",
+    "email": "string",
+    "status": "active|pending_review|inactive",
+    "joinDate": "ISO-8601 timestamp",
+    "createdAt": "ISO-8601 timestamp",
+    "updatedAt": "ISO-8601 timestamp"
+  },
+  "message": "Membership created successfully"
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="endpoint">
+                    <span class="endpoint-method method-get">GET</span>
+                    <span class="endpoint-path">/memberships</span>
+                    <p><strong>Description:</strong> List all memberships with pagination and filtering</p>
+                    <p><strong>Query Parameters:</strong> <code>?limit=10&offset=0&status=active&year=2024&sortBy=createdAt&sortOrder=desc</code></p>
+                    
+                    <div class="endpoint-section">
+                        <div class="endpoint-section-header">
+                            <span><strong>Response (200 OK)</strong></span>
+                            <span class="section-toggle">▼</span>
+                        </div>
+                        <div class="endpoint-section-content">
+                            <pre><code>{
+  "success": true,
+  "data": [
+    {
+      "id": "uuid",
+      "memberId": "NAACUS-001234",
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "john@example.com",
+      "phone": "+1-555-1234",
+      "status": "active",
+      "joinDate": "2024-01-15T10:30:00Z",
+      "createdAt": "2024-01-15T10:30:00Z",
+      "updatedAt": "2024-12-20T14:22:00Z"
+    }
+  ],
+  "pagination": {
+    "limit": 10,
+    "offset": 0,
+    "total": 245,
+    "hasMore": true
+  },
+  "timestamp": "2025-12-30T15:45:00Z"
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="endpoint">
+                    <span class="endpoint-method method-get">GET</span>
+                    <span class="endpoint-path">/memberships/{id}</span>
+                    <p><strong>Description:</strong> Get single membership by ID</p>
+                    
+                    <div class="endpoint-section">
+                        <div class="endpoint-section-header">
+                            <span><strong>Response (200 OK)</strong></span>
+                            <span class="section-toggle">▼</span>
+                        </div>
+                        <div class="endpoint-section-content">
+                            <pre><code>{
+  "success": true,
+  "data": {
+    "id": "uuid",
+    "memberId": "NAACUS-001234",
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john@example.com",
+    "phone": "+1-555-1234",
+    "dateOfBirth": "1980-05-15",
+    "gender": "male",
+    "address": "123 Main St",
+    "city": "Boston",
+    "state": "MA",
+    "zipCode": "02101",
+    "country": "USA",
+    "parish": "St. James",
+    "diocese": "Boston",
+    "languagePreference": "en",
+    "interests": ["community", "youth ministry"],
+    "emergencyContact": "Jane Doe",
+    "emergencyPhone": "+1-555-5678",
+    "status": "active",
+    "joinDate": "2024-01-15T10:30:00Z",
+    "createdAt": "2024-01-15T10:30:00Z",
+    "updatedAt": "2024-12-20T14:22:00Z"
+  },
+  "timestamp": "2025-12-30T15:45:00Z"
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="endpoint">
+                    <span class="endpoint-method method-put">PUT</span>
+                    <span class="endpoint-path">/memberships/{id}</span>
+                    <p><strong>Description:</strong> Update membership record</p>
+                    
+                    <div class="endpoint-section">
+                        <div class="endpoint-section-header">
+                            <span><strong>Request Body</strong></span>
+                            <span class="section-toggle">▼</span>
+                        </div>
+                        <div class="endpoint-section-content">
+                            <pre><code>{
+  "firstName": "Jane",
+  "lastName": "Smith",
+  "phone": "+1-555-9876",
+  "address": "456 Oak Ave",
+  "city": "Cambridge",
+  "state": "MA",
+  "zipCode": "02138",
+  "interests": ["education", "youth ministry", "community"],
+  "status": "active"
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="endpoint-section">
+                        <div class="endpoint-section-header">
+                            <span><strong>Response (200 OK)</strong></span>
+                            <span class="section-toggle">▼</span>
+                        </div>
+                        <div class="endpoint-section-content">
+                            <pre><code>{
+  "success": true,
+  "data": {
+    "id": "uuid",
+    "memberId": "NAACUS-001234",
+    "firstName": "Jane",
+    "lastName": "Smith",
+    "email": "john@example.com",
+    "phone": "+1-555-9876",
+    "address": "456 Oak Ave",
+    "city": "Cambridge",
+    "state": "MA",
+    "zipCode": "02138",
+    "interests": ["education", "youth ministry", "community"],
+    "status": "active",
+    "updatedAt": "2025-12-30T15:45:00Z"
+  },
+  "message": "Membership updated successfully",
+  "timestamp": "2025-12-30T15:45:00Z"
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="endpoint">
+                    <span class="endpoint-method method-delete">DELETE</span>
+                    <span class="endpoint-path">/memberships/{id}</span>
+                    <p><strong>Description:</strong> Delete membership record</p>
+                    
+                    <div class="endpoint-section">
+                        <div class="endpoint-section-header">
+                            <span><strong>Response (200 OK)</strong></span>
+                            <span class="section-toggle">▼</span>
+                        </div>
+                        <div class="endpoint-section-content">
+                            <pre><code>{
+  "success": true,
+  "data": {
+    "id": "uuid",
+    "memberId": "NAACUS-001234"
+  },
+  "message": "Membership deleted successfully",
+  "timestamp": "2025-12-30T15:45:00Z"
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Volunteers -->
+            <section id="volunteers">
+                <h2>Volunteer Management</h2>
+
+                <div class="endpoint">
+                    <span class="endpoint-method method-post">POST</span>
+                    <span class="endpoint-path">/volunteers</span>
+                    <p><strong>Description:</strong> Create volunteer application</p>
+                    
+                    <div class="endpoint-section">
+                        <div class="endpoint-section-header">
+                            <span><strong>Request Body</strong></span>
+                            <span class="section-toggle">▼</span>
+                        </div>
+                        <div class="endpoint-section-content">
+                            <pre><code>{
+  "firstName": "Sarah",
+  "lastName": "Johnson",
+  "email": "sarah@example.com",
+  "phone": "+1-555-2468",
+  "city": "Boston",
+  "state": "MA",
+  "skills": ["teaching", "mentoring", "event planning"],
+  "interests": ["youth", "education", "community"],
+  "availability": ["weekends", "evenings"],
+  "backgroundCheckConsent": true
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="endpoint-section">
+                        <div class="endpoint-section-header">
+                            <span><strong>Response (201 Created)</strong></span>
+                            <span class="section-toggle">▼</span>
+                        </div>
+                        <div class="endpoint-section-content">
+                            <pre><code>{
+  "success": true,
+  "data": {
+    "id": "uuid",
+    "applicationId": "VOL-2024-001",
+    "firstName": "Sarah",
+    "lastName": "Johnson",
+    "email": "sarah@example.com",
+    "phone": "+1-555-2468",
+    "city": "Boston",
+    "state": "MA",
+    "skills": ["teaching", "mentoring", "event planning"],
+    "interests": ["youth", "education", "community"],
+    "availability": ["weekends", "evenings"],
+    "status": "pending_review",
+    "backgroundCheckStatus": "pending",
+    "createdAt": "2025-12-30T15:45:00Z"
+  },
+  "message": "Volunteer application submitted successfully",
+  "timestamp": "2025-12-30T15:45:00Z"
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="endpoint">
+                    <span class="endpoint-method method-get">GET</span>
+                    <span class="endpoint-path">/volunteers</span>
+                    <p><strong>Description:</strong> List all volunteers with filtering</p>
+                    <p><strong>Query Parameters:</strong> <code>?limit=10&offset=0&status=approved&sortBy=createdAt</code></p>
+                    
+                    <div class="endpoint-section">
+                        <div class="endpoint-section-header">
+                            <span><strong>Response (200 OK)</strong></span>
+                            <span class="section-toggle">▼</span>
+                        </div>
+                        <div class="endpoint-section-content">
+                            <pre><code>{
+  "success": true,
+  "data": [
+    {
+      "id": "uuid",
+      "applicationId": "VOL-2024-001",
+      "firstName": "Sarah",
+      "lastName": "Johnson",
+      "email": "sarah@example.com",
+      "phone": "+1-555-2468",
+      "city": "Boston",
+      "state": "MA",
+      "skills": ["teaching", "mentoring", "event planning"],
+      "interests": ["youth", "education"],
+      "status": "approved",
+      "backgroundCheckStatus": "approved",
+      "createdAt": "2025-01-15T10:30:00Z"
+    }
+  ],
+  "pagination": {
+    "limit": 10,
+    "offset": 0,
+    "total": 42,
+    "hasMore": true
+  },
+  "timestamp": "2025-12-30T15:45:00Z"
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="endpoint">
+                    <span class="endpoint-method method-get">GET</span>
+                    <span class="endpoint-path">/volunteers/{id}</span>
+                    <p><strong>Description:</strong> Get volunteer details</p>
+                    
+                    <div class="endpoint-section">
+                        <div class="endpoint-section-header">
+                            <span><strong>Response (200 OK)</strong></span>
+                            <span class="section-toggle">▼</span>
+                        </div>
+                        <div class="endpoint-section-content">
+                            <pre><code>{
+  "success": true,
+  "data": {
+    "id": "uuid",
+    "applicationId": "VOL-2024-001",
+    "firstName": "Sarah",
+    "lastName": "Johnson",
+    "email": "sarah@example.com",
+    "phone": "+1-555-2468",
+    "city": "Boston",
+    "state": "MA",
+    "country": "USA",
+    "skills": ["teaching", "mentoring", "event planning"],
+    "interests": ["youth", "education", "community"],
+    "availability": ["weekends", "evenings", "afternoons"],
+    "status": "approved",
+    "backgroundCheckStatus": "approved",
+    "backgroundCheckDate": "2025-02-10T08:00:00Z",
+    "createdAt": "2025-01-15T10:30:00Z",
+    "approvedAt": "2025-02-10T14:22:00Z"
+  },
+  "timestamp": "2025-12-30T15:45:00Z"
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="endpoint">
+                    <span class="endpoint-method method-put">PUT</span>
+                    <span class="endpoint-path">/volunteers/{id}</span>
+                    <p><strong>Description:</strong> Update volunteer (admin only)</p>
+                    
+                    <div class="endpoint-section">
+                        <div class="endpoint-section-header">
+                            <span><strong>Request Body</strong></span>
+                            <span class="section-toggle">▼</span>
+                        </div>
+                        <div class="endpoint-section-content">
+                            <pre><code>{
+  "status": "approved",
+  "backgroundCheckStatus": "approved",
+  "notes": "Approved for youth ministry program",
+  "availability": ["weekends", "evenings"]
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="endpoint-section">
+                        <div class="endpoint-section-header">
+                            <span><strong>Response (200 OK)</strong></span>
+                            <span class="section-toggle">▼</span>
+                        </div>
+                        <div class="endpoint-section-content">
+                            <pre><code>{
+  "success": true,
+  "data": {
+    "id": "uuid",
+    "applicationId": "VOL-2024-001",
+    "firstName": "Sarah",
+    "lastName": "Johnson",
+    "status": "approved",
+    "backgroundCheckStatus": "approved",
+    "updatedAt": "2025-12-30T15:45:00Z"
+  },
+  "message": "Volunteer record updated successfully",
+  "timestamp": "2025-12-30T15:45:00Z"
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Newsletter -->
+            <section id="newsletter">
+                <h2>Newsletter Management</h2>
+
+                <div class="endpoint">
+                    <span class="endpoint-method method-post">POST</span>
+                    <span class="endpoint-path">/newsletter/subscribe</span>
+                    <p><strong>Description:</strong> Subscribe to newsletter</p>
+                    
+                    <div class="endpoint-section">
+                        <div class="endpoint-section-header">
+                            <span><strong>Request Body</strong></span>
+                            <span class="section-toggle">▼</span>
+                        </div>
+                        <div class="endpoint-section-content">
+                            <pre><code>{
+  "email": "subscriber@example.com",
+  "name": "John Smith",
+  "languagePreference": "en"
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="endpoint-section">
+                        <div class="endpoint-section-header">
+                            <span><strong>Response (201 Created)</strong></span>
+                            <span class="section-toggle">▼</span>
+                        </div>
+                        <div class="endpoint-section-content">
+                            <pre><code>{
+  "success": true,
+  "data": {
+    "id": "uuid",
+    "email": "subscriber@example.com",
+    "name": "John Smith",
+    "languagePreference": "en",
+    "status": "active",
+    "subscribedOn": "2025-12-30T15:45:00Z"
+  },
+  "message": "Successfully subscribed to newsletter",
+  "timestamp": "2025-12-30T15:45:00Z"
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="endpoint">
+                    <span class="endpoint-method method-get">GET</span>
+                    <span class="endpoint-path">/newsletter/subscribers</span>
+                    <p><strong>Description:</strong> List newsletter subscribers (admin only)</p>
+                    <p><strong>Query Parameters:</strong> <code>?limit=50&offset=0&status=active&sortBy=subscribedOn</code></p>
+                    
+                    <div class="endpoint-section">
+                        <div class="endpoint-section-header">
+                            <span><strong>Response (200 OK)</strong></span>
+                            <span class="section-toggle">▼</span>
+                        </div>
+                        <div class="endpoint-section-content">
+                            <pre><code>{
+  "success": true,
+  "data": [
+    {
+      "id": "uuid",
+      "email": "subscriber@example.com",
+      "name": "John Smith",
+      "languagePreference": "en",
+      "status": "active",
+      "subscribedOn": "2025-10-15T10:30:00Z"
+    }
+  ],
+  "pagination": {
+    "limit": 50,
+    "offset": 0,
+    "total": 3450,
+    "hasMore": true
+  },
+  "timestamp": "2025-12-30T15:45:00Z"
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="endpoint">
+                    <span class="endpoint-method method-post">POST</span>
+                    <span class="endpoint-path">/newsletter/unsubscribe</span>
+                    <p><strong>Description:</strong> Unsubscribe from newsletter</p>
+                    
+                    <div class="endpoint-section">
+                        <div class="endpoint-section-header">
+                            <span><strong>Request Body</strong></span>
+                            <span class="section-toggle">▼</span>
+                        </div>
+                        <div class="endpoint-section-content">
+                            <pre><code>{
+  "email": "subscriber@example.com"
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="endpoint-section">
+                        <div class="endpoint-section-header">
+                            <span><strong>Response (200 OK)</strong></span>
+                            <span class="section-toggle">▼</span>
+                        </div>
+                        <div class="endpoint-section-content">
+                            <pre><code>{
+  "success": true,
+  "data": {
+    "email": "subscriber@example.com",
+    "status": "unsubscribed",
+    "unsubscribedOn": "2025-12-30T15:45:00Z"
+  },
+  "message": "Successfully unsubscribed from newsletter",
+  "timestamp": "2025-12-30T15:45:00Z"
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact -->
+            <section id="contact">
+                <h2>Contact Management</h2>
+
+                <div class="endpoint">
+                    <span class="endpoint-method method-post">POST</span>
+                    <span class="endpoint-path">/contact</span>
+                    <p><strong>Description:</strong> Submit contact inquiry</p>
+                    
+                    <div class="endpoint-section">
+                        <div class="endpoint-section-header">
+                            <span><strong>Request Body</strong></span>
+                            <span class="section-toggle">▼</span>
+                        </div>
+                        <div class="endpoint-section-content">
+                            <pre><code>{
+  "name": "Michael Brown",
+  "email": "michael@example.com",
+  "phone": "+1-555-7890",
+  "topic": "membership",
+  "subject": "Interest in joining NAACUS",
+  "message": "I would like to become a member and learn more about your programs."
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="endpoint-section">
+                        <div class="endpoint-section-header">
+                            <span><strong>Response (201 Created)</strong></span>
+                            <span class="section-toggle">▼</span>
+                        </div>
+                        <div class="endpoint-section-content">
+                            <pre><code>{
+  "success": true,
+  "data": {
+    "id": "uuid",
+    "inquiryId": "INQ-2025-001234",
+    "name": "Michael Brown",
+    "email": "michael@example.com",
+    "phone": "+1-555-7890",
+    "topic": "membership",
+    "subject": "Interest in joining NAACUS",
+    "status": "new",
+    "createdAt": "2025-12-30T15:45:00Z"
+  },
+  "message": "Contact inquiry submitted successfully",
+  "timestamp": "2025-12-30T15:45:00Z"
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="endpoint">
+                    <span class="endpoint-method method-get">GET</span>
+                    <span class="endpoint-path">/contact</span>
+                    <p><strong>Description:</strong> List contact inquiries (admin only)</p>
+                    <p><strong>Query Parameters:</strong> <code>?limit=20&offset=0&status=new&topic=membership&sortBy=createdAt&sortOrder=desc</code></p>
+                    
+                    <div class="endpoint-section">
+                        <div class="endpoint-section-header">
+                            <span><strong>Response (200 OK)</strong></span>
+                            <span class="section-toggle">▼</span>
+                        </div>
+                        <div class="endpoint-section-content">
+                            <pre><code>{
+  "success": true,
+  "data": [
+    {
+      "id": "uuid",
+      "inquiryId": "INQ-2025-001234",
+      "name": "Michael Brown",
+      "email": "michael@example.com",
+      "phone": "+1-555-7890",
+      "topic": "membership",
+      "subject": "Interest in joining NAACUS",
+      "status": "new",
+      "createdAt": "2025-12-30T15:45:00Z"
+    }
+  ],
+  "pagination": {
+    "limit": 20,
+    "offset": 0,
+    "total": 156,
+    "hasMore": true
+  },
+  "timestamp": "2025-12-30T15:45:00Z"
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="endpoint">
+                    <span class="endpoint-method method-get">GET</span>
+                    <span class="endpoint-path">/contact/{id}</span>
+                    <p><strong>Description:</strong> Get contact inquiry details</p>
+                    
+                    <div class="endpoint-section">
+                        <div class="endpoint-section-header">
+                            <span><strong>Response (200 OK)</strong></span>
+                            <span class="section-toggle">▼</span>
+                        </div>
+                        <div class="endpoint-section-content">
+                            <pre><code>{
+  "success": true,
+  "data": {
+    "id": "uuid",
+    "inquiryId": "INQ-2025-001234",
+    "name": "Michael Brown",
+    "email": "michael@example.com",
+    "phone": "+1-555-7890",
+    "topic": "membership",
+    "subject": "Interest in joining NAACUS",
+    "message": "I would like to become a member and learn more about your programs.",
+    "status": "new",
+    "notes": null,
+    "respondedOn": null,
+    "createdAt": "2025-12-30T15:45:00Z"
+  },
+  "timestamp": "2025-12-30T15:45:00Z"
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="endpoint">
+                    <span class="endpoint-method method-put">PUT</span>
+                    <span class="endpoint-path">/contact/{id}</span>
+                    <p><strong>Description:</strong> Update contact inquiry status (admin only)</p>
+                    
+                    <div class="endpoint-section">
+                        <div class="endpoint-section-header">
+                            <span><strong>Request Body</strong></span>
+                            <span class="section-toggle">▼</span>
+                        </div>
+                        <div class="endpoint-section-content">
+                            <pre><code>{
+  "status": "in_progress",
+  "notes": "User contacted on phone, interested in membership form"
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="endpoint-section">
+                        <div class="endpoint-section-header">
+                            <span><strong>Response (200 OK)</strong></span>
+                            <span class="section-toggle">▼</span>
+                        </div>
+                        <div class="endpoint-section-content">
+                            <pre><code>{
+  "success": true,
+  "data": {
+    "id": "uuid",
+    "inquiryId": "INQ-2025-001234",
+    "name": "Michael Brown",
+    "status": "in_progress",
+    "notes": "User contacted on phone, interested in membership form",
+    "updatedAt": "2025-12-30T15:50:00Z"
+  },
+  "message": "Contact inquiry updated successfully",
+  "timestamp": "2025-12-30T15:50:00Z"
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Events -->
+            <section id="events">
+                <h2>Event Management</h2>
+
+                <div class="endpoint">
+                    <span class="endpoint-method method-get">GET</span>
+                    <span class="endpoint-path">/events</span>
+                    <p><strong>Description:</strong> List events with filters</p>
+                    <p><strong>Query Parameters:</strong> <code>?limit=20&offset=0&year=2025&status=upcoming&sortBy=date</code></p>
+                    
+                    <div class="endpoint-section">
+                        <div class="endpoint-section-header">
+                            <span><strong>Response (200 OK)</strong></span>
+                            <span class="section-toggle">▼</span>
+                        </div>
+                        <div class="endpoint-section-content">
+                            <pre><code>{
+  "success": true,
+  "data": [
+    {
+      "id": "uuid",
+      "title": "Annual Conference 2025",
+      "description": "Join us for our annual conference with keynote speakers and networking opportunities.",
+      "dateStart": "2025-06-15T09:00:00Z",
+      "dateEnd": "2025-06-17T17:00:00Z",
+      "location": "Boston Convention Center",
+      "address": "100 Hanover Street",
+      "city": "Boston",
+      "state": "MA",
+      "country": "USA",
+      "capacity": 500,
+      "registrationUrl": "https://events.naacus.org/conference-2025",
+      "type": "conference",
+      "createdAt": "2025-01-10T10:30:00Z"
+    }
+  ],
+  "pagination": {
+    "limit": 20,
+    "offset": 0,
+    "total": 18,
+    "hasMore": false
+  },
+  "timestamp": "2025-12-30T15:45:00Z"
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="endpoint">
+                    <span class="endpoint-method method-get">GET</span>
+                    <span class="endpoint-path">/events/{id}</span>
+                    <p><strong>Description:</strong> Get event details</p>
+                    
+                    <div class="endpoint-section">
+                        <div class="endpoint-section-header">
+                            <span><strong>Response (200 OK)</strong></span>
+                            <span class="section-toggle">▼</span>
+                        </div>
+                        <div class="endpoint-section-content">
+                            <pre><code>{
+  "success": true,
+  "data": {
+    "id": "uuid",
+    "title": "Annual Conference 2025",
+    "description": "Join us for our annual conference with keynote speakers and networking opportunities. This year features workshops on community building, faith formation, and social ministry.",
+    "dateStart": "2025-06-15T09:00:00Z",
+    "dateEnd": "2025-06-17T17:00:00Z",
+    "location": "Boston Convention Center",
+    "address": "100 Hanover Street",
+    "city": "Boston",
+    "state": "MA",
+    "country": "USA",
+    "zipCode": "02108",
+    "capacity": 500,
+    "registrationUrl": "https://events.naacus.org/conference-2025",
+    "imageUrl": "https://naacus.org/images/conference-2025.jpg",
+    "type": "conference",
+    "registrationStatus": "open",
+    "createdAt": "2025-01-10T10:30:00Z",
+    "updatedAt": "2025-12-20T14:22:00Z"
+  },
+  "timestamp": "2025-12-30T15:45:00Z"
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="endpoint">
+                    <span class="endpoint-method method-post">POST</span>
+                    <span class="endpoint-path">/events/{id}/register</span>
+                    <p><strong>Description:</strong> Register for an event</p>
+                    
+                    <div class="endpoint-section">
+                        <div class="endpoint-section-header">
+                            <span><strong>Request Body</strong></span>
+                            <span class="section-toggle">▼</span>
+                        </div>
+                        <div class="endpoint-section-content">
+                            <pre><code>{
+  "firstName": "James",
+  "lastName": "Wilson",
+  "email": "james@example.com",
+  "phone": "+1-555-1357",
+  "numberOfTickets": 2,
+  "dietaryRestrictions": "vegetarian",
+  "specialNeeds": "wheelchair accessible seating requested"
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="endpoint-section">
+                        <div class="endpoint-section-header">
+                            <span><strong>Response (201 Created)</strong></span>
+                            <span class="section-toggle">▼</span>
+                        </div>
+                        <div class="endpoint-section-content">
+                            <pre><code>{
+  "success": true,
+  "data": {
+    "id": "uuid",
+    "registrationId": "REG-2025-005678",
+    "eventId": "uuid",
+    "eventTitle": "Annual Conference 2025",
+    "firstName": "James",
+    "lastName": "Wilson",
+    "email": "james@example.com",
+    "numberOfTickets": 2,
+    "registrationDate": "2025-12-30T15:45:00Z",
+    "status": "confirmed",
+    "confirmationNumber": "CONF-2025-ABC123"
+  },
+  "message": "Successfully registered for event",
+  "timestamp": "2025-12-30T15:45:00Z"
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="endpoint">
+                    <span class="endpoint-method method-get">GET</span>
+                    <span class="endpoint-path">/events/{eventId}/registrations</span>
+                    <p><strong>Description:</strong> Get event registrations (admin only)</p>
+                    <p><strong>Query Parameters:</strong> <code>?limit=50&offset=0&status=confirmed&sortBy=registrationDate</code></p>
+                    
+                    <div class="endpoint-section">
+                        <div class="endpoint-section-header">
+                            <span><strong>Response (200 OK)</strong></span>
+                            <span class="section-toggle">▼</span>
+                        </div>
+                        <div class="endpoint-section-content">
+                            <pre><code>{
+  "success": true,
+  "data": [
+    {
+      "id": "uuid",
+      "registrationId": "REG-2025-005678",
+      "firstName": "James",
+      "lastName": "Wilson",
+      "email": "james@example.com",
+      "phone": "+1-555-1357",
+      "numberOfTickets": 2,
+      "status": "confirmed",
+      "registrationDate": "2025-12-30T15:45:00Z"
+    }
+  ],
+  "pagination": {
+    "limit": 50,
+    "offset": 0,
+    "total": 234,
+    "hasMore": true
+  },
+  "timestamp": "2025-12-30T15:45:00Z"
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Donations -->
+            <section id="donations">
+                <h2>Donations (Recording After Payment)</h2>
+
+                <div class="info">
+                    Frontend processes all payments directly via:
+                    <ul>
+                        <li><strong>Stripe</strong> - Stripe.js with publishable key</li>
+                        <li><strong>PayPal</strong> - PayPal SDK</li>
+                        <li><strong>Coinbase</strong> - Hosted payment link</li>
+                        <li><strong>Square</strong> - Web Payments SDK</li>
+                    </ul>
+                    Backend only stores donation records AFTER successful payment.
+                </div>
+
+                <div class="endpoint">
+                    <span class="endpoint-method method-post">POST</span>
+                    <span class="endpoint-path">/donations</span>
+                    <p><strong>Purpose:</strong> Record donation after frontend-processed payment</p>
+                    
+                    <h4>Request Body:</h4>
+                    <pre><code>{
+  "transactionId": "stripe_pi_xxxxx or paypal_order_id",
+  "amount": 100.00,
+  "currency": "USD",
+  "paymentMethod": "card|paypal|crypto|cashapp",
+  "paymentProvider": "stripe|paypal|coinbase|square",
+  "donorName": "John Doe",
+  "donorEmail": "john@example.com",
+  "isAnonymous": false,
+  "message": "Supporting NAACUS mission"
+}</code></pre>
+                </div>
+
+                <div class="endpoint">
+                    <span class="endpoint-method method-get">GET</span>
+                    <span class="endpoint-path">/donations</span>
+                    <p><strong>Description:</strong> List all donations with pagination</p>
+                    <p><strong>Query Parameters:</strong> <code>?limit=25&offset=0&status=completed&sortBy=createdAt&sortOrder=desc</code></p>
+                    
+                    <div class="endpoint-section">
+                        <div class="endpoint-section-header">
+                            <span><strong>Response (200 OK)</strong></span>
+                            <span class="section-toggle">▼</span>
+                        </div>
+                        <div class="endpoint-section-content">
+                            <pre><code>{
+  "success": true,
+  "data": [
+    {
+      "id": "uuid",
+      "transactionId": "stripe_pi_1a2b3c4d5e6f",
+      "amount": 100.00,
+      "currency": "USD",
+      "paymentMethod": "card",
+      "paymentProvider": "stripe",
+      "donorName": "Anonymous",
+      "donorEmail": "donor@example.com",
+      "isAnonymous": true,
+      "message": "Supporting NAACUS mission",
+      "status": "completed",
+      "createdAt": "2025-12-20T10:30:00Z"
+    }
+  ],
+  "pagination": {
+    "limit": 25,
+    "offset": 0,
+    "total": 1842,
+    "hasMore": true
+  },
+  "timestamp": "2025-12-30T15:45:00Z"
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="endpoint">
+                    <span class="endpoint-method method-get">GET</span>
+                    <span class="endpoint-path">/donations/{id}</span>
+                    <p><strong>Description:</strong> Get specific donation details</p>
+                    
+                    <div class="endpoint-section">
+                        <div class="endpoint-section-header">
+                            <span><strong>Response (200 OK)</strong></span>
+                            <span class="section-toggle">▼</span>
+                        </div>
+                        <div class="endpoint-section-content">
+                            <pre><code>{
+  "success": true,
+  "data": {
+    "id": "uuid",
+    "transactionId": "stripe_pi_1a2b3c4d5e6f",
+    "amount": 100.00,
+    "currency": "USD",
+    "paymentMethod": "card",
+    "paymentProvider": "stripe",
+    "paymentProviderTransactionId": "ch_1NzK5zAbc1234xyz",
+    "donorName": "Anonymous",
+    "donorEmail": "donor@example.com",
+    "isAnonymous": true,
+    "message": "Supporting NAACUS mission",
+    "status": "completed",
+    "receiptSent": true,
+    "createdAt": "2025-12-20T10:30:00Z"
+  },
+  "timestamp": "2025-12-30T15:45:00Z"
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Data Retrieval -->
+            <section id="data">
+                <h2>Data Retrieval (Read-Only APIs)</h2>
+
+                <div class="endpoint">
+                    <span class="endpoint-method method-get">GET</span>
+                    <span class="endpoint-path">/data/leadership</span>
+                    <p>Get leadership information (board members, advisers, ministry coordinations)</p>
+                    
+                    <div class="endpoint-section">
+                        <div class="endpoint-section-header">
+                            <span><strong>Response (200 OK)</strong></span>
+                            <span class="section-toggle">▼</span>
+                        </div>
+                        <div class="endpoint-section-content">
+                            <pre><code>{
+  "success": true,
+  "data": {
+    "boardMembers": [
+      {
+        "id": "uuid",
+        "name": "Dr. Anthony Okafor",
+        "title": "President",
+        "bio": "Founder and visionary leader of NAACUS",
+        "email": "president@naacus.org",
+        "imageUrl": "https://naacus.org/images/leadership/okafor.jpg"
+      }
+    ],
+    "advisoryBoard": [
+      {
+        "id": "uuid",
+        "name": "Rev. John Smith",
+        "title": "Spiritual Advisor",
+        "organization": "Diocese of Boston"
+      }
+    ],
+    "ministryCoordinators": [
+      {
+        "id": "uuid",
+        "name": "Angela Johnson",
+        "ministry": "Youth Ministry",
+        "contact": "youth@naacus.org"
+      }
+    ]
+  },
+  "timestamp": "2025-12-30T15:45:00Z"
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="endpoint">
+                    <span class="endpoint-method method-get">GET</span>
+                    <span class="endpoint-path">/data/ministries</span>
+                    <p>Get all ministries information</p>
+                    
+                    <div class="endpoint-section">
+                        <div class="endpoint-section-header">
+                            <span><strong>Response (200 OK)</strong></span>
+                            <span class="section-toggle">▼</span>
+                        </div>
+                        <div class="endpoint-section-content">
+                            <pre><code>{
+  "success": true,
+  "data": [
+    {
+      "id": "uuid",
+      "name": "Youth Ministry",
+      "description": "Programs and activities focused on empowering young African American Catholics",
+      "coordinator": "Angela Johnson",
+      "coordinatorEmail": "youth@naacus.org",
+      "focusAreas": ["education", "mentoring", "spiritual growth"],
+      "programs": ["summer camps", "mentorship program", "college prep"],
+      "imageUrl": "https://naacus.org/images/ministries/youth.jpg"
+    },
+    {
+      "id": "uuid",
+      "name": "Community Outreach",
+      "description": "Service initiatives addressing social justice and community needs",
+      "coordinator": "Marcus Williams",
+      "focusAreas": ["social justice", "community service", "education"]
+    }
+  ],
+  "timestamp": "2025-12-30T15:45:00Z"
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="endpoint">
+                    <span class="endpoint-method method-get">GET</span>
+                    <span class="endpoint-path">/data/resources</span>
+                    <p>Get resources and quick links</p>
+                    
+                    <div class="endpoint-section">
+                        <div class="endpoint-section-header">
+                            <span><strong>Response (200 OK)</strong></span>
+                            <span class="section-toggle">▼</span>
+                        </div>
+                        <div class="endpoint-section-content">
+                            <pre><code>{
+  "success": true,
+  "data": {
+    "resources": [
+      {
+        "id": "uuid",
+        "title": "Faith Formation Guide",
+        "description": "Comprehensive guide for spiritual growth and development",
+        "category": "spiritual",
+        "downloadUrl": "https://naacus.org/downloads/faith-formation-guide.pdf",
+        "fileSize": "2.5MB",
+        "createdAt": "2024-06-15T10:30:00Z"
+      }
+    ],
+    "quickLinks": [
+      {
+        "id": "uuid",
+        "title": "Contact Diocese",
+        "url": "https://boston.catholic.org",
+        "icon": "external-link"
+      }
+    ]
+  },
+  "timestamp": "2025-12-30T15:45:00Z"
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="endpoint">
+                    <span class="endpoint-method method-get">GET</span>
+                    <span class="endpoint-path">/data/events</span>
+                    <p>Get all events (upcoming and past)</p>
+                    
+                    <div class="endpoint-section">
+                        <div class="endpoint-section-header">
+                            <span><strong>Response (200 OK)</strong></span>
+                            <span class="section-toggle">▼</span>
+                        </div>
+                        <div class="endpoint-section-content">
+                            <pre><code>{
+  "success": true,
+  "data": {
+    "upcomingEvents": [
+      {
+        "id": "uuid",
+        "title": "Summer Youth Camp 2025",
+        "date": "2025-07-20",
+        "location": "Boston, MA",
+        "description": "Annual summer camp for young members"
+      }
+    ],
+    "pastEvents": [
+      {
+        "id": "uuid",
+        "title": "Winter Retreat 2024",
+        "date": "2024-12-10",
+        "attendees": 156,
+        "highlights": "Networking, spiritual renewal, leadership training"
+      }
+    ]
+  },
+  "timestamp": "2025-12-30T15:45:00Z"
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="endpoint">
+                    <span class="endpoint-method method-get">GET</span>
+                    <span class="endpoint-path">/data/faq</span>
+                    <p>Get all FAQs by category</p>
+                    
+                    <h4>Response (200 OK):</h4>
+                    <pre><code>{
+  "success": true,
+  "data": [
+    {
+      "id": "uuid",
+      "category": "Membership",
+      "questions": [
+        {
+          "id": "uuid",
+          "question": "How do I become a member?",
+          "answer": "You can become a member by filling out the membership application form on our website or contacting us directly...",
+          "helpful": 42
+        }
+      ]
+    },
+    {
+      "id": "uuid",
+      "category": "Events",
+      "questions": [
+        {
+          "id": "uuid",
+          "question": "When is the next conference?",
+          "answer": "Our annual conference is scheduled for June 2025...",
+          "helpful": 28
+        }
+      ]
+    }
+  ],
+  "timestamp": "2025-12-30T15:45:00Z"
+}</code></pre>
+                </div>
+
+                <div class="endpoint">
+                    <span class="endpoint-method method-get">GET</span>
+                    <span class="endpoint-path">/data/testimonials</span>
+                    <p>Get member testimonials</p>
+                </div>
+            </section>
+
+            <!-- Error Handling -->
+            <section id="errors">
+                <h2>Error Handling & Response Format</h2>
+
+                <h3>Standard Response Format</h3>
+                <pre><code>{
+  "success": true|false,
+  "data": { /* response data */ },
+  "error": "string (only if success=false)",
+  "pagination": { /* if applicable */ },
+  "timestamp": "ISO-8601 timestamp"
+}</code></pre>
+
+                <h3>Common Error Responses</h3>
+                <table>
+                    <tr>
+                        <th>Status Code</th>
+                        <th>Response</th>
+                    </tr>
+                    <tr>
+                        <td>400 Bad Request</td>
+                        <td>Validation failed, missing required fields</td>
+                    </tr>
+                    <tr>
+                        <td>401 Unauthorized</td>
+                        <td>Authentication required or invalid token</td>
+                    </tr>
+                    <tr>
+                        <td>403 Forbidden</td>
+                        <td>Insufficient permissions for the resource</td>
+                    </tr>
+                    <tr>
+                        <td>404 Not Found</td>
+                        <td>Resource not found</td>
+                    </tr>
+                    <tr>
+                        <td>422 Unprocessable Entity</td>
+                        <td>Validation error with field details</td>
+                    </tr>
+                    <tr>
+                        <td>429 Too Many Requests</td>
+                        <td>Rate limit exceeded</td>
+                    </tr>
+                    <tr>
+                        <td>500 Internal Server Error</td>
+                        <td>Server error, check request ID</td>
+                    </tr>
+                </table>
+            </section>
+
+            <!-- Security -->
+            <section id="security">
+                <h2>Security Requirements</h2>
+
+                <h3>Required Headers</h3>
+                <pre><code>X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+X-XSS-Protection: 1; mode=block
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+Content-Security-Policy: default-src 'self'</code></pre>
+
+                <h3>Authentication</h3>
+                <ul>
+                    <li>Implement JWT tokens for authenticated endpoints</li>
+                    <li>Tokens should expire after 24 hours</li>
+                    <li>Refresh tokens valid for 30 days</li>
+                    <li>All sensitive endpoints require authentication</li>
+                </ul>
+
+                <h3>Data Validation</h3>
+                <ul>
+                    <li>Validate all input on server side</li>
+                    <li>Sanitize HTML inputs</li>
+                    <li>Validate email addresses</li>
+                    <li>Validate phone numbers (US format)</li>
+                    <li>Validate zip codes</li>
+                    <li>Check file uploads for malware</li>
+                </ul>
+
+                <h3>CORS Policy</h3>
+                <pre><code>Access-Control-Allow-Origin: https://naacus.org
+Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+Access-Control-Allow-Headers: Content-Type, Authorization
+Access-Control-Max-Age: 86400</code></pre>
+            </section>
+
+            <!-- Webhooks -->
+            <section id="webhooks">
+                <h2>Webhook Events</h2>
+
+                <div class="info">
+                    <h4>Payment Completed:</h4>
+                    <pre><code>{
+  "event": "payment.completed",
+  "timestamp": "ISO-8601 timestamp",
+  "data": {
+    "paymentId": "string",
+    "transactionId": "string",
+    "amount": 50.00,
+    "donorEmail": "string",
+    "paymentMethod": "card|paypal|bank|crypto|cashapp"
+  }
+}</code></pre>
+
+                    <h4>Payment Failed:</h4>
+                    <pre><code>{
+  "event": "payment.failed",
+  "timestamp": "ISO-8601 timestamp",
+  "data": {
+    "paymentId": "string",
+    "amount": 50.00,
+    "reason": "string (card declined, insufficient funds, etc.)"
+  }
+}</code></pre>
+                </div>
+            </section>
+
+            <!-- Implementation Checklist -->
+            <section id="checklist">
+                <h2>Implementation Checklist for Backend Team</h2>
+
+                <ul class="checklist">
+                    <li>Set up API server with chosen framework (Node.js/Express, Python/Django, Java/Spring, etc.)</li>
+                    <li>Implement authentication (JWT)</li>
+                    <li>Implement all CRUD endpoints</li>
+                    <li>Add input validation</li>
+                    <li>Add error handling</li>
+                    <li>Implement rate limiting</li>
+                    <li>Add CORS support</li>
+                    <li>Set security headers</li>
+                    <li>Add logging</li>
+                    <li>Implement pagination</li>
+                    <li>Set up environment variables</li>
+                    <li>Implement caching (Redis for frequently accessed data)</li>
+                    <li>Create API documentation (Swagger/OpenAPI)</li>
+                    <li>Set up automated backups</li>
+                    <li>Implement monitoring & alerting</li>
+                    <li>Load testing</li>
+                    <li>Security audit</li>
+                    <li>Deploy to staging</li>
+                    <li>Deploy to production</li>
+                </ul>
+            </section>
+
+            <!-- Responsibilities -->
+            <section id="responsibilities">
+                <h2>Frontend-Backend Responsibilities</h2>
+
+                <h3>What Frontend CAN Call Directly</h3>
+                <div class="success">
+                    <ul>
+                        <li>✅ <strong>Google Analytics 4</strong> via gtag.js with property ID</li>
+                        <li>✅ <strong>Stripe</strong> via Stripe.js with publishable key</li>
+                        <li>✅ <strong>PayPal</strong> via PayPal SDK with client ID</li>
+                        <li>✅ <strong>Coinbase Commerce</strong> via hosted payment link</li>
+                        <li>✅ <strong>Square</strong> via Web Payments SDK with app ID</li>
+                        <li>✅ <strong>Backend REST APIs</strong> for business logic</li>
+                    </ul>
+                </div>
+
+                <h3>What Backend Handles Only</h3>
+                <div class="warning">
+                    <ul>
+                        <li>❌ <strong>Dataverse Access</strong> - service account only</li>
+                        <li>❌ <strong>SharePoint Access</strong> - service account only</li>
+                        <li>❌ <strong>Email Delivery</strong> - SendGrid, Azure Communication Services</li>
+                        <li>❌ <strong>SMS/Notifications</strong> - Twilio, Azure services</li>
+                        <li>❌ <strong>Webhook Processing</strong> - payment provider webhooks</li>
+                        <li>❌ <strong>Payment Persistence</strong> - storing donation records in Dataverse</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Environment Variables -->
+            <section id="env">
+                <h2>Environment Variables Required (Backend)</h2>
+
+                <h3>Microsoft Azure / Dataverse</h3>
+                <pre><code>AZURE_TENANT_ID=xxx
+AZURE_CLIENT_ID=xxx
+AZURE_CLIENT_SECRET=xxx
+DATAVERSE_ENVIRONMENT_URL=https://orgxxxxx.crm.dynamics.com
+SHAREPOINT_SITE_URL=https://naacus.sharepoint.com/sites/naacus
+SHAREPOINT_CLIENT_ID=xxx
+SHAREPOINT_CLIENT_SECRET=xxx</code></pre>
+
+                <h3>Email Service (Backend Only)</h3>
+                <pre><code>SENDGRID_API_KEY=xxxxx
+SENDGRID_FROM_EMAIL=noreply@naacus.org</code></pre>
+
+                <h3>JWT/Auth</h3>
+                <pre><code>JWT_SECRET=xxxxx (strong random string)
+JWT_EXPIRY=24h
+REFRESH_TOKEN_EXPIRY=30d</code></pre>
+
+                <h3>Webhook Secrets (from payment processors)</h3>
+                <pre><code>STRIPE_WEBHOOK_SECRET=whsec_xxxxx
+PAYPAL_WEBHOOK_ID=xxxxx
+COINBASE_WEBHOOK_SECRET=xxxxx
+SQUARE_WEBHOOK_SIGNATURE_KEY=xxxxx</code></pre>
+
+                <div class="info">
+                    <strong>Note:</strong> Frontend has these (NOT backend):
+                    <ul>
+                        <li>GA4_MEASUREMENT_ID (frontend only)</li>
+                        <li>STRIPE_PUBLISHABLE_KEY (frontend only)</li>
+                        <li>PAYPAL_CLIENT_ID (frontend only)</li>
+                        <li>SQUARE_APP_ID (frontend only)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Implementation Flows -->
+            <section id="flows">
+                <h2>Example Backend Implementation Flows</h2>
+
+                <h3>Donation Process Flow</h3>
+                <pre><code>Frontend User → DonationDialog
+    ↓
+Frontend collects card details via Stripe.js (NOT backend)
+    ↓
+Frontend calls Stripe API directly to create payment
+    ↓
+Frontend receives Stripe payment confirmation
+    ↓
+Frontend POST /donations (sends donation data to backend)
+    ↓
+Backend:
+  1. Validates donation data
+  2. Stores donation record in Dataverse
+  3. Sends confirmation email (SendGrid)
+  4. Returns success
+    ↓
+Frontend: Shows confirmation message</code></pre>
+
+                <h3>Volunteer Application Flow</h3>
+                <pre><code>Frontend User → Volunteer form
+    ↓
+Frontend POST /volunteers/apply {form data}
+    ↓
+Backend:
+  1. Validates form data
+  2. Stores in Dataverse
+  3. Sends confirmation email
+  4. Returns success
+    ↓
+Frontend: Shows confirmation message</code></pre>
+
+                <h3>Analytics Event Flow</h3>
+                <pre><code>Frontend User interacts with page
+    ↓
+Frontend sends to GA4 directly via gtag.js (NOT backend)
+    ↓
+GA4 records event with:
+  - User properties (language, location)
+  - Event data (action, label, value)
+    ↓
+Backend can retrieve GA4 reports separately if needed</code></pre>
+            </section>
+
+            <!-- Dataverse Schema -->
+            <section id="schema">
+                <h2>Dataverse Schema Design</h2>
+                <p>Key tables to create in Microsoft Dataverse:</p>
+
+                <h3>naacus_member</h3>
+                <pre><code>- id (GUID)
+- member_id (Text, unique)
+- first_name (Text)
+- last_name (Text)
+- email (Text, unique)
+- phone (Text)
+- status (Choice: active, pending, inactive)
+- join_date (DateTime)
+- created_on (DateTime, auto)
+- modified_on (DateTime, auto)</code></pre>
+
+                <h3>naacus_donation</h3>
+                <pre><code>- id (GUID)
+- transaction_id (Text, unique)
+- amount (Decimal)
+- currency (Text)
+- payment_method (Choice: card, paypal, bank, crypto, cashapp)
+- payment_provider_transaction_id (Text)
+- status (Choice: completed, failed, refunded)
+- donor_email (Text)
+- donor_name (Text)
+- donation_type (Choice: one-time, monthly)
+- created_on (DateTime, auto)</code></pre>
+
+                <h3>naacus_contact</h3>
+                <pre><code>- id (GUID)
+- inquiry_id (Text, unique)
+- name (Text)
+- email (Text)
+- phone (Text, optional)
+- topic (Choice: membership, volunteer, events, donation, partnership, feedback, other)
+- subject (Text)
+- message (Text)
+- status (Choice: new, in_progress, responded, closed)
+- notes (Text, optional)
+- created_on (DateTime, auto)
+- responded_on (DateTime, optional)</code></pre>
+
+                <h3>naacus_event</h3>
+                <pre><code>- id (GUID)
+- title (Text)
+- description (Text)
+- date_start (DateTime)
+- date_end (DateTime, optional)
+- location (Text)
+- address (Text, optional)
+- city (Text)
+- state (Text)
+- country (Text)
+- capacity (Integer, optional)
+- registration_url (Text, optional)
+- image_url (Text, optional)
+- type (Choice: conference, workshop, meeting, other)
+- created_on (DateTime, auto)
+- modified_on (DateTime, auto)</code></pre>
+
+                <h3>naacus_volunteer_application</h3>
+                <pre><code>- id (GUID)
+- application_id (Text, unique)
+- first_name (Text)
+- last_name (Text)
+- email (Text)
+- phone (Text)
+- city (Text)
+- state (Text)
+- skills (Text) // JSON array
+- interests (Text) // JSON array
+- availability (Text) // JSON array
+- status (Choice: pending_review, approved, rejected)
+- background_check_status (Choice: pending, approved, rejected)
+- created_on (DateTime, auto)
+- submitted_on (DateTime)</code></pre>
+
+                <h3>naacus_newsletter_subscriber</h3>
+                <pre><code>- id (GUID)
+- email (Text, unique)
+- name (Text, optional)
+- language_preference (Choice: en, fr)
+- status (Choice: active, unsubscribed)
+- subscribed_on (DateTime, auto)</code></pre>
+            </section>
+
+            <div class="footer">
+                <p><strong>Last Updated:</strong> December 2025</p>
+                <p><strong>Version:</strong> 2.0 (Microsoft Dataverse/SharePoint Architecture)</p>
+                <p><strong>Status:</strong> Ready for Implementation</p>
+            </div>
+        </main>
+    </div>
+
+    <button class="print-button" onclick="window.print()">🖨️ Print / Save as PDF</button>
+
+    <script>
+        // Highlight active menu item on scroll
+        function highlightActiveLink() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a');
+
+            // Remove active class from all links
+            navLinks.forEach(link => link.classList.remove('active'));
+
+            // Find which section is in view
+            let activeSection = null;
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top <= 150) {
+                    activeSection = section.id;
+                }
+            });
+
+            // Highlight corresponding nav link
+            if (activeSection) {
+                const activeLink = document.querySelector(`nav a[href="#${activeSection}"]`);
+                if (activeLink) {
+                    activeLink.classList.add('active');
+                }
+            }
+        }
+
+        // Add click event listeners to nav links
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function() {
+                // Remove active class from all links
+                document.querySelectorAll('nav a').forEach(l => l.classList.remove('active'));
+                // Add active class to clicked link
+                this.classList.add('active');
+            });
+        });
+
+        // Toggle expandable sections
+        document.querySelectorAll('.endpoint-section-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const content = this.nextElementSibling;
+                const toggle = this.querySelector('.section-toggle');
+                
+                this.classList.toggle('open');
+                content.classList.toggle('open');
+                toggle.classList.toggle('open');
+            });
+        });
+
+        // Highlight on scroll
+        window.addEventListener('scroll', highlightActiveLink);
+
+        // Initial highlight on page load
+        highlightActiveLink();
+    </script>
+</body>
+</html>
