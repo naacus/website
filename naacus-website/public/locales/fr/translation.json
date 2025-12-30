@@ -521,10 +521,30 @@
       "lastNameRequired": "Le nom est requis",
       "emailRequired": "L'email est requis",
       "emailInvalid": "Veuillez entrer une adresse email valide",
-      "submissionFailed": "Échec de la soumission de l'inscription. Veuillez réessayer."
+      "submissionFailed": "Échec de la soumission de l'inscription. Veuillez réessayer.",
+      "networkError": "Connexion réseau perdue. Veuillez vérifier votre connexion Internet et réessayer."
     },
     "warnings": {
       "title": "Avertissement"
     }
+  },
+  "search": {
+    "title": "Recherche",
+    "search": "Recherche",
+    "placeholder": "Rechercher des pages, événements, ministères, ressources...",
+    "startTyping": "Commencez à taper pour rechercher",
+    "noResults": "Aucun résultat trouvé pour",
+    "resultsFound": "{{count}} résultats trouvés",
+    "close": "Fermer",
+    "tooltip": "Recherche (Cmd+K)",
+    "keyboard_shortcut": "Cmd+K ou /"
+  },
+  "faq": {
+    "title": "Questions Fréquemment Posées",
+    "subtitle": "Trouvez les réponses aux questions courantes sur NAACUS, l'adhésion, les événements, et plus",
+    "searchPlaceholder": "Rechercher dans les FAQ...",
+    "noResults": "Aucune FAQ trouvée correspondant à votre recherche",
+    "clearFilters": "Effacer les filtres"
   }
 }
+

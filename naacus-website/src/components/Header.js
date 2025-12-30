@@ -12,9 +12,10 @@ import {
   Button,
   Input
 } from '@fluentui/react-components';
-import { Navigation24Regular, Search24Regular } from '@fluentui/react-icons';
+import { Navigation24Regular } from '@fluentui/react-icons';
 import LanguageSwitcher from './LanguageSwitcher';
 import DonationDialog from './DonationDialog';
+import SearchInput from './SearchInput';
 import { handleNavigation, isActivePath } from '../services/navigationService';
 import { useAnalytics } from '../hooks/useAnalytics';
 
@@ -326,13 +327,7 @@ function Header() {
 
         {/* Right Section: Search, Language, Sign In */}
         <div className={styles.rightSection}>
-          <div className={styles.searchContainer}>
-            <Input 
-              className={styles.searchInput}
-              placeholder={t('header.searchPlaceholder')}
-              contentAfter={<Search24Regular className={styles.searchIcon} />}
-            />
-          </div>
+          <SearchInput />
           <DonationDialog />
           <div className={styles.languageSwitcher}>
             <LanguageSwitcher />

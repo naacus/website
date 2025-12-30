@@ -6,12 +6,12 @@
  */
 
 export const faqCategories = {
-  ABOUT: 'about',
-  MEMBERSHIP: 'membership',
-  EVENTS: 'events',
-  PROGRAMS: 'programs',
-  CONTACT: 'contact',
-  GENERAL: 'general'
+  ABOUT: 'About',
+  MEMBERSHIP: 'Membership',
+  EVENTS: 'Events',
+  PROGRAMS: 'Programs',
+  CONTACT: 'Contact',
+  GENERAL: 'General'
 };
 
 export const faqData = [

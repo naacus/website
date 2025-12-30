@@ -182,6 +182,8 @@ export function Events() {
   });
   const [formMessage, setFormMessage] = useState(null); // { type: 'success' | 'error' | 'warning', message: string }
   const [submissionSuccess, setSubmissionSuccess] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const apiBaseUrl = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5001';
 
   const upcomingEvents = eventsData.upcomingEvents;
   const pastEvents = eventsData.pastEvents;
@@ -216,6 +218,7 @@ export function Events() {
     });
     setFormMessage(null);
     setSubmissionSuccess(false);
+    setIsSubmitting(false);
     // Restore page scroll
     document.body.style.overflow = 'auto';
   };
@@ -230,6 +233,7 @@ export function Events() {
       phone: '',
       message: ''
     });
+    setIsSubmitting(false);
   };
 
   const handleFormChange = (field, value) => {
@@ -239,11 +243,9 @@ export function Events() {
     }));
   };
 
-  const handleSubmitRegistration = () => {
-    // Reset any previous messages
+  const handleSubmitRegistration = async () => {
     setFormMessage(null);
 
-    // Validate required fields
     if (!registrationForm.firstName.trim()) {
       setFormMessage({ type: 'error', message: t('events.errors.firstNameRequired', 'First name is required') });
       return;
@@ -257,7 +259,6 @@ export function Events() {
       return;
     }
 
-    // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(registrationForm.email)) {
       setFormMessage({ type: 'error', message: t('events.errors.emailInvalid', 'Please enter a valid email address') });
@@ -265,7 +266,8 @@ export function Events() {
     }
 
     try {
-      // Create registration data object
+      setIsSubmitting(true);
+
       const registrationData = {
         eventTitle: selectedEvent.title,
         eventDate: selectedEvent.date,
@@ -273,21 +275,70 @@ export function Events() {
         submittedAt: new Date().toISOString()
       };
 
-      console.log('Registration submitted:', registrationData);
+      let response;
+      try {
+        // Wrap in a Promise to catch any synchronous errors from extensions
+        response = await new Promise((resolve, reject) => {
+          try {
+            const fetchPromise = fetch(`${apiBaseUrl}/api/event-registration`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(registrationData),
+            });
+            resolve(fetchPromise);
+          } catch (syncError) {
+            // Extension threw synchronous error - treat as network error
+            reject(new Error('Network error'));
+          }
+        });
+      } catch (fetchError) {
+        setFormMessage({
+          type: 'error',
+          message: t('events.errors.networkError', 'Network connection failed. Please check your internet connection and try again.'),
+        });
+        return;
+      }
 
-      // Send email to info@naacus.org with registration details
-      const mailtoLink = `mailto:info@naacus.org?subject=Event Registration - ${selectedEvent.title}&body=Name: ${registrationForm.firstName} ${registrationForm.lastName}%0AEmail: ${registrationForm.email}%0APhone: ${registrationForm.phone}%0AEvent: ${selectedEvent.title}%0ADate: ${selectedEvent.date}%0AMessage: ${registrationForm.message}`;
-      window.location.href = mailtoLink;
-      
-      // Show success state and hide form
+      // Check if fetch was blocked or encountered network error
+      if (!response || response?.__fetchError || !response?.ok) {
+        setFormMessage({
+          type: 'error',
+          message: t('events.errors.networkError', 'Network connection failed. Please check your internet connection and try again.'),
+        });
+        return;
+      }
+
+      let result;
+      try {
+        result = await response.json();
+      } catch (parseError) {
+        setFormMessage({
+          type: 'error',
+          message: t('events.errors.submissionFailed', 'Failed to submit registration. Please try again.'),
+        });
+        return;
+      }
+
+      if (!response.ok || !result.success) {
+        setFormMessage({
+          type: 'error',
+          message: result.error || t('events.errors.submissionFailed', 'Failed to submit registration. Please try again.'),
+        });
+        return;
+      }
+
       setSubmissionSuccess(true);
-      setFormMessage(null);
+      setFormMessage({
+        type: 'success',
+        message: t('events.success.registrationStored', 'Registration submitted. We will follow up via email.'),
+      });
     } catch (error) {
-      console.error('Error submitting registration:', error);
       setFormMessage({ 
         type: 'error', 
         message: t('events.errors.submissionFailed', 'Failed to submit registration. Please try again.') 
       });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -362,6 +413,7 @@ export function Events() {
         submissionSuccess={submissionSuccess}
         formMessage={formMessage}
         registrationForm={registrationForm}
+        isSubmitting={isSubmitting}
         onFormChange={handleFormChange}
         onSubmit={handleSubmitRegistration}
         onClose={handleCloseRegistration}

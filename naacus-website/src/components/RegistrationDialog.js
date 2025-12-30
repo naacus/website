@@ -85,6 +85,7 @@ export default function RegistrationDialog({
   submissionSuccess,
   formMessage,
   registrationForm,
+  isSubmitting,
   onFormChange,
   onSubmit,
   onClose,
@@ -120,7 +121,7 @@ export default function RegistrationDialog({
               <MessageBar intent="success">
                 <MessageBarBody>
                   <MessageBarTitle>{t('events.success.title', 'Success!')}</MessageBarTitle>
-                  {t('events.success.registrationSubmitted', 'Registration submitted successfully! Your email client has opened to send the registration.')}
+                  {t('events.success.registrationStored', 'Registration submitted successfully! We will follow up via email.')}
                 </MessageBarBody>
               </MessageBar>
             </div>
@@ -223,9 +224,9 @@ export default function RegistrationDialog({
               <Button 
                 appearance="primary" 
                 onClick={onSubmit}
-                disabled={!registrationForm.firstName || !registrationForm.lastName || !registrationForm.email}
+                disabled={!registrationForm.firstName || !registrationForm.lastName || !registrationForm.email || isSubmitting}
               >
-                {t('events.submitRegistration', 'Submit Registration')}
+                {isSubmitting ? t('events.submitting', 'Submitting...') : t('events.submitRegistration', 'Submit Registration')}
               </Button>
             </div>
           </div>

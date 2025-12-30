@@ -4,6 +4,7 @@ import { FluentProvider, webLightTheme } from '@fluentui/react-components';
 import './App.css';
 import { initializeGoogleAnalytics } from './services/googleAnalyticsService';
 import { trackPageRefresh, trackScrollDepth, resetScrollDepthTracking, trackPageView } from './services/analyticsService';
+import ErrorBoundary from './components/ErrorBoundary';
 import Header from './components/Header';
 import HomePage from './pages/HomePage';
 import Event2025Page from './pages/Event2025Page';
@@ -19,6 +20,7 @@ import NewslettersPage from './pages/NewslettersPage';
 import ContactPage from './pages/ContactPage';
 import PrivacyPage from './pages/PrivacyPage';
 import DonationPage from './pages/DonationPage';
+import FAQPage from './pages/FAQPage';
 import Footer from './components/Footer';
 import BackToTop from './components/BackToTop';
 import ChatWidget from './components/ChatWidget';
@@ -62,6 +64,7 @@ function AppContent() {
         <Route path="/resources" element={<ResourcesPage />} />
         <Route path="/newsletters" element={<NewslettersPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/faq" element={<FAQPage />} />
         <Route path="/privacy" element={<PrivacyPage />} />
       </Routes>
       <Footer />
@@ -91,9 +94,11 @@ function App() {
 
   return (
     <FluentProvider theme={webLightTheme}>
-      <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-        <AppContent />
-      </Router>
+      <ErrorBoundary>
+        <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+          <AppContent />
+        </Router>
+      </ErrorBoundary>
     </FluentProvider>
   );
 }

@@ -11,6 +11,7 @@ import { memberBenefitsData } from '../data/memberBenefitsData';
 import { activitiesData } from '../data/activitiesData';
 import { eventsData } from '../data/eventsData';
 import { faqData } from '../data/faqData';
+import { resourcesData } from '../data/resourcesData';
 
 export const dataService = {
   // Leadership
@@ -20,6 +21,9 @@ export const dataService = {
 
   // Ministries
   getMinistries: () => ministriesData,
+
+  // Resources
+  getResources: () => resourcesData,
 
   // Testimonials
   getTestimonials: () => testimonialData,

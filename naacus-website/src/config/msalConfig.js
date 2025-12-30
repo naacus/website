@@ -45,6 +45,8 @@ export const sharePointConfig = {
   siteUrl: process.env.REACT_APP_SHAREPOINT_SITE_URL || '', // Your SharePoint site URL (e.g., 'contoso.sharepoint.com:/sites/naacus')
   membershipListId: process.env.REACT_APP_MEMBERSHIP_LIST_ID || '', // SharePoint List ID for membership
   volunteerListId: process.env.REACT_APP_VOLUNTEER_LIST_ID || '', // SharePoint List ID for volunteers
+  eventRegistrationListId: process.env.REACT_APP_EVENT_REGISTRATION_LIST_ID || '', // SharePoint List ID for event registrations
+  clientSecret: process.env.REACT_APP_AZURE_CLIENT_SECRET || '', // Client secret for app-only Graph calls (no user prompt)
 };
 
 // OneDrive Excel configuration (alternative to SharePoint Lists)

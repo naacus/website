@@ -243,4 +243,5 @@ class StripePaymentService {
 }
 
 const stripePaymentService = new StripePaymentService();
+// eslint-disable-next-line import/no-anonymous-default-export
 export default stripePaymentService;

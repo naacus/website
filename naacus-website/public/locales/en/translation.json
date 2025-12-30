@@ -382,7 +382,8 @@
       "lastNameRequired": "Last name is required",
       "emailRequired": "Email is required",
       "emailInvalid": "Please enter a valid email address",
-      "submissionFailed": "Failed to submit registration. Please try again."
+      "submissionFailed": "Failed to submit registration. Please try again.",
+      "networkError": "Network connection failed. Please check your internet connection and try again."
     },
     "warnings": {
       "title": "Warning"
@@ -532,5 +533,24 @@
     "fastSpeed": "⚡ Fast",
     "paymentMethodUnknown": "Selected payment method",
     "paymentProcessingFailed": "{{paymentMethod}} payment processing failed. Please check your information and try again."
+  },
+  "search": {
+    "title": "Search",
+    "search": "Search",
+    "placeholder": "Search pages, events, ministries, resources...",
+    "startTyping": "Start typing to search",
+    "noResults": "No results found for",
+    "resultsFound": "Found {{count}} results",
+    "close": "Close",
+    "tooltip": "Search (Cmd+K)",
+    "keyboard_shortcut": "Cmd+K or /"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Find answers to common questions about NAACUS, membership, events, and more",
+    "searchPlaceholder": "Search FAQs...",
+    "noResults": "No FAQs found matching your search",
+    "clearFilters": "Clear Filters"
   }
 }
+

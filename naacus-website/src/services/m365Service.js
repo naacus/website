@@ -5,6 +5,11 @@ import { PublicClientApplication } from '@azure/msal-browser';
 import { Client } from '@microsoft/microsoft-graph-client';
 import { msalConfig, sharePointScopes, sharePointConfig } from '../config/msalConfig';
 
+// App-only Graph client (no user prompt) for public submissions
+let appGraphClient = null;
+let appTokenCache = null;
+let appTokenExpiresAt = null;
+
 // Check if Azure AD is configured
 const hasAzureConfig = !!(
   process.env.REACT_APP_AZURE_CLIENT_ID && 
@@ -81,6 +86,64 @@ async function getGraphClient() {
     console.error('Error getting Graph client:', error);
     throw error;
   }
+}
+
+// Get app-only access token using client credentials (no user login)
+async function getAppAccessToken() {
+  if (appTokenCache && appTokenExpiresAt && Date.now() < appTokenExpiresAt - 300000) {
+    return appTokenCache;
+  }
+
+  const hasSecretConfig = !!(
+    process.env.REACT_APP_AZURE_CLIENT_ID &&
+    process.env.REACT_APP_AZURE_TENANT_ID &&
+    sharePointConfig.clientSecret
+  );
+
+  if (!hasSecretConfig) {
+    throw new Error('Azure app credentials not configured for app-only access.');
+  }
+
+  const tokenEndpoint = `https://login.microsoftonline.com/${process.env.REACT_APP_AZURE_TENANT_ID}/oauth2/v2.0/token`;
+  const response = await fetch(tokenEndpoint, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({
+      client_id: process.env.REACT_APP_AZURE_CLIENT_ID,
+      client_secret: sharePointConfig.clientSecret,
+      scope: 'https://graph.microsoft.com/.default',
+      grant_type: 'client_credentials',
+    }),
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    console.error('Error getting app-only token:', error);
+    throw new Error('Unable to get app-only token for SharePoint');
+  }
+
+  const data = await response.json();
+  appTokenCache = data.access_token;
+  appTokenExpiresAt = Date.now() + data.expires_in * 1000;
+  return appTokenCache;
+}
+
+async function getAppGraphClient() {
+  if (appGraphClient) return appGraphClient;
+
+  await getAppAccessToken();
+  appGraphClient = Client.init({
+    authProvider: async (done) => {
+      try {
+        const refreshedToken = await getAppAccessToken();
+        done(null, refreshedToken);
+      } catch (error) {
+        done(error, null);
+      }
+    },
+  });
+
+  return appGraphClient;
 }
 
 /**
@@ -216,6 +279,53 @@ export async function submitVolunteerToSharePoint(formData) {
     return { success: true, data: response };
   } catch (error) {
     console.error('Error submitting to SharePoint:', error);
+    return { success: false, error: error.message };
+  }
+}
+
+/**
+ * Submit event registration data to SharePoint List
+ */
+export async function submitEventRegistrationToSharePoint(formData) {
+  try {
+    if (!process.env.REACT_APP_AZURE_CLIENT_ID || !process.env.REACT_APP_AZURE_TENANT_ID || !sharePointConfig.clientSecret) {
+      return {
+        success: false,
+        error: 'Azure credentials not configured. Please set REACT_APP_AZURE_CLIENT_ID, REACT_APP_AZURE_TENANT_ID, and REACT_APP_AZURE_CLIENT_SECRET environment variables.',
+      };
+    }
+
+    if (!sharePointConfig.siteUrl || !sharePointConfig.eventRegistrationListId) {
+      return {
+        success: false,
+        error: 'SharePoint configuration not set. Please set REACT_APP_SHAREPOINT_SITE_URL and REACT_APP_EVENT_REGISTRATION_LIST_ID environment variables.',
+      };
+    }
+
+    const graphClient = await getAppGraphClient();
+    const siteId = await getSiteId(graphClient, sharePointConfig.siteUrl);
+
+    const listItem = {
+      fields: {
+        Title: `${formData.firstName} ${formData.lastName} - ${formData.eventTitle}`,
+        EventTitle: formData.eventTitle,
+        EventDate: formData.eventDate || '',
+        FirstName: formData.firstName,
+        LastName: formData.lastName,
+        Email: formData.email,
+        Phone: formData.phone || '',
+        Message: formData.message || '',
+        SubmittedAt: formData.submittedAt || new Date().toISOString(),
+      },
+    };
+
+    const response = await graphClient
+      .api(`/sites/${siteId}/lists/${sharePointConfig.eventRegistrationListId}/items`)
+      .post(listItem);
+
+    return { success: true, data: response };
+  } catch (error) {
+    console.error('Error submitting event registration to SharePoint:', error);
     return { success: false, error: error.message };
   }
 }
