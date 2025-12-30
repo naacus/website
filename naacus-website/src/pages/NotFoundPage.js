@@ -83,24 +83,19 @@ function NotFoundPage() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
-  const { trackEvent } = useAnalytics();
+  const { trackCTA } = useAnalytics();
   const styles = useStyles();
 
   // Track 404 event in Google Analytics
   React.useEffect(() => {
     // Track the 404 page view
-    trackEvent({
-      action: 'view_404',
-      category: 'error',
-      label: location.pathname,
-      value: 1,
-    });
+    trackCTA('error', 'view_404', location.pathname);
 
     // Log to console in development
     if (process.env.NODE_ENV === 'development') {
       console.warn(`404 - Page not found: ${location.pathname}`);
     }
-  }, [location.pathname, trackEvent]);
+  }, [location.pathname, trackCTA]);
 
   const handleGoHome = () => {
     navigate('/');
