@@ -1,8 +1,9 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { makeStyles, shorthands } from '@fluentui/react-components';
 import { colors } from '../config/theme';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 const useStyles = makeStyles({
   container: {
@@ -81,7 +82,25 @@ const useStyles = makeStyles({
 function NotFoundPage() {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const location = useLocation();
+  const { trackEvent } = useAnalytics();
   const styles = useStyles();
+
+  // Track 404 event in Google Analytics
+  React.useEffect(() => {
+    // Track the 404 page view
+    trackEvent({
+      action: 'view_404',
+      category: 'error',
+      label: location.pathname,
+      value: 1,
+    });
+
+    // Log to console in development
+    if (process.env.NODE_ENV === 'development') {
+      console.warn(`404 - Page not found: ${location.pathname}`);
+    }
+  }, [location.pathname, trackEvent]);
 
   const handleGoHome = () => {
     navigate('/');
