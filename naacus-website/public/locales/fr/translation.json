@@ -545,6 +545,12 @@
     "searchPlaceholder": "Rechercher dans les FAQ...",
     "noResults": "Aucune FAQ trouvée correspondant à votre recherche",
     "clearFilters": "Effacer les filtres"
+  },
+  "notFound": {
+    "title": "Page Non Trouvée",
+    "description": "Désolé, la page que vous recherchez n'existe pas ou a été déplacée. Veuillez vérifier l'URL et réessayer.",
+    "goHome": "Aller à l'Accueil",
+    "goBack": "Retour"
   }
 }
 

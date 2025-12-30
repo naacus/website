@@ -551,6 +551,12 @@
     "searchPlaceholder": "Search FAQs...",
     "noResults": "No FAQs found matching your search",
     "clearFilters": "Clear Filters"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "Sorry, the page you are looking for does not exist or has been moved. Please check the URL and try again.",
+    "goHome": "Go to Home",
+    "goBack": "Go Back"
   }
 }
 

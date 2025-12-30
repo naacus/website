@@ -21,6 +21,7 @@ import ContactPage from './pages/ContactPage';
 import PrivacyPage from './pages/PrivacyPage';
 import DonationPage from './pages/DonationPage';
 import FAQPage from './pages/FAQPage';
+import NotFoundPage from './pages/NotFoundPage';
 import Footer from './components/Footer';
 import BackToTop from './components/BackToTop';
 import ChatWidget from './components/ChatWidget';
@@ -66,6 +67,7 @@ function AppContent() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/faq" element={<FAQPage />} />
         <Route path="/privacy" element={<PrivacyPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Footer />
       <BackToTop />
