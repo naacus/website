@@ -5,7 +5,8 @@ import {
   shorthands,
   tokens,
   Text,
-  Card
+  Card,
+  Avatar
 } from '@fluentui/react-components';
 import { dataService } from '../services/dataService';
 
@@ -60,6 +61,9 @@ const useStyles = makeStyles({
     ...shorthands.borderRadius('12px'),
     ...shorthands.transition('all', '0.3s', 'ease'),
     position: 'relative',
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%',
     '&:hover': {
       transform: 'translateY(-4px)',
       boxShadow: '0 8px 20px rgba(0, 0, 0, 0.12)',
@@ -80,6 +84,7 @@ const useStyles = makeStyles({
     marginBottom: '24px',
     fontStyle: 'italic',
     display: 'block',
+    flex: 1,
     '@media (max-width: 768px)': {
       fontSize: '1rem',
       lineHeight: '1.6',
@@ -95,14 +100,6 @@ const useStyles = makeStyles({
   authorAvatar: {
     width: '50px',
     height: '50px',
-    ...shorthands.borderRadius('50%'),
-    backgroundColor: tokens.colorBrandBackground,
-    color: tokens.colorNeutralForegroundInverted,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    fontSize: '1.5rem',
-    fontWeight: '600',
   },
   authorInfo: {
     flex: 1,
@@ -146,9 +143,13 @@ function Testimonials() {
                 {testimonial.text}
               </Text>
               <div className={styles.authorSection}>
-                <div className={styles.authorAvatar}>
-                  {testimonial.initial}
-                </div>
+                <Avatar
+                  name={testimonial.author}
+                  initials={testimonial.initial}
+                  image={testimonial.photo ? { src: testimonial.photo } : undefined}
+                  size={48}
+                  color="brand"
+                />
                 <div className={styles.authorInfo}>
                   <Text className={styles.authorName}>{testimonial.author}</Text>
                   <Text className={styles.authorLocation}>{testimonial.location}</Text>

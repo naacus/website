@@ -7,17 +7,23 @@ import {
   Text,
   Button,
   Input,
+  Combobox,
   Dropdown,
   Option,
   Checkbox,
   Textarea,
   Card,
   Spinner,
+  RadioGroup,
+  Radio,
 } from '@fluentui/react-components';
 import PageWrapper from '../components/PageWrapper';
 import ParishFinder from '../components/ParishFinder';
+import StripeCheckout from '../components/StripeCheckout';
+import PaymentMethodSelector from '../components/PaymentMethodSelector';
 import { submitMembershipToSharePoint } from '../services/m365Service';
 import { useAnalytics } from '../hooks/useAnalytics';
+import { fetchCountries, formatCountriesForDropdown } from '../services/countryService';
 
 const useStyles = makeStyles({
   wrapper: {
@@ -154,6 +160,10 @@ function MembershipPage() {
     email: '',
     phone: '',
     membershipType: 'individual',
+    paymentMethod: 'stripe', // 'stripe' or 'manual'
+    planId: 'individual',
+    organization: '', // For group memberships
+    groupMemberCount: '', // For group memberships
     // Optional fields moved to profile completion later
     dateOfBirth: '',
     street: '',
@@ -178,6 +188,35 @@ function MembershipPage() {
     hearAbout: '',
     whyJoin: '',
   });
+
+  const [countryOptions, setCountryOptions] = useState([]);
+  const [loadingCountries, setLoadingCountries] = useState(false);
+  const [countrySearch, setCountrySearch] = useState('');
+
+  // Filter countries based on search input
+  const filteredCountries = countrySearch
+    ? countryOptions.filter(option =>
+        option.text.toLowerCase().includes(countrySearch.toLowerCase())
+      )
+    : countryOptions;
+
+  // Fetch countries on component mount
+  useEffect(() => {
+    const loadCountries = async () => {
+      setLoadingCountries(true);
+      try {
+        const allCountries = await fetchCountries();
+        const options = formatCountriesForDropdown(allCountries);
+        setCountryOptions(options);
+      } catch (error) {
+        console.error('Failed to load countries:', error);
+      } finally {
+        setLoadingCountries(false);
+      }
+    };
+
+    loadCountries();
+  }, []);
 
   const ministryOptions = [
     { key: 'Youth Ministry', label: t('membership.ministryYouth') },
@@ -248,7 +287,15 @@ function MembershipPage() {
     setError(null);
 
     try {
-      // Submit to Microsoft 365 SharePoint
+      // If paying with Stripe, save data and show checkout
+      if (formData.paymentMethod === 'stripe') {
+        sessionStorage.setItem('membershipData', JSON.stringify(formData));
+        setSubmitted(true);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+
+      // Otherwise, submit to Microsoft 365 SharePoint
       const result = await submitMembershipToSharePoint(formData);
       
       if (result.success) {
@@ -267,6 +314,24 @@ function MembershipPage() {
   };
 
   if (submitted) {
+    // If paying with Stripe, show checkout
+    if (formData.paymentMethod === 'stripe') {
+      return (
+        <PageWrapper>
+          <div className={styles.container}>
+            <div style={{ marginBottom: '40px', textAlign: 'center' }}>
+              <h1 className={styles.title}>{t('membership.proceedPayment') || 'Complete Your Payment'}</h1>
+              <p style={{ fontSize: '1.05rem', color: tokens.colorNeutralForeground2 }}>
+                {t('membership.paymentInstructions') || 'You are registered as ' + formData.firstName + ' ' + formData.lastName}
+              </p>
+            </div>
+            <StripeCheckout planId={formData.planId} />
+          </div>
+        </PageWrapper>
+      );
+    }
+
+    // Otherwise show success message
     return (
       <PageWrapper>
         <div className={styles.successMessage}>
@@ -352,7 +417,7 @@ function MembershipPage() {
                   onChange={(e) => handleInputChange('phone', e.target.value)}
                 />
               </div>
-              <div className={styles.formField} style={{ display: 'none' }}>
+              <div className={styles.formField}>
                 <label className={styles.label}>{t('membership.dateOfBirth')}</label>
                 <Input
                   type="date"
@@ -364,7 +429,7 @@ function MembershipPage() {
           </Card>
 
           {/* Address Information - Hidden */}
-          <Card className={styles.formCard} style={{ display: 'none' }}>
+          <Card className={styles.formCard}>
             <Text className={styles.sectionTitle}>{t('membership.address')}</Text>
             <div className={styles.formGrid}>
               <div className={`${styles.formField} ${styles.formFieldFull}`}>
@@ -420,15 +485,32 @@ function MembershipPage() {
           </Card>
 
           {/* Background Information - Hidden */}
-          <Card className={styles.formCard} style={{ display: 'none' }}>
+          <Card className={styles.formCard}>
             <Text className={styles.sectionTitle}>{t('membership.backgroundExperience')}</Text>
             <div className={styles.formGrid}>
               <div className={styles.formField}>
                 <label className={styles.label}>{t('membership.countryOfOrigin')}</label>
-                <Input
+                <Combobox
                   value={formData.countryOfOrigin}
-                  onChange={(e) => handleInputChange('countryOfOrigin', e.target.value)}
-                />
+                  input={{
+                    onChange: (e) => setCountrySearch(e.target.value),
+                    value: countrySearch,
+                  }}
+                  onOptionSelect={(e, data) => {
+                    if (data.optionValue) {
+                      handleInputChange('countryOfOrigin', data.optionValue);
+                      setCountrySearch(data.optionValue);
+                    }
+                  }}
+                  disabled={loadingCountries}
+                  placeholder={loadingCountries ? 'Loading countries...' : 'Type to search'}
+                >
+                  {filteredCountries.map(option => (
+                    <Option key={option.key} value={option.text}>
+                      {option.text}
+                    </Option>
+                  ))}
+                </Combobox>
               </div>
               <div className={styles.formField}>
                 <label className={styles.label}>{t('membership.yearsInUS')}</label>
@@ -458,24 +540,65 @@ function MembershipPage() {
           </Card>
 
           {/* Membership Type & Interests - Hidden */}
-          <Card className={styles.formCard} style={{ display: 'none' }}>
+          <Card className={styles.formCard}>
             <Text className={styles.sectionTitle}>{t('membership.membershipDetails')}</Text>
             <div className={styles.formGrid}>
               <div className={`${styles.formField} ${styles.formFieldFull}`}>
                 <label className={styles.label}>
                   {t('membership.membershipType')} <span className={styles.required}>{t('membership.required')}</span>
                 </label>
-                <Dropdown
+                <RadioGroup
                   value={formData.membershipType}
-                  onOptionSelect={(e, data) => handleInputChange('membershipType', data.optionValue)}
+                  onChange={(e) => {
+                    const membershipType = e.currentTarget.value;
+                    handleInputChange('membershipType', membershipType);
+                    
+                    // Update planId based on membership type
+                    const planMapping = {
+                      'individual': 'individual',
+                      'group_small': 'group_small',
+                      'group_large': 'group_large'
+                    };
+                    handleInputChange('planId', planMapping[membershipType] || 'individual');
+                  }}
                 >
-                  <Option value="individual">{t('membership.membershipTypeIndividual')}</Option>
-                  <Option value="family">{t('membership.membershipTypeFamily')}</Option>
-                  <Option value="student">{t('membership.membershipTypeStudent')}</Option>
-                  <Option value="senior">{t('membership.membershipTypeSenior')}</Option>
-                </Dropdown>
+                  <Radio value="individual" label="INDIVIDUAL MEMBERSHIP REGISTRATION = $20.00 per person" />
+                  <Radio value="group_small" label="GROUP MEMBERSHIP REGISTRATION: 2 to 100 members = $200.00 (one time fee)" />
+                  <Radio value="group_large" label="GROUP MEMBERSHIP REGISTRATION: 100+ members = $300.00 (one time fee)" />
+                </RadioGroup>
               </div>
-              <div className={`${styles.formField} ${styles.formFieldFull}`} style={{ display: 'none' }}>
+              
+              {/* Group Membership Fields - Show when group option selected */}
+              {(formData.membershipType === 'group_small' || formData.membershipType === 'group_large') && (
+                <>
+                  <div className={`${styles.formField} ${styles.formFieldFull}`}>
+                    <label className={styles.label}>
+                      {t('membership.organizationName') || 'Organization Name'} <span className={styles.required}>*</span>
+                    </label>
+                    <Input
+                      required
+                      value={formData.organization}
+                      onChange={(e) => handleInputChange('organization', e.target.value)}
+                      placeholder={t('membership.organizationPlaceholder') || 'Enter organization name'}
+                    />
+                  </div>
+                  <div className={`${styles.formField} ${styles.formFieldFull}`}>
+                    <label className={styles.label}>
+                      {t('membership.memberCount') || 'Number of Members'} <span className={styles.required}>*</span>
+                    </label>
+                    <Input
+                      type="number"
+                      required
+                      min="2"
+                      value={formData.groupMemberCount}
+                      onChange={(e) => handleInputChange('groupMemberCount', e.target.value)}
+                      placeholder={t('membership.memberCountPlaceholder') || 'Enter number of members'}
+                    />
+                  </div>
+                </>
+              )}
+              
+              <div className={`${styles.formField} ${styles.formFieldFull}`}>
                 <label className={styles.label}>{t('membership.ministryInterests')}</label>
                 <div className={styles.checkboxGroup}>
                   {ministryOptions.map((option) => (
@@ -491,8 +614,28 @@ function MembershipPage() {
             </div>
           </Card>
 
+          {/* Payment Method Selection */}
+          <Card className={styles.formCard}>
+            <PaymentMethodSelector
+              value={formData.paymentMethod}
+              onChange={(value) => handleInputChange('paymentMethod', value)}
+              options={[
+                {
+                  id: 'stripe',
+                  label: 'Pay Online with Credit/Debit Card',
+                  description: 'Fast, secure payment via Stripe',
+                },
+                {
+                  id: 'manual',
+                  label: 'Manual Payment',
+                  description: 'We will contact you with payment instructions',
+                },
+              ]}
+            />
+          </Card>
+
           {/* Emergency Contact - Hidden */}
-          <Card className={styles.formCard} style={{ display: 'none' }}>
+          <Card className={styles.formCard}>
             <Text className={styles.sectionTitle}>{t('membership.emergencyContact')}</Text>
             <div className={styles.formGrid}>
               <div className={styles.formField}>

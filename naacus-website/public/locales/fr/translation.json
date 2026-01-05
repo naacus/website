@@ -214,7 +214,22 @@
     "submitButton": "Soumettre la Demande d'Adhésion",
     "submitting": "Envoi à Microsoft 365...",
     "errorLabel": "Erreur: ",
-    "required": "*"
+    "required": "*",
+    "paymentMethod": "Méthode de Paiement",
+    "paymentOnline": "Payer en Ligne avec Carte de Crédit/Débit",
+    "paymentManual": "Paiement Manuel",
+    "membershipSummary": "Résumé de l'Adhésion",
+    "amount": "Montant",
+    "selectPlan": "Sélectionnez le Plan d'Adhésion",
+    "individualPlan": "Adhésion Individuelle",
+    "groupSmallPlan": "Adhésion de Groupe (2-100)",
+    "groupLargePlan": "Adhésion de Groupe (100+)",
+    "organizationName": "Nom de l'Organisation",
+    "organizationPlaceholder": "Entrez le nom de l'organisation",
+    "memberCount": "Nombre de Membres",
+    "memberCountPlaceholder": "Entrez le nombre de membres",
+    "proceedPayment": "Complétez Votre Paiement",
+    "paymentInstructions": "Vous êtes enregistré(e) sous le nom"
   },
   "volunteer": {
     "title": "Bénévolat avec NAACUS",

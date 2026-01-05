@@ -220,7 +220,22 @@
     "submitButton": "Submit Membership Application",
     "submitting": "Submitting to Microsoft 365...",
     "errorLabel": "Error: ",
-    "required": "*"
+    "required": "*",
+    "paymentMethod": "Payment Method",
+    "paymentOnline": "Pay Online with Credit/Debit Card",
+    "paymentManual": "Manual Payment",
+    "membershipSummary": "Membership Summary",
+    "amount": "Amount",
+    "selectPlan": "Select Membership Plan",
+    "individualPlan": "Individual Membership",
+    "groupSmallPlan": "Group Membership (2-100)",
+    "groupLargePlan": "Group Membership (100+)",
+    "organizationName": "Organization Name",
+    "organizationPlaceholder": "Enter organization name",
+    "memberCount": "Number of Members",
+    "memberCountPlaceholder": "Enter number of members",
+    "proceedPayment": "Complete Your Payment",
+    "paymentInstructions": "You are registered as"
   },
   "volunteer": {
     "title": "Volunteer with NAACUS",
