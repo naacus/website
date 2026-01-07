@@ -77,7 +77,10 @@ const useStyles = makeStyles({
 
     '&:focus': {
       backgroundColor: '#ffffff',
-      borderColor: '#0067b8',
+      borderTopColor: '#0067b8',
+      borderRightColor: '#0067b8',
+      borderBottomColor: '#0067b8',
+      borderLeftColor: '#0067b8',
       outline: 'none',
     },
   },
@@ -114,7 +117,10 @@ const useStyles = makeStyles({
 
     '&:hover': {
       backgroundColor: '#f0f7ff',
-      borderColor: '#0067b8',
+      borderTopColor: '#0067b8',
+      borderRightColor: '#0067b8',
+      borderBottomColor: '#0067b8',
+      borderLeftColor: '#0067b8',
       boxShadow: '0 2px 8px rgba(0, 103, 184, 0.12)',
       transform: 'translateX(4px)',
     },

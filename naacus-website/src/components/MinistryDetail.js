@@ -10,6 +10,7 @@ import {
 import { ChevronLeft24Regular } from '@fluentui/react-icons';
 import { getMinistryById } from '../data/ministriesData';
 import { handleNavigation } from '../services/navigationService';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 const useStyles = makeStyles({
   container: {
@@ -21,7 +22,7 @@ const useStyles = makeStyles({
   content: {
     maxWidth: '900px',
     ...shorthands.margin('0', 'auto'),
-    padding: '80px 0',
+    padding: '90px 0',
   },
   backButton: {
     marginBottom: '24px',
@@ -119,10 +120,10 @@ const useStyles = makeStyles({
     },
   },
   '@media (max-width: 768px)': {
-    title: {
+    '& .title': {
       fontSize: '1.75rem',
     },
-    sectionTitle: {
+    '& .sectionTitle': {
       fontSize: '1.25rem',
     },
   },
@@ -200,21 +201,26 @@ function MinistryDetail() {
   const navigate = useNavigate();
   const location = useLocation();
   const styles = useStyles();
+  const { trackCTA } = useAnalytics();
 
   const ministry = useMemo(() => getMinistryById(id), [id]);
   const handleNavigate = useCallback(() => {
+    trackCTA('navigation', 'back_to_ministries', 'ministry_detail');
     handleNavigation({
       path: '/fellowship-ministries',
       sectionId: null,
       currentPathname: location.pathname,
       navigate,
     });
-  }, [navigate, location.pathname]);
+  }, [navigate, location.pathname, trackCTA]);
 
-  // Scroll to top on mount
+  // Scroll to top on mount and track page view
   React.useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [id]);
+    if (ministry) {
+      trackCTA('page_view', 'ministry_detail', ministry.title);
+    }
+  }, [id, ministry, trackCTA]);
 
   if (!ministry) {
     return (
