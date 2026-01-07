@@ -11,6 +11,7 @@ import { ChevronLeft24Regular } from '@fluentui/react-icons';
 import { getMinistryById } from '../data/ministriesData';
 import { handleNavigation } from '../services/navigationService';
 import { useAnalytics } from '../hooks/useAnalytics';
+import { highlightText, getSearchQueryFromUrl } from '../utils/highlightUtils';
 
 const useStyles = makeStyles({
   container: {
@@ -119,6 +120,12 @@ const useStyles = makeStyles({
       textDecoration: 'underline',
     },
   },
+  highlight: {
+    backgroundColor: '#fff4ce',
+    padding: '2px 4px',
+    fontWeight: '700',
+    borderRadius: '2px',
+  },
   '@media (max-width: 768px)': {
     '& .title': {
       fontSize: '1.75rem',
@@ -140,22 +147,34 @@ const BackButton = React.memo(({ styles, onNavigate }) => (
   </Button>
 ));
 
-const MissionSection = React.memo(({ mission, styles }) => {
+const MissionSection = React.memo(({ mission, styles, searchQuery }) => {
   if (!mission) return null;
   return (
     <div className={styles.section}>
       <Text className={styles.sectionTitle}>Our Mission</Text>
-      <Text className={styles.sectionContent}>{mission}</Text>
+      <div className={styles.sectionContent} style={{ display: 'block' }}>
+        {searchQuery ? (
+          <div dangerouslySetInnerHTML={{ __html: highlightText(mission, searchQuery) }} />
+        ) : (
+          mission
+        )}
+      </div>
     </div>
   );
 });
 
-const AboutSection = React.memo(({ fullDescription, styles }) => {
+const AboutSection = React.memo(({ fullDescription, styles, searchQuery }) => {
   if (!fullDescription) return null;
   return (
     <div className={styles.section}>
       <Text className={styles.sectionTitle}>About</Text>
-      <Text className={styles.sectionContent}>{fullDescription}</Text>
+      <div className={styles.sectionContent} style={{ display: 'block' }}>
+        {searchQuery ? (
+          <div dangerouslySetInnerHTML={{ __html: highlightText(fullDescription, searchQuery) }} />
+        ) : (
+          fullDescription
+        )}
+      </div>
     </div>
   );
 });
@@ -203,6 +222,9 @@ function MinistryDetail() {
   const styles = useStyles();
   const { trackCTA } = useAnalytics();
 
+  // Extract search query from URL parameters
+  const searchQuery = getSearchQueryFromUrl(location);
+
   const ministry = useMemo(() => getMinistryById(id), [id]);
   const handleNavigate = useCallback(() => {
     trackCTA('navigation', 'back_to_ministries', 'ministry_detail');
@@ -243,8 +265,8 @@ function MinistryDetail() {
           <Text className={styles.subtitle}>{ministry.description}</Text>
         </div>
 
-        <MissionSection mission={ministry.mission} styles={styles} />
-        <AboutSection fullDescription={ministry.fullDescription} styles={styles} />
+        <MissionSection mission={ministry.mission} styles={styles} searchQuery={searchQuery} />
+        <AboutSection fullDescription={ministry.fullDescription} styles={styles} searchQuery={searchQuery} />
         <ProgramsSection programs={ministry.programs} styles={styles} />
         <ContactSection coordinator={ministry.coordinator} email={ministry.email} styles={styles} />
       </div>

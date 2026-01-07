@@ -135,15 +135,17 @@ const searchMinistries = (query) => {
     .filter(ministry => {
       const title = ministry.title.toLowerCase();
       const description = ministry.description.toLowerCase();
+      const mission = (ministry.mission || '').toLowerCase();
+      const fullDescription = (ministry.fullDescription || '').toLowerCase();
 
-      return title.includes(query) || description.includes(query);
+      return title.includes(query) || description.includes(query) || mission.includes(query) || fullDescription.includes(query);
     })
     .map(ministry => ({
-      id: ministry.title,
+      id: ministry.id,
       title: ministry.title,
       description: ministry.description,
       email: ministry.email,
-      path: '/fellowship-ministries',
+      path: `/ministries/${ministry.id}`,
       relevanceScore: calculateRelevance(query, ministry.title),
     }));
 };

@@ -208,7 +208,9 @@ function SearchModal({ open, onOpenChange }) {
   const handleResultClick = (result) => {
     trackCTA('search', 'result_click', result.title);
     onOpenChange(false);
-    navigate(result.path);
+    // Pass search query as URL parameter to highlight text on destination page
+    const separator = result.path.includes('?') ? '&' : '?';
+    navigate(`${result.path}${separator}search=${encodeURIComponent(searchQuery)}`);
   };
 
   const groupedResults = groupResultsByCategory(results);

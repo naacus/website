@@ -5,7 +5,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useLocation } from 'react-router-dom';
 import {
   makeStyles,
   shorthands,
@@ -18,6 +18,7 @@ import { Search24Regular, Dismiss24Regular } from '@fluentui/react-icons';
 import PageWrapper from '../components/PageWrapper';
 import { faqData, faqCategories } from '../data/faqData';
 import { useAnalytics } from '../hooks/useAnalytics';
+import { highlightText, getSearchQueryFromUrl } from '../utils/highlightUtils';
 
 const useStyles = makeStyles({
   container: {
@@ -239,9 +240,13 @@ function FAQPage() {
   const styles = useStyles();
   const { trackCTA } = useAnalytics();
   const [searchParams] = useSearchParams();
+  const location = useLocation();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [openItems, setOpenItems] = useState([]);
+
+  // Get search query from URL parameters (from global search)
+  const urlSearchQuery = getSearchQueryFromUrl(location);
 
   // Get FAQ ID from URL params and auto-expand it
   useEffect(() => {
@@ -256,7 +261,20 @@ function FAQPage() {
         }
       }, 100);
     }
-  }, [searchParams]);
+
+    // If search query from global search, set it as search term
+    if (urlSearchQuery) {
+      setSearchTerm(urlSearchQuery);
+      // Find and expand FAQs matching the search query
+      const matchingIds = faqData
+        .filter(faq => 
+          faq.question.toLowerCase().includes(urlSearchQuery.toLowerCase()) ||
+          faq.answer.toLowerCase().includes(urlSearchQuery.toLowerCase())
+        )
+        .map(faq => faq.id);
+      setOpenItems(matchingIds);
+    }
+  }, [searchParams, urlSearchQuery]);
 
   // Filter FAQs based on search term and selected category
   const filteredFAQs = faqData.filter(faq => {
@@ -404,11 +422,21 @@ function FAQPage() {
                         onClick={() => handleFAQClick(faq.id, faq.question)}
                         className={styles.accordionHeader}
                       >
-                        <span style={{ flex: 1, textAlign: 'left' }}>{faq.question}</span>
+                        <span style={{ flex: 1, textAlign: 'left' }}>
+                          {searchTerm ? (
+                            <span dangerouslySetInnerHTML={{ __html: highlightText(faq.question, searchTerm) }} />
+                          ) : (
+                            faq.question
+                          )}
+                        </span>
                         <span style={{ marginLeft: '16px', fontSize: '18px' }}>▾</span>
                       </AccordionHeader>
                       <AccordionPanel className={styles.accordionPanel}>
-                        {faq.answer}
+                        {searchTerm ? (
+                          <div dangerouslySetInnerHTML={{ __html: highlightText(faq.answer, searchTerm) }} />
+                        ) : (
+                          faq.answer
+                        )}
                       </AccordionPanel>
                     </AccordionItem>
                   ))}
