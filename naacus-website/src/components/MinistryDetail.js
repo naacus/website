@@ -7,7 +7,7 @@ import {
   Text,
   Button,
 } from '@fluentui/react-components';
-import { ChevronLeft24Regular } from '@fluentui/react-icons';
+import { ChevronLeft24Regular, CheckmarkCircle24Regular } from '@fluentui/react-icons';
 import { getMinistryById } from '../data/ministriesData';
 import { handleNavigation } from '../services/navigationService';
 import { useAnalytics } from '../hooks/useAnalytics';
@@ -76,21 +76,40 @@ const useStyles = makeStyles({
   },
   programsList: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
     ...shorthands.gap('16px'),
   },
   programItem: {
-    backgroundColor: tokens.colorNeutralBackground1,
-    ...shorthands.padding('16px'),
-    ...shorthands.borderRadius('8px'),
+    backgroundColor: '#f0f6ff',
+    ...shorthands.padding('18px'),
+    ...shorthands.borderRadius('10px'),
     boxShadow: '0 2px 8px rgba(0, 0, 0, 0.06)',
+    ...shorthands.transition('all', '0.2s', 'ease'),
+    borderLeftWidth: '4px',
+    borderLeftStyle: 'solid',
+    borderLeftColor: '#2a8fd8',
+    display: 'flex',
+    alignItems: 'flex-start',
+    ...shorthands.gap('12px'),
+    '&:hover': {
+      backgroundColor: '#e6f2ff',
+      transform: 'translateX(4px)',
+      boxShadow: '0 4px 12px rgba(15, 76, 129, 0.08)',
+    },
+  },
+  programIcon: {
+    color: '#0f4c81',
+    minWidth: '20px',
+    marginTop: '2px',
+    flexShrink: 0,
   },
   programTitle: {
     fontSize: '1rem',
     fontWeight: '600',
-    color: tokens.colorNeutralForeground1,
-    marginBottom: '8px',
+    color: '#0f4c81',
+    marginBottom: '0',
     display: 'block',
+    lineHeight: '1.5',
   },
   contactSection: {
     backgroundColor: tokens.colorNeutralBackground1,
@@ -187,6 +206,7 @@ const ProgramsSection = React.memo(({ programs, styles }) => {
       <div className={styles.programsList}>
         {programs.map((program, index) => (
           <div key={index} className={styles.programItem}>
+            <CheckmarkCircle24Regular className={styles.programIcon} />
             <Text className={styles.programTitle}>{program}</Text>
           </div>
         ))}
