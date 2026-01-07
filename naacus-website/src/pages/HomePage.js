@@ -37,7 +37,6 @@ function HomePage() {
   const styles = useStyles();
   const { trackPageViewEvent } = useAnalytics();
   const [autoplayEnabled, setAutoplayEnabled] = useState(true);
-
   useEffect(() => {
     trackPageViewEvent('HomePage');
   }, [trackPageViewEvent]);
@@ -57,7 +56,7 @@ function HomePage() {
 
   return (
     <>
-      <Carousel groupSize={1} circular announcement={getAnnouncement} className={styles.carouselContainer} autoplayIntervalMs={5000}>
+      <Carousel groupSize={1} circular announcement={getAnnouncement} className={styles.carouselContainer} autoplayInterval={30000}>
         <CarouselViewport>
           <CarouselSlider>
             {slides.map((slide, index) => {

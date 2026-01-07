@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { useState, useEffect } from 'react';
 import { 
   makeStyles,
   shorthands,
@@ -24,6 +25,28 @@ const useStyles = makeStyles({
       paddingRight: themeTokens.spacing.lg,
     },
   },
+  backgroundSlideshow: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: 0,
+    overflow: 'hidden',
+  },
+  backgroundImage: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+    opacity: 0,
+    transition: 'opacity 1s ease-in-out',
+  },
+  backgroundImageActive: {
+    opacity: 0.5,
+  },
   teaserContent: {
     position: 'relative',
     zIndex: 2,
@@ -33,19 +56,6 @@ const useStyles = makeStyles({
       paddingLeft: '12px',
       paddingRight: '12px',
     },
-  },
-  badge: {
-    display: 'inline-block',
-    backgroundColor: colors.accent.beige,
-    color: colors.primary.darkest,
-    fontSize: themeTokens.typography.fontSize['0.9rem'],
-    fontWeight: themeTokens.typography.fontWeight.bold,
-    ...shorthands.padding(themeTokens.spacing.sm, themeTokens.spacing.xl),
-    ...shorthands.borderRadius('30px'),
-    marginBottom: themeTokens.spacing.xl,
-    letterSpacing: '1px',
-    textTransform: 'uppercase',
-    boxShadow: '0 4px 15px rgba(232, 212, 192, 0.35)',
   },
   teaserTitle: {
     fontSize: themeTokens.typography.fontSize['4rem'],
@@ -156,53 +166,26 @@ const useStyles = makeStyles({
       ...shorthands.padding(themeTokens.spacing.lg, themeTokens.spacing['3xl']),
     },
   },
-  teaserGraphic: {
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0,
-    zIndex: 1,
-    overflow: 'hidden',
-  },
-  graphicCircle: {
-    position: 'absolute',
-    ...shorthands.borderRadius('50%'),
-    backgroundColor: 'rgba(255, 255, 255, 0.08)',
-  },
-  circle1: {
-    width: '350px',
-    height: '350px',
-    top: '-150px',
-    right: '-80px',
-    animationName: {
-      from: { transform: 'translateY(0)' },
-      to: { transform: 'translateY(20px)' },
-    },
-    animationDuration: '4s',
-    animationIterationCount: 'infinite',
-    animationDirection: 'alternate',
-    animationTimingFunction: 'ease-in-out',
-  },
-  circle2: {
-    width: '250px',
-    height: '250px',
-    bottom: '-100px',
-    left: '-50px',
-    animationName: {
-      from: { transform: 'translateY(0)' },
-      to: { transform: 'translateY(-20px)' },
-    },
-    animationDuration: '5s',
-    animationIterationCount: 'infinite',
-    animationDirection: 'alternate',
-    animationTimingFunction: 'ease-in-out',
-  },
 });
 
 function Conference2027Teaser() {
   const { t } = useTranslation();
   const styles = useStyles();
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const heroImages = [
+    '/images/hero/82b9252.jpg',
+    '/images/hero/921e3ed.jpg',
+    '/images/hero/2074c6e.jpg'
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % heroImages.length);
+    }, 10000); // Change image every 8 seconds
+
+    return () => clearInterval(interval);
+  }, [heroImages.length]);
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
@@ -213,6 +196,18 @@ function Conference2027Teaser() {
 
   return (
     <section className={styles.teaser}>
+      <div className={styles.backgroundSlideshow}>
+        {heroImages.map((image, index) => (
+          <img
+            key={index}
+            src={image}
+            alt={`Conference background ${index + 1}`}
+            className={`${styles.backgroundImage} ${
+              index === currentImageIndex ? styles.backgroundImageActive : ''
+            }`}
+          />
+        ))}
+      </div>
       <div className={styles.teaserContent}>
         <Text as="h2" className={styles.teaserTitle}>
           {t('conference2027.title')}

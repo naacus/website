@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { 
   makeStyles,
@@ -37,6 +37,51 @@ const useStyles = makeStyles({
       pointerEvents: 'none',
       zIndex: 1,
     },
+    '::after': {
+      content: '""',
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      background: 'rgba(15, 76, 129, 0.55)',
+      pointerEvents: 'none',
+      zIndex: 1,
+    },
+  },
+  backgroundSlideshow: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: 0,
+    overflow: 'hidden',
+  },
+  backgroundImage: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+    opacity: 0,
+    transition: 'opacity 1s ease-in-out',
+  },
+  backgroundImageActive: {
+    opacity: 0.7,
+  },
+  emojiDecorator: {
+    fontSize: '1.8rem',
+    filter: 'grayscale(100%) contrast(1.1) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3))',
+  },
+  benefitCheckmark: {
+    fontSize: '1.2rem',
+    color: 'rgba(255, 255, 255, 0.8)',
+    filter: 'grayscale(100%) contrast(1.1)',
+  },
+  buttonEmoji: {
+    filter: 'grayscale(100%) contrast(1.1)',
   },
   heroContent: {
     position: 'relative',
@@ -44,8 +89,10 @@ const useStyles = makeStyles({
     maxWidth: '1100px',
     margin: '0 auto',
     textAlign: 'center',
+    marginTop: '-40px',
     '@media (max-width: 768px)': {
       padding: '0 8px',
+      marginTop: '-10px',
     },
   },
   heroTitle: {
@@ -57,46 +104,49 @@ const useStyles = makeStyles({
     textAlign: 'center',
     lineHeight: '1.15',
     letterSpacing: '-0.02em',
-    textShadow: '0 4px 20px rgba(0, 0, 0, 0.3), 0 2px 8px rgba(0, 0, 0, 0.2)',
+    textShadow: '0 6px 24px rgba(0, 0, 0, 0.6), 0 3px 12px rgba(0, 0, 0, 0.4), 0 1px 4px rgba(0, 0, 0, 0.3)',
     fontFamily: 'Georgia, "Times New Roman", serif',
     '@media (max-width: 768px)': {
       fontSize: '2.25rem',
       marginBottom: '20px',
       lineHeight: '1.2',
+      textShadow: '0 4px 16px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.3)',
     },
   },
   heroSubtitle: {
     fontSize: '1.75rem',
     marginBottom: '24px',
     fontWeight: '500',
-    color: 'rgba(255, 255, 255, 0.95)',
+    color: 'rgba(255, 255, 255, 0.98)',
     display: 'block',
     textAlign: 'center',
     lineHeight: '1.6',
-    textShadow: '0 2px 12px rgba(0, 0, 0, 0.25)',
+    textShadow: '0 4px 16px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.3)',
     letterSpacing: '0.5px',
     '@media (max-width: 768px)': {
       fontSize: '1.125rem',
       marginBottom: '16px',
       lineHeight: '1.5',
+      textShadow: '0 3px 12px rgba(0, 0, 0, 0.4), 0 1px 4px rgba(0, 0, 0, 0.2)',
     },
   },
   heroDescription: {
     fontSize: '1.25rem',
     marginBottom: '48px',
     lineHeight: '1.9',
-    color: 'rgba(255, 255, 255, 0.92)',
+    color: 'rgba(255, 255, 255, 0.98)',
     opacity: 1,
     display: 'block',
     textAlign: 'center',
     maxWidth: '920px',
     margin: '0 auto 48px',
     fontWeight: '400',
-    textShadow: '0 2px 8px rgba(0, 0, 0, 0.2)',
+    textShadow: '0 3px 12px rgba(0, 0, 0, 0.4), 0 1px 4px rgba(0, 0, 0, 0.2)',
     '@media (max-width: 768px)': {
       fontSize: '1rem',
       lineHeight: '1.6',
       marginBottom: '32px',
+      textShadow: '0 2px 8px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.15)',
     },
   },
   heroButtons: {
@@ -183,7 +233,7 @@ const useStyles = makeStyles({
     background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.08) 100%)',
     ...shorthands.padding('28px', '40px'),
     ...shorthands.borderRadius('20px'),
-    marginTop: '48px',
+    marginTop: '140px',
     backdropFilter: 'blur(16px)',
     boxShadow: '0 8px 32px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(0, 0, 0, 0.1)',
     transition: 'transform 0.3s ease, box-shadow 0.3s ease',
@@ -193,7 +243,7 @@ const useStyles = makeStyles({
     },
     '@media (max-width: 768px)': {
       ...shorthands.padding('20px', '20px'),
-      marginTop: '32px',
+      marginTop: '100px',
     },
   },
   membershipText: {
@@ -239,109 +289,6 @@ const useStyles = makeStyles({
       ...shorthands.gap('6px'),
     },
   },
-  heroGraphic: {
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0,
-    zIndex: 1,
-    overflow: 'hidden',
-  },
-  graphicCircle: {
-    position: 'absolute',
-    ...shorthands.borderRadius('50%'),
-    background: 'radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 50%, transparent 100%)',
-  },
-  circle1: {
-    width: '500px',
-    height: '500px',
-    top: '-250px',
-    right: '-150px',
-    animationName: {
-      from: { transform: 'translateY(0) scale(1)' },
-      to: { transform: 'translateY(30px) scale(1.05)' },
-    },
-    animationDuration: '8s',
-    animationIterationCount: 'infinite',
-    animationDirection: 'alternate',
-    animationTimingFunction: 'ease-in-out',
-  },
-  circle2: {
-    width: '400px',
-    height: '400px',
-    bottom: '-200px',
-    left: '-100px',
-    animationName: {
-      from: { transform: 'translateY(0) scale(1)' },
-      to: { transform: 'translateY(-30px) scale(1.08)' },
-    },
-    animationDuration: '10s',
-    animationIterationCount: 'infinite',
-    animationDirection: 'alternate',
-    animationTimingFunction: 'ease-in-out',
-  },
-  circle3: {
-    width: '300px',
-    height: '300px',
-    top: '40%',
-    right: '15%',
-    animationName: {
-      from: { transform: 'translateY(0) scale(1)' },
-      to: { transform: 'translateY(25px) scale(1.06)' },
-    },
-    animationDuration: '9s',
-    animationIterationCount: 'infinite',
-    animationDirection: 'alternate',
-    animationTimingFunction: 'ease-in-out',
-  },
-  divineLight: {
-    position: 'absolute',
-    width: '600px',
-    height: '600px',
-    top: '-300px',
-    left: '50%',
-    transform: 'translateX(-50%)',
-    background: 'radial-gradient(circle, rgba(255, 215, 0, 0.12) 0%, transparent 70%)',
-    pointerEvents: 'none',
-  },
-  scrollIndicator: {
-    position: 'absolute',
-    bottom: '30px',
-    left: '50%',
-    transform: 'translateX(-50%)',
-    zIndex: 3,
-    opacity: 0,
-    visibility: 'hidden',
-    transitionProperty: 'opacity, visibility, transform',
-    transitionDuration: '0.4s',
-    transitionTimingFunction: 'ease-in-out',
-  },
-  scrollIndicatorVisible: {
-    opacity: 1,
-    visibility: 'visible',
-  },
-  scrollButton: {
-    ...shorthands.padding('12px', '28px'),
-    ...shorthands.borderRadius('50px'),
-    backgroundColor: 'rgba(255, 255, 255, 0.15)',
-    color: '#ffffff',
-    boxShadow: '0 8px 24px rgba(255, 255, 255, 0.2)',
-    fontSize: '14px',
-    fontWeight: '600',
-    border: '1.5px solid rgba(255, 255, 255, 0.35)',
-    backdropFilter: 'blur(10px)',
-    cursor: 'pointer',
-    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-    '&:hover': {
-      transform: 'translateY(-4px)',
-      backgroundColor: 'rgba(255, 255, 255, 0.25)',
-      boxShadow: '0 12px 32px rgba(255, 255, 255, 0.3)',
-    },
-    '&:active': {
-      transform: 'translateY(-2px)',
-    },
-  },
 });
 
 function Hero() {
@@ -350,6 +297,21 @@ function Hero() {
   const navigate = useNavigate();
   const { trackMembershipCTA, trackScroll } = useAnalytics();
   const heroRef = useRef(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const heroImages = [
+    '/images/hero/0cddcc4.jpg',
+    '/images/hero/1ece201.jpg',
+    '/images/hero/2074c6e.jpg',
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % heroImages.length);
+    }, 10000); // Change image every 8 seconds
+
+    return () => clearInterval(interval);
+  }, [heroImages.length]);
 
   const handleJoinClick = () => {
     trackMembershipCTA('Join Community', 'hero_primary_cta');
@@ -368,29 +330,37 @@ function Hero() {
 
   return (
     <section id="home" className={styles.hero} ref={heroRef}>
+      <div className={styles.backgroundSlideshow}>
+        {heroImages.map((image, index) => (
+          <img
+            key={index}
+            src={image}
+            alt={`Hero background ${index + 1}`}
+            className={`${styles.backgroundImage} ${
+              index === currentImageIndex ? styles.backgroundImageActive : ''
+            }`}
+          />
+        ))}
+      </div>
       <div className={styles.heroContent}>
         <Text as="h1" className={styles.heroTitle}>{t('hero.title')}</Text>
         <Text as="p" className={styles.heroSubtitle}>
           {t('hero.subtitle')}
         </Text>
-        <Text as="p" className={styles.heroDescription}>
-          {t('hero.description')}
-        </Text>
-        
         <div className={styles.membershipHighlight}>
           <Text className={styles.membershipText}>
-            <span style={{ fontSize: '1.8rem', filter: 'grayscale(100%) contrast(1.1) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3))' }}>✨</span> 
+            <span className={styles.emojiDecorator}>✨</span> 
             {t('hero.membershipTeaser')}
           </Text>
           <div className={styles.benefitsList}>
             <span className={styles.benefitItem}>
-              <span style={{ fontSize: '1.2rem', color: 'rgba(255, 255, 255, 0.8)', filter: 'grayscale(100%) contrast(1.1)' }}>✓</span> {t('hero.benefit1')}
+              <span className={styles.benefitCheckmark}>✓</span> {t('hero.benefit1')}
             </span>
             <span className={styles.benefitItem}>
-              <span style={{ fontSize: '1.2rem', color: 'rgba(255, 255, 255, 0.8)', filter: 'grayscale(100%) contrast(1.1)' }}>✓</span> {t('hero.benefit2')}
+              <span className={styles.benefitCheckmark}>✓</span> {t('hero.benefit2')}
             </span>
             <span className={styles.benefitItem}>
-              <span style={{ fontSize: '1.2rem', color: 'rgba(255, 255, 255, 0.8)', filter: 'grayscale(100%) contrast(1.1)' }}>✓</span> {t('hero.benefit3')}
+              <span className={styles.benefitCheckmark}>✓</span> {t('hero.benefit3')}
             </span>
           </div>
         </div>
@@ -402,7 +372,7 @@ function Hero() {
               onClick={handleJoinClick}
               className={styles.primaryButton}
             >
-              <span style={{ filter: 'grayscale(100%) contrast(1.1)' }}>✝</span> {t('heroButtons.joinCommunity')}
+              <span className={styles.buttonEmoji}>✝</span> {t('heroButtons.joinCommunity')}
             </button>
           </div>
 
@@ -412,23 +382,16 @@ function Hero() {
               onClick={handleLearnMissionClick}
               className={styles.secondaryButton}
             >
-              <span style={{ filter: 'grayscale(100%) contrast(1.1)' }}>🙏</span> {t('heroButtons.learnMission')}
+              <span className={styles.buttonEmoji}>🙏</span> {t('heroButtons.learnMission')}
             </button>
             <button
               onClick={handleGetInvolvedClick}
               className={styles.secondaryButton}
             >
-              <span style={{ filter: 'grayscale(100%) contrast(1.1)' }}>💫</span> {t('heroButtons.getInvolved')}
+              <span className={styles.buttonEmoji}>💫</span> {t('heroButtons.getInvolved')}
             </button>
           </div>
         </div>
-      </div>
-
-      <div className={styles.heroGraphic}>
-        <div className={styles.divineLight}></div>
-        <div className={`${styles.graphicCircle} ${styles.circle1}`}></div>
-        <div className={`${styles.graphicCircle} ${styles.circle2}`}></div>
-        <div className={`${styles.graphicCircle} ${styles.circle3}`}></div>
       </div>
     </section>
   );
