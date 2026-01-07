@@ -11,9 +11,7 @@ export const ministriesData = [
     email: 'advocacy@naacus.org',
     coordinator: 'To Be Announced',
     mission: 'NAACUS Advocacy Ministry seeks to inform the NAACUS membership and community-at-large of issues of social justice and human dignity concerning our communities and people of African descent all over the world.',
-    fullDescription: `NAACUS Advocacy Ministry also known as Advocacy Standing Committee
-
-NAACUS Advocacy Ministry consists of NAACUS family members in the United States including parents, young adults, married, single, children, clergy and religious, US citizens and immigrants.
+    fullDescription: `NAACUS Advocacy Ministry consists of NAACUS family members in the United States including parents, young adults, married, single, children, clergy and religious, US citizens and immigrants.
 
 The ministry seeks to:
 - Inform the NAACUS membership and community-at-large of issues of social justice and human dignity concerning our communities and people of African descent all over the world
@@ -50,9 +48,7 @@ Modus Operandi:
     email: 'womenministry@naacus.org',
     coordinator: 'Mrs. Ifeoma (Ify) Uzoh-Anigbogu',
     mission: 'The mission of NAACUS Women\'s Ministry is to promote relevant pastoral care, spiritual growth, love, and evangelization focused on African Catholic families in the United States.',
-    fullDescription: `NAACUS Women's Ministry
-
-The NAACUS Women's ministry was created as a space for Catholic women who identify with the African diaspora to convene and grow together, spiritually and socially. Membership is open to all Catholic women, who as individuals or groups are registered members of NAACUS. As a national organization, programming is normally offered virtually.
+    fullDescription: `The NAACUS Women's ministry was created as a space for Catholic women who identify with the African diaspora to convene and grow together, spiritually and socially. Membership is open to all Catholic women, who as individuals or groups are registered members of NAACUS. As a national organization, programming is normally offered virtually.
 
 Mission and Purpose:
 The mission of NAACUS Women's Ministry is to promote relevant pastoral care, spiritual growth, love, and evangelization focused on African Catholic families in the United States.
@@ -90,9 +86,7 @@ Goals and Objectives:
     email: 'youthministry@naacus.org',
     coordinator: 'Dr. Juliet Njoku',
     mission: 'Creating a space for individuals age 13-18 of the Catholic faith who identify with the African diaspora to meet, grow together spiritually and socially.',
-    fullDescription: `NAACUS Youth Ministry
-
-The NAACUS Youth ministry was created as a space for individuals age 13-18 of the Catholic faith who identify with the African diaspora to meet, greet, and grow together spiritually and socially. This effort is aimed at keeping NAACUS connected to our youths in high schools and colleges. As a national organization, programming is normally offered virtually.
+    fullDescription: `The NAACUS Youth ministry was created as a space for individuals age 13-18 of the Catholic faith who identify with the African diaspora to meet, greet, and grow together spiritually and socially. This effort is aimed at keeping NAACUS connected to our youths in high schools and colleges. As a national organization, programming is normally offered virtually.
 
 Pastoral Needs of Youth:
 The pastoral needs of youth focus on the pastoral care function of Spiritual Care - Understanding faith, developing relationship and understanding of God.
@@ -122,9 +116,7 @@ To assist in getting our Youth actively involved in the practice of their Cathol
     email: 'youngadultministry@naacus.org',
     coordinator: 'Mrs. Maame Apenteng Schmidt',
     mission: 'Creating a space for young men and women of faith who identify with the African diaspora to convene and grow together, spiritually and socially.',
-    fullDescription: `NAACUS Young Adults Ministry
-
-The NAACUS Young Adults ministry was created as a space for young men and women of faith who identify with the African diaspora to convene and grow together, spiritually and socially. As a national organization, programming is normally offered virtually. The ministry meets on a monthly basis via conference call and welcomes all people from across the NAACUS network, especially individuals aged 19-39 who are committed to helping young people of the faith. 
+    fullDescription: `The NAACUS Young Adults ministry was created as a space for young men and women of faith who identify with the African diaspora to convene and grow together, spiritually and socially. As a national organization, programming is normally offered virtually. The ministry meets on a monthly basis via conference call and welcomes all people from across the NAACUS network, especially individuals aged 19-39 who are committed to helping young people of the faith. 
 
 Our Young Adults ministry seeks to help our members navigate the challenges of today's society by providing an environment that allows them to become well-rounded citizens.
 
@@ -162,9 +154,7 @@ To assist in becoming a well-rounded citizen and having a better lifestyle, the 
     email: 'menministry@naacus.org',
     coordinator: 'Open Position',
     mission: 'Creating a community of African Catholic men dedicated to strengthening their faith and serving their families and communities.',
-    fullDescription: `NAACUS Men's Ministry
-
-The Men's Ministry is dedicated to building brotherhood and strengthening faith among African Catholic men in the United States. This ministry provides a space for men to grow spiritually, support one another, and serve their families and communities with Christ's model of servant leadership.
+    fullDescription: `The Men's Ministry is dedicated to building brotherhood and strengthening faith among African Catholic men in the United States. This ministry provides a space for men to grow spiritually, support one another, and serve their families and communities with Christ's model of servant leadership.
 
 The ministry welcomes all Catholic men who identify with the African diaspora and are committed to deepening their faith, strengthening their families, and contributing to the mission of NAACUS.
 
@@ -193,9 +183,7 @@ For more information about Men's Ministry opportunities and events, please conta
     email: 'disabilities@naacus.org',
     coordinator: 'Ms. Nkafu Amingwa',
     mission: 'Ensuring full inclusion and participation of people with disabilities in the life and mission of NAACUS.',
-    fullDescription: `NAACUS Ministry for People with Disabilities
-
-This ministry is dedicated to creating an inclusive and welcoming community for people with disabilities within NAACUS. We believe that every person, regardless of ability, has the right to fully participate in the spiritual life of our faith community.
+    fullDescription: `NAACUS Ministry for People with Disabilities is dedicated to creating an inclusive and welcoming community for people with disabilities within NAACUS. We believe that every person, regardless of ability, has the right to fully participate in the spiritual life of our faith community.
 
 Mission:
 To promote the full inclusion and participation of people with disabilities in all aspects of NAACUS life, to advocate for accessibility and accommodations, and to recognize the unique gifts and talents that people with disabilities bring to our community.
@@ -226,9 +214,7 @@ We are committed to removing barriers to participation and creating a truly incl
     email: 'outreach@naacus.org',
     coordinator: 'Dr. Florence Njoyi',
     mission: 'Serving the spiritual and material needs of African Catholics and our broader communities.',
-    fullDescription: `NAACUS Outreach Ministry
-
-The Outreach Ministry is dedicated to extending the love of Christ to those in need and building stronger connections with our communities. This ministry coordinates charitable works, community service, and pastoral outreach programs.
+    fullDescription: `NAACUS Outreach Ministry is dedicated to extending the love of Christ to those in need and building stronger connections with our communities. This ministry coordinates charitable works, community service, and pastoral outreach programs.
 
 Focus Areas:
 - Community assistance and support
@@ -256,9 +242,7 @@ The Outreach Ministry believes in living out the Gospel message through actions 
     email: 'resources@naacus.org',
     coordinator: 'To Be Announced',
     mission: 'Providing quality resources to support spiritual growth, education, and formation.',
-    fullDescription: `NAACUS Resource Ministry
-
-The Resource Ministry is committed to collecting, developing, and distributing educational and spiritual resources that support the mission of NAACUS and the faith development of our members.
+    fullDescription: `NAACUS Resource Ministry is committed to collecting, developing, and distributing educational and spiritual resources that support the mission of NAACUS and the faith development of our members.
 
 The ministry provides:
 - Educational materials on Catholic faith and practice
@@ -286,9 +270,7 @@ By making quality resources available, we empower our members to deepen their fa
     email: 'finance@naacus.org',
     coordinator: 'To Be Announced',
     mission: 'Promoting faithful stewardship and transparent financial management of NAACUS resources.',
-    fullDescription: `NAACUS Finance Ministry
-
-The Finance Ministry is responsible for the stewardship and management of NAACUS financial resources. This ministry ensures transparency, accountability, and faithful use of funds in support of our mission.
+    fullDescription: `NAACUS Finance Ministry is responsible for the stewardship and management of NAACUS financial resources. This ministry ensures transparency, accountability, and faithful use of funds in support of our mission.
 
 Responsibilities:
 - Budget development and management

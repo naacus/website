@@ -60,7 +60,7 @@ function AppContent() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/leadership" element={<LeadershipPage />} />
         <Route path="/fellowship-ministries" element={<FellowshipMinistriesPage />} />
-        <Route path="/ministry/:id" element={<MinistryDetail />} />
+        <Route path="/ministries/:id" element={<MinistryDetail />} />
         <Route path="/programs-activities" element={<ProgramsActivitiesPage />} />
         <Route path="/membership" element={<MembershipPage />} />
         <Route path="/volunteer" element={<VolunteerPage />} />

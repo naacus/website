@@ -1,5 +1,5 @@
-import React from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import React, { useMemo, useCallback } from 'react';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import {
   makeStyles,
   shorthands,
@@ -9,16 +9,19 @@ import {
 } from '@fluentui/react-components';
 import { ChevronLeft24Regular } from '@fluentui/react-icons';
 import { getMinistryById } from '../data/ministriesData';
+import { handleNavigation } from '../services/navigationService';
 
 const useStyles = makeStyles({
   container: {
     backgroundColor: '#faf9f8',
     minHeight: '100vh',
     ...shorthands.padding('40px', '20px'),
+    paddingTop: '80px',
   },
   content: {
     maxWidth: '900px',
     ...shorthands.margin('0', 'auto'),
+    padding: '80px 0',
   },
   backButton: {
     marginBottom: '24px',
@@ -53,7 +56,7 @@ const useStyles = makeStyles({
     display: 'block',
   },
   section: {
-    marginBottom: '32px',
+    marginBottom: '32px'
   },
   sectionTitle: {
     fontSize: '1.5rem',
@@ -125,24 +128,99 @@ const useStyles = makeStyles({
   },
 });
 
+const BackButton = React.memo(({ styles, onNavigate }) => (
+  <Button
+    className={styles.backButton}
+    onClick={onNavigate}
+    appearance="transparent"
+  >
+    <ChevronLeft24Regular />
+    Back to Ministries
+  </Button>
+));
+
+const MissionSection = React.memo(({ mission, styles }) => {
+  if (!mission) return null;
+  return (
+    <div className={styles.section}>
+      <Text className={styles.sectionTitle}>Our Mission</Text>
+      <Text className={styles.sectionContent}>{mission}</Text>
+    </div>
+  );
+});
+
+const AboutSection = React.memo(({ fullDescription, styles }) => {
+  if (!fullDescription) return null;
+  return (
+    <div className={styles.section}>
+      <Text className={styles.sectionTitle}>About</Text>
+      <Text className={styles.sectionContent}>{fullDescription}</Text>
+    </div>
+  );
+});
+
+const ProgramsSection = React.memo(({ programs, styles }) => {
+  if (!programs || programs.length === 0) return null;
+  return (
+    <div className={styles.section}>
+      <Text className={styles.sectionTitle}>Programs & Activities</Text>
+      <div className={styles.programsList}>
+        {programs.map((program, index) => (
+          <div key={index} className={styles.programItem}>
+            <Text className={styles.programTitle}>{program}</Text>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+});
+
+const ContactSection = React.memo(({ coordinator, email, styles }) => (
+  <div className={styles.contactSection}>
+    <Text className={styles.sectionTitle}>Get Involved</Text>
+    
+    {coordinator && (
+      <>
+        <Text className={styles.contactLabel}>Coordinator:</Text>
+        <Text className={styles.contactValue}>{coordinator}</Text>
+      </>
+    )}
+
+    <Text className={styles.contactLabel}>For More Information:</Text>
+    <Text className={styles.contactValue}>
+      <a href={`mailto:${email}`} className={styles.contactLink}>
+        {email}
+      </a>
+    </Text>
+  </div>
+));
+
 function MinistryDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
   const styles = useStyles();
 
-  const ministry = getMinistryById(id);
+  const ministry = useMemo(() => getMinistryById(id), [id]);
+  const handleNavigate = useCallback(() => {
+    handleNavigation({
+      path: '/fellowship-ministries',
+      sectionId: null,
+      currentPathname: location.pathname,
+      navigate,
+    });
+  }, [navigate, location.pathname]);
+
+  // Scroll to top on mount
+  React.useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [id]);
 
   if (!ministry) {
     return (
       <section className={styles.container}>
         <div className={styles.content}>
-          <Button
-            className={styles.backButton}
-            onClick={() => navigate('/ministries')}
-          >
-            <ChevronLeft24Regular />
-            Back to Ministries
-          </Button>
+          <BackButton styles={styles} onNavigate={handleNavigate} />
           <Text className={styles.title}>Ministry Not Found</Text>
         </div>
       </section>
@@ -152,65 +230,17 @@ function MinistryDetail() {
   return (
     <section className={styles.container}>
       <div className={styles.content}>
-        <Button
-          className={styles.backButton}
-          onClick={() => navigate('/ministries')}
-        >
-          <ChevronLeft24Regular />
-          Back to Ministries
-        </Button>
+        <BackButton styles={styles} onNavigate={handleNavigate} />
 
         <div className={styles.header}>
           <Text className={styles.title}>{ministry.title}</Text>
           <Text className={styles.subtitle}>{ministry.description}</Text>
         </div>
 
-        {ministry.mission && (
-          <div className={styles.section}>
-            <Text className={styles.sectionTitle}>Our Mission</Text>
-            <Text className={styles.sectionContent}>{ministry.mission}</Text>
-          </div>
-        )}
-
-        {ministry.fullDescription && (
-          <div className={styles.section}>
-            <Text className={styles.sectionTitle}>About</Text>
-            <Text className={styles.sectionContent}>
-              {ministry.fullDescription}
-            </Text>
-          </div>
-        )}
-
-        {ministry.programs && ministry.programs.length > 0 && (
-          <div className={styles.section}>
-            <Text className={styles.sectionTitle}>Programs & Activities</Text>
-            <div className={styles.programsList}>
-              {ministry.programs.map((program, index) => (
-                <div key={index} className={styles.programItem}>
-                  <Text className={styles.programTitle}>{program}</Text>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        <div className={styles.contactSection}>
-          <Text className={styles.sectionTitle}>Get Involved</Text>
-          
-          {ministry.coordinator && (
-            <>
-              <Text className={styles.contactLabel}>Coordinator:</Text>
-              <Text className={styles.contactValue}>{ministry.coordinator}</Text>
-            </>
-          )}
-
-          <Text className={styles.contactLabel}>For More Information:</Text>
-          <Text className={styles.contactValue}>
-            <a href={`mailto:${ministry.email}`} className={styles.contactLink}>
-              {ministry.email}
-            </a>
-          </Text>
-        </div>
+        <MissionSection mission={ministry.mission} styles={styles} />
+        <AboutSection fullDescription={ministry.fullDescription} styles={styles} />
+        <ProgramsSection programs={ministry.programs} styles={styles} />
+        <ContactSection coordinator={ministry.coordinator} email={ministry.email} styles={styles} />
       </div>
     </section>
   );

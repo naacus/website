@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { 
   makeStyles,
   shorthands,
@@ -185,6 +185,7 @@ const useStyles = makeStyles({
 function Ministries() {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const location = useLocation();
   const styles = useStyles();
   const { trackMinistryCTA, trackMinistry } = useAnalytics();
 
@@ -198,12 +199,17 @@ function Ministries() {
 
   const handleMinistryCardClick = (ministry) => {
     trackMinistry(ministry.title, 'card_click');
-    navigate(`/ministry/${ministry.id}`);
+    handleNavigation({
+      path: `/ministries/${ministry.id}`,
+      sectionId: null,
+      currentPathname: location.pathname,
+      navigate,
+    });
   };
 
   const handleGetInvolvedClick = () => {
     trackMinistryCTA('Register Volunteer', 'get_involved_cta');
-    handleNavigation({ path: '/volunteer', sectionId: null, currentPathname: '/fellowship-ministries', navigate });
+    handleNavigation({ path: '/volunteer', sectionId: null, currentPathname: location.pathname, navigate });
   };
 
   // Track ministry view on mount
