@@ -196,8 +196,9 @@ function Ministries() {
     trackMinistry(ministryTitle, 'email_click');
   };
 
-  const handleMinistryCardClick = (ministryTitle) => {
-    trackMinistry(ministryTitle, 'card_click');
+  const handleMinistryCardClick = (ministry) => {
+    trackMinistry(ministry.title, 'card_click');
+    navigate(`/ministry/${ministry.id}`);
   };
 
   const handleGetInvolvedClick = () => {
@@ -248,12 +249,12 @@ function Ministries() {
               key={index} 
               id={ministry.iconKey}
               className={styles.ministryCard}
-              onClick={() => handleMinistryCardClick(ministry.title)}
+              onClick={() => handleMinistryCardClick(ministry)}
               role="button"
               tabIndex={0}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
-                  handleMinistryCardClick(ministry.title);
+                  handleMinistryCardClick(ministry);
                 }
               }}
             >

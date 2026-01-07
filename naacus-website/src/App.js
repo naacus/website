@@ -14,6 +14,7 @@ import VolunteerPage from './pages/VolunteerPage';
 import AboutPage from './pages/AboutPage';
 import LeadershipPage from './pages/LeadershipPage';
 import FellowshipMinistriesPage from './pages/FellowshipMinistriesPage';
+import MinistryDetail from './components/MinistryDetail';
 import ProgramsActivitiesPage from './pages/ProgramsActivitiesPage';
 import ResourcesPage from './pages/ResourcesPage';
 import NewslettersPage from './pages/NewslettersPage';
@@ -59,6 +60,7 @@ function AppContent() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/leadership" element={<LeadershipPage />} />
         <Route path="/fellowship-ministries" element={<FellowshipMinistriesPage />} />
+        <Route path="/ministry/:id" element={<MinistryDetail />} />
         <Route path="/programs-activities" element={<ProgramsActivitiesPage />} />
         <Route path="/membership" element={<MembershipPage />} />
         <Route path="/volunteer" element={<VolunteerPage />} />
