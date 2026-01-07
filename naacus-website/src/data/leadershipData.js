@@ -4,7 +4,7 @@
 
 export const leadershipData = {
   executiveBoard: [
-    { name: 'Mrs. Sally Stovall', title: 'President', phone: '317-727-5736', email: 'sally.stovall@naacus.org', photo: '' },
+    { name: 'Mrs. Sally Stovall', title: 'President', phone: '317-727-5736', email: 'sally.stovall@naacus.org', photo: '/images/leadership/president.png' },
     { name: 'Mr. Kwame Frimpong', title: 'Vice President', phone: '240-731-1526', email: 'kwame.frimpong@naacus.org', photo: '' },
     { name: 'Mr. Alex Nana Danso', title: 'General Secretary', phone: '571-337-9797', email: 'alex.danso@naacus.org', photo: '' },
     { name: 'Sr. Dr. Maddy Claire Takyala', title: 'Assistant General Secretary', phone: '219-259-6940', email: 'maddy.takyala@naacus.org', photo: '' },
@@ -86,13 +86,13 @@ export const leadershipData = {
       title: 'IT Committee Coordinator',
       phone: '347-553-0909',
       email: 'celestin.mbuyamba@naacus.org',
-      location: '',
+      location: 'Buffalo, MN',
       photo: ''
     }
   ],
   spiritualAdvisers: [
     { name: 'Rev. Fr. Benoit Mukamba, CSSP', title: 'Spiritual Adviser', phone: '281-216-7894', email: 'benoit.mukamba@naacus.org', photo: '' },
-    { name: 'Sr. Joanna Okereke, HHCJ', title: 'Spiritual Adviser', phone: '202-541-3359 or 832-692-6922', email: 'joanna.okereke@naacus.org', photo: '' },
+    { name: 'Sr. Joanna Okereke, HHCJ', title: 'Spiritual Adviser', phone: '202-541-3359 or 832-692-6922', email: 'joanna.okereke@naacus.org', photo: '/images/leadership/spiritual-adviser-2.png' },
     { name: 'Fr. Cornelius Ejiogu', title: 'Spiritual Adviser', phone: '410-900-5665', email: 'cornelius.ejiogu@naacus.org', photo: '' },
   ]
 };

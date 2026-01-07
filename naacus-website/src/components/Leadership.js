@@ -7,11 +7,12 @@ import {
   Text,
   Card,
   Dialog,
-  DialogContent,
+  DialogSurface,
   DialogBody,
   DialogTitle,
   Button
 } from '@fluentui/react-components';
+import { Dismiss24Regular } from '@fluentui/react-icons';
 import { dataService } from '../services/dataService';
 
 const useStyles = makeStyles({
@@ -120,13 +121,69 @@ const useStyles = makeStyles({
     fontWeight: '600',
     color: tokens.colorNeutralForeground1,
   },
+  dialogSurface: {
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%',
+    maxWidth: '600px',
+    '@media (max-width: 768px)': {
+      maxWidth: '95vw',
+    },
+  },
+  dialogHeader: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    ...shorthands.padding('20px', '24px'),
+    borderBottom: '1px solid #e5e5e5',
+    flex: 'none',
+    gap: '16px',
+  },
+  dialogHeaderLeft: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '0',
+    flex: 1,
+  },
+  dialogHeaderRight: {
+    display: 'flex',
+    alignItems: 'flex-start',
+    gap: '12px',
+    flexShrink: 0,
+  },
+  dialogCloseButton: {
+    backgroundColor: 'transparent',
+    border: 'none',
+    cursor: 'pointer',
+    padding: '0',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: tokens.colorNeutralForeground2,
+    '&:hover': {
+      color: tokens.colorNeutralForeground1,
+    },
+    flexShrink: 0,
+  },
+  dialogContentBody: {
+    display: 'flex',
+    flexDirection: 'column',
+    flex: '1',
+    overflowY: 'auto',
+    ...shorthands.gap('16px'),
+    ...shorthands.padding('24px'),
+  },
+  dialogActions: {
+    display: 'flex',
+    ...shorthands.gap('12px'),
+    justifyContent: 'flex-end',
+    ...shorthands.padding('24px'),
+    borderTop: '1px solid #e5e5e5',
+    flex: 'none',
+  },
   dialogContent: {
     display: 'flex',
     flexDirection: 'column',
-    ...shorthands.gap('16px'),
-  },
-  dialogContentWrapper: {
-    maxWidth: '500px',
   },
   dialogMemberTitle: {
     fontSize: '1rem',
@@ -224,9 +281,22 @@ function Leadership() {
               <div className={styles.memberBody}>
                 <Text className={styles.memberName}>{member.name}</Text>
                 <Text className={styles.memberTitle}>{member.title}</Text>
-                {member.location && <Text className={styles.memberContact}>{member.location}</Text>}
-                {member.phone && <Text className={styles.memberContact}>{member.phone}</Text>}
-                {member.email && <Text className={styles.memberContact}><a href={`mailto:${member.email}`} className={styles.contactLink}>{member.email}</a></Text>}
+                <Text className={styles.memberContact} style={{ color: member.location ? 'inherit' : '#999', fontStyle: member.location ? 'normal' : 'italic' }}>
+                  {member.location || 'Location not available'}
+                </Text>
+                <Text className={styles.memberContact} style={{ color: member.phone ? 'inherit' : '#999', fontStyle: member.phone ? 'normal' : 'italic' }}>
+                  {member.phone || 'Phone not available'}
+                </Text>
+                <Text className={styles.memberContact} style={{ color: member.email ? 'inherit' : '#999', fontStyle: member.email ? 'normal' : 'italic' }}>
+                  {member.email ? <a href={`mailto:${member.email}`} className={styles.contactLink}>{member.email}</a> : 'Email not available'}
+                </Text>
+                <Button
+                  className={styles.readMoreBtn}
+                  appearance="primary"
+                  onClick={() => setSelectedMember(member)}
+                >
+                  Read More
+                </Button>
               </div>
             </Card>
           ))}
@@ -260,12 +330,22 @@ function Leadership() {
       </div>
 
       {selectedMember && (
-        <Dialog open={true}>
-          <DialogContent className={styles.dialogContentWrapper}>
-            <DialogTitle className={styles.dialogTitle}>
-              {selectedMember.name}
-            </DialogTitle>
-            <DialogBody>
+        <Dialog open={true} onOpenChange={(event, data) => !data.open && setSelectedMember(null)}>
+          <DialogSurface className={styles.dialogSurface}>
+            <div className={styles.dialogHeader}>
+              <div className={styles.dialogHeaderLeft}>
+                <DialogTitle className={styles.dialogTitle}>
+                  {selectedMember.name}
+                </DialogTitle>
+              </div>
+              <Button
+                icon={<Dismiss24Regular />}
+                appearance="subtle"
+                onClick={() => setSelectedMember(null)}
+                className={styles.dialogCloseButton}
+              />
+            </div>
+            <DialogBody className={styles.dialogContentBody}>
               <div className={styles.dialogContent}>
                 <div>
                   <Text as="p" className={styles.dialogMemberTitle}>
@@ -273,19 +353,17 @@ function Leadership() {
                   </Text>
                 </div>
 
-                <div>
-                  <Text as="h4" className={styles.dialogSectionTitle}>
-                    {t('leadership.aboutLabel')}
-                  </Text>
-                  <Text as="p" className={styles.dialogText}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                  </Text>
-                  <Text as="p" className={styles.dialogText}>
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                  </Text>
-                </div>
+                <Text as="h4" className={styles.dialogSectionTitle}>
+                  {t('leadership.aboutLabel')}
+                </Text>
+                <Text as="p" className={styles.dialogText}>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                </Text>
+                <Text as="p" className={styles.dialogText}>
+                  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </Text>
 
-                <div>
+                <div style={{ clear: 'both' }}>
                   <Text as="h4" className={styles.dialogContactLabel}>
                     {t('leadership.contactLabel')}
                   </Text>
@@ -300,14 +378,16 @@ function Leadership() {
                     </Text>
                   )}
                 </div>
+              </div>
+            </DialogBody>
+            <div className={styles.dialogActions}>
               <Button appearance="secondary" onClick={() => setSelectedMember(null)}>
                 {t('leadership.close')}
               </Button>
             </div>
-          </DialogBody>
-        </DialogContent>
-      </Dialog>
-    )}
+          </DialogSurface>
+        </Dialog>
+      )}
     </section>
   );
 }
