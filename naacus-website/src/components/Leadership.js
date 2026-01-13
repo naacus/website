@@ -355,7 +355,7 @@ function Leadership() {
 
                 {selectedMember.bio && (
                   <>
-                    {selectedMember.bio.split('\n').map((paragraph, index) => (
+                    {selectedMember.bio.split('\n').filter(paragraph => paragraph.trim() !== '').map((paragraph, index) => (
                       <Text key={index} as="p" className={styles.dialogText}>
                         {paragraph}
                       </Text>
