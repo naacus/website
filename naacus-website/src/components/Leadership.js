@@ -201,7 +201,7 @@ const useStyles = makeStyles({
     fontSize: '0.9rem',
     lineHeight: '1.6',
     color: tokens.colorNeutralForeground2,
-    marginBottom: '12px',
+    marginBottom: '0px',
     display: 'block',
   },
   dialogContactLabel: {
@@ -353,15 +353,18 @@ function Leadership() {
                   </Text>
                 </div>
 
-                <Text as="h4" className={styles.dialogSectionTitle}>
-                  {t('leadership.aboutLabel')}
-                </Text>
-                <Text as="p" className={styles.dialogText}>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                </Text>
-                <Text as="p" className={styles.dialogText}>
-                  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </Text>
+                {selectedMember.bio && (
+                  <>
+                    <Text as="h4" className={styles.dialogSectionTitle}>
+                      {t('leadership.aboutLabel')}
+                    </Text>
+                    {selectedMember.bio.split('\n').map((paragraph, index) => (
+                      <Text key={index} as="p" className={styles.dialogText}>
+                        {paragraph}
+                      </Text>
+                    ))}
+                  </>
+                )}
 
                 <div style={{ clear: 'both' }}>
                   <Text as="h4" className={styles.dialogContactLabel}>

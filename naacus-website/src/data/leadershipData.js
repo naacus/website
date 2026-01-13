@@ -4,7 +4,14 @@
 
 export const leadershipData = {
   executiveBoard: [
-    { name: 'Mrs. Sally Stovall', title: 'President', phone: '317-727-5736', email: 'sally.stovall@naacus.org', photo: '/images/leadership/president.png' },
+    { 
+      name: 'Mrs. Sally Stovall', 
+      title: 'President', 
+      phone: '317-727-5736', 
+      email: 'sally.stovall@naacus.org', 
+      photo: '/images/leadership/president.png',
+      bio: 'Mrs. Sally Stovall is a passionate leader committed to advancing faith, unity, and cultural heritage within African Catholic communities. Since 2017, she has served as President of the National Association of African Catholics in the United States (NAACUS), guiding initiatives that strengthen evangelization, foster cultural identity, and build vibrant communities rooted in Catholic values. Her leadership reflects NAACUS\'s mission to unite African Catholics, promote spiritual growth, and celebrate diversity within the universal Church.\n\nSally\'s dedication extends beyond NAACUS. She contributes to the United States Conference of Catholic Bishops (USCCB) through the Pastoral Care for Migrants, Refugees, and Travelers (PCMRT) subcommittee and chaired the 2016 African National Eucharistic Congress (ANEC), a landmark event for African Catholics in the U.S. Locally, she co-founded the African Catholic Ministry in the Archdiocese of Indianapolis and led the Global Children African Dancers for 14 years, blending faith and culture through art.\n\nHer service includes mentoring youth and young adults, supporting underrepresented communities, and promoting cultural initiatives nationally. A devoted parishioner, she served on her parish council and chaired the Finance Council for 17 years. Professionally, Sally is a banker with an MBA in Business Administration. She is married and a proud mother of two young adults. Her life embodies NAACUS\'s vision: inspiring others to live their faith fully while embracing cultural identity and community.'
+    },
     { name: 'Mr. Kwame Frimpong', title: 'Vice President', phone: '240-731-1526', email: 'kwame.frimpong@naacus.org', photo: '' },
     { name: 'Mr. Alex Nana Danso', title: 'General Secretary', phone: '571-337-9797', email: 'alex.danso@naacus.org', photo: '' },
     { name: 'Sr. Dr. Maddy Claire Takyala', title: 'Assistant General Secretary', phone: '219-259-6940', email: 'maddy.takyala@naacus.org', photo: '' },
@@ -87,7 +94,8 @@ export const leadershipData = {
       phone: '347-553-0909',
       email: 'celestin.mbuyamba@naacus.org',
       location: 'Buffalo, MN',
-      photo: ''
+      photo: '',
+      bio: 'Celestin Mbuyamba is a Congolese immigrant based in the Archdiocese of Saint Paul in Minneapolis-Saint Paul metro area, devoted Catholic, and proud husband and father of four who serves as the IT Committee Coordinator for the National Association of African Catholics in the United States (NAACUS). He is passionate about helping African Catholics across the country connect, grow in faith, and build lasting friendships through a strong and welcoming national community.\n\nIn this role, Celestin leads NAACUS digital initiatives, strengthening the website, improving online membership and event registration, expanding communication channels, and ensuring secure, easy-to-use tools for leaders and members. His goal is simple: remove barriers so everyone can participate, stay informed, and feel included, whether you are new to the U.S., raising a family, or looking for a spiritual home and community support.\n\nProfessionally, Celestin is a software engineer who enjoys turning big visions into practical solutions. At NAACUS, he brings that same energy to serve the mission.\n\nCelestin invites you to join NAACUS and be part of a growing network of African Catholics united in faith, culture, service, and hope.'
     }
   ],
   spiritualAdvisers: [
