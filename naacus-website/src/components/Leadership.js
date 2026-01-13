@@ -355,9 +355,6 @@ function Leadership() {
 
                 {selectedMember.bio && (
                   <>
-                    <Text as="h4" className={styles.dialogSectionTitle}>
-                      {t('leadership.aboutLabel')}
-                    </Text>
                     {selectedMember.bio.split('\n').map((paragraph, index) => (
                       <Text key={index} as="p" className={styles.dialogText}>
                         {paragraph}
@@ -365,22 +362,6 @@ function Leadership() {
                     ))}
                   </>
                 )}
-
-                <div style={{ clear: 'both' }}>
-                  <Text as="h4" className={styles.dialogContactLabel}>
-                    {t('leadership.contactLabel')}
-                  </Text>
-                  {selectedMember.phone && (
-                    <Text as="p" className={styles.dialogContactItem}>
-                      <strong>{t('leadership.phone')}:</strong> {selectedMember.phone}
-                    </Text>
-                  )}
-                  {selectedMember.email && (
-                    <Text as="p" className={styles.dialogContactItem}>
-                      <strong>{t('leadership.email')}:</strong> <a href={`mailto:${selectedMember.email}`} className={styles.contactLink}>{selectedMember.email}</a>
-                    </Text>
-                  )}
-                </div>
               </div>
             </DialogBody>
             <div className={styles.dialogActions}>
