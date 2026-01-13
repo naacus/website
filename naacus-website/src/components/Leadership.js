@@ -255,7 +255,6 @@ function Leadership() {
               <div className={styles.memberBody}>
                 <Text className={styles.memberName}>{member.name}</Text>
                 <Text className={styles.memberTitle}>{member.title}</Text>
-                {member.phone && <Text className={styles.memberContact}>{member.phone}</Text>}
                 {member.email && <Text className={styles.memberContact}><a href={`mailto:${member.email}`} className={styles.contactLink}>{member.email}</a></Text>}
                 <Button
                   className={styles.readMoreBtn}
@@ -284,9 +283,6 @@ function Leadership() {
                 <Text className={styles.memberContact} style={{ color: member.location ? 'inherit' : '#999', fontStyle: member.location ? 'normal' : 'italic' }}>
                   {member.location || 'Location not available'}
                 </Text>
-                <Text className={styles.memberContact} style={{ color: member.phone ? 'inherit' : '#999', fontStyle: member.phone ? 'normal' : 'italic' }}>
-                  {member.phone || 'Phone not available'}
-                </Text>
                 <Text className={styles.memberContact} style={{ color: member.email ? 'inherit' : '#999', fontStyle: member.email ? 'normal' : 'italic' }}>
                   {member.email ? <a href={`mailto:${member.email}`} className={styles.contactLink}>{member.email}</a> : 'Email not available'}
                 </Text>
@@ -314,7 +310,6 @@ function Leadership() {
               <div className={styles.memberBody}>
                 <Text className={styles.memberName}>{member.name}</Text>
                 <Text className={styles.memberTitle}>{member.title}</Text>
-                {member.phone && <Text className={styles.memberContact}>{member.phone}</Text>}
                 {member.email && <Text className={styles.memberContact}><a href={`mailto:${member.email}`} className={styles.contactLink}>{member.email}</a></Text>}
                 <Button
                   className={styles.readMoreBtn}
