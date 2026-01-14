@@ -143,6 +143,9 @@ const useStyles = makeStyles({
       backgroundColor: '#c0392b',
       textDecoration: 'none',
     },
+    '@media (max-width: 768px)': {
+      display: 'none',
+    },
   },
   feedbackLinkActive: {
     backgroundColor: '#c0392b',
@@ -150,6 +153,9 @@ const useStyles = makeStyles({
     fontWeight: '600',
     textDecoration: 'none',
     animation: 'blink 1.5s infinite',
+    '@media (max-width: 768px)': {
+      display: 'none',
+    },
   },
   rightSection: {
     display: 'flex',
