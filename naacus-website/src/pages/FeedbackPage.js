@@ -1,3 +1,4 @@
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { 
   makeStyles,
@@ -6,6 +7,7 @@ import {
   Text
 } from '@fluentui/react-components';
 import PageWrapper from '../components/PageWrapper';
+import { trackPageView, trackFormEvent } from '../services/analyticsService';
 
 const useStyles = makeStyles({
   feedbackSection: {
@@ -43,16 +45,31 @@ const useStyles = makeStyles({
     backgroundColor: tokens.colorNeutralBackground1,
     ...shorthands.borderRadius('8px'),
     ...shorthands.padding('20px'),
-    '& iframe': {
-      width: '100%',
-      border: 'none',
-    },
+  },
+  formIframe: {
+    width: '100%',
+    border: 'none',
+    maxWidth: '100%',
+    maxHeight: '100vh',
   },
 });
 
 function FeedbackPage() {
   const { t } = useTranslation();
   const styles = useStyles();
+
+  useEffect(() => {
+    // Track page view for feedback page
+    trackPageView('Feedback');
+    
+    // Track that user started feedback form
+    trackFormEvent('feedback_form', 'start');
+  }, []);
+
+  const handleFormLoad = () => {
+    // Track when the iframe has fully loaded
+    trackFormEvent('feedback_form', 'loaded');
+  };
 
   return (
     <PageWrapper title={t('feedback.title')} description={t('feedback.description')}>
@@ -70,15 +87,14 @@ function FeedbackPage() {
               title="Feedback Form"
               width="100%" 
               height="480px" 
-              src="https://forms.office.com/r/kEXvM7iXAq?embed=true" 
-              frameBorder="0" 
-              marginWidth="0" 
-              marginHeight="0" 
-              style={{ border: 'none', maxWidth: '100%', maxHeight: '100vh' }} 
+              src="https://forms.office.com/r/kEXvM7iXAq?embed=true"
+              className={styles.formIframe}
               allowFullScreen 
               webkitAllowFullScreen 
               mozAllowFullScreen 
-              msAllowFullScreen>
+              msAllowFullScreen
+              onLoad={handleFormLoad}
+            >
             </iframe>
           </div>
         </div>
