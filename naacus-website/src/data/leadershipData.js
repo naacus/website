@@ -94,7 +94,7 @@ export const leadershipData = {
       phone: '347-553-0909',
       email: 'celestin.mbuyamba@naacus.org',
       location: 'Buffalo, MN',
-      photo: '',
+      photo: '/images/leadership/it-coordinator.png',
       bio: 'Celestin Mbuyamba is a Congolese immigrant based in the Archdiocese of Saint Paul in Minneapolis-Saint Paul metro area, devoted Catholic, and proud husband and father of four who serves as the IT Committee Coordinator for the National Association of African Catholics in the United States (NAACUS). He is passionate about helping African Catholics across the country connect, grow in faith, and build lasting friendships through a strong and welcoming national community.\n\nIn this role, Celestin leads NAACUS digital initiatives, strengthening the website, improving online membership and event registration, expanding communication channels, and ensuring secure, easy-to-use tools for leaders and members. His goal is simple: remove barriers so everyone can participate, stay informed, and feel included, whether you are new to the U.S., raising a family, or looking for a spiritual home and community support.\n\nProfessionally, Celestin is a software engineer who enjoys turning big visions into practical solutions. At NAACUS, he brings that same energy to serve the mission.\n\nCelestin invites you to join NAACUS and be part of a growing network of African Catholics united in faith, culture, service, and hope.'
     }
   ],
