@@ -23,7 +23,8 @@
       "volunteer": "Volunteer",
       "resources": "Resources",
       "newsletters": "Newsletters",
-      "contact": "Contact"
+      "contact": "Contact",
+      "feedback": "Feedback"
     },
     "searchPlaceholder": "Search",
     "donate": "Donate"
@@ -561,6 +562,11 @@
     "searchPlaceholder": "Search FAQs...",
     "noResults": "No FAQs found matching your search",
     "clearFilters": "Clear Filters"
+  },
+  "feedback": {
+    "title": "Send Us Your Feedback",
+    "subtitle": "We value your input and would love to hear your thoughts on how we can improve our website and services. Please share your feedback with us below.",
+    "description": "Website feedback form"
   },
   "notFound": {
     "title": "Page Not Found",

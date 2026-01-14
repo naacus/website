@@ -22,7 +22,8 @@
       "volunteer": "Bénévole",
       "resources": "Ressources",
       "newsletters": "Bulletins",
-      "contact": "Contact"
+      "contact": "Contact",
+      "feedback": "Commentaires"
     },
     "searchPlaceholder": "Recherche",
     "donate": "Donner"
@@ -555,8 +556,11 @@
     "searchPlaceholder": "Rechercher dans les FAQ...",
     "noResults": "Aucune FAQ trouvée correspondant à votre recherche",
     "clearFilters": "Effacer les filtres"
-  },
-  "notFound": {
+  },  "feedback": {
+    "title": "Envoyez-nous Vos Commentaires",
+    "subtitle": "Nous apprécions votre opinion et aimerions entendre vos suggestions pour améliorer notre site Web et nos services. Veuillez partager vos commentaires ci-dessous.",
+    "description": "Formulaire de commentaires du site Web"
+  },  "notFound": {
     "title": "Page Non Trouvée",
     "description": "Désolé, la page que vous recherchez n'existe pas ou a été déplacée. Veuillez vérifier l'URL et réessayer.",
     "goHome": "Aller à l'Accueil",

@@ -18,7 +18,20 @@ import SearchInput from './SearchInput';
 import { handleNavigation, isActivePath } from '../services/navigationService';
 import { useAnalytics } from '../hooks/useAnalytics';
 
+const blinkAnimation = {
+  '0%': {
+    opacity: 1,
+  },
+  '50%': {
+    opacity: 0.6,
+  },
+  '100%': {
+    opacity: 1,
+  },
+};
+
 const useStyles = makeStyles({
+  '@keyframes blink': blinkAnimation,
   header: {
     backgroundColor: '#ffffff',
     color: '#262626',
@@ -119,6 +132,25 @@ const useStyles = makeStyles({
     fontWeight: '600',
     textDecoration: 'underline',
   },
+  feedbackLink: {
+    backgroundColor: '#e74c3c',
+    color: '#ffffff',
+    fontWeight: '600',
+    ...shorthands.padding('0', '16px'),
+    ...shorthands.borderRadius('4px'),
+    animation: 'blink 1.5s infinite',
+    '&:hover': {
+      backgroundColor: '#c0392b',
+      textDecoration: 'none',
+    },
+  },
+  feedbackLinkActive: {
+    backgroundColor: '#c0392b',
+    color: '#ffffff',
+    fontWeight: '600',
+    textDecoration: 'none',
+    animation: 'blink 1.5s infinite',
+  },
   rightSection: {
     display: 'flex',
     alignItems: 'center',
@@ -217,6 +249,18 @@ const useStyles = makeStyles({
     backgroundColor: '#eaf4ff',
     color: '#0067b8',
     fontWeight: '600',
+  },
+  mobileMenuItemFeedback: {
+    backgroundColor: '#e74c3c',
+    color: '#ffffff',
+    fontWeight: '600',
+    animation: 'blink 1.5s infinite',
+  },
+  mobileMenuItemFeedbackActive: {
+    backgroundColor: '#c0392b',
+    color: '#ffffff',
+    fontWeight: '600',
+    animation: 'blink 1.5s infinite',
   },
 });
 
@@ -331,6 +375,12 @@ function Header() {
           <div className={styles.languageSwitcher}>
             <LanguageSwitcher />
           </div>
+          <button 
+            onClick={() => handleNavigationHelper('/feedback', null, 'feedback')}
+            className={`${styles.navLink} ${isActivePathHelper('/feedback') ? styles.feedbackLinkActive : styles.feedbackLink}`}
+          >
+            {t('header.nav.feedback')}
+          </button>
 
           {/* Mobile Menu */}
           <Menu>
@@ -355,6 +405,7 @@ function Header() {
                 <MenuItem className={isActivePathHelper('/resources') ? styles.mobileMenuItemActive : undefined} onClick={() => handleNavigationHelper('/resources', null, 'mobile_resources')}>{t('header.nav.resources')}</MenuItem>
                 <MenuItem className={isActivePathHelper('/newsletters') ? styles.mobileMenuItemActive : undefined} onClick={() => handleNavigationHelper('/newsletters', null, 'mobile_newsletters')}>Newsletters</MenuItem>
                 <MenuItem className={isActivePathHelper('/contact') ? styles.mobileMenuItemActive : undefined} onClick={() => handleNavigationHelper('/contact', null, 'mobile_contact')}>{t('header.nav.contact')}</MenuItem>
+                <MenuItem className={isActivePathHelper('/feedback') ? styles.mobileMenuItemFeedbackActive : styles.mobileMenuItemFeedback} onClick={() => handleNavigationHelper('/feedback', null, 'mobile_feedback')}>{t('header.nav.feedback')}</MenuItem>
               </MenuList>
             </MenuPopover>
           </Menu>

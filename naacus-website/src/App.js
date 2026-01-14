@@ -22,6 +22,7 @@ import ContactPage from './pages/ContactPage';
 import PrivacyPage from './pages/PrivacyPage';
 import DonationPage from './pages/DonationPage';
 import FAQPage from './pages/FAQPage';
+import FeedbackPage from './pages/FeedbackPage';
 import NotFoundPage from './pages/NotFoundPage';
 import Footer from './components/Footer';
 import BackToTop from './components/BackToTop';
@@ -67,6 +68,7 @@ function AppContent() {
         <Route path="/resources" element={<ResourcesPage />} />
         <Route path="/newsletters" element={<NewslettersPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/feedback" element={<FeedbackPage />} />
         <Route path="/faq" element={<FAQPage />} />
         <Route path="/privacy" element={<PrivacyPage />} />
         <Route path="*" element={<NotFoundPage />} />
