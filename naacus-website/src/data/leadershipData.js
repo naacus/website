@@ -44,7 +44,8 @@ export const leadershipData = {
       phone: '614-377-8872',
       email: 'ifeoma.uzoh-anigbogu@naacus.org',
       location: 'Columbus, OH',
-      photo: ''
+      photo: '/images/leadership/women-coordinator.png',
+      bio: 'Dr. Ifeoma Uzoh-Anigbogu is a dedicated wife and mother of three, and the Coordinator of NAACUS Women\'s Ministry. She is a Healthcare professional with a strong interest in mental health and holistic well-being, as well as a business owner. She is deeply committed to her Christian faith. She is passionate about service, leadership, and fostering spiritual growth while meeting people with compassion and understanding. Above all, she loves the things of God and is committed to building strong women of faith, fostering unity, and inspiring others to serve God and humanity with love, dedication and purpose.'
     },
     {
       name: 'Open',
