@@ -69,11 +69,13 @@ Goals and Objectives:
 - To leverage available resources relevant to the pastoral care of Africans in the United State
 - To empower members and other women with skills to successfully demonstrate Christ's model of servant leadership and excellence in their service within their parishes and communities`,
     programs: [
+      'Weekly Prayer Meetings',
       'Monthly Prayer Meetings',
       'Monthly Newsletter',
       'Quarterly National Prayer (in collaboration with Liturgy committee)',
-      'Community Outreach Health Forum',
+      'Community Outreach Health and Finance Forum',
       'Annual In-Person Retreat',
+      'Annual Praise and Worship Concert',
       'NAACUS Conference',
       'Workshops and Spiritual Enrichment'
     ]
@@ -288,6 +290,37 @@ We believe in the principle of faithful stewardship - using the resources entrus
       'Fundraising Events',
       'Grant Management',
       'Giving Opportunities'
+    ]
+  },
+  {
+    id: 'liturgy',
+    iconKey: 'liturgy',
+    title: 'Liturgy Ministry',
+    description: 'Enhancing worship experiences through meaningful liturgical celebrations rooted in our Catholic faith and African heritage.',
+    email: 'liturgy@naacus.org',
+    coordinator: 'Mrs. Uche Ezechukwu',
+    mission: 'To foster vibrant and reverent liturgical celebrations that honor our Catholic faith while incorporating the rich cultural expressions of the African diaspora.',
+    fullDescription: `The NAACUS Liturgy Ministry is dedicated to enhancing the worship experience of African Catholics in the United States through meaningful liturgical celebrations that are rooted in our Catholic faith and enriched by our African heritage.
+
+Mission and Purpose:
+The mission of NAACUS Liturgy Ministry is to foster vibrant and reverent liturgical celebrations that honor our Catholic faith while incorporating the rich cultural expressions of the African diaspora. We strive to create worship experiences that nourish the soul and bring our community closer to God.
+
+Areas of Focus:
+- Planning and coordinating liturgical celebrations for NAACUS events
+- Integrating African cultural elements into Catholic worship
+- Training and formation for liturgical ministers
+- Collaboration with other ministries for prayer services and retreats
+- Promoting understanding of Catholic liturgical traditions
+- Supporting regional chapters in their liturgical needs
+
+The Liturgy Ministry works to ensure that our worship services are prayerful, participatory, and reflective of both our Catholic tradition and our African identity.`,
+    programs: [
+      'NAACUS Conference Liturgy Planning',
+      'Quarterly National Prayer Services',
+      'Liturgical Minister Formation',
+      'Cultural Integration in Worship',
+      'Regional Chapter Support',
+      'Retreat Liturgy Coordination'
     ]
   }
 ];
