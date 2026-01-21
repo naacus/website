@@ -121,8 +121,8 @@ const allEventsSource = [
   {
     id: 'past-2025-youth-ministry-st-carlo-acutis',
     title: 'Youth Ministry Zoom Event: Millennial Saint - St. Carlo Acutis',
-    startDate: '2025-12-05',
-    endDate: '2025-12-05',
+    startDate: '2025-12-05T12:00:00',
+    endDate: '2025-12-05T12:00:00',
     location: 'Zoom (Virtual)',
     format: 'zoom',
     description:
@@ -233,11 +233,17 @@ const formatDateRange = (start, end) => {
 
   const sameYear = startDate.getFullYear() === endDate.getFullYear();
   const sameMonth = startDate.getMonth() === endDate.getMonth();
+  const sameDay = startDate.getDate() === endDate.getDate();
 
   const formatMonthDay = (date) =>
     new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numeric' }).format(date);
   const formatMonthDayYear = (date) =>
     new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numeric', year: 'numeric' }).format(date);
+
+  // Same day - show single date
+  if (sameYear && sameMonth && sameDay) {
+    return formatMonthDayYear(startDate);
+  }
 
   if (sameYear && sameMonth) {
     const month = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(startDate);
