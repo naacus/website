@@ -14,7 +14,14 @@ export const leadershipData = {
     },
     { name: 'Mr. Kwame Frimpong', title: 'Vice President', phone: '240-731-1526', email: 'kwame.frimpong@naacus.org', photo: '' },
     { name: 'Mr. Alex Nana Danso', title: 'General Secretary', phone: '571-337-9797', email: 'alex.danso@naacus.org', photo: '' },
-    { name: 'Sr. Dr. Maddy Claire Takyala', title: 'Assistant General Secretary', phone: '219-259-6940', email: 'maddy.takyala@naacus.org', photo: '' },
+    { 
+      name: 'Sr. Dr. Maddy Claire Takyala', 
+      title: 'Assistant General Secretary', 
+      phone: '219-259-6940', 
+      email: 'maddy.takyala@naacus.org', 
+      photo: '',
+      bio: 'Sr. Dr. Maddy Takyala is the current Assistant Secretary General of NAACUS. She is a religious sister in the Daughters of Mary congregation. She gives talks and seminars on spiritual responsiveness and the harmonious integration of faith, reason, and technology in the education system, leadership, and church.\n\nAdditionally, she is the author of several articles and works, including "Burliness and Epitome of a Woman": An Analytical Leadership Lens of Female Bible Characters (Eve, Sarah, And Deborah), All in One Microsoft Processing, Takyala Leadership Style, Takyala Leadership Reflection Questions, and Luganda-English Folktales: Engero Ensonge Mu Luganda N\'oluzungu.'
+    },
     { name: 'Mr. Bosco Miller', title: 'Public Relations Officer', phone: '210-315-2547', email: 'bosco.miller@naacus.org', photo: '' },
     { name: 'Reine Marie Assana', title: 'Assistant Public Relations Officer', phone: '414-614-4907', email: 'reine.assana@naacus.org', photo: '' },
     { 
@@ -116,7 +123,7 @@ export const leadershipData = {
   ],
   spiritualAdvisers: [
     { name: 'Rev. Fr. Benoit Mukamba, CSSP', title: 'Spiritual Adviser', phone: '281-216-7894', email: 'benoit.mukamba@naacus.org', photo: '' },
-    { name: 'Sr. Joanna Okereke, HHCJ', title: 'Spiritual Adviser', phone: '202-541-3359 or 832-692-6922', email: 'joanna.okereke@naacus.org', photo: '/images/leadership/spiritual-adviser-2.png' },
+    { name: 'Sr. Joanna Okereke, HHCJ', title: 'Spiritual Adviser', phone: '202-541-3359 or 832-692-6922', email: 'joanna.okereke@naacus.org', photo: '' },
     { name: 'Fr. Cornelius Ejiogu', title: 'Spiritual Adviser', phone: '410-900-5665', email: 'cornelius.ejiogu@naacus.org', photo: '' },
   ]
 };
