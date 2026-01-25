@@ -30,7 +30,7 @@ export const leadershipData = {
       bio: 'Sr. Dr. Maddy Takyala is the current Assistant Secretary General of NAACUS. She is a religious sister in the Daughters of Mary congregation. She gives talks and seminars on spiritual responsiveness and the harmonious integration of faith, reason, and technology in the education system, leadership, and church.\n\nAdditionally, she is the author of several articles and works, including "Burliness and Epitome of a Woman": An Analytical Leadership Lens of Female Bible Characters (Eve, Sarah, And Deborah), All in One Microsoft Processing, Takyala Leadership Style, Takyala Leadership Reflection Questions, and Luganda-English Folktales: Engero Ensonge Mu Luganda N\'oluzungu.'
     },
     { name: 'Open', title: 'Public Relations Officer', phone: '', email: '', photo: '' },
-    { name: 'Reine Marie Assana', title: 'Assistant Public Relations Officer', phone: '414-614-4907', email: 'reine.assana@naacus.org', photo: '' },
+    { name: 'Reine Marie Assana', title: 'Assistant Public Relations Officer', phone: '414-614-4907', email: 'reine.assana@naacus.org', photo: '/images/leadership/assistant-public-relations.png' },
     { 
       name: 'Sr. Henrietta Okoro HHCJ', 
       title: 'Treasurer', 
