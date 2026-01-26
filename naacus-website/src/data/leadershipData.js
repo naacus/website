@@ -30,7 +30,14 @@ export const leadershipData = {
       bio: 'Sr. Dr. Maddy Takyala is the current Assistant Secretary General of NAACUS. She is a religious sister in the Daughters of Mary congregation. She gives talks and seminars on spiritual responsiveness and the harmonious integration of faith, reason, and technology in the education system, leadership, and church.\n\nAdditionally, she is the author of several articles and works, including "Burliness and Epitome of a Woman": An Analytical Leadership Lens of Female Bible Characters (Eve, Sarah, And Deborah), All in One Microsoft Processing, Takyala Leadership Style, Takyala Leadership Reflection Questions, and Luganda-English Folktales: Engero Ensonge Mu Luganda N\'oluzungu.'
     },
     { name: 'Open', title: 'Public Relations Officer', phone: '', email: '', photo: '' },
-    { name: 'Reine Marie Assana', title: 'Assistant Public Relations Officer', phone: '414-614-4907', email: 'reine.assana@naacus.org', photo: '/images/leadership/assistant-public-relations.png' },
+    { 
+      name: 'Reine Marie Assana', 
+      title: 'Assistant Public Relations Officer', 
+      phone: '414-614-4907', 
+      email: 'reine.assana@naacus.org', 
+      photo: '/images/leadership/assistant-public-relations.png',
+      bio: 'Reine Assana is a Senegalese immigrant currently residing in the Archdiocese of Milwaukee, Wisconsin. She serves as the Assistant Public Relations Officer for NAACUS. She is a widowed parent of three beautiful daughters and a young man. Born and raised in the Catholic faith, she is a devoted Catholic.\n\nIn her role, Reine works closely with the Public Relations Officer to ensure that information about all NAACUS activities and events is widely spread in our communities and beyond. In collaboration with the IT section, she also works to ensure that our website reflects who we are in terms of content. She serves as a liaison with regional coordinators to gather information about the various events happening in our various communities.\n\nReine is currently working for Waste Management Inc. as a Technical Service Representative, handling the Canadian market area. She has a passion for the African community and fosters collaboration between African communities both in the Church and outside the Church. Because of her widespread connections in various communities in the area, NAACUS organized its 2nd regional conference in Milwaukee, Wisconsin in July of 2022.\n\nShe is a member of the Black Commission of the Archdiocese of Milwaukee.\n\nTogether we shine: Matthew 5:14-16 ("Let your light shine") — Please join us with NAACUS as we shine the light of Christ in a world full of darkness.'
+    },
     { 
       name: 'Sr. Henrietta Okoro HHCJ', 
       title: 'Treasurer', 
