@@ -131,6 +131,13 @@ export const leadershipData = {
     { name: 'Rev. Fr. Benoit Mukamba, CSSP', title: 'Spiritual Adviser', phone: '281-216-7894', email: 'benoit.mukamba@naacus.org', photo: '' },
     { name: 'Sr. Joanna Okereke, HHCJ', title: 'Spiritual Adviser', phone: '202-541-3359 or 832-692-6922', email: 'joanna.okereke@naacus.org', photo: '' },
     { name: 'Fr. Cornelius Ejiogu', title: 'Spiritual Adviser', phone: '410-900-5665', email: 'cornelius.ejiogu@naacus.org', photo: '' },
-    { name: 'Mr. Ntal Alimasi', title: 'National Adviser', phone: '202-256-1781', email: 'ntal.alimasi@naacus.org', photo: '' },
+    { 
+      name: 'Mr. Ntal Alimasi', 
+      title: 'President Emeritus', 
+      phone: '202-256-1781', 
+      email: 'ntal.alimasi@naacus.org', 
+      photo: '',
+      bio: 'Ntal Alimasi is one of the Association founding team members and its first President. He is a former Social Secretary of ACA-DMV and currently co-chairs the NAACUS\' Advocacy arm.\n\nA cradle Catholic from the DRCongo in a family that boasts an uncle priest, an aunt and sister nuns, husband and father, Ntal is a parishioner of Saint Augustine Parish in Washington, DC.\n\nNtal Alimasi was one of the speakers at the Convocation of Catholic Leaders (Orlando 2017). Known for his work in promoting social justice and community engagement within the Catholic Church, his contributions often emphasize the importance of inclusivity and outreach to marginalized communities.\n\nOutside the Church, Ntal Alimasi is an independent international development consultant with proven expertise in governance and anti-corruption, social and economic community development, and African diaspora networks. He has worked with the World Bank Group, the African Development Bank, USAID, DFID, US Department of State, Belgian Cooperation, UNDP, and various other international organizations and foundations.\n\nNtal speaks English, French, Swahili, Lingala, Mashi, Kinyarwanda, Kirundi, Kikongo, and reads Latin.'
+    },
   ]
 };
