@@ -151,7 +151,7 @@ export const leadershipData = {
     }
   ],
   spiritualAdvisers: [
-    { name: 'Rev. Fr. Benoit Mukamba, CSSP', title: 'Spiritual Adviser', phone: '281-216-7894', email: 'benoit.mukamba@naacus.org', photo: '' },
+    { name: 'Rev. Fr. Benoit Mukamba, CSSP', title: 'Spiritual Adviser', phone: '281-216-7894', email: 'benoit.mukamba@naacus.org', photo: '/images/leadership/spiritual-adviser-1.png' },
     { name: 'Sr. Joanna Okereke, HHCJ', title: 'Spiritual Adviser', phone: '202-541-3359 or 832-692-6922', email: 'joanna.okereke@naacus.org', photo: '' },
     { name: 'Fr. Cornelius Ejiogu', title: 'Spiritual Adviser', phone: '410-900-5665', email: 'cornelius.ejiogu@naacus.org', photo: '' },
     { 
