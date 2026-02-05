@@ -151,7 +151,14 @@ export const leadershipData = {
     }
   ],
   spiritualAdvisers: [
-    { name: 'Rev. Fr. Benoit Mukamba, CSSP', title: 'Spiritual Adviser', phone: '281-216-7894', email: 'benoit.mukamba@naacus.org', photo: '/images/leadership/spiritual-adviser-1.png' },
+    { 
+      name: 'Rev. Fr. Benoit Mukamba, CSSP', 
+      title: 'Spiritual Adviser', 
+      phone: '281-216-7894', 
+      email: 'benoit.mukamba@naacus.org', 
+      photo: '/images/leadership/spiritual-adviser-1.png',
+      bio: 'Reverend Benoit Mukamba, CSSp, serves the National Association of African Catholics in the United States as its Spiritual Director, offering pastoral leadership rooted in the Spiritan tradition and guided by a profound commitment to the Church\'s mission. A native of the Democratic Republic of Congo, he brings more than three decades of priestly ministry shaped by missionary service in East Africa and the United States. His ministry has been marked by a steadfast dedication to evangelization, pastoral care, and the spiritual accompaniment of God\'s people.\n\nAs a custodian of the association\'s institutional memory, Reverend Mukamba carries a deep understanding of its foundation, development, and ongoing mission. His long-standing involvement provides continuity, clarity of purpose, and a pastoral presence that strengthens the unity of African Catholics across the nation. He holds master\'s degrees in theology and business administration, a combination that enhances both his pastoral effectiveness and his administrative stewardship.\n\nWith a spirit of humility and fidelity to the Gospel, Reverend Mukamba remains devoted to nurturing a vibrant faith community, fostering communion among African Catholics, and guiding the faithful toward a deeper encounter with Christ.'
+    },
     { name: 'Sr. Joanna Okereke, HHCJ', title: 'Spiritual Adviser', phone: '202-541-3359 or 832-692-6922', email: 'joanna.okereke@naacus.org', photo: '' },
     { name: 'Fr. Cornelius Ejiogu', title: 'Spiritual Adviser', phone: '410-900-5665', email: 'cornelius.ejiogu@naacus.org', photo: '' },
     { 
