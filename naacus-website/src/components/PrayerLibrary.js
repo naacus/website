@@ -28,7 +28,6 @@ import {
   Video24Regular,
   Globe24Regular,
   People24Regular,
-  Heart24Regular,
   Play24Filled,
   Send24Regular,
   Filter24Regular,
@@ -449,11 +448,6 @@ function PrayerLibrary() {
     });
   }, [allVideos, filterPrayer, filterCountry, filterLanguage]);
 
-  // Stats
-  const uniqueLanguages = [...new Set(allVideos.map((v) => v.language))].length;
-  const uniqueCountries = [...new Set(allVideos.map((v) => v.country))].length;
-  const youthCount = allVideos.filter((v) => v.featuresYouth).length;
-
   const clearFilters = () => {
     setFilterPrayer('all');
     setFilterCountry('all');
@@ -518,30 +512,6 @@ function PrayerLibrary() {
       </Text>
 
       <div className={styles.content}>
-        {/* Stats Bar */}
-        <div className={styles.statsBar}>
-          <div className={styles.statItem}>
-            <Video24Regular className={styles.statIcon} />
-            <Text className={styles.statNumber}>{allVideos.length}</Text>
-            <Text className={styles.statLabel}>{t('prayerLibrary.stats.prayers')}</Text>
-          </div>
-          <div className={styles.statItem}>
-            <Globe24Regular className={styles.statIcon} />
-            <Text className={styles.statNumber}>{uniqueLanguages}</Text>
-            <Text className={styles.statLabel}>{t('prayerLibrary.stats.languages')}</Text>
-          </div>
-          <div className={styles.statItem}>
-            <People24Regular className={styles.statIcon} />
-            <Text className={styles.statNumber}>{uniqueCountries}</Text>
-            <Text className={styles.statLabel}>{t('prayerLibrary.stats.countries')}</Text>
-          </div>
-          <div className={styles.statItem}>
-            <Heart24Regular className={styles.statIcon} />
-            <Text className={styles.statNumber}>{youthCount}</Text>
-            <Text className={styles.statLabel}>{t('prayerLibrary.stats.youthFeatured')}</Text>
-          </div>
-        </div>
-
         {/* Tab Navigation */}
         <div className={styles.tabSection}>
           <TabList
