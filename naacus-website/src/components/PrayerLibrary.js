@@ -28,7 +28,6 @@ import {
 import {
   Video24Regular,
   Globe24Regular,
-  People24Regular,
   Play24Filled,
   Filter24Regular,
   Book24Regular,
@@ -673,10 +672,6 @@ function PrayerLibrary() {
                           <span className={styles.metaItem}>
                             <Book24Regular style={{ fontSize: '14px' }} />
                             {getPrayerName(video.prayerTypeId)}
-                          </span>
-                          <span className={styles.metaItem}>
-                            <People24Regular style={{ fontSize: '14px' }} />
-                            {video.contributor}
                           </span>
                         </div>
                         <Text className={styles.cardDescription}>
