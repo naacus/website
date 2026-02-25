@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { makeStyles, shorthands, Button } from '@fluentui/react-components';
+import { makeStyles, Button } from '@fluentui/react-components';
 import { themeTokens, colors } from '../config/theme';
 
 const useStyles = makeStyles({

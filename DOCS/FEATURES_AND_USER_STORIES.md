@@ -292,13 +292,45 @@ Each **feature** groups related functionality. Under each feature, **user storie
 
 ---
 
+## Feature 17: African Catholic Prayer Library
+
+> Coordinated by Mary (NAACUS Media Coordinator). A media library of Catholic prayers recorded in African languages — celebrating heritage, youth, and church community participation. Aligned with NAACUS Constitution Section C.
+
+### F17.1 — Prayer Video Browsing
+| ID | User Story | Status |
+|---|---|---|
+| F17.1-01 | As a visitor, I want to browse a library of Catholic prayer videos in African languages so that I can hear prayers in my native tongue. | **Done** |
+| F17.1-02 | As a visitor, I want to filter prayer videos by prayer type (Our Father, Hail Mary, etc.) so that I can find a specific prayer. | **Done** |
+| F17.1-03 | As a visitor, I want to filter prayer videos by country of origin so that I can find prayers from my community. | **Done** |
+| F17.1-04 | As a visitor, I want to filter prayer videos by language so that I can find prayers in a language I understand. | **Done** |
+| F17.1-05 | As a visitor, I want to see which videos feature youth so that I can see young people leading in faith. | **Done** |
+| F17.1-06 | As a visitor, I want to see contributor and parish info on each video so that I know who is praying. | **Done** |
+| F17.1-07 | As a visitor, I want to browse prayers organized by prayer type with Latin names so that I can explore all 7 standard Catholic prayers. | **Done** |
+| F17.1-08 | As a visitor, I want to browse participating countries with their flags and languages so that I can see the diversity of contributions. | **Done** |
+
+### F17.2 — Prayer Stats & Overview
+| ID | User Story | Status |
+|---|---|---|
+| F17.2-01 | As a visitor, I want to see statistics (total videos, languages, countries, youth featured) so that I understand the scope of the project. | **Done** |
+| F17.2-02 | As a visitor, I want to switch between tab views (All Videos, By Prayer, By Country) so that I can explore the library in different ways. | **Done** |
+
+### F17.3 — Prayer Submission
+| ID | User Story | Status |
+|---|---|---|
+| F17.3-01 | As a community member, I want to submit a prayer video through a form so that I can contribute to the library. | **UI Done — Backend Needed** |
+| F17.3-02 | As a community member, I want to see submission guidelines (African attire, native language, youth, church participation) so that I know what's expected. | **Done** |
+| F17.3-03 | As an admin, I want to review and approve submitted prayer videos so that only quality content goes live. | **Not Started** |
+| F17.3-04 | As a media coordinator, I want to track which prayers have been submitted in which languages so that I can identify gaps and recruit contributors. | **Not Started** |
+
+---
+
 ## Summary Counts
 
 | Status | Count |
 |---|---|
-| **Done** | 42 |
+| **Done** | 52 |
 | **Live (3rd-party)** | 1 |
-| **UI Done — Backend Needed** | 16 |
+| **UI Done — Backend Needed** | 17 |
 | **Scaffolded** | 14 |
-| **Not Started** | 21 |
-| **Total User Stories** | **94** |
+| **Not Started** | 24 |
+| **Total User Stories** | **108** |

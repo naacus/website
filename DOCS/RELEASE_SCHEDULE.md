@@ -210,6 +210,34 @@ The website will be delivered in **6 releases** over approximately **6 months**.
 
 ---
 
+## Release 7 — Prayer Library Backend & Video Management
+
+**Theme:** Connect the African Catholic Prayer Library frontend to a real backend for video submissions, moderation, and streaming.
+
+**Target:** Month 6+ (parallel with Release 6 or as a follow-up)
+
+| ID | User Story | Feature | Priority |
+|---|---|---|---|
+| F17.3-01 | Prayer video submission form saves to backend | Prayer Library | High |
+| F17.3-03 | Admin can review and approve submitted prayer videos | Prayer Library Admin | High |
+| F17.3-04 | Media coordinator can track prayer coverage by language/country | Prayer Library Admin | Medium |
+| F17.1-XX | Video streaming from Azure Blob Storage / YouTube embed | Prayer Library | Medium |
+
+**Deliverables:**
+- Backend API endpoints: `POST/GET/PUT /api/v1/prayer-videos`
+- Video upload pipeline (Azure Blob Storage or YouTube integration)
+- Admin review/approval workflow
+- Prayer coverage dashboard for media coordinator
+
+**Definition of Done:**
+- Community member submits prayer video → media team reviews → approved video appears in the library
+- Videos stream directly from the library page
+- Media coordinator can see which prayers still need recordings in which languages
+
+> **Note:** The Prayer Library frontend (Feature 17, stories F17.1-01 through F17.2-02) is **already shipped** and live. This release adds the backend persistence and video management capabilities.
+
+---
+
 ## Release Timeline Summary
 
 ```
@@ -236,9 +264,10 @@ Month 1        Month 2        Month 3        Month 4        Month 5        Month
 | **Release 4** — Events & M365 Integration | 11 | 11 | 0 |
 | **Release 5** — AI Chat & Testing Hardening | 7 | 7 | 0 |
 | **Release 6** — Admin Panel & Content Management | 6 | 6 | 0 |
-| **Total** | **56** | **53** | **3** |
+| **Release 7** — Prayer Library Backend | 4 | 4 | 0 |
+| **Total** | **60** | **57** | **3** |
 
-> **Note:** 38 user stories with status "Done" or "Live" are already shipped and not included in the release schedule. The 94 total stories minus the 38 already done leaves 56 stories to schedule, plus 3 that need verification.
+> **Note:** 52 user stories with status "Done" or "Live" are already shipped and not included in the release schedule. Feature 17 (African Catholic Prayer Library) frontend is **Done** and ships immediately. The remaining 4 backend stories for prayer video management are scheduled in Release 7.
 
 ---
 

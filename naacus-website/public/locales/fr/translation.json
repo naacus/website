@@ -23,7 +23,8 @@
       "resources": "Ressources",
       "newsletters": "Bulletins",
       "contact": "Contact",
-      "feedback": "Commentaires"
+      "feedback": "Commentaires",
+      "prayers": "Prières"
     },
     "searchPlaceholder": "Recherche",
     "donate": "Donner"
@@ -371,6 +372,7 @@
     "events": "Événements",
     "resources": "Ressources",
     "contact": "Contact",
+    "prayerLibrary": "Bibliothèque de Prières",
     "engage": "Engagez-Vous",
     "eventsActivities": "Événements et Activités",
     "nationalConference": "Conférence Nationale",
@@ -565,6 +567,72 @@
     "description": "Désolé, la page que vous recherchez n'existe pas ou a été déplacée. Veuillez vérifier l'URL et réessayer.",
     "goHome": "Aller à l'Accueil",
     "goBack": "Retour"
+  },
+  "prayerLibrary": {
+    "title": "Projet de Prières Catholiques Africaines NAACUS",
+    "subtitle": "Une bibliothèque grandissante de prières catholiques enregistrées dans les langues africaines par les communautés à travers les États-Unis. Célébrant notre patrimoine, unissant notre foi.",
+    "stats": {
+      "prayers": "Vidéos de Prières",
+      "languages": "Langues",
+      "countries": "Pays",
+      "youthFeatured": "Jeunesse en Vedette",
+      "videos": "vidéos"
+    },
+    "tabs": {
+      "videos": "Toutes les Vidéos",
+      "byPrayer": "Par Prière",
+      "byCountry": "Par Pays"
+    },
+    "filters": {
+      "prayer": "Filtrer par Prière",
+      "country": "Filtrer par Pays",
+      "language": "Filtrer par Langue",
+      "allPrayers": "Toutes les Prières",
+      "allCountries": "Tous les Pays",
+      "allLanguages": "Toutes les Langues",
+      "clear": "Effacer les Filtres"
+    },
+    "prayers": {
+      "signOfCross": "Signe de la Croix",
+      "ourFather": "Notre Père",
+      "hailMary": "Je Vous Salue Marie",
+      "gloryBe": "Gloire au Père",
+      "apostlesCreed": "Credo des Apôtres",
+      "hailHolyQueen": "Salve Regina",
+      "memorare": "Memorare"
+    },
+    "comingSoon": "Bientôt Disponible",
+    "youthFeatured": "★ Jeunesse en Vedette",
+    "noResults": "Aucune vidéo de prière ne correspond à vos filtres actuels. Essayez d'ajuster votre sélection.",
+    "availableIn": "Disponible en {{count}} langue(s)",
+    "noSubmissionsYet": "Aucune soumission encore — soyez le premier à contribuer !",
+    "viewVideos": "Voir les Vidéos →",
+    "submit": {
+      "title": "Soumettez Votre Prière",
+      "description": "Nous invitons les individus, familles et groupes paroissiaux des communautés africaines à enregistrer et soumettre des prières catholiques dans leurs langues africaines maternelles. Votre contribution aide à préserver notre patrimoine linguistique et renforce notre foi commune.",
+      "guideline1": "Enregistrez l'une des 7 prières catholiques standard listées ci-dessus",
+      "guideline2": "Portez une tenue africaine pour célébrer notre patrimoine culturel",
+      "guideline3": "Priez dans votre langue africaine maternelle",
+      "guideline4": "Mettez en vedette les jeunes autant que possible pour inspirer la prochaine génération",
+      "guideline5": "Incluez la participation de votre paroisse et communauté ecclésiale",
+      "button": "Soumettre une Vidéo de Prière",
+      "dialogTitle": "Soumettre Votre Vidéo de Prière",
+      "thankYou": "Merci !",
+      "thankYouMessage": "Votre soumission a été reçue. Notre équipe média l'examinera et vous contactera bientôt.",
+      "form": {
+        "fullName": "Nom Complet",
+        "email": "Adresse E-mail",
+        "parish": "Paroisse / Église",
+        "country": "Pays d'Origine",
+        "language": "Langue de la Prière",
+        "languagePlaceholder": "ex., Ewondo, Yoruba, Swahili...",
+        "prayerType": "Prière",
+        "description": "Brève Description",
+        "descriptionPlaceholder": "Parlez-nous de votre vidéo de prière (qui participe, contexte particulier...)",
+        "cancel": "Annuler",
+        "submit": "Soumettre"
+      }
+    }
   }
 }
 

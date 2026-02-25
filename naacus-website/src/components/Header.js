@@ -360,6 +360,12 @@ function Header() {
               {t('header.nav.resources')}
             </button>
             <button 
+              onClick={() => handleNavigationHelper('/prayer-library', null, 'prayer_library')}
+              className={`${styles.navLink} ${isActivePathHelper('/prayer-library') ? styles.navLinkActive : ''}`}
+            >
+              {t('header.nav.prayers')}
+            </button>
+            <button 
               onClick={() => handleNavigationHelper('/newsletters', null, 'newsletters')}
               className={`${styles.navLink} ${isActivePathHelper('/newsletters') ? styles.navLinkActive : ''}`}
             >
@@ -409,6 +415,7 @@ function Header() {
                 <MenuItem className={isActivePathHelper('/membership') ? styles.mobileMenuItemActive : undefined} onClick={() => handleNavigationHelper('/membership', null, 'mobile_membership')}>Membership</MenuItem>
                 <MenuItem className={isActivePathHelper('/volunteer') ? styles.mobileMenuItemActive : undefined} onClick={() => handleNavigationHelper('/volunteer', null, 'mobile_volunteer')}>Volunteer</MenuItem>
                 <MenuItem className={isActivePathHelper('/resources') ? styles.mobileMenuItemActive : undefined} onClick={() => handleNavigationHelper('/resources', null, 'mobile_resources')}>{t('header.nav.resources')}</MenuItem>
+                <MenuItem className={isActivePathHelper('/prayer-library') ? styles.mobileMenuItemActive : undefined} onClick={() => handleNavigationHelper('/prayer-library', null, 'mobile_prayer_library')}>{t('header.nav.prayers')}</MenuItem>
                 <MenuItem className={isActivePathHelper('/newsletters') ? styles.mobileMenuItemActive : undefined} onClick={() => handleNavigationHelper('/newsletters', null, 'mobile_newsletters')}>Newsletters</MenuItem>
                 <MenuItem className={isActivePathHelper('/contact') ? styles.mobileMenuItemActive : undefined} onClick={() => handleNavigationHelper('/contact', null, 'mobile_contact')}>{t('header.nav.contact')}</MenuItem>
                 <MenuItem className={isActivePathHelper('/feedback') ? styles.mobileMenuItemFeedbackActive : styles.mobileMenuItemFeedback} onClick={() => handleNavigationHelper('/feedback', null, 'mobile_feedback')}>{t('header.nav.feedback')}</MenuItem>

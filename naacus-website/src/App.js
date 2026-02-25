@@ -23,6 +23,7 @@ import PrivacyPage from './pages/PrivacyPage';
 import DonationPage from './pages/DonationPage';
 import FAQPage from './pages/FAQPage';
 import FeedbackPage from './pages/FeedbackPage';
+import PrayerLibraryPage from './pages/PrayerLibraryPage';
 import NotFoundPage from './pages/NotFoundPage';
 import Footer from './components/Footer';
 import BackToTop from './components/BackToTop';
@@ -66,6 +67,7 @@ function AppContent() {
         <Route path="/membership" element={<MembershipPage />} />
         <Route path="/volunteer" element={<VolunteerPage />} />
         <Route path="/resources" element={<ResourcesPage />} />
+        <Route path="/prayer-library" element={<PrayerLibraryPage />} />
         <Route path="/newsletters" element={<NewslettersPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/feedback" element={<FeedbackPage />} />

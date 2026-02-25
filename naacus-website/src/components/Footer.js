@@ -203,6 +203,15 @@ function Footer() {
             <li>
               <Link 
                 className={styles.footerLink} 
+                onClick={() => handleNavigationHelper('/prayer-library', 'Prayer Library')}
+                style={{ cursor: 'pointer' }}
+              >
+                {t('footer.prayerLibrary')}
+              </Link>
+            </li>
+            <li>
+              <Link 
+                className={styles.footerLink} 
                 onClick={() => handleNavigationHelper('/contact', 'Contact')}
                 style={{ cursor: 'pointer' }}
               >

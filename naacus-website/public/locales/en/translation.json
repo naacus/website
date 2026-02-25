@@ -24,7 +24,8 @@
       "resources": "Resources",
       "newsletters": "Newsletters",
       "contact": "Contact",
-      "feedback": "Feedback"
+      "feedback": "Feedback",
+      "prayers": "Prayers"
     },
     "searchPlaceholder": "Search",
     "donate": "Donate"
@@ -424,6 +425,7 @@
     "events": "Events",
     "resources": "Resources",
     "contact": "Contact",
+    "prayerLibrary": "Prayer Library",
     "engage": "Engage",
     "eventsActivities": "Events & Activities",
     "nationalConference": "National Conference",
@@ -573,6 +575,72 @@
     "description": "Sorry, the page you are looking for does not exist or has been moved. Please check the URL and try again.",
     "goHome": "Go to Home",
     "goBack": "Go Back"
+  },
+  "prayerLibrary": {
+    "title": "NAACUS African Catholic Prayer Project",
+    "subtitle": "A growing library of Catholic prayers recorded in African languages from communities across the United States. Celebrating our heritage, uniting our faith.",
+    "stats": {
+      "prayers": "Prayer Videos",
+      "languages": "Languages",
+      "countries": "Countries",
+      "youthFeatured": "Youth Featured",
+      "videos": "videos"
+    },
+    "tabs": {
+      "videos": "All Videos",
+      "byPrayer": "By Prayer",
+      "byCountry": "By Country"
+    },
+    "filters": {
+      "prayer": "Filter by Prayer",
+      "country": "Filter by Country",
+      "language": "Filter by Language",
+      "allPrayers": "All Prayers",
+      "allCountries": "All Countries",
+      "allLanguages": "All Languages",
+      "clear": "Clear Filters"
+    },
+    "prayers": {
+      "signOfCross": "Sign of the Cross",
+      "ourFather": "Our Father",
+      "hailMary": "Hail Mary",
+      "gloryBe": "Glory Be",
+      "apostlesCreed": "Apostles' Creed",
+      "hailHolyQueen": "Hail Holy Queen",
+      "memorare": "Memorare"
+    },
+    "comingSoon": "Coming Soon",
+    "youthFeatured": "★ Youth Featured",
+    "noResults": "No prayer videos match your current filters. Try adjusting your selection.",
+    "availableIn": "Available in {{count}} language(s)",
+    "noSubmissionsYet": "No submissions yet — be the first to contribute!",
+    "viewVideos": "View Videos →",
+    "submit": {
+      "title": "Submit Your Prayer",
+      "description": "We invite individuals, families, and parish groups from African communities to record and submit Catholic prayers in their native African languages. Your contribution helps preserve our linguistic heritage and strengthens our shared faith.",
+      "guideline1": "Record one of the 7 standard Catholic prayers listed above",
+      "guideline2": "Wear African attire to celebrate our cultural heritage",
+      "guideline3": "Pray in your native African language",
+      "guideline4": "Feature youth whenever possible to inspire the next generation",
+      "guideline5": "Include your parish and church community participation",
+      "button": "Submit a Prayer Video",
+      "dialogTitle": "Submit Your Prayer Video",
+      "thankYou": "Thank You!",
+      "thankYouMessage": "Your submission has been received. Our media team will review it and get back to you soon.",
+      "form": {
+        "fullName": "Full Name",
+        "email": "Email Address",
+        "parish": "Parish / Church",
+        "country": "Country of Origin",
+        "language": "Language of Prayer",
+        "languagePlaceholder": "e.g., Ewondo, Yoruba, Swahili...",
+        "prayerType": "Prayer",
+        "description": "Brief Description",
+        "descriptionPlaceholder": "Tell us about your prayer video (who is participating, any special context...)",
+        "cancel": "Cancel",
+        "submit": "Submit"
+      }
+    }
   }
 }
 
