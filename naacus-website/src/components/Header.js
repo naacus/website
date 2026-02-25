@@ -312,36 +312,68 @@ function Header() {
             >
               {t('header.nav.naacus2025', 'NAACUS 2025')}
             </button>
-            <button 
-              onClick={() => handleNavigationHelper('/about', null, 'about')}
-              className={`${styles.navLink} ${isActivePathHelper('/about') ? styles.navLinkActive : ''}`}
-            >
-              {t('header.nav.about')}
-            </button>
-            <button 
-              onClick={() => handleNavigationHelper('/leadership', null, 'leadership')}
-              className={`${styles.navLink} ${isActivePathHelper('/leadership') ? styles.navLinkActive : ''}`}
-            >
-              {t('header.nav.leadership')}
-            </button>
-            <button 
-              onClick={() => handleNavigationHelper('/fellowship-ministries', null, 'fellowship_ministries')}
-              className={`${styles.navLink} ${isActivePathHelper('/fellowship-ministries') ? styles.navLinkActive : ''}`}
-            >
-              {t('header.nav.ministries')}
-            </button>
-            <button 
-              onClick={() => handleNavigationHelper('/programs-activities', null, 'programs_activities')}
-              className={`${styles.navLink} ${isActivePathHelper('/programs-activities') ? styles.navLinkActive : ''}`}
-            >
-              {t('header.nav.programs')}
-            </button>
-            <button 
-              onClick={() => handleNavigationHelper('/events', null, 'events')}
-              className={`${styles.navLink} ${isActivePathHelper('/events') ? styles.navLinkActive : ''}`}
-            >
-              {t('header.nav.events')}
-            </button>
+
+            {/* About ▾ */}
+            <Menu>
+              <MenuTrigger disableButtonEnhancement>
+                <button
+                  className={`${styles.navLink} ${(isActivePathHelper('/about') || isActivePathHelper('/leadership')) ? styles.navLinkActive : ''}`}
+                >
+                  {t('header.nav.about')} ▾
+                </button>
+              </MenuTrigger>
+              <MenuPopover>
+                <MenuList>
+                  <MenuItem
+                    className={isActivePathHelper('/about') ? styles.mobileMenuItemActive : undefined}
+                    onClick={() => handleNavigationHelper('/about', null, 'about')}
+                  >
+                    {t('header.nav.about')}
+                  </MenuItem>
+                  <MenuItem
+                    className={isActivePathHelper('/leadership') ? styles.mobileMenuItemActive : undefined}
+                    onClick={() => handleNavigationHelper('/leadership', null, 'leadership')}
+                  >
+                    {t('header.nav.leadership')}
+                  </MenuItem>
+                </MenuList>
+              </MenuPopover>
+            </Menu>
+
+            {/* Community ▾ */}
+            <Menu>
+              <MenuTrigger disableButtonEnhancement>
+                <button
+                  className={`${styles.navLink} ${(isActivePathHelper('/fellowship-ministries') || isActivePathHelper('/programs-activities') || isActivePathHelper('/events')) ? styles.navLinkActive : ''}`}
+                >
+                  {t('header.nav.community')} ▾
+                </button>
+              </MenuTrigger>
+              <MenuPopover>
+                <MenuList>
+                  <MenuItem
+                    className={isActivePathHelper('/fellowship-ministries') ? styles.mobileMenuItemActive : undefined}
+                    onClick={() => handleNavigationHelper('/fellowship-ministries', null, 'fellowship_ministries')}
+                  >
+                    {t('header.nav.ministries')}
+                  </MenuItem>
+                  <MenuItem
+                    className={isActivePathHelper('/programs-activities') ? styles.mobileMenuItemActive : undefined}
+                    onClick={() => handleNavigationHelper('/programs-activities', null, 'programs_activities')}
+                  >
+                    {t('header.nav.programs')}
+                  </MenuItem>
+                  <MenuItem
+                    className={isActivePathHelper('/events') ? styles.mobileMenuItemActive : undefined}
+                    onClick={() => handleNavigationHelper('/events', null, 'events')}
+                  >
+                    {t('header.nav.events')}
+                  </MenuItem>
+                </MenuList>
+              </MenuPopover>
+            </Menu>
+
+            {/* Get Involved ▾ */}
             <Menu>
               <MenuTrigger disableButtonEnhancement>
                 <button
@@ -367,24 +399,40 @@ function Header() {
                 </MenuList>
               </MenuPopover>
             </Menu>
-            <button 
-              onClick={() => handleNavigationHelper('/resources', null, 'resources')}
-              className={`${styles.navLink} ${isActivePathHelper('/resources') ? styles.navLinkActive : ''}`}
-            >
-              {t('header.nav.resources')}
-            </button>
-            <button 
-              onClick={() => handleNavigationHelper('/prayer-library', null, 'prayer_library')}
-              className={`${styles.navLink} ${isActivePathHelper('/prayer-library') ? styles.navLinkActive : ''}`}
-            >
-              {t('header.nav.prayers')}
-            </button>
-            <button 
-              onClick={() => handleNavigationHelper('/newsletters', null, 'newsletters')}
-              className={`${styles.navLink} ${isActivePathHelper('/newsletters') ? styles.navLinkActive : ''}`}
-            >
-              {t('header.nav.newsletters')}
-            </button>
+
+            {/* Resources ▾ */}
+            <Menu>
+              <MenuTrigger disableButtonEnhancement>
+                <button
+                  className={`${styles.navLink} ${(isActivePathHelper('/resources') || isActivePathHelper('/prayer-library') || isActivePathHelper('/newsletters')) ? styles.navLinkActive : ''}`}
+                >
+                  {t('header.nav.resources')} ▾
+                </button>
+              </MenuTrigger>
+              <MenuPopover>
+                <MenuList>
+                  <MenuItem
+                    className={isActivePathHelper('/resources') ? styles.mobileMenuItemActive : undefined}
+                    onClick={() => handleNavigationHelper('/resources', null, 'resources')}
+                  >
+                    {t('header.nav.resources')}
+                  </MenuItem>
+                  <MenuItem
+                    className={isActivePathHelper('/prayer-library') ? styles.mobileMenuItemActive : undefined}
+                    onClick={() => handleNavigationHelper('/prayer-library', null, 'prayer_library')}
+                  >
+                    {t('header.nav.prayers')}
+                  </MenuItem>
+                  <MenuItem
+                    className={isActivePathHelper('/newsletters') ? styles.mobileMenuItemActive : undefined}
+                    onClick={() => handleNavigationHelper('/newsletters', null, 'newsletters')}
+                  >
+                    {t('header.nav.newsletters')}
+                  </MenuItem>
+                </MenuList>
+              </MenuPopover>
+            </Menu>
+
             <button 
               onClick={() => handleNavigationHelper('/contact', null, 'contact')}
               className={`${styles.navLink} ${isActivePathHelper('/contact') ? styles.navLinkActive : ''}`}
@@ -421,17 +469,25 @@ function Header() {
               <MenuList>
                 <MenuItem onClick={() => handleNavigationHelper(null, 'home', 'mobile_home')}>{t('header.nav.home')}</MenuItem>
                 <MenuItem className={isActivePathHelper('/2025') ? styles.mobileMenuItemActive : undefined} onClick={() => handleNavigationHelper('/2025', null, 'mobile_naacus_2025')}>{t('header.nav.naacus2025', 'NAACUS 2025')}</MenuItem>
-                <MenuItem className={isActivePathHelper('/about') ? styles.mobileMenuItemActive : undefined} onClick={() => handleNavigationHelper('/about', null, 'mobile_about')}>{t('header.nav.about')}</MenuItem>
-                <MenuItem className={isActivePathHelper('/leadership') ? styles.mobileMenuItemActive : undefined} onClick={() => handleNavigationHelper('/leadership', null, 'mobile_leadership')}>{t('header.nav.leadership')}</MenuItem>
-                <MenuItem className={isActivePathHelper('/fellowship-ministries') ? styles.mobileMenuItemActive : undefined} onClick={() => handleNavigationHelper('/fellowship-ministries', null, 'mobile_fellowship_ministries')}>Fellowship & Ministries</MenuItem>
-                <MenuItem className={isActivePathHelper('/programs-activities') ? styles.mobileMenuItemActive : undefined} onClick={() => handleNavigationHelper('/programs-activities', null, 'mobile_programs_activities')}>Programs & Activities</MenuItem>
-                <MenuItem className={isActivePathHelper('/events') ? styles.mobileMenuItemActive : undefined} onClick={() => handleNavigationHelper('/events', null, 'mobile_events')}>{t('header.nav.events')}</MenuItem>
+                {/* About group */}
+                <MenuItem disabled style={{ fontWeight: 600, opacity: 0.7, fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>— {t('header.nav.about')} —</MenuItem>
+                <MenuItem className={isActivePathHelper('/about') ? styles.mobileMenuItemActive : undefined} onClick={() => handleNavigationHelper('/about', null, 'mobile_about')}>&nbsp;&nbsp;{t('header.nav.about')}</MenuItem>
+                <MenuItem className={isActivePathHelper('/leadership') ? styles.mobileMenuItemActive : undefined} onClick={() => handleNavigationHelper('/leadership', null, 'mobile_leadership')}>&nbsp;&nbsp;{t('header.nav.leadership')}</MenuItem>
+                {/* Community group */}
+                <MenuItem disabled style={{ fontWeight: 600, opacity: 0.7, fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>— {t('header.nav.community')} —</MenuItem>
+                <MenuItem className={isActivePathHelper('/fellowship-ministries') ? styles.mobileMenuItemActive : undefined} onClick={() => handleNavigationHelper('/fellowship-ministries', null, 'mobile_fellowship_ministries')}>&nbsp;&nbsp;{t('header.nav.ministries')}</MenuItem>
+                <MenuItem className={isActivePathHelper('/programs-activities') ? styles.mobileMenuItemActive : undefined} onClick={() => handleNavigationHelper('/programs-activities', null, 'mobile_programs_activities')}>&nbsp;&nbsp;{t('header.nav.programs')}</MenuItem>
+                <MenuItem className={isActivePathHelper('/events') ? styles.mobileMenuItemActive : undefined} onClick={() => handleNavigationHelper('/events', null, 'mobile_events')}>&nbsp;&nbsp;{t('header.nav.events')}</MenuItem>
+                {/* Get Involved group */}
                 <MenuItem disabled style={{ fontWeight: 600, opacity: 0.7, fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>— {t('header.nav.getInvolved')} —</MenuItem>
                 <MenuItem className={isActivePathHelper('/membership') ? styles.mobileMenuItemActive : undefined} onClick={() => handleNavigationHelper('/membership', null, 'mobile_membership')}>&nbsp;&nbsp;{t('header.nav.membership')}</MenuItem>
                 <MenuItem className={isActivePathHelper('/volunteer') ? styles.mobileMenuItemActive : undefined} onClick={() => handleNavigationHelper('/volunteer', null, 'mobile_volunteer')}>&nbsp;&nbsp;{t('header.nav.volunteer')}</MenuItem>
-                <MenuItem className={isActivePathHelper('/resources') ? styles.mobileMenuItemActive : undefined} onClick={() => handleNavigationHelper('/resources', null, 'mobile_resources')}>{t('header.nav.resources')}</MenuItem>
-                <MenuItem className={isActivePathHelper('/prayer-library') ? styles.mobileMenuItemActive : undefined} onClick={() => handleNavigationHelper('/prayer-library', null, 'mobile_prayer_library')}>{t('header.nav.prayers')}</MenuItem>
-                <MenuItem className={isActivePathHelper('/newsletters') ? styles.mobileMenuItemActive : undefined} onClick={() => handleNavigationHelper('/newsletters', null, 'mobile_newsletters')}>Newsletters</MenuItem>
+                {/* Resources group */}
+                <MenuItem disabled style={{ fontWeight: 600, opacity: 0.7, fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>— {t('header.nav.resources')} —</MenuItem>
+                <MenuItem className={isActivePathHelper('/resources') ? styles.mobileMenuItemActive : undefined} onClick={() => handleNavigationHelper('/resources', null, 'mobile_resources')}>&nbsp;&nbsp;{t('header.nav.resources')}</MenuItem>
+                <MenuItem className={isActivePathHelper('/prayer-library') ? styles.mobileMenuItemActive : undefined} onClick={() => handleNavigationHelper('/prayer-library', null, 'mobile_prayer_library')}>&nbsp;&nbsp;{t('header.nav.prayers')}</MenuItem>
+                <MenuItem className={isActivePathHelper('/newsletters') ? styles.mobileMenuItemActive : undefined} onClick={() => handleNavigationHelper('/newsletters', null, 'mobile_newsletters')}>&nbsp;&nbsp;{t('header.nav.newsletters')}</MenuItem>
+                {/* Standalone */}
                 <MenuItem className={isActivePathHelper('/contact') ? styles.mobileMenuItemActive : undefined} onClick={() => handleNavigationHelper('/contact', null, 'mobile_contact')}>{t('header.nav.contact')}</MenuItem>
                 <MenuItem className={isActivePathHelper('/feedback') ? styles.mobileMenuItemFeedbackActive : styles.mobileMenuItemFeedback} onClick={() => handleNavigationHelper('/feedback', null, 'mobile_feedback')}>{t('header.nav.feedback')}</MenuItem>
               </MenuList>
