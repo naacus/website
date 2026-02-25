@@ -13,7 +13,7 @@ import {
 } from '@fluentui/react-components';
 import { Navigation24Regular } from '@fluentui/react-icons';
 import LanguageSwitcher from './LanguageSwitcher';
-import DonationDialog from './DonationDialog';
+import StripeDonateButton from './StripeDonateButton';
 import SearchInput from './SearchInput';
 import { handleNavigation, isActivePath } from '../services/navigationService';
 import { useAnalytics } from '../hooks/useAnalytics';
@@ -377,7 +377,7 @@ function Header() {
         {/* Right Section: Search, Language, Sign In */}
         <div className={styles.rightSection}>
           <SearchInput />
-          <DonationDialog />
+          <StripeDonateButton />
           <div className={styles.languageSwitcher}>
             <LanguageSwitcher />
           </div>

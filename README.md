@@ -34,20 +34,16 @@ Visit http://localhost:3000
 |---|---|
 | [Quick Start Guide](DOCS/QUICKSTART.md) | Dev environment setup and local development |
 | [Website Structure](DOCS/WEBSITE_STRUCTURE.md) | Full technical architecture — routes, components, services, config |
-| [Deployment Guide](DOCS/DEPLOYMENT.md) | Azure Static Web Apps deployment instructions |
+| [Deployment Guide](DOCS/DEPLOYMENT.md) | Azure/Netlify/Vercel deployment, M365 integration, env vars |
 | [Google Analytics Setup](DOCS/GA4_SETUP.md) | GA4 configuration and event tracking reference |
-| [Payments Guide](DOCS/PAYMENTS.md) | Payment integration setup (Stripe, PayPal, etc.) |
-| [Stripe Integration Guide](STRIPE_INTEGRATION_GUIDE.md) | Step-by-step Stripe checkout and webhook setup |
-| [API Implementation Guide](API_IMPLEMENTATION_GUIDE.md) | Backend API development guide |
-| [Backend API Contract](BACKEND_API_CONTRACT.md) | REST API endpoints specification |
-| [Deployment (Root)](DEPLOYMENT.md) | Additional deployment notes |
+| [Payments Guide](DOCS/PAYMENTS.md) | All payment methods — Stripe, PayPal, bank, crypto, Cash App |
+| [Backend API Guide](DOCS/BACKEND_API.md) | REST API spec, endpoints, Dataverse schema, implementation checklist |
 
 ### Other
 
 | Document | Description |
 |---|---|
 | [Frontend App README](naacus-website/README.md) | Create React App documentation |
-| [Teams Message to President](TEAMS_MESSAGE_TO_PRESIDENT.md) | Draft Teams message to NAACUS president |
 
 ---
 

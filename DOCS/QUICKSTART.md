@@ -3,7 +3,7 @@
 ## Setup
 
 ### Prerequisites
-- Node.js 16+
+- Node.js 16+ (v18 LTS recommended)
 - npm or yarn
 
 ### Install & Run
@@ -20,22 +20,6 @@ Visit http://localhost:3000
 
 ```bash
 npm run build
-```
-
-## Project Structure
-
-```
-naacus-website/
-├── src/
-│   ├── components/          # React components
-│   ├── pages/              # Page components
-│   ├── services/           # Business logic (GA, payments, etc.)
-│   ├── hooks/              # React hooks (useAnalytics)
-│   ├── data/               # Mock data (ministries, events, etc.)
-│   ├── App.js              # Main app
-│   └── index.js            # Entry point
-├── public/                 # Static assets
-└── package.json            # Dependencies
 ```
 
 ## Key Services
@@ -65,11 +49,12 @@ Edit `src/data/ministriesData.js`
 
 ## Deployment
 
-Configured for **Azure Static Web Apps** on push to `develop` branch.
-See `.github/workflows/azure-static-web-apps-*.yml`
+Auto-deploys to **Azure Static Web Apps** on push to `develop` branch.
 
-## Need Help?
+## More Documentation
 
-- Analytics: See `DOCS/GA4_SETUP.md`
-- Payments: See `DOCS/PAYMENTS.md`
-- Deployment: See `DOCS/DEPLOYMENT.md`
+- **Full project structure:** [WEBSITE_STRUCTURE.md](WEBSITE_STRUCTURE.md)
+- **Analytics:** [GA4_SETUP.md](GA4_SETUP.md)
+- **Payments:** [PAYMENTS.md](PAYMENTS.md)
+- **Deployment:** [DEPLOYMENT.md](DEPLOYMENT.md)
+- **Backend API:** [BACKEND_API.md](BACKEND_API.md)
