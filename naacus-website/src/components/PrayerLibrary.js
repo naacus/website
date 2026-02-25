@@ -188,8 +188,24 @@ const useStyles = makeStyles({
     justifyContent: 'center',
     position: 'relative',
     cursor: 'pointer',
+    ...shorthands.overflow('hidden'),
+  },
+  thumbnailImg: {
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+    position: 'absolute',
+    top: '0',
+    left: '0',
+  },
+  videoEmbed: {
+    width: '100%',
+    height: '200px',
+    ...shorthands.border('0'),
+    display: 'block',
   },
   playOverlay: {
+    position: 'absolute',
     width: '64px',
     height: '64px',
     backgroundColor: 'rgba(0, 103, 184, 0.9)',
@@ -425,6 +441,7 @@ function PrayerLibrary() {
   const [filterPrayer, setFilterPrayer] = useState('all');
   const [filterCountry, setFilterCountry] = useState('all');
   const [filterLanguage, setFilterLanguage] = useState('all');
+  const [playingVideoId, setPlayingVideoId] = useState(null);
   const [submitDialogOpen, setSubmitDialogOpen] = useState(false);
   const [formData, setFormData] = useState({
     parish: '',
@@ -455,6 +472,13 @@ function PrayerLibrary() {
     setFilterCountry('all');
     setFilterLanguage('all');
     trackCTA('prayer_library', 'clear_filters', 'prayer_library');
+  };
+
+  // Extract YouTube video ID and build embed URL
+  const getYouTubeEmbedUrl = (url) => {
+    if (!url) return null;
+    const match = url.match(/(?:v=|youtu\.be\/|embed\/)([\w-]{11})/);
+    return match ? `https://www.youtube.com/embed/${match[1]}?autoplay=1&rel=0` : null;
   };
 
   const getCountryInfo = (countryId) => {
@@ -599,14 +623,43 @@ function PrayerLibrary() {
                   const country = getCountryInfo(video.country);
                   return (
                     <Card key={video.id} className={styles.prayerCard}>
-                      <div className={styles.videoThumbnail}>
-                        <div className={styles.playOverlay}>
-                          <Play24Filled />
+                      {playingVideoId === video.id && video.videoUrl ? (
+                        <iframe
+                          className={styles.videoEmbed}
+                          src={getYouTubeEmbedUrl(video.videoUrl)}
+                          title={video.title}
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                        />
+                      ) : (
+                        <div
+                          className={styles.videoThumbnail}
+                          onClick={() => {
+                            if (video.videoUrl) {
+                              setPlayingVideoId(video.id);
+                              trackCTA('prayer_library', 'play_video', video.title);
+                            }
+                          }}
+                          role={video.videoUrl ? 'button' : undefined}
+                          tabIndex={video.videoUrl ? 0 : undefined}
+                        >
+                          {video.thumbnailUrl && (
+                            <img
+                              src={video.thumbnailUrl}
+                              alt={video.title}
+                              className={styles.thumbnailImg}
+                            />
+                          )}
+                          <div className={styles.playOverlay}>
+                            <Play24Filled />
+                          </div>
+                          {!video.videoUrl && (
+                            <div className={styles.comingSoonOverlay}>
+                              {t('prayerLibrary.comingSoon')}
+                            </div>
+                          )}
                         </div>
-                        <div className={styles.comingSoonOverlay}>
-                          {t('prayerLibrary.comingSoon')}
-                        </div>
-                      </div>
+                      )}
                       <div className={styles.cardContent}>
                         <div className={styles.cardHeader}>
                           <Text className={styles.cardTitle}>{video.title}</Text>

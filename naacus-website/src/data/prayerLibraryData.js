@@ -56,11 +56,11 @@ export const prayerVideos = [
     contributor: 'Marie-Claire N.',
     parish: 'St. Joseph Cameroon Catholic Community, MD',
     description: 'The Our Father prayer recited in Ewondo, a Bantu language spoken in central Cameroon.',
-    videoUrl: null, // Placeholder — will be populated with actual video URLs
-    thumbnailUrl: null,
+    videoUrl: 'https://www.youtube.com/watch?v=vyK9QKLBpOA',
+    thumbnailUrl: 'https://img.youtube.com/vi/vyK9QKLBpOA/hqdefault.jpg',
     featuresYouth: false,
-    dateSubmitted: '2026-03-01',
-    status: 'pending', // pending | approved | featured
+    dateSubmitted: '2026-02-25',
+    status: 'approved',
   },
   {
     id: 2,
