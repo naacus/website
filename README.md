@@ -1,8 +1,12 @@
 # NAACUS Website
 
-Official website for National Association of African Catholics in the United States.
+Official website for the **National Association of African Catholics in the United States**.
 
-## 🚀 Quick Start
+**Live:** https://polite-pebble-0f00f890f.4.azurestaticapps.net
+
+---
+
+## Quick Start
 
 ```bash
 cd naacus-website
@@ -12,49 +16,100 @@ npm start
 
 Visit http://localhost:3000
 
-## 📚 Documentation
+---
 
-| Topic | Link |
-|-------|------|
-| **Setup & Development** | [DOCS/QUICKSTART.md](DOCS/QUICKSTART.md) |
-| **Google Analytics** | [DOCS/GA4_SETUP.md](DOCS/GA4_SETUP.md) |
-| **Donations & Payments** | [DOCS/PAYMENTS.md](DOCS/PAYMENTS.md) |
-| **Deployment** | [DOCS/DEPLOYMENT.md](DOCS/DEPLOYMENT.md) |
+## Documentation
 
-## ✨ Key Features
+### For Everyone
 
-- ✅ Multi-language (English/French)
-- ✅ Google Analytics 4 tracking
-- ✅ Donation system (Stripe, bank, crypto, Cash App)
-- ✅ Ministry interest tracking
-- ✅ Event management
-- ✅ Volunteer signup forms
-- ✅ Auto-deploy on push to `develop`
+| Document | Description |
+|---|---|
+| [Website Overview](DOCS/WEBSITE_OVERVIEW.md) | Non-technical overview of the website — pages, features, and how it all works |
+| [Features & User Stories](DOCS/FEATURES_AND_USER_STORIES.md) | All 94 user stories organized by feature, with current status |
+| [Release Schedule](DOCS/RELEASE_SCHEDULE.md) | 6-release phased delivery plan with timelines and priorities |
 
-## 📊 What's Tracked in GA4
+### For Developers
 
-- Page views
-- Form submissions
-- CTA clicks
-- Ministry card clicks
-- Donations with amounts
-- User language & engagement
+| Document | Description |
+|---|---|
+| [Quick Start Guide](DOCS/QUICKSTART.md) | Dev environment setup and local development |
+| [Website Structure](DOCS/WEBSITE_STRUCTURE.md) | Full technical architecture — routes, components, services, config |
+| [Deployment Guide](DOCS/DEPLOYMENT.md) | Azure Static Web Apps deployment instructions |
+| [Google Analytics Setup](DOCS/GA4_SETUP.md) | GA4 configuration and event tracking reference |
+| [Payments Guide](DOCS/PAYMENTS.md) | Payment integration setup (Stripe, PayPal, etc.) |
+| [Stripe Integration Guide](STRIPE_INTEGRATION_GUIDE.md) | Step-by-step Stripe checkout and webhook setup |
+| [API Implementation Guide](API_IMPLEMENTATION_GUIDE.md) | Backend API development guide |
+| [Backend API Contract](BACKEND_API_CONTRACT.md) | REST API endpoints specification |
+| [Deployment (Root)](DEPLOYMENT.md) | Additional deployment notes |
 
-## 🛠️ Tech Stack
+### Other
 
-- **Frontend:** React + Fluent UI
-- **Analytics:** Google Analytics 4
-- **Payments:** Stripe, Coinbase, Cash App
-- **Hosting:** Azure Static Web Apps
-- **i18n:** i18next
-
-## 🔄 Deploy
-
-Auto-deploys on push to `develop` branch.
-Live: https://polite-pebble-0f00f890f.4.azurestaticapps.net
+| Document | Description |
+|---|---|
+| [Frontend App README](naacus-website/README.md) | Create React App documentation |
+| [Teams Message to President](TEAMS_MESSAGE_TO_PRESIDENT.md) | Draft Teams message to NAACUS president |
 
 ---
 
-📖 **See [DOCS/](DOCS/) folder for detailed guides on all topics.****Built with ❤️ for the NAACUS community**
+## Key Features
 
-Together with Christ - Uniting African Catholic communities across the United States.
+- Multi-language support (English / French)
+- 17 pages covering About, Leadership, Ministries, Events, Membership, Volunteering, Donations, Resources, Newsletters, FAQ, and more
+- Donation system with 7 payment methods (Stripe, PayPal, Apple Pay, Google Pay, bank transfer, crypto, Cash App)
+- AI chat assistant (local FAQ matching + Copilot Studio ready)
+- Google Analytics 4 tracking with in-app dashboard
+- Event registration and management
+- Membership registration with parish finder
+- Volunteer sign-up forms
+- Global site search with relevance scoring
+- Cookie consent and privacy compliance
+- Responsive design (desktop, tablet, mobile)
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| **Frontend** | React 19, React Router 6 |
+| **UI Library** | Fluent UI v9 |
+| **i18n** | i18next |
+| **Analytics** | Google Analytics 4 |
+| **Payments** | Stripe, PayPal, Apple Pay, Google Pay |
+| **AI Chat** | Microsoft Copilot Studio (Direct Line) |
+| **Auth** | MSAL / Azure AD |
+| **Backend** | Node.js API server (event registration) |
+| **Hosting** | Azure Static Web Apps |
+
+---
+
+## Project Status
+
+| Area | Status |
+|---|---|
+| Frontend UI (all 17 pages) | **Complete** |
+| Internationalization (EN/FR) | **Complete** |
+| Google Analytics | **Complete (live)** |
+| Site search | **Complete** |
+| Cookie consent | **Complete** |
+| Stripe Buy Button (donations) | **Complete (live)** |
+| Local FAQ chatbot | **Complete** |
+| Multi-method payment UI | **UI complete — backend needed** |
+| Membership / Volunteer / Contact forms | **UI complete — backend needed** |
+| Backend REST API | **Not started** |
+| Admin panel | **Not started** |
+| Test coverage | **Minimal (3 test files)** |
+
+See [Features & User Stories](DOCS/FEATURES_AND_USER_STORIES.md) for the full breakdown and [Release Schedule](DOCS/RELEASE_SCHEDULE.md) for the delivery plan.
+
+---
+
+## Deploy
+
+Auto-deploys on push to `develop` branch.
+
+---
+
+**Built with love for the NAACUS community**
+
+*Together with Christ — Uniting African Catholic communities across the United States.*
