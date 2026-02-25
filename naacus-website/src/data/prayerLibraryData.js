@@ -12,7 +12,7 @@
 
 // Canonical list of prayers in the project
 export const prayerTypes = [
-  { id: 'sign-of-the-cross', nameKey: 'prayerLibrary.prayers.signOfTheCross', latinName: 'Signum Crucis' },
+  { id: 'sign-of-the-cross', nameKey: 'prayerLibrary.prayers.signOfCross', latinName: 'Signum Crucis' },
   { id: 'our-father', nameKey: 'prayerLibrary.prayers.ourFather', latinName: 'Pater Noster' },
   { id: 'hail-mary', nameKey: 'prayerLibrary.prayers.hailMary', latinName: 'Ave Maria' },
   { id: 'glory-be', nameKey: 'prayerLibrary.prayers.gloryBe', latinName: 'Gloria Patri' },
