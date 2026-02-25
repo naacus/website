@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   makeStyles,
@@ -10,6 +11,9 @@ import {
   Badge,
   Dropdown,
   Option,
+  TabList,
+  Tab,
+  Divider,
   Textarea,
   Input,
   Dialog,
@@ -20,19 +24,16 @@ import {
   DialogContent,
   DialogActions,
   Field,
-  TabList,
-  Tab,
-  Divider,
 } from '@fluentui/react-components';
 import {
   Video24Regular,
   Globe24Regular,
   People24Regular,
   Play24Filled,
-  Send24Regular,
   Filter24Regular,
   Book24Regular,
   Dismiss24Regular,
+  Send24Regular,
 } from '@fluentui/react-icons';
 import {
   getPrayerVideos,
@@ -337,52 +338,6 @@ const useStyles = makeStyles({
     lineHeight: '1.4',
   },
 
-  // Submit section
-  submitSection: {
-    backgroundColor: '#f8f9fa',
-    ...shorthands.padding('40px', '24px'),
-    ...shorthands.borderRadius('12px'),
-    textAlign: 'center',
-    marginTop: '20px',
-  },
-  submitTitle: {
-    fontSize: '1.5rem',
-    fontWeight: '600',
-    color: tokens.colorBrandBackground,
-    display: 'block',
-    marginBottom: '12px',
-  },
-  submitText: {
-    fontSize: '1rem',
-    color: tokens.colorNeutralForeground2,
-    lineHeight: '1.7',
-    marginBottom: '8px',
-    display: 'block',
-    maxWidth: '700px',
-    margin: '0 auto 8px',
-  },
-  submitGuidelines: {
-    textAlign: 'left',
-    maxWidth: '600px',
-    margin: '16px auto 24px',
-    display: 'flex',
-    flexDirection: 'column',
-    ...shorthands.gap('8px'),
-  },
-  guidelineItem: {
-    fontSize: '0.95rem',
-    color: tokens.colorNeutralForeground2,
-    lineHeight: '1.6',
-    display: 'flex',
-    alignItems: 'flex-start',
-    ...shorthands.gap('8px'),
-  },
-  guidelineBullet: {
-    color: tokens.colorBrandBackground,
-    fontWeight: '600',
-    minWidth: '20px',
-  },
-
   // Empty state
   emptyState: {
     textAlign: 'center',
@@ -395,7 +350,49 @@ const useStyles = makeStyles({
     marginBottom: '16px',
   },
 
-  // Dialog
+  // Submit section (admin only)
+  submitSection: {
+    textAlign: 'center',
+    ...shorthands.padding('40px', '20px'),
+    backgroundColor: '#f0f7ff',
+    ...shorthands.borderRadius('16px'),
+    marginBottom: '40px',
+  },
+  submitTitle: {
+    fontSize: '1.5rem',
+    fontWeight: '600',
+    color: tokens.colorNeutralForeground1,
+    display: 'block',
+    marginBottom: '12px',
+  },
+  submitText: {
+    fontSize: '1rem',
+    lineHeight: '1.6',
+    color: tokens.colorNeutralForeground2,
+    maxWidth: '700px',
+    ...shorthands.margin('0', 'auto', '20px'),
+    display: 'block',
+  },
+  submitGuidelines: {
+    textAlign: 'left',
+    maxWidth: '600px',
+    ...shorthands.margin('0', 'auto', '24px'),
+    listStyleType: 'none',
+    ...shorthands.padding('0'),
+  },
+  guidelineItem: {
+    display: 'flex',
+    alignItems: 'flex-start',
+    ...shorthands.gap('8px'),
+    marginBottom: '8px',
+    fontSize: '0.95rem',
+    color: tokens.colorNeutralForeground2,
+  },
+  guidelineBullet: {
+    color: tokens.colorBrandBackground,
+    fontWeight: '700',
+    minWidth: '20px',
+  },
   dialogForm: {
     display: 'flex',
     flexDirection: 'column',
@@ -409,12 +406,20 @@ const useStyles = makeStyles({
       gridTemplateColumns: '1fr',
     },
   },
+  adminBadge: {
+    display: 'inline-flex',
+    marginBottom: '12px',
+  },
 });
 
 function PrayerLibrary() {
   const { t } = useTranslation();
   const styles = useStyles();
   const { trackCTA } = useAnalytics();
+  const location = useLocation();
+
+  // Admin gate: only show submit dialog when ?admin=true is in URL
+  const isAdmin = new URLSearchParams(location.search).get('admin') === 'true';
 
   const [selectedTab, setSelectedTab] = useState('videos');
   const [filterPrayer, setFilterPrayer] = useState('all');
@@ -422,14 +427,11 @@ function PrayerLibrary() {
   const [filterLanguage, setFilterLanguage] = useState('all');
   const [submitDialogOpen, setSubmitDialogOpen] = useState(false);
   const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
     parish: '',
     country: '',
     language: '',
     prayerType: '',
     description: '',
-    featuresYouth: false,
   });
   const [formSubmitted, setFormSubmitted] = useState(false);
 
@@ -464,35 +466,6 @@ function PrayerLibrary() {
     return prayer ? t(prayer.nameKey) : prayerTypeId;
   };
 
-  const handleSubmitOpen = () => {
-    setSubmitDialogOpen(true);
-    trackCTA('prayer_library', 'submit_prayer_open', 'prayer_library');
-  };
-
-  const handleFormChange = (field, value) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
-  };
-
-  const handleFormSubmit = () => {
-    // In a real implementation, this would POST to the backend API
-    trackCTA('prayer_library', 'submit_prayer_form', 'prayer_library');
-    setFormSubmitted(true);
-    setTimeout(() => {
-      setSubmitDialogOpen(false);
-      setFormSubmitted(false);
-      setFormData({
-        fullName: '',
-        email: '',
-        parish: '',
-        country: '',
-        language: '',
-        prayerType: '',
-        description: '',
-        featuresYouth: false,
-      });
-    }, 3000);
-  };
-
   const handleCountryFilter = (countryId) => {
     setFilterCountry(countryId);
     setSelectedTab('videos');
@@ -501,6 +474,22 @@ function PrayerLibrary() {
 
   // Count videos per prayer type
   const videosPerPrayer = (prayerTypeId) => allVideos.filter((v) => v.prayerTypeId === prayerTypeId).length;
+
+  const handleSubmitOpen = () => {
+    setSubmitDialogOpen(true);
+    setFormSubmitted(false);
+    setFormData({ parish: '', country: '', language: '', prayerType: '', description: '' });
+    trackCTA('prayer_library', 'submit_open', 'prayer_submit_dialog');
+  };
+
+  const handleFormChange = (field) => (e) => {
+    setFormData((prev) => ({ ...prev, [field]: e.target.value }));
+  };
+
+  const handleFormSubmit = () => {
+    setFormSubmitted(true);
+    trackCTA('prayer_library', 'submit_prayer', JSON.stringify(formData));
+  };
 
   return (
     <section id="prayer-library" className={styles.prayerLibrary}>
@@ -729,148 +718,100 @@ function PrayerLibrary() {
           </div>
         )}
 
-        <Divider style={{ margin: '20px 0' }} />
+        {/* -------- SUBMIT SECTION (Admin Only) -------- */}
+        {isAdmin && (
+          <div className={styles.submitSection}>
+            <Badge className={styles.adminBadge} color="danger" appearance="filled" size="small">
+              Admin
+            </Badge>
+            <Text as="h3" className={styles.submitTitle}>
+              {t('prayerLibrary.submit.title')}
+            </Text>
+            <Text className={styles.submitText}>
+              {t('prayerLibrary.submit.description')}
+            </Text>
+            <ul className={styles.submitGuidelines}>
+              {[1, 2, 3, 4, 5].map((n) => (
+                <li key={n} className={styles.guidelineItem}>
+                  <span className={styles.guidelineBullet}>✦</span>
+                  {t(`prayerLibrary.submit.guideline${n}`)}
+                </li>
+              ))}
+            </ul>
 
-        {/* Submit Your Prayer Section */}
-        <div className={styles.submitSection}>
-          <Text className={styles.submitTitle}>
-            {t('prayerLibrary.submit.title')}
-          </Text>
-          <Text className={styles.submitText}>
-            {t('prayerLibrary.submit.description')}
-          </Text>
-          <div className={styles.submitGuidelines}>
-            <div className={styles.guidelineItem}>
-              <span className={styles.guidelineBullet}>✝</span>
-              <span>{t('prayerLibrary.submit.guideline1')}</span>
-            </div>
-            <div className={styles.guidelineItem}>
-              <span className={styles.guidelineBullet}>👗</span>
-              <span>{t('prayerLibrary.submit.guideline2')}</span>
-            </div>
-            <div className={styles.guidelineItem}>
-              <span className={styles.guidelineBullet}>🗣️</span>
-              <span>{t('prayerLibrary.submit.guideline3')}</span>
-            </div>
-            <div className={styles.guidelineItem}>
-              <span className={styles.guidelineBullet}>👦</span>
-              <span>{t('prayerLibrary.submit.guideline4')}</span>
-            </div>
-            <div className={styles.guidelineItem}>
-              <span className={styles.guidelineBullet}>⛪</span>
-              <span>{t('prayerLibrary.submit.guideline5')}</span>
-            </div>
-          </div>
-
-          <Dialog open={submitDialogOpen} onOpenChange={(_, data) => setSubmitDialogOpen(data.open)}>
-            <DialogTrigger disableButtonEnhancement>
-              <Button
-                appearance="primary"
-                size="large"
-                icon={<Send24Regular />}
-                onClick={handleSubmitOpen}
-              >
-                {t('prayerLibrary.submit.button')}
-              </Button>
-            </DialogTrigger>
-            <DialogSurface>
-              <DialogBody>
-                <DialogTitle>{t('prayerLibrary.submit.dialogTitle')}</DialogTitle>
-                <DialogContent>
-                  {formSubmitted ? (
-                    <div style={{ textAlign: 'center', padding: '24px 0' }}>
-                      <Text style={{ fontSize: '1.2rem', color: tokens.colorBrandBackground, display: 'block', marginBottom: '8px' }}>
-                        🙏 {t('prayerLibrary.submit.thankYou')}
-                      </Text>
-                      <Text style={{ color: tokens.colorNeutralForeground2, display: 'block' }}>
+            <Dialog open={submitDialogOpen} onOpenChange={(_, data) => setSubmitDialogOpen(data.open)}>
+              <DialogTrigger>
+                <Button
+                  appearance="primary"
+                  size="large"
+                  icon={<Send24Regular />}
+                  onClick={handleSubmitOpen}
+                >
+                  {t('prayerLibrary.submit.button')}
+                </Button>
+              </DialogTrigger>
+              <DialogSurface>
+                <DialogBody>
+                  <DialogTitle>
+                    {formSubmitted ? t('prayerLibrary.submit.thankYou') : t('prayerLibrary.submit.dialogTitle')}
+                  </DialogTitle>
+                  <DialogContent>
+                    {formSubmitted ? (
+                      <Text style={{ lineHeight: '1.6' }}>
                         {t('prayerLibrary.submit.thankYouMessage')}
                       </Text>
-                    </div>
-                  ) : (
-                    <div className={styles.dialogForm}>
-                      <div className={styles.formRow}>
-                        <Field label={t('prayerLibrary.submit.form.fullName')} required>
-                          <Input
-                            value={formData.fullName}
-                            onChange={(_, data) => handleFormChange('fullName', data.value)}
-                          />
-                        </Field>
-                        <Field label={t('prayerLibrary.submit.form.email')} required>
-                          <Input
-                            type="email"
-                            value={formData.email}
-                            onChange={(_, data) => handleFormChange('email', data.value)}
-                          />
-                        </Field>
-                      </div>
-                      <Field label={t('prayerLibrary.submit.form.parish')}>
-                        <Input
-                          value={formData.parish}
-                          onChange={(_, data) => handleFormChange('parish', data.value)}
-                        />
-                      </Field>
-                      <div className={styles.formRow}>
-                        <Field label={t('prayerLibrary.submit.form.country')} required>
-                          <Dropdown
-                            value={formData.country}
-                            onOptionSelect={(_, data) => handleFormChange('country', data.optionValue)}
-                          >
-                            {allCountries.map((c) => (
-                              <Option key={c.id} value={c.id}>
-                                {c.flag} {c.name}
-                              </Option>
-                            ))}
-                          </Dropdown>
-                        </Field>
-                        <Field label={t('prayerLibrary.submit.form.language')} required>
-                          <Input
-                            value={formData.language}
-                            onChange={(_, data) => handleFormChange('language', data.value)}
-                            placeholder={t('prayerLibrary.submit.form.languagePlaceholder')}
+                    ) : (
+                      <div className={styles.dialogForm}>
+                        <div className={styles.formRow}>
+                          <Field label={t('prayerLibrary.submit.form.parish')}>
+                            <Input value={formData.parish} onChange={handleFormChange('parish')} />
+                          </Field>
+                          <Field label={t('prayerLibrary.submit.form.country')}>
+                            <Input value={formData.country} onChange={handleFormChange('country')} />
+                          </Field>
+                        </div>
+                        <div className={styles.formRow}>
+                          <Field label={t('prayerLibrary.submit.form.language')}>
+                            <Input
+                              value={formData.language}
+                              onChange={handleFormChange('language')}
+                              placeholder={t('prayerLibrary.submit.form.languagePlaceholder')}
+                            />
+                          </Field>
+                          <Field label={t('prayerLibrary.submit.form.prayerType')}>
+                            <Input value={formData.prayerType} onChange={handleFormChange('prayerType')} />
+                          </Field>
+                        </div>
+                        <Field label={t('prayerLibrary.submit.form.description')}>
+                          <Textarea
+                            value={formData.description}
+                            onChange={handleFormChange('description')}
+                            placeholder={t('prayerLibrary.submit.form.descriptionPlaceholder')}
+                            rows={3}
                           />
                         </Field>
                       </div>
-                      <Field label={t('prayerLibrary.submit.form.prayerType')} required>
-                        <Dropdown
-                          value={formData.prayerType}
-                          onOptionSelect={(_, data) => handleFormChange('prayerType', data.optionValue)}
-                        >
-                          {allPrayerTypes.map((pt) => (
-                            <Option key={pt.id} value={pt.id}>
-                              {t(pt.nameKey)}
-                            </Option>
-                          ))}
-                        </Dropdown>
-                      </Field>
-                      <Field label={t('prayerLibrary.submit.form.description')}>
-                        <Textarea
-                          value={formData.description}
-                          onChange={(_, data) => handleFormChange('description', data.value)}
-                          placeholder={t('prayerLibrary.submit.form.descriptionPlaceholder')}
-                          rows={3}
-                        />
-                      </Field>
-                    </div>
-                  )}
-                </DialogContent>
-                {!formSubmitted && (
+                    )}
+                  </DialogContent>
                   <DialogActions>
-                    <DialogTrigger disableButtonEnhancement>
-                      <Button appearance="secondary">{t('prayerLibrary.submit.form.cancel')}</Button>
+                    <DialogTrigger>
+                      <Button appearance="secondary">
+                        {formSubmitted ? t('prayerLibrary.filters.clear') : t('prayerLibrary.submit.form.cancel')}
+                      </Button>
                     </DialogTrigger>
-                    <Button
-                      appearance="primary"
-                      onClick={handleFormSubmit}
-                      disabled={!formData.fullName || !formData.email || !formData.country || !formData.language || !formData.prayerType}
-                    >
-                      {t('prayerLibrary.submit.form.submit')}
-                    </Button>
+                    {!formSubmitted && (
+                      <Button appearance="primary" icon={<Send24Regular />} onClick={handleFormSubmit}>
+                        {t('prayerLibrary.submit.form.submit')}
+                      </Button>
+                    )}
                   </DialogActions>
-                )}
-              </DialogBody>
-            </DialogSurface>
-          </Dialog>
-        </div>
+                </DialogBody>
+              </DialogSurface>
+            </Dialog>
+          </div>
+        )}
+
+        <Divider style={{ margin: '20px 0' }} />
       </div>
     </section>
   );
