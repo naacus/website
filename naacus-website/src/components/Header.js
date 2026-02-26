@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { 
@@ -11,7 +11,7 @@ import {
   MenuItem,
   Button
 } from '@fluentui/react-components';
-import { Navigation24Regular, ChevronDownFilled } from '@fluentui/react-icons';
+import { Navigation24Regular, ChevronDownFilled, ChevronUpFilled } from '@fluentui/react-icons';
 import LanguageSwitcher from './LanguageSwitcher';
 import StripeDonateButton from './StripeDonateButton';
 import SearchInput from './SearchInput';
@@ -277,6 +277,10 @@ function Header() {
   const navigate = useNavigate();
   const location = useLocation();
   const { trackCTA } = useAnalytics();
+  const [aboutMenuOpen, setAboutMenuOpen] = useState(false);
+  const [communityMenuOpen, setCommunityMenuOpen] = useState(false);
+  const [getInvolvedMenuOpen, setGetInvolvedMenuOpen] = useState(false);
+  const [resourcesMenuOpen, setResourcesMenuOpen] = useState(false);
 
   const handleNavigationHelper = (path, sectionId, label = '') => {
     if (label) {
@@ -314,12 +318,12 @@ function Header() {
             </button>
 
             {/* About ▾ */}
-            <Menu>
+            <Menu open={aboutMenuOpen} onOpenChange={(_, data) => setAboutMenuOpen(data.open)}>
               <MenuTrigger disableButtonEnhancement>
                 <button
                   className={`${styles.navLink} ${(isActivePathHelper('/about') || isActivePathHelper('/leadership')) ? styles.navLinkActive : ''}`}
                 >
-                  {t('header.nav.about')} <ChevronDownFilled />
+                  {t('header.nav.about')} {aboutMenuOpen ? <ChevronUpFilled /> : <ChevronDownFilled />}
                 </button>
               </MenuTrigger>
               <MenuPopover>
@@ -341,12 +345,12 @@ function Header() {
             </Menu>
 
             {/* Community ▾ */}
-            <Menu>
+            <Menu open={communityMenuOpen} onOpenChange={(_, data) => setCommunityMenuOpen(data.open)}>
               <MenuTrigger disableButtonEnhancement>
                 <button
                   className={`${styles.navLink} ${(isActivePathHelper('/fellowship-ministries') || isActivePathHelper('/programs-activities') || isActivePathHelper('/events')) ? styles.navLinkActive : ''}`}
                 >
-                  {t('header.nav.community')} <ChevronDownFilled />
+                  {t('header.nav.community')} {communityMenuOpen ? <ChevronUpFilled /> : <ChevronDownFilled />}
                 </button>
               </MenuTrigger>
               <MenuPopover>
@@ -374,12 +378,12 @@ function Header() {
             </Menu>
 
             {/* Get Involved ▾ */}
-            <Menu>
+            <Menu open={getInvolvedMenuOpen} onOpenChange={(_, data) => setGetInvolvedMenuOpen(data.open)}>
               <MenuTrigger disableButtonEnhancement>
                 <button
                   className={`${styles.navLink} ${(isActivePathHelper('/membership') || isActivePathHelper('/volunteer')) ? styles.navLinkActive : ''}`}
                 >
-                  {t('header.nav.getInvolved')} <ChevronDownFilled />
+                  {t('header.nav.getInvolved')} {getInvolvedMenuOpen ? <ChevronUpFilled /> : <ChevronDownFilled />}
                 </button>
               </MenuTrigger>
               <MenuPopover>
@@ -401,12 +405,12 @@ function Header() {
             </Menu>
 
             {/* Resources ▾ */}
-            <Menu>
+            <Menu open={resourcesMenuOpen} onOpenChange={(_, data) => setResourcesMenuOpen(data.open)}>
               <MenuTrigger disableButtonEnhancement>
                 <button
                   className={`${styles.navLink} ${(isActivePathHelper('/resources') || isActivePathHelper('/prayer-library') || isActivePathHelper('/newsletters')) ? styles.navLinkActive : ''}`}
                 >
-                  {t('header.nav.resources')} <ChevronDownFilled />
+                  {t('header.nav.resources')} {resourcesMenuOpen ? <ChevronUpFilled /> : <ChevronDownFilled />}
                 </button>
               </MenuTrigger>
               <MenuPopover>

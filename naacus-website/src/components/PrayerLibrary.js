@@ -284,6 +284,26 @@ const useStyles = makeStyles({
     overflowY: 'auto',
     ...shorthands.padding('0', '4px', '0', '0'),
   },
+  dialogHeader: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    ...shorthands.gap('16px'),
+  },
+  dialogCloseButton: {
+    backgroundColor: 'transparent',
+    border: 'none',
+    cursor: 'pointer',
+    ...shorthands.padding('0'),
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: tokens.colorNeutralForeground2,
+    '&:hover': {
+      color: tokens.colorNeutralForeground1,
+    },
+    flexShrink: 0,
+  },
   youthBadge: {
     marginTop: '8px',
   },
@@ -788,7 +808,19 @@ function PrayerLibrary() {
           <DialogSurface>
             <DialogBody>
               <DialogTitle>
-                {selectedPrayerVideo?.title}
+                <div className={styles.dialogHeader}>
+                  <span>{selectedPrayerVideo?.title}</span>
+                  <Button
+                    icon={<Dismiss24Regular />}
+                    appearance="subtle"
+                    className={styles.dialogCloseButton}
+                    onClick={() => {
+                      setPrayerTextDialogOpen(false);
+                      setSelectedPrayerVideo(null);
+                    }}
+                    aria-label="Close dialog"
+                  />
+                </div>
               </DialogTitle>
               <DialogContent>
                 {selectedPrayerVideo?.videoUrl && (
@@ -808,17 +840,6 @@ function PrayerLibrary() {
                   </div>
                 )}
               </DialogContent>
-              <DialogActions>
-                <Button
-                  appearance="secondary"
-                  onClick={() => {
-                    setPrayerTextDialogOpen(false);
-                    setSelectedPrayerVideo(null);
-                  }}
-                >
-                  Close
-                </Button>
-              </DialogActions>
             </DialogBody>
           </DialogSurface>
         </Dialog>
