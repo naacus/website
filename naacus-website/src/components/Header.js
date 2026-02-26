@@ -11,7 +11,7 @@ import {
   MenuItem,
   Button
 } from '@fluentui/react-components';
-import { Navigation24Regular } from '@fluentui/react-icons';
+import { Navigation24Regular, ChevronDownFilled } from '@fluentui/react-icons';
 import LanguageSwitcher from './LanguageSwitcher';
 import StripeDonateButton from './StripeDonateButton';
 import SearchInput from './SearchInput';
@@ -319,7 +319,7 @@ function Header() {
                 <button
                   className={`${styles.navLink} ${(isActivePathHelper('/about') || isActivePathHelper('/leadership')) ? styles.navLinkActive : ''}`}
                 >
-                  {t('header.nav.about')} ▾
+                  {t('header.nav.about')} <ChevronDownFilled />
                 </button>
               </MenuTrigger>
               <MenuPopover>
@@ -346,7 +346,7 @@ function Header() {
                 <button
                   className={`${styles.navLink} ${(isActivePathHelper('/fellowship-ministries') || isActivePathHelper('/programs-activities') || isActivePathHelper('/events')) ? styles.navLinkActive : ''}`}
                 >
-                  {t('header.nav.community')} ▾
+                  {t('header.nav.community')} <ChevronDownFilled />
                 </button>
               </MenuTrigger>
               <MenuPopover>
@@ -379,7 +379,7 @@ function Header() {
                 <button
                   className={`${styles.navLink} ${(isActivePathHelper('/membership') || isActivePathHelper('/volunteer')) ? styles.navLinkActive : ''}`}
                 >
-                  {t('header.nav.getInvolved')} ▾
+                  {t('header.nav.getInvolved')} <ChevronDownFilled />
                 </button>
               </MenuTrigger>
               <MenuPopover>
@@ -406,7 +406,7 @@ function Header() {
                 <button
                   className={`${styles.navLink} ${(isActivePathHelper('/resources') || isActivePathHelper('/prayer-library') || isActivePathHelper('/newsletters')) ? styles.navLinkActive : ''}`}
                 >
-                  {t('header.nav.resources')} ▾
+                  {t('header.nav.resources')} <ChevronDownFilled />
                 </button>
               </MenuTrigger>
               <MenuPopover>
