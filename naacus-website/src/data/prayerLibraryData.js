@@ -113,14 +113,34 @@ export const prayerVideos = [
     country: 'kenya',
     language: 'Swahili',
     title: "Apostles' Creed in Swahili",
-    contributor: 'Grace W.',
+    contributor: 'NAACUS Community Submission',
     parish: 'East African Catholic Community, MD',
     description: "The Apostles' Creed in Swahili (Kiswahili), a lingua franca of East Africa.",
-    videoUrl: null,
-    thumbnailUrl: null,
+    prayerText: `Naamini kwa Mungu, Baba Mwenyezi,
+  Muumba mbingu na nchi.
+
+  Na kwa Yesu Kristo, Mwana wake wa pekee, Bwana wetu;
+  aliyechukuliwa mimba kwa uwezo wa Roho Mtakatifu,
+  akazaliwa na Bikira Maria;
+  akateswa chini ya Pontio Pilato;
+  akasulubiwa, akafa, akazikwa;
+  akashuka kuzimu;
+  siku ya tatu akafufuka katika wafu;
+  akapaa mbinguni;
+  ameketi mkono wa kuume wa Mungu Baba Mwenyezi;
+  atakuja tena kuwahukumu walio hai na waliokufa.
+
+  Naamini kwa Roho Mtakatifu;
+  Kanisa Takatifu Katoliki;
+  Ushirika wa Watakatifu;
+  Maondoleo ya dhambi;
+  Ufufuo wa mwili;
+  na uzima wa milele. Amina.`,
+    videoUrl: 'https://www.youtube.com/watch?v=SLgbG-LyHP4',
+    thumbnailUrl: 'https://img.youtube.com/vi/SLgbG-LyHP4/hqdefault.jpg',
     featuresYouth: false,
     dateSubmitted: '2026-03-15',
-    status: 'pending',
+    status: 'approved',
   },
   {
     id: 6,

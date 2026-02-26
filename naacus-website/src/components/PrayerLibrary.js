@@ -199,9 +199,10 @@ const useStyles = makeStyles({
   },
   videoEmbed: {
     width: '100%',
-    height: '200px',
+    height: '360px',
     ...shorthands.border('0'),
     display: 'block',
+    marginBottom: '12px',
   },
   playOverlay: {
     position: 'absolute',
@@ -269,6 +270,19 @@ const useStyles = makeStyles({
     color: tokens.colorNeutralForeground2,
     display: 'block',
     marginBottom: '12px',
+  },
+  prayerText: {
+    fontSize: '0.9rem',
+    lineHeight: '1.6',
+    color: tokens.colorNeutralForeground1,
+    whiteSpace: 'pre-line',
+    display: 'block',
+    marginBottom: '0',
+  },
+  prayerTextScroll: {
+    maxHeight: '320px',
+    overflowY: 'auto',
+    ...shorthands.padding('0', '4px', '0', '0'),
   },
   youthBadge: {
     marginTop: '8px',
@@ -440,7 +454,8 @@ function PrayerLibrary() {
   const [filterPrayer, setFilterPrayer] = useState('all');
   const [filterCountry, setFilterCountry] = useState('all');
   const [filterLanguage, setFilterLanguage] = useState('all');
-  const [playingVideoId, setPlayingVideoId] = useState(null);
+  const [prayerTextDialogOpen, setPrayerTextDialogOpen] = useState(false);
+  const [selectedPrayerVideo, setSelectedPrayerVideo] = useState(null);
   const [submitDialogOpen, setSubmitDialogOpen] = useState(false);
   const [formData, setFormData] = useState({
     parish: '',
@@ -503,6 +518,12 @@ function PrayerLibrary() {
     setFormSubmitted(false);
     setFormData({ parish: '', country: '', language: '', prayerType: '', description: '' });
     trackCTA('prayer_library', 'submit_open', 'prayer_submit_dialog');
+  };
+
+  const openPrayerTextDialog = (video) => {
+    setSelectedPrayerVideo(video);
+    setPrayerTextDialogOpen(true);
+    trackCTA('prayer_library', 'play_video', video.title);
   };
 
   const handleFormChange = (field) => (e) => {
@@ -622,43 +643,32 @@ function PrayerLibrary() {
                   const country = getCountryInfo(video.country);
                   return (
                     <Card key={video.id} className={styles.prayerCard}>
-                      {playingVideoId === video.id && video.videoUrl ? (
-                        <iframe
-                          className={styles.videoEmbed}
-                          src={getYouTubeEmbedUrl(video.videoUrl)}
-                          title={video.title}
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                          allowFullScreen
-                        />
-                      ) : (
-                        <div
-                          className={styles.videoThumbnail}
-                          onClick={() => {
-                            if (video.videoUrl) {
-                              setPlayingVideoId(video.id);
-                              trackCTA('prayer_library', 'play_video', video.title);
-                            }
-                          }}
-                          role={video.videoUrl ? 'button' : undefined}
-                          tabIndex={video.videoUrl ? 0 : undefined}
-                        >
-                          {video.thumbnailUrl && (
-                            <img
-                              src={video.thumbnailUrl}
-                              alt={video.title}
-                              className={styles.thumbnailImg}
-                            />
-                          )}
-                          <div className={styles.playOverlay}>
-                            <Play24Filled />
-                          </div>
-                          {!video.videoUrl && (
-                            <div className={styles.comingSoonOverlay}>
-                              {t('prayerLibrary.comingSoon')}
-                            </div>
-                          )}
+                      <div
+                        className={styles.videoThumbnail}
+                        onClick={() => {
+                          if (video.videoUrl) {
+                            openPrayerTextDialog(video);
+                          }
+                        }}
+                        role={video.videoUrl ? 'button' : undefined}
+                        tabIndex={video.videoUrl ? 0 : undefined}
+                      >
+                        {video.thumbnailUrl && (
+                          <img
+                            src={video.thumbnailUrl}
+                            alt={video.title}
+                            className={styles.thumbnailImg}
+                          />
+                        )}
+                        <div className={styles.playOverlay}>
+                          <Play24Filled />
                         </div>
-                      )}
+                        {!video.videoUrl && (
+                          <div className={styles.comingSoonOverlay}>
+                            {t('prayerLibrary.comingSoon')}
+                          </div>
+                        )}
+                      </div>
                       <div className={styles.cardContent}>
                         <div className={styles.cardHeader}>
                           <Text className={styles.cardTitle}>{video.title}</Text>
@@ -765,6 +775,53 @@ function PrayerLibrary() {
             })}
           </div>
         )}
+
+        <Dialog
+          open={prayerTextDialogOpen}
+          onOpenChange={(_, data) => {
+            setPrayerTextDialogOpen(data.open);
+            if (!data.open) {
+              setSelectedPrayerVideo(null);
+            }
+          }}
+        >
+          <DialogSurface>
+            <DialogBody>
+              <DialogTitle>
+                {selectedPrayerVideo?.title}
+              </DialogTitle>
+              <DialogContent>
+                {selectedPrayerVideo?.videoUrl && (
+                  <iframe
+                    className={styles.videoEmbed}
+                    src={getYouTubeEmbedUrl(selectedPrayerVideo.videoUrl)}
+                    title={selectedPrayerVideo.title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                )}
+                {selectedPrayerVideo?.prayerText && (
+                  <div className={styles.prayerTextScroll}>
+                    <Text className={styles.prayerText}>
+                      {selectedPrayerVideo.prayerText}
+                    </Text>
+                  </div>
+                )}
+              </DialogContent>
+              <DialogActions>
+                <Button
+                  appearance="secondary"
+                  onClick={() => {
+                    setPrayerTextDialogOpen(false);
+                    setSelectedPrayerVideo(null);
+                  }}
+                >
+                  Close
+                </Button>
+              </DialogActions>
+            </DialogBody>
+          </DialogSurface>
+        </Dialog>
 
         {/* -------- SUBMIT SECTION (Admin Only) -------- */}
         {isAdmin && (
