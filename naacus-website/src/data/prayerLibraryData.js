@@ -71,11 +71,19 @@ export const prayerVideos = [
     contributor: 'Chukwuma O.',
     parish: 'Nigerian Catholic Community of Greater Washington, DC',
     description: 'The Hail Mary recited in Igbo, a major language of southeastern Nigeria.',
-    videoUrl: null,
-    thumbnailUrl: null,
+    prayerText: `Ekele Maria, jupụtara na amara,
+Onyenweanyị nọnyere gị;
+a gọziri gị n’etiti ụmụanyị,
+a gọzikwaara mkpụrụ nke afọ gị, Jisọs.
+
+Maria dị nsọ, Nne nke Chineke,
+rịọọrọ anyị bụ ndị mmehie arịrịọ,
+ugbu a na mgbe anyị na-anwụ anwụ. Amen.`,
+    videoUrl: 'https://www.youtube.com/watch?v=hZMhqO7t1lg',
+    thumbnailUrl: 'https://img.youtube.com/vi/hZMhqO7t1lg/hqdefault.jpg',
     featuresYouth: true,
     dateSubmitted: '2026-03-05',
-    status: 'pending',
+    status: 'approved',
   },
   {
     id: 3,
