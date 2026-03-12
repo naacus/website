@@ -1,55 +1,132 @@
 # Data Persistence Guide (`src/data`)
 
-This document defines the recommended persistence strategy for the current React app data files, assuming Microsoft technologies (Azure).
+This guide defines a Microsoft-first persistence strategy for the React app data under `naacus-website/src/data`, including when SharePoint is a good fit.
 
 ## Assumptions
 
 - Frontend: React app
 - Hosting: Azure Static Web Apps
-- API Layer: Azure Functions (HTTP APIs)
-- Persistence: Azure SQL, Azure Cosmos DB, Azure Blob Storage, Azure App Configuration
-- Optional search/semantic retrieval: Azure AI Search
+- API Layer: Azure Functions (Node.js)
+- Identity: Microsoft Entra ID (Azure AD)
+- Data services in scope: Azure SQL, Dataverse, SharePoint Online, Cosmos DB, Blob Storage, App Configuration
 
-## File-by-File Persistence Strategy
+## Quick Decision Rules
 
-| Data File | Content Nature | Change Frequency | Best Azure Persistence | Suggested Data Model | React API Pattern | Caching Guidance |
-|---|---|---|---|---|---|---|
-| `activitiesData.js` | Mission/objectives/program text | Low-Medium | Cosmos DB or Dataverse | `content_pages` with section arrays | `GET /api/content/activities` | 1-6h |
-| `eventsData.js` | Multi-year events (upcoming/past) | Medium-High | Azure SQL Database | `events` table (`id`, `title`, `startUtc`, `endUtc`, `status`) | `GET /api/events?type=upcoming` | 5-15m |
-| `faqData.js` | FAQ + keywords + defaults | Medium | Cosmos DB (+ optional AI Search) | `faq_items` documents with `keywords[]` | `GET /api/faq`, `GET /api/faq/search?q=` | 15-60m |
-| `galleryData.js` | Gallery metadata/categories | Medium | SQL/Cosmos for metadata + Blob for media | `gallery_items`, `media_assets` | `GET /api/gallery` | Metadata 15m; media via CDN |
-| `leadershipData.js` | Leadership bios + contact info | Medium | Azure SQL Database | `people`, `roles`, `groups` | `GET /api/leadership` | 15-60m |
-| `memberBenefitsData.js` | Small enum-like list | Very Low | Keep in code or App Configuration | key/value JSON | Optional `GET /api/config/member-benefits` | 24h+ |
-| `ministriesData.js` | Long-form ministry content | Medium | Dataverse or Cosmos DB | `ministries` documents | `GET /api/ministries`, `GET /api/ministries/:id` | 30-60m |
-| `naacus2025EventsData.js` | Conference schedule sessions | Medium | Azure SQL (same events domain) | `conference_sessions` linked to `events` | `GET /api/conferences/2025/sessions` | 5-15m |
-| `newslettersData.js` | Issue/article metadata | Medium | SQL/Dataverse + Blob for assets | `newsletter_issues`, `newsletter_articles` | `GET /api/newsletters` | 30-60m |
-| `prayerLibraryData.js` | Prayer types/languages/countries/submissions | Medium-High | Azure SQL + Blob + optional AI Search | normalized tables (`prayer_types`, `languages`, `entries`, `submissions`) | `GET /api/prayers`, `POST /api/prayers/submissions` | 5-30m |
-| `resourcesData.js` | Resource cards + partner list | Low-Medium | Dataverse or Cosmos DB | `resources`, `partners` | `GET /api/resources`, `GET /api/partners` | 1-6h |
-| `resourcesQuickLinks.js` | Quick links and helplines | Medium | Azure App Configuration | key/value JSON by section | `GET /api/config/quick-links` | 1-24h |
-| `testimonialData.js` | Testimonials with publish workflow | Medium | Azure SQL (or Dataverse) + Blob for photos | `testimonials` (`approved`, `consent`, `publishedAt`) | `GET /api/testimonials` | 30-60m |
+- Use SharePoint Lists/Libraries for editorial content managed by non-developers.
+- Use Azure SQL or Dataverse for structured, relational, or workflow-heavy business data.
+- Use Blob Storage or SharePoint Libraries for files/images/videos (metadata stays in a List/DB).
+- Use App Configuration for small global settings and quick links.
 
-## Recommended Target Stack
+## File-by-File Strategy (with SharePoint Fit)
 
-- `Azure Static Web Apps` for React frontend
-- `Azure Functions` for API endpoints
-- `Azure SQL Database` for relational/business records
-- `Azure Cosmos DB` for flexible/editorial JSON docs
-- `Azure Blob Storage` + `Azure CDN/Front Door` for media delivery
-- `Azure App Configuration` for quick links/constants/feature flags
-- `Azure Key Vault` for secrets
-- Optional: `Azure AI Search` for FAQ/prayer retrieval
+| Data File | Content Type | SharePoint Fit | Primary Recommendation | Alternate Option | Why |
+|---|---|---|---|---|---|
+| `activitiesData.js` | Mission/objectives text blocks | High | SharePoint List (`SiteContent`) | Dataverse | Editorial content, simple structure, frequent copy edits.
+| `eventsData.js` | Ongoing events with date filtering | Medium | Azure SQL (`events`) | SharePoint List (`Events`) for simple cases | SQL is better for sorting, filtering, and analytics at scale.
+| `faqData.js` | FAQ Q/A + keywords | High | SharePoint List (`FAQ`) | Cosmos DB + AI Search | Business users can maintain FAQs directly in M365.
+| `galleryData.js` | Gallery metadata and media grouping | High | SharePoint Library + List metadata | Blob + SQL/Cosmos metadata | SharePoint is strong for media libraries and tagging.
+| `leadershipData.js` | People profiles and contact info | Medium | Dataverse or Azure SQL | SharePoint List with permissions | Structured data + governance requirements favor SQL/Dataverse.
+| `memberBenefitsData.js` | Small enum-style values | Low | App Configuration | Keep in code | Tiny stable config; SharePoint is unnecessary overhead.
+| `ministriesData.js` | Long-form ministry pages | High | SharePoint List (`Ministries`) | Dataverse | Rich editorial content and easy admin ownership.
+| `naacus2025EventsData.js` | Conference sessions/schedule | Medium | Azure SQL (`conference_sessions`) | SharePoint List (`ConferenceSessions`) | Better to unify with events model rather than year-specific files.
+| `newslettersData.js` | Newsletter issues + article metadata | Very High | SharePoint Library (`Newsletters`) + List metadata | Dataverse + Blob | SharePoint is ideal for document publishing and versioning.
+| `prayerLibraryData.js` | Normalized types/languages/countries/submissions | Low-Medium | Azure SQL + Blob | Dataverse | Relationship-heavy and workflow-driven; SharePoint becomes complex quickly.
+| `resourcesData.js` | Resource cards + partners | High | SharePoint List (`Resources`, `Partners`) | Dataverse | Simple list data with ownership by comms/content team.
+| `resourcesQuickLinks.js` | Quick links and support links | High | App Configuration (primary) | SharePoint List (`QuickLinks`) if business-managed | App Configuration is fastest; SharePoint if non-dev ownership is required.
+| `testimonialData.js` | Testimonials with approval needs | High | SharePoint List with Content Approval | Dataverse or SQL | SharePoint can handle submission + approval workflow well.
 
-## Suggested Migration Order
+## Recommended Hybrid Architecture
 
-1. Migrate `eventsData.js` and `naacus2025EventsData.js` to Azure SQL + API.
-2. Migrate `leadershipData.js` and `testimonialData.js` (governance and moderation).
-3. Migrate `prayerLibraryData.js` (largest structural benefit).
-4. Migrate editorial files (`ministriesData.js`, `activitiesData.js`, `resourcesData.js`, `faqData.js`, `newslettersData.js`).
-5. Move quick configuration to App Configuration (`resourcesQuickLinks.js`, optionally `memberBenefitsData.js`).
+### Tier 1: SharePoint-Managed Content
 
-## Implementation Notes for React
+- `activitiesData.js`
+- `faqData.js`
+- `ministriesData.js`
+- `resourcesData.js`
+- `newslettersData.js`
+- `galleryData.js`
+- `testimonialData.js` (if moderation is simple)
 
-- Replace direct data imports with service calls under `src/services/*`.
-- Use TanStack Query (React Query) for caching/retries/stale data handling.
-- Keep a local fallback only for development/offline scenarios.
-- Add admin workflow for content requiring approval (`testimonials`, `prayer submissions`).
+### Tier 2: Structured Application Data
+
+- `eventsData.js`
+- `naacus2025EventsData.js`
+- `leadershipData.js`
+- `prayerLibraryData.js`
+
+Store these in Azure SQL or Dataverse and expose via Functions API.
+
+### Tier 3: Global Runtime Configuration
+
+- `resourcesQuickLinks.js`
+- `memberBenefitsData.js`
+
+Use Azure App Configuration unless business users explicitly need SharePoint editing.
+
+## Suggested SharePoint List Schemas
+
+### `FAQ`
+
+- `Title` (Single line)
+- `Category` (Choice)
+- `Question` (Single line)
+- `Answer` (Multiple lines)
+- `Keywords` (Multiple lines, comma-separated)
+- `IsActive` (Yes/No)
+- `SortOrder` (Number)
+
+### `Resources`
+
+- `Title` (Single line)
+- `Description` (Multiple lines)
+- `Type` (Choice: Document, Link, News)
+- `Url` (Hyperlink)
+- `ButtonText` (Single line)
+- `IsActive` (Yes/No)
+
+### `QuickLinks`
+
+- `Title` (Single line)
+- `Section` (Choice: Contacts, Support, Prayer)
+- `LinkType` (Choice: Internal, External, Tel)
+- `PathOrUrl` (Single line)
+- `SectionId` (Single line, optional)
+- `SortOrder` (Number)
+
+### `Testimonials`
+
+- `Title` (Single line)
+- `TestimonialText` (Multiple lines)
+- `AuthorName` (Single line)
+- `Location` (Single line)
+- `Photo` (Image)
+- `ConsentReceived` (Yes/No)
+- `Approval Status` (Built-in)
+
+## React Integration Pattern
+
+- Do not call SharePoint directly from browser for all scenarios.
+- Preferred pattern: React -> Azure Functions -> Microsoft Graph/SQL.
+- Benefits: secure tokens, stable response contracts, central validation.
+
+Example endpoints:
+
+- `GET /api/content/faq`
+- `GET /api/content/resources`
+- `GET /api/events?type=upcoming`
+- `POST /api/testimonials/submit`
+
+## Migration Order
+
+1. Move high-value editorial files to SharePoint (`faq`, `resources`, `ministries`, `activities`).
+2. Migrate newsletter and gallery assets to SharePoint Libraries.
+3. Move event models to SQL and unify conference schedule shape.
+4. Move prayer library to SQL + Blob with explicit moderation workflow.
+5. Move quick links to App Configuration (or SharePoint if business-owned).
+
+## Operational Notes
+
+- Enable versioning and content approval in SharePoint Lists where needed.
+- Use least-privilege Graph permissions for API app registrations.
+- Cache read-mostly content at API level for 5-60 minutes.
+- Add audit fields (`createdBy`, `updatedBy`, `publishedAt`) for publishable content.
