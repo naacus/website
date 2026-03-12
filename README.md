@@ -38,6 +38,7 @@ Visit http://localhost:3000
 | [Google Analytics Setup](DOCS/GA4_SETUP.md) | GA4 configuration and event tracking reference |
 | [Payments Guide](DOCS/PAYMENTS.md) | All payment methods — Stripe, PayPal, bank, crypto, Cash App |
 | [Backend API Guide](DOCS/BACKEND_API.md) | REST API spec, endpoints, Dataverse schema, implementation checklist |
+| [Data Persistence Guide](DOCS/DATA_PERSISTENCE_GUIDE.md) | Azure persistence recommendations for all `naacus-website/src/data` files |
 
 ### Other
 
