@@ -148,7 +148,6 @@
 
 ### Home Page — CTA & Engagement (Young Adults feedback — Jul 15, 2026)
 
-- ⬜ **[FB-14]** Simplify homepage to one primary CTA *(Young Adults member — Jul 15, 2026)*  
 - ✅ **[FB-14]** Simplify homepage to one primary CTA *(Jul 15, 2026)*  
   Secondary buttons converted to inline ghost text links; "Join Community" is now the single dominant CTA.  
   **File changed:** `src/components/Hero.js` — replaced `secondaryActions`/`secondaryButton` with `secondaryLinks`/`ghostLink`/`linkDivider` styles.
@@ -173,7 +172,6 @@
 
 ### Programs & Activities / Ministries Page
 
-- ⬜ **[FB-18]** Add "Get Involved" CTA to each ministry card *(Young Adults member — Jul 15, 2026)*  
 - ✅ **[FB-18]** Add "Get Involved" CTA to each ministry card *(Jul 15, 2026)*  
   A pill-shaped "Get Involved →" button added at the bottom of every ministry card, linking to `/volunteer`.  
   **Files changed:** `src/components/Ministries.js` — added `ministryCardCTA`/`ministryGetInvolvedBtn` styles + JSX button; `public/locales/en/translation.json` + `public/locales/fr/translation.json` → `ministries.getInvolved` key added.
@@ -182,7 +180,6 @@
 
 ### Events & Gallery Page
 
-- ⬜ **[FB-19]** Feature upcoming events more prominently *(Young Adults member — Jul 15, 2026)*  
 - ✅ **[FB-19]** Feature upcoming events more prominently *(Jul 15, 2026)*  
   Added a count badge on the Upcoming Events tab showing the number of upcoming events; "Upcoming" tab is already the default.  
   **File changed:** `src/components/events/Events.js` — added `tabBadge` style + badge span inside the Upcoming tab button.
@@ -195,11 +192,16 @@
 
 ### Site-Wide
 
-- ⬜ **[FB-21]** Ensure every page ends with a clear next-step CTA; reduce dense text blocks *(Young Adults member — Jul 15, 2026)*  
+- ✅ **[FB-21]** Ensure every page ends with a clear next-step CTA; reduce dense text blocks *(Young Adults member — Jul 15, 2026)*  
+  Added explicit bottom CTA sections for Programs, Resources, and Leadership pages with clear next actions (membership and volunteer).  
+  **Files changed:**
+  - `src/components/Programs.js` → added end-of-page CTA block + navigation actions
+  - `src/components/Resources.js` → added end-of-page CTA block + navigation actions
+  - `src/components/Leadership.js` → added end-of-page CTA block + navigation actions
+  - `public/locales/en/translation.json` + `public/locales/fr/translation.json` → added page-specific CTA keys for `programs`, `resourcesPage`, and `leadership`
 - ✅ **[FB-21a]** Add end-of-page CTA to About page *(Jul 15, 2026)*  
   "Ready to Join?" CTA section added at the bottom of About, linking to `/membership`.  
   **Files changed:** `src/components/About.js` — added `ctaSection`/`ctaTitle`/`ctaText`/`ctaButton` styles + JSX section; `public/locales/en/translation.json` + `public/locales/fr/translation.json` → `about.ctaTitle`, `about.ctaText`, `about.ctaButton` keys added.  
-  **Still needed:** Audit remaining pages (Programs, Resources, Leadership) — tracked as ongoing.
 
 ---
 
@@ -207,11 +209,17 @@
 
 ### Home / Resources / Community Sections
 
-- ⬜ **[FB-02a]** Make calendar/event area interactive *(Sr. Maddy Takyala — Dec 26, 2025)*  
-  **File to investigate:** `src/components/Hero.js` or dedicated event section component.
+- ✅ **[FB-02a]** Make calendar/event area interactive *(Sr. Maddy Takyala — Dec 26, 2025)*  
+  Added an interactive "View Calendar" secondary link in the Home hero that routes users to the Events page and jumps to upcoming events, with analytics tracking.  
+  **Files changed:**
+  - `src/components/Hero.js` → added `handleViewCalendarClick` and hero CTA link to `/events#more-upcoming-events`
+  - `public/locales/en/translation.json` + `public/locales/fr/translation.json` → added `heroButtons.viewCalendar`
 
-- ⬜ **[FB-02b]** Add resource links (women/youth/men leaders, suicide prevention, prayer app) *(Sr. Maddy Takyala — Dec 26, 2025)*  
-  **File to edit:** `src/data/resourcesData.js` or `src/data/resourcesQuickLinks.js`
+- ✅ **[FB-02b]** Add resource links (women/youth/men leaders, suicide prevention, prayer app) *(Sr. Maddy Takyala — Dec 26, 2025)*  
+  Added actionable quick links for Women/Youth/Men ministry contacts, suicide prevention support (988), and a Catholic prayer app in the Resources section.  
+  **Files changed:**
+  - `src/data/resourcesData.js` → added new resource items with route/section/external action metadata
+  - `src/components/Resources.js` → implemented action-aware click handling for route, section scroll, and external links
 
 - ⬜ **[FB-02c]** Add NAACUS YouTube channel link *(Sr. Maddy Takyala — Dec 26, 2025)*  
   **Blocked:** Need YouTube channel URL.  
@@ -236,8 +244,13 @@
 
 ### Leadership Page
 
-- ⬜ **[FB-13]** Add Training Programs section under Leadership *(Tess — Jun 29, 2026)*  
-  **File to edit:** `src/components/Leadership.js` + `src/data/leadershipData.js` (add `trainingPrograms` array).
+- ✅ **[FB-13]** Add Training Programs section under Leadership *(Tess — Jun 29, 2026)*  
+  Added a dedicated Training Programs section shell under Leadership. Per canonical docs, detailed program content is pending official leadership input.  
+  **Files changed:**
+  - `src/data/leadershipData.js` → added `trainingPrograms` array placeholder
+  - `src/services/dataService.js` → added `getLeadershipTrainingPrograms()`
+  - `src/components/Leadership.js` → rendered Training Programs section with pending-details fallback
+  - `public/locales/en/translation.json` + `public/locales/fr/translation.json` → added neutral `leadership.trainingPrograms*` pending-content keys
 
 ---
 

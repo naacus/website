@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { 
   makeStyles,
   shorthands,
@@ -14,6 +15,7 @@ import {
 } from '@fluentui/react-components';
 import { Dismiss24Regular } from '@fluentui/react-icons';
 import { dataService } from '../services/dataService';
+import { handleNavigation } from '../services/navigationService';
 
 const useStyles = makeStyles({
   leadership: {
@@ -63,6 +65,72 @@ const useStyles = makeStyles({
     gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
     ...shorthands.gap('24px'),
     marginBottom: '40px',
+  },
+  trainingIntro: {
+    fontSize: '1rem',
+    lineHeight: '1.65',
+    color: tokens.colorNeutralForeground2,
+    textAlign: 'center',
+    maxWidth: '840px',
+    ...shorthands.margin('0', 'auto', '24px'),
+    display: 'block',
+  },
+  trainingGrid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+    ...shorthands.gap('18px'),
+    marginBottom: '40px',
+  },
+  trainingCard: {
+    backgroundColor: tokens.colorNeutralBackground1,
+    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.06)',
+    ...shorthands.borderRadius('8px'),
+    ...shorthands.padding('18px'),
+    borderLeft: '4px solid #0b57d0',
+  },
+  trainingHeader: {
+    display: 'flex',
+    alignItems: 'center',
+    ...shorthands.gap('10px'),
+    marginBottom: '10px',
+  },
+  trainingIcon: {
+    fontSize: '1.25rem',
+    lineHeight: '1',
+  },
+  trainingName: {
+    fontSize: '1.08rem',
+    fontWeight: '600',
+    color: tokens.colorNeutralForeground1,
+    display: 'block',
+  },
+  trainingDescription: {
+    fontSize: '0.95rem',
+    lineHeight: '1.55',
+    color: tokens.colorNeutralForeground2,
+    display: 'block',
+    marginBottom: '0',
+  },
+  trainingPendingCard: {
+    backgroundColor: tokens.colorNeutralBackground1,
+    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.06)',
+    ...shorthands.borderRadius('8px'),
+    ...shorthands.padding('20px'),
+    borderLeft: '4px solid #9aa7b8',
+    textAlign: 'left',
+  },
+  trainingPendingTitle: {
+    fontSize: '1rem',
+    fontWeight: '600',
+    color: tokens.colorNeutralForeground1,
+    marginBottom: '8px',
+    display: 'block',
+  },
+  trainingPendingText: {
+    fontSize: '0.95rem',
+    lineHeight: '1.55',
+    color: tokens.colorNeutralForeground2,
+    display: 'block',
   },
   boardMember: {
     ...shorthands.transition('all', '0.3s', 'ease'),
@@ -224,16 +292,49 @@ const useStyles = makeStyles({
       textDecoration: 'underline',
     },
   },
+  ctaSection: {
+    marginTop: '12px',
+    ...shorthands.padding('28px', '22px'),
+    backgroundColor: '#f7f9fc',
+    ...shorthands.borderRadius('12px'),
+    textAlign: 'center',
+  },
+  ctaTitle: {
+    fontSize: '1.55rem',
+    fontWeight: '600',
+    color: tokens.colorNeutralForeground1,
+    marginBottom: '10px',
+    display: 'block',
+  },
+  ctaText: {
+    fontSize: '1rem',
+    lineHeight: '1.6',
+    color: tokens.colorNeutralForeground2,
+    marginBottom: '16px',
+    display: 'block',
+  },
+  ctaActions: {
+    display: 'flex',
+    justifyContent: 'center',
+    ...shorthands.gap('12px'),
+    flexWrap: 'wrap',
+  },
 });
 
 function Leadership() {
   const { t } = useTranslation();
   const styles = useStyles();
+  const navigate = useNavigate();
   const [selectedMember, setSelectedMember] = useState(null);
 
   const executiveBoard = dataService.getLeadershipBoard();
   const spiritualAdvisers = dataService.getLeadershipAdvisers();
   const ministryCoordinations = dataService.getLeadershipCoordinations();
+  const trainingPrograms = dataService.getLeadershipTrainingPrograms();
+
+  const handleCtaNavigate = (path) => {
+    handleNavigation({ path, sectionId: null, currentPathname: window.location.pathname, navigate });
+  };
 
   return (
     <section id="leadership" className={styles.leadership}>
@@ -298,6 +399,27 @@ function Leadership() {
           ))}
         </div>
 
+        <Text as="h3" className={styles.sectionTitle}>{t('leadership.trainingProgramsTitle')}</Text>
+        <Text as="p" className={styles.trainingIntro}>{t('leadership.trainingProgramsIntro')}</Text>
+        <div className={styles.trainingGrid}>
+          {trainingPrograms.length > 0 ? (
+            trainingPrograms.map((program) => (
+              <Card key={program.id} className={styles.trainingCard}>
+                <div className={styles.trainingHeader}>
+                  <span className={styles.trainingIcon}>{program.icon}</span>
+                  <Text className={styles.trainingName}>{t(`leadership.trainingPrograms.items.${program.id}.title`)}</Text>
+                </div>
+                <Text className={styles.trainingDescription}>{t(`leadership.trainingPrograms.items.${program.id}.description`)}</Text>
+              </Card>
+            ))
+          ) : (
+            <Card className={styles.trainingPendingCard}>
+              <Text className={styles.trainingPendingTitle}>{t('leadership.trainingProgramsPendingTitle')}</Text>
+              <Text className={styles.trainingPendingText}>{t('leadership.trainingProgramsPendingText')}</Text>
+            </Card>
+          )}
+        </div>
+
         <Text as="h3" className={styles.sectionTitle}>{t('leadership.nationalAdvisoryBoard')}</Text>
         <div id="national-advisory-board" className={styles.boardGrid}>
           {spiritualAdvisers.map((member) => (
@@ -321,6 +443,19 @@ function Leadership() {
               </div>
             </Card>
           ))}
+        </div>
+
+        <div className={styles.ctaSection}>
+          <Text as="h3" className={styles.ctaTitle}>{t('leadership.ctaTitle')}</Text>
+          <Text as="p" className={styles.ctaText}>{t('leadership.ctaText')}</Text>
+          <div className={styles.ctaActions}>
+            <Button appearance="primary" onClick={() => handleCtaNavigate('/membership')}>
+              {t('leadership.ctaPrimary')}
+            </Button>
+            <Button appearance="secondary" onClick={() => handleCtaNavigate('/volunteer')}>
+              {t('leadership.ctaSecondary')}
+            </Button>
+          </div>
         </div>
       </div>
 

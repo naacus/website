@@ -146,6 +146,20 @@ const useStyles = makeStyles({
     backgroundColor: '#E8D4C0',
     ...shorthands.borderRadius('8px'),
   },
+  tabBadge: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#1a3a52',
+    color: '#ffffff',
+    fontSize: '0.75rem',
+    fontWeight: '700',
+    minWidth: '22px',
+    height: '22px',
+    ...shorthands.borderRadius('11px'),
+    marginLeft: '8px',
+    padding: '0 6px',
+  },
   otherEventsTitle: {
     fontSize: '1.4rem',
     fontWeight: '700',
@@ -357,6 +371,9 @@ export function Events() {
             onClick={() => setActiveTab('upcoming')}
           >
             {t('events.upcomingEvents')}
+            {upcomingEvents.length > 0 && (
+              <span className={styles.tabBadge}>{upcomingEvents.length}</span>
+            )}
           </button>
           <button
             className={`${styles.tab} ${activeTab === 'past' ? styles.tabActive : ''}`}

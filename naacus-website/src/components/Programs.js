@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { 
   makeStyles,
   shorthands,
@@ -10,6 +11,7 @@ import {
 } from '@fluentui/react-components';
 import { CheckmarkCircle24Regular } from '@fluentui/react-icons';
 import { dataService } from '../services/dataService';
+import { handleNavigation } from '../services/navigationService';
 
 const useStyles = makeStyles({
   programs: {
@@ -127,17 +129,49 @@ const useStyles = makeStyles({
     display: 'block',
     textAlign: 'center',
   },
+  ctaSection: {
+    marginTop: '20px',
+    ...shorthands.padding('24px', '20px'),
+    backgroundColor: '#f7f9fc',
+    ...shorthands.borderRadius('12px'),
+    textAlign: 'center',
+  },
+  ctaTitle: {
+    fontSize: '1.45rem',
+    marginBottom: '10px',
+    color: tokens.colorNeutralForeground1,
+    fontWeight: '600',
+    display: 'block',
+  },
+  ctaText: {
+    fontSize: '1rem',
+    lineHeight: '1.6',
+    color: tokens.colorNeutralForeground2,
+    marginBottom: '16px',
+    display: 'block',
+  },
+  ctaActions: {
+    display: 'flex',
+    justifyContent: 'center',
+    ...shorthands.gap('12px'),
+    flexWrap: 'wrap',
+  },
 });
 
 function Programs() {
   const { t } = useTranslation();
   const styles = useStyles();
+  const navigate = useNavigate();
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const handleCtaNavigate = (path) => {
+    handleNavigation({ path, sectionId: null, currentPathname: window.location.pathname, navigate });
   };
 
   const activities = dataService.getProgramsList();
@@ -194,6 +228,19 @@ function Programs() {
           >
             {t('programs.contactUs')}
           </Button>
+        </div>
+
+        <div className={styles.ctaSection}>
+          <Text as="h3" className={styles.ctaTitle}>{t('programs.ctaTitle')}</Text>
+          <Text as="p" className={styles.ctaText}>{t('programs.ctaText')}</Text>
+          <div className={styles.ctaActions}>
+            <Button appearance="primary" onClick={() => handleCtaNavigate('/membership')}>
+              {t('programs.ctaPrimary')}
+            </Button>
+            <Button appearance="secondary" onClick={() => handleCtaNavigate('/volunteer')}>
+              {t('programs.ctaSecondary')}
+            </Button>
+          </div>
         </div>
       </div>
     </section>

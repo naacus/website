@@ -8,19 +8,26 @@ import {
   Text,
   Button
 } from '@fluentui/react-components';
-import { CalendarLtr24Regular, People24Regular, Location24Regular } from '@fluentui/react-icons';
+import { CalendarLtr24Regular, Location24Regular } from '@fluentui/react-icons';
 import { themeTokens, colors } from '../config/theme';
 
 const useStyles = makeStyles({
   teaser: {
     position: 'relative',
-    background: `linear-gradient(135deg, ${colors.primary.darkest} 0%, ${colors.primary.dark} 50%, ${colors.primary.main} 100%)`,
+    background: `linear-gradient(145deg, ${colors.primary.darkest} 0%, ${colors.primary.dark} 58%, ${colors.primary.main} 100%)`,
     color: tokens.colorNeutralForegroundInverted,
-    ...shorthands.padding(themeTokens.spacing['5xl'], themeTokens.spacing.lg),
-    textAlign: 'center',
+    ...shorthands.padding('84px', themeTokens.spacing.lg, '92px'),
     overflow: 'hidden',
     ...shorthands.borderBottom('4px', 'solid', colors.accent.beige),
+    '::before': {
+      content: '""',
+      position: 'absolute',
+      inset: '0',
+      background: 'linear-gradient(180deg, rgba(7, 16, 58, 0.3) 0%, rgba(8, 20, 74, 0.45) 45%, rgba(13, 26, 104, 0.58) 100%)',
+      zIndex: 1,
+    },
     '@media (max-width: 768px)': {
+      ...shorthands.padding('68px', themeTokens.spacing.md, '76px'),
       paddingLeft: themeTokens.spacing.lg,
       paddingRight: themeTokens.spacing.lg,
     },
@@ -42,200 +49,254 @@ const useStyles = makeStyles({
     height: '100%',
     objectFit: 'cover',
     opacity: 0,
-    transition: 'opacity 1s ease-in-out',
+    transform: 'scale(1.04)',
+    transition: 'opacity 1s ease-in-out, transform 8s ease-out',
   },
   backgroundImageActive: {
-    opacity: 0.5,
+    opacity: 0.44,
+    transform: 'scale(1)',
+  },
+  glowOrbOne: {
+    position: 'absolute',
+    width: '420px',
+    height: '420px',
+    top: '-120px',
+    right: '-80px',
+    borderRadius: '50%',
+    background: 'radial-gradient(circle, rgba(232, 212, 192, 0.22) 0%, rgba(232, 212, 192, 0) 70%)',
+    filter: 'blur(6px)',
+    zIndex: 1,
+  },
+  glowOrbTwo: {
+    position: 'absolute',
+    width: '320px',
+    height: '320px',
+    bottom: '-120px',
+    left: '-60px',
+    borderRadius: '50%',
+    background: 'radial-gradient(circle, rgba(92, 129, 255, 0.28) 0%, rgba(92, 129, 255, 0) 72%)',
+    filter: 'blur(8px)',
+    zIndex: 1,
   },
   teaserContent: {
     position: 'relative',
     zIndex: 2,
-    maxWidth: '1160px',
+    maxWidth: '1240px',
     margin: '0 auto',
     '@media (max-width: 768px)': {
       paddingLeft: '12px',
       paddingRight: '12px',
     },
   },
+  headerBlock: {
+    maxWidth: '760px',
+    margin: '0 auto 34px',
+    textAlign: 'center',
+  },
   teaserTitle: {
-    fontSize: themeTokens.typography.fontSize['4rem'],
+    fontSize: themeTokens.typography.fontSize['3rem'],
     fontWeight: themeTokens.typography.fontWeight.bold,
-    marginBottom: themeTokens.spacing.lg,
+    marginBottom: '0',
     color: tokens.colorNeutralForegroundInverted,
     display: 'block',
     textAlign: 'center',
-    lineHeight: themeTokens.typography.lineHeight.tight,
-    letterSpacing: '0.02em',
-    textShadow: '0 2px 10px rgba(0, 0, 0, 0.3)',
+    lineHeight: '1.08',
+    letterSpacing: '-0.035em',
+    textShadow: '0 10px 26px rgba(0, 0, 0, 0.36)',
+    maxWidth: '820px',
+    marginLeft: 'auto',
+    marginRight: 'auto',
     '@media (max-width: 768px)': {
-      fontSize: themeTokens.typography.fontSize['2.75rem'],
+      fontSize: themeTokens.typography.fontSize['2.15rem'],
+      lineHeight: '1.1',
     },
   },
-  teaserSubtitle: {
-    fontSize: themeTokens.typography.fontSize['1.5rem'],
-    marginBottom: themeTokens.spacing['2xl'],
-    fontWeight: themeTokens.typography.fontWeight.normal,
-    color: tokens.colorNeutralForegroundInverted,
-    display: 'block',
-    textAlign: 'center',
-    lineHeight: '1.4',
-    opacity: 0.95,
-    '@media (max-width: 768px)': {
-      fontSize: themeTokens.typography.fontSize['1.2rem'],
-    },
-  },
-  flyerLayout: {
+  featureShell: {
     display: 'grid',
-    gridTemplateColumns: '1.4fr 0.9fr',
-    alignItems: 'stretch',
-    ...shorthands.gap(themeTokens.spacing['2xl']),
+    gridTemplateColumns: '1fr 380px',
+    alignItems: 'start',
+    ...shorthands.gap('20px'),
+    background: 'linear-gradient(90deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.12) 58%, rgba(255, 255, 255, 0.05) 100%)',
+    ...shorthands.borderRadius('20px'),
+    ...shorthands.padding('12px'),
     '@media (max-width: 960px)': {
       gridTemplateColumns: '1fr',
+      ...shorthands.padding('12px'),
     },
   },
   infoColumn: {
     display: 'flex',
     flexDirection: 'column',
+    ...shorthands.gap('18px'),
   },
   flyerColumn: {
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center',
-    minHeight: '100%',
+    alignItems: 'stretch',
   },
-  flyerImage: {
-    width: '100%',
-    maxWidth: '390px',
-    height: 'auto',
-    ...shorthands.borderRadius('10px'),
-    ...shorthands.border('2px', 'solid', 'rgba(255, 255, 255, 0.5)'),
-    boxShadow: '0 10px 28px rgba(0, 0, 0, 0.28)',
-    '@media (max-width: 960px)': {
-      maxWidth: '440px',
+  detailsGrid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+    ...shorthands.gap('16px'),
+    '@media (max-width: 768px)': {
+      gridTemplateColumns: '1fr',
     },
   },
-  flyerFallback: {
-    fontSize: themeTokens.typography.fontSize['0.95rem'],
-    color: 'rgba(255, 255, 255, 0.85)',
-    fontStyle: 'italic',
-    display: 'block',
+  detailCard: {
+    minHeight: 'auto',
+    backgroundColor: 'rgba(255, 255, 255, 0.16)',
+    ...shorthands.borderRadius('14px'),
+    ...shorthands.padding('16px', '18px'),
+    display: 'flex',
+    alignItems: 'center',
+    ...shorthands.gap('16px'),
+    '@media (max-width: 768px)': {
+      minHeight: 'auto',
+      alignItems: 'center',
+      textAlign: 'left',
+    },
   },
-  scheduleBlock: {
-    marginTop: themeTokens.spacing.xl,
+  detailIconWrap: {
+    width: '48px',
+    height: '48px',
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    ...shorthands.borderRadius('999px'),
+    backgroundColor: 'rgba(232, 212, 192, 0.12)',
+    marginBottom: '0',
+  },
+  detailValue: {
+    fontSize: themeTokens.typography.fontSize['1.28rem'],
+    fontWeight: themeTokens.typography.fontWeight.semibold,
+    color: tokens.colorNeutralForegroundInverted,
+    lineHeight: '1.2',
+    flex: 1,
+    '@media (max-width: 768px)': {
+      fontSize: themeTokens.typography.fontSize['1.12rem'],
+    },
+  },
+  detailIcon: {
+    fontSize: themeTokens.typography.fontSize['1.85rem'],
+    color: colors.accent.beige,
+  },
+  schedulePanel: {
+    backgroundColor: 'transparent',
+    textShadow: '0 1px 4px rgba(0, 0, 0, 0.22)',
+    ...shorthands.padding('6px', '6px', '0', '6px'),
     display: 'flex',
     flexDirection: 'column',
-    ...shorthands.gap(themeTokens.spacing.xs),
+    ...shorthands.gap('12px'),
+  },
+  scheduleBlock: {
+    display: 'flex',
+    flexDirection: 'column',
+    ...shorthands.gap('8px'),
     textAlign: 'left',
     '@media (max-width: 768px)': {
       textAlign: 'center',
     },
   },
   scheduleLine: {
-    fontSize: themeTokens.typography.fontSize['1rem'],
+    fontSize: themeTokens.typography.fontSize['1.16rem'],
     color: tokens.colorNeutralForegroundInverted,
     display: 'block',
     fontWeight: themeTokens.typography.fontWeight.semibold,
+    lineHeight: '1.4',
     '@media (max-width: 768px)': {
-      fontSize: themeTokens.typography.fontSize['0.9rem'],
+      fontSize: themeTokens.typography.fontSize['1rem'],
     },
   },
   contactLine: {
-    marginTop: themeTokens.spacing.lg,
-    fontSize: themeTokens.typography.fontSize['1rem'],
+    marginTop: '4px',
+    fontSize: themeTokens.typography.fontSize['1.08rem'],
     color: colors.accent.beige,
     fontWeight: themeTokens.typography.fontWeight.bold,
     display: 'block',
     textTransform: 'uppercase',
-    letterSpacing: '0.4px',
+    letterSpacing: '0.08em',
     '@media (max-width: 768px)': {
-      fontSize: themeTokens.typography.fontSize['0.9rem'],
+      fontSize: themeTokens.typography.fontSize['0.96rem'],
     },
   },
-  highlightBox: {
-    backgroundColor: 'rgba(255, 255, 255, 0.15)',
-    ...shorthands.padding(themeTokens.spacing['2xl'], themeTokens.spacing['3xl']),
-    marginTop: themeTokens.spacing['3xl'],
-    marginBottom: themeTokens.spacing['3xl'],
-    backdropFilter: 'blur(10px)',
-    ...shorthands.border('1px', 'solid', 'rgba(255, 255, 255, 0.3)'),
-    ...shorthands.borderRadius('12px'),
-    '@media (max-width: 768px)': {
-      ...shorthands.padding(themeTokens.spacing.xl, themeTokens.spacing.lg),
-      marginTop: themeTokens.spacing['2xl'],
-      marginBottom: themeTokens.spacing['2xl'],
-    },
-  },
-  highlightText: {
-    fontSize: themeTokens.typography.fontSize['1.3rem'],
-    fontWeight: themeTokens.typography.fontWeight.semibold,
-    color: tokens.colorNeutralForegroundInverted,
-    marginBottom: themeTokens.spacing.xl,
-    display: 'block',
-    textAlign: 'left',
-    '@media (max-width: 768px)': {
-      fontSize: themeTokens.typography.fontSize['1.05rem'],
-      marginBottom: themeTokens.spacing.lg,
-      textAlign: 'center',
-    },
-  },
-  detailsGrid: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-    ...shorthands.gap(themeTokens.spacing.xl),
-    marginTop: themeTokens.spacing.lg,
-    '@media (max-width: 768px)': {
-      gridTemplateColumns: '1fr',
-      ...shorthands.gap(themeTokens.spacing.lg),
-    },
-  },
-  detailItem: {
+  organizerRow: {
     display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-    ...shorthands.gap(themeTokens.spacing.sm),
-    textAlign: 'left',
+    alignItems: 'baseline',
+    ...shorthands.gap('10px'),
+    flexWrap: 'wrap',
     '@media (max-width: 768px)': {
-      alignItems: 'center',
+      justifyContent: 'center',
       textAlign: 'center',
     },
   },
-  detailIcon: {
-    fontSize: themeTokens.typography.fontSize['2rem'],
-    color: colors.accent.beige,
-  },
-  detailLabel: {
+  organizerLabel: {
     fontSize: themeTokens.typography.fontSize['0.9rem'],
-    color: 'rgba(255, 255, 255, 0.8)',
+    color: 'rgba(255, 255, 255, 0.78)',
     textTransform: 'uppercase',
-    letterSpacing: '1px',
-    fontWeight: themeTokens.typography.fontWeight.medium,
-  },
-  detailValue: {
-    fontSize: themeTokens.typography.fontSize['1.2rem'],
+    letterSpacing: '0.14em',
     fontWeight: themeTokens.typography.fontWeight.semibold,
+  },
+  organizerValue: {
+    fontSize: themeTokens.typography.fontSize['1.06rem'],
     color: tokens.colorNeutralForegroundInverted,
+    fontWeight: themeTokens.typography.fontWeight.semibold,
+    textShadow: '0 1px 4px rgba(0, 0, 0, 0.2)',
+  },
+  ctaRow: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    ...shorthands.gap('16px'),
+    marginTop: '10px',
     '@media (max-width: 768px)': {
-      fontSize: themeTokens.typography.fontSize['1.05rem'],
+      flexDirection: 'column',
+      alignItems: 'stretch',
     },
+  },
+  flyerFrame: {
+    position: 'relative',
+    width: '100%',
+    maxWidth: '380px',
+    marginLeft: 'auto',
+    ...shorthands.padding('0'),
+    ...shorthands.borderRadius('0'),
+    boxShadow: '0 16px 34px rgba(1, 10, 44, 0.22)',
+    '@media (max-width: 960px)': {
+      margin: '0 auto',
+    },
+  },
+  flyerImage: {
+    width: '100%',
+    height: 'auto',
+    display: 'block',
+    ...shorthands.borderRadius('14px'),
+    boxShadow: '0 10px 22px rgba(0, 0, 0, 0.18)',
+  },
+  flyerFallback: {
+    fontSize: themeTokens.typography.fontSize['0.95rem'],
+    color: 'rgba(255, 255, 255, 0.85)',
+    fontStyle: 'italic',
+    display: 'block',
+    ...shorthands.padding('64px', '20px'),
+    textAlign: 'center',
   },
   ctaButton: {
-    marginTop: themeTokens.spacing['2xl'],
     backgroundColor: colors.accent.beige,
     color: colors.primary.darkest,
-    fontSize: themeTokens.typography.fontSize['1.1rem'],
+    fontSize: themeTokens.typography.fontSize['1.02rem'],
     fontWeight: themeTokens.typography.fontWeight.bold,
-    ...shorthands.padding(themeTokens.spacing.xl, themeTokens.spacing['4xl']),
+    ...shorthands.padding(themeTokens.spacing.lg, themeTokens.spacing['3xl']),
     height: 'auto',
-    ...shorthands.borderRadius('30px'),
-    boxShadow: '0 4px 20px rgba(232, 212, 192, 0.35)',
-    ...shorthands.transition('all', '0.3s', 'ease'),
+    ...shorthands.borderRadius('999px'),
+    boxShadow: '0 10px 24px rgba(232, 212, 192, 0.28)',
+    ...shorthands.transition('all', '0.25s', 'ease'),
     '&:hover': {
       backgroundColor: '#F0E0D4',
-      transform: 'scale(1.05)',
-      boxShadow: '0 6px 25px rgba(232, 212, 192, 0.5)',
+      transform: 'translateY(-2px)',
+      boxShadow: '0 14px 28px rgba(232, 212, 192, 0.34)',
     },
     '@media (max-width: 768px)': {
-      fontSize: themeTokens.typography.fontSize['0.95rem'],
+      fontSize: themeTokens.typography.fontSize['0.98rem'],
       ...shorthands.padding(themeTokens.spacing.lg, themeTokens.spacing['3xl']),
     },
   },
@@ -283,67 +344,66 @@ function Conference2027Teaser() {
           />
         ))}
       </div>
+      <div className={styles.glowOrbOne}></div>
+      <div className={styles.glowOrbTwo}></div>
       <div className={styles.teaserContent}>
-        <Text as="h2" className={styles.teaserTitle}>
-          {t('conference2027.title')}
-        </Text>
-        <Text as="p" className={styles.teaserSubtitle}>
-          {t('conference2027.subtitle')}
-        </Text>
-        <div className={styles.highlightBox}>
-          <div className={styles.flyerLayout}>
+        <div className={styles.headerBlock}>
+          <Text as="h2" className={styles.teaserTitle}>
+            {t('conference2027.title')}
+          </Text>
+        </div>
+        <div className={styles.featureShell}>
             <div className={styles.infoColumn}>
-              <Text className={styles.highlightText}>
-                {t('conference2027.highlightText')}
-              </Text>
               <div className={styles.detailsGrid}>
-                <div className={styles.detailItem}>
-                  <CalendarLtr24Regular className={styles.detailIcon} />
-                  <span className={styles.detailLabel}>{t('conference2027.whenLabel')}</span>
+                <div className={styles.detailCard}>
+                  <div className={styles.detailIconWrap}>
+                    <CalendarLtr24Regular className={styles.detailIcon} />
+                  </div>
                   <span className={styles.detailValue}>{t('conference2027.whenValue')}</span>
                 </div>
-                <div className={styles.detailItem}>
-                  <Location24Regular className={styles.detailIcon} />
-                  <span className={styles.detailLabel}>{t('conference2027.whereLabel')}</span>
+                <div className={styles.detailCard}>
+                  <div className={styles.detailIconWrap}>
+                    <Location24Regular className={styles.detailIcon} />
+                  </div>
                   <span className={styles.detailValue}>{t('conference2027.whereValue')}</span>
                 </div>
-                <div className={styles.detailItem}>
-                  <People24Regular className={styles.detailIcon} />
-                  <span className={styles.detailLabel}>{t('conference2027.targetLabel')}</span>
-                  <span className={styles.detailValue}>{t('conference2027.targetValue')}</span>
-                </div>
               </div>
-              <div className={styles.scheduleBlock}>
-                <Text className={styles.scheduleLine}>{t('conference2027.scheduleLine1')}</Text>
-                <Text className={styles.scheduleLine}>{t('conference2027.scheduleLine2')}</Text>
-                <Text className={styles.contactLine}>{t('conference2027.contactLine')}</Text>
+              <div className={styles.schedulePanel}>
+                <div className={styles.scheduleBlock}>
+                  <div className={styles.organizerRow}>
+                    <span className={styles.organizerLabel}>{t('conference2027.targetLabel')}</span>
+                    <span className={styles.organizerValue}>{t('conference2027.targetValue')}</span>
+                  </div>
+                  <Text className={styles.scheduleLine}>{t('conference2027.scheduleLine1')}</Text>
+                  <Text className={styles.scheduleLine}>{t('conference2027.scheduleLine2')}</Text>
+                  <Text className={styles.contactLine}>{t('conference2027.contactLine')}</Text>
+                </div>
+                <div className={styles.ctaRow}>
+                  <Button 
+                    className={styles.ctaButton}
+                    onClick={() => scrollToSection('newsletter')}
+                  >
+                    {t('conference2027.ctaButton')}
+                  </Button>
+                </div>
               </div>
             </div>
             <div className={styles.flyerColumn}>
-              {!hasFlyerError ? (
-                <img
-                  src={flyerSrc}
-                  alt={t('conference2027.flyerAlt')}
-                  className={styles.flyerImage}
-                  loading="lazy"
-                  onError={() => setHasFlyerError(true)}
-                />
-              ) : (
-                <Text className={styles.flyerFallback}>{t('conference2027.flyerFallback')}</Text>
-              )}
+              <div className={styles.flyerFrame}>
+                {!hasFlyerError ? (
+                  <img
+                    src={flyerSrc}
+                    alt={t('conference2027.flyerAlt')}
+                    className={styles.flyerImage}
+                    loading="lazy"
+                    onError={() => setHasFlyerError(true)}
+                  />
+                ) : (
+                  <Text className={styles.flyerFallback}>{t('conference2027.flyerFallback')}</Text>
+                )}
+              </div>
             </div>
-          </div>
         </div>
-        <Button 
-          className={styles.ctaButton}
-          onClick={() => scrollToSection('newsletter')}
-        >
-          {t('conference2027.ctaButton')}
-        </Button>
-      </div>
-      <div className={styles.teaserGraphic}>
-        <div className={`${styles.graphicCircle} ${styles.circle1}`}></div>
-        <div className={`${styles.graphicCircle} ${styles.circle2}`}></div>
       </div>
     </section>
   );

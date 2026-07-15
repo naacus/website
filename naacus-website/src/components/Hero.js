@@ -220,49 +220,39 @@ const useStyles = makeStyles({
       backgroundColor: 'rgba(255, 255, 255, 0.2)',
       boxShadow: '0 6px 20px rgba(0, 0, 0, 0.18)',
     },
-    '&:active': {
-      transform: 'translateY(-1px)',
-    },
-    '@media (max-width: 768px)': {
-      fontSize: '0.875rem',
-      padding: '10px 20px',
-      minWidth: '140px',
-    },
   },
-  membershipHighlight: {
-    background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.08) 100%)',
-    ...shorthands.padding('28px', '40px'),
-    ...shorthands.borderRadius('20px'),
-    marginTop: '140px',
-    backdropFilter: 'blur(16px)',
-    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(0, 0, 0, 0.1)',
-    transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-    '&:hover': {
-      transform: 'translateY(-2px)',
-      boxShadow: '0 12px 40px rgba(0, 0, 0, 0.2), 0 6px 16px rgba(0, 0, 0, 0.12)',
-    },
-    '@media (max-width: 768px)': {
-      ...shorthands.padding('20px', '20px'),
-      marginTop: '100px',
-    },
-  },
-  membershipText: {
-    fontSize: '1.2rem',
-    color: tokens.colorNeutralForegroundInverted,
-    marginBottom: '20px',
+  secondaryLinks: {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center',
     ...shorthands.gap('12px'),
-    textAlign: 'center',
-    fontWeight: '600',
-    textShadow: '0 2px 8px rgba(0, 0, 0, 0.2)',
-    letterSpacing: '0.3px',
+    justifyContent: 'center',
+    marginTop: '4px',
     '@media (max-width: 768px)': {
       fontSize: '1rem',
       flexDirection: 'column',
       ...shorthands.gap('8px'),
     },
+  },
+  ghostLink: {
+    background: 'none',
+    border: 'none',
+    color: 'rgba(255, 255, 255, 0.75)',
+    fontSize: '0.9rem',
+    fontWeight: '500',
+    cursor: 'pointer',
+    textDecoration: 'underline',
+    textUnderlineOffset: '3px',
+    transition: 'color 0.2s ease',
+    padding: '0',
+    letterSpacing: '0.3px',
+    '&:hover': {
+      color: 'rgba(255, 255, 255, 0.98)',
+    },
+  },
+  linkDivider: {
+    color: 'rgba(255, 255, 255, 0.4)',
+    fontSize: '0.85rem',
+    userSelect: 'none',
   },
   benefitsList: {
     display: 'flex',
@@ -295,7 +285,7 @@ function Hero() {
   const { t } = useTranslation();
   const styles = useStyles();
   const navigate = useNavigate();
-  const { trackMembershipCTA, trackScroll } = useAnalytics();
+  const { trackMembershipCTA, trackEventCTA, trackScroll } = useAnalytics();
   const heroRef = useRef(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -326,6 +316,11 @@ function Hero() {
   const handleGetInvolvedClick = () => {
     trackMembershipCTA('Get Involved', 'hero_secondary_cta');
     handleNavigation({ path: '/volunteer', sectionId: null, currentPathname: '/', navigate });
+  };
+
+  const handleViewCalendarClick = () => {
+    trackEventCTA('View Calendar', 'hero_secondary_cta');
+    handleNavigation({ path: '/events', sectionId: 'more-upcoming-events', currentPathname: '/', navigate });
   };
 
   return (
@@ -366,7 +361,6 @@ function Hero() {
         </div>
 
         <div className={styles.heroButtons}>
-          {/* Primary Call to Action */}
           <div className={styles.primaryCTA}>
             <button
               onClick={handleJoinClick}
@@ -376,19 +370,18 @@ function Hero() {
             </button>
           </div>
 
-          {/* Secondary Actions */}
-          <div className={styles.secondaryActions}>
-            <button
-              onClick={handleLearnMissionClick}
-              className={styles.secondaryButton}
-            >
-              <span className={styles.buttonEmoji}>🙏</span> {t('heroButtons.learnMission')}
+          {/* Subtle secondary links — no competing buttons */}
+          <div className={styles.secondaryLinks}>
+            <button onClick={handleLearnMissionClick} className={styles.ghostLink}>
+              {t('heroButtons.learnMission')}
             </button>
-            <button
-              onClick={handleGetInvolvedClick}
-              className={styles.secondaryButton}
-            >
-              <span className={styles.buttonEmoji}>💫</span> {t('heroButtons.getInvolved')}
+            <span className={styles.linkDivider}>·</span>
+            <button onClick={handleViewCalendarClick} className={styles.ghostLink}>
+              {t('heroButtons.viewCalendar')}
+            </button>
+            <span className={styles.linkDivider}>·</span>
+            <button onClick={handleGetInvolvedClick} className={styles.ghostLink}>
+              {t('heroButtons.getInvolved')}
             </button>
           </div>
         </div>

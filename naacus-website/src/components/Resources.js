@@ -16,6 +16,7 @@ import {
 } from '@fluentui/react-icons';
 import { getResources, getPartners } from '../data/resourcesData';
 import { useAnalytics } from '../hooks/useAnalytics';
+import { handleNavigation } from '../services/navigationService';
 
 const useStyles = makeStyles({
   resources: {
@@ -148,6 +149,33 @@ const useStyles = makeStyles({
     textAlign: 'center',
     lineHeight: '1.3',
   },
+  ctaSection: {
+    marginTop: '28px',
+    ...shorthands.padding('28px', '20px'),
+    backgroundColor: '#f7f9fc',
+    ...shorthands.borderRadius('12px'),
+    textAlign: 'center',
+  },
+  ctaTitle: {
+    fontSize: '1.6rem',
+    fontWeight: '600',
+    color: tokens.colorNeutralForeground1,
+    marginBottom: '10px',
+    display: 'block',
+  },
+  ctaText: {
+    fontSize: '1rem',
+    lineHeight: '1.6',
+    color: tokens.colorNeutralForeground2,
+    marginBottom: '18px',
+    display: 'block',
+  },
+  ctaActions: {
+    display: 'flex',
+    justifyContent: 'center',
+    ...shorthands.gap('12px'),
+    flexWrap: 'wrap',
+  },
 });
 
 function Resources() {
@@ -159,18 +187,32 @@ function Resources() {
   const resources = getResources();
   const partners = getPartners();
 
-  const handleResourceClick = (resourceTitle) => {
-    trackResourceCTA(`View ${resourceTitle}`, 'resource_click');
-    trackResourceDownload(resourceTitle, 'resource');
-    
-    // Navigate to newsletters page if the resource is Newsletters
-    if (resourceTitle === 'Newsletters') {
-      navigate('/newsletters');
-    } else {
-      // Default behavior for other resources
-      const element = document.getElementById('contact');
-      if (element) element.scrollIntoView({ behavior: 'smooth' });
+  const handleCtaNavigate = (path) => {
+    handleNavigation({ path, sectionId: null, currentPathname: window.location.pathname, navigate });
+  };
+
+  const handleResourceClick = (resource) => {
+    trackResourceCTA(`View ${resource.title}`, 'resource_click');
+    trackResourceDownload(resource.title, 'resource');
+
+    if (resource.actionType === 'route' && resource.actionTarget) {
+      navigate(resource.actionTarget);
+      return;
     }
+
+    if (resource.actionType === 'external' && resource.actionTarget) {
+      window.open(resource.actionTarget, '_blank', 'noopener,noreferrer');
+      return;
+    }
+
+    if (resource.actionType === 'section' && resource.actionTarget) {
+      const element = document.getElementById(resource.actionTarget);
+      if (element) element.scrollIntoView({ behavior: 'smooth' });
+      return;
+    }
+
+    const element = document.getElementById('contact');
+    if (element) element.scrollIntoView({ behavior: 'smooth' });
   };
 
   // Render icon based on iconType
@@ -203,7 +245,7 @@ function Resources() {
               <Text className={styles.cardDescription}>{resource.description}</Text>
               <Button 
                 appearance="primary"
-                onClick={() => handleResourceClick(resource.title)}
+                onClick={() => handleResourceClick(resource)}
               >
                 {resource.buttonText}
               </Button>
@@ -231,6 +273,19 @@ function Resources() {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+
+        <div className={styles.ctaSection}>
+          <Text as="h3" className={styles.ctaTitle}>{t('resourcesPage.ctaTitle')}</Text>
+          <Text as="p" className={styles.ctaText}>{t('resourcesPage.ctaText')}</Text>
+          <div className={styles.ctaActions}>
+            <Button appearance="primary" onClick={() => handleCtaNavigate('/membership')}>
+              {t('resourcesPage.ctaPrimary')}
+            </Button>
+            <Button appearance="secondary" onClick={() => handleCtaNavigate('/volunteer')}>
+              {t('resourcesPage.ctaSecondary')}
+            </Button>
           </div>
         </div>
       </div>

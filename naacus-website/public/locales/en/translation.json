@@ -145,6 +145,7 @@
   "heroButtons": {
     "joinCommunity": "Join Our Faith Community",
     "learnMission": "Learn Our Mission",
+    "viewCalendar": "View Calendar",
     "getInvolved": "Get Involved"
   },
   "membership": {
@@ -337,6 +338,10 @@
   "resourcesPage": {
     "title": "Resources & Links",
     "subtitle": "Access brochures, newsletters, membership forms, and advocacy documents that support the mission of NAACUS and empower African Catholic communities.",
+    "ctaTitle": "Ready to Take the Next Step?",
+    "ctaText": "Join NAACUS as a member or volunteer and help strengthen African Catholic communities across the United States.",
+    "ctaPrimary": "Become a Member",
+    "ctaSecondary": "Become a Volunteer",
     "partners": {
       "title": "Partner Organizations",
       "description": "NAACUS collaborates with various Catholic organizations, dioceses, and ministries to support African Catholics throughout the United States.",
@@ -471,6 +476,14 @@
     "spiritualAdvisers": "Spiritual Advisers",
     "nationalExecutiveOfficers": "National Executive Officers",
     "ministryCoordinations": "Ministry/Committee Coordinations",
+    "trainingProgramsTitle": "Training Programs",
+    "trainingProgramsIntro": "Leadership requested a dedicated training programs section. Official program details will be published once received.",
+    "trainingProgramsPendingTitle": "Official program details pending",
+    "trainingProgramsPendingText": "Please check back soon for confirmed training topics, schedule, and registration details from leadership.",
+    "ctaTitle": "Lead and Serve with NAACUS",
+    "ctaText": "Take your next step in faith and service by joining our national community as a member or volunteer.",
+    "ctaPrimary": "Join as Member",
+    "ctaSecondary": "Join as Volunteer",
     "nationalAdvisoryBoard": "National Advisory Board",
     "readMore": "Read More",
     "close": "Close"
@@ -492,7 +505,11 @@
     "learnMore": "Learn More About Conferences",
     "getInvolvedTitle": "Get Involved",
     "getInvolvedDescription": "NAACUS welcomes new members and volunteers to help build a stronger community in the Church through fellowship, workshops, and service. Join us in our mission!",
-    "contactUs": "Contact Us to Join"
+    "contactUs": "Contact Us to Join",
+    "ctaTitle": "Join the Mission",
+    "ctaText": "Continue your journey with NAACUS by becoming a member or volunteering in our programs and ministries.",
+    "ctaPrimary": "Become a Member",
+    "ctaSecondary": "Volunteer with NAACUS"
   },
   "naacus2025": {
     "title": "NAACUS 2025: A Historic Gathering",

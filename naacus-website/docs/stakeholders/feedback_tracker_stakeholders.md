@@ -41,12 +41,19 @@
 - ✅ **Media Ministry** has been added, with Mary Monney listed as coordinator (mary.monney@naacus.org).
 - ✅ **Fundraising Ministry** has been added, with Stella Bello listed as coordinator (stella.bello@naacus.org).
 
+### Resources & Links
+- ✅ Added quick links for Women/Youth/Men ministry contacts, suicide prevention support (988 Lifeline), and a Catholic prayer app.
+
 ### Leadership Page
 - ✅ **Maame** has been removed as Young Adults Ministry Coordinator. The position is now listed as **Open**.
 - ✅ **Juliet Njoku** is confirmed as Youth Ministry Coordinator with her full bio already on the site. Her photo just needs to be uploaded.
 - ✅ **Stella Bello** has been added as Fundraising Coordinator.
 - ✅ **Mary Monney** has been added as Media Coordinator.
+- ✅ A **Training Programs** section has been added under Leadership (per Tess's suggestion).
 - ✅ Faustina (Marketing Coordinator) — confirmed she was never listed on the site; no action was needed.
+
+### Contact Page
+- ✅ **Spiritual Director contact** is now surfaced in the Contact section (name, email, phone).
 
 ---
 
@@ -88,15 +95,15 @@ We received thoughtful marketing feedback from a Young Adults member. Here is ho
 | Suggestion | Our Plan | Status |
 |------------|----------|--------|
 | Lead with impact, not just the org description | Restructure homepage hero copy | ⬜ Planned |
-| One clear call to action on the homepage | Simplify hero to a single primary button | ⬜ Planned |
+| One clear call to action on the homepage | ✅ Done — secondary buttons are now subtle links; Join is the one clear CTA | ✅ Done |
 | "By the Numbers" / Our Impact section | Need stats from leadership first | 🔒 Need info |
 | More member / family / community photos | Need photo assets from the community | 🔒 Need photos |
 | About page — founding story + break up long text | Need the founding story from leadership | 🔒 Need content |
-| Ministry cards — photo + description + get-involved button | Adding CTA button to each ministry card | ⬜ Planned |
-| Feature upcoming events more prominently | Move upcoming events above past content | ⬜ Planned |
+| Ministry cards — photo + description + get-involved button | ✅ Done — "Get Involved →" button added to every ministry card | ✅ Done |
+| Feature upcoming events more prominently | ✅ Done — count badge added to Upcoming tab | ✅ Done |
 | Organize photo galleries by event with captions | Need per-event photo sets from media team | 🔒 Need photos |
-| Every page should end with a clear next step | Audit all pages and add bottom CTAs | ⬜ Planned |
-| Reduce long text blocks site-wide | Included in the CTA audit above | ⬜ Planned |
+| Every page should end with a clear next step | ✅ Done — About, Programs, Resources, and Leadership now end with clear CTA sections | ✅ Done |
+| Reduce long text blocks site-wide | Included in the ongoing CTA audit | 🔄 In progress |
 
 ### What We Need From You 🔒
 
@@ -115,16 +122,9 @@ These are lower-priority improvements that will be added over time. No action ne
 
 | Item | Description |
 |------|-------------|
-| Interactive calendar events | Make event listings clickable with registration links |
-| Resources & Links expansion | Add contact info for Women, Youth, Men's, Religious leaders, suicide prevention resources, and prayer apps |
+| Homepage hero impact-first copy | Restructure opening copy to lead with measurable community impact |
 | NAACUS YouTube channel link | Add the YouTube channel to the website — please share the channel URL when ready |
-| Spiritual Director contact | Surface Rev. Fr. Benoit Mukamba's contact info in the Resources or Contact section |
-| Training Programs section | Add a training programs listing under the Leadership page (per Tess's suggestion) |
 | Media & Fundraising ministries — full profiles | Add bios and photos once received from Mary Monney and Stella Bello |
-| Homepage single primary CTA | Simplify the hero to one prominent action button |
-| Ministry cards — Get Involved button | Add a "Join this Ministry" button to each ministry card |
-| Upcoming events featured first | Reorganize the Events page so upcoming events appear at the top |
-| End-of-page CTAs + text reduction | Every page should close with a next step; reduce text walls throughout |
 
 ---
 
@@ -133,9 +133,9 @@ These are lower-priority improvements that will be added over time. No action ne
 | Category | Total | Done ✅ | Waiting 🔒 | Planned ⬜ |
 |----------|-------|---------|-----------|-----------|
 | High Priority | 9 | 9 | 0 | 0 |
-| Medium Priority | 11 | 4 | 3 | 4 |
-| Low Priority | 9 | 1 | 1 | 7 |
-| **Total** | **29** | **14** | **4** | **11** |
+| Medium Priority | 11 | 7 | 3 | 1 |
+| Low Priority | 9 | 6 | 1 | 2 |
+| **Total** | **29** | **22** | **4** | **3** |
 
 ---
 

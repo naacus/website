@@ -139,6 +139,7 @@
   "heroButtons": {
     "joinCommunity": "Rejoignez Notre Communauté de Foi",
     "learnMission": "Découvrez Notre Mission",
+    "viewCalendar": "Voir le Calendrier",
     "getInvolved": "Participez"
   },
   "membership": {
@@ -331,6 +332,10 @@
   "resourcesPage": {
     "title": "Ressources et Liens",
     "subtitle": "Accédez aux brochures, bulletins d'information, formulaires d'adhésion et documents de plaidoyer qui soutiennent la mission de NAACUS et autonomisent les communautés catholiques africaines.",
+    "ctaTitle": "Pret a Passer a l'Etape Suivante ?",
+    "ctaText": "Rejoignez NAACUS comme membre ou benevole pour renforcer les communautes catholiques africaines a travers les Etats-Unis.",
+    "ctaPrimary": "Devenir Membre",
+    "ctaSecondary": "Devenir Benevole",
     "partners": {
       "title": "Organisations Partenaires",
       "description": "NAACUS collabore avec diverses organisations catholiques, diocèses et ministères pour soutenir les catholiques africains aux États-Unis.",
@@ -418,6 +423,14 @@
     "spiritualAdvisers": "Conseillers Spirituels",
     "nationalExecutiveOfficers": "Membres du Bureau Exécutif National",
     "ministryCoordinations": "Coordination Ministériel/Commissions",
+    "trainingProgramsTitle": "Programmes de Formation",
+    "trainingProgramsIntro": "La direction a demande une section dediee aux programmes de formation. Les details officiels seront publies des reception.",
+    "trainingProgramsPendingTitle": "Details officiels en attente",
+    "trainingProgramsPendingText": "Veuillez revenir bientot pour consulter les themes confirms, le calendrier et les informations d'inscription.",
+    "ctaTitle": "Diriger et Servir avec NAACUS",
+    "ctaText": "Passez a l'etape suivante dans la foi et le service en rejoignant notre communaute nationale comme membre ou benevole.",
+    "ctaPrimary": "Rejoindre comme Membre",
+    "ctaSecondary": "Rejoindre comme Benevole",
     "nationalAdvisoryBoard": "Conseil Consultatif National",
     "readMore": "En Savoir Plus",
     "close": "Fermer"
@@ -439,7 +452,11 @@
     "learnMore": "En Savoir Plus sur les Conférences",
     "getInvolvedTitle": "Impliquez-vous",
     "getInvolvedDescription": "NAACUS accueille les nouveaux membres et les bénévoles pour aider à construire une communauté plus forte dans l'Église par la fraternité, les ateliers et le service. Rejoignez-nous dans notre mission!",
-    "contactUs": "Contactez-nous pour Rejoindre"
+    "contactUs": "Contactez-nous pour Rejoindre",
+    "ctaTitle": "Rejoignez la Mission",
+    "ctaText": "Poursuivez votre parcours avec NAACUS en devenant membre ou benevole dans nos programmes et ministeres.",
+    "ctaPrimary": "Devenir Membre",
+    "ctaSecondary": "Faire du Benevolat avec NAACUS"
   },
   "naacus2025": {
     "title": "NAACUS 2025 : Un Rassemblement Historique",

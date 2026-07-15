@@ -8,6 +8,8 @@ import {
   Card,
   CardHeader
 } from '@fluentui/react-components';
+import { useNavigate } from 'react-router-dom';
+import { handleNavigation } from '../services/navigationService';
 import { themeTokens } from '../config/theme';
 
 const useStyles = makeStyles({
@@ -79,11 +81,53 @@ const useStyles = makeStyles({
     lineHeight: themeTokens.typography.lineHeight.normal,
     color: tokens.colorNeutralForeground2,
   },
+  ctaSection: {
+    marginTop: '48px',
+    ...shorthands.padding('40px', '32px'),
+    backgroundColor: tokens.colorBrandBackground,
+    ...shorthands.borderRadius('12px'),
+    textAlign: 'center',
+  },
+  ctaTitle: {
+    fontSize: themeTokens.typography.fontSize['1.5rem'],
+    fontWeight: themeTokens.typography.fontWeight.semibold,
+    color: tokens.colorNeutralForegroundOnBrand,
+    marginBottom: '12px',
+    display: 'block',
+  },
+  ctaText: {
+    fontSize: themeTokens.typography.fontSize['1rem'],
+    color: tokens.colorNeutralForegroundOnBrand,
+    opacity: 0.9,
+    marginBottom: '24px',
+    display: 'block',
+  },
+  ctaButton: {
+    backgroundColor: tokens.colorNeutralBackground1,
+    color: tokens.colorBrandBackground,
+    fontSize: themeTokens.typography.fontSize['1rem'],
+    fontWeight: themeTokens.typography.fontWeight.semibold,
+    ...shorthands.padding('12px', '32px'),
+    ...shorthands.borderRadius('30px'),
+    ...shorthands.border('none'),
+    cursor: 'pointer',
+    ...shorthands.transition('all', '0.2s', 'ease'),
+    '&:hover': {
+      backgroundColor: tokens.colorNeutralBackground1Hover,
+      transform: 'translateY(-2px)',
+      boxShadow: '0 4px 16px rgba(0,0,0,0.15)',
+    },
+  },
 });
 
 function About() {
   const { t } = useTranslation();
   const styles = useStyles();
+  const navigate = useNavigate();
+
+  const handleJoinClick = () => {
+    handleNavigation({ path: '/membership', sectionId: null, currentPathname: '/about', navigate });
+  };
 
   return (
     <section id="about" className={styles.about}>
@@ -126,6 +170,13 @@ function About() {
               }
             />
           </Card>
+        </div>
+        <div className={styles.ctaSection}>
+          <Text as="p" className={styles.ctaTitle}>{t('about.ctaTitle', 'Ready to Join the NAACUS Community?')}</Text>
+          <Text as="p" className={styles.ctaText}>{t('about.ctaText', 'Become a member and connect with African Catholics across the United States.')}</Text>
+          <button className={styles.ctaButton} onClick={handleJoinClick}>
+            {t('about.ctaButton', 'Become a Member')}
+          </button>
         </div>
       </div>
     </section>

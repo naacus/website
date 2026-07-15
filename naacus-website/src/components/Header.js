@@ -31,7 +31,6 @@ const blinkAnimation = {
 };
 
 const useStyles = makeStyles({
-  '@keyframes blink': blinkAnimation,
   header: {
     backgroundColor: '#ffffff',
     color: '#262626',
@@ -139,7 +138,9 @@ const useStyles = makeStyles({
     fontWeight: '600',
     ...shorthands.padding('0', '16px'),
     ...shorthands.borderRadius('4px'),
-    animation: 'blink 1.5s infinite',
+    animationName: blinkAnimation,
+    animationDuration: '1.5s',
+    animationIterationCount: 'infinite',
     '&:hover': {
       backgroundColor: '#c0392b',
       textDecoration: 'none',
@@ -153,7 +154,9 @@ const useStyles = makeStyles({
     color: '#ffffff',
     fontWeight: '600',
     textDecoration: 'none',
-    animation: 'blink 1.5s infinite',
+    animationName: blinkAnimation,
+    animationDuration: '1.5s',
+    animationIterationCount: 'infinite',
     '@media (max-width: 768px)': {
       display: 'none',
     },
@@ -261,13 +264,17 @@ const useStyles = makeStyles({
     backgroundColor: '#e74c3c',
     color: '#ffffff',
     fontWeight: '600',
-    animation: 'blink 1.5s infinite',
+    animationName: blinkAnimation,
+    animationDuration: '1.5s',
+    animationIterationCount: 'infinite',
   },
   mobileMenuItemFeedbackActive: {
     backgroundColor: '#c0392b',
     color: '#ffffff',
     fontWeight: '600',
-    animation: 'blink 1.5s infinite',
+    animationName: blinkAnimation,
+    animationDuration: '1.5s',
+    animationIterationCount: 'infinite',
   },
 });
 

@@ -116,6 +116,27 @@ const useStyles = makeStyles({
       color: tokens.colorBrandBackgroundHover,
     },
   },
+  ministryCardCTA: {
+    marginTop: 'auto',
+    paddingTop: '16px',
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  ministryGetInvolvedBtn: {
+    background: 'none',
+    border: `1px solid ${tokens.colorBrandBackground}`,
+    color: tokens.colorBrandBackground,
+    fontSize: '0.85rem',
+    fontWeight: '600',
+    ...shorthands.padding('6px', '18px'),
+    ...shorthands.borderRadius('20px'),
+    cursor: 'pointer',
+    ...shorthands.transition('all', '0.2s', 'ease'),
+    '&:hover': {
+      backgroundColor: tokens.colorBrandBackground,
+      color: tokens.colorNeutralForegroundOnBrand,
+    },
+  },
   callToAction: {
     ...shorthands.padding('32px', '30px'),
     backgroundColor: tokens.colorNeutralBackground1,
@@ -283,6 +304,17 @@ function Ministries() {
                   <span>{ministry.email}</span>
                 </a>
               )}
+              <div className={styles.ministryCardCTA}>
+                <button
+                  className={styles.ministryGetInvolvedBtn}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleGetInvolvedClick();
+                  }}
+                >
+                  {t('ministries.getInvolved', 'Get Involved →')}
+                </button>
+              </div>
             </div>
           ))}
         </div>

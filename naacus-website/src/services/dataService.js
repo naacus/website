@@ -62,6 +62,16 @@ export const dataService = {
     return leadershipData.ministryCoordinations;
   },
 
+  getLeadershipTrainingPrograms: () => {
+    if (USE_BACKEND_API) {
+      return fetch(`${BACKEND_URL}/api/data/leadership`)
+        .then(res => res.json())
+        .then(data => data.data?.trainingPrograms || [])
+        .catch(() => leadershipData.trainingPrograms || []);
+    }
+    return leadershipData.trainingPrograms || [];
+  },
+
   // Ministries
   getMinistries: () => {
     if (USE_BACKEND_API) {
