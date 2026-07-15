@@ -146,6 +146,58 @@
 
 ---
 
+### Home Page — CTA & Engagement (Young Adults feedback — Jul 15, 2026)
+
+- ⬜ **[FB-14]** Simplify homepage to one primary CTA *(Young Adults member — Jul 15, 2026)*  
+  Current hero has multiple competing buttons. Consolidate to a single prominent action (Join, Donate, or Get Involved) and demote secondary links.  
+  **File to edit:** `src/components/Hero.js` — reduce/restructure CTA buttons.
+
+- 🔒 **[FB-15]** Add "Our Impact" / "By the Numbers" block to homepage *(Young Adults member — Jul 15, 2026)*  
+  **Blocked:** Need real statistics from leadership (e.g., number of members, parishes, states, years active).  
+  **File to create:** New component `src/components/ImpactStats.js` + wire into `src/pages/HomePage.js`.
+
+- 🔒 **[FB-16]** Add authentic member/family/community/event photos throughout homepage *(Young Adults member — Jul 15, 2026)*  
+  **Blocked:** Need photo assets from community (families, youth, events, parish gatherings).  
+  **File to edit:** `src/components/Hero.js`, `src/components/WhoWeServe.js`, `src/components/WhatWeDo.js`.
+
+---
+
+### About Page
+
+- 🔒 **[FB-17]** Add NAACUS founding story and break up long text blocks *(Young Adults member — Jul 15, 2026)*  
+  **Blocked:** Need founding narrative from leadership (year founded, how it started, growth milestones).  
+  **File to edit:** `public/locales/en/translation.json` → `about.*` keys; `public/locales/fr/translation.json`; `src/components/About.js`.
+
+---
+
+### Programs & Activities / Ministries Page
+
+- ⬜ **[FB-18]** Add "Get Involved" CTA to each ministry card *(Young Adults member — Jul 15, 2026)*  
+  Each ministry card should have a clear action link (e.g., "Join this Ministry" → contact/membership form).  
+  **File to edit:** `src/components/Ministries.js` and/or `src/data/ministriesData.js` (add `ctaLabel`, `ctaLink` fields per ministry).
+
+---
+
+### Events & Gallery Page
+
+- ⬜ **[FB-19]** Feature upcoming events more prominently *(Young Adults member — Jul 15, 2026)*  
+  Upcoming events should appear above past/archive content with visual emphasis.  
+  **File to edit:** `src/pages/EventsPage.js`, `src/components/events/Events.js`.
+
+- 🔒 **[FB-20]** Organize photo galleries by event with short captions *(Young Adults member — Jul 15, 2026)*  
+  **Blocked:** Need per-event photo sets and caption text from the media team / photographer.  
+  **File to edit:** `src/components/Gallery.js` + photo asset organisation in `public/images/`.
+
+---
+
+### Site-Wide
+
+- ⬜ **[FB-21]** Ensure every page ends with a clear next-step CTA; reduce dense text blocks *(Young Adults member — Jul 15, 2026)*  
+  Audit each page — add a bottom CTA section (Join / Donate / Attend) where missing.  
+  **Files to audit:** All under `src/components/` and `src/pages/`; start with About, Programs, Resources, Leadership.
+
+---
+
 ## Low Priority — Nice to Have
 
 ### Home / Resources / Community Sections
@@ -195,3 +247,7 @@
 | Replacement testimonial photos (optional) | Home page | `src/data/testimonialData.js` → `photo` fields |
 | Young Adults testimonials + photos | Home page | `src/data/testimonialData.js` → new entries |
 | YouTube channel URL | Footer / Resources | TBD |
+| NAACUS founding story + key milestones | About page | `public/locales/en/translation.json` → `about.*` keys |
+| Impact statistics (members, parishes, states, years active) | Homepage — By the Numbers block | New `src/components/ImpactStats.js` |
+| Member / family / community event photos | Homepage, About, Who We Serve | `public/images/community/` (new folder) |
+| Per-event photo sets + captions | Gallery page | `public/images/` organised by event subfolder |

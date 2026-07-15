@@ -81,6 +81,34 @@ The following items are **ready to implement the moment we receive the content.*
 
 ---
 
+## New Feedback — Young Adults Member (Jul 15, 2026) 📣
+
+We received thoughtful marketing feedback from a Young Adults member. Here is how we are responding:
+
+| Suggestion | Our Plan | Status |
+|------------|----------|--------|
+| Lead with impact, not just the org description | Restructure homepage hero copy | ⬜ Planned |
+| One clear call to action on the homepage | Simplify hero to a single primary button | ⬜ Planned |
+| "By the Numbers" / Our Impact section | Need stats from leadership first | 🔒 Need info |
+| More member / family / community photos | Need photo assets from the community | 🔒 Need photos |
+| About page — founding story + break up long text | Need the founding story from leadership | 🔒 Need content |
+| Ministry cards — photo + description + get-involved button | Adding CTA button to each ministry card | ⬜ Planned |
+| Feature upcoming events more prominently | Move upcoming events above past content | ⬜ Planned |
+| Organize photo galleries by event with captions | Need per-event photo sets from media team | 🔒 Need photos |
+| Every page should end with a clear next step | Audit all pages and add bottom CTAs | ⬜ Planned |
+| Reduce long text blocks site-wide | Included in the CTA audit above | ⬜ Planned |
+
+### What We Need From You 🔒
+
+| What we need | Who is responsible | Why it matters |
+|---|---|---|
+| **NAACUS founding story** (year founded, how it started, key milestones) | Sally Stovall / Leadership | Powers a compelling About page that draws visitors in |
+| **Impact statistics** (members, parishes, states represented, years active) | Sally Stovall / Leadership | Needed for the "By the Numbers" homepage block |
+| **Community photos** (members, families, youth, parish gatherings, events) | Mary Monney (Media Coordinator) | Makes the homepage feel welcoming and community-driven |
+| **Per-event photo sets with captions** | Mary Monney / Photographer | Needed to organize the Gallery by event |
+
+---
+
 ## Planned for a Future Update ⬜
 
 These are lower-priority improvements that will be added over time. No action needed from the board right now.
@@ -93,6 +121,10 @@ These are lower-priority improvements that will be added over time. No action ne
 | Spiritual Director contact | Surface Rev. Fr. Benoit Mukamba's contact info in the Resources or Contact section |
 | Training Programs section | Add a training programs listing under the Leadership page (per Tess's suggestion) |
 | Media & Fundraising ministries — full profiles | Add bios and photos once received from Mary Monney and Stella Bello |
+| Homepage single primary CTA | Simplify the hero to one prominent action button |
+| Ministry cards — Get Involved button | Add a "Join this Ministry" button to each ministry card |
+| Upcoming events featured first | Reorganize the Events page so upcoming events appear at the top |
+| End-of-page CTAs + text reduction | Every page should close with a next step; reduce text walls throughout |
 
 ---
 
@@ -101,9 +133,9 @@ These are lower-priority improvements that will be added over time. No action ne
 | Category | Total | Done ✅ | Waiting 🔒 | Planned ⬜ |
 |----------|-------|---------|-----------|-----------|
 | High Priority | 9 | 9 | 0 | 0 |
-| Medium Priority | 4 | 4 | 0 | 0 |
-| Low Priority | 5 | 1 | 1 | 3 |
-| **Total** | **18** | **14** | **1** | **3** |
+| Medium Priority | 11 | 4 | 3 | 4 |
+| Low Priority | 9 | 1 | 1 | 7 |
+| **Total** | **29** | **14** | **4** | **11** |
 
 ---
 
