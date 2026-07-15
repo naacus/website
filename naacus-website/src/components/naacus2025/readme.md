@@ -10,7 +10,7 @@ This subproject presents a detailed breakdown of every event from the NAACUS 202
 naacus2025/
 ├── Naacus2025Accomplishments.js  # Main component with event-by-event details
 ├── index.js                       # Export file for easy importing
-└── README.md                      # This file
+└── readme.md                      # This file
 ```
 
 ## Component Overview

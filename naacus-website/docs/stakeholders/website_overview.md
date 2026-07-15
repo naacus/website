@@ -1,6 +1,7 @@
 # NAACUS Website — Overview for Non-Technical Stakeholders
 
-> **Last updated:** February 25, 2026
+> **Category:** 👥 Stakeholders | **Audience:** Board Members & Ministry Leads
+> **Last Updated:** July 15, 2026 | [← Docs Index](../readme.md)
 
 ---
 
@@ -237,7 +238,7 @@ The following types of content can be updated by the team:
 | Item | Details |
 |---|---|
 | **YouTube Channel** | [youtube.com/@naacus](https://www.youtube.com/@naacus) |
-| **Technical Documentation** | See the `DOCS/` folder for developer guides |
+| **Technical Documentation** | See [`docs/`](../readme.md) for developer guides |
 | **Privacy Policy** | Available at `/privacy` on the website |
 
 ---

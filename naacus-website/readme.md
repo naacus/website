@@ -2,21 +2,34 @@
 
 Professional website for the National Association of African Catholics in the United States (NAACUS), built with React and ready for Microsoft 365 integration.
 
-## 📚 Documentation
+## README Scope
 
-All project documentation lives in the [`docs/`](docs/README.md) folder, organized into three categories:
+This file is the app-level README for the React project in [naacus-website](./).
+
+Use this file when you need:
+- local app setup and run commands
+- build and deployment commands for the frontend
+- app implementation notes (components, styles, scripts)
+
+For workspace-level overview and cross-project context, use [../readme.md](../readme.md).
+
+Related index: [docs/readme.md](docs/readme.md).
+
+## Documentation
+
+All project documentation lives in the [docs/](docs/readme.md) folder, organized into three categories:
 
 | Category | Who it's for | Index |
 |----------|-------------|-------|
-| 🔧 **Engineering** | Developers & IT | [docs/engineering/](docs/engineering/) |
-| 📋 **Project Management** | IT leads & project tracking | [docs/project/](docs/project/) |
-| 👥 **Stakeholders** | Board members & ministry leads | [docs/stakeholders/](docs/stakeholders/) |
+| Engineering | Developers and IT | [docs/engineering/](docs/engineering/) |
+| Project Management | IT leads and project tracking | [docs/project/](docs/project/) |
+| Stakeholders | Board members and ministry leads | [docs/stakeholders/](docs/stakeholders/) |
 
-→ **Full index:** [docs/README.md](docs/README.md)
+→ **Full index:** [docs/readme.md](docs/readme.md)
 
 ---
 
-## 🌟 Features
+## Features
 
 - **Modern React Application**: Built with React for optimal performance and user experience
 - **Responsive Design**: Fully responsive layout that works on all devices
@@ -25,7 +38,7 @@ All project documentation lives in the [`docs/`](docs/README.md) folder, organiz
 - **Community Information**: Comprehensive sections about mission, programs, and activities
 - **Contact Form**: Interactive contact form ready for backend integration
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -52,7 +65,7 @@ npm start
 
 The application will open in your browser at `http://localhost:3000`
 
-## 📦 Build for Production
+## Build for Production
 
 Create an optimized production build:
 
@@ -62,7 +75,7 @@ npm run build
 
 This creates a `build` folder with optimized static files ready for deployment.
 
-## 🔧 Microsoft 365 Integration Setup
+## Microsoft 365 Integration Setup
 
 ### Step 1: Azure AD App Registration
 
@@ -99,7 +112,7 @@ The MSAL (Microsoft Authentication Library) packages are already installed. To i
 
 Example integration code is available in the configuration files.
 
-## 🎨 Customization
+## Customization
 
 ### Updating Content
 
@@ -121,28 +134,28 @@ The website uses NAACUS logo-inspired colors defined in `src/config/theme.js`:
 - Leafy Green: `#4a9900` / `#76D000` (accent — logo Africa silhouette)
 - Gold: `#C8A000` (decorative — logo text & laurels)
 
-See [`docs/engineering/WEBSITE_STRUCTURE.md`](docs/engineering/WEBSITE_STRUCTURE.md) for full theming details.
+See [docs/engineering/website_structure.md](docs/engineering/website_structure.md) for full theming details.
 
-## 📱 Responsive Breakpoints
+## Responsive Breakpoints
 
 - Desktop: > 768px
 - Mobile: ≤ 768px
 
-## 🔐 Security Notes
+## Security Notes
 
 - Never commit Azure AD client secrets to version control
 - Use environment variables for sensitive configuration
 - Implement proper authentication checks before accessing protected resources
 - Follow Microsoft's security best practices
 
-## 📄 Available Scripts
+## Available Scripts
 
 - `npm start` - Run development server
 - `npm test` - Run tests
 - `npm run build` - Build for production
 - `npm run eject` - Eject from Create React App (not recommended)
 
-## 🌐 Deployment
+## Deployment
 
 ### Recommended Platforms
 
@@ -165,13 +178,13 @@ For production, set these environment variables:
 - `REACT_APP_CLIENT_ID` - Azure AD client ID
 - `REACT_APP_TENANT_ID` - Azure AD tenant ID (if single tenant)
 
-## 📞 Support
+## Support
 
 For questions or issues:
 - Email: info@naacus.org
 - Website: Coming soon
 
-## 📅 Biennial National Conference
+## Biennial National Conference
 
 Join us for our next national conference!
 
@@ -182,14 +195,14 @@ Join us for our next national conference!
 
 Conference details coming soon!
 
-## 🙏 About NAACUS
+## About NAACUS
 
 The National Association of African Catholics in the United States (NAACUS) brings together African Catholics and their families to foster faith, leadership, and service in the Church across the United States. Rooted in the Gospel and our motto "Together with Christ," we welcome members into an active community for fellowship, workshops, and collaborative ministries that strengthen parish life and the wider Catholic community.
 
-## 📝 License
+## License
 
 Copyright © 2024 NAACUS. All rights reserved.
 
 ---
 
-Built with ❤️ for the NAACUS community
+Built with care for the NAACUS community

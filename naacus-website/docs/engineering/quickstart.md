@@ -1,7 +1,7 @@
 # Quick Start Guide
 
 > **Category:** 🔧 Engineering | **Audience:** Developers & IT Team
-> **Last Updated:** July 15, 2026 | [← Docs Index](../README.md)
+> **Last Updated:** July 15, 2026 | [← Docs Index](../readme.md)
 
 ---
 
@@ -58,8 +58,8 @@ Auto-deploys to **Azure Static Web Apps** on push to `develop` branch.
 
 ## More Documentation
 
-- **Full project structure:** [WEBSITE_STRUCTURE.md](WEBSITE_STRUCTURE.md)
-- **Analytics:** [GA4_ANALYTICS.md](GA4_ANALYTICS.md)
-- **Payments:** [PAYMENTS.md](PAYMENTS.md)
-- **Deployment:** [DEPLOYMENT.md](DEPLOYMENT.md)
-- **Backend API:** [BACKEND_API.md](BACKEND_API.md)
+- **Full project structure:** [website_structure.md](website_structure.md)
+- **Analytics:** [ga4_analytics.md](ga4_analytics.md)
+- **Payments:** [payments.md](payments.md)
+- **Deployment:** [deployment.md](deployment.md)
+- **Backend API:** [backend_api.md](backend_api.md)

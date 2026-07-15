@@ -1,5 +1,10 @@
 # Payment Integration Guide
 
+> **Category:** 🔧 Engineering | **Audience:** Developers & IT Team
+> **Last Updated:** July 15, 2026 | [← Docs Index](../readme.md)
+
+---
+
 ## Table of Contents
 
 1. [Payment Methods Overview](#payment-methods-overview)
@@ -221,7 +226,7 @@ Successful donations automatically:
 - Include amount, currency, and payment method
 - Enable revenue tracking in GA4 Monetization reports
 
-See [GA4_SETUP.md](GA4_SETUP.md) for analytics configuration.
+See [ga4_analytics.md](ga4_analytics.md) for analytics configuration.
 
 ---
 
@@ -305,7 +310,7 @@ Ensure Stripe.js is in `public/index.html`:
 - Try demo mode (`demoMode: true`)
 
 ### No GA Tracking for Donations
-- Confirm GA initialized (see [GA4_SETUP.md](GA4_SETUP.md))
+- Confirm GA initialized (see [ga4_analytics.md](ga4_analytics.md))
 - Check `paymentService` tracks on success
 
 ---

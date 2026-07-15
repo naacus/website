@@ -93,7 +93,7 @@ testimonials/
 ├── photos/
 │   └── headshots/
 ├── consent-forms/
-└── README.md
+└── readme.md
 ```
 
 ### Best Practices

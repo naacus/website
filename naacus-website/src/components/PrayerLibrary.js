@@ -472,7 +472,6 @@ function PrayerLibrary() {
 
   const [selectedTab, setSelectedTab] = useState('videos');
   const [filterPrayer, setFilterPrayer] = useState('all');
-  const [filterCountry, setFilterCountry] = useState('all');
   const [filterLanguage, setFilterLanguage] = useState('all');
   const [prayerTextDialogOpen, setPrayerTextDialogOpen] = useState(false);
   const [selectedPrayerVideo, setSelectedPrayerVideo] = useState(null);
@@ -495,15 +494,13 @@ function PrayerLibrary() {
   const filteredVideos = useMemo(() => {
     return allVideos.filter((video) => {
       if (filterPrayer !== 'all' && video.prayerTypeId !== filterPrayer) return false;
-      if (filterCountry !== 'all' && video.country !== filterCountry) return false;
       if (filterLanguage !== 'all' && video.language !== filterLanguage) return false;
       return true;
     });
-  }, [allVideos, filterPrayer, filterCountry, filterLanguage]);
+  }, [allVideos, filterPrayer, filterLanguage]);
 
   const clearFilters = () => {
     setFilterPrayer('all');
-    setFilterCountry('all');
     setFilterLanguage('all');
     trackCTA('prayer_library', 'clear_filters', 'prayer_library');
   };
@@ -524,14 +521,9 @@ function PrayerLibrary() {
     return prayer ? t(prayer.nameKey) : prayerTypeId;
   };
 
-  const handleCountryFilter = (countryId) => {
-    setFilterCountry(countryId);
-    setSelectedTab('videos');
-    trackCTA('prayer_library', 'country_filter', countryId);
-  };
-
   // Count videos per prayer type
   const videosPerPrayer = (prayerTypeId) => allVideos.filter((v) => v.prayerTypeId === prayerTypeId).length;
+  const videosPerLanguage = (language) => allVideos.filter((v) => v.language === language).length;
 
   const handleSubmitOpen = () => {
     setSubmitDialogOpen(true);
@@ -581,8 +573,8 @@ function PrayerLibrary() {
             <Tab value="prayers" icon={<Book24Regular />}>
               {t('prayerLibrary.tabs.byPrayer')}
             </Tab>
-            <Tab value="countries" icon={<Globe24Regular />}>
-              {t('prayerLibrary.tabs.byCountry')}
+            <Tab value="languages" icon={<Globe24Regular />}>
+              {t('prayerLibrary.tabs.byLanguage', 'By Language')}
             </Tab>
           </TabList>
         </div>
@@ -612,23 +604,6 @@ function PrayerLibrary() {
 
               <Dropdown
                 className={styles.filterDropdown}
-                placeholder={t('prayerLibrary.filters.country')}
-                value={filterCountry === 'all' ? t('prayerLibrary.filters.allCountries') : (getCountryInfo(filterCountry)?.name || filterCountry)}
-                onOptionSelect={(_, data) => {
-                  setFilterCountry(data.optionValue);
-                  trackCTA('prayer_library', 'filter_country', data.optionValue);
-                }}
-              >
-                <Option value="all">{t('prayerLibrary.filters.allCountries')}</Option>
-                {allCountries.map((c) => (
-                  <Option key={c.id} value={c.id}>
-                    {c.flag} {c.name}
-                  </Option>
-                ))}
-              </Dropdown>
-
-              <Dropdown
-                className={styles.filterDropdown}
                 placeholder={t('prayerLibrary.filters.language')}
                 value={filterLanguage === 'all' ? t('prayerLibrary.filters.allLanguages') : filterLanguage}
                 onOptionSelect={(_, data) => {
@@ -644,7 +619,7 @@ function PrayerLibrary() {
                 ))}
               </Dropdown>
 
-              {(filterPrayer !== 'all' || filterCountry !== 'all' || filterLanguage !== 'all') && (
+              {(filterPrayer !== 'all' || filterLanguage !== 'all') && (
                 <Button
                   appearance="subtle"
                   className={styles.clearFiltersButton}
@@ -768,31 +743,25 @@ function PrayerLibrary() {
           </div>
         )}
 
-        {/* -------- BY COUNTRY TAB -------- */}
-        {selectedTab === 'countries' && (
+        {/* -------- BY LANGUAGE TAB -------- */}
+        {selectedTab === 'languages' && (
           <div className={styles.countriesGrid}>
-            {allCountries.map((country) => {
-              const count = allVideos.filter((v) => v.country === country.id).length;
-              return (
-                <Card
-                  key={country.id}
-                  className={styles.countryCard}
-                  onClick={() => handleCountryFilter(country.id)}
-                >
-                  <Text className={styles.countryFlag2}>{country.flag}</Text>
-                  <Text className={styles.countryName}>{country.name}</Text>
-                  <Text className={styles.countryLanguages}>
-                    {country.languages.slice(0, 3).join(', ')}
-                    {country.languages.length > 3 && ` +${country.languages.length - 3}`}
-                  </Text>
-                  {count > 0 && (
-                    <Badge appearance="tint" color="brand" size="small" style={{ marginTop: '8px' }}>
-                      {count} {count === 1 ? 'video' : 'videos'}
-                    </Badge>
-                  )}
-                </Card>
-              );
-            })}
+            {allLanguages.map((language) => (
+              <Card
+                key={language}
+                className={styles.countryCard}
+                onClick={() => {
+                  setFilterLanguage(language);
+                  setSelectedTab('videos');
+                  trackCTA('prayer_library', 'language_filter_tab', language);
+                }}
+              >
+                <Text className={styles.countryName}>{language}</Text>
+                <Badge appearance="tint" color="brand" size="small" style={{ marginTop: '8px' }}>
+                  {videosPerLanguage(language)} {videosPerLanguage(language) === 1 ? 'video' : 'videos'}
+                </Badge>
+              </Card>
+            ))}
           </div>
         )}
 

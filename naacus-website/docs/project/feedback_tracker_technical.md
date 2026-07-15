@@ -1,7 +1,7 @@
 # Website Review Feedback — Technical Tracker
 
-> **Category:** 📋 Project Management | **Audience:** Developers & IT Team | [← Docs Index](../README.md)
-> **Companion:** [Stakeholder version](../stakeholders/FEEDBACK_TRACKER_STAKEHOLDERS.md)
+> **Category:** 📋 Project Management | **Audience:** Developers & IT Team | [← Docs Index](../readme.md)
+> **Companion:** [Stakeholder version](../stakeholders/feedback_tracker_stakeholders.md)
 > **Source:** Pre-Launch Website Review Survey | **Branch:** `develop` | **Last Updated:** July 15, 2026
 
 ---

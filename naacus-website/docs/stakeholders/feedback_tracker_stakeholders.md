@@ -1,7 +1,7 @@
 # NAACUS Website — Feedback Implementation Status
 
-> **Category:** 👥 Stakeholders | **Audience:** Board Members, Ministry Leads, Community Leaders | [← Docs Index](../README.md)
-> **Companion:** [Technical version](../project/FEEDBACK_TRACKER_TECHNICAL.md) | **Last Updated:** July 15, 2026
+> **Category:** 👥 Stakeholders | **Audience:** Board Members, Ministry Leads, Community Leaders | [← Docs Index](../readme.md)
+> **Companion:** [Technical version](../project/feedback_tracker_technical.md) | **Last Updated:** July 15, 2026
 
 ---
 

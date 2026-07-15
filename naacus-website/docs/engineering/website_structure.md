@@ -1,7 +1,7 @@
 # NAACUS Website — Structure Documentation
 
 > **Category:** 🔧 Engineering | **Audience:** Developers & IT Team
-> **Last Updated:** July 15, 2026 | [← Docs Index](../README.md)
+> **Last Updated:** July 15, 2026 | [← Docs Index](../readme.md)
 
 ---
 
@@ -26,7 +26,7 @@ The NAACUS website is a **React 19** single-page application (SPA) built with:
 
 ```
 /
-├── docs/                          # Project documentation (see docs/README.md)
+├── docs/                          # Project documentation (see docs/readme.md)
 │   ├── engineering/               # Developer & IT guides
 │   ├── project/                   # Project management & trackers
 │   └── stakeholders/              # Board & community-facing docs
@@ -43,8 +43,8 @@ The NAACUS website is a **React 19** single-page application (SPA) built with:
 ├── API_IMPLEMENTATION_GUIDE.md
 ├── BACKEND_API_CONTRACT.md
 ├── STRIPE_INTEGRATION_GUIDE.md
-├── DEPLOYMENT.md
-└── README.md
+├── deployment.md
+└── readme.md
 ```
 
 ---
@@ -414,8 +414,8 @@ A **Java/Maven** backend project (under development). The compiled output lives 
 
 | Document | Description |
 |---|---|
-| [QUICKSTART.md](QUICKSTART.md) | Getting started guide |
-| [DEPLOYMENT.md](DEPLOYMENT.md) | Deployment instructions |
-| [PAYMENTS.md](PAYMENTS.md) | Payment integration details |
-| [GA4_ANALYTICS.md](GA4_ANALYTICS.md) | Google Analytics 4 setup |
-| [BACKEND_API.md](BACKEND_API.md) | Backend API guide |
+| [quickstart.md](quickstart.md) | Getting started guide |
+| [deployment.md](deployment.md) | Deployment instructions |
+| [payments.md](payments.md) | Payment integration details |
+| [ga4_analytics.md](ga4_analytics.md) | Google Analytics 4 setup |
+| [backend_api.md](backend_api.md) | Backend API guide |

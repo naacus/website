@@ -1,7 +1,7 @@
 # Deployment Guide
 
 > **Category:** 🔧 Engineering | **Audience:** Developers & IT Team
-> **Last Updated:** July 15, 2026 | [← Docs Index](../README.md)
+> **Last Updated:** July 15, 2026 | [← Docs Index](../readme.md)
 
 ---
 
