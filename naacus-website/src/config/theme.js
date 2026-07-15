@@ -6,15 +6,33 @@
 import { createLightTheme } from '@fluentui/react-components';
 
 // Color Palette
+// Brand colors derived from the NAACUS logo:
+//   Royal/Cobalt Blue  → primary brand color (logo background)
+//   Leafy Lime Green   → accent/action color  (Africa silhouette)
+//   Gold               → decorative accent    (text & laurels)
 export const colors = {
-  // Primary Brand Colors
+  // Primary Brand Colors — Royal Blue from logo
   primary: {
-    darkest: '#1a3a52',      // Dark navy - used for text, titles
-    dark: '#2d5a7b',         // Medium navy - primary action color
-    main: '#3d6fa8',         // Light navy - gradients
-    light: '#004578',        // Hover state for primary buttons
+    darkest: '#0d196b',      // Very dark royal blue
+    dark: '#1428A0',         // Logo royal/cobalt blue
+    main: '#1e38c4',         // Slightly lighter royal blue
+    light: '#1020B0',        // Hover state for primary elements
   },
-  
+
+  // Green Accent — Leafy/Lime Green from logo (Africa silhouette)
+  green: {
+    bright: '#76D000',       // Logo lime green (decorative, hero)
+    main: '#4a9900',         // Web-accessible leafy green (text on light bg)
+    light: '#e6f5d0',        // Light green tint for section backgrounds
+    muted: '#3d8200',        // Darker green for hover states
+  },
+
+  // Gold Accent — from logo text & laurels
+  gold: {
+    main: '#C8A000',
+    light: '#f7edd0',
+  },
+
   // Accent Colors
   accent: {
     beige: '#E8D4C0',        // Beige accent for badges and highlights
@@ -36,9 +54,10 @@ export const colors = {
   background: {
     default: '#ffffff',
     light: '#faf9f8',
-    lightBlue: '#eaf4ff',
-    accentLight: 'rgba(232, 212, 192, 0.12)',
-    accentDarkLight: 'rgba(45, 90, 123, 0.08)',
+    lightGreen: '#edfadf',   // Light green tint — replaces lightBlue
+    lightBlue: '#eaf4ff',    // Kept for backward compatibility
+    accentLight: 'rgba(76, 153, 0, 0.08)',   // Green-tinted accent
+    accentDarkLight: 'rgba(20, 40, 160, 0.08)',
     overlay: 'rgba(0, 0, 0, 0.5)',
   },
   
@@ -48,18 +67,18 @@ export const colors = {
     success: '#107c10',
   },
   
-  // UI Colors
+  // UI Colors — primary button now uses royal blue matching logo
   button: {
-    primary: '#0067b8',
-    primaryHover: '#005a9e',
+    primary: '#1428A0',
+    primaryHover: '#0d196b',
     text: '#ffffff',
   },
   
   // Domain-Specific UI Colors
   ui: {
-    chatPrimary: '#0f6cbd',      // Chat widget primary color
-    analyticsDark: '#0f4c81',    // Analytics dashboard dark color
-    footerBg: '#252423',         // Footer background color
+    chatPrimary: '#1428A0',      // Chat widget primary color (logo blue)
+    analyticsDark: '#0d196b',    // Analytics dashboard dark color
+    footerBg: '#0d196b',         // Footer background — deep royal blue
   },
   
   // Overlay/Transparency Colors
@@ -237,11 +256,12 @@ export const shadows = {
   cardHover: '0 8px 24px rgba(0, 0, 0, 0.12)',
 };
 
-// Gradients
+// Gradients — logo-inspired: royal blue flowing into leafy green
 export const gradients = {
-  primaryHero: 'linear-gradient(135deg, #1a3a52 0%, #2d5a7b 50%, #3d6fa8 100%)',
-  primaryHero2: 'linear-gradient(135deg, #1a3a52 0%, #2d5a7b 30%, #3d6fa8 100%)',
-  buttonGradient: `linear-gradient(135deg, #0067b8 0%, #005a9e 100%)`,
+  primaryHero: 'linear-gradient(135deg, #0d196b 0%, #1428A0 50%, #1e38c4 75%, #2d6b00 100%)',
+  primaryHero2: 'linear-gradient(135deg, #0d196b 0%, #1428A0 40%, #76D000 100%)',
+  buttonGradient: `linear-gradient(135deg, #1428A0 0%, #0d196b 100%)`,
+  greenAccent: `linear-gradient(135deg, #4a9900 0%, #76D000 100%)`,
 };
 
 // Create custom Fluent theme with brand colors and custom tokens for all design values
@@ -274,6 +294,14 @@ export const customTheme = createLightTheme({
   colorPrimaryMain: colors.primary.main,
   colorPrimaryLight: colors.primary.light,
   colorAccentBeige: colors.accent.beige,
+  // Green accent tokens
+  colorGreenBright: colors.green.bright,
+  colorGreenMain: colors.green.main,
+  colorGreenLight: colors.green.light,
+  colorGreenMuted: colors.green.muted,
+  // Gold accent tokens
+  colorGoldMain: colors.gold.main,
+  colorGoldLight: colors.gold.light,
   colorNeutralBorder: colors.neutral.border,
   colorNeutralWhite: colors.neutral.white,
   colorNeutralOffWhite: colors.neutral.offWhite,

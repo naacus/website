@@ -83,11 +83,11 @@ export const leadershipData = {
       photo: ''
     },
     {
-      name: 'Mrs. Maame Apenteng Schmidt',
+      name: 'Open',
       title: 'Young Adults Ministry Coordinator',
-      phone: '727-488-5013',
-      email: 'maame.schmidt@naacus.org',
-      location: 'Iowa',
+      phone: '',
+      email: '',
+      location: '',
       photo: ''
     },
     {
@@ -96,7 +96,8 @@ export const leadershipData = {
       phone: '856-264-7060',
       email: 'juliet.njoku@naacus.org',
       location: 'New Jersey',
-      photo: ''
+      photo: '',
+      bio: 'Dr. Juliet Njoku, a Senior Judicial Officer with the Superior Court of New Jersey, Gloucester County since 2002, has made significant contributions to her community. She served as a member of the EEO/AA Advisory Board of New Jersey Judiciary in her Vicinage. Additionally, she has been a member of Pi Alpha Alpha National Honor Society for Public Affairs & Administration since 2015.\n\nDr. Juliet is deeply committed to her Catholic faith. She is an Associate of the Society of the Holy Child Jesus (SHCJ) and a member of the Racial Justice Commission, Camden Diocese, since 2010. Furthermore, she serves as the vice chair of the Pastoral Council in her parish. Dr. Juliet actively participates in the African/Igbo Catholic communities in Camden Diocese, coordinating the participation of African/Igbo Catholic youths at various Diocesan and National Youth events.\n\nDr. Juliet\'s dedication extends to her role as a Board Member/Regional Coordinator of the National Association of African Catholics in the United States (NAACUS) since 2018. In 2019, she co-chaired and organized the inaugural NAACUS Regional Conference in Trenton, New Jersey. Currently, she serves as the coordinator of the Youth Ministry for NAACUS and has successfully organized several virtual Zoom youth events featuring renowned speakers and presenters.\n\nDr. Juliet actively engages with the diaspora community in the greater Philadelphia area. She serves as a Board Member of FunTimes Magazine Philadelphia, a publication that celebrates the African diaspora. Since 2024, she has been the Chairlady of the Nigerian American Mothers for Youth Advancement USA (NAMYAUSA), a prominent professional organization for Nigerian women in the tri-state region. In 2023, she joined the Delaware Africa Coalition and currently serves on its Public Relations Committee. Dr. Juliet finds joy in meditation, reading, organizing, traveling, and embarking on adventures.'
     },
     {
       name: 'Ms. Nkafu Amingwa',
@@ -107,10 +108,18 @@ export const leadershipData = {
       photo: ''
     },
     {
-      name: 'Open',
-      title: 'Fundraising/Development Committee Coordinator',
+      name: 'Stella Bello',
+      title: 'Fundraising Coordinator',
       phone: '',
-      email: '',
+      email: 'stella.bello@naacus.org',
+      location: '',
+      photo: ''
+    },
+    {
+      name: 'Mary Monney',
+      title: 'Media Coordinator',
+      phone: '',
+      email: 'mary.monney@naacus.org',
       location: '',
       photo: ''
     },

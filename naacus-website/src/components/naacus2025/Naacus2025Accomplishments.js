@@ -27,7 +27,7 @@ const useStyles = makeStyles({
   },
   hero: {
     position: 'relative',
-    background: `linear-gradient(135deg, #1a3a52 0%, #2d5a7b 50%, #3d6fa8 100%)`,
+    background: `linear-gradient(135deg, #0d196b 0%, #1428A0 50%, #1e38c4 75%, #2d6b00 100%)`,
     color: tokens.colorNeutralForegroundInverted,
     ...shorthands.padding('20px', '20px'),
     paddingTop: '30px',
@@ -284,6 +284,40 @@ const useStyles = makeStyles({
       boxShadow: '0 6px 25px rgba(232, 212, 192, 0.5)',
     },
   },
+  gallerySection: {
+    backgroundColor: '#e6f5d0',
+    ...shorthands.padding('32px', '40px'),
+    ...shorthands.borderRadius('12px'),
+    textAlign: 'center',
+    marginBottom: '40px',
+    ...shorthands.border('2px', 'solid', '#76D000'),
+  },
+  galleryTitle: {
+    fontSize: '1.4rem',
+    fontWeight: '600',
+    color: '#0d196b',
+    marginBottom: '12px',
+    display: 'block',
+  },
+  galleryDescription: {
+    fontSize: '1rem',
+    color: '#616161',
+    marginBottom: '20px',
+    lineHeight: '1.6',
+    display: 'block',
+  },
+  galleryButton: {
+    backgroundColor: '#4a9900',
+    color: '#ffffff',
+    fontWeight: '700',
+    fontSize: '0.95rem',
+    ...shorthands.padding('12px', '28px'),
+    height: 'auto',
+    ...shorthands.borderRadius('30px'),
+    '&:hover': {
+      backgroundColor: '#3d8200',
+    },
+  },
 });
 
 function Naacus2025Accomplishments() {
@@ -371,6 +405,25 @@ function Naacus2025Accomplishments() {
         <Text as="p" className={styles.sectionDescription}>
           {t('naacus2025.scheduleDescription')}
         </Text>
+
+        {/* Photo Gallery Callout */}
+        <div className={styles.gallerySection}>
+          <Text as="h3" className={styles.galleryTitle}>
+            {t('naacus2025.galleryTitle', '📸 Conference Photo Gallery')}
+          </Text>
+          <Text as="p" className={styles.galleryDescription}>
+            {t('naacus2025.galleryDescription', 'Relive the moments! Browse the official NAACUS 2025 Conference photos captured by our photographer.')}
+          </Text>
+          <Button
+            as="a"
+            href="https://www.sikapalens.com/kwame-frimpong---family--kids-birthday-graduation"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.galleryButton}
+          >
+            {t('naacus2025.galleryButton', 'View Photo Gallery')}
+          </Button>
+        </div>
 
         <div className={styles.eventsContainer}>
           {events.map((event) => (

@@ -140,6 +140,58 @@ const useStyles = makeStyles({
     lineHeight: '1.6',
     display: 'block',
   },
+  pricingCard: {
+    ...shorthands.padding('24px', '32px'),
+    marginBottom: '24px',
+    backgroundColor: '#e6f5d0',
+    ...shorthands.border('2px', 'solid', '#4a9900'),
+    ...shorthands.borderRadius('12px'),
+  },
+  pricingTitle: {
+    fontSize: '1.2rem',
+    fontWeight: '700',
+    color: '#0d196b',
+    display: 'block',
+    marginBottom: '12px',
+  },
+  pricingList: {
+    display: 'flex',
+    flexDirection: 'column',
+    ...shorthands.gap('8px'),
+  },
+  pricingRow: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    ...shorthands.padding('8px', '12px'),
+    backgroundColor: tokens.colorNeutralBackground1,
+    ...shorthands.borderRadius('8px'),
+  },
+  pricingLabel: {
+    fontWeight: '600',
+    color: tokens.colorNeutralForeground1,
+  },
+  pricingAmount: {
+    fontWeight: '700',
+    color: '#4a9900',
+    fontSize: '1.05rem',
+  },
+  pricingNote: {
+    fontSize: '0.875rem',
+    color: tokens.colorNeutralForeground2,
+    marginTop: '10px',
+    display: 'block',
+  },
+  formGridWithTopMargin: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(2, 1fr)',
+    ...shorthands.gap('20px'),
+    marginBottom: '24px',
+    marginTop: '20px',
+    '@media (max-width: 768px)': {
+      gridTemplateColumns: '1fr',
+    },
+  },
 });
 
 function MembershipPage() {
@@ -173,6 +225,7 @@ function MembershipPage() {
     country: 'United States',
     parishName: '',
     diocese: '',
+    community: '',
     parishCity: '',
     parishState: '',
     countryOfOrigin: '',
@@ -362,6 +415,30 @@ function MembershipPage() {
           </Text>
         </div>
 
+        {/* Membership Pricing Overview */}
+        <Card className={styles.pricingCard}>
+          <Text className={styles.pricingTitle}>
+            💳 Membership Dues
+          </Text>
+          <div className={styles.pricingList}>
+            <div className={styles.pricingRow}>
+              <span className={styles.pricingLabel}>Individual Membership</span>
+              <span className={styles.pricingAmount}>$20.00 / person</span>
+            </div>
+            <div className={styles.pricingRow}>
+              <span className={styles.pricingLabel}>Group Membership (2–100 members)</span>
+              <span className={styles.pricingAmount}>$200.00 one-time</span>
+            </div>
+            <div className={styles.pricingRow}>
+              <span className={styles.pricingLabel}>Group Membership (100+ members)</span>
+              <span className={styles.pricingAmount}>$300.00 one-time</span>
+            </div>
+          </div>
+          <Text className={styles.pricingNote}>
+            A one-time registration fee applies to new members. Secure online payment via credit/debit card (Stripe) is available, or choose manual payment and we will contact you with instructions.
+          </Text>
+        </Card>
+
         <form onSubmit={handleSubmit}>
           {/* Simplified Essential Information Only */}
           <Card className={styles.formCard}>
@@ -482,6 +559,16 @@ function MembershipPage() {
           <Card className={styles.formCard}>
             <Text className={styles.sectionTitle}>{t('membership.parishInfo')}</Text>
             <ParishFinder onParishSelect={handleParishSelect} formData={formData} />
+            <div className={styles.formGridWithTopMargin}>
+              <div className={`${styles.formField} ${styles.formFieldFull}`}>
+                <label className={styles.label}>{t('membership.community')}</label>
+                <Input
+                  value={formData.community}
+                  onChange={(e) => handleInputChange('community', e.target.value)}
+                  placeholder="e.g. Nigerian Catholic Community, Cameroon Catholic Community..."
+                />
+              </div>
+            </div>
           </Card>
 
           {/* Background Information - Hidden */}

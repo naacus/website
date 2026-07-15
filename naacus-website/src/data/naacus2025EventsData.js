@@ -1,6 +1,6 @@
 /**
  * NAACUS 2025 Conference Events Data
- * Contains the detailed schedule for the 2025 Bi-Annual Conference
+ * Contains the detailed schedule for the 2025 Biennial Conference
  */
 
 export const getNaacus2025Events = () => [

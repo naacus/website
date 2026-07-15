@@ -322,6 +322,68 @@ The Liturgy Ministry works to ensure that our worship services are prayerful, pa
       'Regional Chapter Support',
       'Retreat Liturgy Coordination'
     ]
+  },
+  {
+    id: 'media',
+    iconKey: 'media',
+    title: 'Media Ministry',
+    description: 'Communicating the NAACUS story through digital content, social media, and multimedia production.',
+    email: 'media@naacus.org',
+    coordinator: 'Mary Monney',
+    mission: 'To amplify the voice and witness of NAACUS through creative media, digital storytelling, and effective communications across all platforms.',
+    fullDescription: `NAACUS Media Ministry is dedicated to telling the story of African Catholics in the United States through compelling digital content and communications. The ministry manages social media presence, produces multimedia content, and ensures that the NAACUS message reaches our communities across platforms.
+
+Mission and Purpose:
+To amplify the voice and witness of NAACUS through creative media, digital storytelling, and effective communications across all platforms.
+
+Areas of Focus:
+- Social media management (Facebook, YouTube, Instagram, WhatsApp)
+- Video production and live streaming of events
+- Photography for conferences and community events
+- Website content updates and digital communications
+- Newsletter design and production support
+- Press releases and public relations
+
+By equipping NAACUS with strong media tools, we connect our communities, share our stories, and invite new members into our family.`,
+    programs: [
+      'Social Media Management',
+      'Event Photography & Videography',
+      'Live Streaming',
+      'Newsletter Design Support',
+      'Digital Content Creation',
+      'NAACUS YouTube Channel'
+    ]
+  },
+  {
+    id: 'fundraising',
+    iconKey: 'fundraising',
+    title: 'Fundraising Ministry',
+    description: 'Mobilizing resources to support the mission and programs of NAACUS.',
+    email: 'fundraising@naacus.org',
+    coordinator: 'Stella Bello (Fundraising Coordinator)',
+    mission: 'To generate the financial resources needed to sustain and grow the mission of NAACUS through creative fundraising initiatives and community generosity.',
+    fullDescription: `NAACUS Fundraising Ministry is dedicated to mobilizing the financial resources necessary to sustain and advance the mission of NAACUS. This ministry organizes fundraising campaigns, events, and initiatives that engage the community and inspire generous giving.
+
+Mission and Purpose:
+To generate the financial resources needed to sustain and grow the mission of NAACUS through creative fundraising initiatives and community generosity.
+
+Areas of Focus:
+- Annual fundraising campaigns
+- Conference fundraising events (Gala Dinner, auctions, raffles)
+- Grant writing and foundation funding
+- Online giving campaigns
+- Partnership with donors and supporters
+- Stewardship of fundraising proceeds
+
+The Fundraising Ministry believes that a well-resourced NAACUS can better serve African Catholic communities across the United States.`,
+    programs: [
+      'Annual Fundraising Campaign',
+      'Gala Dinner & Cultural Night',
+      'Online Giving Campaigns',
+      'Grant Writing & Applications',
+      'Donor Stewardship',
+      'Community Fundraising Events'
+    ]
   }
 ];
 

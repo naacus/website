@@ -230,6 +230,7 @@ function Ministries() {
     resources: <Book24Regular />,
     finance: <Money24Regular />,
     media: <Video24Regular />,
+    fundraising: <Mail24Regular />,
     newsletter: <News24Regular />,
     liturgy: <CalendarLtr24Regular />,
     anec: <MusicNote224Regular />
