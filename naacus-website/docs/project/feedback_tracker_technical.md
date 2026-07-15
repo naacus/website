@@ -67,6 +67,13 @@
 - ✅ **[FB-04b]** Conference location "Columbus, OH" *(Kwame Frimpong — Dec 26, 2025)*  
   Already correct in `public/locales/en/translation.json` key `naacus2025.location` — no change needed.
 
+- ✅ **[FB-13]** Replace placeholder 2025 conference schedule with official program *(Jul 15, 2026)*  
+  Previous data file contained 12 generic placeholder events. Replaced with 28 sessions from the official program (Friday–Sunday), including correct presenters, times, locations, and parallel workshop tracks.  
+  **Files changed:**
+  - `src/data/naacus2025EventsData.js` → full schedule replaced (28 events across 3 days)
+  - `public/locales/en/translation.json` → `naacus2025.dates`, `naacus2025.location`, `naacus2025.scheduleTitle`, `naacus2025.scheduleDescription` updated
+  - `public/locales/fr/translation.json` → French equivalents updated
+
 ---
 
 ### Membership Page

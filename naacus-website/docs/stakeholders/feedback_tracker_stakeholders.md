@@ -35,6 +35,7 @@
 ### 2025 Conference Page
 - ✅ A **"View Photo Gallery"** button has been added linking to the official NAACUS 2025 conference photos by photographer Kwame Frimpong (sikapalens.com).
 - ✅ The conference location correctly shows **Columbus, OH**.
+- ✅ The **full official Schedule of Events** is now displayed — all 28 sessions across Friday July 18, Saturday July 19, and Sunday July 20, with accurate times, presenters, locations, and parallel workshop tracks (English Adults, French Adults, Youth, Young Adults).
 
 ### Fellowship & Ministries Page
 - ✅ **Media Ministry** has been added, with Mary Monney listed as coordinator (mary.monney@naacus.org).
