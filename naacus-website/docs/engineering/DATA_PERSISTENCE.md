@@ -1,5 +1,10 @@
 # Data Persistence Guide (`src/data`)
 
+> **Category:** 🔧 Engineering | **Audience:** Developers & IT Team
+> **Last Updated:** July 15, 2026 | [← Docs Index](../README.md)
+
+---
+
 This guide defines a Microsoft-first persistence strategy for the React app data under `naacus-website/src/data`, including when SharePoint is a good fit.
 
 ## Assumptions

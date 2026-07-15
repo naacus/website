@@ -1,5 +1,10 @@
 # GA4 Setup & Analytics Guide
 
+> **Category:** 🔧 Engineering | **Audience:** Developers & IT Team
+> **Last Updated:** July 15, 2026 | [← Docs Index](../README.md)
+
+---
+
 ## Quick Start
 
 ### GA4 Already Configured

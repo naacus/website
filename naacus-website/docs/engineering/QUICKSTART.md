@@ -1,5 +1,10 @@
 # Quick Start Guide
 
+> **Category:** 🔧 Engineering | **Audience:** Developers & IT Team
+> **Last Updated:** July 15, 2026 | [← Docs Index](../README.md)
+
+---
+
 ## Setup
 
 ### Prerequisites

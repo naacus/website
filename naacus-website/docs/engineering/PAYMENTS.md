@@ -1,5 +1,10 @@
 # Payment Integration Guide
 
+> **Category:** 🔧 Engineering | **Audience:** Developers & IT Team
+> **Last Updated:** July 15, 2026 | [← Docs Index](../README.md)
+
+---
+
 ## Table of Contents
 
 1. [Payment Methods Overview](#payment-methods-overview)

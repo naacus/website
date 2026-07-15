@@ -1,6 +1,7 @@
 # NAACUS Website — Structure Documentation
 
-> **Last updated:** February 25, 2026
+> **Category:** 🔧 Engineering | **Audience:** Developers & IT Team
+> **Last Updated:** July 15, 2026 | [← Docs Index](../README.md)
 
 ---
 

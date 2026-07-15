@@ -1,5 +1,10 @@
 # Deployment Guide
 
+> **Category:** 🔧 Engineering | **Audience:** Developers & IT Team
+> **Last Updated:** July 15, 2026 | [← Docs Index](../README.md)
+
+---
+
 **Live Site:** https://polite-pebble-0f00f890f.4.azurestaticapps.net
 
 ## Prerequisites

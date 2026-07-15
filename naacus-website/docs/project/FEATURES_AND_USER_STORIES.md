@@ -1,6 +1,7 @@
 # NAACUS Website — Features & User Stories
 
-> **Last updated:** February 25, 2026
+> **Category:** 📋 Project Management | **Audience:** IT Leads & Project Team
+> **Last Updated:** July 15, 2026 | [← Docs Index](../README.md)
 
 ---
 

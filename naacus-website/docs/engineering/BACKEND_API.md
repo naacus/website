@@ -1,5 +1,10 @@
 # Backend API Guide
 
+> **Category:** 🔧 Engineering | **Audience:** Developers & IT Team
+> **Last Updated:** July 15, 2026 | [← Docs Index](../README.md)
+
+---
+
 This document covers the backend API architecture, implementation guide, and full endpoint specification for the NAACUS website.
 
 ## Table of Contents
