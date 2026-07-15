@@ -163,6 +163,18 @@ const useStyles = makeStyles({
       boxShadow: tokens.shadow16,
     },
   },
+  eventCardMuted: {
+    ...shorthands.padding('16px', '24px'),
+    ...shorthands.transition('all', '0.3s', 'ease'),
+    boxShadow: '0 1px 4px rgba(0, 0, 0, 0.04)',
+    ...shorthands.borderRadius('8px'),
+    backgroundColor: tokens.colorNeutralBackground3,
+    ...shorthands.borderLeft('3px', 'solid', tokens.colorNeutralStroke1),
+    '&:hover': {
+      transform: 'translateX(4px)',
+      boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
+    },
+  },
   eventHeader: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -426,13 +438,17 @@ function Naacus2025Accomplishments() {
         </div>
 
         <div className={styles.eventsContainer}>
-          {events.map((event) => (
-            <Card key={event.id} className={styles.eventCard}>
+          {events.map((event) => {
+            const hasPresenter = Boolean(event.presenter);
+            return (
+            <Card key={event.id} className={hasPresenter ? styles.eventCard : styles.eventCardMuted}>
               <div className={styles.eventHeader}>
                 <div className={styles.eventTitleSection}>
                   <Text className={styles.eventDay}>{event.day}</Text>
                   <Text className={styles.eventTitle}>{event.title}</Text>
-                  <Text className={styles.eventPresenter}>{t('naacus2025.presenter')} {event.presenter}</Text>
+                  {hasPresenter && (
+                    <Text className={styles.eventPresenter}>{t('naacus2025.presenter')} {event.presenter}</Text>
+                  )}
                 </div>
                 
                 <div className={styles.eventMeta}>
@@ -468,7 +484,8 @@ function Naacus2025Accomplishments() {
                 </div>
               </div>
             </Card>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
