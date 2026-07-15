@@ -2,6 +2,20 @@
 
 Professional website for the National Association of African Catholics in the United States (NAACUS), built with React and ready for Microsoft 365 integration.
 
+## 📚 Documentation
+
+All project documentation lives in the [`docs/`](docs/README.md) folder, organized into three categories:
+
+| Category | Who it's for | Index |
+|----------|-------------|-------|
+| 🔧 **Engineering** | Developers & IT | [docs/engineering/](docs/engineering/) |
+| 📋 **Project Management** | IT leads & project tracking | [docs/project/](docs/project/) |
+| 👥 **Stakeholders** | Board members & ministry leads | [docs/stakeholders/](docs/stakeholders/) |
+
+→ **Full index:** [docs/README.md](docs/README.md)
+
+---
+
 ## 🌟 Features
 
 - **Modern React Application**: Built with React for optimal performance and user experience
@@ -102,12 +116,12 @@ Example integration code is available in the configuration files.
 
 ### Colors
 
-The website uses Microsoft-inspired colors:
-- Primary: `#0078d4` (Microsoft Blue)
-- Secondary: `#0053a0` (Dark Blue)
-- Accent: `#90e0ef` (Light Blue)
+The website uses NAACUS logo-inspired colors defined in `src/config/theme.js`:
+- Royal Blue: `#1428A0` (primary brand — logo background)
+- Leafy Green: `#4a9900` / `#76D000` (accent — logo Africa silhouette)
+- Gold: `#C8A000` (decorative — logo text & laurels)
 
-Update these in the CSS files for consistent theming.
+See [`docs/engineering/WEBSITE_STRUCTURE.md`](docs/engineering/WEBSITE_STRUCTURE.md) for full theming details.
 
 ## 📱 Responsive Breakpoints
 

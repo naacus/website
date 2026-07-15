@@ -1,7 +1,7 @@
 # NAACUS Website — Feedback Implementation Status
 
 > **Who this is for:** Board Members, Ministry Leads, Community Leaders  
-> **Technical version:** See `FEEDBACK_TRACKER_TECHNICAL.md`  
+> **Technical version:** See `docs/project/FEEDBACK_TRACKER_TECHNICAL.md`  
 > **Last Updated:** July 15, 2026
 
 ---

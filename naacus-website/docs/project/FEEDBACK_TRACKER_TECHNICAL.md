@@ -1,7 +1,7 @@
 # Website Review Feedback — Technical Tracker
 
 > **Audience:** Engineers / Developers  
-> **Non-technical version:** See `FEEDBACK_TRACKER_STAKEHOLDERS.md`  
+> **Non-technical version:** See `docs/stakeholders/FEEDBACK_TRACKER_STAKEHOLDERS.md`  
 > **Source:** Pre-Launch Website Review Survey  
 > **Last Updated:** July 15, 2026  
 > **Branch:** `develop`
