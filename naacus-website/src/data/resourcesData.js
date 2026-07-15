@@ -55,7 +55,8 @@ export const resourcesData = [
     description: 'Men\'s Ministry leadership role is currently open. Contact NAACUS to get involved.',
     buttonText: 'Contact NAACUS',
     actionType: 'section',
-    actionTarget: 'contact'
+    actionTarget: 'contact',
+    featureFlag: 'showOpenRoleResourceCards'
   },
   {
     id: 7,

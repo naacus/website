@@ -27,10 +27,12 @@
 
 - 🔒 **[FB-07a]** Remove leaders who did not provide photos and bios *(Sally Stovall — Jun 25, 2026)*  
   **Blocked:** Awaiting confirmation from president on which entries to remove.  
+  **Temporary mitigation applied:** Leadership page now hides incomplete profiles (open entries or missing photo/bio) from public rendering.  
   **File to edit:** `src/data/leadershipData.js`
 
 - 🔒 **[FB-07b]** Fix profile pictures — adjust to fit or remove those that don't fit *(Sally Stovall — Jun 25, 2026)*  
   **Blocked:** Awaiting replacement image files.  
+  **Temporary mitigation applied:** Incomplete profiles are filtered out in UI until corrected images are provided.  
   **File to edit:** `src/components/Leadership.js` — review `img` sizing styles.
 
 - ✅ **[FB-07c]** Remove Maame as Young Adults Coordinator *(Sally Stovall — Jun 25, 2026)*  
@@ -186,6 +188,7 @@
 
 - 🔒 **[FB-20]** Organize photo galleries by event with short captions *(Young Adults member — Jul 15, 2026)*  
   **Blocked:** Need per-event photo sets and caption text from the media team / photographer.  
+  **Temporary mitigation applied:** Gallery section is hidden from Home page until event-grouped media and captions are available.  
   **File to edit:** `src/components/Gallery.js` + photo asset organisation in `public/images/`.
 
 ---

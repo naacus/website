@@ -332,6 +332,13 @@ function Leadership() {
   const ministryCoordinations = dataService.getLeadershipCoordinations();
   const trainingPrograms = dataService.getLeadershipTrainingPrograms();
 
+  const isProfileReady = (member) =>
+    Boolean(member?.name && member.name !== 'Open' && member.photo && member.bio);
+
+  const readyExecutiveBoard = executiveBoard.filter(isProfileReady);
+  const readyMinistryCoordinations = ministryCoordinations.filter(isProfileReady);
+  const readySpiritualAdvisers = spiritualAdvisers.filter(isProfileReady);
+
   const handleCtaNavigate = (path) => {
     handleNavigation({ path, sectionId: null, currentPathname: window.location.pathname, navigate });
   };
@@ -346,7 +353,7 @@ function Leadership() {
 
         <Text as="h3" className={styles.sectionTitle}>{t('leadership.nationalExecutiveOfficers')}</Text>
         <div className={styles.boardGrid}>
-          {executiveBoard.map((member) => (
+          {readyExecutiveBoard.map((member) => (
             <Card key={member.name} className={styles.boardMember}>
               {member.photo ? (
                 <img src={member.photo} alt={member.name} className={styles.photo} />
@@ -371,7 +378,7 @@ function Leadership() {
 
         <Text as="h3" className={styles.sectionTitle}>{t('leadership.ministryCoordinations')}</Text>
         <div className={styles.boardGrid}>
-          {ministryCoordinations.map((member) => (
+          {readyMinistryCoordinations.map((member) => (
             <Card key={`${member.title}-${member.name}`} className={styles.boardMember}>
               {member.photo ? (
                 <img src={member.photo} alt={member.name} className={styles.photo} />
@@ -381,12 +388,14 @@ function Leadership() {
               <div className={styles.memberBody}>
                 <Text className={styles.memberName}>{member.name}</Text>
                 <Text className={styles.memberTitle}>{member.title}</Text>
-                <Text className={styles.memberContact} style={{ color: member.location ? 'inherit' : '#999', fontStyle: member.location ? 'normal' : 'italic' }}>
-                  {member.location || 'Location not available'}
-                </Text>
-                <Text className={styles.memberContact} style={{ color: member.email ? 'inherit' : '#999', fontStyle: member.email ? 'normal' : 'italic' }}>
-                  {member.email ? <a href={`mailto:${member.email}`} className={styles.contactLink}>{member.email}</a> : 'Email not available'}
-                </Text>
+                {member.location && (
+                  <Text className={styles.memberContact}>{member.location}</Text>
+                )}
+                {member.email && (
+                  <Text className={styles.memberContact}>
+                    <a href={`mailto:${member.email}`} className={styles.contactLink}>{member.email}</a>
+                  </Text>
+                )}
                 <Button
                   className={styles.readMoreBtn}
                   appearance="primary"
@@ -399,30 +408,27 @@ function Leadership() {
           ))}
         </div>
 
-        <Text as="h3" className={styles.sectionTitle}>{t('leadership.trainingProgramsTitle')}</Text>
-        <Text as="p" className={styles.trainingIntro}>{t('leadership.trainingProgramsIntro')}</Text>
-        <div className={styles.trainingGrid}>
-          {trainingPrograms.length > 0 ? (
-            trainingPrograms.map((program) => (
-              <Card key={program.id} className={styles.trainingCard}>
-                <div className={styles.trainingHeader}>
-                  <span className={styles.trainingIcon}>{program.icon}</span>
-                  <Text className={styles.trainingName}>{t(`leadership.trainingPrograms.items.${program.id}.title`)}</Text>
-                </div>
-                <Text className={styles.trainingDescription}>{t(`leadership.trainingPrograms.items.${program.id}.description`)}</Text>
-              </Card>
-            ))
-          ) : (
-            <Card className={styles.trainingPendingCard}>
-              <Text className={styles.trainingPendingTitle}>{t('leadership.trainingProgramsPendingTitle')}</Text>
-              <Text className={styles.trainingPendingText}>{t('leadership.trainingProgramsPendingText')}</Text>
-            </Card>
-          )}
-        </div>
+        {trainingPrograms.length > 0 && (
+          <>
+            <Text as="h3" className={styles.sectionTitle}>{t('leadership.trainingProgramsTitle')}</Text>
+            <Text as="p" className={styles.trainingIntro}>{t('leadership.trainingProgramsIntro')}</Text>
+            <div className={styles.trainingGrid}>
+              {trainingPrograms.map((program) => (
+                <Card key={program.id} className={styles.trainingCard}>
+                  <div className={styles.trainingHeader}>
+                    <span className={styles.trainingIcon}>{program.icon}</span>
+                    <Text className={styles.trainingName}>{t(`leadership.trainingPrograms.items.${program.id}.title`)}</Text>
+                  </div>
+                  <Text className={styles.trainingDescription}>{t(`leadership.trainingPrograms.items.${program.id}.description`)}</Text>
+                </Card>
+              ))}
+            </div>
+          </>
+        )}
 
         <Text as="h3" className={styles.sectionTitle}>{t('leadership.nationalAdvisoryBoard')}</Text>
         <div id="national-advisory-board" className={styles.boardGrid}>
-          {spiritualAdvisers.map((member) => (
+          {readySpiritualAdvisers.map((member) => (
             <Card key={member.name} className={styles.boardMember}>
               {member.photo ? (
                 <img src={member.photo} alt={member.name} className={styles.photo} />

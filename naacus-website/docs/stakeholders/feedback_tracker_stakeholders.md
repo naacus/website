@@ -49,7 +49,7 @@
 - ✅ **Juliet Njoku** is confirmed as Youth Ministry Coordinator with her full bio already on the site. Her photo just needs to be uploaded.
 - ✅ **Stella Bello** has been added as Fundraising Coordinator.
 - ✅ **Mary Monney** has been added as Media Coordinator.
-- ✅ A **Training Programs** section has been added under Leadership (per Tess's suggestion).
+- ✅ A **Training Programs** section shell has been added under Leadership (per Tess's suggestion); official program details will be published once provided.
 - ✅ Faustina (Marketing Coordinator) — confirmed she was never listed on the site; no action was needed.
 
 ### Contact Page
@@ -101,7 +101,7 @@ We received thoughtful marketing feedback from a Young Adults member. Here is ho
 | About page — founding story + break up long text | Need the founding story from leadership | 🔒 Need content |
 | Ministry cards — photo + description + get-involved button | ✅ Done — "Get Involved →" button added to every ministry card | ✅ Done |
 | Feature upcoming events more prominently | ✅ Done — count badge added to Upcoming tab | ✅ Done |
-| Organize photo galleries by event with captions | Need per-event photo sets from media team | 🔒 Need photos |
+| Organize photo galleries by event with captions | Need per-event photo sets from media team. Temporary mitigation: Gallery is hidden on Home until ready. | 🔄 Mitigated (awaiting assets) |
 | Every page should end with a clear next step | ✅ Done — About, Programs, Resources, and Leadership now end with clear CTA sections | ✅ Done |
 | Reduce long text blocks site-wide | Included in the ongoing CTA audit | 🔄 In progress |
 

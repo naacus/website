@@ -1,46 +1,23 @@
 import React, { useEffect, useRef } from 'react';
-import { useTranslation } from 'react-i18next';
-import { makeStyles, Button } from '@fluentui/react-components';
-import { themeTokens, colors } from '../config/theme';
+import { makeStyles } from '@fluentui/react-components';
 
 const useStyles = makeStyles({
   container: {
     display: 'flex',
     alignItems: 'center',
   },
-  donateButton: {
-    backgroundColor: colors.primary.dark,
-    color: colors.neutral.white,
-    fontWeight: themeTokens.typography.fontWeight.semibold,
-    '@media (max-width: 768px)': {
-      fontSize: themeTokens.typography.fontSize.xs,
-      whiteSpace: 'nowrap',
-      minWidth: 'auto',
-      height: '24px',
-      lineHeight: '24px',
-    },
-    '@media (min-width: 769px)': {
-      minWidth: '100px',
-      fontSize: themeTokens.typography.fontSize['0.95rem'],
-    },
-  },
 });
 
 const StripeDonateButton = () => {
   const styles = useStyles();
-  const { t } = useTranslation();
   const containerRef = useRef(null);
   const scriptLoaded = useRef(false);
-  const [showStripeButton, setShowStripeButton] = React.useState(false);
 
   useEffect(() => {
-    if (!showStripeButton) return;
-    
-    // Only load the script once
     if (scriptLoaded.current) return;
 
     const existingScript = document.querySelector('script[src="https://js.stripe.com/v3/buy-button.js"]');
-    
+
     if (!existingScript) {
       const script = document.createElement('script');
       script.src = 'https://js.stripe.com/v3/buy-button.js';
@@ -64,27 +41,9 @@ const StripeDonateButton = () => {
         containerRef.current.appendChild(buyButton);
       }
     }
-  }, [showStripeButton]);
+  }, []);
 
-  const handleClick = () => {
-    setShowStripeButton(true);
-  };
-
-  if (showStripeButton) {
-    return <div ref={containerRef} className={styles.container} />;
-  }
-
-  return (
-    <div className={styles.container}>
-      <Button
-        appearance="primary"
-        className={styles.donateButton}
-        onClick={handleClick}
-      >
-        💝 {t('header.donate', 'Donate')}
-      </Button>
-    </div>
-  );
+  return <div ref={containerRef} className={styles.container} />;
 };
 
 export default StripeDonateButton;

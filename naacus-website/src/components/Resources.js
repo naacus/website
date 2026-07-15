@@ -15,6 +15,7 @@ import {
   FormNew24Regular
 } from '@fluentui/react-icons';
 import { getResources, getPartners } from '../data/resourcesData';
+import { featureFlags } from '../config/featureFlags';
 import { useAnalytics } from '../hooks/useAnalytics';
 import { handleNavigation } from '../services/navigationService';
 
@@ -184,7 +185,12 @@ function Resources() {
   const styles = useStyles();
   const { trackResourceCTA, trackResourceDownload } = useAnalytics();
 
-  const resources = getResources();
+  const resources = getResources().filter((resource) => {
+    if (!resource.featureFlag) {
+      return true;
+    }
+    return Boolean(featureFlags[resource.featureFlag]);
+  });
   const partners = getPartners();
 
   const handleCtaNavigate = (path) => {

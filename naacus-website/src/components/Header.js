@@ -170,6 +170,12 @@ const useStyles = makeStyles({
       flexWrap: 'nowrap',
     },
   },
+  donateFloating: {
+    position: 'fixed',
+    top: '58px',
+    right: '4px',
+    zIndex: 999,
+  },
   searchContainer: {
     position: 'relative',
     '@media (max-width: 768px)': {
@@ -456,7 +462,6 @@ function Header() {
         {/* Right Section: Search, Language, Sign In */}
         <div className={styles.rightSection}>
           <SearchInput />
-          <StripeDonateButton />
           <div className={styles.languageSwitcher}>
             <LanguageSwitcher />
           </div>
@@ -466,6 +471,11 @@ function Header() {
           >
             {t('header.nav.feedback')}
           </button>
+
+          {/* Donate button below header */}
+          <div className={styles.donateFloating}>
+            <StripeDonateButton />
+          </div>
 
           {/* Mobile Menu */}
           <Menu>
