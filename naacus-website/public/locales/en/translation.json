@@ -123,15 +123,20 @@
     "text": "Subscribe"
   },
   "conference2027": {
-    "title": "A Historic Gathering is Coming in 2027",
-    "subtitle": "The National Conference that will bring together African Catholics from across America",
-    "highlightText": "Join us for an unprecedented gathering of faith, heritage, and unity",
+    "title": "Save the Date: NAACUS & ACCCRUS National Convention",
+    "subtitle": "Baltimore, Maryland | 2027",
+    "highlightText": "One Faith. One Family. One Mission.",
     "whenLabel": "When",
-    "whenValue": "July 2027",
+    "whenValue": "July 27-August 1, 2027",
     "whereLabel": "Where",
     "whereValue": "Baltimore, Maryland",
-    "targetLabel": "Expected",
-    "targetValue": "5,000+ Attendees",
+    "targetLabel": "Partners",
+    "targetValue": "NAACUS & ACCCRUS",
+    "scheduleLine1": "July 27-29, 2027 | Clergy and Religious Gathering by ACCCRUS",
+    "scheduleLine2": "July 29-August 1, 2027 | National Convention by NAACUS and ACCCRUS",
+    "contactLine": "More details: baltimore2027@naacus.org",
+    "flyerAlt": "NAACUS and ACCCRUS Convention 2027 save the date flyer",
+    "flyerFallback": "Save-the-date flyer image will appear here once uploaded.",
     "ctaButton": "Subscribe for Updates"
   },
   "heroButtons": {

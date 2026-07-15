@@ -67,15 +67,16 @@ The following items are **ready to implement the moment we receive the content.*
 
 | What we need | Who is responsible | Why it matters |
 |---|---|---|
-| **New photo for Dr. Obii Aguocha** | Dr. Obii Aguocha | The current placeholder photo is inconsistent with others |
-| **New photo for Mrs. Gertrude Udoutun** | Mrs. Gertrude Udoutun | Same reason |
+| **Optional new photo for Dr. Obii Aguocha** | Dr. Obii Aguocha | Placeholder is now consistent with others; photo can be added anytime |
+| **Optional new photo for Mrs. Gertrude Udoutun** | Mrs. Gertrude Udoutun | Placeholder is now consistent with others; photo can be added anytime |
 | **Reflections + photos from Young Adults** | Young Adults Ministry | Sally confirmed they submitted — please re-share with Celestin |
 
 ### Events Page — NAACUS 2027
 
 | What we need | Who is responsible | Why it matters |
 |---|---|---|
-| **2027 conference dates and location** | Sally Stovall / Leadership | The Save the Date flyer has the exact dates — please share the flyer or the details |
+| **Save the Date content** | Sally Stovall / Leadership | ✅ Applied: Baltimore, MD, July 27-August 1, 2027, with ACCCRUS partnership and contact email |
+| **Save the Date flyer image file** | Sally Stovall / Leadership | ✅ Uploaded and now displayed in the 2027 teaser |
 
 ---
 
@@ -98,10 +99,10 @@ These are lower-priority improvements that will be added over time. No action ne
 
 | Category | Total | Done ✅ | Waiting 🔒 | Planned ⬜ |
 |----------|-------|---------|-----------|-----------|
-| High Priority | 9 | 7 | 2 | 0 |
-| Medium Priority | 4 | 3 | 1 | 0 |
+| High Priority | 9 | 9 | 0 | 0 |
+| Medium Priority | 4 | 4 | 0 | 0 |
 | Low Priority | 5 | 1 | 1 | 3 |
-| **Total** | **18** | **11** | **4** | **3** |
+| **Total** | **18** | **14** | **1** | **3** |
 
 ---
 

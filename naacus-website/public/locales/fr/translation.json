@@ -117,15 +117,20 @@
     "text": "S'abonner"
   },
   "conference2027": {
-    "title": "Un Rassemblement Historique Arrive en 2027",
-    "subtitle": "La Conférence Nationale qui réunira les Catholiques Africains de toute l'Amérique",
-    "highlightText": "Rejoignez-nous pour un rassemblement sans précédent de foi, d'héritage et d'unité",
+    "title": "Réservez la Date : Convention Nationale NAACUS et ACCCRUS",
+    "subtitle": "Baltimore, Maryland | 2027",
+    "highlightText": "Une foi. Une famille. Une mission.",
     "whenLabel": "Quand",
-    "whenValue": "Juillet 2027",
+    "whenValue": "27 juillet-1 août 2027",
     "whereLabel": "Où",
     "whereValue": "Baltimore, Maryland",
-    "targetLabel": "Attendu",
-    "targetValue": "Plus de 5 000 Participants",
+    "targetLabel": "Partenaires",
+    "targetValue": "NAACUS et ACCCRUS",
+    "scheduleLine1": "27-29 juillet 2027 | Rencontre du clergé et des religieux par ACCCRUS",
+    "scheduleLine2": "29 juillet-1 août 2027 | Convention nationale par NAACUS et ACCCRUS",
+    "contactLine": "Plus de détails : baltimore2027@naacus.org",
+    "flyerAlt": "Affiche reservez la date de la convention NAACUS et ACCCRUS 2027",
+    "flyerFallback": "L'affiche reservez la date apparaîtra ici après le téléversement.",
     "ctaButton": "S'abonner aux Mises à Jour"
   },
   "heroButtons": {

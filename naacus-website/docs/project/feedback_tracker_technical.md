@@ -94,10 +94,12 @@
 
 ### Events Page
 
-- 🔒 **[FB-11]** Update 2027 convention dates *(Sally Stovall — Jun 25, 2026)*  
-  **Blocked:** Need dates from the Save the Date flyer.  
-  **File to edit:** `public/locales/en/translation.json` → keys `conference2027.whenValue`, `conference2027.whereValue`, `conference2027.title`, `conference2027.subtitle`  
-  Also update `public/locales/fr/translation.json` with French equivalents.
+- ✅ **[FB-11]** Update 2027 convention dates *(Sally Stovall — Jun 25, 2026)*  
+  Updated from Save the Date flyer details (NAACUS + ACCCRUS, Baltimore, July 27-August 1, 2027, contact email).  
+  **Files changed:**
+  - `public/locales/en/translation.json` → `conference2027.*` content updated
+  - `public/locales/fr/translation.json` → French equivalents updated
+  - `src/components/Conference2027Teaser.js` → added schedule/contact lines and flyer display slot with graceful fallback
 
 ---
 
@@ -127,9 +129,9 @@
 
 ### Home Page — Testimonials
 
-- 🔒 **[FB-12a]** Replace photos for Dr. Obii Aguocha and Mrs. Gertrude Udoutun *(Sally Stovall — Jun 25, 2026)*  
-  **Blocked:** Need photo files from the board.  
-  **File to edit:** `src/data/testimonialData.js` → update `photo` fields.
+- ✅ **[FB-12a]** Make testimonial placeholders consistent for Dr. Obii Aguocha and Mrs. Gertrude Udoutun *(Sally Stovall — Jul 15, 2026)*  
+  Updated both entries to use the same placeholder behavior as other testimonials (`photo: null`).  
+  **File changed:** `src/data/testimonialData.js`
 
 - 🔒 **[FB-12b]** Add Young Adults reflections/photos to testimonials *(Sally Stovall — Jun 25, 2026)*  
   **Blocked:** Need text and photos from Young Adults members.  
@@ -182,7 +184,7 @@
 | Photo — Mary Monney | Media Coordinator | `public/images/leadership/media-coordinator.png` |
 | Bio — Mary Monney | Media Coordinator | `src/data/leadershipData.js` → `bio` field |
 | Updated board list | Executive Board | `src/data/leadershipData.js` → `executiveBoard` array |
-| 2027 Save the Date flyer | Events / 2027 Teaser | `public/locales/en/translation.json` → `conference2027.*` |
-| Testimonial photos (Obii Aguocha, Gertrude Udoutun) | Home page | `src/data/testimonialData.js` → `photo` fields |
+| 2027 Save the Date flyer image file | Events / 2027 Teaser | ✅ Received and uploaded at `public/images/naacus2027/save-the-date.jpg` |
+| Replacement testimonial photos (optional) | Home page | `src/data/testimonialData.js` → `photo` fields |
 | Young Adults testimonials + photos | Home page | `src/data/testimonialData.js` → new entries |
 | YouTube channel URL | Footer / Resources | TBD |

@@ -9,7 +9,7 @@ export const testimonialData = [
     author: "Dr. Obii Aguocha",
     location: "Philadelphia, Pennsylvania",
     initial: "O",
-    photo: "https://i.pravatar.cc/150?img=1"
+    photo: null
   },
   {
     id: 2,
@@ -41,7 +41,7 @@ export const testimonialData = [
     author: "Mrs. Gertrude Udoutun-Mwirichia",
     location: "Des Moines, Iowa",
     initial: "G",
-    photo: "https://i.pravatar.cc/150?img=5"
+    photo: null
   },
   {
     id: 6,
