@@ -12,6 +12,7 @@ import {
 } from '@fluentui/react-components';
 import { useAnalytics } from '../hooks/useAnalytics';
 import { themeTokens } from '../config/theme';
+import { leadershipData } from '../data/leadershipData';
 
 const useStyles = makeStyles({
   contact: {
@@ -96,6 +97,13 @@ const useStyles = makeStyles({
       fontSize: themeTokens.typography.fontSize['0.9rem'],
     },
   },
+  contactLink: {
+    color: tokens.colorBrandForeground1,
+    textDecorationLine: 'none',
+    ':hover': {
+      textDecorationLine: 'underline',
+    },
+  },
   formContainer: {
     backgroundColor: tokens.colorNeutralBackground1,
   }
@@ -105,6 +113,9 @@ function Contact() {
   const { t } = useTranslation();
   const styles = useStyles();
   const { trackForm } = useAnalytics();
+  const spiritualDirector = leadershipData.spiritualAdvisers.find((person) =>
+    person.title?.toLowerCase().includes('spiritual') && person.email && person.phone
+  );
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -166,6 +177,25 @@ function Contact() {
                 <Text className={styles.contactItemText}>{t('contact.communityValue')}</Text>
               </div>
             </div>
+            {spiritualDirector && (
+              <div className={styles.contactItem}>
+                <div className={styles.contactIcon}>⛪</div>
+                <div>
+                  <Text className={styles.contactItemTitle}>{t('contact.spiritualDirectorLabel')}</Text>
+                  <Text className={styles.contactItemText}>{spiritualDirector.name}</Text>
+                  <Text className={styles.contactItemText}>
+                    <a href={`mailto:${spiritualDirector.email}`} className={styles.contactLink}>
+                      {spiritualDirector.email}
+                    </a>
+                  </Text>
+                  <Text className={styles.contactItemText}>
+                    <a href={`tel:${spiritualDirector.phone}`} className={styles.contactLink}>
+                      {spiritualDirector.phone}
+                    </a>
+                  </Text>
+                </div>
+              </div>
+            )}
           </div>
         </div>
         <div className={styles.formContainer}>

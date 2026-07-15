@@ -55,7 +55,10 @@
     "motto": {
       "title": "Notre Devise",
       "description": "\"Ensemble avec le Christ\" — Nous construisons des réseaux accueillants de fraternité, d'ateliers et d'initiatives communautaires qui élèvent les gens, célèbrent la culture et font progresser le bien commun."
-    }
+    },
+    "ctaTitle": "Prêt à Rejoindre la Communauté NAACUS ?",
+    "ctaText": "Devenez membre et connectez-vous avec les catholiques africains à travers les États-Unis.",
+    "ctaButton": "Devenir Membre"
   },
   "backToTop": "Retour en Haut",
   "memberBenefits": {
@@ -349,6 +352,7 @@
     "joinUsValue": "Devenez membre ou bénévole",
     "communityLabel": "Communauté",
     "communityValue": "Connectez-vous avec les catholiques africains à travers le pays",
+    "spiritualDirectorLabel": "Directeur Spirituel",
     "nameLabel": "Nom",
     "namePlaceholder": "Votre nom complet",
     "emailFieldLabel": "Email",
@@ -421,6 +425,7 @@
   "ministries": {
     "title": "Fraternité et Ministères",
     "subtitle": "NAACUS appelle ses membres à s'impliquer activement dans diverses activités, en maximisant leurs dons en tant que communauté de foi et de culte aux États-Unis. Par la fraternité, les ateliers et les programmes, nous accueillons les membres pour aider à former une communauté ecclésiale dynamique et active.",
+    "getInvolved": "S'impliquer →",
     "ctaTitle": "Impliquez-vous",
     "ctaText": "Rejoignez-nous dans la construction d'une meilleure communauté ecclésiale. Vos talents et votre expertise sont nécessaires dans divers ministères et comités. Ensemble, nous pouvons avoir un impact significatif en faisant progresser la mission de NAACUS et en servant les catholiques africains aux États-Unis."
   },

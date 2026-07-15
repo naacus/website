@@ -149,8 +149,9 @@
 ### Home Page — CTA & Engagement (Young Adults feedback — Jul 15, 2026)
 
 - ⬜ **[FB-14]** Simplify homepage to one primary CTA *(Young Adults member — Jul 15, 2026)*  
-  Current hero has multiple competing buttons. Consolidate to a single prominent action (Join, Donate, or Get Involved) and demote secondary links.  
-  **File to edit:** `src/components/Hero.js` — reduce/restructure CTA buttons.
+- ✅ **[FB-14]** Simplify homepage to one primary CTA *(Jul 15, 2026)*  
+  Secondary buttons converted to inline ghost text links; "Join Community" is now the single dominant CTA.  
+  **File changed:** `src/components/Hero.js` — replaced `secondaryActions`/`secondaryButton` with `secondaryLinks`/`ghostLink`/`linkDivider` styles.
 
 - 🔒 **[FB-15]** Add "Our Impact" / "By the Numbers" block to homepage *(Young Adults member — Jul 15, 2026)*  
   **Blocked:** Need real statistics from leadership (e.g., number of members, parishes, states, years active).  
@@ -173,16 +174,18 @@
 ### Programs & Activities / Ministries Page
 
 - ⬜ **[FB-18]** Add "Get Involved" CTA to each ministry card *(Young Adults member — Jul 15, 2026)*  
-  Each ministry card should have a clear action link (e.g., "Join this Ministry" → contact/membership form).  
-  **File to edit:** `src/components/Ministries.js` and/or `src/data/ministriesData.js` (add `ctaLabel`, `ctaLink` fields per ministry).
+- ✅ **[FB-18]** Add "Get Involved" CTA to each ministry card *(Jul 15, 2026)*  
+  A pill-shaped "Get Involved →" button added at the bottom of every ministry card, linking to `/volunteer`.  
+  **Files changed:** `src/components/Ministries.js` — added `ministryCardCTA`/`ministryGetInvolvedBtn` styles + JSX button; `public/locales/en/translation.json` + `public/locales/fr/translation.json` → `ministries.getInvolved` key added.
 
 ---
 
 ### Events & Gallery Page
 
 - ⬜ **[FB-19]** Feature upcoming events more prominently *(Young Adults member — Jul 15, 2026)*  
-  Upcoming events should appear above past/archive content with visual emphasis.  
-  **File to edit:** `src/pages/EventsPage.js`, `src/components/events/Events.js`.
+- ✅ **[FB-19]** Feature upcoming events more prominently *(Jul 15, 2026)*  
+  Added a count badge on the Upcoming Events tab showing the number of upcoming events; "Upcoming" tab is already the default.  
+  **File changed:** `src/components/events/Events.js` — added `tabBadge` style + badge span inside the Upcoming tab button.
 
 - 🔒 **[FB-20]** Organize photo galleries by event with short captions *(Young Adults member — Jul 15, 2026)*  
   **Blocked:** Need per-event photo sets and caption text from the media team / photographer.  
@@ -193,8 +196,10 @@
 ### Site-Wide
 
 - ⬜ **[FB-21]** Ensure every page ends with a clear next-step CTA; reduce dense text blocks *(Young Adults member — Jul 15, 2026)*  
-  Audit each page — add a bottom CTA section (Join / Donate / Attend) where missing.  
-  **Files to audit:** All under `src/components/` and `src/pages/`; start with About, Programs, Resources, Leadership.
+- ✅ **[FB-21a]** Add end-of-page CTA to About page *(Jul 15, 2026)*  
+  "Ready to Join?" CTA section added at the bottom of About, linking to `/membership`.  
+  **Files changed:** `src/components/About.js` — added `ctaSection`/`ctaTitle`/`ctaText`/`ctaButton` styles + JSX section; `public/locales/en/translation.json` + `public/locales/fr/translation.json` → `about.ctaTitle`, `about.ctaText`, `about.ctaButton` keys added.  
+  **Still needed:** Audit remaining pages (Programs, Resources, Leadership) — tracked as ongoing.
 
 ---
 
@@ -212,8 +217,11 @@
   **Blocked:** Need YouTube channel URL.  
   **File to edit:** `src/components/Footer.js` or Resources section.
 
-- ⬜ **[FB-02d]** Surface Spiritual Director contact info *(Sr. Maddy Takyala — Dec 26, 2025)*  
-  Rev. Fr. Benoit Mukamba already in `leadershipData.js` with phone/email. Decide where to surface (Resources page? Contact page?).
+- ✅ **[FB-02d]** Surface Spiritual Director contact info *(Sr. Maddy Takyala — Dec 26, 2025)*  
+  Added a dedicated Spiritual Director contact row in the Contact section using Rev. Fr. Benoit Mukamba's existing data (name, email, phone).  
+  **Files changed:**
+  - `src/components/Contact.js` → imported `leadershipData`, rendered Spiritual Director contact card with mailto/tel links
+  - `public/locales/en/translation.json` + `public/locales/fr/translation.json` → `contact.spiritualDirectorLabel` key added
 
 ---
 

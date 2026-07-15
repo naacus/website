@@ -58,7 +58,10 @@
     "motto": {
       "title": "Our Motto",
       "description": "\"Together with Christ\" — We build welcoming networks of fellowship, workshops, and community initiatives that uplift people, celebrate culture, and advance the common good."
-    }
+    },
+    "ctaTitle": "Ready to Join the NAACUS Community?",
+    "ctaText": "Become a member and connect with African Catholics across the United States.",
+    "ctaButton": "Become a Member"
   },
   "backToTop": "Back to Top",
   "memberBenefits": {
@@ -355,6 +358,7 @@
     "joinUsValue": "Become a member or volunteer",
     "communityLabel": "Community",
     "communityValue": "Connect with African Catholics nationwide",
+    "spiritualDirectorLabel": "Spiritual Director",
     "nameLabel": "Name",
     "namePlaceholder": "Your full name",
     "emailFieldLabel": "Email",
@@ -474,6 +478,7 @@
   "ministries": {
     "title": "Fellowship & Ministries",
     "subtitle": "NAACUS calls its members to get actively involved in various activities, maximizing their gifts as a faith and worship community in the United States. Through fellowship, workshops, and programs, we welcome members to help form a vibrant and active church community.",
+    "getInvolved": "Get Involved →",
     "ctaTitle": "Get Involved",
     "ctaText": "Join us in building a better church community. Your talents and expertise are needed in various ministries and committees. Together, we can make a meaningful impact in advancing the mission of NAACUS and serving African Catholics in the United States."
   },
