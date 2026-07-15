@@ -50,7 +50,7 @@ const useStyles = makeStyles({
   teaserContent: {
     position: 'relative',
     zIndex: 2,
-    maxWidth: '1000px',
+    maxWidth: '1160px',
     margin: '0 auto',
     '@media (max-width: 768px)': {
       paddingLeft: '12px',
@@ -84,6 +84,73 @@ const useStyles = makeStyles({
       fontSize: themeTokens.typography.fontSize['1.2rem'],
     },
   },
+  flyerLayout: {
+    display: 'grid',
+    gridTemplateColumns: '1.4fr 0.9fr',
+    alignItems: 'stretch',
+    ...shorthands.gap(themeTokens.spacing['2xl']),
+    '@media (max-width: 960px)': {
+      gridTemplateColumns: '1fr',
+    },
+  },
+  infoColumn: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  flyerColumn: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    minHeight: '100%',
+  },
+  flyerImage: {
+    width: '100%',
+    maxWidth: '390px',
+    height: 'auto',
+    ...shorthands.borderRadius('10px'),
+    ...shorthands.border('2px', 'solid', 'rgba(255, 255, 255, 0.5)'),
+    boxShadow: '0 10px 28px rgba(0, 0, 0, 0.28)',
+    '@media (max-width: 960px)': {
+      maxWidth: '440px',
+    },
+  },
+  flyerFallback: {
+    fontSize: themeTokens.typography.fontSize['0.95rem'],
+    color: 'rgba(255, 255, 255, 0.85)',
+    fontStyle: 'italic',
+    display: 'block',
+  },
+  scheduleBlock: {
+    marginTop: themeTokens.spacing.xl,
+    display: 'flex',
+    flexDirection: 'column',
+    ...shorthands.gap(themeTokens.spacing.xs),
+    textAlign: 'left',
+    '@media (max-width: 768px)': {
+      textAlign: 'center',
+    },
+  },
+  scheduleLine: {
+    fontSize: themeTokens.typography.fontSize['1rem'],
+    color: tokens.colorNeutralForegroundInverted,
+    display: 'block',
+    fontWeight: themeTokens.typography.fontWeight.semibold,
+    '@media (max-width: 768px)': {
+      fontSize: themeTokens.typography.fontSize['0.9rem'],
+    },
+  },
+  contactLine: {
+    marginTop: themeTokens.spacing.lg,
+    fontSize: themeTokens.typography.fontSize['1rem'],
+    color: colors.accent.beige,
+    fontWeight: themeTokens.typography.fontWeight.bold,
+    display: 'block',
+    textTransform: 'uppercase',
+    letterSpacing: '0.4px',
+    '@media (max-width: 768px)': {
+      fontSize: themeTokens.typography.fontSize['0.9rem'],
+    },
+  },
   highlightBox: {
     backgroundColor: 'rgba(255, 255, 255, 0.15)',
     ...shorthands.padding(themeTokens.spacing['2xl'], themeTokens.spacing['3xl']),
@@ -104,10 +171,11 @@ const useStyles = makeStyles({
     color: tokens.colorNeutralForegroundInverted,
     marginBottom: themeTokens.spacing.xl,
     display: 'block',
-    textAlign: 'center',
+    textAlign: 'left',
     '@media (max-width: 768px)': {
       fontSize: themeTokens.typography.fontSize['1.05rem'],
       marginBottom: themeTokens.spacing.lg,
+      textAlign: 'center',
     },
   },
   detailsGrid: {
@@ -123,8 +191,13 @@ const useStyles = makeStyles({
   detailItem: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     ...shorthands.gap(themeTokens.spacing.sm),
+    textAlign: 'left',
+    '@media (max-width: 768px)': {
+      alignItems: 'center',
+      textAlign: 'center',
+    },
   },
   detailIcon: {
     fontSize: themeTokens.typography.fontSize['2rem'],
@@ -172,6 +245,8 @@ function Conference2027Teaser() {
   const { t } = useTranslation();
   const styles = useStyles();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [hasFlyerError, setHasFlyerError] = useState(false);
+  const flyerSrc = '/images/naacus2027/save-the-date.jpg';
 
   const heroImages = [
     '/images/hero/82b9252.jpg',
@@ -216,24 +291,46 @@ function Conference2027Teaser() {
           {t('conference2027.subtitle')}
         </Text>
         <div className={styles.highlightBox}>
-          <Text className={styles.highlightText}>
-            {t('conference2027.highlightText')}
-          </Text>
-          <div className={styles.detailsGrid}>
-            <div className={styles.detailItem}>
-              <CalendarLtr24Regular className={styles.detailIcon} />
-              <span className={styles.detailLabel}>{t('conference2027.whenLabel')}</span>
-              <span className={styles.detailValue}>{t('conference2027.whenValue')}</span>
+          <div className={styles.flyerLayout}>
+            <div className={styles.infoColumn}>
+              <Text className={styles.highlightText}>
+                {t('conference2027.highlightText')}
+              </Text>
+              <div className={styles.detailsGrid}>
+                <div className={styles.detailItem}>
+                  <CalendarLtr24Regular className={styles.detailIcon} />
+                  <span className={styles.detailLabel}>{t('conference2027.whenLabel')}</span>
+                  <span className={styles.detailValue}>{t('conference2027.whenValue')}</span>
+                </div>
+                <div className={styles.detailItem}>
+                  <Location24Regular className={styles.detailIcon} />
+                  <span className={styles.detailLabel}>{t('conference2027.whereLabel')}</span>
+                  <span className={styles.detailValue}>{t('conference2027.whereValue')}</span>
+                </div>
+                <div className={styles.detailItem}>
+                  <People24Regular className={styles.detailIcon} />
+                  <span className={styles.detailLabel}>{t('conference2027.targetLabel')}</span>
+                  <span className={styles.detailValue}>{t('conference2027.targetValue')}</span>
+                </div>
+              </div>
+              <div className={styles.scheduleBlock}>
+                <Text className={styles.scheduleLine}>{t('conference2027.scheduleLine1')}</Text>
+                <Text className={styles.scheduleLine}>{t('conference2027.scheduleLine2')}</Text>
+                <Text className={styles.contactLine}>{t('conference2027.contactLine')}</Text>
+              </div>
             </div>
-            <div className={styles.detailItem}>
-              <Location24Regular className={styles.detailIcon} />
-              <span className={styles.detailLabel}>{t('conference2027.whereLabel')}</span>
-              <span className={styles.detailValue}>{t('conference2027.whereValue')}</span>
-            </div>
-            <div className={styles.detailItem}>
-              <People24Regular className={styles.detailIcon} />
-              <span className={styles.detailLabel}>{t('conference2027.targetLabel')}</span>
-              <span className={styles.detailValue}>{t('conference2027.targetValue')}</span>
+            <div className={styles.flyerColumn}>
+              {!hasFlyerError ? (
+                <img
+                  src={flyerSrc}
+                  alt={t('conference2027.flyerAlt')}
+                  className={styles.flyerImage}
+                  loading="lazy"
+                  onError={() => setHasFlyerError(true)}
+                />
+              ) : (
+                <Text className={styles.flyerFallback}>{t('conference2027.flyerFallback')}</Text>
+              )}
             </div>
           </div>
         </div>
