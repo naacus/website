@@ -59,7 +59,7 @@ Auto-deploys to **Azure Static Web Apps** on push to `develop` branch.
 ## More Documentation
 
 - **Full project structure:** [WEBSITE_STRUCTURE.md](WEBSITE_STRUCTURE.md)
-- **Analytics:** [GA4_SETUP.md](GA4_SETUP.md)
+- **Analytics:** [GA4_ANALYTICS.md](GA4_ANALYTICS.md)
 - **Payments:** [PAYMENTS.md](PAYMENTS.md)
 - **Deployment:** [DEPLOYMENT.md](DEPLOYMENT.md)
 - **Backend API:** [BACKEND_API.md](BACKEND_API.md)

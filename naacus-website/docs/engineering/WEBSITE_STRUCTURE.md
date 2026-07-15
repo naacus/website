@@ -26,12 +26,10 @@ The NAACUS website is a **React 19** single-page application (SPA) built with:
 
 ```
 /
-├── DOCS/                          # Project documentation
-│   ├── DEPLOYMENT.md
-│   ├── GA4_SETUP.md
-│   ├── PAYMENTS.md
-│   ├── QUICKSTART.md
-│   └── WEBSITE_STRUCTURE.md       # ← This file
+├── docs/                          # Project documentation (see docs/README.md)
+│   ├── engineering/               # Developer & IT guides
+│   ├── project/                   # Project management & trackers
+│   └── stakeholders/              # Board & community-facing docs
 ├── naacus-website/                # Main React application
 │   ├── public/                    # Static assets served as-is
 │   ├── server/                    # Local API server (Node.js)
@@ -370,7 +368,7 @@ A **Java/Maven** backend project (under development). The compiled output lives 
 
 - **UI Library:** Fluent UI v9 (`@fluentui/react-components`)
 - **Custom Theme:** Defined in `src/config/theme.js`
-  - Colors (primary navy palette, accents, neutrals, semantic)
+  - Colors: royal/cobalt blue (`#1428A0`), leafy green (`#4a9900` / `#76D000`), gold (`#C8A000`)
   - Typography scales
   - Spacing system
   - Border radii, shadows, gradients
@@ -416,10 +414,8 @@ A **Java/Maven** backend project (under development). The compiled output lives 
 
 | Document | Description |
 |---|---|
-| `DOCS/QUICKSTART.md` | Getting started guide |
-| `DOCS/DEPLOYMENT.md` | Deployment instructions |
-| `DOCS/PAYMENTS.md` | Payment integration details |
-| `DOCS/GA4_SETUP.md` | Google Analytics 4 setup |
-| `API_IMPLEMENTATION_GUIDE.md` | API implementation guide |
-| `BACKEND_API_CONTRACT.md` | Backend API contract / endpoints |
-| `STRIPE_INTEGRATION_GUIDE.md` | Stripe integration walkthrough |
+| [QUICKSTART.md](QUICKSTART.md) | Getting started guide |
+| [DEPLOYMENT.md](DEPLOYMENT.md) | Deployment instructions |
+| [PAYMENTS.md](PAYMENTS.md) | Payment integration details |
+| [GA4_ANALYTICS.md](GA4_ANALYTICS.md) | Google Analytics 4 setup |
+| [BACKEND_API.md](BACKEND_API.md) | Backend API guide |

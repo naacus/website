@@ -238,7 +238,7 @@ The following types of content can be updated by the team:
 | Item | Details |
 |---|---|
 | **YouTube Channel** | [youtube.com/@naacus](https://www.youtube.com/@naacus) |
-| **Technical Documentation** | See the `DOCS/` folder for developer guides |
+| **Technical Documentation** | See [`docs/`](../README.md) for developer guides |
 | **Privacy Policy** | Available at `/privacy` on the website |
 
 ---
