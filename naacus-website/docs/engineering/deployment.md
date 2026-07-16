@@ -41,6 +41,24 @@
 
 Auto-deploys on push to `develop` branch.
 
+### Non-Developer Content Editing (Decap CMS)
+
+This project includes a lightweight CMS at `/admin` so authorized editors can
+update website images and selected text without touching code.
+
+Current editable content:
+
+- Hero slideshow images (`public/content/hero-images.json`)
+- Hero text (EN/FR)
+- FAQ page headline/search text (EN/FR)
+
+How it works:
+
+1. Editor opens `/admin` on the deployed site.
+2. Editor authenticates with GitHub.
+3. Changes are saved through editorial workflow (PR-based).
+4. Maintainer reviews and merges PR, then deploy runs from `develop`.
+
 ### Create Azure Static Web App
 
 1. Sign in to [Azure Portal](https://portal.azure.com)
