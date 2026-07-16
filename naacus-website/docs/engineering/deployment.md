@@ -73,10 +73,14 @@ Auto-deploys on push to `develop` branch.
 
 The DevSecOps baseline workflow uploads SARIF for Trivy and Scorecard. To keep
 Code Scanning configuration identity stable between feature branches and
-develop, SARIF uploads use explicit categories:
+develop:
 
-- `trivy-fs`
-- `scorecard`
+- Trivy uses default workflow/job configuration identity (no custom category)
+- Scorecard uses explicit category `scorecard`
+
+Scorecard SARIF upload runs on non-PR events (`push`, `schedule`,
+`workflow_dispatch`) to avoid PR-specific branch protection signal mismatch in
+Code Scanning comparisons.
 
 If you see a warning like "configuration not found" in a PR, ensure the branch
 contains the latest `.github/workflows/devsecops-baseline.yml` and rerun checks.
