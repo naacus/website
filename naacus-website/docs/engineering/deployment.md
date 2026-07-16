@@ -59,6 +59,11 @@ How it works:
 3. Changes are saved through editorial workflow (PR-based).
 4. Maintainer reviews and merges PR, then deploy runs from `develop`.
 
+Azure Static Web Apps routing note:
+
+- Ensure `staticwebapp.config.json` excludes `/admin/*` (and `/*.yml`) from SPA
+   fallback rewrites so Decap can load `/admin/config.yml` as YAML, not HTML.
+
 ### Create Azure Static Web App
 
 1. Sign in to [Azure Portal](https://portal.azure.com)

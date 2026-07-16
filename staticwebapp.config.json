@@ -2,12 +2,14 @@
   "navigationFallback": {
     "rewrite": "/index.html",
     "exclude": [
+      "/admin/*",
       "/static/*",
       "/locales/*",
       "/naacus2025/*",
       "/*.js",
       "/*.css",
       "/*.json",
+      "/*.yml",
       "/favicon.ico",
       "/*.png",
       "/*.jpg",
