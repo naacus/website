@@ -36,8 +36,8 @@ const StripeDonateButton = () => {
     function createBuyButton() {
       if (containerRef.current && !containerRef.current.querySelector('stripe-buy-button')) {
         const buyButton = document.createElement('stripe-buy-button');
-        buyButton.setAttribute('buy-button-id', 'buy_btn_1SxJKHL5FQlMr7HP0P0MErFH');
-        buyButton.setAttribute('publishable-key', 'pk_live_51Sk9xsL5FQlMr7HPulQzQr9HJCrdMoJFs7HL8l0j3UHsLfBmMs1wcgQRzESLTgkwg6pPAMfa5tVbsEz1CzVizYGl00xjdhrqjH');
+        buyButton.setAttribute('buy-button-id', process.env.REACT_APP_STRIPE_BUY_BUTTON_ID || '');
+        buyButton.setAttribute('publishable-key', process.env.REACT_APP_STRIPE_PUBLIC_KEY || '');
         containerRef.current.appendChild(buyButton);
       }
     }
