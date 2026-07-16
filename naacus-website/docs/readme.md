@@ -17,6 +17,7 @@ Last updated: July 15, 2026
 | [deployment.md](engineering/deployment.md) | Build, deploy, and hosting configuration |
 | [ga4_analytics.md](engineering/ga4_analytics.md) | Google Analytics 4 setup and event tracking |
 | [payments.md](engineering/payments.md) | Stripe payment integration guide |
+| [accessibility-audit.md](engineering/accessibility-audit.md) | WCAG 2.1 a11y audit and remediation roadmap |
 
 ---
 
@@ -46,3 +47,23 @@ Last updated: July 15, 2026
 - 🌐 Test site: https://test.naacus.org
 - 📦 Repository: https://github.com/naacus/website
 - 📧 IT contact: celestin.mbuyamba@naacus.org
+
+---
+
+## 📝 Markdown File Conventions
+
+All documentation files follow these standards:
+
+| Aspect | Standard | Example |
+|--------|----------|---------|
+| **Location** | `docs/` directory with category subdirectories | `docs/engineering/`, `docs/project/`, `docs/stakeholders/` |
+| **Naming** | `kebab-case.md` (lowercase with hyphens) | `accessibility-audit.md`, `features-and-user-stories.md` |
+| **Index files** | Root of each category is `readme.md` | `docs/readme.md`, `docs/engineering/` |
+| **Cross-references** | Use relative paths for portability | `[link text](../engineering/deployment.md)` |
+| **Frontmatter** | None required (keep files Git-friendly) | Plain markdown only |
+
+**When adding a new doc:**
+1. Choose the correct category folder (`engineering/`, `project/`, or `stakeholders/`)
+2. Name it `kebab-case-descriptive-name.md`
+3. Add entry to the category's index in [readme.md](#-naacus-website--documentation-index)
+4. Commit with message: `docs: add [file name] to [category]`
