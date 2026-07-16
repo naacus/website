@@ -51,7 +51,6 @@ explicitly justified.
 For pull requests targeting develop, the required baseline checks are:
 
 - Quality Gate Job
-- Build and Deploy Job
 - Analyze (JavaScript/TypeScript)
 - Trivy Filesystem Scan
 - OSSF Scorecard
