@@ -1,0 +1,8 @@
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Allow known example or non-production tokens"
+paths = [
+  '''\.env\.example$'''
+]

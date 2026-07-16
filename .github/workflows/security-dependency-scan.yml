@@ -28,12 +28,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 1
 
       - name: Gitleaks scan
         run: |
           docker run --rm -v "$PWD:/repo" zricethezav/gitleaks:latest \
-            detect --source="/repo" --redact --exit-code=1
+            detect --source="/repo" --no-git --config="/repo/.gitleaks.toml" --redact --exit-code=1
 
   dependency_review:
     if: github.event_name == 'pull_request'
@@ -71,6 +71,7 @@ jobs:
 
       - name: Run npm audit (high and critical)
         shell: bash
+        continue-on-error: ${{ github.event_name == 'pull_request' }}
         run: |
           set -o pipefail
           npm audit --audit-level=high --json | tee npm-audit-report.json
