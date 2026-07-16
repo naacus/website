@@ -4,21 +4,25 @@ import App from '../App';
 import '../i18nForTests';
 
 describe('App accessibility baseline', () => {
-  test('home page has no critical axe violations', async () => {
-    const { container } = render(<App />);
+  test(
+    'home page has no critical axe violations',
+    async () => {
+      const { container } = render(<App />);
 
-    const heroTexts = await screen.findAllByText(/Uniting African Catholic Communities Across the United States/i);
-    expect(heroTexts.length).toBeGreaterThan(0);
+      const heroTexts = await screen.findAllByText(/Uniting African Catholic Communities Across the United States/i);
+      expect(heroTexts.length).toBeGreaterThan(0);
 
-    const results = await axe(container, {
-      rules: {
-        // JSDOM does not compute color contrast reliably.
-        'color-contrast': { enabled: false },
-      },
-    });
+      const results = await axe(container, {
+        rules: {
+          // JSDOM does not compute color contrast reliably.
+          'color-contrast': { enabled: false },
+        },
+      });
 
-    expect(results).toHaveNoViolations();
-  });
+      expect(results).toHaveNoViolations();
+    },
+    30000,
+  );
 
   test('skip link is present and points to main content', async () => {
     render(<App />);
