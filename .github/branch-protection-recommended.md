@@ -10,6 +10,8 @@ Require these checks to pass before merge:
 - `Secret Scan (Gitleaks)`
 - `Dependency Review`
 - `NPM Audit Gate`
+- `Trivy Filesystem Scan`
+- `OSSF Scorecard`
 
 ## Pull Request Rules
 - Require a pull request before merging.

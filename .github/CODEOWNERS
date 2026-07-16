@@ -1,0 +1,7 @@
+# Default ownership for all files in this repository.
+# Replace with your preferred team/user mappings as needed.
+* @cmbuyamba
+
+# Security and CI ownership
+.github/ @cmbuyamba
+.github/workflows/ @cmbuyamba
