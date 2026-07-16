@@ -1,0 +1,15 @@
+# Known vulnerabilities in react-scripts 5.0.1 (Create React App) build tooling.
+# These are build-time dev tools only and cannot be fixed without migrating away
+# from CRA. They do not affect the production runtime bundle.
+
+# nth-check: Inefficient Regular Expression Complexity
+GHSA-rp65-9cf3-cjxr
+
+# serialize-javascript: RCE via RegExp.flags and Date.prototype.toISOString()
+GHSA-5c6j-r48x-rmvq
+
+# serialize-javascript: CPU Exhaustion DoS via crafted array-like objects
+GHSA-qj8w-gfj5-8c6v
+
+# svgo: DoS through entity expansion in DOCTYPE (Billion Laughs)
+GHSA-xpqw-6gx7-v673
