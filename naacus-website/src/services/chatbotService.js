@@ -16,6 +16,12 @@ import { validateConfig } from '../config/copilotStudioConfig';
 let copilotStudioAvailable = false;
 let copilotStudioInitialized = false;
 
+function warnIfNotTest(...args) {
+  if (process.env.NODE_ENV !== 'test') {
+    console.warn(...args);
+  }
+}
+
 /**
  * Initialize Copilot Studio integration
  * Call this when the app starts or when a user opens the chat
@@ -34,13 +40,13 @@ export async function initializeCopilotStudio() {
       console.log('✅ Microsoft Copilot Studio connected successfully');
       return true;
     } catch (error) {
-      console.warn('⚠️ Copilot Studio unavailable, using local FAQ fallback:', error.message);
+      warnIfNotTest('⚠️ Copilot Studio unavailable, using local FAQ fallback:', error.message);
       copilotStudioAvailable = false;
       copilotStudioInitialized = true;
       return false;
     }
   } else {
-    console.warn('⚠️ Copilot Studio not configured, using local FAQ fallback');
+    warnIfNotTest('⚠️ Copilot Studio not configured, using local FAQ fallback');
     copilotStudioAvailable = false;
     copilotStudioInitialized = true;
     return false;

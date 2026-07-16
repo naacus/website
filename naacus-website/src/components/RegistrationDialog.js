@@ -91,6 +91,13 @@ export default function RegistrationDialog({
 }) {
   const { t } = useTranslation();
   const styles = useStyles();
+  const fieldIds = {
+    firstName: 'registration-first-name',
+    lastName: 'registration-last-name',
+    email: 'registration-email',
+    phone: 'registration-phone',
+    message: 'registration-message',
+  };
 
   if (!open || !selectedEvent) return null;
 
@@ -113,6 +120,7 @@ export default function RegistrationDialog({
               appearance="subtle"
               icon={<Dismiss24Regular />}
               onClick={onClose}
+              aria-label={t('events.closeRegistrationDialog', 'Close registration dialog')}
               style={{ color: '#999999' }}
             />
           </div>
@@ -153,8 +161,9 @@ export default function RegistrationDialog({
               )}
 
               <div className={styles.formField}>
-                <label className={styles.formLabel}>{t('events.firstName', 'First Name')} *</label>
+                <label className={styles.formLabel} htmlFor={fieldIds.firstName}>{t('events.firstName', 'First Name')} *</label>
                 <Input
+                  id={fieldIds.firstName}
                   value={registrationForm.firstName}
                   onChange={(e) => onFormChange('firstName', e.target.value)}
                   placeholder="Kwame"
@@ -163,8 +172,9 @@ export default function RegistrationDialog({
               </div>
 
               <div className={styles.formField}>
-                <label className={styles.formLabel}>{t('events.lastName', 'Last Name')} *</label>
+                <label className={styles.formLabel} htmlFor={fieldIds.lastName}>{t('events.lastName', 'Last Name')} *</label>
                 <Input
+                  id={fieldIds.lastName}
                   value={registrationForm.lastName}
                   onChange={(e) => onFormChange('lastName', e.target.value)}
                   placeholder="Mensah"
@@ -173,8 +183,9 @@ export default function RegistrationDialog({
               </div>
 
               <div className={styles.formField}>
-                <label className={styles.formLabel}>{t('events.email', 'Email')} *</label>
+                <label className={styles.formLabel} htmlFor={fieldIds.email}>{t('events.email', 'Email')} *</label>
                 <Input
+                  id={fieldIds.email}
                   type="email"
                   value={registrationForm.email}
                   onChange={(e) => onFormChange('email', e.target.value)}
@@ -184,8 +195,9 @@ export default function RegistrationDialog({
               </div>
 
               <div className={styles.formField}>
-                <label className={styles.formLabel}>{t('events.phone', 'Phone')}</label>
+                <label className={styles.formLabel} htmlFor={fieldIds.phone}>{t('events.phone', 'Phone')}</label>
                 <Input
+                  id={fieldIds.phone}
                   type="tel"
                   value={registrationForm.phone}
                   onChange={(e) => onFormChange('phone', e.target.value)}
@@ -194,8 +206,9 @@ export default function RegistrationDialog({
               </div>
 
               <div className={styles.formField}>
-                <label className={styles.formLabel}>{t('events.message', 'Message')}</label>
+                <label className={styles.formLabel} htmlFor={fieldIds.message}>{t('events.message', 'Message')}</label>
                 <Textarea
+                  id={fieldIds.message}
                   value={registrationForm.message}
                   onChange={(e) => onFormChange('message', e.target.value)}
                   placeholder="Any additional information..."

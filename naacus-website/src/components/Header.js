@@ -69,6 +69,8 @@ const useStyles = makeStyles({
     alignItems: 'center',
     cursor: 'pointer',
     ...shorthands.padding('0', '12px', '0', '0'),
+    backgroundColor: 'transparent',
+    border: 'none',
   },
   logoImage: {
     height: '100px',
@@ -308,13 +310,18 @@ function Header() {
       <div className={styles.headerContainer}>
         {/* Left Section: Logo + Navigation */}
         <div className={styles.leftSection}>
-          <div className={styles.logo} onClick={() => handleNavigationHelper(null, 'home', 'logo_home')}>
+          <button
+            type="button"
+            className={styles.logo}
+            onClick={() => handleNavigationHelper(null, 'home', 'logo_home')}
+            aria-label={t('header.goHome', 'Go to home page')}
+          >
             <img
               src="/images/naacus-logo.png"
               alt={t('header.title')}
               className={styles.logoImage}
             />
-          </div>
+          </button>
           
           <nav className={styles.nav}>
             <button 
@@ -474,6 +481,7 @@ function Header() {
                 appearance="subtle"
                 icon={<Navigation24Regular />}
                 className={styles.mobileMenuButton}
+                aria-label={t('header.openNavigationMenu', 'Open navigation menu')}
               />
             </MenuTrigger>
             <MenuPopover>

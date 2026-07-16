@@ -3,7 +3,7 @@
  * Displays search results in a modal with real-time filtering
  */
 
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
@@ -114,6 +114,8 @@ const useStyles = makeStyles({
     cursor: 'pointer',
     transition: 'all 0.2s ease-out',
     backgroundColor: '#ffffff',
+    width: '100%',
+    textAlign: 'left',
 
     '&:hover': {
       backgroundColor: '#f0f7ff',
@@ -194,6 +196,13 @@ function SearchModal({ open, onOpenChange }) {
   const { trackCTA } = useAnalytics();
   const [searchQuery, setSearchQuery] = useState('');
   const [results, setResults] = useState([]);
+  const searchInputRef = useRef(null);
+
+  useEffect(() => {
+    if (open && searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
+  }, [open]);
 
   const handleSearch = useCallback((query) => {
     setSearchQuery(query);
@@ -224,6 +233,7 @@ function SearchModal({ open, onOpenChange }) {
             appearance="subtle"
             icon={<Dismiss24Regular />}
             onClick={() => onOpenChange(false)}
+            aria-label={t('search.close', 'Close search dialog')}
             style={{ color: '#999999' }}
           />
         </div>
@@ -231,11 +241,12 @@ function SearchModal({ open, onOpenChange }) {
         <div className={styles.searchInputWrapper}>
           <div className={styles.searchInputContainer}>
             <Input
+              ref={searchInputRef}
               contentBefore={<Search24Regular style={{ color: '#0067b8' }} />}
               placeholder={t('search.placeholder', 'Search pages, events, ministries...')}
+              aria-label={t('search.inputLabel', 'Search pages, events, and ministries')}
               value={searchQuery}
               onChange={(_, data) => handleSearch(data.value)}
-              autoFocus
               className={styles.searchInput}
             />
           </div>
@@ -274,17 +285,12 @@ function SearchModal({ open, onOpenChange }) {
                   <div className={styles.categoryHeader}>{category}</div>
 
                   {categoryResults.map((result) => (
-                    <div
+                    <button
                       key={`${result.type}-${result.id}`}
+                      type="button"
                       className={styles.resultItem}
                       onClick={() => handleResultClick(result)}
-                      role="button"
-                      tabIndex={0}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter') {
-                          handleResultClick(result);
-                        }
-                      }}
+                      aria-label={t('search.openResult', 'Open {{title}}', { title: result.title })}
                     >
                       <div
                         className={styles.resultTitle}
@@ -317,7 +323,7 @@ function SearchModal({ open, onOpenChange }) {
                           </div>
                         )}
                       </div>
-                    </div>
+                    </button>
                   ))}
                 </div>
               ))}

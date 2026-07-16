@@ -53,28 +53,31 @@ function AppContent() {
 
   return (
     <div className="App">
+      <a href="#main-content" className="skip-link">Skip to main content</a>
       <Header />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/donation" element={<DonationPage />} />
-        <Route path="/2025" element={<Event2025Page />} />
-        <Route path="/events" element={<EventsPage />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/leadership" element={<LeadershipPage />} />
-        <Route path="/fellowship-ministries" element={<FellowshipMinistriesPage />} />
-        <Route path="/ministries/:id" element={<MinistryDetail />} />
-        <Route path="/programs-activities" element={<ProgramsActivitiesPage />} />
-        <Route path="/membership" element={<MembershipPage />} />
-        <Route path="/volunteer" element={<VolunteerPage />} />
-        <Route path="/resources" element={<ResourcesPage />} />
-        <Route path="/prayer-library" element={<PrayerLibraryPage />} />
-        <Route path="/newsletters" element={<NewslettersPage />} />
-        <Route path="/contact" element={<ContactPage />} />
-        <Route path="/feedback" element={<FeedbackPage />} />
-        <Route path="/faq" element={<FAQPage />} />
-        <Route path="/privacy" element={<PrivacyPage />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
+      <main id="main-content">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/donation" element={<DonationPage />} />
+          <Route path="/2025" element={<Event2025Page />} />
+          <Route path="/events" element={<EventsPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/leadership" element={<LeadershipPage />} />
+          <Route path="/fellowship-ministries" element={<FellowshipMinistriesPage />} />
+          <Route path="/ministries/:id" element={<MinistryDetail />} />
+          <Route path="/programs-activities" element={<ProgramsActivitiesPage />} />
+          <Route path="/membership" element={<MembershipPage />} />
+          <Route path="/volunteer" element={<VolunteerPage />} />
+          <Route path="/resources" element={<ResourcesPage />} />
+          <Route path="/prayer-library" element={<PrayerLibraryPage />} />
+          <Route path="/newsletters" element={<NewslettersPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/feedback" element={<FeedbackPage />} />
+          <Route path="/faq" element={<FAQPage />} />
+          <Route path="/privacy" element={<PrivacyPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </main>
       <Footer />
       <BackToTop />
       <ChatWidget />

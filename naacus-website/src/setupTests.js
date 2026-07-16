@@ -3,3 +3,17 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
+import 'jest-axe/extend-expect';
+
+if (typeof window !== 'undefined') {
+	if (!window.performance) {
+		Object.defineProperty(window, 'performance', {
+			value: {},
+			writable: true,
+		});
+	}
+
+	if (typeof window.performance.getEntriesByType !== 'function') {
+		window.performance.getEntriesByType = () => [];
+	}
+}

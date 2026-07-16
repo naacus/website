@@ -155,6 +155,8 @@ const useStyles = makeStyles({
     alignItems: 'center',
     justifyContent: 'center',
     cursor: 'pointer',
+    border: 'none',
+    backgroundColor: 'transparent',
     transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
     position: 'relative',
     minHeight: 'auto',
@@ -1007,12 +1009,16 @@ export function DonationDialog() {
                 </div>
                 <div className={styles.paymentMethods}>
                   {paymentMethods.map(method => (
-                    <div
+                    <button
+                      type="button"
                       key={method.id}
                       className={`${styles.paymentOption} ${
                         selectedPayment === method.id ? styles.paymentOptionSelected : ''
                       }`}
                       onClick={() => !loading && setSelectedPayment(method.id)}
+                      disabled={loading}
+                      aria-pressed={selectedPayment === method.id}
+                      aria-label={t('donation.selectPaymentMethod', 'Select {{method}} payment method', { method: method.label })}
                       style={{ opacity: loading ? 0.6 : 1, cursor: loading ? 'not-allowed' : 'pointer', display: 'inline-flex' }}
                     >
                       <div className={`${styles.paymentMethodCard} ${
@@ -1031,7 +1037,7 @@ export function DonationDialog() {
                           <span className={styles.paymentMethodLabel}>{method.label}</span>
                         </div>
                       </div>
-                    </div>
+                    </button>
                   ))}
                 </div>
 

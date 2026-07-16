@@ -35,6 +35,8 @@ const useStyles = makeStyles({
     boxShadow: themeTokens.componentChat.shadows.teaser,
     maxWidth: themeTokens.componentChat.sizes.teaserCardWidth,
     cursor: 'pointer',
+    border: 'none',
+    textAlign: 'left',
     '@media (max-width: 768px)': {
       maxWidth: themeTokens.componentChat.sizes.teaserCardWidthMobile,
       ...shorthands.padding('12px'),
@@ -162,6 +164,11 @@ const useStyles = makeStyles({
   },
   relatedQuestion: {
     cursor: 'pointer',
+    border: 'none',
+    backgroundColor: 'transparent',
+    textAlign: 'left',
+    color: 'inherit',
+    width: '100%',
     ...shorthands.padding('4px', '0'),
     '&:hover': {
       textDecoration: 'underline',
@@ -273,7 +280,7 @@ function ChatWidget() {
   return (
     <div className={styles.container}>
       {!open && (
-        <div className={styles.teaserCard} onClick={() => setOpen(true)}>
+        <button type="button" className={styles.teaserCard} onClick={() => setOpen(true)} aria-label={t('chat.openAssistant', 'Open chat assistant')}>
           <div className={styles.avatarWrap}>
             <div className={styles.avatarInner}>AI</div>
             <div className={styles.avatarBadge}><Chat24Regular /></div>
@@ -282,7 +289,7 @@ function ChatWidget() {
             <Text as="div" weight="semibold" style={{ color: '#fff', fontSize: '1.1rem' }}>{t('chat.needHelp')}</Text>
             <Text as="div" style={{ color: '#fff', fontSize: '1.1rem' }}>{t('chat.letsChat')}</Text>
           </div>
-        </div>
+        </button>
       )}
 
       {open && (
@@ -324,13 +331,14 @@ function ChatWidget() {
                   <div className={styles.relatedQuestions}>
                     <div style={{ fontWeight: 600, marginBottom: '4px' }}>Related questions:</div>
                     {m.relatedQuestions.map((q, idx) => (
-                      <div 
+                      <button
+                        type="button"
                         key={idx} 
                         className={styles.relatedQuestion}
                         onClick={() => handleQuickAction(q)}
                       >
                         • {q}
-                      </div>
+                      </button>
                     ))}
                   </div>
                 )}

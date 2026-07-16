@@ -188,6 +188,8 @@ const useStyles = makeStyles({
     position: 'relative',
     cursor: 'pointer',
     ...shorthands.overflow('hidden'),
+    border: 'none',
+    ...shorthands.padding('0'),
   },
   thumbnailImg: {
     width: '100%',
@@ -638,15 +640,16 @@ function PrayerLibrary() {
                   const country = getCountryInfo(video.country);
                   return (
                     <Card key={video.id} className={styles.prayerCard}>
-                      <div
+                      <button
+                        type="button"
                         className={styles.videoThumbnail}
+                        disabled={!video.videoUrl}
                         onClick={() => {
                           if (video.videoUrl) {
                             openPrayerTextDialog(video);
                           }
                         }}
-                        role={video.videoUrl ? 'button' : undefined}
-                        tabIndex={video.videoUrl ? 0 : undefined}
+                        aria-label={video.videoUrl ? t('prayerLibrary.openPrayer', 'Open prayer details for {{title}}', { title: video.title }) : t('prayerLibrary.comingSoon', 'Coming soon')}
                       >
                         {video.thumbnailUrl && (
                           <img
@@ -663,7 +666,7 @@ function PrayerLibrary() {
                             {t('prayerLibrary.comingSoon')}
                           </div>
                         )}
-                      </div>
+                      </button>
                       <div className={styles.cardContent}>
                         <div className={styles.cardHeader}>
                           <Text className={styles.cardTitle}>{video.title}</Text>

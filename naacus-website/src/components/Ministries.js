@@ -76,12 +76,19 @@ const useStyles = makeStyles({
     flexDirection: 'column',
     alignItems: 'center',
     textAlign: 'center',
-    cursor: 'pointer',
     '&:hover': {
       boxShadow: '0 4px 16px rgba(0, 0, 0, 0.12)',
       transform: 'translateY(-4px)',
       backgroundColor: tokens.colorNeutralBackground1Hover,
     },
+  },
+  ministryDetailsButton: {
+    width: '100%',
+    textAlign: 'center',
+    background: 'none',
+    border: 'none',
+    ...shorthands.padding('0'),
+    cursor: 'pointer',
   },
   ministryIcon: {
     color: tokens.colorBrandBackground,
@@ -273,24 +280,23 @@ function Ministries() {
 
         <div className={styles.ministriesGrid}>
           {ministries.map((ministry, index) => (
-            <div 
-              key={index} 
+            <article
+              key={index}
               id={ministry.iconKey}
               className={styles.ministryCard}
-              onClick={() => handleMinistryCardClick(ministry)}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  handleMinistryCardClick(ministry);
-                }
-              }}
             >
-              <div className={styles.ministryIcon}>
-                {ministry.icon}
-              </div>
-              <Text className={styles.ministryTitle}>{ministry.title}</Text>
-              <Text className={styles.ministryDescription}>{ministry.description}</Text>
+              <button
+                type="button"
+                className={styles.ministryDetailsButton}
+                onClick={() => handleMinistryCardClick(ministry)}
+                aria-label={t('ministries.viewDetails', 'View details for {{title}}', { title: ministry.title })}
+              >
+                <div className={styles.ministryIcon}>
+                  {ministry.icon}
+                </div>
+                <Text className={styles.ministryTitle}>{ministry.title}</Text>
+                <Text className={styles.ministryDescription}>{ministry.description}</Text>
+              </button>
               {ministry.email && (
                 <a 
                   href={`mailto:${ministry.email}`} 
@@ -306,6 +312,7 @@ function Ministries() {
               )}
               <div className={styles.ministryCardCTA}>
                 <button
+                  type="button"
                   className={styles.ministryGetInvolvedBtn}
                   onClick={(e) => {
                     e.stopPropagation();
@@ -315,7 +322,7 @@ function Ministries() {
                   {t('ministries.getInvolved', 'Get Involved →')}
                 </button>
               </div>
-            </div>
+            </article>
           ))}
         </div>
 

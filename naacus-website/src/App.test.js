@@ -4,8 +4,8 @@ import './i18nForTests'; // Import mock i18n configuration for tests
 
 test('renders NAACUS website', async () => {
   render(<App />);
-  const headingElement = await screen.findByText(/Uniting African Catholic Communities Across the United States/i);
-  expect(headingElement).toBeInTheDocument();
+  const headingElements = await screen.findAllByText(/Uniting African Catholic Communities Across the United States/i);
+  expect(headingElements.length).toBeGreaterThan(0);
 });
 
 test('renders website title', async () => {
