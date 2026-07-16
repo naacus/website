@@ -1,13 +1,16 @@
 # NAACUS Website - Accessibility (a11y) Audit Report
 
 **Generated:** July 16, 2026  
-**Status:** Initial Assessment
+**Status:** Updated After Critical Fix Pass
 
 ---
 
 ## 📊 Executive Summary
 
-The NAACUS website has a **moderate** accessibility foundation with room for improvement. The site uses Fluent UI components and respects reduced motion preferences, but lacks automated a11y testing, has missing image alt text, and potential color contrast issues.
+The NAACUS website has a **strong baseline** after a targeted critical remediation pass.
+Automated a11y checks are in place and passing, and previously flagged critical items
+for decorative image handling, form control labeling, and contrast-sensitive feedback
+controls were addressed.
 
 ---
 
@@ -30,9 +33,9 @@ The NAACUS website has a **moderate** accessibility foundation with room for imp
 
 | Issue | Severity | Location | Recommendation |
 |-------|----------|----------|-----------------|
-| **No Alt Text on Images** | 🔴 Critical | `src/components/Hero.js`, `src/components/Leadership.js`, gallery components | Add descriptive alt text to all `<img>` tags |
-| **Color Contrast** | 🔴 Critical | Feedback button (animated red) may fail WCAG AA at small sizes | Test with aXe/Lighthouse; ensure 4.5:1 ratio |
-| **Missing Form Labels** | 🔴 Critical | Search input, form fields may not be properly associated | Use `<label htmlFor>` or `aria-label` |
+| **Decorative Image Announcements** | ✅ Resolved | `src/components/Hero.js`, `src/components/Conference2027Teaser.js` | Decorative slideshow images now use `alt=""` and `aria-hidden="true"` |
+| **Color Contrast** | ✅ Resolved | `src/components/Header.js` feedback buttons | Updated to darker red shades and added stronger focus-visible outlines |
+| **Missing Form Labels** | ✅ Resolved | `src/pages/FAQPage.js`, `src/components/SearchInput.js` | Added explicit `aria-label` values and clear-button labeling |
 | **Stripe Button Contrast** | 🟠 High | Donate button may have low contrast over image backgrounds | Add background container or border |
 
 ### **Major Issues**
@@ -65,13 +68,13 @@ The NAACUS website has a **moderate** accessibility foundation with room for imp
 - 🔴 Missing skip-to-content link
 
 ### **Hero Component**
-- 🔴 Background image needs alt text (likely decorative → use `alt=""`)
-- ⚠️ Button emojis (✝, 💝) may confuse screen readers → wrap in `<span aria-hidden="true">`
+- ✅ Decorative slideshow images are hidden from assistive tech with `alt=""` and `aria-hidden="true"`
+- ✅ Decorative emojis are wrapped with `aria-hidden="true"`
 - ✅ Primary button has descriptive text
 
 ### **Hero Section Images**
-- 🔴 **ALL images lack alt text** - Critical fix needed
-- Recommendation: Use descriptive alt like "NAACUS 2025 conference participants in prayer"
+- ✅ Decorative slideshow images updated for non-verbal presentation
+- ℹ️ Content images continue to use descriptive alt text where meaningful
 
 ### **Leadership/Ministry Cards**
 - 🔴 No alt text on member photos
@@ -79,7 +82,8 @@ The NAACUS website has a **moderate** accessibility foundation with room for imp
 - Consider: `aria-label="Read more about {name}"`
 
 ### **Forms (Membership, Newsletter, Contact)**
-- ⚠️ Input fields need proper `<label>` association
+- ✅ FAQ and header search controls now have explicit accessible names
+- ⚠️ Broader form review remains recommended for consistency across all flows
 - ⚠️ Error messages need `aria-live="polite"` and `aria-invalid="true"`
 - Consider: Add inline error messages with `aria-describedby`
 
@@ -98,10 +102,20 @@ The NAACUS website has a **moderate** accessibility foundation with room for imp
 
 | Principle | Level AA | Issues | Priority |
 |-----------|----------|--------|----------|
-| **Perceivable** | ⚠️ Partial | Missing alt text, low contrast | Critical |
-| **Operable** | ⚠️ Partial | No skip links, weak focus indicators | High |
+| **Perceivable** | ✅ Improved | Critical image/contrast findings addressed | Medium |
+| **Operable** | ✅ Improved | Skip link present, focus indicators strengthened in header controls | Medium |
 | **Understandable** | ✅ Good | Clear language, good structure | Low |
 | **Robust** | ⚠️ Partial | Some semantic HTML issues | Medium |
+
+---
+
+## Remediation Log (July 16, 2026)
+
+- Updated decorative slideshow images to avoid unnecessary screen reader announcements.
+- Added explicit labels for FAQ search and search-trigger controls.
+- Added clear-button accessible name in FAQ search.
+- Increased feedback button contrast and added `:focus-visible` outlines for keyboard users.
+- Verified `npm run lint:a11y` and `npm run test:a11y -- --watch=false` both pass.
 
 ---
 

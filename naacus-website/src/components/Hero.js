@@ -330,7 +330,8 @@ function Hero() {
           <img
             key={index}
             src={image}
-            alt={`Hero background ${index + 1}`}
+            alt=""
+            aria-hidden="true"
             className={`${styles.backgroundImage} ${
               index === currentImageIndex ? styles.backgroundImageActive : ''
             }`}
@@ -344,18 +345,18 @@ function Hero() {
         </Text>
         <div className={styles.membershipHighlight}>
           <Text className={styles.membershipText}>
-            <span className={styles.emojiDecorator}>✨</span> 
+            <span className={styles.emojiDecorator} aria-hidden="true">✨</span>{' '}
             {t('hero.membershipTeaser')}
           </Text>
           <div className={styles.benefitsList}>
             <span className={styles.benefitItem}>
-              <span className={styles.benefitCheckmark}>✓</span> {t('hero.benefit1')}
+              <span className={styles.benefitCheckmark} aria-hidden="true">✓</span> {t('hero.benefit1')}
             </span>
             <span className={styles.benefitItem}>
-              <span className={styles.benefitCheckmark}>✓</span> {t('hero.benefit2')}
+              <span className={styles.benefitCheckmark} aria-hidden="true">✓</span> {t('hero.benefit2')}
             </span>
             <span className={styles.benefitItem}>
-              <span className={styles.benefitCheckmark}>✓</span> {t('hero.benefit3')}
+              <span className={styles.benefitCheckmark} aria-hidden="true">✓</span> {t('hero.benefit3')}
             </span>
           </div>
         </div>
@@ -366,7 +367,7 @@ function Hero() {
               onClick={handleJoinClick}
               className={styles.primaryButton}
             >
-              <span className={styles.buttonEmoji}>✝</span> {t('heroButtons.joinCommunity')}
+              <span className={styles.buttonEmoji} aria-hidden="true">✝</span> {t('heroButtons.joinCommunity')}
             </button>
           </div>
 

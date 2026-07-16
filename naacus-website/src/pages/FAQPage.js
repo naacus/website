@@ -343,6 +343,7 @@ function FAQPage() {
               <input
                 type="text"
                 placeholder={t('faq.searchPlaceholder', 'Search FAQs...')}
+                aria-label={t('faq.searchInputLabel', 'Search frequently asked questions')}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className={styles.searchInput}
@@ -353,7 +354,9 @@ function FAQPage() {
               />
               {searchTerm && (
                 <button
+                  type="button"
                   onClick={() => setSearchTerm('')}
+                  aria-label={t('faq.clearSearch', 'Clear FAQ search')}
                   style={{
                     position: 'absolute',
                     right: '12px',
