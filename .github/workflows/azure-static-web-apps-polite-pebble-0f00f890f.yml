@@ -27,7 +27,7 @@ jobs:
       run:
         working-directory: ./naacus-website
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           submodules: true
           lfs: false
@@ -54,7 +54,7 @@ jobs:
     name: Build and Deploy Job
     needs: quality_gate_job
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           submodules: true
           lfs: false
