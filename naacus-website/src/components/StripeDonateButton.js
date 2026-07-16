@@ -35,9 +35,17 @@ const StripeDonateButton = () => {
 
     function createBuyButton() {
       if (containerRef.current && !containerRef.current.querySelector('stripe-buy-button')) {
+        const publishableKey = process.env.REACT_APP_STRIPE_PUBLIC_KEY;
+        const buyButtonId = process.env.REACT_APP_STRIPE_BUY_BUTTON_ID;
+
+        if (!publishableKey || !buyButtonId) {
+          console.warn('StripeDonateButton: REACT_APP_STRIPE_PUBLIC_KEY and REACT_APP_STRIPE_BUY_BUTTON_ID must be set.');
+          return;
+        }
+
         const buyButton = document.createElement('stripe-buy-button');
-        buyButton.setAttribute('buy-button-id', process.env.REACT_APP_STRIPE_BUY_BUTTON_ID || '');
-        buyButton.setAttribute('publishable-key', process.env.REACT_APP_STRIPE_PUBLIC_KEY || '');
+        buyButton.setAttribute('buy-button-id', buyButtonId);
+        buyButton.setAttribute('publishable-key', publishableKey);
         containerRef.current.appendChild(buyButton);
       }
     }
