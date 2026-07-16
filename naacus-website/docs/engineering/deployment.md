@@ -69,6 +69,12 @@ Auto-deploys on push to `develop` branch.
 1. Visit https://github.com/naacus/website → **Actions** tab
 2. Green ✅ = deployed, Red ❌ = failed
 
+### GitHub Actions Runtime Note
+
+To avoid GitHub Actions Node 20 action-runtime deprecation warnings, workflows
+use `actions/setup-node@v5` (while project runtime can remain Node 20 for app
+build/test compatibility).
+
 ### GitHub Advanced Security / Scorecard Note
 
 The DevSecOps baseline workflow uploads SARIF for Trivy and Scorecard. To keep
