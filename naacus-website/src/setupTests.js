@@ -5,6 +5,27 @@
 import '@testing-library/jest-dom';
 import 'jest-axe/extend-expect';
 
+// react-router v7 uses TextEncoder/TextDecoder which are not available in
+// jest's jsdom environment (used by react-scripts 5). Polyfill them from Node.
+const { TextEncoder, TextDecoder } = require('util');
+if (typeof global.TextEncoder === 'undefined') {
+  global.TextEncoder = TextEncoder;
+}
+if (typeof global.TextDecoder === 'undefined') {
+  global.TextDecoder = TextDecoder;
+}
+
+// @fluentui/react-components (via tabster) uses crypto.getRandomValues which
+// is not available in jest's jsdom environment. Polyfill it from Node webcrypto.
+if (typeof global.crypto === 'undefined' || typeof global.crypto.getRandomValues === 'undefined') {
+  const { webcrypto } = require('crypto');
+  Object.defineProperty(global, 'crypto', { value: webcrypto, writable: true });
+}
+
+// Increase default timeout to accommodate axe accessibility scans on
+// larger Fluent UI component trees.
+jest.setTimeout(15000);
+
 if (typeof window !== 'undefined') {
 	if (!window.performance) {
 		Object.defineProperty(window, 'performance', {
