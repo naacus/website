@@ -16,10 +16,14 @@ if (typeof global.TextDecoder === 'undefined') {
 }
 
 // @fluentui/react-components (via tabster) uses crypto.getRandomValues which
-// is not available in jest's jsdom environment. Polyfill it from Node webcrypto.
-if (typeof global.crypto === 'undefined' || typeof global.crypto.getRandomValues === 'undefined') {
+// is not available in jest's jsdom environment. Polyfill only the missing
+// method rather than replacing the entire global.crypto object.
+if (typeof global.crypto === 'undefined') {
   const { webcrypto } = require('crypto');
   Object.defineProperty(global, 'crypto', { value: webcrypto, writable: true });
+} else if (typeof global.crypto.getRandomValues === 'undefined') {
+  const { webcrypto } = require('crypto');
+  global.crypto.getRandomValues = webcrypto.getRandomValues.bind(webcrypto);
 }
 
 // Increase default timeout to accommodate axe accessibility scans on
