@@ -282,18 +282,101 @@ const useStyles = makeStyles({
 });
 
 function Hero() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const styles = useStyles();
   const navigate = useNavigate();
   const { trackMembershipCTA, trackEventCTA, trackScroll } = useAnalytics();
   const heroRef = useRef(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const heroImages = [
+  const defaultHeroImages = [
     '/images/hero/0cddcc4.jpg',
     '/images/hero/1ece201.jpg',
     '/images/hero/2074c6e.jpg',
   ];
+
+  const [heroImages, setHeroImages] = useState(defaultHeroImages);
+  const [heroText, setHeroText] = useState(null);
+
+  const normalizedLanguage = (i18n.resolvedLanguage || i18n.language || 'en').split('-')[0];
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadHeroImages = async () => {
+      try {
+        const response = await fetch('/content/hero-images.json', { cache: 'no-store' });
+        if (!response.ok) {
+          return;
+        }
+
+        const payload = await response.json();
+        if (!isMounted) {
+          return;
+        }
+
+        if (Array.isArray(payload?.images) && payload.images.length > 0) {
+          const sanitized = payload.images
+            .map((item) => {
+              if (typeof item === 'string') {
+                return item.trim();
+              }
+
+              if (item && typeof item === 'object' && typeof item.image === 'string') {
+                return item.image.trim();
+              }
+
+              return '';
+            })
+            .filter((item) => item.length > 0);
+
+          if (sanitized.length > 0) {
+            setHeroImages(sanitized);
+            setCurrentImageIndex(0);
+          }
+        }
+      } catch (error) {
+        // Keep defaults when content config cannot be loaded.
+      }
+    };
+
+    loadHeroImages();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadHeroText = async () => {
+      try {
+        const response = await fetch(`/content/hero.${normalizedLanguage}.json`, { cache: 'no-store' });
+        if (!response.ok) {
+          if (isMounted) {
+            setHeroText(null);
+          }
+          return;
+        }
+
+        const payload = await response.json();
+        if (isMounted && payload && typeof payload === 'object') {
+          setHeroText(payload);
+        }
+      } catch (error) {
+        if (isMounted) {
+          setHeroText(null);
+        }
+      }
+    };
+
+    loadHeroText();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [normalizedLanguage]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -339,24 +422,24 @@ function Hero() {
         ))}
       </div>
       <div className={styles.heroContent}>
-        <Text as="h1" className={styles.heroTitle}>{t('hero.title')}</Text>
+        <Text as="h1" className={styles.heroTitle}>{heroText?.title || t('hero.title')}</Text>
         <Text as="p" className={styles.heroSubtitle}>
-          {t('hero.subtitle')}
+          {heroText?.subtitle || t('hero.subtitle')}
         </Text>
         <div className={styles.membershipHighlight}>
           <Text className={styles.membershipText}>
             <span className={styles.emojiDecorator} aria-hidden="true">✨</span>{' '}
-            {t('hero.membershipTeaser')}
+            {heroText?.membershipTeaser || t('hero.membershipTeaser')}
           </Text>
           <div className={styles.benefitsList}>
             <span className={styles.benefitItem}>
-              <span className={styles.benefitCheckmark} aria-hidden="true">✓</span> {t('hero.benefit1')}
+              <span className={styles.benefitCheckmark} aria-hidden="true">✓</span> {heroText?.benefit1 || t('hero.benefit1')}
             </span>
             <span className={styles.benefitItem}>
-              <span className={styles.benefitCheckmark} aria-hidden="true">✓</span> {t('hero.benefit2')}
+              <span className={styles.benefitCheckmark} aria-hidden="true">✓</span> {heroText?.benefit2 || t('hero.benefit2')}
             </span>
             <span className={styles.benefitItem}>
-              <span className={styles.benefitCheckmark} aria-hidden="true">✓</span> {t('hero.benefit3')}
+              <span className={styles.benefitCheckmark} aria-hidden="true">✓</span> {heroText?.benefit3 || t('hero.benefit3')}
             </span>
           </div>
         </div>
@@ -367,22 +450,22 @@ function Hero() {
               onClick={handleJoinClick}
               className={styles.primaryButton}
             >
-              <span className={styles.buttonEmoji} aria-hidden="true">✝</span> {t('heroButtons.joinCommunity')}
+              <span className={styles.buttonEmoji} aria-hidden="true">✝</span> {heroText?.joinCommunity || t('heroButtons.joinCommunity')}
             </button>
           </div>
 
           {/* Subtle secondary links — no competing buttons */}
           <div className={styles.secondaryLinks}>
             <button onClick={handleLearnMissionClick} className={styles.ghostLink}>
-              {t('heroButtons.learnMission')}
+              {heroText?.learnMission || t('heroButtons.learnMission')}
             </button>
             <span className={styles.linkDivider}>·</span>
             <button onClick={handleViewCalendarClick} className={styles.ghostLink}>
-              {t('heroButtons.viewCalendar')}
+              {heroText?.viewCalendar || t('heroButtons.viewCalendar')}
             </button>
             <span className={styles.linkDivider}>·</span>
             <button onClick={handleGetInvolvedClick} className={styles.ghostLink}>
-              {t('heroButtons.getInvolved')}
+              {heroText?.getInvolved || t('heroButtons.getInvolved')}
             </button>
           </div>
         </div>
