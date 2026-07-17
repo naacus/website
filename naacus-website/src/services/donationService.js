@@ -24,7 +24,6 @@ const { donationStore } = mockDataStores;
  */
 export const PAYMENT_METHODS = {
   CARD: 'card',
-  PAYPAL: 'paypal',
   APPLE_PAY: 'apple_pay',
   GOOGLE_PAY: 'google_pay',
   BANK_TRANSFER: 'bank_transfer',

@@ -47,7 +47,6 @@ REACT_APP_DEBUG_PAYMENTS=false
 # Your actual local credentials
 REACT_APP_STRIPE_PUBLIC_KEY=pk_test_ACTUAL_KEY_HERE
 REACT_APP_STRIPE_BUY_BUTTON_ID=buy_btn_ACTUAL_ID_HERE
-REACT_APP_PAYPAL_CLIENT_ID=ACTUAL_SANDBOX_ID
 ```
 
 ### Verify `.gitignore` includes these:
@@ -76,7 +75,6 @@ Settings → Secrets and variables → Actions → New repository secret
 ```
 STRIPE_PUBLIC_KEY_TEST=pk_test_...
 STRIPE_BUY_BUTTON_ID_TEST=buy_btn_...
-PAYPAL_CLIENT_ID_TEST=...
 API_BASE_URL_TEST=https://api-test.naacus.org (optional)
 ```
 
@@ -101,7 +99,6 @@ API_BASE_URL_TEST=https://api-test.naacus.org (optional)
     cat > .env.production.local << EOF
     REACT_APP_STRIPE_PUBLIC_KEY=${{ env.STRIPE_PUBLIC_KEY }}
     REACT_APP_STRIPE_BUY_BUTTON_ID=${{ env.STRIPE_BUY_BUTTON_ID }}
-    REACT_APP_PAYPAL_CLIENT_ID=
     REACT_APP_API_BASE_URL=${{ secrets.API_BASE_URL_TEST || 'http://localhost:5001' }}
     REACT_APP_DEBUG_PAYMENTS=true
     CI=true
@@ -139,8 +136,6 @@ az keyvault secret set --vault-name naacus-kv \
   --value "buy_btn_YOUR_PROD_ID"
 
 az keyvault secret set --vault-name naacus-kv \
-  --name PaypalClientIdProd \
-  --value "YOUR_PAYPAL_PROD_ID"
 ```
 
 ### 3b. Configure Static Web Apps:
@@ -177,7 +172,6 @@ jobs:
           # Use production secrets from GitHub
           REACT_APP_STRIPE_PUBLIC_KEY: ${{ secrets.STRIPE_PUBLIC_KEY_PROD }}
           REACT_APP_STRIPE_BUY_BUTTON_ID: ${{ secrets.STRIPE_BUY_BUTTON_ID_PROD }}
-          REACT_APP_PAYPAL_CLIENT_ID: ${{ secrets.PAYPAL_CLIENT_ID_PROD }}
           REACT_APP_API_BASE_URL: https://api.naacus.org
       
       - name: Deploy to Azure Static Web Apps
@@ -216,9 +210,6 @@ naacus-website/
     "publicKey": "__STRIPE_PUBLIC_KEY__",
     "buyButtonId": "__STRIPE_BUY_BUTTON_ID__"
   },
-  "paypal": {
-    "clientId": "__PAYPAL_CLIENT_ID__",
-    "environment": "__PAYPAL_ENV__"
   },
   "api": {
     "baseUrl": "__API_BASE_URL__"
@@ -236,8 +227,6 @@ const template = fs.readFileSync('public/config.template.json', 'utf8');
 const config = template
   .replace('__STRIPE_PUBLIC_KEY__', process.env.REACT_APP_STRIPE_PUBLIC_KEY || '')
   .replace('__STRIPE_BUY_BUTTON_ID__', process.env.REACT_APP_STRIPE_BUY_BUTTON_ID || '')
-  .replace('__PAYPAL_CLIENT_ID__', process.env.REACT_APP_PAYPAL_CLIENT_ID || '')
-  .replace('__PAYPAL_ENV__', process.env.REACT_APP_PAYPAL_ENV || 'sandbox')
   .replace('__API_BASE_URL__', process.env.REACT_APP_API_BASE_URL || '');
 
 fs.writeFileSync('public/config.json', config);
@@ -269,7 +258,6 @@ export default loadConfig;
 | JWT Secrets | ❌ NEVER | ✅ Backend only |
 
 ### Best Practice:
-- **Frontend**: Only Stripe PUBLIC key, PayPal client ID (these are meant to be public)
 - **Backend**: All secrets in environment variables via Key Vault
 - **Communication**: Backend handles all sensitive operations (charge processing, data access)
 

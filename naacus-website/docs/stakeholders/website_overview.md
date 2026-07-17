@@ -60,7 +60,6 @@ A sign-up page for members who want to volunteer their time and talents.
 ### Donation
 A page where supporters can make financial contributions. The website accepts payments through:
 - Credit and debit cards (via Stripe)
-- PayPal
 - Apple Pay
 - Google Pay
 - Bank transfers
@@ -178,7 +177,6 @@ The website supports multiple ways to give:
 | Payment Method | Description |
 |---|---|
 | **Credit / Debit Card** | Visa, Mastercard, Amex, Discover (processed by Stripe) |
-| **PayPal** | Pay with a PayPal account |
 | **Apple Pay** | One-tap payment on Apple devices |
 | **Google Pay** | One-tap payment on Android / Chrome |
 | **Bank Transfer** | Direct bank transfer (3–5 business day processing) |

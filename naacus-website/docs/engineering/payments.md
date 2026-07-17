@@ -24,7 +24,6 @@
 | Method | Provider | Integration Type | Status |
 |--------|----------|-----------------|--------|
 | Credit/Debit Cards | Stripe | Frontend (Stripe.js) | Live |
-| PayPal | PayPal SDK | Frontend (direct) | UI Ready |
 | Apple Pay / Google Pay | Stripe | Frontend (Stripe.js) | UI Ready |
 | Bank Transfer | Manual | Instructions displayed | UI Ready |
 | Cryptocurrency | Coinbase Commerce | Hosted payment link | UI Ready |
@@ -201,7 +200,6 @@ export const paymentConfig = {
 ### Frontend Environment Variables
 
 ```bash
-REACT_APP_PAYPAL_CLIENT_ID=xxxxx
 REACT_APP_COINBASE_PUBLIC_KEY=xxxxx
 REACT_APP_SQUARE_APP_ID=xxxxx
 REACT_APP_SQUARE_LOCATION_ID=xxxxx
@@ -311,7 +309,7 @@ Ensure Stripe.js is in `public/index.html`:
 
 ### No GA Tracking for Donations
 - Confirm GA initialized (see [ga4_analytics.md](ga4_analytics.md))
-- Check `paymentService` tracks on success
+- Confirm donation events are emitted from active donation/payment handlers
 
 ---
 
@@ -343,7 +341,6 @@ Ensure Stripe.js is in `public/index.html`:
 - [Stripe Documentation](https://stripe.com/docs)
 - [Stripe React Integration](https://stripe.com/docs/stripe-js/react)
 - [Stripe Webhooks](https://stripe.com/docs/webhooks)
-- [PayPal Developer](https://developer.paypal.com)
 - [Coinbase Commerce](https://commerce.coinbase.com/docs)
 
 ---

@@ -39,7 +39,7 @@ const useStyles = makeStyles({
 /**
  * PaymentMethodSelector - Reusable payment method selection component
  * 
- * Supports both simple (Stripe/Manual) and complex (card, PayPal, etc.) payment options
+ * Supports both simple (Stripe/Manual) and complex (card, wallet, etc.) payment options
  * 
  * Props:
  *   value: string - Current selected payment method

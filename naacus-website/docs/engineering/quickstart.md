@@ -33,7 +33,6 @@ npm run build
 |---------|---------|
 | `googleAnalyticsService.js` | GA4 event tracking |
 | `analyticsService.js` | High-level analytics wrapper |
-| `paymentService.js` | Stripe, bank, crypto payments |
 | `m365Service.js` | SharePoint data storage |
 | `dataService.js` | Mock data (ministries, events, etc.) |
 

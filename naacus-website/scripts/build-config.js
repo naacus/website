@@ -13,10 +13,6 @@ const configTemplate = {
     publicKey: process.env.REACT_APP_STRIPE_PUBLIC_KEY || '',
     buyButtonId: process.env.REACT_APP_STRIPE_BUY_BUTTON_ID || '',
   },
-  paypal: {
-    clientId: process.env.REACT_APP_PAYPAL_CLIENT_ID || '',
-    environment: process.env.REACT_APP_PAYPAL_ENV || 'sandbox',
-  },
   api: {
     baseUrl: process.env.REACT_APP_API_BASE_URL || 'http://localhost:5001',
     debugPayments: process.env.REACT_APP_DEBUG_PAYMENTS === 'true',

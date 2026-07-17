@@ -16,15 +16,6 @@ export const paymentConfig = {
     },
   },
 
-  // PayPal Configuration
-  paypal: {
-    clientId: process.env.REACT_APP_PAYPAL_CLIENT_ID || 'sandbox_client_id',
-    environment: process.env.REACT_APP_PAYPAL_ENV || 'sandbox', // 'sandbox' or 'production'
-    intent: 'CAPTURE',
-    currency: 'USD',
-    components: 'buttons,messages,funding-eligibility',
-  },
-
   // Apple Pay Configuration
   applePay: {
     merchantId: process.env.REACT_APP_APPLE_PAY_MERCHANT_ID || 'merchant.com.naacus',
@@ -89,7 +80,6 @@ export const paymentConfig = {
   // Webhook Configuration
   webhooks: {
     stripe: process.env.REACT_APP_STRIPE_WEBHOOK_SECRET || '',
-    paypal: process.env.REACT_APP_PAYPAL_WEBHOOK_ID || '',
     crypto: process.env.REACT_APP_CRYPTO_WEBHOOK_SECRET || '',
     square: process.env.REACT_APP_SQUARE_WEBHOOK_SECRET || '',
   },
