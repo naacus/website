@@ -207,6 +207,15 @@
         "Donor Stewardship",
         "Community Fundraising Events"
       ]
+    },
+    {
+      "id": "test",
+      "iconKey": "test",
+      "title": "Test",
+      "description": "Just a test",
+      "email": "test@naacus.org",
+      "coordinator": "Celestin Mbuyamba",
+      "mission": "Test Mission"
     }
   ]
 }
