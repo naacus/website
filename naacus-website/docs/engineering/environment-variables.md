@@ -276,7 +276,7 @@ export default loadConfig;
 - [ ] Audit logging enabled on Key Vault
 - [ ] No hardcoded URLs/IPs in code
 - [ ] Use HTTPS for all production APIs
-- [ ] Validate env vars at runtime (as implemented in StripeDonateButton)
+- [ ] Validate env vars at runtime and fall back to the web donate link when Stripe config is missing
 - [ ] Add secret scanning: Enable Gitleaks in CI/CD
 
 ---
@@ -337,7 +337,7 @@ npm run build
 **Phase 1: Local Development ✓**
 - [x] Create `.env` with placeholders
 - [x] Document in `.gitignore`
-- [x] Add validation in StripeDonateButton
+- [x] Add validation and fallback behavior in StripeDonateButton
 
 **Phase 2: Testing & CI/CD ✓**
 - [x] Modified Azure Static Web Apps workflow to inject GitHub Secrets
