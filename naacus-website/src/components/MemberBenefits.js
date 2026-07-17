@@ -302,14 +302,14 @@ function MemberBenefits() {
               {benefit.key === 'events' && (
                 <div className={styles.cardActions}>
                   <Button appearance="primary" onClick={handleViewCalendar}>
-                    {t('memberBenefits.events.cta', 'View Calendar')}
+                    {t('memberBenefits.events.cta')}
                   </Button>
                 </div>
               )}
 
               {benefit.key === 'resources' && (
                 <div className={styles.linkList}>
-                  <Text weight="semibold" style={{ width: '100%', marginBottom: '8px' }}>{t('memberBenefits.resources.linksTitle', 'Quick Links and Contacts')}</Text>
+                  <Text weight="semibold" style={{ width: '100%', marginBottom: '8px' }}>{t('memberBenefits.resources.linksTitle')}</Text>
                   
                   {/* Contacts Group */}
                   <div className={styles.linksGroup}>
@@ -377,7 +377,7 @@ function MemberBenefits() {
               {benefit.key === 'community' && (
                 <div className={styles.cardActions}>
                   <Button appearance="secondary" onClick={() => window.open(siteLinks.youtubeChannel, '_blank', 'noopener,noreferrer')}>
-                    {t('memberBenefits.community.youtubeCta', 'Visit YouTube Channel')}
+                    {t('memberBenefits.community.youtubeCta')}
                   </Button>
                 </div>
               )}

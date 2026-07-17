@@ -421,10 +421,10 @@ function Naacus2025Accomplishments() {
         {/* Photo Gallery Callout */}
         <div className={styles.gallerySection}>
           <Text as="h3" className={styles.galleryTitle}>
-            {t('naacus2025.galleryTitle', '📸 Conference Photo Gallery')}
+            {t('naacus2025.galleryTitle')}
           </Text>
           <Text as="p" className={styles.galleryDescription}>
-            {t('naacus2025.galleryDescription', 'Relive the moments! Browse the official NAACUS 2025 Conference photos captured by our photographer.')}
+            {t('naacus2025.galleryDescription')}
           </Text>
           <Button
             as="a"
@@ -433,7 +433,7 @@ function Naacus2025Accomplishments() {
             rel="noopener noreferrer"
             className={styles.galleryButton}
           >
-            {t('naacus2025.galleryButton', 'View Photo Gallery')}
+            {t('naacus2025.galleryButton')}
           </Button>
         </div>
 

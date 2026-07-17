@@ -68,7 +68,7 @@ function FeedbackPage() {
 
   const handleFormLoad = () => {
     // Track when the iframe has fully loaded
-    trackFormEvent('feedback_form', 'loaded');
+    trackFormEvent('feedback_form');
   };
 
   return (
