@@ -18,6 +18,9 @@ concurrency:
   group: azure-swa-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  NODE_VERSION: '20'
+
 jobs:
   quality_gate_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
@@ -35,12 +38,25 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v5
         with:
-          node-version: '20'
+          node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
           cache-dependency-path: ./naacus-website/package-lock.json
 
       - name: Install dependencies
         run: npm ci
+
+      # Create environment file with test secrets for PR/dev builds
+      - name: Create environment file
+        run: |
+          cat > .env << EOF
+          REACT_APP_STRIPE_PUBLIC_KEY=${{ secrets.STRIPE_PUBLIC_KEY_TEST || 'pk_test_' }}
+          REACT_APP_STRIPE_BUY_BUTTON_ID=${{ secrets.STRIPE_BUY_BUTTON_ID_TEST || 'buy_btn_' }}
+          REACT_APP_PAYPAL_CLIENT_ID=${{ secrets.PAYPAL_CLIENT_ID_TEST || '' }}
+          REACT_APP_PAYPAL_ENV=sandbox
+          REACT_APP_API_BASE_URL=${{ secrets.API_BASE_URL_TEST || 'http://localhost:5001' }}
+          REACT_APP_DEBUG_PAYMENTS=true
+          CI=true
+          EOF
 
       - name: Build app
         run: npm run build
@@ -68,26 +84,43 @@ jobs:
       - name: Run accessibility checks
         run: npm run check:a11y
 
+      # Store build for deployment job
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-${{ github.run_id }}
+          path: ./naacus-website/build/
+          retention-days: 1
+
+
   build_and_deploy_job:
     if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
     runs-on: ubuntu-latest
     name: Build and Deploy Job
     needs: quality_gate_job
+    defaults:
+      run:
+        working-directory: ./naacus-website
     steps:
       - uses: actions/checkout@v7
         with:
           submodules: true
           lfs: false
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-${{ github.run_id }}
+          path: ./naacus-website/build/
+
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_POLITE_PEBBLE_0F00F890F }}
-          repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
-          # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
-          app_location: "./naacus-website" # App source code path
-          api_location: "" # Api source code path - optional
-          output_location: "build" # Built app content directory - optional
-          ###### End of Repository/Build Configurations ######
+          app_location: "./naacus-website"
+          api_location: ""
+          output_location: "build"
+

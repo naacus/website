@@ -15,6 +15,8 @@ Last updated: July 16, 2026
 | [backend_api.md](engineering/backend_api.md) | API contracts and backend integration guide |
 | [data_persistence.md](engineering/data_persistence.md) | How data is stored, fetched, and managed |
 | [deployment.md](engineering/deployment.md) | Build, deploy, and hosting configuration |
+| [environment-variables.md](engineering/environment-variables.md) | Secure environment variable management across local, test, and production |
+| [github-azure-secrets-setup.md](engineering/github-azure-secrets-setup.md) | GitHub Secrets and Azure Key Vault setup guide |
 | [cms-content-coverage.md](engineering/cms-content-coverage.md) | Canonical plan and rules for Decap coverage of all text and images |
 | [ga4_analytics.md](engineering/ga4_analytics.md) | Google Analytics 4 setup and event tracking |
 | [payments.md](engineering/payments.md) | Stripe payment integration guide |
