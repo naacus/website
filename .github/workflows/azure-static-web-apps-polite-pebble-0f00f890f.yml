@@ -51,7 +51,7 @@ jobs:
           cat > .env << EOF2
           REACT_APP_STRIPE_PUBLIC_KEY=${{ secrets.STRIPE_PUBLIC_KEY || 'pk_test_' }}
           REACT_APP_STRIPE_BUY_BUTTON_ID=${{ secrets.STRIPE_BUY_BUTTON_ID || 'buy_btn_' }}
-          REACT_APP_PAYPAL_CLIENT_ID=disabled
+          REACT_APP_PAYPAL_CLIENT_ID=
           REACT_APP_PAYPAL_ENV=sandbox
           REACT_APP_API_BASE_URL=${{ secrets.API_BASE_URL_TEST || 'http://localhost:5001' }}
           REACT_APP_DEBUG_PAYMENTS=true
@@ -80,12 +80,12 @@ jobs:
             exit 1
           fi
 
-          if ! printf '%s' "$STRIPE_KEY" | grep -Eq '^pk_(test|live)_'; then
+          if ! printf '%s' "$STRIPE_KEY" | grep -Eq '^pk_(test|live)_.+$'; then
             echo "Stripe public key format invalid"
             exit 1
           fi
 
-          if ! printf '%s' "$BUTTON_ID" | grep -Eq '^buy_btn_'; then
+          if ! printf '%s' "$BUTTON_ID" | grep -Eq '^buy_btn_.+$'; then
             echo "Stripe buy button id format invalid"
             exit 1
           fi
