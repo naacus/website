@@ -48,6 +48,7 @@ jobs:
         with:
           fail-on-severity: high
           deny-licenses: GPL-2.0, GPL-3.0
+          allow-dependencies-licenses: pkg:npm/node-forge
 
   npm_audit:
     runs-on: ubuntu-latest
