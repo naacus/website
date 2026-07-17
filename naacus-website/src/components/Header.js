@@ -341,7 +341,7 @@ function Header() {
   const aiNextStepLabel = pageIntent?.nextStepLabel || '';
   const aiNextStepPath = pageIntent?.nextStepPath || '';
   const showAiGuideAction = Boolean(aiNextStepPath) && aiNextStepPath !== location.pathname;
-  const nextStepPrefix = isFrench ? 'Etape Suivante' : 'Next Step';
+  const nextStepPrefix = t('header.aiNextStepPrefix');
 
   const handleNavigationHelper = (path, sectionId, label = '') => {
     if (label) {
@@ -527,6 +527,7 @@ function Header() {
           <StripeDonateButton />
           {showAiGuideAction && (
             <button
+              type="button"
               onClick={handleAINextStepClick}
               className={styles.aiGuideButton}
               aria-label={`${nextStepPrefix} ${aiNextStepLabel}`}

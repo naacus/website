@@ -280,6 +280,11 @@ function ChatWidget() {
   };
 
   const handleQuickAction = (quickAction) => {
+    if (typeof quickAction === 'string') {
+      sendMessage(quickAction);
+      return;
+    }
+
     if (quickAction.path) {
       navigate(quickAction.path);
       setOpen(false);

@@ -43,7 +43,7 @@ function buildContextualQuickActions(context = {}) {
   const nextAction = {
     id: 'qa-next-step',
     label: intent.nextStepLabel,
-    question: language === 'fr' ? 'Montrez-moi la prochaine etape' : 'Show me the next step',
+    question: language === 'fr' ? 'Montrez-moi la prochaine étape' : 'Show me the next step',
     path: intent.nextStepPath,
   };
 
@@ -65,7 +65,7 @@ function buildGreetingMessage(context = {}) {
   }
 
   if (language === 'fr') {
-    return `Bonjour, je suis l assistant NAACUS. Je peux vous guider rapidement selon cette page et vous orienter vers la meilleure prochaine etape.`;
+    return `Bonjour, je suis l'assistant NAACUS. Je peux vous guider rapidement selon cette page et vous orienter vers la meilleure prochaine étape.`;
   }
 
   return `Hello, I am the NAACUS assistant. I can guide you based on this page and help you take the best next step quickly.`;
@@ -80,7 +80,7 @@ function buildNoMatchMessage(context = {}) {
   }
 
   if (language === 'fr') {
-    return `Je peux vous orienter vers la meilleure prochaine etape pour cette page. Vous pouvez aussi contacter NAACUS directement via la page Contact.`;
+    return `Je peux vous orienter vers la meilleure prochaine étape pour cette page. Vous pouvez aussi contacter NAACUS directement via la page Contact.`;
   }
 
   return `I can guide you to the best next step from this page. You can also contact NAACUS directly through the Contact page.`;

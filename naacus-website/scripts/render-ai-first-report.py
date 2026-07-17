@@ -196,8 +196,8 @@ def main(argv):
     output_html = pathlib.Path(argv[2])
 
     if not input_json.exists():
-      print(f'Input report not found: {input_json}', file=sys.stderr)
-      return 2
+        print(f'Input report not found: {input_json}', file=sys.stderr)
+        return 2
 
     report = read_json(input_json)
     output_html.parent.mkdir(parents=True, exist_ok=True)
