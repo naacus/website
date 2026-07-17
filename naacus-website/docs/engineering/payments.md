@@ -309,7 +309,7 @@ Ensure Stripe.js is in `public/index.html`:
 
 ### No GA Tracking for Donations
 - Confirm GA initialized (see [ga4_analytics.md](ga4_analytics.md))
-- Check `paymentService` tracks on success
+- Confirm donation events are emitted from active donation/payment handlers
 
 ---
 

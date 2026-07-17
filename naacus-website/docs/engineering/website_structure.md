@@ -258,7 +258,6 @@ Business logic and API integration layer:
 | `bankTransferPaymentService.js` | Bank transfer payments |
 | `cashAppPaymentService.js` | Cash App payments |
 | `cryptoPaymentService.js` | Cryptocurrency payments |
-| `paymentService.js` | Unified payment orchestration |
 
 #### Integration Services
 
