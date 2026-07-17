@@ -82,6 +82,7 @@ jobs:
           EOF2
 
       - name: Validate Stripe env values
+        if: github.event_name == 'push' || (github.event_name == 'pull_request' && !github.event.pull_request.head.repo.fork)
         run: |
           set -e
 
