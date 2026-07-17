@@ -98,7 +98,7 @@ const StripeDonateButton = () => {
       // Cleanup: clear error state on unmount
       setError(null);
     };
-  }, []);
+  }, [buyButtonId, hasStripeConfig, publishableKey]);
 
   if (error) {
     return (
