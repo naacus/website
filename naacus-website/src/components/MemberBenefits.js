@@ -256,13 +256,17 @@ function MemberBenefits() {
     'leadership': <Star24Regular />
   };
 
-  // Combine benefits data with icons and translations
-  const benefits = benefitsData.map(key => ({
-    key,
-    icon: iconMap[key],
-    title: t(`memberBenefits.${key}.title`),
-    description: t(`memberBenefits.${key}.description`)
-  }));
+  // Combine benefits data with icons and translations.
+  // Data can come as objects ({ id, name, description, icon }) from CMS JSON.
+  const benefits = benefitsData.map((benefit) => {
+    const benefitKey = benefit?.id || benefit;
+    return {
+      key: benefitKey,
+      icon: iconMap[benefitKey] || benefit?.icon,
+      title: t(`memberBenefits.${benefitKey}.title`, { defaultValue: benefit?.name || '' }),
+      description: t(`memberBenefits.${benefitKey}.description`, { defaultValue: benefit?.description || '' })
+    };
+  });
 
   const handleBecomeMember = () => {
     trackMembershipCTA('Become a Member', 'member_benefits_cta');
