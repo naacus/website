@@ -16,9 +16,10 @@ Make **all website text and images** editable through Decap CMS, with a PR-based
 
 Decap CMS is enabled at `/admin` and currently manages a subset of content:
 
-- All locale text via structured section forms in Decap:
-	- `All Sections - English` (writes to `public/locales/en/translation.json`)
-	- `All Sections - Francais` (writes to `public/locales/fr/translation.json`)
+- Advanced locale text via section-based entries in Decap:
+	- One entry per top-level section per locale (EN/FR)
+	- Examples: `Header - English`, `Membership - English`, `Header - Francais`, `Membership - Francais`
+	- Writes to `public/locales/en/translation.json` and `public/locales/fr/translation.json`
 - Hero text (EN/FR)
 - FAQ page text (EN/FR)
 - Hero slideshow image list
@@ -63,14 +64,14 @@ Decap collections are organized to keep non-technical editing simple:
 2. **Common Text (Francais)**
 	- Page d'accueil - Texte Hero (FR)
 	- Page FAQ - Texte (FR)
-3. **All Sections (Structured Locale Text)**
-	- All Sections - English
-	- All Sections - Francais
-	- Uses grouped section/object fields (Hero/FAQ-style editing experience)
+3. **Advanced Locale JSON (EN/FR) - By Section**
+	- One entry per top-level locale section (EN and FR)
+	- Section labels are editor-friendly and locale-specific (for example, `Events - English`, `Events - Francais`)
+	- Uses grouped section/object fields with focused editing scope per section
 4. **Media Assets**
 	- Image-focused collections (expanded in image PR)
 
-Editors should start with **Common Text** collections first, then use **All Sections** for broad text updates across the website.
+Editors should start with **Common Text** collections first, then use **Advanced Locale JSON (EN/FR) - By Section** for targeted section updates across the website.
 
 ---
 
