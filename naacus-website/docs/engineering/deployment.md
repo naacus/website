@@ -72,6 +72,14 @@ Azure Static Web Apps routing note:
 - Add an explicit redirect from `/admin` to `/admin/` to prevent Decap from
    requesting `/config.yml` at the site root.
 
+Decap authentication note (Azure hosting):
+
+- Do not rely on Netlify default auth endpoint for GitHub login on Azure-hosted
+   sites.
+- Use DecapBridge PKCE (`git-gateway`) or a self-hosted OAuth proxy and set
+   `backend.base_url`, `auth_endpoint`, `auth_token_endpoint`, and
+   `gateway_url` in `/admin/config.yml`.
+
 ### Create Azure Static Web App
 
 1. Sign in to [Azure Portal](https://portal.azure.com)
