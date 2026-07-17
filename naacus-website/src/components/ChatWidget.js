@@ -227,6 +227,8 @@ function ChatWidget() {
     pageIntent,
   }), [location.pathname, currentLanguage, pageIntent]);
 
+  const getMessageContext = () => messageContext;
+
   // Initialize Copilot Studio when component mounts
   useEffect(() => {
     initializeCopilotStudio();
@@ -236,7 +238,7 @@ function ChatWidget() {
   useEffect(() => {
     if (open && messages.length === 0) {
       const initializeChat = async () => {
-        const greeting = await processMessage('hi', messageContext);
+        const greeting = await processMessage('hi', getMessageContext());
         setMessages([{ from: 'bot', text: greeting.text, quickActions: greeting.quickActions }]);
       };
       initializeChat();
@@ -254,7 +256,7 @@ function ChatWidget() {
     
     // Simulate typing delay for natural feel
     setTimeout(async () => {
-      const response = await processMessage(userMessage, messageContext);
+      const response = await processMessage(userMessage, getMessageContext());
       
       // Log the conversation
       logConversation(userMessage, response, 'web');
