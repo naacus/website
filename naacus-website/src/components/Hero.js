@@ -394,7 +394,6 @@ function Hero() {
         </Text>
         <div className={styles.membershipHighlight}>
           <Text className={styles.membershipText}>
-            <span className={styles.emojiDecorator} aria-hidden="true">✨</span>{' '}
             {t('hero.membershipTeaser')}
           </Text>
           <div className={styles.benefitsList}>
