@@ -4324,3 +4324,37 @@ collections:
                 name: "programs"
                 widget: "list"
                 field: { label: "Program", name: "program", widget: "string" }
+
+      - name: "resources_data"
+        label: "Resources Directory"
+        file: "naacus-website/public/content/resources.json"
+        fields:
+          - label: "Resources"
+            name: "resources"
+            widget: "list"
+            collapsed: false
+            fields:
+              - label: "ID"
+                name: "id"
+                widget: "number"
+              - label: "Icon Type"
+                name: "iconType"
+                widget: "select"
+                options: ["document", "news", "form", "file", "link", "download"]
+              - label: "Title"
+                name: "title"
+                widget: "string"
+              - label: "Description"
+                name: "description"
+                widget: "text"
+              - label: "Button Text"
+                name: "buttonText"
+                widget: "string"
+              - label: "Action Type"
+                name: "actionType"
+                widget: "select"
+                options: ["section", "route", "external", "internal"]
+              - label: "Action Target"
+                name: "actionTarget"
+                widget: "string"
+                hint: "URL, mailto, route path, or section anchor"

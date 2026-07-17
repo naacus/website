@@ -17,3 +17,4 @@ export const loadStaticData = async (dataType) => {
 export const loadActivitiesData = () => loadStaticData('activities');
 export const loadFaqData = () => loadStaticData('faq-data');
 export const loadMinistriesData = () => loadStaticData('ministries');
+export const loadResourcesData = () => loadStaticData('resources');
