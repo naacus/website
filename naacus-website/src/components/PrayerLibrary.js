@@ -520,7 +520,7 @@ function PrayerLibrary() {
 
   const getPrayerName = (prayerTypeId) => {
     const prayer = allPrayerTypes.find((p) => p.id === prayerTypeId);
-    return prayer ? t(prayer.nameKey) : prayerTypeId;
+    return prayer ? t(prayer.nameKey, { defaultValue: prayer.latinName || prayerTypeId }) : prayerTypeId;
   };
 
   // Count videos per prayer type
@@ -599,7 +599,7 @@ function PrayerLibrary() {
                 <Option value="all">{t('prayerLibrary.filters.allPrayers')}</Option>
                 {allPrayerTypes.map((pt) => (
                   <Option key={pt.id} value={pt.id}>
-                    {t(pt.nameKey)}
+                    {t(pt.nameKey, { defaultValue: pt.latinName || pt.id })}
                   </Option>
                 ))}
               </Dropdown>
@@ -717,7 +717,7 @@ function PrayerLibrary() {
               <Card key={pt.id} className={styles.prayerTypeCard}>
                 <div className={styles.prayerTypeHeader}>
                   <div>
-                    <Text className={styles.prayerTypeName}>{t(pt.nameKey)}</Text>
+                    <Text className={styles.prayerTypeName}>{t(pt.nameKey, { defaultValue: pt.latinName || pt.id })}</Text>
                     <Text className={styles.prayerTypeLatinName}>{pt.latinName}</Text>
                   </div>
                   <Badge appearance="tint" color="brand" size="large">

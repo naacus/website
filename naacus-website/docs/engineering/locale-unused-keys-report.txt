@@ -1,4 +1,9 @@
 Locale unused key audit
+
+Important caveat:
+- Static key scans can miss dynamic i18n lookups (for example `t(pt.nameKey)` patterns).
+- `prayerLibrary.prayers.*` keys are runtime-required via data-driven keys in `src/data/prayerLibraryData.js` and must not be removed based only on this report.
+
 EN leaf keys: 520
 FR leaf keys: 520
 Union leaf keys: 520

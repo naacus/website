@@ -585,22 +585,37 @@
     "title": "Prières Catholiques Africaines",
     "subtitle": "Une bibliothèque grandissante de prières catholiques enregistrées dans les langues africaines par les communautés à travers les États-Unis. Célébrant notre patrimoine, unissant notre foi.",
     "stats": {
+      "prayers": "Vidéos de Prières",
+      "languages": "Langues",
+      "countries": "Pays",
+      "youthFeatured": "Jeunesse en Vedette",
       "videos": "vidéos"
     },
     "tabs": {
       "videos": "Toutes les Vidéos",
       "byPrayer": "Par Prière",
+      "byCountry": "Par Pays",
       "byLanguage": "Par Langue"
     },
     "openPrayer": "Ouvrir les détails de la prière pour {{title}}",
     "filters": {
       "prayer": "Filtrer par Prière",
+      "country": "Filtrer par Pays",
       "language": "Filtrer par Langue",
       "allPrayers": "Toutes les Prières",
+      "allCountries": "Tous les Pays",
       "allLanguages": "Toutes les Langues",
       "clear": "Effacer les Filtres"
     },
-    "prayers": {},
+    "prayers": {
+      "signOfCross": "Signe de la Croix",
+      "ourFather": "Notre Père",
+      "hailMary": "Je Vous Salue Marie",
+      "gloryBe": "Gloire au Père",
+      "apostlesCreed": "Credo des Apôtres",
+      "hailHolyQueen": "Salve Regina",
+      "memorare": "Memorare"
+    },
     "comingSoon": "Bientôt Disponible",
     "youthFeatured": "★ Jeunesse en Vedette",
     "noResults": "Aucune vidéo de prière ne correspond à vos filtres actuels. Essayez d'ajuster votre sélection.",
@@ -610,6 +625,11 @@
     "submit": {
       "title": "Soumettez Votre Prière",
       "description": "Nous invitons les individus, familles et groupes paroissiaux des communautés africaines à enregistrer et soumettre des prières catholiques dans leurs langues africaines maternelles. Votre contribution aide à préserver notre patrimoine linguistique et renforce notre foi commune.",
+      "guideline1": "Enregistrez l'une des 7 prières catholiques standard listées ci-dessus",
+      "guideline2": "Portez une tenue africaine pour célébrer notre patrimoine culturel",
+      "guideline3": "Priez dans votre langue africaine maternelle",
+      "guideline4": "Mettez en vedette les jeunes autant que possible pour inspirer la prochaine génération",
+      "guideline5": "Incluez la participation de votre paroisse et communauté ecclésiale",
       "button": "Soumettre une Vidéo de Prière",
       "dialogTitle": "Soumettre Votre Vidéo de Prière",
       "thankYou": "Merci !",
