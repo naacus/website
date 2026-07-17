@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { 
@@ -228,8 +228,23 @@ function MemberBenefits() {
   const styles = useStyles();
   const { trackMembershipCTA, trackVolunteerCTA } = useAnalytics();
 
-  // Get benefits data from service
-  const benefitsData = dataService.getMemberBenefits();
+  // State for benefits data
+  const [benefitsData, setBenefitsData] = useState([]);
+
+  // Load benefits data from service
+  useEffect(() => {
+    const loadBenefits = async () => {
+      try {
+        const data = await dataService.getMemberBenefits();
+        setBenefitsData(data);
+      } catch (error) {
+        console.error('Error loading member benefits:', error);
+        setBenefitsData([]);
+      }
+    };
+
+    loadBenefits();
+  }, []);
 
   // Map icons to benefits
   const iconMap = {

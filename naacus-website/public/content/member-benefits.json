@@ -1,0 +1,40 @@
+{
+  "benefits": [
+    {
+      "id": "community",
+      "name": "Community",
+      "description": "Connect with African Catholic families and build lasting friendships within our vibrant community.",
+      "icon": "👥"
+    },
+    {
+      "id": "events",
+      "name": "Events",
+      "description": "Participate in meaningful gatherings, conferences, retreats, and celebrations throughout the year.",
+      "icon": "📅"
+    },
+    {
+      "id": "resources",
+      "name": "Resources",
+      "description": "Access educational materials, spiritual formation guides, and leadership development resources.",
+      "icon": "📚"
+    },
+    {
+      "id": "spiritual",
+      "name": "Spiritual Growth",
+      "description": "Deepen your faith through prayer groups, spiritual retreats, and faith formation programs.",
+      "icon": "✨"
+    },
+    {
+      "id": "network",
+      "name": "Networking",
+      "description": "Build professional and personal connections with leaders, professionals, and peers across the nation.",
+      "icon": "🤝"
+    },
+    {
+      "id": "leadership",
+      "name": "Leadership Opportunities",
+      "description": "Develop your leadership skills and contribute to advancing NAACUS mission at regional and national levels.",
+      "icon": "🌟"
+    }
+  ]
+}

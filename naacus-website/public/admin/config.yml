@@ -4215,3 +4215,169 @@ collections:
                       - label: Description Placeholder
                         name: descriptionPlaceholder
                         widget: string
+
+  - name: "static_data"
+    label: "Static Content Data"
+    editor:
+      preview: false
+    files:
+      - name: "activities_data"
+        label: "Activities & Programs (What We Do)"
+        file: "naacus-website/public/content/activities.json"
+        fields:
+          - label: "What We Do"
+            name: "whatWeDo"
+            widget: "list"
+            collapsed: false
+            fields:
+              - label: "Icon"
+                name: "icon"
+                widget: "string"
+              - label: "Title"
+                name: "title"
+                widget: "string"
+              - label: "Description"
+                name: "description"
+                widget: "text"
+      
+      - name: "faq_data"
+        label: "FAQ Data"
+        file: "naacus-website/public/content/faq-data.json"
+        fields:
+          - label: "Categories"
+            name: "categories"
+            widget: "object"
+            collapsed: true
+            fields:
+              - label: "About"
+                name: "ABOUT"
+                widget: "string"
+              - label: "Membership"
+                name: "MEMBERSHIP"
+                widget: "string"
+              - label: "Events"
+                name: "EVENTS"
+                widget: "string"
+              - label: "Programs"
+                name: "PROGRAMS"
+                widget: "string"
+              - label: "Contact"
+                name: "CONTACT"
+                widget: "string"
+              - label: "General"
+                name: "GENERAL"
+                widget: "string"
+          - label: "FAQs"
+            name: "faqs"
+            widget: "list"
+            collapsed: false
+            fields:
+              - label: "ID"
+                name: "id"
+                widget: "string"
+              - label: "Category"
+                name: "category"
+                widget: "string"
+              - label: "Question"
+                name: "question"
+                widget: "string"
+              - label: "Keywords"
+                name: "keywords"
+                widget: "list"
+                field: { label: "Keyword", name: "keyword", widget: "string" }
+              - label: "Answer"
+                name: "answer"
+                widget: "text"
+
+      - name: "ministries_data"
+        label: "Ministries Directory"
+        file: "naacus-website/public/content/ministries.json"
+        fields:
+          - label: "Ministries"
+            name: "ministries"
+            widget: "list"
+            collapsed: false
+            fields:
+              - label: "ID"
+                name: "id"
+                widget: "string"
+              - label: "Icon Key"
+                name: "iconKey"
+                widget: "string"
+              - label: "Title"
+                name: "title"
+                widget: "string"
+              - label: "Description (Short)"
+                name: "description"
+                widget: "string"
+              - label: "Email"
+                name: "email"
+                widget: "string"
+                pattern: ['^[^\s@]+@[^\s@]+\.[^\s@]+$', 'Valid email required']
+              - label: "Coordinator"
+                name: "coordinator"
+                widget: "string"
+              - label: "Mission"
+                name: "mission"
+                widget: "text"
+              - label: "Programs"
+                name: "programs"
+                widget: "list"
+                field: { label: "Program", name: "program", widget: "string" }
+
+      - name: "resources_data"
+        label: "Resources Directory"
+        file: "naacus-website/public/content/resources.json"
+        fields:
+          - label: "Resources"
+            name: "resources"
+            widget: "list"
+            collapsed: false
+            fields:
+              - label: "ID"
+                name: "id"
+                widget: "number"
+              - label: "Icon Type"
+                name: "iconType"
+                widget: "select"
+                options: ["document", "news", "form", "file", "link", "download"]
+              - label: "Title"
+                name: "title"
+                widget: "string"
+              - label: "Description"
+                name: "description"
+                widget: "text"
+              - label: "Button Text"
+                name: "buttonText"
+                widget: "string"
+              - label: "Action Type"
+                name: "actionType"
+                widget: "select"
+                options: ["section", "route", "external", "internal"]
+              - label: "Action Target"
+                name: "actionTarget"
+                widget: "string"
+                hint: "URL, mailto, route path, or section anchor"
+
+      - name: "member_benefits_data"
+        label: "Member Benefits"
+        file: "naacus-website/public/content/member-benefits.json"
+        fields:
+          - label: "Benefits"
+            name: "benefits"
+            widget: "list"
+            collapsed: false
+            fields:
+              - label: "ID"
+                name: "id"
+                widget: "string"
+              - label: "Benefit Name"
+                name: "name"
+                widget: "string"
+              - label: "Description"
+                name: "description"
+                widget: "text"
+              - label: "Icon"
+                name: "icon"
+                widget: "string"
+                hint: "Emoji or icon character"

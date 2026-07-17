@@ -1,0 +1,212 @@
+{
+  "ministries": [
+    {
+      "id": "advocacy",
+      "iconKey": "advocacy",
+      "title": "Advocacy Ministry",
+      "description": "Promoting social justice and advocating for African communities in the United States.",
+      "email": "advocacy@naacus.org",
+      "coordinator": "To Be Announced",
+      "mission": "NAACUS Advocacy Ministry seeks to inform the NAACUS membership and community-at-large of issues of social justice and human dignity concerning our communities and people of African descent all over the world.",
+      "programs": [
+        "Advocacy Corner in Newsletters",
+        "Community Education Programs",
+        "Social Justice Events",
+        "Policy Advocacy Campaigns"
+      ]
+    },
+    {
+      "id": "women",
+      "iconKey": "women",
+      "title": "Women's Ministry",
+      "description": "Empowering women through retreats, workshops, and fellowship activities.",
+      "email": "womenministry@naacus.org",
+      "coordinator": "Mrs. Ifeoma (Ify) Uzoh-Anigbogu",
+      "mission": "The mission of NAACUS Women's Ministry is to promote relevant pastoral care, spiritual growth, love, and evangelization focused on African Catholic families in the United States.",
+      "programs": [
+        "Weekly Prayer Meetings",
+        "Monthly Prayer Meetings",
+        "Monthly Newsletter",
+        "Quarterly National Prayer",
+        "Community Outreach Health and Finance Forum",
+        "Annual In-Person Retreat",
+        "Annual Praise and Worship Concert",
+        "NAACUS Conference",
+        "Workshops and Spiritual Enrichment"
+      ]
+    },
+    {
+      "id": "youth",
+      "iconKey": "youth",
+      "title": "Youth Ministry",
+      "description": "Nurturing young Catholics through faith formation, activities, and leadership development.",
+      "email": "youthministry@naacus.org",
+      "coordinator": "Dr. Juliet Njoku",
+      "mission": "Creating a space for individuals age 13-18 of the Catholic faith who identify with the African diaspora to meet, grow together spiritually and socially.",
+      "programs": [
+        "Youth Spotlight Newsletter Features",
+        "Quarterly Youth Speak Zoom Meetings",
+        "Annual Graduation Prayer Ceremony",
+        "Annual Essay Competition",
+        "NAACUS Conference",
+        "Faith Formation Activities",
+        "Community Service Projects"
+      ]
+    },
+    {
+      "id": "youngAdults",
+      "iconKey": "youngAdults",
+      "title": "Young Adults Ministry",
+      "description": "Supporting young adults (ages 19-39) in their spiritual journey and community life.",
+      "email": "youngadultministry@naacus.org",
+      "coordinator": "Mrs. Maame Apenteng Schmidt",
+      "mission": "Creating a space for young men and women of faith who identify with the African diaspora to convene and grow together, spiritually and socially.",
+      "programs": [
+        "Monthly Conference Calls",
+        "Featured Discussion Topics (Quarterly)",
+        "Come as You Are Social Hour (Quarterly)",
+        "Business as Usual Meetings (Quarterly)",
+        "Annual Graduation Prayer Ceremony",
+        "Annual Excellence Awards",
+        "NAACUS Conference",
+        "Spiritual Growth & Mentoring"
+      ]
+    },
+    {
+      "id": "men",
+      "iconKey": "men",
+      "title": "Men's Ministry",
+      "description": "Building brotherhood and strengthening faith among African Catholic men.",
+      "email": "menministry@naacus.org",
+      "coordinator": "Open Position",
+      "mission": "Creating a community of African Catholic men dedicated to strengthening their faith and serving their families and communities.",
+      "programs": [
+        "Monthly Meetings & Discussions",
+        "Spiritual Retreats",
+        "Family Strengthening Programs",
+        "Community Service Projects",
+        "Leadership Development",
+        "Brotherhood Building Activities"
+      ]
+    },
+    {
+      "id": "disabilities",
+      "iconKey": "disabilities",
+      "title": "Ministry for People with Disabilities",
+      "description": "Creating inclusive opportunities for full participation in church life.",
+      "email": "disabilities@naacus.org",
+      "coordinator": "Ms. Nkafu Amingwa",
+      "mission": "Ensuring full inclusion and participation of people with disabilities in the life and mission of NAACUS.",
+      "programs": [
+        "Accessibility Advocacy",
+        "Support Groups & Fellowship",
+        "Adapted Spiritual Programs",
+        "Family Support Services",
+        "Awareness & Education Initiatives",
+        "Inclusive Community Events"
+      ]
+    },
+    {
+      "id": "outreach",
+      "iconKey": "outreach",
+      "title": "Outreach Ministry",
+      "description": "Extending the love of Christ through service to our communities.",
+      "email": "outreach@naacus.org",
+      "coordinator": "Dr. Florence Njoyi",
+      "mission": "Serving the spiritual and material needs of African Catholics and our broader communities.",
+      "programs": [
+        "Community Service Projects",
+        "Charitable Assistance Programs",
+        "Pastoral Visitation",
+        "Crisis Response",
+        "Community Partnerships",
+        "Evangelization Initiatives"
+      ]
+    },
+    {
+      "id": "resources",
+      "iconKey": "resources",
+      "title": "Resource Ministry",
+      "description": "Providing educational materials and resources for spiritual growth.",
+      "email": "resources@naacus.org",
+      "coordinator": "To Be Announced",
+      "mission": "Providing quality resources to support spiritual growth, education, and formation.",
+      "programs": [
+        "Resource Library",
+        "Educational Materials",
+        "Spiritual Formation Resources",
+        "Leadership Development Materials",
+        "Study Guides & Discussion Materials",
+        "Digital Resource Platform"
+      ]
+    },
+    {
+      "id": "finance",
+      "iconKey": "finance",
+      "title": "Finance Ministry",
+      "description": "Stewardship and financial management for NAACUS.",
+      "email": "finance@naacus.org",
+      "coordinator": "To Be Announced",
+      "mission": "Promoting faithful stewardship and transparent financial management of NAACUS resources.",
+      "programs": [
+        "Stewardship Education",
+        "Budget Development",
+        "Financial Transparency Reports",
+        "Fundraising Events",
+        "Grant Management",
+        "Giving Opportunities"
+      ]
+    },
+    {
+      "id": "liturgy",
+      "iconKey": "liturgy",
+      "title": "Liturgy Ministry",
+      "description": "Enhancing worship experiences through meaningful liturgical celebrations rooted in our Catholic faith and African heritage.",
+      "email": "liturgy@naacus.org",
+      "coordinator": "Mrs. Uche Ezechukwu",
+      "mission": "To foster vibrant and reverent liturgical celebrations that honor our Catholic faith while incorporating the rich cultural expressions of the African diaspora.",
+      "programs": [
+        "NAACUS Conference Liturgy Planning",
+        "Quarterly National Prayer Services",
+        "Liturgical Minister Formation",
+        "Cultural Integration in Worship",
+        "Regional Chapter Support",
+        "Retreat Liturgy Coordination"
+      ]
+    },
+    {
+      "id": "media",
+      "iconKey": "media",
+      "title": "Media Ministry",
+      "description": "Communicating the NAACUS story through digital content, social media, and multimedia production.",
+      "email": "media@naacus.org",
+      "coordinator": "Mary Monney",
+      "mission": "To amplify the voice and witness of NAACUS through creative media, digital storytelling, and effective communications across all platforms.",
+      "programs": [
+        "Social Media Management",
+        "Event Photography & Videography",
+        "Live Streaming",
+        "Newsletter Design Support",
+        "Digital Content Creation",
+        "NAACUS YouTube Channel"
+      ]
+    },
+    {
+      "id": "fundraising",
+      "iconKey": "fundraising",
+      "title": "Fundraising Ministry",
+      "description": "Mobilizing resources to support the mission and programs of NAACUS.",
+      "email": "fundraising@naacus.org",
+      "coordinator": "Stella Bello (Fundraising Coordinator)",
+      "mission": "To generate the financial resources needed to sustain and grow the mission of NAACUS through creative fundraising initiatives and community generosity.",
+      "programs": [
+        "Annual Fundraising Campaign",
+        "Gala Dinner & Cultural Night",
+        "Online Giving Campaigns",
+        "Grant Writing & Applications",
+        "Donor Stewardship",
+        "Community Fundraising Events"
+      ]
+    }
+  ]
+}

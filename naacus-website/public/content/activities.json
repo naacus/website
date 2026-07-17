@@ -1,0 +1,29 @@
+{
+  "whatWeDo": [
+    {
+      "icon": "⛪",
+      "title": "Pastoral Care & Parish Connection",
+      "description": "Supporting African Catholic communities and strengthening their connection with parishes, dioceses, and national Catholic organizations."
+    },
+    {
+      "icon": "🌍",
+      "title": "Heritage & Culture Awareness",
+      "description": "Raising awareness of the presence, heritage, and cultures of African Catholics in the U.S., encouraging culturally rooted liturgy including ethnic languages and traditions."
+    },
+    {
+      "icon": "👨‍👩‍👧‍👦",
+      "title": "Family Life & Vocations",
+      "description": "Building up family life and vocations, nurturing leadership among laity, youth, young adults, and those discerning priesthood, religious life, and other ministries."
+    },
+    {
+      "icon": "✨",
+      "title": "Evangelization & Catechesis",
+      "description": "Promoting evangelization, catechesis, and service, empowering African Catholics to witness to Christ in their local parishes and communities."
+    },
+    {
+      "icon": "🤝",
+      "title": "Collaboration & Advocacy",
+      "description": "Collaborating widely—dialoguing with diocesan offices, national Catholic partners, and other ecclesial communities—and advocating for social justice in African communities in the U.S. and diaspora."
+    }
+  ]
+}

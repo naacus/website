@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { 
   makeStyles,
@@ -94,7 +94,21 @@ const useStyles = makeStyles({
 function WhatWeDo() {
   const { t } = useTranslation();
   const styles = useStyles();
-  const activities = dataService.getWhatWeDo();
+  const [activities, setActivities] = useState([]);
+
+  useEffect(() => {
+    const loadActivities = async () => {
+      try {
+        const data = await dataService.getWhatWeDo();
+        setActivities(data);
+      } catch (error) {
+        console.error('Error loading activities:', error);
+        setActivities([]);
+      }
+    };
+
+    loadActivities();
+  }, []);
 
   return (
     <section id="what-we-do" className={styles.whatWeDo}>
