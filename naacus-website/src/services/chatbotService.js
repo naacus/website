@@ -27,6 +27,65 @@ function warnIfNotTest(...args) {
   }
 }
 
+function normalizeLanguage(language) {
+  return (language || 'en').split('-')[0] === 'fr' ? 'fr' : 'en';
+}
+
+function buildContextualQuickActions(context = {}) {
+  const language = normalizeLanguage(context.language);
+  const intent = context.pageIntent;
+  const fallbackQuickActions = quickActions.slice(0, 3);
+
+  if (!intent || !intent.nextStepLabel || !intent.nextStepPath) {
+    return fallbackQuickActions;
+  }
+
+  const nextAction = {
+    id: 'qa-next-step',
+    label: intent.nextStepLabel,
+    question: language === 'fr' ? 'Montrez-moi la prochaine étape' : 'Show me the next step',
+    path: intent.nextStepPath,
+  };
+
+  const contactAction = {
+    id: 'qa-contact',
+    label: language === 'fr' ? 'Contacter NAACUS' : 'Contact NAACUS',
+    question: language === 'fr' ? 'Comment contacter NAACUS ?' : 'How can I contact NAACUS?',
+  };
+
+  return [nextAction, ...fallbackQuickActions.slice(0, 2), contactAction];
+}
+
+function buildGreetingMessage(context = {}) {
+  const language = normalizeLanguage(context.language);
+  const intent = context.pageIntent;
+
+  if (!intent) {
+    return defaultResponses.greeting;
+  }
+
+  if (language === 'fr') {
+    return `Bonjour, je suis l'assistant NAACUS. Je peux vous guider rapidement selon cette page et vous orienter vers la meilleure prochaine étape.`;
+  }
+
+  return `Hello, I am the NAACUS assistant. I can guide you based on this page and help you take the best next step quickly.`;
+}
+
+function buildNoMatchMessage(context = {}) {
+  const language = normalizeLanguage(context.language);
+  const intent = context.pageIntent;
+
+  if (!intent) {
+    return defaultResponses.noMatch;
+  }
+
+  if (language === 'fr') {
+    return `Je peux vous orienter vers la meilleure prochaine étape pour cette page. Vous pouvez aussi contacter NAACUS directement via la page Contact.`;
+  }
+
+  return `I can guide you to the best next step from this page. You can also contact NAACUS directly through the Contact page.`;
+}
+
 /**
  * Initialize Copilot Studio integration
  * Call this when the app starts or when a user opens the chat
@@ -202,14 +261,15 @@ export async function processMessage(userMessage, context = {}) {
  */
 async function processMessageLocal(userMessage, context = {}) {
   const normalizedMessage = userMessage.toLowerCase().trim();
+  const contextualQuickActions = buildContextualQuickActions(context);
   
   // Handle greetings
   const greetings = ['hi', 'hello', 'hey', 'greetings', 'good morning', 'good afternoon', 'good evening'];
   if (greetings.some(g => normalizedMessage === g || normalizedMessage.startsWith(g + ' '))) {
     return {
-      text: defaultResponses.greeting,
-      suggestions: quickActions.map(qa => qa.label),
-      quickActions: quickActions,
+      text: buildGreetingMessage(context),
+      suggestions: contextualQuickActions.map(qa => qa.label),
+      quickActions: contextualQuickActions,
       source: 'local-faq',
     };
   }
@@ -219,8 +279,8 @@ async function processMessageLocal(userMessage, context = {}) {
   if (thankYou.some(t => normalizedMessage.includes(t))) {
     return {
       text: "You're welcome! Is there anything else I can help you with?",
-      suggestions: quickActions.map(qa => qa.label),
-      quickActions: quickActions,
+      suggestions: contextualQuickActions.map(qa => qa.label),
+      quickActions: contextualQuickActions,
       source: 'local-faq',
     };
   }
@@ -247,9 +307,9 @@ async function processMessageLocal(userMessage, context = {}) {
   
   // No good match found
   return {
-    text: defaultResponses.noMatch,
-    suggestions: quickActions.map(qa => qa.label),
-    quickActions: quickActions,
+    text: buildNoMatchMessage(context),
+    suggestions: contextualQuickActions.map(qa => qa.label),
+    quickActions: contextualQuickActions,
     confidence: 0,
     source: 'local-faq',
   };

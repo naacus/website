@@ -45,6 +45,26 @@ jobs:
       - name: Build app
         run: npm run build
 
+      - name: Run AI-first intent evals
+        run: npm run eval:ai-first:html
+
+      - name: Upload AI-first eval report
+        uses: actions/upload-artifact@v4
+        with:
+          name: ai-first-eval-report
+          path: |
+            naacus-website/reports/ai-first-eval.json
+            naacus-website/reports/ai-first-eval.md
+            naacus-website/reports/ai-first-eval.html
+
+      - name: Run mission threshold check (when metrics are provided)
+        run: |
+          if [ -f reports/ai-first-metrics.json ]; then
+            npm run check:ai-first:thresholds
+          else
+            echo "No reports/ai-first-metrics.json found, skipping mission threshold gate."
+          fi
+
       - name: Run accessibility checks
         run: npm run check:a11y
 

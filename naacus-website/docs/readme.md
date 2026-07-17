@@ -19,6 +19,9 @@ Last updated: July 16, 2026
 | [ga4_analytics.md](engineering/ga4_analytics.md) | Google Analytics 4 setup and event tracking |
 | [payments.md](engineering/payments.md) | Stripe payment integration guide |
 | [accessibility-audit.md](engineering/accessibility-audit.md) | WCAG 2.1 a11y audit and remediation roadmap |
+| [ai-first-evaluation.md](engineering/ai-first-evaluation.md) | AI-first implementation eval checks and CI gate |
+| [ai-first-kpi-spec.md](engineering/ai-first-kpi-spec.md) | Mission KPI formulas, thresholds, and release guardrails |
+| [ga4-ai-first-event-map.md](engineering/ga4-ai-first-event-map.md) | Required GA4 events and parameter contract for mission measurement |
 
 ---
 

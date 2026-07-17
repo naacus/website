@@ -599,7 +599,8 @@
     },
     "donate": "Donner",
     "goHome": "Go to home page",
-    "openNavigationMenu": "Open navigation menu"
+    "openNavigationMenu": "Open navigation menu",
+    "aiNextStepPrefix": "Étape Suivante"
   },
   "footer": {
     "privacyPolicy": "Politique de Confidentialité",
