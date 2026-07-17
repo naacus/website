@@ -63,7 +63,7 @@ function FeedbackPage() {
     trackPageView('Feedback');
     
     // Track that user started feedback form
-    trackFormEvent('feedback_form');
+    trackFormEvent('feedback_form', 'start');
   }, []);
 
   const handleFormLoad = () => {
