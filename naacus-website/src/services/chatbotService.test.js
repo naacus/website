@@ -6,8 +6,17 @@
 
 import { processMessage, formatForWhatsApp, getFaqById } from '../services/chatbotService';
 import { faqData } from '../data/faqData';
+import dataService from '../services/dataService';
 
 describe('Chatbot Service', () => {
+  beforeEach(() => {
+    jest.spyOn(dataService, 'getAllFAQs').mockResolvedValue(faqData);
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
   describe('processMessage', () => {
     test('should respond to greetings', async () => {
       const response = await processMessage('Hello');
@@ -103,8 +112,8 @@ describe('Chatbot Service', () => {
       });
     });
 
-    test('should be able to get FAQ by ID', () => {
-      const faq = getFaqById('about-1');
+    test('should be able to get FAQ by ID', async () => {
+      const faq = await getFaqById('about-1');
       expect(faq).toBeDefined();
       expect(faq.id).toBe('about-1');
     });

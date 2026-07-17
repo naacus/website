@@ -3,6 +3,8 @@ import { makeStyles, Button, Text } from '@fluentui/react-components';
 import { DismissRegular } from '@fluentui/react-icons';
 import { paymentConfig } from '../config/paymentConfig';
 
+const isPlaceholder = (value) => /your_|placeholder|example/i.test(value || '');
+
 const useStyles = makeStyles({
   container: {
     display: 'flex',
@@ -42,8 +44,6 @@ const StripeDonateButton = () => {
   const containerRef = useRef(null);
   const scriptLoaded = useRef(false);
   const [error, setError] = useState(null);
-
-  const isPlaceholder = (value) => /your_|placeholder|example/i.test(value || '');
   const publishableKey = paymentConfig.stripe.publishableKey;
   const buyButtonId = paymentConfig.stripe.buyButtonId;
   const hasStripeConfig =
