@@ -4358,3 +4358,26 @@ collections:
                 name: "actionTarget"
                 widget: "string"
                 hint: "URL, mailto, route path, or section anchor"
+
+      - name: "member_benefits_data"
+        label: "Member Benefits"
+        file: "naacus-website/public/content/member-benefits.json"
+        fields:
+          - label: "Benefits"
+            name: "benefits"
+            widget: "list"
+            collapsed: false
+            fields:
+              - label: "ID"
+                name: "id"
+                widget: "string"
+              - label: "Benefit Name"
+                name: "name"
+                widget: "string"
+              - label: "Description"
+                name: "description"
+                widget: "text"
+              - label: "Icon"
+                name: "icon"
+                widget: "string"
+                hint: "Emoji or icon character"
