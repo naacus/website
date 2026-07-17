@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useLocation, useNavigate } from 'react-router-dom';
 import {
   makeStyles,
   shorthands,
@@ -11,6 +12,7 @@ import {
 } from '@fluentui/react-components';
 import { Chat24Regular, Dismiss24Regular, Send24Filled } from '@fluentui/react-icons';
 import { processMessage, logConversation, initializeCopilotStudio } from '../services/chatbotService';
+import { getPageIntent } from '../content/pageIntentConfig';
 import { themeTokens } from '../config/theme';
 
 const useStyles = makeStyles({
@@ -206,13 +208,24 @@ const useStyles = makeStyles({
 });
 
 function ChatWidget() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const styles = useStyles();
+  const location = useLocation();
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const listRef = useRef(null);
+
+  const currentLanguage = i18n.resolvedLanguage || i18n.language || 'en';
+  const pageIntent = getPageIntent(location.pathname, currentLanguage);
+
+  const getMessageContext = () => ({
+    pathname: location.pathname,
+    language: currentLanguage,
+    pageIntent,
+  });
 
   // Initialize Copilot Studio when component mounts
   useEffect(() => {
@@ -223,12 +236,12 @@ function ChatWidget() {
   useEffect(() => {
     if (open && messages.length === 0) {
       const initializeChat = async () => {
-        const greeting = await processMessage('hi');
+        const greeting = await processMessage('hi', getMessageContext());
         setMessages([{ from: 'bot', text: greeting.text, quickActions: greeting.quickActions }]);
       };
       initializeChat();
     }
-  }, [open, messages.length]);
+  }, [open, messages.length, location.pathname, currentLanguage]);
 
   useEffect(() => {
     if (listRef.current) {
@@ -241,7 +254,7 @@ function ChatWidget() {
     
     // Simulate typing delay for natural feel
     setTimeout(async () => {
-      const response = await processMessage(userMessage);
+      const response = await processMessage(userMessage, getMessageContext());
       
       // Log the conversation
       logConversation(userMessage, response, 'web');
@@ -266,8 +279,14 @@ function ChatWidget() {
     handleBotResponse(text);
   };
 
-  const handleQuickAction = (questionText) => {
-    sendMessage(questionText);
+  const handleQuickAction = (quickAction) => {
+    if (quickAction.path) {
+      navigate(quickAction.path);
+      setOpen(false);
+      return;
+    }
+
+    sendMessage(quickAction.question);
   };
 
   const handleKeyPress = (e) => {
@@ -320,7 +339,7 @@ function ChatWidget() {
                         appearance="outline"
                         size="small"
                         className={styles.quickActionButton}
-                        onClick={() => handleQuickAction(qa.question)}
+                        onClick={() => handleQuickAction(qa)}
                       >
                         {qa.label}
                       </Button>

@@ -46,6 +46,13 @@ PR gate model:
 - Security and quality workflows run on pull requests targeting `develop`.
 - Deployment runs only after merge, on `push` to `develop`.
 - Enforce this by marking PR checks as required in GitHub branch protection.
+- AI-first mission guard runs with `npm run eval:ai-first` and fails PR checks if
+   implicit intent behavior regresses.
+
+Mission measurement references:
+
+- KPI thresholds/spec: `docs/engineering/ai-first-kpi-spec.md`
+- GA4 event contract: `docs/engineering/ga4-ai-first-event-map.md`
 
 ### Non-Developer Content Editing (Decap CMS)
 

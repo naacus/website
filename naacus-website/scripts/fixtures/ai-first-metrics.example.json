@@ -1,0 +1,28 @@
+{
+  "missionIndex": 74,
+  "categoryScores": {
+    "trust": 78,
+    "understand": 72,
+    "connect": 69,
+    "act": 73
+  },
+  "pageMetrics": [
+    {
+      "page": "/",
+      "actionPage": false,
+      "audienceFit": 0.78,
+      "understanding": 0.64,
+      "nextStep": 0.39
+    },
+    {
+      "page": "/membership",
+      "actionPage": true,
+      "audienceFit": 0.75,
+      "understanding": 0.66,
+      "nextStep": 0.47
+    }
+  ],
+  "localeParity": {
+    "maxDelta": 8
+  }
+}

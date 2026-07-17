@@ -33,6 +33,10 @@
   "scripts": {
     "sync:locale-sections": "node scripts/sync-locale-sections.js",
     "sync:locale-sections:bootstrap": "node scripts/sync-locale-sections.js --bootstrap",
+    "eval:ai-first": "node scripts/eval-ai-first.js",
+    "eval:ai-first:html": "npm run eval:ai-first && python3 scripts/render-ai-first-report.py reports/ai-first-eval.json reports/ai-first-eval.html",
+    "check:ai-first:thresholds": "node scripts/check-ai-first-thresholds.js",
+    "check:ai-first:thresholds:example": "mkdir -p reports && cp scripts/fixtures/ai-first-metrics.example.json reports/ai-first-metrics.json && node scripts/check-ai-first-thresholds.js",
     "prestart": "npm run sync:locale-sections",
     "prebuild": "npm run sync:locale-sections",
     "start": "react-scripts start",
