@@ -17,9 +17,11 @@ Make **all website text and images** editable through Decap CMS, with a PR-based
 Decap CMS is enabled at `/admin` and currently manages editor-facing text/data domains:
 
 - Advanced locale text via section-based entries in Decap:
-	- One entry per top-level section per locale (EN/FR)
-	- Editor scope is small and section-focused (many manageable tiles)
-	- Writes to `naacus-website/public/locales/en/translation.json` and `naacus-website/public/locales/fr/translation.json`
+	- Grouped into page-oriented Decap collections (for example global shell, home page, events/prayer library, membership/giving)
+	- Each entry still maps to one top-level locale section per locale (EN/FR)
+	- Editor scope is section-focused while the sidebar follows website page groupings
+	- Source-of-truth files live under `naacus-website/public/locales/<locale>/sections/*.json`
+	- Build/start sync regenerates `naacus-website/public/locales/en/translation.json` and `naacus-website/public/locales/fr/translation.json`
 - Hero text (EN/FR)
 - FAQ page text (EN/FR)
 - Hero slideshow image list
@@ -65,10 +67,15 @@ Decap collections are organized to keep non-technical editing simple:
 2. **Common Text (Francais)**
 	- Page d'accueil - Texte Hero (FR)
 	- Page FAQ - Texte (FR)
-3. **Advanced Locale JSON (EN/FR) - By Section**
-	- One entry per top-level locale section (EN and FR)
-	- Section labels are editor-friendly and locale-specific (for example, `Events - English`, `Events - Francais`)
-	- Uses grouped section/object fields with focused editing scope per section
+3. **Advanced Locale Collections (EN/FR) - By Website Page Group**
+	- Website Shell (EN/FR)
+	- Home Page Sections (EN/FR)
+	- About & Leadership Pages (EN/FR)
+	- Ministries & Programs Pages (EN/FR)
+	- Events & Prayer Library Pages (EN/FR)
+	- Membership, Volunteer & Giving (EN/FR)
+	- Resources, Contact & Support Pages (EN/FR)
+	- Inside each collection, entries remain section-specific and locale-specific (for example, `Events - English`, `Events - Francais`)
 4. **Static Content Data**
 	- Activities & Programs (What We Do)
 	- FAQ Data
@@ -79,7 +86,7 @@ Decap collections are organized to keep non-technical editing simple:
 5. **Media Assets**
 	- Image-focused collections (expanded in image PR)
 
-Editors should start with **Common Text** collections first, then use **Advanced Locale JSON (EN/FR) - By Section** for targeted section updates across the website.
+Editors should start with **Common Text** collections first, then use the page-oriented **Advanced Locale** collections for targeted updates that mirror the website structure.
 
 Locale hygiene is now enforced through periodic audits. Current baseline report: `naacus-website/docs/engineering/locale-unused-keys-report.txt`.
 
@@ -100,7 +107,7 @@ Locale hygiene is now enforced through periodic audits. Current baseline report:
 ### Source directories
 
 - `naacus-website/public/content/`: structured content JSON files
-- `naacus-website/public/locales/`: translation JSON files by locale
+- `naacus-website/public/locales/`: per-locale translation sources and generated translation bundles
 - `naacus-website/public/images/uploads/`: CMS-uploaded image assets
 
 ### Component contract
@@ -156,6 +163,7 @@ Components should consume content from structured JSON (or i18n translations) wi
 
 - If login works but save fails with token errors, validate DecapBridge Git token scopes and org SSO authorization.
 - If `/admin/config.yml` fails to load on Azure SWA, verify routing excludes and `/admin -> /admin/` redirect policy.
+- If locale section tiles duplicate unexpectedly in Decap, verify each `files` collection entry points to a unique file path under `public/locales/<locale>/sections/`.
 
 ---
 

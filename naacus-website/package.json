@@ -31,6 +31,10 @@
     "typescript": "^4.9.5"
   },
   "scripts": {
+    "sync:locale-sections": "node scripts/sync-locale-sections.js",
+    "sync:locale-sections:bootstrap": "node scripts/sync-locale-sections.js --bootstrap",
+    "prestart": "npm run sync:locale-sections",
+    "prebuild": "npm run sync:locale-sections",
     "start": "react-scripts start",
     "build": "react-scripts build && cp ../staticwebapp.config.json build/",
     "test": "react-scripts test",

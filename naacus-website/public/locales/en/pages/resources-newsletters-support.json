@@ -1,0 +1,37 @@
+{
+  "resourcesPage": {
+    "title": "Resources & Links",
+    "subtitle": "Access brochures, newsletters, membership forms, and advocacy documents that support the mission of NAACUS and empower African Catholic communities.",
+    "ctaTitle": "Ready to Take the Next Step?",
+    "ctaText": "Join NAACUS as a member or volunteer and help strengthen African Catholic communities across the United States.",
+    "ctaPrimary": "Become a Member",
+    "ctaSecondary": "Become a Volunteer",
+    "partners": {
+      "title": "Partner Organizations",
+      "description": "NAACUS collaborates with various Catholic organizations, dioceses, and ministries to support African Catholics throughout the United States.",
+      "organizations": {}
+    }
+  },
+  "newsletters": {
+    "title": "Stay Updated with NAACUS",
+    "subtitle": "Get the latest news, events, and updates from our community",
+    "archive": "Newsletter Archive",
+    "downloadButton": "Download Latest Newsletter",
+    "viewButton": "View Newsletter"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Find answers to common questions about NAACUS, membership, events, and more",
+    "searchPlaceholder": "Search FAQs...",
+    "noResults": "No FAQs found matching your search",
+    "clearFilters": "Clear Filters",
+    "searchInputLabel": "Search frequently asked questions",
+    "clearSearch": "Clear FAQ search",
+    "filterByCategory": "Filter by Category"
+  },
+  "feedback": {
+    "title": "Send Us Your Feedback",
+    "subtitle": "We value your input and would love to hear your thoughts on how we can improve our website and services. Please share your feedback with us below.",
+    "description": "Website feedback form"
+  }
+}

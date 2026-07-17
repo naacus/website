@@ -1,0 +1,50 @@
+{
+  "about": {
+    "title": "À Propos de NAACUS",
+    "intro": "L'Association Nationale des Catholiques Africains aux États-Unis (NAACUS) rassemble les catholiques africains et leurs familles pour promouvoir la foi, le leadership et le service au sein de l'Église à travers les États-Unis. Enracinés dans l'Évangile et notre devise \"Ensemble avec le Christ\", nous accueillons les membres dans une communauté active de fraternité, d'ateliers et de ministères collaboratifs.",
+    "mission": {
+      "title": "Notre Mission",
+      "description": "Rassembler les communautés catholiques africaines aux États-Unis, promouvoir leur foi et assurer leur participation pleine et active à la vie de l'Église."
+    },
+    "vision": {
+      "title": "Notre Vision",
+      "description": "Une communauté catholique africaine dynamique et visible qui apporte ses dons à l'Église et à la société—confiante dans son identité, généreuse dans son service et engagée dans la société."
+    },
+    "motto": {
+      "title": "Notre Devise",
+      "description": "\"Ensemble avec le Christ\" — Nous construisons des réseaux accueillants de fraternité, d'ateliers et d'initiatives communautaires qui élèvent les gens, célèbrent la culture et font progresser le bien commun."
+    },
+    "ctaTitle": "Prêt à Rejoindre la Communauté NAACUS ?",
+    "ctaText": "Devenez membre et connectez-vous avec les catholiques africains à travers les États-Unis.",
+    "ctaButton": "Devenir Membre"
+  },
+  "whatWeDo": {
+    "title": "Ce Que Nous Faisons",
+    "subtitle": "Guidée par notre mission, NAACUS travaille à assurer que les catholiques africains aux États-Unis peuvent pleinement partager leurs dons, participer activement à l'Église et témoigner du Christ dans la vie familiale, la vie paroissiale et la vie publique."
+  },
+  "whoWeServe": {
+    "title": "Qui Nous Servons",
+    "subtitle": "Notre réseau comprend des personnes de tout le continent africain et de la diaspora qui construisent leur vie aux États-Unis et cherchent un foyer spirituel qui honore à la fois la foi catholique et le patrimoine africain.",
+    "closingText": "NAACUS accueille tous ceux qui cherchent à se connecter avec la communauté catholique africaine vibrante aux États-Unis—un endroit où la foi et le patrimoine se réunissent au service du Christ et de Son Église."
+  },
+  "objectives": {
+    "title": "Nos Objectifs",
+    "subtitle": "NAACUS s'engage à réaliser ces objectifs pour rassembler toutes les communautés catholiques africaines et assurer leur présence vibrante dans l'Église américaine.",
+    "visionTitle": "Notre Vision",
+    "visionDescription": "Une communauté catholique africaine vibrante et visible aux États-Unis—confiante dans son identité, généreuse dans son service et engagée dans la société—participiant pleinement à la vie de l'Église et contribuant ses dons pour construire le Royaume de Dieu."
+  },
+  "leadership": {
+    "title": "Direction",
+    "intro": "Nos leaders dédiés servent la communauté NAACUS avec engagement et passion, guidant notre mission d'unir les communautés catholiques africaines à travers les États-Unis.",
+    "nationalExecutiveOfficers": "Membres du Bureau Exécutif National",
+    "ministryCoordinations": "Coordination Ministériel/Commissions",
+    "trainingProgramsTitle": "Programmes de Formation",
+    "trainingProgramsIntro": "La direction a demande une section dediee aux programmes de formation. Les details officiels seront publies des reception.",
+    "ctaTitle": "Diriger et Servir avec NAACUS",
+    "ctaText": "Passez a l'etape suivante dans la foi et le service en rejoignant notre communaute nationale comme membre ou benevole.",
+    "ctaPrimary": "Rejoindre comme Membre",
+    "ctaSecondary": "Rejoindre comme Benevole",
+    "nationalAdvisoryBoard": "Conseil Consultatif National",
+    "close": "Fermer"
+  }
+}

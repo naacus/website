@@ -1,0 +1,132 @@
+{
+  "events": {
+    "lastName": "Last Name",
+    "expectedAttendees": "Expected Attendees",
+    "success": {
+      "title": "Success!",
+      "registrationStored": "Registration submitted successfully! We will follow up via email."
+    },
+    "dates": "Dates",
+    "submitting": "Submitting...",
+    "message": "Message",
+    "moreUpcomingEvents": "More Upcoming Events",
+    "errors": {
+      "title": "Error",
+      "firstNameRequired": "First name is required",
+      "lastNameRequired": "Last name is required",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Please enter a valid email address",
+      "submissionFailed": "Failed to submit registration. Please try again.",
+      "networkError": "Network connection failed. Please check your internet connection and try again."
+    },
+    "submitAnother": "Submit Another Registration",
+    "pastEvents": "Past Events",
+    "noPastEvents": "No past events to display.",
+    "phone": "Phone",
+    "submitRegistration": "Submit Registration",
+    "registerNow": "Register Now",
+    "registerForEvent": "Register for Event",
+    "upcomingEvents": "Upcoming Events",
+    "more": "more",
+    "location": "Location",
+    "warnings": {
+      "title": "Warning"
+    },
+    "whatToExpect": "What to Expect",
+    "attendees": "Attendees",
+    "closeRegistrationDialog": "Close registration dialog",
+    "cancel": "Cancel",
+    "firstName": "First Name",
+    "email": "Email",
+    "viewDetails": "View Details",
+    "highlights": "Highlights"
+  },
+  "naacus2025": {
+    "photosToBeAdded": "Photos to be added",
+    "scheduleTitle": "2025 Conference Schedule of Events",
+    "ctaButton": "Subscribe for NAACUS 2027 Updates",
+    "galleryButton": "View Photo Gallery",
+    "scheduleDescription": "The NAACUS 2025 Bi-Annual Conference, hosted by Region 6 in Columbus, OH, brought together African Catholics from across the United States for three days of worship, learning, fellowship, and cultural celebration. Below is the complete official schedule of every session, workshop, and activity from this historic gathering.",
+    "dates": "July 18–20, 2025",
+    "galleryTitle": "📸 Conference Photo Gallery",
+    "summary": "Summary:",
+    "videoToBeAdded": "Video to be added",
+    "host": "Region 6",
+    "ctaTitle": "Join Us for NAACUS 2027!",
+    "presenter": "Presenter:",
+    "theme": "Theme: United in Christ for Evangelization (1 Cor. 1:10-13)",
+    "galleryDescription": "Relive the moments! Browse the official NAACUS 2025 Conference photos captured by our photographer.",
+    "ctaDescription": "Inspired by the success of NAACUS 2025? Be part of the next chapter at NAACUS 2027. Stay updated with the latest news and conference details.",
+    "goal": "Goal: African Catholics' Faith and Culture in Action",
+    "location": "Columbus, OH — St. Francis DeSales / St. Matthias School",
+    "subtitle": "United in Christ for Evangelization",
+    "title": "NAACUS 2025: A Historic Gathering",
+    "contentToBeProvided": "Content and summary to be provided"
+  },
+  "prayerLibrary": {
+    "youthFeatured": "★ Youth Featured",
+    "noSubmissionsYet": "No submissions yet — be the first to contribute!",
+    "prayers": {
+      "signOfCross": "Sign of the Cross",
+      "ourFather": "Our Father",
+      "hailMary": "Hail Mary",
+      "gloryBe": "Glory Be",
+      "apostlesCreed": "Apostles' Creed",
+      "hailHolyQueen": "Hail Holy Queen",
+      "memorare": "Memorare"
+    },
+    "availableIn": "Available in {{count}} language(s)",
+    "openPrayer": "Open prayer details for {{title}}",
+    "noResults": "No prayer videos match your current filters. Try adjusting your selection.",
+    "submit": {
+      "form": {
+        "prayerType": "Prayer",
+        "country": "Country of Origin",
+        "descriptionPlaceholder": "Tell us about your prayer video (who is participating, any special context...)",
+        "submit": "Submit",
+        "language": "Language of Prayer",
+        "cancel": "Cancel",
+        "languagePlaceholder": "e.g., Ewondo, Yoruba, Swahili...",
+        "description": "Brief Description",
+        "parish": "Parish / Church"
+      },
+      "dialogTitle": "Submit Your Prayer Video",
+      "thankYouMessage": "Your submission has been received. Our media team will review it and get back to you soon.",
+      "button": "Submit a Prayer Video",
+      "guideline1": "Record one of the 7 standard Catholic prayers listed above",
+      "guideline2": "Wear African attire to celebrate our cultural heritage",
+      "guideline3": "Pray in your native African language",
+      "guideline4": "Feature youth whenever possible to inspire the next generation",
+      "guideline5": "Include your parish and church community participation",
+      "thankYou": "Thank You!",
+      "title": "Submit Your Prayer",
+      "description": "We invite individuals, families, and parish groups from African communities to record and submit Catholic prayers in their native African languages. Your contribution helps preserve our linguistic heritage and strengthens our shared faith."
+    },
+    "subtitle": "A growing library of Catholic prayers recorded in African languages from communities across the United States. Celebrating our heritage, uniting our faith.",
+    "title": "African Catholic Prayers",
+    "filters": {
+      "prayer": "Filter by Prayer",
+      "country": "Filter by Country",
+      "language": "Filter by Language",
+      "allPrayers": "All Prayers",
+      "allCountries": "All Countries",
+      "allLanguages": "All Languages",
+      "clear": "Clear Filters"
+    },
+    "comingSoon": "Coming Soon",
+    "viewVideos": "View Videos →",
+    "tabs": {
+      "videos": "All Videos",
+      "byPrayer": "By Prayer",
+      "byCountry": "By Country",
+      "byLanguage": "By Language"
+    },
+    "stats": {
+      "prayers": "Prayer Videos",
+      "languages": "Languages",
+      "countries": "Countries",
+      "youthFeatured": "Youth Featured",
+      "videos": "videos"
+    }
+  }
+}

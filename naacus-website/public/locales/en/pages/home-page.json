@@ -1,0 +1,107 @@
+{
+  "hero": {
+    "membershipTeaser": "🌟 Join thousands of African Catholics building a stronger community",
+    "subtitle": "Uniting African Catholic Communities Across the United States",
+    "title": "Together with Christ",
+    "benefit1": "Connect with fellow members",
+    "benefit2": "Access exclusive events",
+    "benefit3": "Grow in faith together"
+  },
+  "heroButtons": {
+    "joinCommunity": "Join Our Faith Community",
+    "learnMission": "Learn Our Mission",
+    "viewCalendar": "View Calendar",
+    "getInvolved": "Get Involved"
+  },
+  "conference2027": {
+    "targetValue": "NAACUS & ACCCRUS",
+    "ctaButton": "Subscribe for Updates",
+    "flyerFallback": "Save-the-date flyer image will appear here once uploaded.",
+    "targetLabel": "Partners",
+    "scheduleLine1": "July 27-29, 2027 | Clergy and Religious Gathering by ACCCRUS",
+    "scheduleLine2": "July 29-August 1, 2027 | National Convention by NAACUS and ACCCRUS",
+    "flyerAlt": "NAACUS and ACCCRUS Convention 2027 save the date flyer",
+    "whereValue": "Baltimore, Maryland",
+    "contactLine": "More details: baltimore2027@naacus.org",
+    "whenValue": "July 27-August 1, 2027",
+    "title": "Save the Date: NAACUS & ACCCRUS National Convention"
+  },
+  "memberBenefits": {
+    "resources": {
+      "title": "Resources & Links",
+      "description": "Access educational materials, prayer resources, and links to support your spiritual journey and family life.",
+      "linksTitle": "Quick Links and Contacts"
+    },
+    "leadership": {
+      "title": "Leadership Development",
+      "description": "Develop your gifts through leadership training, mentorship programs, and opportunities to serve."
+    },
+    "community": {
+      "title": "Vibrant Community",
+      "description": "Connect with thousands of African Catholic families and individuals who share your faith and heritage.",
+      "youtubeCta": "Visit YouTube Channel"
+    },
+    "network": {
+      "title": "National Network",
+      "description": "Build relationships with African Catholic communities across all 50 states and strengthen the Church."
+    },
+    "spiritual": {
+      "title": "Spiritual Growth",
+      "description": "Deepen your faith through Bible studies, prayer groups, and opportunities to serve in various ministries."
+    },
+    "cta": "Ready to join our community?",
+    "becomeMemberButton": "Become a Member",
+    "becomeVolunteerButton": "Become a Volunteer",
+    "subtitle": "Join a thriving community of African Catholics united in faith, culture, and service across the United States.",
+    "title": "Become a Member of NAACUS",
+    "events": {
+      "title": "Exclusive Events",
+      "description": "Access to national conferences, workshops, cultural celebrations, and spiritual retreats throughout the year.",
+      "cta": "View Calendar"
+    },
+    "stats": {
+      "members": "Active Members",
+      "communities": "Communities Nationwide",
+      "events": "Annual Events",
+      "states": "States Represented"
+    }
+  },
+  "testimonials": {
+    "title": "What Our Members Say",
+    "subtitle": "Hear from members who have found community, faith, and purpose through NAACUS."
+  },
+  "newsletter": {
+    "successMessage": "Check your email to confirm your subscription and get the latest updates.",
+    "namePlaceholder": "Your Full Name",
+    "submitButton": "Subscribe to Newsletter",
+    "successTitle": "You're Subscribed!",
+    "emailPlaceholder": "Your Email Address",
+    "subtitle": "Get the latest news, events, and updates from our community",
+    "title": "Stay Updated with NAACUS",
+    "benefit1": "Conference announcements",
+    "privacyNote": "We respect your privacy. Your information is secure and will only be used for NAACUS communications.",
+    "benefit2": "Event invitations & updates",
+    "benefit3": "Community news & resources",
+    "description": "Subscribe to our newsletter to receive updates about upcoming conferences, regional events, spiritual resources, and news from African Catholic communities across America."
+  },
+  "contact": {
+    "namePlaceholder": "Your full name",
+    "communityValue": "Connect with African Catholics nationwide",
+    "joinUsValue": "Become a member or volunteer",
+    "nameLabel": "Name",
+    "communityLabel": "Community",
+    "joinUsLabel": "Join Us",
+    "messagePlaceholder": "Tell us how we can help...",
+    "messageLabel": "Message",
+    "emailValue": "info@naacus.org",
+    "parishPlaceholder": "Your parish or organization",
+    "emailFieldLabel": "Email",
+    "emailPlaceholder": "your.email@example.com",
+    "parishLabel": "Parish/Organization (Optional)",
+    "emailLabel": "Email",
+    "title": "Get In Touch",
+    "spiritualDirectorLabel": "Spiritual Director",
+    "sendButton": "Send Message",
+    "description": "Have questions about NAACUS or our programs? Interested in joining our community? We'd love to hear from you!"
+  }
+}

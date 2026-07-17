@@ -1,0 +1,107 @@
+{
+  "hero": {
+    "title": "Ensemble avec le Christ",
+    "subtitle": "Unir les Communautés Catholiques Africaines à Travers les États-Unis",
+    "membershipTeaser": "🌟 Rejoignez des milliers de catholiques africains qui construisent une communauté plus forte",
+    "benefit1": "Connectez-vous avec d'autres membres",
+    "benefit2": "Accédez à des événements exclusifs",
+    "benefit3": "Grandissez ensemble dans la foi"
+  },
+  "heroButtons": {
+    "joinCommunity": "Rejoignez Notre Communauté de Foi",
+    "learnMission": "Découvrez Notre Mission",
+    "viewCalendar": "Voir le Calendrier",
+    "getInvolved": "Participez"
+  },
+  "conference2027": {
+    "title": "Réservez la Date : Convention Nationale NAACUS et ACCCRUS",
+    "whenValue": "27 juillet-1 août 2027",
+    "whereValue": "Baltimore, Maryland",
+    "targetLabel": "Partenaires",
+    "targetValue": "NAACUS et ACCCRUS",
+    "scheduleLine1": "27-29 juillet 2027 | Rencontre du clergé et des religieux par ACCCRUS",
+    "scheduleLine2": "29 juillet-1 août 2027 | Convention nationale par NAACUS et ACCCRUS",
+    "contactLine": "Plus de détails : baltimore2027@naacus.org",
+    "flyerAlt": "Affiche reservez la date de la convention NAACUS et ACCCRUS 2027",
+    "flyerFallback": "L'affiche reservez la date apparaîtra ici après le téléversement.",
+    "ctaButton": "S'abonner aux Mises à Jour"
+  },
+  "memberBenefits": {
+    "title": "Devenir Membre de NAACUS",
+    "subtitle": "Rejoignez une communauté florissante de catholiques africains unis dans la foi, la culture et le service à travers les États-Unis.",
+    "stats": {
+      "members": "Membres Actifs",
+      "communities": "Communautés Nationales",
+      "events": "Événements Annuels",
+      "states": "États Représentés"
+    },
+    "community": {
+      "title": "Communauté Dynamique",
+      "description": "Connectez-vous avec des milliers de familles et d'individus catholiques africains qui partagent votre foi et votre héritage.",
+      "youtubeCta": "Visit YouTube Channel"
+    },
+    "events": {
+      "title": "Événements Exclusifs",
+      "description": "Accès aux conférences nationales, ateliers, célébrations culturelles et retraites spirituelles tout au long de l'année.",
+      "cta": "View Calendar"
+    },
+    "resources": {
+      "title": "Ressources et Liens",
+      "description": "Accédez aux matériels éducatifs, ressources de prière et liens pour soutenir votre parcours spirituel et votre vie de famille.",
+      "linksTitle": "Quick Links and Contacts"
+    },
+    "spiritual": {
+      "title": "Croissance Spirituelle",
+      "description": "Approfondissez votre foi à travers des études bibliques, des groupes de prière et des opportunités de servir dans divers ministères."
+    },
+    "network": {
+      "title": "Réseau National",
+      "description": "Établissez des relations avec les communautés catholiques africaines dans les 50 états et renforcez l'Église."
+    },
+    "leadership": {
+      "title": "Développement du Leadership",
+      "description": "Développez vos dons grâce à la formation au leadership, aux programmes de mentorat et aux opportunités de service."
+    },
+    "cta": "Prêt à rejoindre notre communauté?",
+    "becomeMemberButton": "Devenir un Membre",
+    "becomeVolunteerButton": "Devenir Bénévole"
+  },
+  "testimonials": {
+    "title": "Ce Que Disent Nos Membres",
+    "subtitle": "Écoutez les membres qui ont trouvé communauté, foi et but à travers NAACUS."
+  },
+  "newsletter": {
+    "title": "Restez Informé avec NAACUS",
+    "subtitle": "Recevez les dernières nouvelles, événements et mises à jour de notre communauté",
+    "description": "Abonnez-vous à notre bulletin d'information pour recevoir des mises à jour sur les conférences à venir, les événements régionaux, les ressources spirituelles et les nouvelles des communautés catholiques africaines à travers l'Amérique.",
+    "benefit1": "Annonces de conférences",
+    "benefit2": "Invitations et mises à jour d'événements",
+    "benefit3": "Nouvelles et ressources communautaires",
+    "namePlaceholder": "Votre Nom Complet",
+    "emailPlaceholder": "Votre Adresse Email",
+    "submitButton": "S'abonner au Bulletin",
+    "successTitle": "Vous êtes Abonné!",
+    "successMessage": "Consultez votre email pour confirmer votre abonnement et recevoir les dernières mises à jour.",
+    "privacyNote": "Nous respectons votre vie privée. Vos informations sont sécurisées et ne seront utilisées que pour les communications NAACUS."
+  },
+  "contact": {
+    "title": "Contactez-Nous",
+    "description": "Avez-vous des questions sur NAACUS ou nos programmes? Intéressé à rejoindre notre communauté? Nous aimerions avoir de vos nouvelles!",
+    "emailLabel": "Email",
+    "emailValue": "info@naacus.org",
+    "joinUsLabel": "Rejoignez-Nous",
+    "joinUsValue": "Devenez membre ou bénévole",
+    "communityLabel": "Communauté",
+    "communityValue": "Connectez-vous avec les catholiques africains à travers le pays",
+    "spiritualDirectorLabel": "Directeur Spirituel",
+    "nameLabel": "Nom",
+    "namePlaceholder": "Votre nom complet",
+    "emailFieldLabel": "Email",
+    "emailPlaceholder": "votre.email@exemple.com",
+    "parishLabel": "Paroisse/Organisation (Optionnel)",
+    "parishPlaceholder": "Votre paroisse ou organisation",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Dites-nous comment nous pouvons vous aider...",
+    "sendButton": "Envoyer le Message"
+  }
+}
