@@ -163,7 +163,7 @@ Components should consume content from structured JSON (or i18n translations) wi
 
 - If login works but save fails with token errors, validate DecapBridge Git token scopes and org SSO authorization.
 - If `/admin/config.yml` fails to load on Azure SWA, verify routing excludes and `/admin -> /admin/` redirect policy.
-- If locale section tiles duplicate unexpectedly in Decap, verify each `files` collection entry points to a unique file path under `public/locales/<locale>/sections/`.
+- If locale section tiles duplicate unexpectedly in Decap, verify each `files` collection entry points to a unique file path under `public/locales/<locale>/pages/`.
 
 ---
 
