@@ -41,6 +41,12 @@
 
 Auto-deploys on push to `develop` branch.
 
+PR gate model:
+
+- Security and quality workflows run on pull requests targeting `develop`.
+- Deployment runs only after merge, on `push` to `develop`.
+- Enforce this by marking PR checks as required in GitHub branch protection.
+
 ### Non-Developer Content Editing (Decap CMS)
 
 This project includes a lightweight CMS at `/admin` so authorized editors can
@@ -109,7 +115,7 @@ develop:
 - Trivy uses default workflow/job configuration identity (no custom category)
 - Scorecard uses explicit category `scorecard`
 
-Scorecard SARIF upload runs on non-PR events (`push`, `schedule`,
+Scorecard SARIF upload runs on non-PR events (`schedule`,
 `workflow_dispatch`) to avoid PR-specific branch protection signal mismatch in
 Code Scanning comparisons.
 
