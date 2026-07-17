@@ -973,7 +973,7 @@ collections:
                       - { label: "Description", name: "description", widget: "string" }
                       - { label: "Description Placeholder", name: "descriptionPlaceholder", widget: "string" }
                       - { label: "Cancel", name: "cancel", widget: "string" }
-          # (removed) feedback_form — not a UI locale string
+      - name: "translation_fr"
         label: "All Sections - Francais"
         file: "naacus-website/public/locales/fr/translation.json"
         fields:
