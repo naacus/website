@@ -91,12 +91,12 @@ collections:
           - { label: "Filtrer par categorie", name: "filterByCategory", widget: "string", pattern: ['^.{1,60}$', 'Max 60 characters'] }
 
   - name: site_text_locales
-    label: Advanced Locale JSON (EN/FR)
+    label: Advanced Locale JSON (EN/FR) - By Section
     editor:
       preview: false
     files:
-      - name: translation_en
-        label: Full Translation - English
+      - name: cookies_en
+        label: Cookies - English
         file: naacus-website/public/locales/en/translation.json
         fields:
           - label: Cookies
@@ -119,9 +119,10 @@ collections:
               - label: Reject
                 name: reject
                 widget: string
-              - label: Dismiss
-                name: dismiss
-                widget: string
+      - name: header_en
+        label: Header - English
+        file: naacus-website/public/locales/en/translation.json
+        fields:
           - label: Header
             name: header
             widget: object
@@ -149,9 +150,6 @@ collections:
                     widget: string
                   - label: Leadership
                     name: leadership
-                    widget: string
-                  - label: Objectives
-                    name: objectives
                     widget: string
                   - label: Ministries
                     name: ministries
@@ -189,9 +187,6 @@ collections:
                   - label: Prayers
                     name: prayers
                     widget: string
-              - label: Search Placeholder
-                name: searchPlaceholder
-                widget: string
               - label: Donate
                 name: donate
                 widget: string
@@ -201,6 +196,10 @@ collections:
               - label: Open Navigation Menu
                 name: openNavigationMenu
                 widget: string
+      - name: hero_en
+        label: Hero - English
+        file: naacus-website/public/locales/en/translation.json
+        fields:
           - label: Hero
             name: hero
             widget: object
@@ -224,18 +223,10 @@ collections:
               - label: Benefit3
                 name: benefit3
                 widget: string
-              - label: Scroll Down
-                name: scrollDown
-                widget: string
-              - label: Become Member Button
-                name: becomeMemberButton
-                widget: string
-              - label: Discover Button
-                name: discoverButton
-                widget: string
-              - label: Join Button
-                name: joinButton
-                widget: string
+      - name: about_en
+        label: About - English
+        file: naacus-website/public/locales/en/translation.json
+        fields:
           - label: About
             name: about
             widget: object
@@ -289,9 +280,17 @@ collections:
               - label: Cta Button
                 name: ctaButton
                 widget: string
+      - name: backToTop_en
+        label: Back To Top - English
+        file: naacus-website/public/locales/en/translation.json
+        fields:
           - label: Back To Top
             name: backToTop
             widget: string
+      - name: memberBenefits_en
+        label: Member Benefits - English
+        file: naacus-website/public/locales/en/translation.json
+        fields:
           - label: Member Benefits
             name: memberBenefits
             widget: object
@@ -404,6 +403,10 @@ collections:
               - label: Become Volunteer Button
                 name: becomeVolunteerButton
                 widget: string
+      - name: testimonials_en
+        label: Testimonials - English
+        file: naacus-website/public/locales/en/translation.json
+        fields:
           - label: Testimonials
             name: testimonials
             widget: object
@@ -415,6 +418,10 @@ collections:
               - label: Subtitle
                 name: subtitle
                 widget: string
+      - name: newsletter_en
+        label: Newsletter - English
+        file: naacus-website/public/locales/en/translation.json
+        fields:
           - label: Newsletter
             name: newsletter
             widget: object
@@ -456,14 +463,10 @@ collections:
               - label: Privacy Note
                 name: privacyNote
                 widget: text
-          - label: Join Now Button
-            name: joinNowButton
-            widget: object
-            collapsed: true
-            fields:
-              - label: Text
-                name: text
-                widget: string
+      - name: conference2027_en
+        label: Conference2027 - English
+        file: naacus-website/public/locales/en/translation.json
+        fields:
           - label: Conference2027
             name: conference2027
             widget: object
@@ -472,20 +475,8 @@ collections:
               - label: Title
                 name: title
                 widget: string
-              - label: Subtitle
-                name: subtitle
-                widget: string
-              - label: Highlight Text
-                name: highlightText
-                widget: string
-              - label: When Label
-                name: whenLabel
-                widget: string
               - label: When Value
                 name: whenValue
-                widget: string
-              - label: Where Label
-                name: whereLabel
                 widget: string
               - label: Where Value
                 name: whereValue
@@ -514,6 +505,10 @@ collections:
               - label: Cta Button
                 name: ctaButton
                 widget: string
+      - name: heroButtons_en
+        label: Hero Buttons - English
+        file: naacus-website/public/locales/en/translation.json
+        fields:
           - label: Hero Buttons
             name: heroButtons
             widget: object
@@ -531,6 +526,10 @@ collections:
               - label: Get Involved
                 name: getInvolved
                 widget: string
+      - name: membership_en
+        label: Membership - English
+        file: naacus-website/public/locales/en/translation.json
+        fields:
           - label: Membership
             name: membership
             widget: object
@@ -834,6 +833,10 @@ collections:
               - label: Payment Instructions
                 name: paymentInstructions
                 widget: string
+      - name: volunteer_en
+        label: Volunteer - English
+        file: naacus-website/public/locales/en/translation.json
+        fields:
           - label: Volunteer
             name: volunteer
             widget: object
@@ -1087,6 +1090,10 @@ collections:
               - label: Required
                 name: required
                 widget: string
+      - name: resourcesPage_en
+        label: Resources Page - English
+        file: naacus-website/public/locales/en/translation.json
+        fields:
           - label: Resources Page
             name: resourcesPage
             widget: object
@@ -1121,26 +1128,10 @@ collections:
                   - label: Description
                     name: description
                     widget: text
-                  - label: Organizations
-                    name: organizations
-                    widget: object
-                    collapsed: true
-                    fields:
-                      - label: Usccb
-                        name: usccb
-                        widget: string
-                      - label: Dioceses
-                        name: dioceses
-                        widget: string
-                      - label: African
-                        name: african
-                        widget: string
-                      - label: National
-                        name: national
-                        widget: string
-                      - label: Intercultural
-                        name: intercultural
-                        widget: string
+      - name: contact_en
+        label: Contact - English
+        file: naacus-website/public/locales/en/translation.json
+        fields:
           - label: Contact
             name: contact
             widget: object
@@ -1200,20 +1191,15 @@ collections:
               - label: Send Button
                 name: sendButton
                 widget: string
-              - label: Required
-                name: required
-                widget: string
+      - name: events_en
+        label: Events - English
+        file: naacus-website/public/locales/en/translation.json
+        fields:
           - label: Events
             name: events
             widget: object
             collapsed: true
             fields:
-              - label: Title
-                name: title
-                widget: string
-              - label: Subtitle
-                name: subtitle
-                widget: string
               - label: Upcoming Events
                 name: upcomingEvents
                 widget: string
@@ -1349,14 +1335,15 @@ collections:
               - label: Submitting
                 name: submitting
                 widget: string
+      - name: chat_en
+        label: Chat - English
+        file: naacus-website/public/locales/en/translation.json
+        fields:
           - label: Chat
             name: chat
             widget: object
             collapsed: true
             fields:
-              - label: Greeting
-                name: greeting
-                widget: string
               - label: Support Title
                 name: supportTitle
                 widget: string
@@ -1369,20 +1356,18 @@ collections:
               - label: Placeholder
                 name: placeholder
                 widget: string
-              - label: Bot Reply
-                name: botReply
-                widget: string
               - label: Open Assistant
                 name: openAssistant
                 widget: string
+      - name: footer_en
+        label: Footer - English
+        file: naacus-website/public/locales/en/translation.json
+        fields:
           - label: Footer
             name: footer
             widget: object
             collapsed: true
             fields:
-              - label: Copyright
-                name: copyright
-                widget: string
               - label: Privacy Policy
                 name: privacyPolicy
                 widget: string
@@ -1443,9 +1428,10 @@ collections:
               - label: Contact Us
                 name: contactUs
                 widget: string
-              - label: Ms Integration
-                name: msIntegration
-                widget: string
+      - name: objectives_en
+        label: Objectives - English
+        file: naacus-website/public/locales/en/translation.json
+        fields:
           - label: Objectives
             name: objectives
             widget: object
@@ -1463,6 +1449,10 @@ collections:
               - label: Vision Description
                 name: visionDescription
                 widget: text
+      - name: whoWeServe_en
+        label: Who We Serve - English
+        file: naacus-website/public/locales/en/translation.json
+        fields:
           - label: Who We Serve
             name: whoWeServe
             widget: object
@@ -1477,6 +1467,10 @@ collections:
               - label: Closing Text
                 name: closingText
                 widget: text
+      - name: whatWeDo_en
+        label: What We Do - English
+        file: naacus-website/public/locales/en/translation.json
+        fields:
           - label: What We Do
             name: whatWeDo
             widget: object
@@ -1488,6 +1482,10 @@ collections:
               - label: Subtitle
                 name: subtitle
                 widget: text
+      - name: leadership_en
+        label: Leadership - English
+        file: naacus-website/public/locales/en/translation.json
+        fields:
           - label: Leadership
             name: leadership
             widget: object
@@ -1499,12 +1497,6 @@ collections:
               - label: Intro
                 name: intro
                 widget: text
-              - label: Executive Board
-                name: executiveBoard
-                widget: string
-              - label: Spiritual Advisers
-                name: spiritualAdvisers
-                widget: string
               - label: National Executive Officers
                 name: nationalExecutiveOfficers
                 widget: string
@@ -1516,12 +1508,6 @@ collections:
                 widget: string
               - label: Training Programs Intro
                 name: trainingProgramsIntro
-                widget: text
-              - label: Training Programs Pending Title
-                name: trainingProgramsPendingTitle
-                widget: string
-              - label: Training Programs Pending Text
-                name: trainingProgramsPendingText
                 widget: text
               - label: Cta Title
                 name: ctaTitle
@@ -1538,12 +1524,13 @@ collections:
               - label: National Advisory Board
                 name: nationalAdvisoryBoard
                 widget: string
-              - label: Read More
-                name: readMore
-                widget: string
               - label: Close
                 name: close
                 widget: string
+      - name: ministries_en
+        label: Ministries - English
+        file: naacus-website/public/locales/en/translation.json
+        fields:
           - label: Ministries
             name: ministries
             widget: object
@@ -1564,6 +1551,10 @@ collections:
               - label: Cta Text
                 name: ctaText
                 widget: text
+      - name: programs_en
+        label: Programs - English
+        file: naacus-website/public/locales/en/translation.json
+        fields:
           - label: Programs
             name: programs
             widget: object
@@ -1611,6 +1602,10 @@ collections:
               - label: Cta Secondary
                 name: ctaSecondary
                 widget: string
+      - name: naacus2025_en
+        label: Naacus2025 - English
+        file: naacus-website/public/locales/en/translation.json
+        fields:
           - label: Naacus2025
             name: naacus2025
             widget: object
@@ -1676,6 +1671,10 @@ collections:
               - label: Gallery Button
                 name: galleryButton
                 widget: string
+      - name: newsletters_en
+        label: Newsletters - English
+        file: naacus-website/public/locales/en/translation.json
+        fields:
           - label: Newsletters
             name: newsletters
             widget: object
@@ -1696,6 +1695,10 @@ collections:
               - label: View Button
                 name: viewButton
                 widget: string
+      - name: donation_en
+        label: Donation - English
+        file: naacus-website/public/locales/en/translation.json
+        fields:
           - label: Donation
             name: donation
             widget: object
@@ -1788,12 +1791,6 @@ collections:
               - label: Cashapp Success
                 name: cashappSuccess
                 widget: string
-              - label: Bank Info
-                name: bankInfo
-                widget: string
-              - label: Crypto Info
-                name: cryptoInfo
-                widget: string
               - label: Payment Instructions
                 name: paymentInstructions
                 widget: string
@@ -1875,6 +1872,10 @@ collections:
               - label: Authentication Required
                 name: authenticationRequired
                 widget: string
+      - name: search_en
+        label: Search - English
+        file: naacus-website/public/locales/en/translation.json
+        fields:
           - label: Search
             name: search
             widget: object
@@ -1892,9 +1893,6 @@ collections:
               - label: Start Typing
                 name: startTyping
                 widget: string
-              - label: No Results
-                name: noResults
-                widget: string
               - label: Results Found
                 name: resultsFound
                 widget: string
@@ -1904,12 +1902,13 @@ collections:
               - label: Tooltip
                 name: tooltip
                 widget: string
-              - label: Keyboard Shortcut
-                name: keyboard_shortcut
-                widget: string
               - label: Input Label
                 name: inputLabel
                 widget: string
+      - name: faq_en
+        label: Faq - English
+        file: naacus-website/public/locales/en/translation.json
+        fields:
           - label: Faq
             name: faq
             widget: object
@@ -1939,6 +1938,10 @@ collections:
               - label: Filter By Category
                 name: filterByCategory
                 widget: string
+      - name: feedback_en
+        label: Feedback - English
+        file: naacus-website/public/locales/en/translation.json
+        fields:
           - label: Feedback
             name: feedback
             widget: object
@@ -1953,6 +1956,10 @@ collections:
               - label: Description
                 name: description
                 widget: string
+      - name: notFound_en
+        label: Not Found - English
+        file: naacus-website/public/locales/en/translation.json
+        fields:
           - label: Not Found
             name: notFound
             widget: object
@@ -1970,6 +1977,10 @@ collections:
               - label: Go Back
                 name: goBack
                 widget: string
+      - name: prayerLibrary_en
+        label: Prayer Library - English
+        file: naacus-website/public/locales/en/translation.json
+        fields:
           - label: Prayer Library
             name: prayerLibrary
             widget: object
@@ -1986,18 +1997,6 @@ collections:
                 widget: object
                 collapsed: true
                 fields:
-                  - label: Prayers
-                    name: prayers
-                    widget: string
-                  - label: Languages
-                    name: languages
-                    widget: string
-                  - label: Countries
-                    name: countries
-                    widget: string
-                  - label: Youth Featured
-                    name: youthFeatured
-                    widget: string
                   - label: Videos
                     name: videos
                     widget: string
@@ -2161,8 +2160,8 @@ collections:
                       - label: Cancel
                         name: cancel
                         widget: string
-      - name: translation_fr
-        label: Full Translation - Francais
+      - name: cookies_fr
+        label: Cookies - Francais
         file: naacus-website/public/locales/fr/translation.json
         fields:
           - label: Cookies
@@ -2185,9 +2184,10 @@ collections:
               - label: Reject
                 name: reject
                 widget: string
-              - label: Dismiss
-                name: dismiss
-                widget: string
+      - name: header_fr
+        label: Header - Francais
+        file: naacus-website/public/locales/fr/translation.json
+        fields:
           - label: Header
             name: header
             widget: object
@@ -2195,6 +2195,9 @@ collections:
             fields:
               - label: Title
                 name: title
+                widget: string
+              - label: Tagline
+                name: tagline
                 widget: string
               - label: Nav
                 name: nav
@@ -2212,9 +2215,6 @@ collections:
                     widget: string
                   - label: Leadership
                     name: leadership
-                    widget: string
-                  - label: Objectives
-                    name: objectives
                     widget: string
                   - label: Ministries
                     name: ministries
@@ -2252,9 +2252,6 @@ collections:
                   - label: Prayers
                     name: prayers
                     widget: string
-              - label: Search Placeholder
-                name: searchPlaceholder
-                widget: string
               - label: Donate
                 name: donate
                 widget: string
@@ -2264,6 +2261,10 @@ collections:
               - label: Open Navigation Menu
                 name: openNavigationMenu
                 widget: string
+      - name: hero_fr
+        label: Hero - Francais
+        file: naacus-website/public/locales/fr/translation.json
+        fields:
           - label: Hero
             name: hero
             widget: object
@@ -2287,15 +2288,10 @@ collections:
               - label: Benefit3
                 name: benefit3
                 widget: string
-              - label: Become Member Button
-                name: becomeMemberButton
-                widget: string
-              - label: Discover Button
-                name: discoverButton
-                widget: string
-              - label: Join Button
-                name: joinButton
-                widget: string
+      - name: about_fr
+        label: About - Francais
+        file: naacus-website/public/locales/fr/translation.json
+        fields:
           - label: About
             name: about
             widget: object
@@ -2346,9 +2342,17 @@ collections:
               - label: Cta Button
                 name: ctaButton
                 widget: string
+      - name: backToTop_fr
+        label: Back To Top - Francais
+        file: naacus-website/public/locales/fr/translation.json
+        fields:
           - label: Back To Top
             name: backToTop
             widget: string
+      - name: memberBenefits_fr
+        label: Member Benefits - Francais
+        file: naacus-website/public/locales/fr/translation.json
+        fields:
           - label: Member Benefits
             name: memberBenefits
             widget: object
@@ -2461,6 +2465,10 @@ collections:
               - label: Become Volunteer Button
                 name: becomeVolunteerButton
                 widget: string
+      - name: testimonials_fr
+        label: Testimonials - Francais
+        file: naacus-website/public/locales/fr/translation.json
+        fields:
           - label: Testimonials
             name: testimonials
             widget: object
@@ -2472,6 +2480,10 @@ collections:
               - label: Subtitle
                 name: subtitle
                 widget: string
+      - name: newsletter_fr
+        label: Newsletter - Francais
+        file: naacus-website/public/locales/fr/translation.json
+        fields:
           - label: Newsletter
             name: newsletter
             widget: object
@@ -2513,14 +2525,10 @@ collections:
               - label: Privacy Note
                 name: privacyNote
                 widget: text
-          - label: Join Now Button
-            name: joinNowButton
-            widget: object
-            collapsed: true
-            fields:
-              - label: Text
-                name: text
-                widget: string
+      - name: conference2027_fr
+        label: Conference2027 - Francais
+        file: naacus-website/public/locales/fr/translation.json
+        fields:
           - label: Conference2027
             name: conference2027
             widget: object
@@ -2529,20 +2537,8 @@ collections:
               - label: Title
                 name: title
                 widget: string
-              - label: Subtitle
-                name: subtitle
-                widget: string
-              - label: Highlight Text
-                name: highlightText
-                widget: string
-              - label: When Label
-                name: whenLabel
-                widget: string
               - label: When Value
                 name: whenValue
-                widget: string
-              - label: Where Label
-                name: whereLabel
                 widget: string
               - label: Where Value
                 name: whereValue
@@ -2571,6 +2567,10 @@ collections:
               - label: Cta Button
                 name: ctaButton
                 widget: string
+      - name: heroButtons_fr
+        label: Hero Buttons - Francais
+        file: naacus-website/public/locales/fr/translation.json
+        fields:
           - label: Hero Buttons
             name: heroButtons
             widget: object
@@ -2588,6 +2588,10 @@ collections:
               - label: Get Involved
                 name: getInvolved
                 widget: string
+      - name: membership_fr
+        label: Membership - Francais
+        file: naacus-website/public/locales/fr/translation.json
+        fields:
           - label: Membership
             name: membership
             widget: object
@@ -2891,6 +2895,10 @@ collections:
               - label: Payment Instructions
                 name: paymentInstructions
                 widget: string
+      - name: volunteer_fr
+        label: Volunteer - Francais
+        file: naacus-website/public/locales/fr/translation.json
+        fields:
           - label: Volunteer
             name: volunteer
             widget: object
@@ -3144,6 +3152,10 @@ collections:
               - label: Required
                 name: required
                 widget: string
+      - name: resourcesPage_fr
+        label: Resources Page - Francais
+        file: naacus-website/public/locales/fr/translation.json
+        fields:
           - label: Resources Page
             name: resourcesPage
             widget: object
@@ -3178,26 +3190,11 @@ collections:
                   - label: Description
                     name: description
                     widget: text
-                  - label: Organizations
-                    name: organizations
-                    widget: object
-                    collapsed: true
-                    fields:
-                      - label: Usccb
-                        name: usccb
-                        widget: string
-                      - label: Dioceses
-                        name: dioceses
-                        widget: string
-                      - label: African
-                        name: african
-                        widget: string
-                      - label: National
-                        name: national
-                        widget: string
-                      - label: Intercultural
-                        name: intercultural
-                        widget: string
+                # Organizations removed (unused)
+      - name: contact_fr
+        label: Contact - Francais
+        file: naacus-website/public/locales/fr/translation.json
+        fields:
           - label: Contact
             name: contact
             widget: object
@@ -3257,17 +3254,15 @@ collections:
               - label: Send Button
                 name: sendButton
                 widget: string
-              - label: Required
-                name: required
-                widget: string
+      - name: chat_fr
+        label: Chat - Francais
+        file: naacus-website/public/locales/fr/translation.json
+        fields:
           - label: Chat
             name: chat
             widget: object
             collapsed: true
             fields:
-              - label: Greeting
-                name: greeting
-                widget: string
               - label: Support Title
                 name: supportTitle
                 widget: string
@@ -3280,20 +3275,18 @@ collections:
               - label: Placeholder
                 name: placeholder
                 widget: string
-              - label: Bot Reply
-                name: botReply
-                widget: string
               - label: Open Assistant
                 name: openAssistant
                 widget: string
+      - name: footer_fr
+        label: Footer - Francais
+        file: naacus-website/public/locales/fr/translation.json
+        fields:
           - label: Footer
             name: footer
             widget: object
             collapsed: true
             fields:
-              - label: Copyright
-                name: copyright
-                widget: string
               - label: Privacy Policy
                 name: privacyPolicy
                 widget: string
@@ -3354,9 +3347,10 @@ collections:
               - label: Contact Us
                 name: contactUs
                 widget: string
-              - label: Ms Integration
-                name: msIntegration
-                widget: string
+      - name: objectives_fr
+        label: Objectives - Francais
+        file: naacus-website/public/locales/fr/translation.json
+        fields:
           - label: Objectives
             name: objectives
             widget: object
@@ -3374,6 +3368,10 @@ collections:
               - label: Vision Description
                 name: visionDescription
                 widget: text
+      - name: whoWeServe_fr
+        label: Who We Serve - Francais
+        file: naacus-website/public/locales/fr/translation.json
+        fields:
           - label: Who We Serve
             name: whoWeServe
             widget: object
@@ -3388,6 +3386,10 @@ collections:
               - label: Closing Text
                 name: closingText
                 widget: text
+      - name: whatWeDo_fr
+        label: What We Do - Francais
+        file: naacus-website/public/locales/fr/translation.json
+        fields:
           - label: What We Do
             name: whatWeDo
             widget: object
@@ -3399,6 +3401,10 @@ collections:
               - label: Subtitle
                 name: subtitle
                 widget: text
+      - name: leadership_fr
+        label: Leadership - Francais
+        file: naacus-website/public/locales/fr/translation.json
+        fields:
           - label: Leadership
             name: leadership
             widget: object
@@ -3410,12 +3416,6 @@ collections:
               - label: Intro
                 name: intro
                 widget: text
-              - label: Executive Board
-                name: executiveBoard
-                widget: string
-              - label: Spiritual Advisers
-                name: spiritualAdvisers
-                widget: string
               - label: National Executive Officers
                 name: nationalExecutiveOfficers
                 widget: string
@@ -3427,12 +3427,6 @@ collections:
                 widget: string
               - label: Training Programs Intro
                 name: trainingProgramsIntro
-                widget: text
-              - label: Training Programs Pending Title
-                name: trainingProgramsPendingTitle
-                widget: string
-              - label: Training Programs Pending Text
-                name: trainingProgramsPendingText
                 widget: text
               - label: Cta Title
                 name: ctaTitle
@@ -3449,12 +3443,13 @@ collections:
               - label: National Advisory Board
                 name: nationalAdvisoryBoard
                 widget: string
-              - label: Read More
-                name: readMore
-                widget: string
               - label: Close
                 name: close
                 widget: string
+      - name: ministries_fr
+        label: Ministries - Francais
+        file: naacus-website/public/locales/fr/translation.json
+        fields:
           - label: Ministries
             name: ministries
             widget: object
@@ -3475,6 +3470,10 @@ collections:
               - label: Cta Text
                 name: ctaText
                 widget: text
+      - name: programs_fr
+        label: Programs - Francais
+        file: naacus-website/public/locales/fr/translation.json
+        fields:
           - label: Programs
             name: programs
             widget: object
@@ -3522,6 +3521,10 @@ collections:
               - label: Cta Secondary
                 name: ctaSecondary
                 widget: string
+      - name: naacus2025_fr
+        label: Naacus2025 - Francais
+        file: naacus-website/public/locales/fr/translation.json
+        fields:
           - label: Naacus2025
             name: naacus2025
             widget: object
@@ -3587,6 +3590,10 @@ collections:
               - label: Gallery Button
                 name: galleryButton
                 widget: string
+      - name: newsletters_fr
+        label: Newsletters - Francais
+        file: naacus-website/public/locales/fr/translation.json
+        fields:
           - label: Newsletters
             name: newsletters
             widget: object
@@ -3607,6 +3614,10 @@ collections:
               - label: View Button
                 name: viewButton
                 widget: string
+      - name: donation_fr
+        label: Donation - Francais
+        file: naacus-website/public/locales/fr/translation.json
+        fields:
           - label: Donation
             name: donation
             widget: object
@@ -3699,12 +3710,6 @@ collections:
               - label: Cashapp Success
                 name: cashappSuccess
                 widget: string
-              - label: Bank Info
-                name: bankInfo
-                widget: string
-              - label: Crypto Info
-                name: cryptoInfo
-                widget: string
               - label: Payment Instructions
                 name: paymentInstructions
                 widget: string
@@ -3786,17 +3791,15 @@ collections:
               - label: Authentication Required
                 name: authenticationRequired
                 widget: string
+      - name: events_fr
+        label: Events - Francais
+        file: naacus-website/public/locales/fr/translation.json
+        fields:
           - label: Events
             name: events
             widget: object
             collapsed: true
             fields:
-              - label: Title
-                name: title
-                widget: string
-              - label: Subtitle
-                name: subtitle
-                widget: text
               - label: Upcoming Events
                 name: upcomingEvents
                 widget: string
@@ -3932,6 +3935,10 @@ collections:
               - label: Submitting
                 name: submitting
                 widget: string
+      - name: search_fr
+        label: Search - Francais
+        file: naacus-website/public/locales/fr/translation.json
+        fields:
           - label: Search
             name: search
             widget: object
@@ -3949,9 +3956,6 @@ collections:
               - label: Start Typing
                 name: startTyping
                 widget: string
-              - label: No Results
-                name: noResults
-                widget: string
               - label: Results Found
                 name: resultsFound
                 widget: string
@@ -3961,12 +3965,13 @@ collections:
               - label: Tooltip
                 name: tooltip
                 widget: string
-              - label: Keyboard Shortcut
-                name: keyboard_shortcut
-                widget: string
               - label: Input Label
                 name: inputLabel
                 widget: string
+      - name: faq_fr
+        label: Faq - Francais
+        file: naacus-website/public/locales/fr/translation.json
+        fields:
           - label: Faq
             name: faq
             widget: object
@@ -3996,6 +4001,10 @@ collections:
               - label: Filter By Category
                 name: filterByCategory
                 widget: string
+      - name: feedback_fr
+        label: Feedback - Francais
+        file: naacus-website/public/locales/fr/translation.json
+        fields:
           - label: Feedback
             name: feedback
             widget: object
@@ -4010,6 +4019,10 @@ collections:
               - label: Description
                 name: description
                 widget: string
+      - name: notFound_fr
+        label: Not Found - Francais
+        file: naacus-website/public/locales/fr/translation.json
+        fields:
           - label: Not Found
             name: notFound
             widget: object
@@ -4027,6 +4040,10 @@ collections:
               - label: Go Back
                 name: goBack
                 widget: string
+      - name: prayerLibrary_fr
+        label: Prayer Library - Francais
+        file: naacus-website/public/locales/fr/translation.json
+        fields:
           - label: Prayer Library
             name: prayerLibrary
             widget: object
@@ -4043,18 +4060,6 @@ collections:
                 widget: object
                 collapsed: true
                 fields:
-                  - label: Prayers
-                    name: prayers
-                    widget: string
-                  - label: Languages
-                    name: languages
-                    widget: string
-                  - label: Countries
-                    name: countries
-                    widget: string
-                  - label: Youth Featured
-                    name: youthFeatured
-                    widget: string
                   - label: Videos
                     name: videos
                     widget: string
@@ -4215,7 +4220,6 @@ collections:
                       - label: Description Placeholder
                         name: descriptionPlaceholder
                         widget: string
-
   - name: "static_data"
     label: "Static Content Data"
     editor:

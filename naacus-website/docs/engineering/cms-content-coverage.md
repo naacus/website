@@ -2,7 +2,7 @@
 
 > **Category:** Engineering | **Audience:** Developers, content admins
 > **Status:** Canonical source of truth for Decap-managed content scope
-> **Last Updated:** July 16, 2026 | [<- Docs Index](../readme.md)
+> **Last Updated:** July 17, 2026 | [<- Docs Index](../readme.md)
 
 ---
 
@@ -14,15 +14,16 @@ Make **all website text and images** editable through Decap CMS, with a PR-based
 
 ## Current State
 
-Decap CMS is enabled at `/admin` and currently manages a subset of content:
+Decap CMS is enabled at `/admin` and currently manages editor-facing text/data domains:
 
-- Advanced locale text via consolidated entries in Decap:
-	- One entry per locale (EN/FR) covering the full translation schema
-	- Examples: `Full Translation - English`, `Full Translation - Francais`
+- Advanced locale text via section-based entries in Decap:
+	- One entry per top-level section per locale (EN/FR)
+	- Editor scope is small and section-focused (many manageable tiles)
 	- Writes to `naacus-website/public/locales/en/translation.json` and `naacus-website/public/locales/fr/translation.json`
 - Hero text (EN/FR)
 - FAQ page text (EN/FR)
 - Hero slideshow image list
+- Stable static data collections (activities, FAQ data, ministries, resources, member benefits)
 
 Authentication is handled via DecapBridge PKCE + git-gateway.
 
@@ -68,10 +69,19 @@ Decap collections are organized to keep non-technical editing simple:
 	- One entry per top-level locale section (EN and FR)
 	- Section labels are editor-friendly and locale-specific (for example, `Events - English`, `Events - Francais`)
 	- Uses grouped section/object fields with focused editing scope per section
-4. **Media Assets**
+4. **Static Content Data**
+	- Activities & Programs (What We Do)
+	- FAQ Data
+	- Ministries Directory
+	- Resources Directory
+	- Member Benefits
+
+5. **Media Assets**
 	- Image-focused collections (expanded in image PR)
 
 Editors should start with **Common Text** collections first, then use **Advanced Locale JSON (EN/FR) - By Section** for targeted section updates across the website.
+
+Locale hygiene is now enforced through periodic audits. Current baseline report: `naacus-website/docs/engineering/locale-unused-keys-report.txt`.
 
 ---
 
