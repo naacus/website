@@ -1,11 +1,41 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>NAACUS Content Manager</title>
+    <script>
+      window.CMS_MANUAL_INIT = true;
+    </script>
   </head>
   <body>
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+    <script src="https://unpkg.com/decap-cms@3.8.3/dist/decap-cms.js"></script>
+    <script>
+      (async function initCMS() {
+        try {
+          const cacheBust = Date.now();
+          const response = await fetch(`/admin/config.yml?v=${cacheBust}`, {
+            cache: 'no-store',
+            headers: {
+              'Cache-Control': 'no-cache',
+              Pragma: 'no-cache'
+            }
+          });
+
+          if (!response.ok) {
+            throw new Error(`Unable to load CMS config (${response.status})`);
+          }
+
+          const configYaml = await response.text();
+          const config = window.jsyaml.load(configYaml);
+          window.CMS.init({ config });
+        } catch (error) {
+          // Keep this visible so content admins can report exact load failures.
+          document.body.innerHTML = `<pre style="padding:16px;color:#b00020;white-space:pre-wrap;">CMS failed to initialize.\n${String(error)}</pre>`;
+          console.error(error);
+        }
+      })();
+    </script>
   </body>
 </html>
