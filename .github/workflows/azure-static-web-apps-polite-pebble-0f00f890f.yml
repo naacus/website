@@ -47,6 +47,7 @@ jobs:
         run: npm ci
 
       - name: Azure Login via OIDC
+        if: github.event_name == 'push' || (github.event_name == 'pull_request' && !github.event.pull_request.head.repo.fork)
         uses: azure/login@v2
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
@@ -54,18 +55,25 @@ jobs:
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
       - name: Fetch Stripe secrets from Key Vault
+        if: github.event_name == 'push' || (github.event_name == 'pull_request' && !github.event.pull_request.head.repo.fork)
         run: |
-          STRIPE_KEY=$(az keyvault secret show --vault-name "${{ secrets.AZURE_KEYVAULT_NAME }}" --name StripePublicKey --query value -o tsv)
-          STRIPE_BUTTON=$(az keyvault secret show --vault-name "${{ secrets.AZURE_KEYVAULT_NAME }}" --name StripeBuyButtonId --query value -o tsv)
-          echo "STRIPE_KEY=$STRIPE_KEY" >> $GITHUB_ENV
-          echo "STRIPE_BUTTON=$STRIPE_BUTTON" >> $GITHUB_ENV
+          STRIPE_PUBLIC_KEY=$(az keyvault secret show --vault-name "${{ secrets.AZURE_KEYVAULT_NAME }}" --name StripePublicKey --query value -o tsv)
+          STRIPE_BUY_BUTTON_ID=$(az keyvault secret show --vault-name "${{ secrets.AZURE_KEYVAULT_NAME }}" --name StripeBuyButtonId --query value -o tsv)
+          echo "STRIPE_PUBLIC_KEY=$STRIPE_PUBLIC_KEY" >> $GITHUB_ENV
+          echo "STRIPE_BUY_BUTTON_ID=$STRIPE_BUY_BUTTON_ID" >> $GITHUB_ENV
+
+      - name: Set non-secret Stripe defaults for fork PRs
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.fork
+        run: |
+          echo "STRIPE_PUBLIC_KEY=pk_test_fork_pr_default" >> $GITHUB_ENV
+          echo "STRIPE_BUY_BUTTON_ID=buy_btn_fork_pr_default" >> $GITHUB_ENV
 
       # Create environment file with Stripe values from Key Vault
       - name: Create environment file
         run: |
           cat > .env << EOF2
-          REACT_APP_STRIPE_PUBLIC_KEY=${{ env.STRIPE_KEY }}
-          REACT_APP_STRIPE_BUY_BUTTON_ID=${{ env.STRIPE_BUTTON }}
+          REACT_APP_STRIPE_PUBLIC_KEY=${{ env.STRIPE_PUBLIC_KEY }}
+          REACT_APP_STRIPE_BUY_BUTTON_ID=${{ env.STRIPE_BUY_BUTTON_ID }}
           REACT_APP_PAYPAL_CLIENT_ID=
           REACT_APP_PAYPAL_ENV=sandbox
           REACT_APP_API_BASE_URL=${{ secrets.API_BASE_URL_TEST || 'http://localhost:5001' }}
