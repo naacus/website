@@ -1,7 +1,7 @@
 # NAACUS Website — Documentation Index
 
 All project documentation is organized into three categories below.  
-Last updated: July 15, 2026
+Last updated: July 16, 2026
 
 ---
 
