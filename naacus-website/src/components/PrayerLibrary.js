@@ -649,7 +649,7 @@ function PrayerLibrary() {
                             openPrayerTextDialog(video);
                           }
                         }}
-                        aria-label={video.videoUrl ? t('prayerLibrary.openPrayer', 'Open prayer details for {{title}}', { title: video.title }) : t('prayerLibrary.comingSoon')}
+                        aria-label={video.videoUrl ? t('prayerLibrary.openPrayer', { title: video.title }) : t('prayerLibrary.comingSoon')}
                       >
                         {video.thumbnailUrl && (
                           <img
