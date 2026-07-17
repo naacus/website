@@ -126,7 +126,7 @@ const StripeDonateButton = () => {
       <Button
         appearance="primary"
         className={styles.fallbackButton}
-        onClick={() => window.open('https://donate.naacus.org', '_blank')}
+        onClick={() => window.open('https://donate.naacus.org', '_blank', 'noopener,noreferrer')}
       >
         Donate via Web Link
       </Button>
