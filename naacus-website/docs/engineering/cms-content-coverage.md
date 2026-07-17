@@ -16,9 +16,9 @@ Make **all website text and images** editable through Decap CMS, with a PR-based
 
 Decap CMS is enabled at `/admin` and currently manages a subset of content:
 
-- Advanced locale text via section-based entries in Decap:
-	- One entry per top-level section per locale (EN/FR)
-	- Examples: `Header - English`, `Membership - English`, `Header - Francais`, `Membership - Francais`
+- Advanced locale text via consolidated entries in Decap:
+	- One entry per locale (EN/FR) covering the full translation schema
+	- Examples: `Full Translation - English`, `Full Translation - Francais`
 	- Writes to `naacus-website/public/locales/en/translation.json` and `naacus-website/public/locales/fr/translation.json`
 - Hero text (EN/FR)
 - FAQ page text (EN/FR)
