@@ -650,8 +650,9 @@
       "videos": "Toutes les Vidéos",
       "byPrayer": "Par Prière",
       "byCountry": "Par Pays",
-      "byLanguage": "By Language"
+      "byLanguage": "Par Langue"
     },
+    "openPrayer": "Ouvrir les détails de la prière pour {{title}}",
     "filters": {
       "prayer": "Filtrer par Prière",
       "country": "Filtrer par Pays",
