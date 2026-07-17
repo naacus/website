@@ -1,0 +1,37 @@
+{
+  "resourcesPage": {
+    "title": "Ressources et Liens",
+    "subtitle": "Accédez aux brochures, bulletins d'information, formulaires d'adhésion et documents de plaidoyer qui soutiennent la mission de NAACUS et autonomisent les communautés catholiques africaines.",
+    "ctaTitle": "Pret a Passer a l'Etape Suivante ?",
+    "ctaText": "Rejoignez NAACUS comme membre ou benevole pour renforcer les communautes catholiques africaines a travers les Etats-Unis.",
+    "ctaPrimary": "Devenir Membre",
+    "ctaSecondary": "Devenir Benevole",
+    "partners": {
+      "title": "Organisations Partenaires",
+      "description": "NAACUS collabore avec diverses organisations catholiques, diocèses et ministères pour soutenir les catholiques africains aux États-Unis.",
+      "organizations": {}
+    }
+  },
+  "newsletters": {
+    "title": "Restez Informé avec NAACUS",
+    "subtitle": "Obtenez les dernières nouvelles, événements et mises à jour de notre communauté",
+    "archive": "Archives des Bulletins d'Information",
+    "downloadButton": "Télécharger le Dernier Bulletin",
+    "viewButton": "Afficher le Bulletin"
+  },
+  "faq": {
+    "title": "Questions Fréquemment Posées",
+    "subtitle": "Trouvez les réponses aux questions courantes sur NAACUS, l'adhésion, les événements, et plus",
+    "searchPlaceholder": "Rechercher dans les FAQ...",
+    "noResults": "Aucune FAQ trouvée correspondant à votre recherche",
+    "clearFilters": "Effacer les filtres",
+    "searchInputLabel": "Rechercher dans les questions fréquentes",
+    "clearSearch": "Effacer la recherche dans la FAQ",
+    "filterByCategory": "Filtrer par catégorie"
+  },
+  "feedback": {
+    "title": "Envoyez-nous Vos Commentaires",
+    "subtitle": "Nous apprécions votre opinion et aimerions entendre vos suggestions pour améliorer notre site Web et nos services. Veuillez partager vos commentaires ci-dessous.",
+    "description": "Formulaire de commentaires du site Web"
+  }
+}

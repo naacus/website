@@ -1,0 +1,80 @@
+{
+  "cookies": {
+    "message": "Nous utilisons des cookies pour améliorer votre expérience et analyser le trafic du site. En continuant à utiliser ce site, vous consentez à notre utilisation de cookies.",
+    "learnMore": "En savoir plus sur notre",
+    "privacyPolicy": "politique de confidentialité",
+    "accept": "Accepter tout",
+    "reject": "Rejeter"
+  },
+  "header": {
+    "title": "NAACUS",
+    "tagline": "Association Nationale des Catholiques Africains aux États-Unis",
+    "nav": {
+      "home": "Accueil",
+      "naacus2025": "2025",
+      "about": "À Propos",
+      "leadership": "Direction",
+      "ministries": "Ministères",
+      "programs": "Activités",
+      "events": "Événements",
+      "membership": "Adhésion",
+      "volunteer": "Bénévole",
+      "getInvolved": "S'impliquer",
+      "community": "Communauté",
+      "resources": "Ressources",
+      "newsletters": "Bulletins",
+      "contact": "Contact",
+      "feedback": "Commentaires",
+      "prayers": "Prières"
+    },
+    "donate": "Donner",
+    "goHome": "Go to home page",
+    "openNavigationMenu": "Open navigation menu"
+  },
+  "footer": {
+    "privacyPolicy": "Politique de Confidentialité",
+    "cookieSettings": "Paramètres des Cookies",
+    "tagline": "Ensemble avec le Christ - Unir les communautés catholiques africaines à travers les États-Unis.",
+    "quickLinks": "Liens Rapides",
+    "home": "Accueil",
+    "about": "À Propos",
+    "leadership": "Direction",
+    "events": "Événements",
+    "resources": "Ressources",
+    "contact": "Contact",
+    "prayerLibrary": "Bibliothèque de Prières",
+    "engage": "Engagez-Vous",
+    "eventsActivities": "Événements et Activités",
+    "nationalConference": "Conférence Nationale",
+    "newsletter": "Bulletin d'Information",
+    "membership": "Adhésion",
+    "getInvolved": "Participez",
+    "joinCommunity": "Rejoignez notre communauté de catholiques africains",
+    "participatePrograms": "Participez à nos programmes",
+    "contactUs": "Contactez-Nous →"
+  },
+  "backToTop": "Retour en Haut",
+  "search": {
+    "title": "Recherche",
+    "search": "Recherche",
+    "placeholder": "Rechercher des pages, événements, ministères, ressources...",
+    "startTyping": "Commencez à taper pour rechercher",
+    "resultsFound": "{{count}} résultats trouvés",
+    "close": "Fermer",
+    "tooltip": "Recherche (Cmd+K)",
+    "inputLabel": "Search pages, events, and ministries"
+  },
+  "chat": {
+    "supportTitle": "Support NAACUS",
+    "needHelp": "Besoin d'aide?",
+    "letsChat": "Discutons",
+    "placeholder": "Tapez votre message…",
+    "openAssistant": "Open chat assistant"
+  },
+  "notFound": {
+    "title": "Page Non Trouvée",
+    "description": "Désolé, la page que vous recherchez n'existe pas ou a été déplacée. Veuillez vérifier l'URL et réessayer.",
+    "goHome": "Aller à l'Accueil",
+    "goBack": "Retour"
+  }
+}

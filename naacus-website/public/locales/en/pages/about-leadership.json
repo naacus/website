@@ -1,0 +1,50 @@
+{
+  "about": {
+    "title": "About NAACUS",
+    "intro": "The National Association of African Catholics in the United States (NAACUS) brings together African Catholics and their families to foster faith, leadership, and service in the Church across the United States. Rooted in the Gospel and our motto \"Together with Christ,\" we welcome members into an active community for fellowship, workshops, and collaborative ministries.",
+    "mission": {
+      "title": "Our Mission",
+      "description": "To gather African Catholic communities in the U.S., promote their faith, and ensure their full and active participation in the life of the Church."
+    },
+    "vision": {
+      "title": "Our Vision",
+      "description": "A vibrant and visible African Catholic community that contributes its gifts to the Church and society—confident in identity, generous in service, and engaged in society."
+    },
+    "motto": {
+      "title": "Our Motto",
+      "description": "\"Together with Christ\" — We build welcoming networks of fellowship, workshops, and community initiatives that uplift people, celebrate culture, and advance the common good."
+    },
+    "ctaTitle": "Ready to Join the NAACUS Community?",
+    "ctaText": "Become a member and connect with African Catholics across the United States.",
+    "ctaButton": "Become a Member"
+  },
+  "whatWeDo": {
+    "title": "What We Do",
+    "subtitle": "Guided by our mission, NAACUS works to ensure African Catholics in the United States can fully share their gifts, participate actively in the Church, and witness Christ in family life, parish life, and public life."
+  },
+  "whoWeServe": {
+    "title": "Who We Serve",
+    "subtitle": "Our network includes people from across the African continent and diaspora who are building their lives in the United States and seeking a spiritual home that honors both Catholic faith and African heritage.",
+    "closingText": "NAACUS welcomes all who seek to connect with the vibrant African Catholic community in the United States—a place where faith and heritage come together in service to Christ and His Church."
+  },
+  "objectives": {
+    "title": "Our Objectives",
+    "subtitle": "NAACUS is committed to achieving these objectives to bring all African Catholic communities together and ensure their vibrant presence in the U.S. Church.",
+    "visionTitle": "Our Vision",
+    "visionDescription": "A vibrant and visible African Catholic community in the United States—confident in identity, generous in service, and engaged in society—fully participating in the life of the Church and contributing its gifts to build the Kingdom of God."
+  },
+  "leadership": {
+    "trainingProgramsIntro": "Leadership requested a dedicated training programs section. Official program details will be published once received.",
+    "ctaSecondary": "Join as Volunteer",
+    "ctaTitle": "Lead and Serve with NAACUS",
+    "intro": "Our dedicated leaders serve the NAACUS community with commitment and passion, guiding our mission to unite African Catholic communities across the United States.",
+    "trainingProgramsTitle": "Training Programs",
+    "ctaPrimary": "Join as Member",
+    "nationalExecutiveOfficers": "National Executive Officers",
+    "close": "Close",
+    "title": "Leadership",
+    "ministryCoordinations": "Ministry/Committee Coordinations",
+    "nationalAdvisoryBoard": "National Advisory Board",
+    "ctaText": "Take your next step in faith and service by joining our national community as a member or volunteer."
+  }
+}

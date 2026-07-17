@@ -1,0 +1,25 @@
+{
+  "ministries": {
+    "title": "Fraternité et Ministères",
+    "subtitle": "NAACUS appelle ses membres à s'impliquer activement dans diverses activités, en maximisant leurs dons en tant que communauté de foi et de culte aux États-Unis. Par la fraternité, les ateliers et les programmes, nous accueillons les membres pour aider à former une communauté ecclésiale dynamique et active.",
+    "getInvolved": "S'impliquer →",
+    "ctaTitle": "Impliquez-vous",
+    "ctaText": "Rejoignez-nous dans la construction d'une meilleure communauté ecclésiale. Vos talents et votre expertise sont nécessaires dans divers ministères et comités. Ensemble, nous pouvons avoir un impact significatif en faisant progresser la mission de NAACUS et en servant les catholiques africains aux États-Unis."
+  },
+  "programs": {
+    "title": "Programmes et Activités",
+    "subtitle": "NAACUS organise des rassemblements, des ateliers et des événements qui renforcent la fraternité, la formation du leadership et l'engagement tout en célébrant la foi catholique africaine et la culture en action.",
+    "activitiesTitle": "Nos Activités",
+    "activitiesDescription": "Par le biais de divers programmes et initiatives, nous créons des opportunités pour que les catholiques africains grandissent dans la foi, construisent une communauté et servent l'Église et la société.",
+    "conferenceTitle": "Conférence Nationale Biennale",
+    "conferenceDescription": "Notre événement phare rassemble les catholiques africains de partout dans le pays pour un moment d'unité en Christ, d'évangélisation et de célébration de notre patrimoine commun.",
+    "learnMore": "En Savoir Plus sur les Conférences",
+    "getInvolvedTitle": "Impliquez-vous",
+    "getInvolvedDescription": "NAACUS accueille les nouveaux membres et les bénévoles pour aider à construire une communauté plus forte dans l'Église par la fraternité, les ateliers et le service. Rejoignez-nous dans notre mission!",
+    "contactUs": "Contactez-nous pour Rejoindre",
+    "ctaTitle": "Rejoignez la Mission",
+    "ctaText": "Poursuivez votre parcours avec NAACUS en devenant membre ou benevole dans nos programmes et ministeres.",
+    "ctaPrimary": "Devenir Membre",
+    "ctaSecondary": "Faire du Benevolat avec NAACUS"
+  }
+}

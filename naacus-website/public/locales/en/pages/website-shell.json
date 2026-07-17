@@ -1,0 +1,80 @@
+{
+  "cookies": {
+    "message": "We use cookies to enhance your experience and analyze site traffic. By continuing to use this site, you consent to our use of cookies.",
+    "learnMore": "Learn more about our",
+    "privacyPolicy": "privacy policy",
+    "accept": "Accept All",
+    "reject": "Reject"
+  },
+  "header": {
+    "title": "NAACUS",
+    "tagline": "National Association of African Catholics in the United States",
+    "nav": {
+      "contact": "Contact",
+      "resources": "Resources",
+      "leadership": "Leadership",
+      "feedback": "Feedback",
+      "community": "Community",
+      "volunteer": "Volunteer",
+      "prayers": "Prayers",
+      "about": "About",
+      "programs": "Activities",
+      "naacus2025": "2025",
+      "membership": "Membership",
+      "events": "Events",
+      "newsletters": "Newsletters",
+      "getInvolved": "Get Involved",
+      "ministries": "Ministries",
+      "home": "Home"
+    },
+    "donate": "Donate",
+    "goHome": "Go to home page",
+    "openNavigationMenu": "Open navigation menu"
+  },
+  "footer": {
+    "contact": "Contact",
+    "engage": "Engage",
+    "resources": "Resources",
+    "leadership": "Leadership",
+    "eventsActivities": "Events & Activities",
+    "cookieSettings": "Cookie Settings",
+    "quickLinks": "Quick Links",
+    "participatePrograms": "Participate in our programs",
+    "about": "About",
+    "nationalConference": "National Conference",
+    "tagline": "Together with Christ - Uniting African Catholic communities across the United States.",
+    "prayerLibrary": "Prayer Library",
+    "membership": "Membership",
+    "newsletter": "Newsletter",
+    "events": "Events",
+    "privacyPolicy": "Privacy Policy",
+    "getInvolved": "Get Involved",
+    "contactUs": "Contact Us →",
+    "home": "Home",
+    "joinCommunity": "Join our community of African Catholics"
+  },
+  "backToTop": "Back to Top",
+  "search": {
+    "tooltip": "Search (Cmd+K)",
+    "search": "Search",
+    "inputLabel": "Search pages, events, and ministries",
+    "resultsFound": "Found {{count}} results",
+    "placeholder": "Search pages, events, ministries, resources...",
+    "close": "Close",
+    "title": "Search",
+    "startTyping": "Start typing to search"
+  },
+  "chat": {
+    "supportTitle": "NAACUS Support",
+    "needHelp": "Need help?",
+    "letsChat": "Let's chat",
+    "placeholder": "Type your message…",
+    "openAssistant": "Open chat assistant"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "Sorry, the page you are looking for does not exist or has been moved. Please check the URL and try again.",
+    "goHome": "Go to Home",
+    "goBack": "Go Back"
+  }
+}

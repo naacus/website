@@ -1,0 +1,132 @@
+{
+  "events": {
+    "upcomingEvents": "Événements à Venir",
+    "pastEvents": "Événements Passés",
+    "moreUpcomingEvents": "Plus d'Événements à Venir",
+    "registerNow": "S'Inscrire",
+    "viewDetails": "Voir les Détails",
+    "expectedAttendees": "Participants Attendus",
+    "highlights": "Points Forts",
+    "noPastEvents": "Aucun événement passé à afficher.",
+    "dates": "Dates",
+    "location": "Lieu",
+    "attendees": "Participants",
+    "more": "plus",
+    "whatToExpect": "À Quoi S'attendre",
+    "registerForEvent": "S'inscrire à un Événement",
+    "firstName": "Prénom",
+    "lastName": "Nom de Famille",
+    "email": "Email",
+    "phone": "Téléphone",
+    "message": "Message",
+    "cancel": "Annuler",
+    "submitRegistration": "Soumettre l'Inscription",
+    "submitAnother": "Soumettre une Autre Inscription",
+    "success": {
+      "title": "Succès!",
+      "registrationStored": "Registration submitted successfully! We will follow up via email."
+    },
+    "errors": {
+      "title": "Erreur",
+      "firstNameRequired": "Le prénom est requis",
+      "lastNameRequired": "Le nom est requis",
+      "emailRequired": "L'email est requis",
+      "emailInvalid": "Veuillez entrer une adresse email valide",
+      "submissionFailed": "Échec de la soumission de l'inscription. Veuillez réessayer.",
+      "networkError": "Connexion réseau perdue. Veuillez vérifier votre connexion Internet et réessayer."
+    },
+    "warnings": {
+      "title": "Avertissement"
+    },
+    "closeRegistrationDialog": "Fermer la fenêtre d'inscription",
+    "submitting": "Envoi..."
+  },
+  "naacus2025": {
+    "title": "NAACUS 2025 : Un Rassemblement Historique",
+    "subtitle": "Unis en Christ pour l'Évangélisation",
+    "theme": "Thème : Unis en Christ pour l'Évangélisation (1 Cor. 1:10-13)",
+    "goal": "Objectif : Foi Africaine Catholique et Culture en Action",
+    "dates": "18–20 juillet 2025",
+    "location": "Columbus, OH — St. Francis DeSales / St. Matthias School",
+    "host": "Région 6",
+    "scheduleTitle": "Programme de la Conférence 2025",
+    "scheduleDescription": "La Conférence Bi-annuelle NAACUS 2025, organisée par la Région 6 à Columbus, OH, a réuni les catholiques africains de tous les États-Unis pour trois jours de culte, d'apprentissage, de fraternité et de célébration culturelle. Voici le programme officiel complet de chaque session, atelier et activité de ce rassemblement historique.",
+    "presenter": "Conférencier :",
+    "summary": "Résumé :",
+    "videoToBeAdded": "Vidéo à ajouter",
+    "photosToBeAdded": "Photos à ajouter",
+    "contentToBeProvided": "Le contenu et le résumé seront fournis",
+    "ctaTitle": "Rejoignez-nous pour NAACUS 2027 !",
+    "ctaDescription": "Inspiré par le succès de NAACUS 2025 ? Faites partie du prochain chapitre à NAACUS 2027. Restez à jour avec les dernières nouvelles et détails de la conférence.",
+    "ctaButton": "S'abonner aux Mises à Jour NAACUS 2027",
+    "galleryTitle": "📸 Galerie photo de la conférence",
+    "galleryDescription": "Revivez les moments ! Parcourez les photos officielles de la conférence NAACUS 2025 prises par notre photographe.",
+    "galleryButton": "Voir la galerie photo"
+  },
+  "prayerLibrary": {
+    "title": "Prières Catholiques Africaines",
+    "subtitle": "Une bibliothèque grandissante de prières catholiques enregistrées dans les langues africaines par les communautés à travers les États-Unis. Célébrant notre patrimoine, unissant notre foi.",
+    "stats": {
+      "prayers": "Vidéos de Prières",
+      "languages": "Langues",
+      "countries": "Pays",
+      "youthFeatured": "Jeunesse en Vedette",
+      "videos": "vidéos"
+    },
+    "tabs": {
+      "videos": "Toutes les Vidéos",
+      "byPrayer": "Par Prière",
+      "byCountry": "Par Pays",
+      "byLanguage": "Par Langue"
+    },
+    "openPrayer": "Ouvrir les détails de la prière pour {{title}}",
+    "filters": {
+      "prayer": "Filtrer par Prière",
+      "country": "Filtrer par Pays",
+      "language": "Filtrer par Langue",
+      "allPrayers": "Toutes les Prières",
+      "allCountries": "Tous les Pays",
+      "allLanguages": "Toutes les Langues",
+      "clear": "Effacer les Filtres"
+    },
+    "prayers": {
+      "signOfCross": "Signe de la Croix",
+      "ourFather": "Notre Père",
+      "hailMary": "Je Vous Salue Marie",
+      "gloryBe": "Gloire au Père",
+      "apostlesCreed": "Credo des Apôtres",
+      "hailHolyQueen": "Salve Regina",
+      "memorare": "Memorare"
+    },
+    "comingSoon": "Bientôt Disponible",
+    "youthFeatured": "★ Jeunesse en Vedette",
+    "noResults": "Aucune vidéo de prière ne correspond à vos filtres actuels. Essayez d'ajuster votre sélection.",
+    "availableIn": "Disponible en {{count}} langue(s)",
+    "noSubmissionsYet": "Aucune soumission encore — soyez le premier à contribuer !",
+    "viewVideos": "Voir les Vidéos →",
+    "submit": {
+      "title": "Soumettez Votre Prière",
+      "description": "Nous invitons les individus, familles et groupes paroissiaux des communautés africaines à enregistrer et soumettre des prières catholiques dans leurs langues africaines maternelles. Votre contribution aide à préserver notre patrimoine linguistique et renforce notre foi commune.",
+      "guideline1": "Enregistrez l'une des 7 prières catholiques standard listées ci-dessus",
+      "guideline2": "Portez une tenue africaine pour célébrer notre patrimoine culturel",
+      "guideline3": "Priez dans votre langue africaine maternelle",
+      "guideline4": "Mettez en vedette les jeunes autant que possible pour inspirer la prochaine génération",
+      "guideline5": "Incluez la participation de votre paroisse et communauté ecclésiale",
+      "button": "Soumettre une Vidéo de Prière",
+      "dialogTitle": "Soumettre Votre Vidéo de Prière",
+      "thankYou": "Merci !",
+      "thankYouMessage": "Votre soumission a été reçue. Notre équipe média l'examinera et vous contactera bientôt.",
+      "form": {
+        "parish": "Paroisse / Église",
+        "country": "Pays d'Origine",
+        "language": "Langue de la Prière",
+        "languagePlaceholder": "ex., Ewondo, Yoruba, Swahili...",
+        "prayerType": "Prière",
+        "description": "Brève Description",
+        "descriptionPlaceholder": "Parlez-nous de votre vidéo de prière (qui participe, contexte particulier...)",
+        "cancel": "Annuler",
+        "submit": "Soumettre"
+      }
+    }
+  }
+}
