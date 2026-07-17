@@ -20,7 +20,7 @@ Decap CMS is enabled at `/admin` and currently manages editor-facing text/data d
 	- Grouped into page-oriented Decap collections (for example global shell, home page, events/prayer library, membership/giving)
 	- Each entry still maps to one top-level locale section per locale (EN/FR)
 	- Editor scope is section-focused while the sidebar follows website page groupings
-	- Source-of-truth files live under `naacus-website/public/locales/<locale>/sections/*.json`
+	- Source-of-truth files live under `naacus-website/public/locales/<locale>/pages/*.json`
 	- Build/start sync regenerates `naacus-website/public/locales/en/translation.json` and `naacus-website/public/locales/fr/translation.json`
 - Hero text (EN/FR)
 - FAQ page text (EN/FR)
