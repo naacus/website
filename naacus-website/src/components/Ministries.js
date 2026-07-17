@@ -319,7 +319,7 @@ function Ministries() {
                     handleGetInvolvedClick();
                   }}
                 >
-                  {t('ministries.getInvolved', 'Get Involved →')}
+                  {t('ministries.getInvolved')}
                 </button>
               </div>
             </article>

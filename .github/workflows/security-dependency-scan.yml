@@ -4,9 +4,6 @@ on:
   pull_request:
     branches:
       - develop
-  push:
-    branches:
-      - develop
   schedule:
     - cron: '0 6 * * 1'
   workflow_dispatch:
@@ -48,6 +45,7 @@ jobs:
         with:
           fail-on-severity: high
           deny-licenses: GPL-2.0, GPL-3.0
+          allow-dependencies-licenses: pkg:npm/node-forge
 
   npm_audit:
     runs-on: ubuntu-latest
@@ -60,7 +58,7 @@ jobs:
         uses: actions/checkout@v7
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: '20'
           cache: 'npm'

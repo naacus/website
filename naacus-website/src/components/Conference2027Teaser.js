@@ -337,7 +337,8 @@ function Conference2027Teaser() {
           <img
             key={index}
             src={image}
-            alt={`Conference background ${index + 1}`}
+            alt=""
+            aria-hidden="true"
             className={`${styles.backgroundImage} ${
               index === currentImageIndex ? styles.backgroundImageActive : ''
             }`}

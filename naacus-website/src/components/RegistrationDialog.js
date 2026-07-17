@@ -114,13 +114,13 @@ export default function RegistrationDialog({
         {!submissionSuccess && (
           <div className={styles.dialogHeader}>
             <h2 className={styles.dialogTitle}>
-              {t('events.registerForEvent', 'Register for Event')}
+              {t('events.registerForEvent')}
             </h2>
             <Button
               appearance="subtle"
               icon={<Dismiss24Regular />}
               onClick={onClose}
-              aria-label={t('events.closeRegistrationDialog', 'Close registration dialog')}
+              aria-label={t('events.closeRegistrationDialog')}
               style={{ color: '#999999' }}
             />
           </div>
@@ -132,8 +132,8 @@ export default function RegistrationDialog({
               <div style={{ textAlign: 'center' }}>
                 <MessageBar intent="success">
                   <MessageBarBody>
-                    <MessageBarTitle>{t('events.success.title', 'Success!')}</MessageBarTitle>
-                    {t('events.success.registrationStored', 'Registration submitted successfully! We will follow up via email.')}
+                    <MessageBarTitle>{t('events.success.title')}</MessageBarTitle>
+                    {t('events.success.registrationStored')}
                   </MessageBarBody>
                 </MessageBar>
               </div>
@@ -151,9 +151,9 @@ export default function RegistrationDialog({
                 <MessageBar intent={formMessage.type}>
                   <MessageBarBody>
                     <MessageBarTitle>
-                      {formMessage.type === 'success' && t('events.success.title', 'Success!')}
-                      {formMessage.type === 'error' && t('events.errors.title', 'Error')}
-                      {formMessage.type === 'warning' && t('events.warnings.title', 'Warning')}
+                      {formMessage.type === 'success' && t('events.success.title')}
+                      {formMessage.type === 'error' && t('events.errors.title')}
+                      {formMessage.type === 'warning' && t('events.warnings.title')}
                     </MessageBarTitle>
                     {formMessage.message}
                   </MessageBarBody>
@@ -161,7 +161,7 @@ export default function RegistrationDialog({
               )}
 
               <div className={styles.formField}>
-                <label className={styles.formLabel} htmlFor={fieldIds.firstName}>{t('events.firstName', 'First Name')} *</label>
+                <label className={styles.formLabel} htmlFor={fieldIds.firstName}>{t('events.firstName')} *</label>
                 <Input
                   id={fieldIds.firstName}
                   value={registrationForm.firstName}
@@ -172,7 +172,7 @@ export default function RegistrationDialog({
               </div>
 
               <div className={styles.formField}>
-                <label className={styles.formLabel} htmlFor={fieldIds.lastName}>{t('events.lastName', 'Last Name')} *</label>
+                <label className={styles.formLabel} htmlFor={fieldIds.lastName}>{t('events.lastName')} *</label>
                 <Input
                   id={fieldIds.lastName}
                   value={registrationForm.lastName}
@@ -183,7 +183,7 @@ export default function RegistrationDialog({
               </div>
 
               <div className={styles.formField}>
-                <label className={styles.formLabel} htmlFor={fieldIds.email}>{t('events.email', 'Email')} *</label>
+                <label className={styles.formLabel} htmlFor={fieldIds.email}>{t('events.email')} *</label>
                 <Input
                   id={fieldIds.email}
                   type="email"
@@ -195,7 +195,7 @@ export default function RegistrationDialog({
               </div>
 
               <div className={styles.formField}>
-                <label className={styles.formLabel} htmlFor={fieldIds.phone}>{t('events.phone', 'Phone')}</label>
+                <label className={styles.formLabel} htmlFor={fieldIds.phone}>{t('events.phone')}</label>
                 <Input
                   id={fieldIds.phone}
                   type="tel"
@@ -206,7 +206,7 @@ export default function RegistrationDialog({
               </div>
 
               <div className={styles.formField}>
-                <label className={styles.formLabel} htmlFor={fieldIds.message}>{t('events.message', 'Message')}</label>
+                <label className={styles.formLabel} htmlFor={fieldIds.message}>{t('events.message')}</label>
                 <Textarea
                   id={fieldIds.message}
                   value={registrationForm.message}
@@ -223,14 +223,14 @@ export default function RegistrationDialog({
         {!submissionSuccess && (
           <div className={styles.formActions}>
             <Button appearance="secondary" onClick={onClose}>
-              {t('events.cancel', 'Cancel')}
+              {t('events.cancel')}
             </Button>
             <Button 
               appearance="primary" 
               onClick={onSubmit}
               disabled={!registrationForm.firstName || !registrationForm.lastName || !registrationForm.email || isSubmitting}
             >
-              {isSubmitting ? t('events.submitting', 'Submitting...') : t('events.submitRegistration', 'Submit Registration')}
+              {isSubmitting ? t('events.submitting') : t('events.submitRegistration')}
             </Button>
           </div>
         )}
@@ -241,7 +241,7 @@ export default function RegistrationDialog({
               appearance="primary"
               onClick={onNewRegistration}
             >
-              {t('events.submitAnother', 'Submit Another Registration')}
+              {t('events.submitAnother')}
             </Button>
           </div>
         )}

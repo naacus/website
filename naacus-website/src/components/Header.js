@@ -127,6 +127,10 @@ const useStyles = makeStyles({
       backgroundColor: '#f2f2f2',
       textDecoration: 'underline',
     },
+    '&:focus-visible': {
+      outline: '3px solid #0f6cbd',
+      outlineOffset: '2px',
+    },
   },
   navLinkActive: {
     backgroundColor: '#eaf4ff',
@@ -135,7 +139,7 @@ const useStyles = makeStyles({
     textDecoration: 'underline',
   },
   feedbackLink: {
-    backgroundColor: '#e74c3c',
+    backgroundColor: '#b42318',
     color: '#ffffff',
     fontWeight: '600',
     ...shorthands.padding('0', '16px'),
@@ -144,21 +148,29 @@ const useStyles = makeStyles({
     animationDuration: '1.5s',
     animationIterationCount: 'infinite',
     '&:hover': {
-      backgroundColor: '#c0392b',
+      backgroundColor: '#8f1a12',
       textDecoration: 'none',
+    },
+    '&:focus-visible': {
+      outline: '3px solid #0f6cbd',
+      outlineOffset: '2px',
     },
     '@media (max-width: 768px)': {
       display: 'none',
     },
   },
   feedbackLinkActive: {
-    backgroundColor: '#c0392b',
+    backgroundColor: '#8f1a12',
     color: '#ffffff',
     fontWeight: '600',
     textDecoration: 'none',
     animationName: blinkAnimation,
     animationDuration: '1.5s',
     animationIterationCount: 'infinite',
+    '&:focus-visible': {
+      outline: '3px solid #0f6cbd',
+      outlineOffset: '2px',
+    },
     '@media (max-width: 768px)': {
       display: 'none',
     },
@@ -263,7 +275,7 @@ const useStyles = makeStyles({
     fontWeight: '600',
   },
   mobileMenuItemFeedback: {
-    backgroundColor: '#e74c3c',
+    backgroundColor: '#b42318',
     color: '#ffffff',
     fontWeight: '600',
     animationName: blinkAnimation,
@@ -271,7 +283,7 @@ const useStyles = makeStyles({
     animationIterationCount: 'infinite',
   },
   mobileMenuItemFeedbackActive: {
-    backgroundColor: '#c0392b',
+    backgroundColor: '#8f1a12',
     color: '#ffffff',
     fontWeight: '600',
     animationName: blinkAnimation,
@@ -314,7 +326,7 @@ function Header() {
             type="button"
             className={styles.logo}
             onClick={() => handleNavigationHelper(null, 'home', 'logo_home')}
-            aria-label={t('header.goHome', 'Go to home page')}
+            aria-label={t('header.goHome')}
           >
             <img
               src="/images/naacus-logo.png"
@@ -328,7 +340,7 @@ function Header() {
               onClick={() => handleNavigationHelper('/2025', null, 'naacus_2025')}
               className={`${styles.navLink} ${isActivePathHelper('/2025') ? styles.navLinkActive : ''}`}
             >
-              {t('header.nav.naacus2025', 'NAACUS 2025')}
+              {t('header.nav.naacus2025')}
             </button>
 
             {/* About ▾ */}
@@ -481,13 +493,13 @@ function Header() {
                 appearance="subtle"
                 icon={<Navigation24Regular />}
                 className={styles.mobileMenuButton}
-                aria-label={t('header.openNavigationMenu', 'Open navigation menu')}
+                aria-label={t('header.openNavigationMenu')}
               />
             </MenuTrigger>
             <MenuPopover>
               <MenuList>
                 <MenuItem onClick={() => handleNavigationHelper(null, 'home', 'mobile_home')}>{t('header.nav.home')}</MenuItem>
-                <MenuItem className={isActivePathHelper('/2025') ? styles.mobileMenuItemActive : undefined} onClick={() => handleNavigationHelper('/2025', null, 'mobile_naacus_2025')}>{t('header.nav.naacus2025', 'NAACUS 2025')}</MenuItem>
+                <MenuItem className={isActivePathHelper('/2025') ? styles.mobileMenuItemActive : undefined} onClick={() => handleNavigationHelper('/2025', null, 'mobile_naacus_2025')}>{t('header.nav.naacus2025')}</MenuItem>
                 {/* About group */}
                 <MenuItem disabled style={{ fontWeight: 600, opacity: 0.7, fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>— {t('header.nav.about')} —</MenuItem>
                 <MenuItem className={isActivePathHelper('/about') ? styles.mobileMenuItemActive : undefined} onClick={() => handleNavigationHelper('/about', null, 'mobile_about')}>&nbsp;&nbsp;{t('header.nav.about')}</MenuItem>

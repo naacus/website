@@ -280,7 +280,7 @@ function ChatWidget() {
   return (
     <div className={styles.container}>
       {!open && (
-        <button type="button" className={styles.teaserCard} onClick={() => setOpen(true)} aria-label={t('chat.openAssistant', 'Open chat assistant')}>
+        <button type="button" className={styles.teaserCard} onClick={() => setOpen(true)} aria-label={t('chat.openAssistant')}>
           <div className={styles.avatarWrap}>
             <div className={styles.avatarInner}>AI</div>
             <div className={styles.avatarBadge}><Chat24Regular /></div>

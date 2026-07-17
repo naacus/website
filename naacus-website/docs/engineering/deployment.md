@@ -1,7 +1,7 @@
 # Deployment Guide
 
 > **Category:** 🔧 Engineering | **Audience:** Developers & IT Team
-> **Last Updated:** July 15, 2026 | [← Docs Index](../readme.md)
+> **Last Updated:** July 16, 2026 | [← Docs Index](../readme.md)
 
 ---
 
@@ -41,6 +41,48 @@
 
 Auto-deploys on push to `develop` branch.
 
+PR gate model:
+
+- Security and quality workflows run on pull requests targeting `develop`.
+- Deployment runs only after merge, on `push` to `develop`.
+- Enforce this by marking PR checks as required in GitHub branch protection.
+
+### Non-Developer Content Editing (Decap CMS)
+
+This project includes a lightweight CMS at `/admin` so authorized editors can
+update website images and selected text without touching code.
+
+Current editable content:
+
+- Structured all-sections text editors for locale files:
+   - `public/locales/en/translation.json` (All Sections - English)
+   - `public/locales/fr/translation.json` (All Sections - Francais)
+- Hero slideshow images (`public/content/hero-images.json`)
+- Hero text (EN/FR)
+- FAQ page headline/search text (EN/FR)
+
+How it works:
+
+1. Editor opens `/admin` on the deployed site.
+2. Editor authenticates with GitHub.
+3. Changes are saved through editorial workflow (PR-based).
+4. Maintainer reviews and merges PR, then deploy runs from `develop`.
+
+Azure Static Web Apps routing note:
+
+- Ensure `staticwebapp.config.json` excludes `/admin/*` (and `/*.yml`) from SPA
+   fallback rewrites so Decap can load `/admin/config.yml` as YAML, not HTML.
+- Add an explicit redirect from `/admin` to `/admin/` to prevent Decap from
+   requesting `/config.yml` at the site root.
+
+Decap authentication note (Azure hosting):
+
+- Do not rely on Netlify default auth endpoint for GitHub login on Azure-hosted
+   sites.
+- Use DecapBridge PKCE (`git-gateway`) or a self-hosted OAuth proxy and set
+   `backend.base_url`, `auth_endpoint`, `auth_token_endpoint`, and
+   `gateway_url` in `/admin/config.yml`.
+
 ### Create Azure Static Web App
 
 1. Sign in to [Azure Portal](https://portal.azure.com)
@@ -68,6 +110,28 @@ Auto-deploys on push to `develop` branch.
 
 1. Visit https://github.com/naacus/website → **Actions** tab
 2. Green ✅ = deployed, Red ❌ = failed
+
+### GitHub Actions Runtime Note
+
+To avoid GitHub Actions Node 20 action-runtime deprecation warnings, workflows
+use `actions/setup-node@v5` (while project runtime can remain Node 20 for app
+build/test compatibility).
+
+### GitHub Advanced Security / Scorecard Note
+
+The DevSecOps baseline workflow uploads SARIF for Trivy and Scorecard. To keep
+Code Scanning configuration identity stable between feature branches and
+develop:
+
+- Trivy uses default workflow/job configuration identity (no custom category)
+- Scorecard uses explicit category `scorecard`
+
+Scorecard SARIF upload runs on non-PR events (`schedule`,
+`workflow_dispatch`) to avoid PR-specific branch protection signal mismatch in
+Code Scanning comparisons.
+
+If you see a warning like "configuration not found" in a PR, ensure the branch
+contains the latest `.github/workflows/devsecops-baseline.yml` and rerun checks.
 
 ### Manual Deploy
 
