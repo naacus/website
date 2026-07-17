@@ -16,9 +16,9 @@ Make **all website text and images** editable through Decap CMS, with a PR-based
 
 Decap CMS is enabled at `/admin` and currently manages a subset of content:
 
-- All locale translation JSON text via Decap code editor collections:
-	- `public/locales/en/translation.json`
-	- `public/locales/fr/translation.json`
+- All locale text via structured section forms in Decap:
+	- `All Sections - English` (writes to `public/locales/en/translation.json`)
+	- `All Sections - Francais` (writes to `public/locales/fr/translation.json`)
 - Hero text (EN/FR)
 - FAQ page text (EN/FR)
 - Hero slideshow image list
@@ -52,6 +52,25 @@ To reduce risk, delivery is split into two PRs:
 
 1. **Text PR (this phase):** full text coverage through locale/content JSON in Decap.
 2. **Images PR (next phase):** expanded image collections, upload rules, and image-domain rollout.
+
+## Decap Organization (Editor Friendly)
+
+Decap collections are organized to keep non-technical editing simple:
+
+1. **Common Text (English)**
+	- Home Page - Hero Text (EN)
+	- FAQ Page Text (EN)
+2. **Common Text (Francais)**
+	- Page d'accueil - Texte Hero (FR)
+	- Page FAQ - Texte (FR)
+3. **All Sections (Structured Locale Text)**
+	- All Sections - English
+	- All Sections - Francais
+	- Uses grouped section/object fields (Hero/FAQ-style editing experience)
+4. **Media Assets**
+	- Image-focused collections (expanded in image PR)
+
+Editors should start with **Common Text** collections first, then use **All Sections** for broad text updates across the website.
 
 ---
 
