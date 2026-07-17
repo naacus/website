@@ -5,50 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>NAACUS Content Manager</title>
     <script>
-      window.CMS_MANUAL_INIT = true;
+      const nativeFetch = window.fetch.bind(window);
+      window.fetch = (input, init = {}) => {
+        const requestUrl = typeof input === 'string'
+          ? input
+          : input && typeof input.url === 'string'
+            ? input.url
+            : '';
+
+        if (!/\/admin\/config\.yml(?:\?|$)/.test(requestUrl)) {
+          return nativeFetch(input, init);
+        }
+
+        const separator = requestUrl.includes('?') ? '&' : '?';
+        const bustedUrl = `${requestUrl}${separator}v=${Date.now()}`;
+
+        return nativeFetch(bustedUrl, {
+          ...init,
+          cache: 'no-store',
+          headers: {
+            ...(init.headers || {}),
+            'Cache-Control': 'no-cache',
+            Pragma: 'no-cache'
+          }
+        });
+      };
     </script>
   </head>
   <body>
-    <script
-      src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"
-      integrity="sha384-06asWc17UqxmL6DtZDHdrzUKdOuGQl8WIDew+C0gAtCh3YkhtkGe14L3P9EqMcDM"
-      crossorigin="anonymous"
-    ></script>
     <script
       src="https://unpkg.com/decap-cms@3.8.3/dist/decap-cms.js"
       integrity="sha384-zQmFlOQ/XomwFYm/TxeQ5kACvVVgZ/QRhxcvWOYmR2S1ruSgHYPc/XJYllIrLyIB"
       crossorigin="anonymous"
     ></script>
-    <script>
-      (async function initCMS() {
-        try {
-          const cacheBust = Date.now();
-          const response = await fetch(`/admin/config.yml?v=${cacheBust}`, {
-            cache: 'no-store',
-            headers: {
-              'Cache-Control': 'no-cache',
-              Pragma: 'no-cache'
-            }
-          });
-
-          if (!response.ok) {
-            throw new Error(`Unable to load CMS config (${response.status})`);
-          }
-
-          const configYaml = await response.text();
-          const config = window.jsyaml.load(configYaml);
-          window.CMS.init({ config });
-        } catch (error) {
-          // Keep this visible so content admins can report exact load failures.
-          const errorOutput = document.createElement('pre');
-          errorOutput.style.padding = '16px';
-          errorOutput.style.color = '#b00020';
-          errorOutput.style.whiteSpace = 'pre-wrap';
-          errorOutput.textContent = `CMS failed to initialize.\n${String(error)}`;
-          document.body.replaceChildren(errorOutput);
-          console.error(error);
-        }
-      })();
-    </script>
   </body>
 </html>
