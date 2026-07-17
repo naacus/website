@@ -194,10 +194,10 @@ function Newsletters() {
   return (
     <section className={styles.newsletters}>
       <Text as="h2" className={styles.sectionTitle}>
-        {t('newsletters.title', 'Stay Updated with NAACUS')}
+        {t('newsletters.title')}
       </Text>
       <Text as="p" className={styles.sectionSubtitle}>
-        {t('newsletters.subtitle', 'Get the latest news, events, and updates from our community')}
+        {t('newsletters.subtitle')}
       </Text>
 
       <div className={styles.content}>
@@ -223,7 +223,7 @@ function Newsletters() {
               onClick={() => handleDownload(featured.title)}
               className={styles.viewButton}
             >
-              {t('newsletters.downloadButton', 'Download Latest Newsletter')}
+              {t('newsletters.downloadButton')}
               <ChevronRight24Regular />
             </Button>
           </div>
@@ -231,7 +231,7 @@ function Newsletters() {
 
         {/* Newsletter Archive */}
         <Text as="h3" className={styles.archiveTitle}>
-          {t('newsletters.archive', 'Newsletter Archive')}
+          {t('newsletters.archive')}
         </Text>
 
         <div className={styles.newsarchiveGrid}>
@@ -268,7 +268,7 @@ function Newsletters() {
                 onClick={() => handleNewsletterClick(newsletter.title)}
                 style={{ width: '100%', display: 'flex', justifyContent: 'center', gap: '8px' }}
               >
-                {t('newsletters.viewButton', 'View Newsletter')}
+                {t('newsletters.viewButton')}
                 <ChevronRight24Regular />
               </Button>
             </Card>

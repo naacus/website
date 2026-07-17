@@ -172,10 +172,10 @@ function About() {
           </Card>
         </div>
         <div className={styles.ctaSection}>
-          <Text as="p" className={styles.ctaTitle}>{t('about.ctaTitle', 'Ready to Join the NAACUS Community?')}</Text>
-          <Text as="p" className={styles.ctaText}>{t('about.ctaText', 'Become a member and connect with African Catholics across the United States.')}</Text>
+          <Text as="p" className={styles.ctaTitle}>{t('about.ctaTitle')}</Text>
+          <Text as="p" className={styles.ctaText}>{t('about.ctaText')}</Text>
           <button className={styles.ctaButton} onClick={handleJoinClick}>
-            {t('about.ctaButton', 'Become a Member')}
+            {t('about.ctaButton')}
           </button>
         </div>
       </div>

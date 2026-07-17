@@ -353,12 +353,9 @@ function FAQPage() {
       <div className={styles.container}>
         {/* Hero Header */}
         <div className={styles.header}>
-          <h1 className={styles.title}>{faqCopy?.title || t('faq.title', 'Frequently Asked Questions')}</h1>
+          <h1 className={styles.title}>{faqCopy?.title || t('faq.title')}</h1>
           <p className={styles.subtitle}>
-            {faqCopy?.subtitle || t(
-              'faq.subtitle',
-              'Find answers to common questions about NAACUS, membership, events, and more'
-            )}
+            {faqCopy?.subtitle || t('faq.subtitle')}
           </p>
         </div>
 
@@ -376,8 +373,8 @@ function FAQPage() {
               />
               <input
                 type="text"
-                placeholder={faqCopy?.searchPlaceholder || t('faq.searchPlaceholder', 'Search FAQs...')}
-                aria-label={faqCopy?.searchInputLabel || t('faq.searchInputLabel', 'Search frequently asked questions')}
+                placeholder={faqCopy?.searchPlaceholder || t('faq.searchPlaceholder')}
+                aria-label={faqCopy?.searchInputLabel || t('faq.searchInputLabel')}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className={styles.searchInput}
@@ -390,7 +387,7 @@ function FAQPage() {
                 <button
                   type="button"
                   onClick={() => setSearchTerm('')}
-                  aria-label={faqCopy?.clearSearch || t('faq.clearSearch', 'Clear FAQ search')}
+                  aria-label={faqCopy?.clearSearch || t('faq.clearSearch')}
                   style={{
                     position: 'absolute',
                     right: '12px',
@@ -413,7 +410,7 @@ function FAQPage() {
         {/* Category Filter */}
         {filteredFAQs.length > 0 && (
           <div className={styles.categoryContainer}>
-            <div className={styles.categoryLabel}>{faqCopy?.filterByCategory || t('faq.filterByCategory', 'Filter by Category')}</div>
+            <div className={styles.categoryLabel}>{faqCopy?.filterByCategory || t('faq.filterByCategory')}</div>
             <div className={styles.categoryGrid}>
               {Object.entries(faqCategories).map(([key, category]) => {
                 const count = faqData.filter(faq => faq.category === category).length;
@@ -485,7 +482,7 @@ function FAQPage() {
           <div className={styles.emptyState}>
             <div className={styles.emptyStateIcon}>🔍</div>
             <p className={styles.noResultsMessage}>
-              {t('faq.noResults', 'No FAQs found matching your search')}
+              {t('faq.noResults')}
             </p>
             <p style={{ fontSize: '14px', color: '#999999', margin: '8px 0 0 0' }}>
               Try different keywords or clear the filters below
@@ -497,7 +494,7 @@ function FAQPage() {
               }}
               className={styles.clearButton}
             >
-              {t('faq.clearFilters', 'Clear Filters')}
+              {t('faq.clearFilters')}
             </button>
           </div>
         )}

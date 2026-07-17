@@ -31,65 +31,1823 @@ public_folder: "/images/uploads"
 
 collections:
   - name: "content_en"
-    label: "Website Content (English)"
+    label: "Common Text (English)"
     editor:
       preview: false
     files:
       - name: "hero_text_en"
-        label: "Hero Text (EN)"
+        label: "Home Page - Hero Text (EN)"
         file: "naacus-website/public/content/hero.en.json"
         fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Subtitle", name: "subtitle", widget: "text" }
-          - { label: "Membership Teaser", name: "membershipTeaser", widget: "string" }
-          - { label: "Benefit 1", name: "benefit1", widget: "string" }
-          - { label: "Benefit 2", name: "benefit2", widget: "string" }
-          - { label: "Benefit 3", name: "benefit3", widget: "string" }
-          - { label: "Join Community", name: "joinCommunity", widget: "string" }
-          - { label: "Learn Mission", name: "learnMission", widget: "string" }
-          - { label: "View Calendar", name: "viewCalendar", widget: "string" }
-          - { label: "Get Involved", name: "getInvolved", widget: "string" }
+          - { label: "Title", name: "title", widget: "string", pattern: ['^.{1,80}$', 'Max 80 characters'] }
+          - { label: "Subtitle", name: "subtitle", widget: "text", pattern: ['^[\\s\\S]{1,180}$', 'Max 180 characters'] }
+          - { label: "Membership Teaser", name: "membershipTeaser", widget: "string", pattern: ['^.{1,120}$', 'Max 120 characters'] }
+          - { label: "Benefit 1", name: "benefit1", widget: "string", pattern: ['^.{1,80}$', 'Max 80 characters'] }
+          - { label: "Benefit 2", name: "benefit2", widget: "string", pattern: ['^.{1,80}$', 'Max 80 characters'] }
+          - { label: "Benefit 3", name: "benefit3", widget: "string", pattern: ['^.{1,80}$', 'Max 80 characters'] }
+          - { label: "Join Community", name: "joinCommunity", widget: "string", pattern: ['^.{1,60}$', 'Max 60 characters'] }
+          - { label: "Learn Mission", name: "learnMission", widget: "string", pattern: ['^.{1,60}$', 'Max 60 characters'] }
+          - { label: "View Calendar", name: "viewCalendar", widget: "string", pattern: ['^.{1,40}$', 'Max 40 characters'] }
+          - { label: "Get Involved", name: "getInvolved", widget: "string", pattern: ['^.{1,40}$', 'Max 40 characters'] }
       - name: "faq_text_en"
-        label: "FAQ Text (EN)"
+        label: "FAQ Page Text (EN)"
         file: "naacus-website/public/content/faq.en.json"
         fields:
-          - { label: "Page Title", name: "title", widget: "string" }
-          - { label: "Page Subtitle", name: "subtitle", widget: "text" }
-          - { label: "Search Placeholder", name: "searchPlaceholder", widget: "string" }
-          - { label: "Search Input Label", name: "searchInputLabel", widget: "string" }
-          - { label: "Clear Search Label", name: "clearSearch", widget: "string" }
-          - { label: "Filter By Category", name: "filterByCategory", widget: "string" }
+          - { label: "Page Title", name: "title", widget: "string", pattern: ['^.{1,80}$', 'Max 80 characters'] }
+          - { label: "Page Subtitle", name: "subtitle", widget: "text", pattern: ['^[\\s\\S]{1,180}$', 'Max 180 characters'] }
+          - { label: "Search Placeholder", name: "searchPlaceholder", widget: "string", pattern: ['^.{1,80}$', 'Max 80 characters'] }
+          - { label: "Search Input Label", name: "searchInputLabel", widget: "string", pattern: ['^.{1,100}$', 'Max 100 characters'] }
+          - { label: "Clear Search Label", name: "clearSearch", widget: "string", pattern: ['^.{1,60}$', 'Max 60 characters'] }
+          - { label: "Filter By Category", name: "filterByCategory", widget: "string", pattern: ['^.{1,60}$', 'Max 60 characters'] }
 
   - name: "content_fr"
-    label: "Contenu Site (Francais)"
+    label: "Common Text (Francais)"
     editor:
       preview: false
     files:
       - name: "hero_text_fr"
-        label: "Texte Hero (FR)"
+        label: "Page d'accueil - Texte Hero (FR)"
         file: "naacus-website/public/content/hero.fr.json"
         fields:
-          - { label: "Titre", name: "title", widget: "string" }
-          - { label: "Sous-titre", name: "subtitle", widget: "text" }
-          - { label: "Texte d'adhesion", name: "membershipTeaser", widget: "string" }
-          - { label: "Avantage 1", name: "benefit1", widget: "string" }
-          - { label: "Avantage 2", name: "benefit2", widget: "string" }
-          - { label: "Avantage 3", name: "benefit3", widget: "string" }
-          - { label: "Rejoindre", name: "joinCommunity", widget: "string" }
-          - { label: "Mission", name: "learnMission", widget: "string" }
-          - { label: "Calendrier", name: "viewCalendar", widget: "string" }
-          - { label: "Participer", name: "getInvolved", widget: "string" }
+          - { label: "Titre", name: "title", widget: "string", pattern: ['^.{1,80}$', 'Max 80 characters'] }
+          - { label: "Sous-titre", name: "subtitle", widget: "text", pattern: ['^[\\s\\S]{1,180}$', 'Max 180 characters'] }
+          - { label: "Texte d'adhesion", name: "membershipTeaser", widget: "string", pattern: ['^.{1,120}$', 'Max 120 characters'] }
+          - { label: "Avantage 1", name: "benefit1", widget: "string", pattern: ['^.{1,80}$', 'Max 80 characters'] }
+          - { label: "Avantage 2", name: "benefit2", widget: "string", pattern: ['^.{1,80}$', 'Max 80 characters'] }
+          - { label: "Avantage 3", name: "benefit3", widget: "string", pattern: ['^.{1,80}$', 'Max 80 characters'] }
+          - { label: "Rejoindre", name: "joinCommunity", widget: "string", pattern: ['^.{1,60}$', 'Max 60 characters'] }
+          - { label: "Mission", name: "learnMission", widget: "string", pattern: ['^.{1,60}$', 'Max 60 characters'] }
+          - { label: "Calendrier", name: "viewCalendar", widget: "string", pattern: ['^.{1,40}$', 'Max 40 characters'] }
+          - { label: "Participer", name: "getInvolved", widget: "string", pattern: ['^.{1,40}$', 'Max 40 characters'] }
       - name: "faq_text_fr"
-        label: "Texte FAQ (FR)"
+        label: "Page FAQ - Texte (FR)"
         file: "naacus-website/public/content/faq.fr.json"
         fields:
-          - { label: "Titre", name: "title", widget: "string" }
-          - { label: "Sous-titre", name: "subtitle", widget: "text" }
-          - { label: "Placeholder recherche", name: "searchPlaceholder", widget: "string" }
-          - { label: "Label champ recherche", name: "searchInputLabel", widget: "string" }
-          - { label: "Label effacer", name: "clearSearch", widget: "string" }
-          - { label: "Filtrer par categorie", name: "filterByCategory", widget: "string" }
+          - { label: "Titre", name: "title", widget: "string", pattern: ['^.{1,80}$', 'Max 80 characters'] }
+          - { label: "Sous-titre", name: "subtitle", widget: "text", pattern: ['^[\\s\\S]{1,180}$', 'Max 180 characters'] }
+          - { label: "Placeholder recherche", name: "searchPlaceholder", widget: "string", pattern: ['^.{1,80}$', 'Max 80 characters'] }
+          - { label: "Label champ recherche", name: "searchInputLabel", widget: "string", pattern: ['^.{1,100}$', 'Max 100 characters'] }
+          - { label: "Label effacer", name: "clearSearch", widget: "string", pattern: ['^.{1,60}$', 'Max 60 characters'] }
+          - { label: "Filtrer par categorie", name: "filterByCategory", widget: "string", pattern: ['^.{1,60}$', 'Max 60 characters'] }
 
+  - name: "site_text_locales"
+    label: "Advanced Locale JSON (EN/FR)"
+    editor:
+      preview: false
+    files:
+      - name: "translation_en"
+        label: "All Sections - English"
+        file: "naacus-website/public/locales/en/translation.json"
+        fields:
+          - label: "Cookies"
+            name: "cookies"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Message", name: "message", widget: "text" }
+              - { label: "Learn More", name: "learnMore", widget: "string" }
+              - { label: "Privacy Policy", name: "privacyPolicy", widget: "string" }
+              - { label: "Accept", name: "accept", widget: "string" }
+              - { label: "Reject", name: "reject", widget: "string" }
+              - { label: "Dismiss", name: "dismiss", widget: "string" }
+          - label: "Header"
+            name: "header"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Tagline", name: "tagline", widget: "string" }
+              - label: "Nav"
+                name: "nav"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Home", name: "home", widget: "string" }
+                  - { label: "Naacus2025", name: "naacus2025", widget: "string" }
+                  - { label: "About", name: "about", widget: "string" }
+                  - { label: "Leadership", name: "leadership", widget: "string" }
+                  - { label: "Objectives", name: "objectives", widget: "string" }
+                  - { label: "Ministries", name: "ministries", widget: "string" }
+                  - { label: "Programs", name: "programs", widget: "string" }
+                  - { label: "Events", name: "events", widget: "string" }
+                  - { label: "Membership", name: "membership", widget: "string" }
+                  - { label: "Volunteer", name: "volunteer", widget: "string" }
+                  - { label: "Get Involved", name: "getInvolved", widget: "string" }
+                  - { label: "Community", name: "community", widget: "string" }
+                  - { label: "Resources", name: "resources", widget: "string" }
+                  - { label: "Newsletters", name: "newsletters", widget: "string" }
+                  - { label: "Contact", name: "contact", widget: "string" }
+                  - { label: "Feedback", name: "feedback", widget: "string" }
+                  - { label: "Prayers", name: "prayers", widget: "string" }
+              - { label: "Search Placeholder", name: "searchPlaceholder", widget: "string" }
+              - { label: "Donate", name: "donate", widget: "string" }
+              - { label: "Go Home", name: "goHome", widget: "string" }
+              - { label: "Open Navigation Menu", name: "openNavigationMenu", widget: "string" }
+          - label: "Hero"
+            name: "hero"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "string" }
+              - { label: "Membership Teaser", name: "membershipTeaser", widget: "string" }
+              - { label: "Benefit1", name: "benefit1", widget: "string" }
+              - { label: "Benefit2", name: "benefit2", widget: "string" }
+              - { label: "Benefit3", name: "benefit3", widget: "string" }
+              - { label: "Scroll Down", name: "scrollDown", widget: "string" }
+              - { label: "Become Member Button", name: "becomeMemberButton", widget: "string" }
+              - { label: "Discover Button", name: "discoverButton", widget: "string" }
+              - { label: "Join Button", name: "joinButton", widget: "string" }
+          - label: "About"
+            name: "about"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Intro", name: "intro", widget: "text" }
+              - label: "Mission"
+                name: "mission"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Description", name: "description", widget: "text" }
+              - label: "Vision"
+                name: "vision"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Description", name: "description", widget: "text" }
+              - label: "Motto"
+                name: "motto"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Description", name: "description", widget: "text" }
+              - { label: "Cta Title", name: "ctaTitle", widget: "string" }
+              - { label: "Cta Text", name: "ctaText", widget: "string" }
+              - { label: "Cta Button", name: "ctaButton", widget: "string" }
+          - { label: "Back To Top", name: "backToTop", widget: "string" }
+          - label: "Member Benefits"
+            name: "memberBenefits"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "text" }
+              - label: "Stats"
+                name: "stats"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Members", name: "members", widget: "string" }
+                  - { label: "Communities", name: "communities", widget: "string" }
+                  - { label: "Events", name: "events", widget: "string" }
+                  - { label: "States", name: "states", widget: "string" }
+              - label: "Community"
+                name: "community"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Description", name: "description", widget: "text" }
+                  - { label: "Youtube Cta", name: "youtubeCta", widget: "string" }
+              - label: "Events"
+                name: "events"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Description", name: "description", widget: "text" }
+                  - { label: "Cta", name: "cta", widget: "string" }
+              - label: "Resources"
+                name: "resources"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Description", name: "description", widget: "text" }
+                  - { label: "Links Title", name: "linksTitle", widget: "string" }
+              - label: "Spiritual"
+                name: "spiritual"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Description", name: "description", widget: "text" }
+              - label: "Network"
+                name: "network"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Description", name: "description", widget: "text" }
+              - label: "Leadership"
+                name: "leadership"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Description", name: "description", widget: "text" }
+              - { label: "Cta", name: "cta", widget: "string" }
+              - { label: "Become Member Button", name: "becomeMemberButton", widget: "string" }
+              - { label: "Become Volunteer Button", name: "becomeVolunteerButton", widget: "string" }
+          - label: "Testimonials"
+            name: "testimonials"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "string" }
+          - label: "Newsletter"
+            name: "newsletter"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Benefit1", name: "benefit1", widget: "string" }
+              - { label: "Benefit2", name: "benefit2", widget: "string" }
+              - { label: "Benefit3", name: "benefit3", widget: "string" }
+              - { label: "Name Placeholder", name: "namePlaceholder", widget: "string" }
+              - { label: "Email Placeholder", name: "emailPlaceholder", widget: "string" }
+              - { label: "Submit Button", name: "submitButton", widget: "string" }
+              - { label: "Success Title", name: "successTitle", widget: "string" }
+              - { label: "Success Message", name: "successMessage", widget: "string" }
+              - { label: "Privacy Note", name: "privacyNote", widget: "text" }
+          - label: "Join Now Button"
+            name: "joinNowButton"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Text", name: "text", widget: "string" }
+          - label: "Conference2027"
+            name: "conference2027"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "string" }
+              - { label: "Highlight Text", name: "highlightText", widget: "string" }
+              - { label: "When Label", name: "whenLabel", widget: "string" }
+              - { label: "When Value", name: "whenValue", widget: "string" }
+              - { label: "Where Label", name: "whereLabel", widget: "string" }
+              - { label: "Where Value", name: "whereValue", widget: "string" }
+              - { label: "Target Label", name: "targetLabel", widget: "string" }
+              - { label: "Target Value", name: "targetValue", widget: "string" }
+              - { label: "Schedule Line1", name: "scheduleLine1", widget: "string" }
+              - { label: "Schedule Line2", name: "scheduleLine2", widget: "string" }
+              - { label: "Contact Line", name: "contactLine", widget: "string" }
+              - { label: "Flyer Alt", name: "flyerAlt", widget: "string" }
+              - { label: "Flyer Fallback", name: "flyerFallback", widget: "string" }
+              - { label: "Cta Button", name: "ctaButton", widget: "string" }
+          - label: "Hero Buttons"
+            name: "heroButtons"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Join Community", name: "joinCommunity", widget: "string" }
+              - { label: "Learn Mission", name: "learnMission", widget: "string" }
+              - { label: "View Calendar", name: "viewCalendar", widget: "string" }
+              - { label: "Get Involved", name: "getInvolved", widget: "string" }
+          - label: "Membership"
+            name: "membership"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "text" }
+              - { label: "Success Title", name: "successTitle", widget: "string" }
+              - { label: "Success Message", name: "successMessage", widget: "text" }
+              - { label: "Return Home", name: "returnHome", widget: "string" }
+              - { label: "Personal Info", name: "personalInfo", widget: "string" }
+              - { label: "First Name", name: "firstName", widget: "string" }
+              - { label: "Last Name", name: "lastName", widget: "string" }
+              - { label: "Email", name: "email", widget: "string" }
+              - { label: "Phone", name: "phone", widget: "string" }
+              - { label: "Date Of Birth", name: "dateOfBirth", widget: "string" }
+              - { label: "Address", name: "address", widget: "string" }
+              - { label: "Street Address", name: "streetAddress", widget: "string" }
+              - { label: "City", name: "city", widget: "string" }
+              - { label: "State", name: "state", widget: "string" }
+              - { label: "Zip Code", name: "zipCode", widget: "string" }
+              - { label: "Country", name: "country", widget: "string" }
+              - { label: "Parish Info", name: "parishInfo", widget: "string" }
+              - { label: "Parish Name", name: "parishName", widget: "string" }
+              - { label: "Diocese", name: "diocese", widget: "string" }
+              - { label: "Community", name: "community", widget: "string" }
+              - { label: "Parish Search Helper", name: "parishSearchHelper", widget: "string" }
+              - { label: "Select Parish", name: "selectParish", widget: "string" }
+              - { label: "Select Parish Placeholder", name: "selectParishPlaceholder", widget: "string" }
+              - { label: "Parish Count", name: "parishCount", widget: "string" }
+              - { label: "Searching", name: "searching", widget: "string" }
+              - { label: "Entered Parish Data", name: "enteredParishData", widget: "string" }
+              - { label: "Background Experience", name: "backgroundExperience", widget: "string" }
+              - { label: "Country Of Origin", name: "countryOfOrigin", widget: "string" }
+              - { label: "Years In US", name: "yearsInUS", widget: "string" }
+              - { label: "Occupation", name: "occupation", widget: "string" }
+              - { label: "Skills", name: "skills", widget: "string" }
+              - { label: "Skills Placeholder", name: "skillsPlaceholder", widget: "string" }
+              - { label: "Membership Details", name: "membershipDetails", widget: "string" }
+              - { label: "Membership Type", name: "membershipType", widget: "string" }
+              - { label: "Membership Type Individual", name: "membershipTypeIndividual", widget: "string" }
+              - { label: "Membership Type Family", name: "membershipTypeFamily", widget: "string" }
+              - { label: "Membership Type Student", name: "membershipTypeStudent", widget: "string" }
+              - { label: "Membership Type Senior", name: "membershipTypeSenior", widget: "string" }
+              - { label: "Ministry Interests", name: "ministryInterests", widget: "string" }
+              - { label: "Ministry Youth", name: "ministryYouth", widget: "string" }
+              - { label: "Ministry Music", name: "ministryMusic", widget: "string" }
+              - { label: "Ministry Social Justice", name: "ministrySocialJustice", widget: "string" }
+              - { label: "Ministry Community Outreach", name: "ministryCommunityOutreach", widget: "string" }
+              - { label: "Ministry Education", name: "ministryEducation", widget: "string" }
+              - { label: "Ministry Marriage", name: "ministryMarriage", widget: "string" }
+              - { label: "Ministry Cultural", name: "ministryCultural", widget: "string" }
+              - { label: "Ministry Leadership", name: "ministryLeadership", widget: "string" }
+              - { label: "Emergency Contact", name: "emergencyContact", widget: "string" }
+              - { label: "Contact Name", name: "contactName", widget: "string" }
+              - { label: "Relationship", name: "relationship", widget: "string" }
+              - label: "Relationship Options"
+                name: "relationshipOptions"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Spouse", name: "spouse", widget: "string" }
+                  - { label: "Child", name: "child", widget: "string" }
+                  - { label: "Parent", name: "parent", widget: "string" }
+                  - { label: "Sibling", name: "sibling", widget: "string" }
+                  - { label: "Grandparent", name: "grandparent", widget: "string" }
+                  - { label: "Grandchild", name: "grandchild", widget: "string" }
+                  - { label: "Friend", name: "friend", widget: "string" }
+                  - { label: "Other", name: "other", widget: "string" }
+              - { label: "Emergency Phone", name: "emergencyPhone", widget: "string" }
+              - { label: "Additional Info", name: "additionalInfo", widget: "string" }
+              - { label: "Communication Preferences", name: "communicationPreferences", widget: "string" }
+              - { label: "Comm Email", name: "commEmail", widget: "string" }
+              - { label: "Comm Phone", name: "commPhone", widget: "string" }
+              - { label: "Comm Text", name: "commText", widget: "string" }
+              - { label: "Comm Mail", name: "commMail", widget: "string" }
+              - { label: "Hear About", name: "hearAbout", widget: "string" }
+              - label: "Hear About Options"
+                name: "hearAboutOptions"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Friend", name: "friend", widget: "string" }
+                  - { label: "Website", name: "website", widget: "string" }
+                  - { label: "Social Media", name: "socialMedia", widget: "string" }
+                  - { label: "Event", name: "event", widget: "string" }
+                  - { label: "Church", name: "church", widget: "string" }
+                  - { label: "Media", name: "media", widget: "string" }
+                  - { label: "Conference", name: "conference", widget: "string" }
+                  - { label: "Other", name: "other", widget: "string" }
+              - { label: "Why Join", name: "whyJoin", widget: "string" }
+              - { label: "Why Join Placeholder", name: "whyJoinPlaceholder", widget: "string" }
+              - { label: "Submit Button", name: "submitButton", widget: "string" }
+              - { label: "Submitting", name: "submitting", widget: "string" }
+              - { label: "Error Label", name: "errorLabel", widget: "string" }
+              - { label: "Required", name: "required", widget: "string" }
+              - { label: "Payment Method", name: "paymentMethod", widget: "string" }
+              - { label: "Payment Online", name: "paymentOnline", widget: "string" }
+              - { label: "Payment Manual", name: "paymentManual", widget: "string" }
+              - { label: "Membership Summary", name: "membershipSummary", widget: "string" }
+              - { label: "Amount", name: "amount", widget: "string" }
+              - { label: "Select Plan", name: "selectPlan", widget: "string" }
+              - { label: "Individual Plan", name: "individualPlan", widget: "string" }
+              - { label: "Group Small Plan", name: "groupSmallPlan", widget: "string" }
+              - { label: "Group Large Plan", name: "groupLargePlan", widget: "string" }
+              - { label: "Organization Name", name: "organizationName", widget: "string" }
+              - { label: "Organization Placeholder", name: "organizationPlaceholder", widget: "string" }
+              - { label: "Member Count", name: "memberCount", widget: "string" }
+              - { label: "Member Count Placeholder", name: "memberCountPlaceholder", widget: "string" }
+              - { label: "Proceed Payment", name: "proceedPayment", widget: "string" }
+              - { label: "Payment Instructions", name: "paymentInstructions", widget: "string" }
+          - label: "Volunteer"
+            name: "volunteer"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "text" }
+              - { label: "Success Title", name: "successTitle", widget: "string" }
+              - { label: "Success Message", name: "successMessage", widget: "text" }
+              - { label: "Return Home", name: "returnHome", widget: "string" }
+              - { label: "Personal Info", name: "personalInfo", widget: "string" }
+              - { label: "First Name", name: "firstName", widget: "string" }
+              - { label: "Last Name", name: "lastName", widget: "string" }
+              - { label: "Email", name: "email", widget: "string" }
+              - { label: "Phone", name: "phone", widget: "string" }
+              - { label: "City", name: "city", widget: "string" }
+              - { label: "State", name: "state", widget: "string" }
+              - { label: "Zip Code", name: "zipCode", widget: "string" }
+              - { label: "Skills Experience", name: "skillsExperience", widget: "string" }
+              - { label: "Languages Spoken", name: "languagesSpoken", widget: "string" }
+              - { label: "Languages Placeholder", name: "languagesPlaceholder", widget: "string" }
+              - { label: "Professional Skills", name: "professionalSkills", widget: "string" }
+              - { label: "Professional Skills Placeholder", name: "professionalSkillsPlaceholder", widget: "string" }
+              - { label: "Previous Experience", name: "previousExperience", widget: "string" }
+              - { label: "Previous Experience Placeholder", name: "previousExperiencePlaceholder", widget: "text" }
+              - { label: "Special Skills", name: "specialSkills", widget: "string" }
+              - { label: "Special Skills Placeholder", name: "specialSkillsPlaceholder", widget: "string" }
+              - { label: "Volunteer Interests", name: "volunteerInterests", widget: "string" }
+              - { label: "Areas Of Interest", name: "areasOfInterest", widget: "string" }
+              - { label: "Interest Event Planning", name: "interestEventPlanning", widget: "string" }
+              - { label: "Interest Womens", name: "interestWomens", widget: "string" }
+              - { label: "Interest Mens", name: "interestMens", widget: "string" }
+              - { label: "Interest Youth", name: "interestYouth", widget: "string" }
+              - { label: "Interest Young Adults", name: "interestYoungAdults", widget: "string" }
+              - { label: "Interest Admin", name: "interestAdmin", widget: "string" }
+              - { label: "Interest Comms", name: "interestComms", widget: "string" }
+              - { label: "Interest Fundraising", name: "interestFundraising", widget: "string" }
+              - { label: "Interest Outreach", name: "interestOutreach", widget: "string" }
+              - { label: "Interest Translation", name: "interestTranslation", widget: "string" }
+              - { label: "Interest Tech", name: "interestTech", widget: "string" }
+              - { label: "Interest Hospitality", name: "interestHospitality", widget: "string" }
+              - { label: "Interest Music", name: "interestMusic", widget: "string" }
+              - { label: "Interest Education", name: "interestEducation", widget: "string" }
+              - { label: "Interest Prayer", name: "interestPrayer", widget: "string" }
+              - { label: "Preferred Role", name: "preferredRole", widget: "string" }
+              - { label: "Preferred Role Placeholder", name: "preferredRolePlaceholder", widget: "string" }
+              - { label: "Availability", name: "availability", widget: "string" }
+              - { label: "Days Available", name: "daysAvailable", widget: "string" }
+              - { label: "Monday", name: "monday", widget: "string" }
+              - { label: "Tuesday", name: "tuesday", widget: "string" }
+              - { label: "Wednesday", name: "wednesday", widget: "string" }
+              - { label: "Thursday", name: "thursday", widget: "string" }
+              - { label: "Friday", name: "friday", widget: "string" }
+              - { label: "Saturday", name: "saturday", widget: "string" }
+              - { label: "Sunday", name: "sunday", widget: "string" }
+              - { label: "Time Preference", name: "timePreference", widget: "string" }
+              - { label: "Time Placeholder", name: "timePlaceholder", widget: "string" }
+              - { label: "Time Morning", name: "timeMorning", widget: "string" }
+              - { label: "Time Afternoon", name: "timeAfternoon", widget: "string" }
+              - { label: "Time Evening", name: "timeEvening", widget: "string" }
+              - { label: "Time Flexible", name: "timeFlexible", widget: "string" }
+              - { label: "Hours Per Month", name: "hoursPerMonth", widget: "string" }
+              - { label: "Hours1to5", name: "hours1to5", widget: "string" }
+              - { label: "Hours6to10", name: "hours6to10", widget: "string" }
+              - { label: "Hours11to20", name: "hours11to20", widget: "string" }
+              - { label: "Hours20plus", name: "hours20plus", widget: "string" }
+              - { label: "Emergency Consent", name: "emergencyConsent", widget: "string" }
+              - { label: "Emergency Contact Name", name: "emergencyContactName", widget: "string" }
+              - { label: "Relationship", name: "relationship", widget: "string" }
+              - label: "Relationship Options"
+                name: "relationshipOptions"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Spouse", name: "spouse", widget: "string" }
+                  - { label: "Child", name: "child", widget: "string" }
+                  - { label: "Parent", name: "parent", widget: "string" }
+                  - { label: "Sibling", name: "sibling", widget: "string" }
+                  - { label: "Grandparent", name: "grandparent", widget: "string" }
+                  - { label: "Grandchild", name: "grandchild", widget: "string" }
+                  - { label: "Friend", name: "friend", widget: "string" }
+                  - { label: "Other", name: "other", widget: "string" }
+              - { label: "Emergency Phone", name: "emergencyPhone", widget: "string" }
+              - { label: "Background Check Consent", name: "backgroundCheckConsent", widget: "string" }
+              - { label: "Tell Us More", name: "tellUsMore", widget: "string" }
+              - { label: "Why Volunteer", name: "whyVolunteer", widget: "string" }
+              - { label: "Why Volunteer Placeholder", name: "whyVolunteerPlaceholder", widget: "string" }
+              - { label: "Submit Button", name: "submitButton", widget: "string" }
+              - { label: "Submitting", name: "submitting", widget: "string" }
+              - { label: "Error Label", name: "errorLabel", widget: "string" }
+              - { label: "Required", name: "required", widget: "string" }
+          - label: "Resources Page"
+            name: "resourcesPage"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "text" }
+              - { label: "Cta Title", name: "ctaTitle", widget: "string" }
+              - { label: "Cta Text", name: "ctaText", widget: "text" }
+              - { label: "Cta Primary", name: "ctaPrimary", widget: "string" }
+              - { label: "Cta Secondary", name: "ctaSecondary", widget: "string" }
+              - label: "Partners"
+                name: "partners"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Description", name: "description", widget: "text" }
+                  - label: "Organizations"
+                    name: "organizations"
+                    widget: "object"
+                    collapsed: true
+                    fields:
+                      - { label: "Usccb", name: "usccb", widget: "string" }
+                      - { label: "Dioceses", name: "dioceses", widget: "string" }
+                      - { label: "African", name: "african", widget: "string" }
+                      - { label: "National", name: "national", widget: "string" }
+                      - { label: "Intercultural", name: "intercultural", widget: "string" }
+          - label: "Contact"
+            name: "contact"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Email Label", name: "emailLabel", widget: "string" }
+              - { label: "Email Value", name: "emailValue", widget: "string" }
+              - { label: "Join Us Label", name: "joinUsLabel", widget: "string" }
+              - { label: "Join Us Value", name: "joinUsValue", widget: "string" }
+              - { label: "Community Label", name: "communityLabel", widget: "string" }
+              - { label: "Community Value", name: "communityValue", widget: "string" }
+              - { label: "Spiritual Director Label", name: "spiritualDirectorLabel", widget: "string" }
+              - { label: "Name Label", name: "nameLabel", widget: "string" }
+              - { label: "Name Placeholder", name: "namePlaceholder", widget: "string" }
+              - { label: "Email Field Label", name: "emailFieldLabel", widget: "string" }
+              - { label: "Email Placeholder", name: "emailPlaceholder", widget: "string" }
+              - { label: "Parish Label", name: "parishLabel", widget: "string" }
+              - { label: "Parish Placeholder", name: "parishPlaceholder", widget: "string" }
+              - { label: "Message Label", name: "messageLabel", widget: "string" }
+              - { label: "Message Placeholder", name: "messagePlaceholder", widget: "string" }
+              - { label: "Send Button", name: "sendButton", widget: "string" }
+              - { label: "Required", name: "required", widget: "string" }
+          - label: "Events"
+            name: "events"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "string" }
+              - { label: "Upcoming Events", name: "upcomingEvents", widget: "string" }
+              - { label: "Past Events", name: "pastEvents", widget: "string" }
+              - { label: "More Upcoming Events", name: "moreUpcomingEvents", widget: "string" }
+              - { label: "Register Now", name: "registerNow", widget: "string" }
+              - { label: "View Details", name: "viewDetails", widget: "string" }
+              - { label: "Registration Not Available", name: "registrationNotAvailable", widget: "text" }
+              - { label: "Expected Attendees", name: "expectedAttendees", widget: "string" }
+              - { label: "Highlights", name: "highlights", widget: "string" }
+              - { label: "No Upcoming Events", name: "noUpcomingEvents", widget: "string" }
+              - { label: "No Past Events", name: "noPastEvents", widget: "string" }
+              - { label: "Date", name: "date", widget: "string" }
+              - { label: "Dates", name: "dates", widget: "string" }
+              - { label: "Location", name: "location", widget: "string" }
+              - { label: "Attendees", name: "attendees", widget: "string" }
+              - { label: "Description", name: "description", widget: "string" }
+              - { label: "More", name: "more", widget: "string" }
+              - { label: "What To Expect", name: "whatToExpect", widget: "string" }
+              - { label: "Register For Event", name: "registerForEvent", widget: "string" }
+              - { label: "First Name", name: "firstName", widget: "string" }
+              - { label: "Last Name", name: "lastName", widget: "string" }
+              - { label: "Email", name: "email", widget: "string" }
+              - { label: "Phone", name: "phone", widget: "string" }
+              - { label: "Message", name: "message", widget: "string" }
+              - { label: "Cancel", name: "cancel", widget: "string" }
+              - { label: "Submit Registration", name: "submitRegistration", widget: "string" }
+              - { label: "Close", name: "close", widget: "string" }
+              - { label: "Submit Another", name: "submitAnother", widget: "string" }
+              - label: "Success"
+                name: "success"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Registration Submitted", name: "registrationSubmitted", widget: "text" }
+                  - { label: "Registration Stored", name: "registrationStored", widget: "string" }
+              - label: "Errors"
+                name: "errors"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "First Name Required", name: "firstNameRequired", widget: "string" }
+                  - { label: "Last Name Required", name: "lastNameRequired", widget: "string" }
+                  - { label: "Email Required", name: "emailRequired", widget: "string" }
+                  - { label: "Email Invalid", name: "emailInvalid", widget: "string" }
+                  - { label: "Submission Failed", name: "submissionFailed", widget: "string" }
+                  - { label: "Network Error", name: "networkError", widget: "string" }
+              - label: "Warnings"
+                name: "warnings"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+              - { label: "Close Registration Dialog", name: "closeRegistrationDialog", widget: "string" }
+              - { label: "Submitting", name: "submitting", widget: "string" }
+          - label: "Chat"
+            name: "chat"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Greeting", name: "greeting", widget: "string" }
+              - { label: "Support Title", name: "supportTitle", widget: "string" }
+              - { label: "Need Help", name: "needHelp", widget: "string" }
+              - { label: "Lets Chat", name: "letsChat", widget: "string" }
+              - { label: "Placeholder", name: "placeholder", widget: "string" }
+              - { label: "Bot Reply", name: "botReply", widget: "string" }
+              - { label: "Open Assistant", name: "openAssistant", widget: "string" }
+          - label: "Footer"
+            name: "footer"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Copyright", name: "copyright", widget: "string" }
+              - { label: "Privacy Policy", name: "privacyPolicy", widget: "string" }
+              - { label: "Cookie Settings", name: "cookieSettings", widget: "string" }
+              - { label: "Tagline", name: "tagline", widget: "string" }
+              - { label: "Quick Links", name: "quickLinks", widget: "string" }
+              - { label: "Home", name: "home", widget: "string" }
+              - { label: "About", name: "about", widget: "string" }
+              - { label: "Leadership", name: "leadership", widget: "string" }
+              - { label: "Events", name: "events", widget: "string" }
+              - { label: "Resources", name: "resources", widget: "string" }
+              - { label: "Contact", name: "contact", widget: "string" }
+              - { label: "Prayer Library", name: "prayerLibrary", widget: "string" }
+              - { label: "Engage", name: "engage", widget: "string" }
+              - { label: "Events Activities", name: "eventsActivities", widget: "string" }
+              - { label: "National Conference", name: "nationalConference", widget: "string" }
+              - { label: "Newsletter", name: "newsletter", widget: "string" }
+              - { label: "Membership", name: "membership", widget: "string" }
+              - { label: "Get Involved", name: "getInvolved", widget: "string" }
+              - { label: "Join Community", name: "joinCommunity", widget: "string" }
+              - { label: "Participate Programs", name: "participatePrograms", widget: "string" }
+              - { label: "Contact Us", name: "contactUs", widget: "string" }
+              - { label: "Ms Integration", name: "msIntegration", widget: "string" }
+          - label: "Objectives"
+            name: "objectives"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "text" }
+              - { label: "Vision Title", name: "visionTitle", widget: "string" }
+              - { label: "Vision Description", name: "visionDescription", widget: "text" }
+          - label: "Who We Serve"
+            name: "whoWeServe"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "text" }
+              - { label: "Closing Text", name: "closingText", widget: "text" }
+          - label: "What We Do"
+            name: "whatWeDo"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "text" }
+          - label: "Leadership"
+            name: "leadership"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Intro", name: "intro", widget: "text" }
+              - { label: "Executive Board", name: "executiveBoard", widget: "string" }
+              - { label: "Spiritual Advisers", name: "spiritualAdvisers", widget: "string" }
+              - { label: "National Executive Officers", name: "nationalExecutiveOfficers", widget: "string" }
+              - { label: "Ministry Coordinations", name: "ministryCoordinations", widget: "string" }
+              - { label: "Training Programs Title", name: "trainingProgramsTitle", widget: "string" }
+              - { label: "Training Programs Intro", name: "trainingProgramsIntro", widget: "text" }
+              - { label: "Training Programs Pending Title", name: "trainingProgramsPendingTitle", widget: "string" }
+              - { label: "Training Programs Pending Text", name: "trainingProgramsPendingText", widget: "text" }
+              - { label: "Cta Title", name: "ctaTitle", widget: "string" }
+              - { label: "Cta Text", name: "ctaText", widget: "text" }
+              - { label: "Cta Primary", name: "ctaPrimary", widget: "string" }
+              - { label: "Cta Secondary", name: "ctaSecondary", widget: "string" }
+              - { label: "National Advisory Board", name: "nationalAdvisoryBoard", widget: "string" }
+              - { label: "Read More", name: "readMore", widget: "string" }
+              - { label: "Close", name: "close", widget: "string" }
+          - label: "Ministries"
+            name: "ministries"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "text" }
+              - { label: "Get Involved", name: "getInvolved", widget: "string" }
+              - { label: "Cta Title", name: "ctaTitle", widget: "string" }
+              - { label: "Cta Text", name: "ctaText", widget: "text" }
+          - label: "Programs"
+            name: "programs"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "text" }
+              - { label: "Activities Title", name: "activitiesTitle", widget: "string" }
+              - { label: "Activities Description", name: "activitiesDescription", widget: "text" }
+              - { label: "Conference Title", name: "conferenceTitle", widget: "string" }
+              - { label: "Conference Description", name: "conferenceDescription", widget: "text" }
+              - { label: "Learn More", name: "learnMore", widget: "string" }
+              - { label: "Get Involved Title", name: "getInvolvedTitle", widget: "string" }
+              - { label: "Get Involved Description", name: "getInvolvedDescription", widget: "text" }
+              - { label: "Contact Us", name: "contactUs", widget: "string" }
+              - { label: "Cta Title", name: "ctaTitle", widget: "string" }
+              - { label: "Cta Text", name: "ctaText", widget: "text" }
+              - { label: "Cta Primary", name: "ctaPrimary", widget: "string" }
+              - { label: "Cta Secondary", name: "ctaSecondary", widget: "string" }
+          - label: "Naacus2025"
+            name: "naacus2025"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "string" }
+              - { label: "Theme", name: "theme", widget: "string" }
+              - { label: "Goal", name: "goal", widget: "string" }
+              - { label: "Dates", name: "dates", widget: "string" }
+              - { label: "Location", name: "location", widget: "string" }
+              - { label: "Host", name: "host", widget: "string" }
+              - { label: "Schedule Title", name: "scheduleTitle", widget: "string" }
+              - { label: "Schedule Description", name: "scheduleDescription", widget: "text" }
+              - { label: "Presenter", name: "presenter", widget: "string" }
+              - { label: "Summary", name: "summary", widget: "string" }
+              - { label: "Video To Be Added", name: "videoToBeAdded", widget: "string" }
+              - { label: "Photos To Be Added", name: "photosToBeAdded", widget: "string" }
+              - { label: "Content To Be Provided", name: "contentToBeProvided", widget: "string" }
+              - { label: "Cta Title", name: "ctaTitle", widget: "string" }
+              - { label: "Cta Description", name: "ctaDescription", widget: "text" }
+              - { label: "Cta Button", name: "ctaButton", widget: "string" }
+              - { label: "Gallery Title", name: "galleryTitle", widget: "string" }
+              - { label: "Gallery Description", name: "galleryDescription", widget: "text" }
+              - { label: "Gallery Button", name: "galleryButton", widget: "string" }
+          - label: "Newsletters"
+            name: "newsletters"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "string" }
+              - { label: "Archive", name: "archive", widget: "string" }
+              - { label: "Download Button", name: "downloadButton", widget: "string" }
+              - { label: "View Button", name: "viewButton", widget: "string" }
+          - label: "Donation"
+            name: "donation"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Full Name", name: "fullName", widget: "string" }
+              - { label: "Email", name: "email", widget: "string" }
+              - { label: "Phone", name: "phone", widget: "string" }
+              - { label: "Message", name: "message", widget: "string" }
+              - { label: "Select Amount", name: "selectAmount", widget: "string" }
+              - { label: "Custom Amount", name: "customAmount", widget: "string" }
+              - { label: "Message Placeholder", name: "messagePlaceholder", widget: "string" }
+              - { label: "Payment Method", name: "paymentMethod", widget: "string" }
+              - { label: "Credit Debit", name: "creditDebit", widget: "string" }
+              - { label: "Apple Pay", name: "applePay", widget: "string" }
+              - { label: "Google Pay", name: "googlePay", widget: "string" }
+              - { label: "Paypal", name: "paypal", widget: "string" }
+              - { label: "Bank Transfer", name: "bankTransfer", widget: "string" }
+              - { label: "Bitcoin", name: "bitcoin", widget: "string" }
+              - { label: "Cashapp", name: "cashapp", widget: "string" }
+              - { label: "Instant", name: "instant", widget: "string" }
+              - { label: "Processing Time", name: "processingTime", widget: "string" }
+              - { label: "Blockchain Confirm", name: "blockchainConfirm", widget: "string" }
+              - { label: "Optional", name: "optional", widget: "string" }
+              - { label: "Cancel", name: "cancel", widget: "string" }
+              - { label: "Donate", name: "donate", widget: "string" }
+              - { label: "Processing", name: "processing", widget: "string" }
+              - { label: "Required Fields", name: "requiredFields", widget: "string" }
+              - { label: "Payment Failed", name: "paymentFailed", widget: "string" }
+              - { label: "Payment Success", name: "paymentSuccess", widget: "string" }
+              - { label: "Bank Success", name: "bankSuccess", widget: "string" }
+              - { label: "Crypto Success", name: "cryptoSuccess", widget: "string" }
+              - { label: "Cashapp Success", name: "cashappSuccess", widget: "string" }
+              - { label: "Bank Info", name: "bankInfo", widget: "string" }
+              - { label: "Crypto Info", name: "cryptoInfo", widget: "string" }
+              - { label: "Payment Instructions", name: "paymentInstructions", widget: "string" }
+              - { label: "Crypto Secure", name: "cryptoSecure", widget: "string" }
+              - { label: "Bank Speed", name: "bankSpeed", widget: "string" }
+              - { label: "Crypto Speed", name: "cryptoSpeed", widget: "string" }
+              - { label: "Fast Speed", name: "fastSpeed", widget: "string" }
+              - { label: "Payment Method Unknown", name: "paymentMethodUnknown", widget: "string" }
+              - { label: "Payment Processing Failed", name: "paymentProcessingFailed", widget: "string" }
+              - { label: "Card Fee", name: "cardFee", widget: "string" }
+              - { label: "Apple Pay Fee", name: "applePayFee", widget: "string" }
+              - { label: "Google Pay Fee", name: "googlePayFee", widget: "string" }
+              - { label: "Paypal Fee", name: "paypalFee", widget: "string" }
+              - { label: "Crypto Fee", name: "cryptoFee", widget: "string" }
+              - { label: "Card Number", name: "cardNumber", widget: "string" }
+              - { label: "Card Number Placeholder", name: "cardNumberPlaceholder", widget: "string" }
+              - { label: "Expiry", name: "expiry", widget: "string" }
+              - { label: "Cvv", name: "cvv", widget: "string" }
+              - { label: "Account Holder", name: "accountHolder", widget: "string" }
+              - { label: "Account Number", name: "accountNumber", widget: "string" }
+              - { label: "Routing Number", name: "routingNumber", widget: "string" }
+              - { label: "Wallet Address", name: "walletAddress", widget: "string" }
+              - { label: "Wallet Address Placeholder", name: "walletAddressPlaceholder", widget: "string" }
+              - { label: "Cashapp Username", name: "cashappUsername", widget: "string" }
+              - { label: "Cashapp Username Placeholder", name: "cashappUsernamePlaceholder", widget: "string" }
+              - { label: "Demo Disclaimer", name: "demoDisclaimer", widget: "string" }
+              - { label: "Close", name: "close", widget: "string" }
+              - { label: "Fee Warning", name: "feeWarning", widget: "string" }
+              - { label: "Authentication Required", name: "authenticationRequired", widget: "string" }
+          - label: "Search"
+            name: "search"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Search", name: "search", widget: "string" }
+              - { label: "Placeholder", name: "placeholder", widget: "string" }
+              - { label: "Start Typing", name: "startTyping", widget: "string" }
+              - { label: "No Results", name: "noResults", widget: "string" }
+              - { label: "Results Found", name: "resultsFound", widget: "string" }
+              - { label: "Close", name: "close", widget: "string" }
+              - { label: "Tooltip", name: "tooltip", widget: "string" }
+              - { label: "Keyboard Shortcut", name: "keyboard_shortcut", widget: "string" }
+              - { label: "Input Label", name: "inputLabel", widget: "string" }
+          - label: "Faq"
+            name: "faq"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "string" }
+              - { label: "Search Placeholder", name: "searchPlaceholder", widget: "string" }
+              - { label: "No Results", name: "noResults", widget: "string" }
+              - { label: "Clear Filters", name: "clearFilters", widget: "string" }
+              - { label: "Search Input Label", name: "searchInputLabel", widget: "string" }
+              - { label: "Clear Search", name: "clearSearch", widget: "string" }
+              - { label: "Filter By Category", name: "filterByCategory", widget: "string" }
+          - label: "Feedback"
+            name: "feedback"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "text" }
+              - { label: "Description", name: "description", widget: "string" }
+          - label: "Not Found"
+            name: "notFound"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Go Home", name: "goHome", widget: "string" }
+              - { label: "Go Back", name: "goBack", widget: "string" }
+          - label: "Prayer Library"
+            name: "prayerLibrary"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "text" }
+              - label: "Stats"
+                name: "stats"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Prayers", name: "prayers", widget: "string" }
+                  - { label: "Languages", name: "languages", widget: "string" }
+                  - { label: "Countries", name: "countries", widget: "string" }
+                  - { label: "Youth Featured", name: "youthFeatured", widget: "string" }
+                  - { label: "Videos", name: "videos", widget: "string" }
+              - label: "Tabs"
+                name: "tabs"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Videos", name: "videos", widget: "string" }
+                  - { label: "By Prayer", name: "byPrayer", widget: "string" }
+                  - { label: "By Country", name: "byCountry", widget: "string" }
+                  - { label: "By Language", name: "byLanguage", widget: "string" }
+              - label: "Filters"
+                name: "filters"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Prayer", name: "prayer", widget: "string" }
+                  - { label: "Country", name: "country", widget: "string" }
+                  - { label: "Language", name: "language", widget: "string" }
+                  - { label: "All Prayers", name: "allPrayers", widget: "string" }
+                  - { label: "All Countries", name: "allCountries", widget: "string" }
+                  - { label: "All Languages", name: "allLanguages", widget: "string" }
+                  - { label: "Clear", name: "clear", widget: "string" }
+              - label: "Prayers"
+                name: "prayers"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Sign Of Cross", name: "signOfCross", widget: "string" }
+                  - { label: "Our Father", name: "ourFather", widget: "string" }
+                  - { label: "Hail Mary", name: "hailMary", widget: "string" }
+                  - { label: "Glory Be", name: "gloryBe", widget: "string" }
+                  - { label: "Apostles Creed", name: "apostlesCreed", widget: "string" }
+                  - { label: "Hail Holy Queen", name: "hailHolyQueen", widget: "string" }
+                  - { label: "Memorare", name: "memorare", widget: "string" }
+              - { label: "Coming Soon", name: "comingSoon", widget: "string" }
+              - { label: "Youth Featured", name: "youthFeatured", widget: "string" }
+              - { label: "No Results", name: "noResults", widget: "string" }
+              - { label: "Available In", name: "availableIn", widget: "string" }
+              - { label: "No Submissions Yet", name: "noSubmissionsYet", widget: "string" }
+              - { label: "View Videos", name: "viewVideos", widget: "string" }
+              - label: "Submit"
+                name: "submit"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Description", name: "description", widget: "text" }
+                  - { label: "Guideline1", name: "guideline1", widget: "string" }
+                  - { label: "Guideline2", name: "guideline2", widget: "string" }
+                  - { label: "Guideline3", name: "guideline3", widget: "string" }
+                  - { label: "Guideline4", name: "guideline4", widget: "string" }
+                  - { label: "Guideline5", name: "guideline5", widget: "string" }
+                  - { label: "Button", name: "button", widget: "string" }
+                  - { label: "Dialog Title", name: "dialogTitle", widget: "string" }
+                  - { label: "Thank You", name: "thankYou", widget: "string" }
+                  - { label: "Thank You Message", name: "thankYouMessage", widget: "string" }
+                  - label: "Form"
+                    name: "form"
+                    widget: "object"
+                    collapsed: true
+                    fields:
+                      - { label: "Full Name", name: "fullName", widget: "string" }
+                      - { label: "Email", name: "email", widget: "string" }
+                      - { label: "Parish", name: "parish", widget: "string" }
+                      - { label: "Country", name: "country", widget: "string" }
+                      - { label: "Language", name: "language", widget: "string" }
+                      - { label: "Language Placeholder", name: "languagePlaceholder", widget: "string" }
+                      - { label: "Prayer Type", name: "prayerType", widget: "string" }
+                      - { label: "Description", name: "description", widget: "string" }
+                      - { label: "Description Placeholder", name: "descriptionPlaceholder", widget: "string" }
+                      - { label: "Cancel", name: "cancel", widget: "string" }
+          # (removed) feedback_form — not a UI locale string
+        label: "All Sections - Francais"
+        file: "naacus-website/public/locales/fr/translation.json"
+        fields:
+          - label: "Cookies"
+            name: "cookies"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Message", name: "message", widget: "text" }
+              - { label: "Learn More", name: "learnMore", widget: "string" }
+              - { label: "Privacy Policy", name: "privacyPolicy", widget: "string" }
+              - { label: "Accept", name: "accept", widget: "string" }
+              - { label: "Reject", name: "reject", widget: "string" }
+              - { label: "Dismiss", name: "dismiss", widget: "string" }
+          - label: "Header"
+            name: "header"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - label: "Nav"
+                name: "nav"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Home", name: "home", widget: "string" }
+                  - { label: "Naacus2025", name: "naacus2025", widget: "string" }
+                  - { label: "About", name: "about", widget: "string" }
+                  - { label: "Leadership", name: "leadership", widget: "string" }
+                  - { label: "Objectives", name: "objectives", widget: "string" }
+                  - { label: "Ministries", name: "ministries", widget: "string" }
+                  - { label: "Programs", name: "programs", widget: "string" }
+                  - { label: "Events", name: "events", widget: "string" }
+                  - { label: "Membership", name: "membership", widget: "string" }
+                  - { label: "Volunteer", name: "volunteer", widget: "string" }
+                  - { label: "Get Involved", name: "getInvolved", widget: "string" }
+                  - { label: "Community", name: "community", widget: "string" }
+                  - { label: "Resources", name: "resources", widget: "string" }
+                  - { label: "Newsletters", name: "newsletters", widget: "string" }
+                  - { label: "Contact", name: "contact", widget: "string" }
+                  - { label: "Feedback", name: "feedback", widget: "string" }
+                  - { label: "Prayers", name: "prayers", widget: "string" }
+              - { label: "Search Placeholder", name: "searchPlaceholder", widget: "string" }
+              - { label: "Donate", name: "donate", widget: "string" }
+              - { label: "Go Home", name: "goHome", widget: "string" }
+              - { label: "Open Navigation Menu", name: "openNavigationMenu", widget: "string" }
+          - label: "Hero"
+            name: "hero"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "string" }
+              - { label: "Membership Teaser", name: "membershipTeaser", widget: "text" }
+              - { label: "Benefit1", name: "benefit1", widget: "string" }
+              - { label: "Benefit2", name: "benefit2", widget: "string" }
+              - { label: "Benefit3", name: "benefit3", widget: "string" }
+              - { label: "Become Member Button", name: "becomeMemberButton", widget: "string" }
+              - { label: "Discover Button", name: "discoverButton", widget: "string" }
+              - { label: "Join Button", name: "joinButton", widget: "string" }
+          - label: "About"
+            name: "about"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - label: "Mission"
+                name: "mission"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Description", name: "description", widget: "text" }
+              - label: "Vision"
+                name: "vision"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Description", name: "description", widget: "text" }
+              - label: "Motto"
+                name: "motto"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Description", name: "description", widget: "text" }
+              - { label: "Cta Title", name: "ctaTitle", widget: "string" }
+              - { label: "Cta Text", name: "ctaText", widget: "string" }
+              - { label: "Cta Button", name: "ctaButton", widget: "string" }
+          - { label: "Back To Top", name: "backToTop", widget: "string" }
+          - label: "Member Benefits"
+            name: "memberBenefits"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "text" }
+              - label: "Stats"
+                name: "stats"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Members", name: "members", widget: "string" }
+                  - { label: "Communities", name: "communities", widget: "string" }
+                  - { label: "Events", name: "events", widget: "string" }
+                  - { label: "States", name: "states", widget: "string" }
+              - label: "Community"
+                name: "community"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Description", name: "description", widget: "text" }
+                  - { label: "Youtube Cta", name: "youtubeCta", widget: "string" }
+              - label: "Events"
+                name: "events"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Description", name: "description", widget: "text" }
+                  - { label: "Cta", name: "cta", widget: "string" }
+              - label: "Resources"
+                name: "resources"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Description", name: "description", widget: "text" }
+                  - { label: "Links Title", name: "linksTitle", widget: "string" }
+              - label: "Spiritual"
+                name: "spiritual"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Description", name: "description", widget: "text" }
+              - label: "Network"
+                name: "network"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Description", name: "description", widget: "text" }
+              - label: "Leadership"
+                name: "leadership"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Description", name: "description", widget: "text" }
+              - { label: "Cta", name: "cta", widget: "string" }
+              - { label: "Become Member Button", name: "becomeMemberButton", widget: "string" }
+              - { label: "Become Volunteer Button", name: "becomeVolunteerButton", widget: "string" }
+          - label: "Testimonials"
+            name: "testimonials"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "string" }
+          - label: "Newsletter"
+            name: "newsletter"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Benefit1", name: "benefit1", widget: "string" }
+              - { label: "Benefit2", name: "benefit2", widget: "string" }
+              - { label: "Benefit3", name: "benefit3", widget: "string" }
+              - { label: "Name Placeholder", name: "namePlaceholder", widget: "string" }
+              - { label: "Email Placeholder", name: "emailPlaceholder", widget: "string" }
+              - { label: "Submit Button", name: "submitButton", widget: "string" }
+              - { label: "Success Title", name: "successTitle", widget: "string" }
+              - { label: "Success Message", name: "successMessage", widget: "text" }
+              - { label: "Privacy Note", name: "privacyNote", widget: "text" }
+          - label: "Join Now Button"
+            name: "joinNowButton"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Text", name: "text", widget: "string" }
+          - label: "Conference2027"
+            name: "conference2027"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "string" }
+              - { label: "Highlight Text", name: "highlightText", widget: "string" }
+              - { label: "When Label", name: "whenLabel", widget: "string" }
+              - { label: "When Value", name: "whenValue", widget: "string" }
+              - { label: "Where Label", name: "whereLabel", widget: "string" }
+              - { label: "Where Value", name: "whereValue", widget: "string" }
+              - { label: "Target Label", name: "targetLabel", widget: "string" }
+              - { label: "Target Value", name: "targetValue", widget: "string" }
+              - { label: "Schedule Line1", name: "scheduleLine1", widget: "string" }
+              - { label: "Schedule Line2", name: "scheduleLine2", widget: "string" }
+              - { label: "Contact Line", name: "contactLine", widget: "string" }
+              - { label: "Flyer Alt", name: "flyerAlt", widget: "string" }
+              - { label: "Flyer Fallback", name: "flyerFallback", widget: "string" }
+              - { label: "Cta Button", name: "ctaButton", widget: "string" }
+          - label: "Hero Buttons"
+            name: "heroButtons"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Join Community", name: "joinCommunity", widget: "string" }
+              - { label: "Learn Mission", name: "learnMission", widget: "string" }
+              - { label: "View Calendar", name: "viewCalendar", widget: "string" }
+              - { label: "Get Involved", name: "getInvolved", widget: "string" }
+          - label: "Membership"
+            name: "membership"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "text" }
+              - { label: "Success Title", name: "successTitle", widget: "string" }
+              - { label: "Success Message", name: "successMessage", widget: "text" }
+              - { label: "Return Home", name: "returnHome", widget: "string" }
+              - { label: "Personal Info", name: "personalInfo", widget: "string" }
+              - { label: "First Name", name: "firstName", widget: "string" }
+              - { label: "Last Name", name: "lastName", widget: "string" }
+              - { label: "Email", name: "email", widget: "string" }
+              - { label: "Phone", name: "phone", widget: "string" }
+              - { label: "Date Of Birth", name: "dateOfBirth", widget: "string" }
+              - { label: "Address", name: "address", widget: "string" }
+              - { label: "Street Address", name: "streetAddress", widget: "string" }
+              - { label: "City", name: "city", widget: "string" }
+              - { label: "State", name: "state", widget: "string" }
+              - { label: "Zip Code", name: "zipCode", widget: "string" }
+              - { label: "Country", name: "country", widget: "string" }
+              - { label: "Parish Info", name: "parishInfo", widget: "string" }
+              - { label: "Parish Name", name: "parishName", widget: "string" }
+              - { label: "Diocese", name: "diocese", widget: "string" }
+              - { label: "Community", name: "community", widget: "string" }
+              - { label: "Parish Search Helper", name: "parishSearchHelper", widget: "string" }
+              - { label: "Select Parish", name: "selectParish", widget: "string" }
+              - { label: "Select Parish Placeholder", name: "selectParishPlaceholder", widget: "string" }
+              - { label: "Parish Count", name: "parishCount", widget: "string" }
+              - { label: "Searching", name: "searching", widget: "string" }
+              - { label: "Entered Parish Data", name: "enteredParishData", widget: "string" }
+              - { label: "Background Experience", name: "backgroundExperience", widget: "string" }
+              - { label: "Country Of Origin", name: "countryOfOrigin", widget: "string" }
+              - { label: "Years In US", name: "yearsInUS", widget: "string" }
+              - { label: "Occupation", name: "occupation", widget: "string" }
+              - { label: "Skills", name: "skills", widget: "string" }
+              - { label: "Skills Placeholder", name: "skillsPlaceholder", widget: "string" }
+              - { label: "Membership Details", name: "membershipDetails", widget: "string" }
+              - { label: "Membership Type", name: "membershipType", widget: "string" }
+              - { label: "Membership Type Individual", name: "membershipTypeIndividual", widget: "string" }
+              - { label: "Membership Type Family", name: "membershipTypeFamily", widget: "string" }
+              - { label: "Membership Type Student", name: "membershipTypeStudent", widget: "string" }
+              - { label: "Membership Type Senior", name: "membershipTypeSenior", widget: "string" }
+              - { label: "Ministry Interests", name: "ministryInterests", widget: "string" }
+              - { label: "Ministry Youth", name: "ministryYouth", widget: "string" }
+              - { label: "Ministry Music", name: "ministryMusic", widget: "string" }
+              - { label: "Ministry Social Justice", name: "ministrySocialJustice", widget: "string" }
+              - { label: "Ministry Community Outreach", name: "ministryCommunityOutreach", widget: "string" }
+              - { label: "Ministry Education", name: "ministryEducation", widget: "string" }
+              - { label: "Ministry Marriage", name: "ministryMarriage", widget: "string" }
+              - { label: "Ministry Cultural", name: "ministryCultural", widget: "string" }
+              - { label: "Ministry Leadership", name: "ministryLeadership", widget: "string" }
+              - { label: "Emergency Contact", name: "emergencyContact", widget: "string" }
+              - { label: "Contact Name", name: "contactName", widget: "string" }
+              - { label: "Relationship", name: "relationship", widget: "string" }
+              - label: "Relationship Options"
+                name: "relationshipOptions"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Spouse", name: "spouse", widget: "string" }
+                  - { label: "Child", name: "child", widget: "string" }
+                  - { label: "Parent", name: "parent", widget: "string" }
+                  - { label: "Sibling", name: "sibling", widget: "string" }
+                  - { label: "Grandparent", name: "grandparent", widget: "string" }
+                  - { label: "Grandchild", name: "grandchild", widget: "string" }
+                  - { label: "Friend", name: "friend", widget: "string" }
+                  - { label: "Other", name: "other", widget: "string" }
+              - { label: "Emergency Phone", name: "emergencyPhone", widget: "string" }
+              - { label: "Additional Info", name: "additionalInfo", widget: "string" }
+              - { label: "Communication Preferences", name: "communicationPreferences", widget: "string" }
+              - { label: "Comm Email", name: "commEmail", widget: "string" }
+              - { label: "Comm Phone", name: "commPhone", widget: "string" }
+              - { label: "Comm Text", name: "commText", widget: "string" }
+              - { label: "Comm Mail", name: "commMail", widget: "string" }
+              - { label: "Hear About", name: "hearAbout", widget: "string" }
+              - label: "Hear About Options"
+                name: "hearAboutOptions"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Friend", name: "friend", widget: "string" }
+                  - { label: "Website", name: "website", widget: "string" }
+                  - { label: "Social Media", name: "socialMedia", widget: "string" }
+                  - { label: "Event", name: "event", widget: "string" }
+                  - { label: "Church", name: "church", widget: "string" }
+                  - { label: "Media", name: "media", widget: "string" }
+                  - { label: "Conference", name: "conference", widget: "string" }
+                  - { label: "Other", name: "other", widget: "string" }
+              - { label: "Why Join", name: "whyJoin", widget: "string" }
+              - { label: "Why Join Placeholder", name: "whyJoinPlaceholder", widget: "string" }
+              - { label: "Submit Button", name: "submitButton", widget: "string" }
+              - { label: "Submitting", name: "submitting", widget: "string" }
+              - { label: "Error Label", name: "errorLabel", widget: "string" }
+              - { label: "Required", name: "required", widget: "string" }
+              - { label: "Payment Method", name: "paymentMethod", widget: "string" }
+              - { label: "Payment Online", name: "paymentOnline", widget: "string" }
+              - { label: "Payment Manual", name: "paymentManual", widget: "string" }
+              - { label: "Membership Summary", name: "membershipSummary", widget: "string" }
+              - { label: "Amount", name: "amount", widget: "string" }
+              - { label: "Select Plan", name: "selectPlan", widget: "string" }
+              - { label: "Individual Plan", name: "individualPlan", widget: "string" }
+              - { label: "Group Small Plan", name: "groupSmallPlan", widget: "string" }
+              - { label: "Group Large Plan", name: "groupLargePlan", widget: "string" }
+              - { label: "Organization Name", name: "organizationName", widget: "string" }
+              - { label: "Organization Placeholder", name: "organizationPlaceholder", widget: "string" }
+              - { label: "Member Count", name: "memberCount", widget: "string" }
+              - { label: "Member Count Placeholder", name: "memberCountPlaceholder", widget: "string" }
+              - { label: "Proceed Payment", name: "proceedPayment", widget: "string" }
+              - { label: "Payment Instructions", name: "paymentInstructions", widget: "string" }
+          - label: "Volunteer"
+            name: "volunteer"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "text" }
+              - { label: "Success Title", name: "successTitle", widget: "string" }
+              - { label: "Success Message", name: "successMessage", widget: "text" }
+              - { label: "Return Home", name: "returnHome", widget: "string" }
+              - { label: "Personal Info", name: "personalInfo", widget: "string" }
+              - { label: "First Name", name: "firstName", widget: "string" }
+              - { label: "Last Name", name: "lastName", widget: "string" }
+              - { label: "Email", name: "email", widget: "string" }
+              - { label: "Phone", name: "phone", widget: "string" }
+              - { label: "City", name: "city", widget: "string" }
+              - { label: "State", name: "state", widget: "string" }
+              - { label: "Zip Code", name: "zipCode", widget: "string" }
+              - { label: "Skills Experience", name: "skillsExperience", widget: "string" }
+              - { label: "Languages Spoken", name: "languagesSpoken", widget: "string" }
+              - { label: "Languages Placeholder", name: "languagesPlaceholder", widget: "string" }
+              - { label: "Professional Skills", name: "professionalSkills", widget: "string" }
+              - { label: "Professional Skills Placeholder", name: "professionalSkillsPlaceholder", widget: "string" }
+              - { label: "Previous Experience", name: "previousExperience", widget: "string" }
+              - { label: "Previous Experience Placeholder", name: "previousExperiencePlaceholder", widget: "text" }
+              - { label: "Special Skills", name: "specialSkills", widget: "string" }
+              - { label: "Special Skills Placeholder", name: "specialSkillsPlaceholder", widget: "text" }
+              - { label: "Volunteer Interests", name: "volunteerInterests", widget: "string" }
+              - { label: "Areas Of Interest", name: "areasOfInterest", widget: "string" }
+              - { label: "Interest Event Planning", name: "interestEventPlanning", widget: "string" }
+              - { label: "Interest Womens", name: "interestWomens", widget: "string" }
+              - { label: "Interest Mens", name: "interestMens", widget: "string" }
+              - { label: "Interest Youth", name: "interestYouth", widget: "string" }
+              - { label: "Interest Young Adults", name: "interestYoungAdults", widget: "string" }
+              - { label: "Interest Admin", name: "interestAdmin", widget: "string" }
+              - { label: "Interest Comms", name: "interestComms", widget: "string" }
+              - { label: "Interest Fundraising", name: "interestFundraising", widget: "string" }
+              - { label: "Interest Outreach", name: "interestOutreach", widget: "string" }
+              - { label: "Interest Translation", name: "interestTranslation", widget: "string" }
+              - { label: "Interest Tech", name: "interestTech", widget: "string" }
+              - { label: "Interest Hospitality", name: "interestHospitality", widget: "string" }
+              - { label: "Interest Music", name: "interestMusic", widget: "string" }
+              - { label: "Interest Education", name: "interestEducation", widget: "string" }
+              - { label: "Interest Prayer", name: "interestPrayer", widget: "string" }
+              - { label: "Preferred Role", name: "preferredRole", widget: "string" }
+              - { label: "Preferred Role Placeholder", name: "preferredRolePlaceholder", widget: "text" }
+              - { label: "Availability", name: "availability", widget: "string" }
+              - { label: "Days Available", name: "daysAvailable", widget: "string" }
+              - { label: "Monday", name: "monday", widget: "string" }
+              - { label: "Tuesday", name: "tuesday", widget: "string" }
+              - { label: "Wednesday", name: "wednesday", widget: "string" }
+              - { label: "Thursday", name: "thursday", widget: "string" }
+              - { label: "Friday", name: "friday", widget: "string" }
+              - { label: "Saturday", name: "saturday", widget: "string" }
+              - { label: "Sunday", name: "sunday", widget: "string" }
+              - { label: "Time Preference", name: "timePreference", widget: "string" }
+              - { label: "Time Placeholder", name: "timePlaceholder", widget: "string" }
+              - { label: "Time Morning", name: "timeMorning", widget: "string" }
+              - { label: "Time Afternoon", name: "timeAfternoon", widget: "string" }
+              - { label: "Time Evening", name: "timeEvening", widget: "string" }
+              - { label: "Time Flexible", name: "timeFlexible", widget: "string" }
+              - { label: "Hours Per Month", name: "hoursPerMonth", widget: "string" }
+              - { label: "Hours1to5", name: "hours1to5", widget: "string" }
+              - { label: "Hours6to10", name: "hours6to10", widget: "string" }
+              - { label: "Hours11to20", name: "hours11to20", widget: "string" }
+              - { label: "Hours20plus", name: "hours20plus", widget: "string" }
+              - { label: "Emergency Consent", name: "emergencyConsent", widget: "string" }
+              - { label: "Emergency Contact Name", name: "emergencyContactName", widget: "string" }
+              - { label: "Relationship", name: "relationship", widget: "string" }
+              - label: "Relationship Options"
+                name: "relationshipOptions"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Spouse", name: "spouse", widget: "string" }
+                  - { label: "Child", name: "child", widget: "string" }
+                  - { label: "Parent", name: "parent", widget: "string" }
+                  - { label: "Sibling", name: "sibling", widget: "string" }
+                  - { label: "Grandparent", name: "grandparent", widget: "string" }
+                  - { label: "Grandchild", name: "grandchild", widget: "string" }
+                  - { label: "Friend", name: "friend", widget: "string" }
+                  - { label: "Other", name: "other", widget: "string" }
+              - { label: "Emergency Phone", name: "emergencyPhone", widget: "string" }
+              - { label: "Background Check Consent", name: "backgroundCheckConsent", widget: "string" }
+              - { label: "Tell Us More", name: "tellUsMore", widget: "string" }
+              - { label: "Why Volunteer", name: "whyVolunteer", widget: "string" }
+              - { label: "Why Volunteer Placeholder", name: "whyVolunteerPlaceholder", widget: "string" }
+              - { label: "Submit Button", name: "submitButton", widget: "string" }
+              - { label: "Submitting", name: "submitting", widget: "string" }
+              - { label: "Error Label", name: "errorLabel", widget: "string" }
+              - { label: "Required", name: "required", widget: "string" }
+          - label: "Resources Page"
+            name: "resourcesPage"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "text" }
+              - { label: "Cta Title", name: "ctaTitle", widget: "string" }
+              - { label: "Cta Text", name: "ctaText", widget: "text" }
+              - { label: "Cta Primary", name: "ctaPrimary", widget: "string" }
+              - { label: "Cta Secondary", name: "ctaSecondary", widget: "string" }
+              - label: "Partners"
+                name: "partners"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Description", name: "description", widget: "text" }
+                  - label: "Organizations"
+                    name: "organizations"
+                    widget: "object"
+                    collapsed: true
+                    fields:
+                      - { label: "Usccb", name: "usccb", widget: "string" }
+                      - { label: "Dioceses", name: "dioceses", widget: "string" }
+                      - { label: "African", name: "african", widget: "string" }
+                      - { label: "National", name: "national", widget: "string" }
+                      - { label: "Intercultural", name: "intercultural", widget: "string" }
+          - label: "Contact"
+            name: "contact"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Email Label", name: "emailLabel", widget: "string" }
+              - { label: "Email Value", name: "emailValue", widget: "string" }
+              - { label: "Join Us Label", name: "joinUsLabel", widget: "string" }
+              - { label: "Join Us Value", name: "joinUsValue", widget: "string" }
+              - { label: "Community Label", name: "communityLabel", widget: "string" }
+              - { label: "Community Value", name: "communityValue", widget: "string" }
+              - { label: "Spiritual Director Label", name: "spiritualDirectorLabel", widget: "string" }
+              - { label: "Name Label", name: "nameLabel", widget: "string" }
+              - { label: "Name Placeholder", name: "namePlaceholder", widget: "string" }
+              - { label: "Email Field Label", name: "emailFieldLabel", widget: "string" }
+              - { label: "Email Placeholder", name: "emailPlaceholder", widget: "string" }
+              - { label: "Parish Label", name: "parishLabel", widget: "string" }
+              - { label: "Parish Placeholder", name: "parishPlaceholder", widget: "string" }
+              - { label: "Message Label", name: "messageLabel", widget: "string" }
+              - { label: "Message Placeholder", name: "messagePlaceholder", widget: "string" }
+              - { label: "Send Button", name: "sendButton", widget: "string" }
+              - { label: "Required", name: "required", widget: "string" }
+          - label: "Chat"
+            name: "chat"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Greeting", name: "greeting", widget: "string" }
+              - { label: "Support Title", name: "supportTitle", widget: "string" }
+              - { label: "Need Help", name: "needHelp", widget: "string" }
+              - { label: "Lets Chat", name: "letsChat", widget: "string" }
+              - { label: "Placeholder", name: "placeholder", widget: "string" }
+              - { label: "Bot Reply", name: "botReply", widget: "string" }
+              - { label: "Open Assistant", name: "openAssistant", widget: "string" }
+          - label: "Footer"
+            name: "footer"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Copyright", name: "copyright", widget: "string" }
+              - { label: "Privacy Policy", name: "privacyPolicy", widget: "string" }
+              - { label: "Cookie Settings", name: "cookieSettings", widget: "string" }
+              - { label: "Tagline", name: "tagline", widget: "text" }
+              - { label: "Quick Links", name: "quickLinks", widget: "string" }
+              - { label: "Home", name: "home", widget: "string" }
+              - { label: "About", name: "about", widget: "string" }
+              - { label: "Leadership", name: "leadership", widget: "string" }
+              - { label: "Events", name: "events", widget: "string" }
+              - { label: "Resources", name: "resources", widget: "string" }
+              - { label: "Contact", name: "contact", widget: "string" }
+              - { label: "Prayer Library", name: "prayerLibrary", widget: "string" }
+              - { label: "Engage", name: "engage", widget: "string" }
+              - { label: "Events Activities", name: "eventsActivities", widget: "string" }
+              - { label: "National Conference", name: "nationalConference", widget: "string" }
+              - { label: "Newsletter", name: "newsletter", widget: "string" }
+              - { label: "Membership", name: "membership", widget: "string" }
+              - { label: "Get Involved", name: "getInvolved", widget: "string" }
+              - { label: "Join Community", name: "joinCommunity", widget: "string" }
+              - { label: "Participate Programs", name: "participatePrograms", widget: "string" }
+              - { label: "Contact Us", name: "contactUs", widget: "string" }
+              - { label: "Ms Integration", name: "msIntegration", widget: "string" }
+          - label: "Objectives"
+            name: "objectives"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "text" }
+              - { label: "Vision Title", name: "visionTitle", widget: "string" }
+              - { label: "Vision Description", name: "visionDescription", widget: "text" }
+          - label: "Who We Serve"
+            name: "whoWeServe"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "text" }
+              - { label: "Closing Text", name: "closingText", widget: "text" }
+          - label: "What We Do"
+            name: "whatWeDo"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "text" }
+          - label: "Leadership"
+            name: "leadership"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Intro", name: "intro", widget: "text" }
+              - { label: "Executive Board", name: "executiveBoard", widget: "string" }
+              - { label: "Spiritual Advisers", name: "spiritualAdvisers", widget: "string" }
+              - { label: "National Executive Officers", name: "nationalExecutiveOfficers", widget: "string" }
+              - { label: "Ministry Coordinations", name: "ministryCoordinations", widget: "string" }
+              - { label: "Training Programs Title", name: "trainingProgramsTitle", widget: "string" }
+              - { label: "Training Programs Intro", name: "trainingProgramsIntro", widget: "text" }
+              - { label: "Training Programs Pending Title", name: "trainingProgramsPendingTitle", widget: "string" }
+              - { label: "Training Programs Pending Text", name: "trainingProgramsPendingText", widget: "text" }
+              - { label: "Cta Title", name: "ctaTitle", widget: "string" }
+              - { label: "Cta Text", name: "ctaText", widget: "text" }
+              - { label: "Cta Primary", name: "ctaPrimary", widget: "string" }
+              - { label: "Cta Secondary", name: "ctaSecondary", widget: "string" }
+              - { label: "National Advisory Board", name: "nationalAdvisoryBoard", widget: "string" }
+              - { label: "Read More", name: "readMore", widget: "string" }
+              - { label: "Close", name: "close", widget: "string" }
+          - label: "Ministries"
+            name: "ministries"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "text" }
+              - { label: "Get Involved", name: "getInvolved", widget: "string" }
+              - { label: "Cta Title", name: "ctaTitle", widget: "string" }
+              - { label: "Cta Text", name: "ctaText", widget: "text" }
+          - label: "Programs"
+            name: "programs"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "text" }
+              - { label: "Activities Title", name: "activitiesTitle", widget: "string" }
+              - { label: "Activities Description", name: "activitiesDescription", widget: "text" }
+              - { label: "Conference Title", name: "conferenceTitle", widget: "string" }
+              - { label: "Conference Description", name: "conferenceDescription", widget: "text" }
+              - { label: "Learn More", name: "learnMore", widget: "string" }
+              - { label: "Get Involved Title", name: "getInvolvedTitle", widget: "string" }
+              - { label: "Get Involved Description", name: "getInvolvedDescription", widget: "text" }
+              - { label: "Contact Us", name: "contactUs", widget: "string" }
+              - { label: "Cta Title", name: "ctaTitle", widget: "string" }
+              - { label: "Cta Text", name: "ctaText", widget: "text" }
+              - { label: "Cta Primary", name: "ctaPrimary", widget: "string" }
+              - { label: "Cta Secondary", name: "ctaSecondary", widget: "string" }
+          - label: "Naacus2025"
+            name: "naacus2025"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "string" }
+              - { label: "Theme", name: "theme", widget: "string" }
+              - { label: "Goal", name: "goal", widget: "string" }
+              - { label: "Dates", name: "dates", widget: "string" }
+              - { label: "Location", name: "location", widget: "string" }
+              - { label: "Host", name: "host", widget: "string" }
+              - { label: "Schedule Title", name: "scheduleTitle", widget: "string" }
+              - { label: "Schedule Description", name: "scheduleDescription", widget: "text" }
+              - { label: "Presenter", name: "presenter", widget: "string" }
+              - { label: "Summary", name: "summary", widget: "string" }
+              - { label: "Video To Be Added", name: "videoToBeAdded", widget: "string" }
+              - { label: "Photos To Be Added", name: "photosToBeAdded", widget: "string" }
+              - { label: "Content To Be Provided", name: "contentToBeProvided", widget: "string" }
+              - { label: "Cta Title", name: "ctaTitle", widget: "string" }
+              - { label: "Cta Description", name: "ctaDescription", widget: "text" }
+              - { label: "Cta Button", name: "ctaButton", widget: "string" }
+              - { label: "Gallery Title", name: "galleryTitle", widget: "string" }
+              - { label: "Gallery Description", name: "galleryDescription", widget: "text" }
+              - { label: "Gallery Button", name: "galleryButton", widget: "string" }
+          - label: "Newsletters"
+            name: "newsletters"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "string" }
+              - { label: "Archive", name: "archive", widget: "string" }
+              - { label: "Download Button", name: "downloadButton", widget: "string" }
+              - { label: "View Button", name: "viewButton", widget: "string" }
+          - label: "Donation"
+            name: "donation"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Full Name", name: "fullName", widget: "string" }
+              - { label: "Email", name: "email", widget: "string" }
+              - { label: "Phone", name: "phone", widget: "string" }
+              - { label: "Message", name: "message", widget: "string" }
+              - { label: "Select Amount", name: "selectAmount", widget: "string" }
+              - { label: "Custom Amount", name: "customAmount", widget: "string" }
+              - { label: "Message Placeholder", name: "messagePlaceholder", widget: "string" }
+              - { label: "Payment Method", name: "paymentMethod", widget: "string" }
+              - { label: "Credit Debit", name: "creditDebit", widget: "string" }
+              - { label: "Apple Pay", name: "applePay", widget: "string" }
+              - { label: "Google Pay", name: "googlePay", widget: "string" }
+              - { label: "Paypal", name: "paypal", widget: "string" }
+              - { label: "Bank Transfer", name: "bankTransfer", widget: "string" }
+              - { label: "Bitcoin", name: "bitcoin", widget: "string" }
+              - { label: "Cashapp", name: "cashapp", widget: "string" }
+              - { label: "Instant", name: "instant", widget: "string" }
+              - { label: "Processing Time", name: "processingTime", widget: "string" }
+              - { label: "Blockchain Confirm", name: "blockchainConfirm", widget: "string" }
+              - { label: "Optional", name: "optional", widget: "string" }
+              - { label: "Cancel", name: "cancel", widget: "string" }
+              - { label: "Donate", name: "donate", widget: "string" }
+              - { label: "Processing", name: "processing", widget: "string" }
+              - { label: "Required Fields", name: "requiredFields", widget: "string" }
+              - { label: "Payment Failed", name: "paymentFailed", widget: "string" }
+              - { label: "Payment Success", name: "paymentSuccess", widget: "string" }
+              - { label: "Bank Success", name: "bankSuccess", widget: "string" }
+              - { label: "Crypto Success", name: "cryptoSuccess", widget: "string" }
+              - { label: "Cashapp Success", name: "cashappSuccess", widget: "string" }
+              - { label: "Bank Info", name: "bankInfo", widget: "string" }
+              - { label: "Crypto Info", name: "cryptoInfo", widget: "string" }
+              - { label: "Payment Instructions", name: "paymentInstructions", widget: "string" }
+              - { label: "Crypto Secure", name: "cryptoSecure", widget: "string" }
+              - { label: "Bank Speed", name: "bankSpeed", widget: "string" }
+              - { label: "Crypto Speed", name: "cryptoSpeed", widget: "string" }
+              - { label: "Fast Speed", name: "fastSpeed", widget: "string" }
+              - { label: "Payment Method Unknown", name: "paymentMethodUnknown", widget: "string" }
+              - { label: "Payment Processing Failed", name: "paymentProcessingFailed", widget: "text" }
+              - { label: "Card Fee", name: "cardFee", widget: "string" }
+              - { label: "Apple Pay Fee", name: "applePayFee", widget: "string" }
+              - { label: "Google Pay Fee", name: "googlePayFee", widget: "string" }
+              - { label: "Paypal Fee", name: "paypalFee", widget: "string" }
+              - { label: "Crypto Fee", name: "cryptoFee", widget: "string" }
+              - { label: "Card Number", name: "cardNumber", widget: "string" }
+              - { label: "Card Number Placeholder", name: "cardNumberPlaceholder", widget: "string" }
+              - { label: "Expiry", name: "expiry", widget: "string" }
+              - { label: "Cvv", name: "cvv", widget: "string" }
+              - { label: "Account Holder", name: "accountHolder", widget: "string" }
+              - { label: "Account Number", name: "accountNumber", widget: "string" }
+              - { label: "Routing Number", name: "routingNumber", widget: "string" }
+              - { label: "Wallet Address", name: "walletAddress", widget: "string" }
+              - { label: "Wallet Address Placeholder", name: "walletAddressPlaceholder", widget: "string" }
+              - { label: "Cashapp Username", name: "cashappUsername", widget: "string" }
+              - { label: "Cashapp Username Placeholder", name: "cashappUsernamePlaceholder", widget: "string" }
+              - { label: "Demo Disclaimer", name: "demoDisclaimer", widget: "string" }
+              - { label: "Close", name: "close", widget: "string" }
+              - { label: "Fee Warning", name: "feeWarning", widget: "string" }
+              - { label: "Authentication Required", name: "authenticationRequired", widget: "string" }
+          - label: "Events"
+            name: "events"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "text" }
+              - { label: "Upcoming Events", name: "upcomingEvents", widget: "string" }
+              - { label: "Past Events", name: "pastEvents", widget: "string" }
+              - { label: "More Upcoming Events", name: "moreUpcomingEvents", widget: "string" }
+              - { label: "Register Now", name: "registerNow", widget: "string" }
+              - { label: "View Details", name: "viewDetails", widget: "string" }
+              - { label: "Registration Not Available", name: "registrationNotAvailable", widget: "text" }
+              - { label: "Expected Attendees", name: "expectedAttendees", widget: "string" }
+              - { label: "Highlights", name: "highlights", widget: "string" }
+              - { label: "No Upcoming Events", name: "noUpcomingEvents", widget: "string" }
+              - { label: "No Past Events", name: "noPastEvents", widget: "string" }
+              - { label: "Date", name: "date", widget: "string" }
+              - { label: "Dates", name: "dates", widget: "string" }
+              - { label: "Location", name: "location", widget: "string" }
+              - { label: "Attendees", name: "attendees", widget: "string" }
+              - { label: "Description", name: "description", widget: "string" }
+              - { label: "More", name: "more", widget: "string" }
+              - { label: "What To Expect", name: "whatToExpect", widget: "string" }
+              - { label: "Register For Event", name: "registerForEvent", widget: "string" }
+              - { label: "First Name", name: "firstName", widget: "string" }
+              - { label: "Last Name", name: "lastName", widget: "string" }
+              - { label: "Email", name: "email", widget: "string" }
+              - { label: "Phone", name: "phone", widget: "string" }
+              - { label: "Message", name: "message", widget: "string" }
+              - { label: "Cancel", name: "cancel", widget: "string" }
+              - { label: "Submit Registration", name: "submitRegistration", widget: "string" }
+              - { label: "Close", name: "close", widget: "string" }
+              - { label: "Submit Another", name: "submitAnother", widget: "string" }
+              - label: "Success"
+                name: "success"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Registration Submitted", name: "registrationSubmitted", widget: "text" }
+                  - { label: "Registration Stored", name: "registrationStored", widget: "string" }
+              - label: "Errors"
+                name: "errors"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "First Name Required", name: "firstNameRequired", widget: "string" }
+                  - { label: "Last Name Required", name: "lastNameRequired", widget: "string" }
+                  - { label: "Email Required", name: "emailRequired", widget: "string" }
+                  - { label: "Email Invalid", name: "emailInvalid", widget: "string" }
+                  - { label: "Submission Failed", name: "submissionFailed", widget: "string" }
+                  - { label: "Network Error", name: "networkError", widget: "string" }
+              - label: "Warnings"
+                name: "warnings"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+              - { label: "Close Registration Dialog", name: "closeRegistrationDialog", widget: "string" }
+              - { label: "Submitting", name: "submitting", widget: "string" }
+          - label: "Search"
+            name: "search"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Search", name: "search", widget: "string" }
+              - { label: "Placeholder", name: "placeholder", widget: "string" }
+              - { label: "Start Typing", name: "startTyping", widget: "string" }
+              - { label: "No Results", name: "noResults", widget: "string" }
+              - { label: "Results Found", name: "resultsFound", widget: "string" }
+              - { label: "Close", name: "close", widget: "string" }
+              - { label: "Tooltip", name: "tooltip", widget: "string" }
+              - { label: "Keyboard Shortcut", name: "keyboard_shortcut", widget: "string" }
+              - { label: "Input Label", name: "inputLabel", widget: "string" }
+          - label: "Faq"
+            name: "faq"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "text" }
+              - { label: "Search Placeholder", name: "searchPlaceholder", widget: "string" }
+              - { label: "No Results", name: "noResults", widget: "string" }
+              - { label: "Clear Filters", name: "clearFilters", widget: "string" }
+              - { label: "Search Input Label", name: "searchInputLabel", widget: "string" }
+              - { label: "Clear Search", name: "clearSearch", widget: "string" }
+              - { label: "Filter By Category", name: "filterByCategory", widget: "string" }
+          - label: "Feedback"
+            name: "feedback"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "text" }
+              - { label: "Description", name: "description", widget: "string" }
+          - label: "Not Found"
+            name: "notFound"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Go Home", name: "goHome", widget: "string" }
+              - { label: "Go Back", name: "goBack", widget: "string" }
+          - label: "Prayer Library"
+            name: "prayerLibrary"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "text" }
+              - label: "Stats"
+                name: "stats"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Prayers", name: "prayers", widget: "string" }
+                  - { label: "Languages", name: "languages", widget: "string" }
+                  - { label: "Countries", name: "countries", widget: "string" }
+                  - { label: "Youth Featured", name: "youthFeatured", widget: "string" }
+                  - { label: "Videos", name: "videos", widget: "string" }
+              - label: "Tabs"
+                name: "tabs"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Videos", name: "videos", widget: "string" }
+                  - { label: "By Prayer", name: "byPrayer", widget: "string" }
+                  - { label: "By Country", name: "byCountry", widget: "string" }
+                  - { label: "By Language", name: "byLanguage", widget: "string" }
+              - label: "Filters"
+                name: "filters"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Prayer", name: "prayer", widget: "string" }
+                  - { label: "Country", name: "country", widget: "string" }
+                  - { label: "Language", name: "language", widget: "string" }
+                  - { label: "All Prayers", name: "allPrayers", widget: "string" }
+                  - { label: "All Countries", name: "allCountries", widget: "string" }
+                  - { label: "All Languages", name: "allLanguages", widget: "string" }
+                  - { label: "Clear", name: "clear", widget: "string" }
+              - label: "Prayers"
+                name: "prayers"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Sign Of Cross", name: "signOfCross", widget: "string" }
+                  - { label: "Our Father", name: "ourFather", widget: "string" }
+                  - { label: "Hail Mary", name: "hailMary", widget: "string" }
+                  - { label: "Glory Be", name: "gloryBe", widget: "string" }
+                  - { label: "Apostles Creed", name: "apostlesCreed", widget: "string" }
+                  - { label: "Hail Holy Queen", name: "hailHolyQueen", widget: "string" }
+                  - { label: "Memorare", name: "memorare", widget: "string" }
+              - { label: "Coming Soon", name: "comingSoon", widget: "string" }
+              - { label: "Youth Featured", name: "youthFeatured", widget: "string" }
+              - { label: "No Results", name: "noResults", widget: "text" }
+              - { label: "Available In", name: "availableIn", widget: "string" }
+              - { label: "No Submissions Yet", name: "noSubmissionsYet", widget: "string" }
+              - { label: "View Videos", name: "viewVideos", widget: "string" }
+              - label: "Submit"
+                name: "submit"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Description", name: "description", widget: "text" }
+                  - { label: "Guideline1", name: "guideline1", widget: "string" }
+                  - { label: "Guideline2", name: "guideline2", widget: "string" }
+                  - { label: "Guideline3", name: "guideline3", widget: "string" }
+                  - { label: "Guideline4", name: "guideline4", widget: "string" }
+                  - { label: "Guideline5", name: "guideline5", widget: "string" }
+                  - { label: "Button", name: "button", widget: "string" }
+                  - { label: "Dialog Title", name: "dialogTitle", widget: "string" }
+                  - { label: "Thank You", name: "thankYou", widget: "string" }
+                  - { label: "Thank You Message", name: "thankYouMessage", widget: "string" }
+                  - label: "Form"
+                    name: "form"
+                    widget: "object"
+                    collapsed: true
+                    fields:
+                      - { label: "Full Name", name: "fullName", widget: "string" }
+                      - { label: "Email", name: "email", widget: "string" }
+                      - { label: "Parish", name: "parish", widget: "string" }
+                      - { label: "Country", name: "country", widget: "string" }
+                      - { label: "Language", name: "language", widget: "string" }
+                      - { label: "Language Placeholder", name: "languagePlaceholder", widget: "string" }
+                      - { label: "Prayer Type", name: "prayerType", widget: "string" }
+                      - { label: "Description", name: "description", widget: "string" }
+                      - { label: "Description Placeholder", name: "descriptionPlaceholder", widget: "string" }
+          # (removed) feedback_form — not a UI locale string
   - name: "assets"
     label: "Media Assets"
     editor:

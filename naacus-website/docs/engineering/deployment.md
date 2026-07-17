@@ -54,6 +54,9 @@ update website images and selected text without touching code.
 
 Current editable content:
 
+- Structured all-sections text editors for locale files:
+   - `public/locales/en/translation.json` (All Sections - English)
+   - `public/locales/fr/translation.json` (All Sections - Francais)
 - Hero slideshow images (`public/content/hero-images.json`)
 - Hero text (EN/FR)
 - FAQ page headline/search text (EN/FR)

@@ -228,12 +228,12 @@ function SearchModal({ open, onOpenChange }) {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogSurface className={styles.dialogSurface}>
         <div className={styles.dialogHeader}>
-          <h2 className={styles.dialogHeaderTitle}>{t('search.title', 'Search')}</h2>
+          <h2 className={styles.dialogHeaderTitle}>{t('search.title')}</h2>
           <Button
             appearance="subtle"
             icon={<Dismiss24Regular />}
             onClick={() => onOpenChange(false)}
-            aria-label={t('search.close', 'Close search dialog')}
+            aria-label={t('search.close')}
             style={{ color: '#999999' }}
           />
         </div>
@@ -243,8 +243,8 @@ function SearchModal({ open, onOpenChange }) {
             <Input
               ref={searchInputRef}
               contentBefore={<Search24Regular style={{ color: '#0067b8' }} />}
-              placeholder={t('search.placeholder', 'Search pages, events, ministries...')}
-              aria-label={t('search.inputLabel', 'Search pages, events, and ministries')}
+              placeholder={t('search.placeholder')}
+              aria-label={t('search.inputLabel')}
               value={searchQuery}
               onChange={(_, data) => handleSearch(data.value)}
               className={styles.searchInput}
@@ -257,7 +257,7 @@ function SearchModal({ open, onOpenChange }) {
             <div className={styles.emptyState}>
               <div className={styles.emptyStateIcon}>🔍</div>
               <p style={{ fontSize: '16px', margin: '12px 0' }}>
-                {t('search.startTyping', 'Start typing to search')}
+                {t('search.startTyping')}
               </p>
               <p style={{ fontSize: '13px', color: '#999999', margin: '8px 0 0 0' }}>
                 Try searching for events, ministries, resources, or pages
@@ -341,7 +341,7 @@ function SearchModal({ open, onOpenChange }) {
               fontWeight: '600',
             }}
           >
-            {t('search.close', 'Close')}
+            {t('search.close')}
           </Button>
         </div>
       </DialogSurface>
