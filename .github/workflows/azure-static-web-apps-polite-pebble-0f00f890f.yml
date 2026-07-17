@@ -13,13 +13,14 @@ on:
 permissions:
   contents: read
   pull-requests: write
+  id-token: write
 
 concurrency:
   group: azure-swa-${{ github.ref }}
   cancel-in-progress: true
 
 env:
-  NODE_VERSION: '20'
+  NODE_VERSION: '22'
 
 jobs:
   quality_gate_job:
@@ -45,18 +46,75 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # Create environment file with test secrets for PR/dev builds
+      - name: Azure Login via OIDC
+        if: github.event_name == 'push' || (github.event_name == 'pull_request' && !github.event.pull_request.head.repo.fork)
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Fetch Stripe secrets from Key Vault
+        if: github.event_name == 'push' || (github.event_name == 'pull_request' && !github.event.pull_request.head.repo.fork)
+        run: |
+          STRIPE_PUBLIC_KEY=$(az keyvault secret show --vault-name "${{ secrets.AZURE_KEYVAULT_NAME }}" --name StripePublicKey --query value -o tsv)
+          STRIPE_BUY_BUTTON_ID=$(az keyvault secret show --vault-name "${{ secrets.AZURE_KEYVAULT_NAME }}" --name StripeBuyButtonId --query value -o tsv)
+          echo "STRIPE_PUBLIC_KEY=$STRIPE_PUBLIC_KEY" >> $GITHUB_ENV
+          echo "STRIPE_BUY_BUTTON_ID=$STRIPE_BUY_BUTTON_ID" >> $GITHUB_ENV
+
+      - name: Set non-secret Stripe defaults for fork PRs
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.fork
+        run: |
+          echo "STRIPE_PUBLIC_KEY=pk_test_fork_pr_default" >> $GITHUB_ENV
+          echo "STRIPE_BUY_BUTTON_ID=buy_btn_fork_pr_default" >> $GITHUB_ENV
+
+      # Create environment file with Stripe values from Key Vault
       - name: Create environment file
         run: |
-          cat > .env << EOF
-          REACT_APP_STRIPE_PUBLIC_KEY=${{ secrets.STRIPE_PUBLIC_KEY_TEST || 'pk_test_' }}
-          REACT_APP_STRIPE_BUY_BUTTON_ID=${{ secrets.STRIPE_BUY_BUTTON_ID_TEST || 'buy_btn_' }}
-          REACT_APP_PAYPAL_CLIENT_ID=${{ secrets.PAYPAL_CLIENT_ID_TEST || '' }}
+          cat > .env << EOF2
+          REACT_APP_STRIPE_PUBLIC_KEY=${{ env.STRIPE_PUBLIC_KEY }}
+          REACT_APP_STRIPE_BUY_BUTTON_ID=${{ env.STRIPE_BUY_BUTTON_ID }}
+          REACT_APP_PAYPAL_CLIENT_ID=
           REACT_APP_PAYPAL_ENV=sandbox
           REACT_APP_API_BASE_URL=${{ secrets.API_BASE_URL_TEST || 'http://localhost:5001' }}
           REACT_APP_DEBUG_PAYMENTS=true
           CI=true
-          EOF
+          EOF2
+
+      - name: Validate Stripe env values
+        if: github.event_name == 'push' || (github.event_name == 'pull_request' && !github.event.pull_request.head.repo.fork)
+        run: |
+          set -e
+
+          STRIPE_KEY=$(grep '^REACT_APP_STRIPE_PUBLIC_KEY=' .env | cut -d= -f2-)
+          BUTTON_ID=$(grep '^REACT_APP_STRIPE_BUY_BUTTON_ID=' .env | cut -d= -f2-)
+
+          if [ -z "$STRIPE_KEY" ] || [ -z "$BUTTON_ID" ]; then
+            echo "Stripe env values are empty"
+            exit 1
+          fi
+
+          if printf '%s' "$STRIPE_KEY" | grep -Eiq 'your_|placeholder|example'; then
+            echo "Stripe public key is placeholder"
+            exit 1
+          fi
+
+          if printf '%s' "$BUTTON_ID" | grep -Eiq 'your_|placeholder|example'; then
+            echo "Stripe buy button id is placeholder"
+            exit 1
+          fi
+
+          if ! printf '%s' "$STRIPE_KEY" | grep -Eq '^pk_(test|live)_.+$'; then
+            echo "Stripe public key format invalid"
+            exit 1
+          fi
+
+          if ! printf '%s' "$BUTTON_ID" | grep -Eq '^buy_btn_.+$'; then
+            echo "Stripe buy button id format invalid"
+            exit 1
+          fi
+
+          echo "Stripe env validation passed"
 
       - name: Build app
         run: npm run build
@@ -92,7 +150,6 @@ jobs:
           path: ./naacus-website/build/
           retention-days: 1
 
-
   build_and_deploy_job:
     if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
     runs-on: ubuntu-latest
@@ -123,4 +180,3 @@ jobs:
           app_location: "./naacus-website"
           api_location: ""
           output_location: "build"
-
