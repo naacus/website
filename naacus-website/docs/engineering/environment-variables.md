@@ -94,10 +94,12 @@ API_BASE_URL_TEST=https://api-test.naacus.org (optional)
 ```yaml
 - name: Create environment file
   run: |
-    cat > .env << EOF
-    REACT_APP_STRIPE_PUBLIC_KEY=${{ secrets.STRIPE_PUBLIC_KEY_TEST }}
-    REACT_APP_STRIPE_BUY_BUTTON_ID=${{ secrets.STRIPE_BUY_BUTTON_ID_TEST }}
-    REACT_APP_PAYPAL_CLIENT_ID=${{ secrets.PAYPAL_CLIENT_ID_TEST }}
+    # .env.production.local has higher precedence than committed .env.production
+    # and prevents placeholder values from leaking into production builds.
+    cat > .env.production.local << EOF
+    REACT_APP_STRIPE_PUBLIC_KEY=${{ env.STRIPE_PUBLIC_KEY }}
+    REACT_APP_STRIPE_BUY_BUTTON_ID=${{ env.STRIPE_BUY_BUTTON_ID }}
+    REACT_APP_PAYPAL_CLIENT_ID=
     REACT_APP_API_BASE_URL=${{ secrets.API_BASE_URL_TEST || 'http://localhost:5001' }}
     REACT_APP_DEBUG_PAYMENTS=true
     CI=true

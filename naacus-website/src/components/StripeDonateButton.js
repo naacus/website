@@ -42,20 +42,22 @@ const StripeDonateButton = () => {
   const scriptLoaded = useRef(false);
   const [error, setError] = useState(null);
 
+  const isPlaceholder = (value) => /your_|placeholder|example/i.test(value || '');
+
   useEffect(() => {
     if (scriptLoaded.current) return;
 
     const publishableKey = process.env.REACT_APP_STRIPE_PUBLIC_KEY;
     const buyButtonId = process.env.REACT_APP_STRIPE_BUY_BUTTON_ID;
 
-    // Validate environment variables
-    if (!publishableKey || publishableKey.includes('your_publishable_key')) {
+    // Validate environment variables before loading Stripe script
+    if (!publishableKey || isPlaceholder(publishableKey) || !/^pk_(test|live)_.+/.test(publishableKey)) {
       setError('Stripe public key not configured');
       console.error('StripeDonateButton: REACT_APP_STRIPE_PUBLIC_KEY is missing or not configured');
       return;
     }
 
-    if (!buyButtonId || buyButtonId.includes('your_buy_button_id')) {
+    if (!buyButtonId || isPlaceholder(buyButtonId) || !/^buy_btn_.+/.test(buyButtonId)) {
       setError('Stripe buy button not configured');
       console.error('StripeDonateButton: REACT_APP_STRIPE_BUY_BUTTON_ID is missing or not configured');
       return;
