@@ -3213,11 +3213,7 @@ collections:
           - label: Description
             name: description
             widget: text
-          - label: Organizations
-            name: organizations
-            widget: object
-            collapsed: true
-            fields:
+          # Organizations removed (unused)
     - name: contact_fr
       label: Contact - Francais
       file: naacus-website/public/locales/fr/translation.json
