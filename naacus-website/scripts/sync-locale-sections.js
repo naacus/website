@@ -36,7 +36,12 @@ const PAGE_GROUPS = [
 ];
 
 function readJson(filePath) {
-  return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+  try {
+    return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    throw new Error(`Failed to parse JSON at ${filePath}: ${message}`);
+  }
 }
 
 function writeJson(filePath, value) {
