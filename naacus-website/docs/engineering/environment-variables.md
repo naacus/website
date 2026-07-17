@@ -17,6 +17,8 @@ LOCAL DEVELOPMENT      TESTING           PRODUCTION (AZURE)
 (placeholder)                            (Managed Identities)
 ```
 
+For production templates (`.env.production`), keep Stripe secret values empty in source control. Inject real values during CI using `.env.production.local` so committed placeholders cannot leak into deployed bundles.
+
 ---
 
 ## 1. Local Development
