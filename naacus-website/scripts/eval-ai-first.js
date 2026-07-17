@@ -109,8 +109,8 @@ function run() {
   const chatWiringChecks = [
     /import\s+\{\s*getPageIntent\s*\}\s+from\s+'\.\.\/content\/pageIntentConfig'/.test(chatWidgetSource),
     /const\s+pageIntent\s*=\s*getPageIntent\(location\.pathname,\s*currentLanguage\)/.test(chatWidgetSource),
-    /processMessage\('hi',\s*getMessageContext\(\)\)/.test(chatWidgetSource),
-    /processMessage\(userMessage,\s*getMessageContext\(\)\)/.test(chatWidgetSource),
+    /processMessage\('hi',\s*messageContext\)/.test(chatWidgetSource),
+    /processMessage\(userMessage,\s*messageContext\)/.test(chatWidgetSource),
     /if\s*\(quickAction\.path\)/.test(chatWidgetSource)
   ];
 
