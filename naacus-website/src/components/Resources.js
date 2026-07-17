@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { 
@@ -14,10 +14,11 @@ import {
   News24Regular,
   FormNew24Regular
 } from '@fluentui/react-icons';
-import { getResources, getPartners } from '../data/resourcesData';
+import { getPartners } from '../data/resourcesData';
 import { featureFlags } from '../config/featureFlags';
 import { useAnalytics } from '../hooks/useAnalytics';
 import { handleNavigation } from '../services/navigationService';
+import { dataService } from '../services/dataService';
 
 const useStyles = makeStyles({
   resources: {
@@ -185,12 +186,30 @@ function Resources() {
   const styles = useStyles();
   const { trackResourceCTA, trackResourceDownload } = useAnalytics();
 
-  const resources = getResources().filter((resource) => {
-    if (!resource.featureFlag) {
-      return true;
-    }
-    return Boolean(featureFlags[resource.featureFlag]);
-  });
+  // State for resource data
+  const [resources, setResources] = useState([]);
+
+  // Load resources from dataService
+  useEffect(() => {
+    const loadResources = async () => {
+      try {
+        const data = await dataService.getResources();
+        const filtered = data.filter((resource) => {
+          if (!resource.featureFlag) {
+            return true;
+          }
+          return Boolean(featureFlags[resource.featureFlag]);
+        });
+        setResources(filtered);
+      } catch (error) {
+        console.error('Error loading resources:', error);
+        setResources([]);
+      }
+    };
+
+    loadResources();
+  }, []);
+
   const partners = getPartners();
 
   const handleCtaNavigate = (path) => {

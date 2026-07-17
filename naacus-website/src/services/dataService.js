@@ -19,16 +19,32 @@
  */
 
 import { leadershipData } from '../data/leadershipData';
-import { ministriesData } from '../data/ministriesData';
+import { ministriesData as ministriesDataFallback } from '../data/ministriesData';
 import { testimonialData } from '../data/testimonialData';
-import { memberBenefitsData } from '../data/memberBenefitsData';
-import { activitiesData } from '../data/activitiesData';
+import { memberBenefitsData as memberBenefitsDataFallback } from '../data/memberBenefitsData';
+import { activitiesData as activitiesDataFallback } from '../data/activitiesData';
 import { eventsData } from '../data/eventsData';
-import { faqData } from '../data/faqData';
-import { resourcesData } from '../data/resourcesData';
+import { faqData as faqDataFallback } from '../data/faqData';
+import { resourcesData as resourcesDataFallback } from '../data/resourcesData';
+import { 
+  loadMinistriesData, 
+  loadMemberBenefitsData, 
+  loadActivitiesData, 
+  loadFaqData, 
+  loadResourcesData 
+} from '../utils/staticDataLoader';
 
 const USE_BACKEND_API = process.env.REACT_APP_USE_BACKEND_API === 'true';
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
+
+// Cache for static data loaded from JSON
+const staticDataCache = {
+  ministries: null,
+  memberBenefits: null,
+  activities: null,
+  faq: null,
+  resources: null
+};
 
 export const dataService = {
   // Leadership
@@ -73,25 +89,49 @@ export const dataService = {
   },
 
   // Ministries
-  getMinistries: () => {
+  getMinistries: async () => {
     if (USE_BACKEND_API) {
       return fetch(`${BACKEND_URL}/api/data/ministries`)
         .then(res => res.json())
         .then(data => data.data || [])
-        .catch(() => ministriesData);
+        .catch(() => {
+          if (staticDataCache.ministries) return staticDataCache.ministries;
+          return ministriesDataFallback;
+        });
     }
-    return ministriesData;
+    // Load from JSON file (Decap CMS) with fallback to hardcoded data
+    if (staticDataCache.ministries) {
+      return staticDataCache.ministries;
+    }
+    const data = await loadMinistriesData();
+    if (data?.ministries) {
+      staticDataCache.ministries = data.ministries;
+      return data.ministries;
+    }
+    return ministriesDataFallback;
   },
 
   // Resources
-  getResources: () => {
+  getResources: async () => {
     if (USE_BACKEND_API) {
       return fetch(`${BACKEND_URL}/api/data/resources`)
         .then(res => res.json())
         .then(data => data.data || [])
-        .catch(() => resourcesData);
+        .catch(() => {
+          if (staticDataCache.resources) return staticDataCache.resources;
+          return resourcesDataFallback;
+        });
     }
-    return resourcesData;
+    // Load from JSON file (Decap CMS) with fallback to hardcoded data
+    if (staticDataCache.resources) {
+      return staticDataCache.resources;
+    }
+    const data = await loadResourcesData();
+    if (data?.resources) {
+      staticDataCache.resources = data.resources;
+      return data.resources;
+    }
+    return resourcesDataFallback;
   },
 
   // Testimonials
@@ -106,25 +146,49 @@ export const dataService = {
   },
 
   // Member Benefits
-  getMemberBenefits: () => {
+  getMemberBenefits: async () => {
     if (USE_BACKEND_API) {
       return fetch(`${BACKEND_URL}/api/data/member-benefits`)
         .then(res => res.json())
         .then(data => data.data || [])
-        .catch(() => memberBenefitsData);
+        .catch(() => {
+          if (staticDataCache.memberBenefits) return staticDataCache.memberBenefits;
+          return memberBenefitsDataFallback;
+        });
     }
-    return memberBenefitsData;
+    // Load from JSON file (Decap CMS) with fallback to hardcoded data
+    if (staticDataCache.memberBenefits) {
+      return staticDataCache.memberBenefits;
+    }
+    const data = await loadMemberBenefitsData();
+    if (data?.benefits) {
+      staticDataCache.memberBenefits = data.benefits;
+      return data.benefits;
+    }
+    return memberBenefitsDataFallback;
   },
 
   // Activities & Programs
-  getWhatWeDo: () => {
+  getWhatWeDo: async () => {
     if (USE_BACKEND_API) {
       return fetch(`${BACKEND_URL}/api/data/activities`)
         .then(res => res.json())
         .then(data => data.data?.whatWeDo || [])
-        .catch(() => activitiesData.whatWeDo);
+        .catch(() => {
+          if (staticDataCache.activities) return staticDataCache.activities;
+          return activitiesDataFallback.whatWeDo;
+        });
     }
-    return activitiesData.whatWeDo;
+    // Load from JSON file (Decap CMS) with fallback to hardcoded data
+    if (staticDataCache.activities) {
+      return staticDataCache.activities;
+    }
+    const data = await loadActivitiesData();
+    if (data?.whatWeDo) {
+      staticDataCache.activities = data.whatWeDo;
+      return data.whatWeDo;
+    }
+    return activitiesDataFallback.whatWeDo;
   },
   
   getProgramsList: () => {
@@ -132,9 +196,9 @@ export const dataService = {
       return fetch(`${BACKEND_URL}/api/data/activities`)
         .then(res => res.json())
         .then(data => data.data?.programs || [])
-        .catch(() => activitiesData.programs);
+        .catch(() => activitiesDataFallback.programs);
     }
-    return activitiesData.programs;
+    return activitiesDataFallback.programs;
   },
   
   getCommunitiesServed: () => {
@@ -142,9 +206,9 @@ export const dataService = {
       return fetch(`${BACKEND_URL}/api/data/activities`)
         .then(res => res.json())
         .then(data => data.data?.communityServed || [])
-        .catch(() => activitiesData.communityServed);
+        .catch(() => activitiesDataFallback.communityServed);
     }
-    return activitiesData.communityServed;
+    return activitiesDataFallback.communityServed;
   },
   
   getObjectives: () => {
@@ -152,9 +216,9 @@ export const dataService = {
       return fetch(`${BACKEND_URL}/api/data/activities`)
         .then(res => res.json())
         .then(data => data.data?.objectives || [])
-        .catch(() => activitiesData.objectives);
+        .catch(() => activitiesDataFallback.objectives);
     }
-    return activitiesData.objectives;
+    return activitiesDataFallback.objectives;
   },
 
   // Events
@@ -205,17 +269,37 @@ export const dataService = {
   },
 
   // FAQ
-  getAllFAQs: () => {
+  getAllFAQs: async () => {
     if (USE_BACKEND_API) {
       return fetch(`${BACKEND_URL}/api/data/faq`)
         .then(res => res.json())
         .then(data => data.data || [])
-        .catch(() => faqData);
+        .catch(() => {
+          if (staticDataCache.faq) return staticDataCache.faq;
+          return faqDataFallback;
+        });
     }
-    return faqData;
+    // Load from JSON file (Decap CMS) with fallback to hardcoded data
+    if (staticDataCache.faq) {
+      return staticDataCache.faq;
+    }
+    const data = await loadFaqData();
+    if (data?.faqs) {
+      staticDataCache.faq = data.faqs;
+      return data.faqs;
+    }
+    return faqDataFallback;
   },
-  getFAQById: (id) => faqData.find(f => f.id === id),
-  getFAQsByCategory: (category) => faqData.filter(f => f.category === category)
+
+  getFAQById: async (id) => {
+    const faqs = await dataService.getAllFAQs();
+    return faqs.find(f => f.id === id);
+  },
+
+  getFAQsByCategory: async (category) => {
+    const faqs = await dataService.getAllFAQs();
+    return faqs.filter(f => f.category === category);
+  }
 };
 
 export default dataService;

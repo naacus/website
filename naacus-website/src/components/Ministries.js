@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { 
@@ -217,8 +217,23 @@ function Ministries() {
   const styles = useStyles();
   const { trackMinistryCTA, trackMinistry } = useAnalytics();
 
-  // Get ministry data from service
-  const ministriesData = dataService.getMinistries();
+  // State for ministry data
+  const [ministriesData, setMinistriesData] = useState([]);
+
+  // Load ministry data on component mount
+  useEffect(() => {
+    const loadMinistries = async () => {
+      try {
+        const data = await dataService.getMinistries();
+        setMinistriesData(data);
+      } catch (error) {
+        console.error('Error loading ministries:', error);
+        setMinistriesData([]);
+      }
+    };
+
+    loadMinistries();
+  }, []);
 
   const handleMinistryEmail = (ministryTitle) => {
     trackMinistryCTA(`Email ${ministryTitle}`, 'ministry_email_link');

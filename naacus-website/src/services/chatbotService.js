@@ -8,13 +8,18 @@
  * Supports both web and WhatsApp platforms with M365 integration
  */
 
-import { faqData, defaultResponses, quickActions } from '../data/faqData';
+import { defaultResponses, quickActions } from '../data/faqData';
 import copilotStudioService from './copilotStudioService';
 import { validateConfig } from '../config/copilotStudioConfig';
+import dataService from './dataService';
 
 // Track if Copilot Studio is available
 let copilotStudioAvailable = false;
 let copilotStudioInitialized = false;
+
+// Cache for FAQ data loaded from Decap CMS
+let cachedFaqData = null;
+let faqDataLoaded = false;
 
 function warnIfNotTest(...args) {
   if (process.env.NODE_ENV !== 'test') {
@@ -54,6 +59,25 @@ export async function initializeCopilotStudio() {
 }
 
 /**
+ * Ensure FAQ data is loaded from Decap CMS (or fallback)
+ */
+async function ensureFaqDataLoaded() {
+  if (faqDataLoaded && cachedFaqData) {
+    return cachedFaqData;
+  }
+  
+  try {
+    cachedFaqData = await dataService.getAllFAQs();
+    faqDataLoaded = true;
+    return cachedFaqData;
+  } catch (error) {
+    console.error('Error loading FAQ data:', error);
+    faqDataLoaded = true;
+    return cachedFaqData || [];
+  }
+}
+
+/**
  * Calculate similarity score between two strings using a simple keyword matching algorithm
  * In a production environment, this could be replaced with more sophisticated NLP libraries
  * or API calls to services like OpenAI, Dialogflow, etc.
@@ -82,13 +106,16 @@ function calculateSimilarity(str1, str2) {
 
 /**
  * Find the best matching FAQ entry for a given user question
+ * Returns { faq, score } or null if no good match found
  */
-function findBestMatch(userQuestion) {
+async function findBestMatch(userQuestion, faqList) {
   let bestMatch = null;
   let bestScore = 0;
   const minThreshold = 0.25; // Minimum similarity threshold
   
-  for (const faq of faqData) {
+  const faqs = faqList || (await ensureFaqDataLoaded());
+  
+  for (const faq of faqs) {
     // Check similarity with the main question
     let score = calculateSimilarity(userQuestion, faq.question);
     
@@ -171,9 +198,9 @@ export async function processMessage(userMessage, context = {}) {
  * Process message using local FAQ matching (original implementation)
  * @param {string} userMessage - The user's question or message
  * @param {object} context - Optional context
- * @returns {object} Response object
+ * @returns {Promise<object>} Response object
  */
-function processMessageLocal(userMessage, context = {}) {
+async function processMessageLocal(userMessage, context = {}) {
   const normalizedMessage = userMessage.toLowerCase().trim();
   
   // Handle greetings
@@ -198,12 +225,13 @@ function processMessageLocal(userMessage, context = {}) {
     };
   }
   
-  // Find best matching FAQ
-  const { match, score } = findBestMatch(userMessage);
+  // Load FAQs and find best matching
+  const faqs = await ensureFaqDataLoaded();
+  const { match, score } = await findBestMatch(userMessage, faqs);
   
   if (match && score > 0.3) {
     // Get related FAQs from the same category
-    const relatedFaqs = faqData
+    const relatedFaqs = faqs
       .filter(faq => faq.category === match.category && faq.id !== match.id)
       .slice(0, 2);
     
@@ -230,23 +258,26 @@ function processMessageLocal(userMessage, context = {}) {
 /**
  * Get FAQ by ID (useful for direct question selection)
  */
-export function getFaqById(faqId) {
-  return faqData.find(faq => faq.id === faqId);
+export async function getFaqById(faqId) {
+  const faqs = await ensureFaqDataLoaded();
+  return faqs.find(faq => faq.id === faqId);
 }
 
 /**
  * Get FAQs by category
  */
-export function getFaqsByCategory(category) {
-  return faqData.filter(faq => faq.category === category);
+export async function getFaqsByCategory(category) {
+  const faqs = await ensureFaqDataLoaded();
+  return faqs.filter(faq => faq.category === category);
 }
 
 /**
  * Get all available categories
  */
-export function getCategories() {
+export async function getCategories() {
+  const faqs = await ensureFaqDataLoaded();
   const categories = {};
-  faqData.forEach(faq => {
+  faqs.forEach(faq => {
     if (!categories[faq.category]) {
       categories[faq.category] = {
         name: faq.category,
