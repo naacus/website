@@ -19,7 +19,7 @@ Decap CMS is enabled at `/admin` and currently manages a subset of content:
 - Advanced locale text via section-based entries in Decap:
 	- One entry per top-level section per locale (EN/FR)
 	- Examples: `Header - English`, `Membership - English`, `Header - Francais`, `Membership - Francais`
-	- Writes to `public/locales/en/translation.json` and `public/locales/fr/translation.json`
+	- Writes to `naacus-website/public/locales/en/translation.json` and `naacus-website/public/locales/fr/translation.json`
 - Hero text (EN/FR)
 - FAQ page text (EN/FR)
 - Hero slideshow image list
