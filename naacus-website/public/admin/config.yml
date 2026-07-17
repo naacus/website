@@ -1128,11 +1128,6 @@ collections:
           - label: Description
             name: description
             widget: text
-          - label: Organizations
-            name: organizations
-            widget: object
-            collapsed: true
-            fields:
     - name: contact_en
       label: Contact - English
       file: naacus-website/public/locales/en/translation.json
@@ -1205,12 +1200,6 @@ collections:
         widget: object
         collapsed: true
         fields:
-        - label: Title
-          name: title
-          widget: string
-        - label: Subtitle
-          name: subtitle
-          widget: string
         - label: Upcoming Events
           name: upcomingEvents
           widget: string
@@ -2008,18 +1997,6 @@ collections:
           widget: object
           collapsed: true
           fields:
-          - label: Prayers
-            name: prayers
-            widget: string
-          - label: Languages
-            name: languages
-            widget: string
-          - label: Countries
-            name: countries
-            widget: string
-          - label: Youth Featured
-            name: youthFeatured
-            widget: string
           - label: Videos
             name: videos
             widget: string
@@ -3823,12 +3800,6 @@ collections:
         widget: object
         collapsed: true
         fields:
-        - label: Title
-          name: title
-          widget: string
-        - label: Subtitle
-          name: subtitle
-          widget: text
         - label: Upcoming Events
           name: upcomingEvents
           widget: string
@@ -4089,18 +4060,6 @@ collections:
           widget: object
           collapsed: true
           fields:
-          - label: Prayers
-            name: prayers
-            widget: string
-          - label: Languages
-            name: languages
-            widget: string
-          - label: Countries
-            name: countries
-            widget: string
-          - label: Youth Featured
-            name: youthFeatured
-            widget: string
           - label: Videos
             name: videos
             widget: string
