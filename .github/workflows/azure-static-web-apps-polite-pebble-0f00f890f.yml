@@ -57,8 +57,8 @@ jobs:
       - name: Fetch Stripe secrets from Key Vault
         if: github.event_name == 'push' || (github.event_name == 'pull_request' && !github.event.pull_request.head.repo.fork)
         run: |
-          STRIPE_PUBLIC_KEY=$(az keyvault secret show --vault-name "${{ secrets.AZURE_KEYVAULT_NAME }}" --name STRIPE_PUBLIC_KEY --query value -o tsv)
-          STRIPE_BUY_BUTTON_ID=$(az keyvault secret show --vault-name "${{ secrets.AZURE_KEYVAULT_NAME }}" --name STRIPE_BUY_BUTTON_ID --query value -o tsv)
+          STRIPE_PUBLIC_KEY=$(az keyvault secret show --vault-name "${{ secrets.AZURE_KEYVAULT_NAME }}" --name StripePublicKey --query value -o tsv)
+          STRIPE_BUY_BUTTON_ID=$(az keyvault secret show --vault-name "${{ secrets.AZURE_KEYVAULT_NAME }}" --name StripeBuyButtonId --query value -o tsv)
           echo "STRIPE_PUBLIC_KEY=$STRIPE_PUBLIC_KEY" >> $GITHUB_ENV
           echo "STRIPE_BUY_BUTTON_ID=$STRIPE_BUY_BUTTON_ID" >> $GITHUB_ENV
 
