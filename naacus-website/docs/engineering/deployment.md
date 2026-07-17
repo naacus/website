@@ -1,7 +1,7 @@
 # Deployment Guide
 
 > **Category:** 🔧 Engineering | **Audience:** Developers & IT Team
-> **Last Updated:** July 15, 2026 | [← Docs Index](../readme.md)
+> **Last Updated:** July 16, 2026 | [← Docs Index](../readme.md)
 
 ---
 
@@ -41,6 +41,29 @@
 
 Auto-deploys on push to `develop` branch.
 
+### Non-Developer Content Editing (Decap CMS)
+
+This project includes a lightweight CMS at `/admin` so authorized editors can
+update website images and selected text without touching code.
+
+Current editable content:
+
+- Hero slideshow images (`public/content/hero-images.json`)
+- Hero text (EN/FR)
+- FAQ page headline/search text (EN/FR)
+
+How it works:
+
+1. Editor opens `/admin` on the deployed site.
+2. Editor authenticates with GitHub.
+3. Changes are saved through editorial workflow (PR-based).
+4. Maintainer reviews and merges PR, then deploy runs from `develop`.
+
+Azure Static Web Apps routing note:
+
+- Ensure `staticwebapp.config.json` excludes `/admin/*` (and `/*.yml`) from SPA
+   fallback rewrites so Decap can load `/admin/config.yml` as YAML, not HTML.
+
 ### Create Azure Static Web App
 
 1. Sign in to [Azure Portal](https://portal.azure.com)
@@ -68,6 +91,28 @@ Auto-deploys on push to `develop` branch.
 
 1. Visit https://github.com/naacus/website → **Actions** tab
 2. Green ✅ = deployed, Red ❌ = failed
+
+### GitHub Actions Runtime Note
+
+To avoid GitHub Actions Node 20 action-runtime deprecation warnings, workflows
+use `actions/setup-node@v5` (while project runtime can remain Node 20 for app
+build/test compatibility).
+
+### GitHub Advanced Security / Scorecard Note
+
+The DevSecOps baseline workflow uploads SARIF for Trivy and Scorecard. To keep
+Code Scanning configuration identity stable between feature branches and
+develop:
+
+- Trivy uses default workflow/job configuration identity (no custom category)
+- Scorecard uses explicit category `scorecard`
+
+Scorecard SARIF upload runs on non-PR events (`push`, `schedule`,
+`workflow_dispatch`) to avoid PR-specific branch protection signal mismatch in
+Code Scanning comparisons.
+
+If you see a warning like "configuration not found" in a PR, ensure the branch
+contains the latest `.github/workflows/devsecops-baseline.yml` and rerun checks.
 
 ### Manual Deploy
 

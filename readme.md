@@ -33,6 +33,8 @@ Visit http://localhost:3000
 
 Primary docs index: [readme.md](naacus-website/docs/readme.md)
 
+Repository governance: [constitution.md](constitution.md)
+
 ### For Everyone
 
 | Document | Description |

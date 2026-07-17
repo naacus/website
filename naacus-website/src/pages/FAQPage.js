@@ -236,7 +236,7 @@ const useStyles = makeStyles({
 });
 
 function FAQPage() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const styles = useStyles();
   const { trackCTA } = useAnalytics();
   const [searchParams] = useSearchParams();
@@ -244,6 +244,40 @@ function FAQPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [openItems, setOpenItems] = useState([]);
+  const [faqCopy, setFaqCopy] = useState(null);
+
+  const normalizedLanguage = (i18n.resolvedLanguage || i18n.language || 'en').split('-')[0];
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadFaqCopy = async () => {
+      try {
+        const response = await fetch(`/content/faq.${normalizedLanguage}.json`, { cache: 'no-store' });
+        if (!response.ok) {
+          if (isMounted) {
+            setFaqCopy(null);
+          }
+          return;
+        }
+
+        const payload = await response.json();
+        if (isMounted && payload && typeof payload === 'object') {
+          setFaqCopy(payload);
+        }
+      } catch (error) {
+        if (isMounted) {
+          setFaqCopy(null);
+        }
+      }
+    };
+
+    loadFaqCopy();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [normalizedLanguage]);
 
   // Get search query from URL parameters (from global search)
   const urlSearchQuery = getSearchQueryFromUrl(location);
@@ -319,9 +353,9 @@ function FAQPage() {
       <div className={styles.container}>
         {/* Hero Header */}
         <div className={styles.header}>
-          <h1 className={styles.title}>{t('faq.title', 'Frequently Asked Questions')}</h1>
+          <h1 className={styles.title}>{faqCopy?.title || t('faq.title', 'Frequently Asked Questions')}</h1>
           <p className={styles.subtitle}>
-            {t(
+            {faqCopy?.subtitle || t(
               'faq.subtitle',
               'Find answers to common questions about NAACUS, membership, events, and more'
             )}
@@ -342,7 +376,8 @@ function FAQPage() {
               />
               <input
                 type="text"
-                placeholder={t('faq.searchPlaceholder', 'Search FAQs...')}
+                placeholder={faqCopy?.searchPlaceholder || t('faq.searchPlaceholder', 'Search FAQs...')}
+                aria-label={faqCopy?.searchInputLabel || t('faq.searchInputLabel', 'Search frequently asked questions')}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className={styles.searchInput}
@@ -353,7 +388,9 @@ function FAQPage() {
               />
               {searchTerm && (
                 <button
+                  type="button"
                   onClick={() => setSearchTerm('')}
+                  aria-label={faqCopy?.clearSearch || t('faq.clearSearch', 'Clear FAQ search')}
                   style={{
                     position: 'absolute',
                     right: '12px',
@@ -376,7 +413,7 @@ function FAQPage() {
         {/* Category Filter */}
         {filteredFAQs.length > 0 && (
           <div className={styles.categoryContainer}>
-            <div className={styles.categoryLabel}>Filter by Category</div>
+            <div className={styles.categoryLabel}>{faqCopy?.filterByCategory || t('faq.filterByCategory', 'Filter by Category')}</div>
             <div className={styles.categoryGrid}>
               {Object.entries(faqCategories).map(([key, category]) => {
                 const count = faqData.filter(faq => faq.category === category).length;

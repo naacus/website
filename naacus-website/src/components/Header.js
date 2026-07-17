@@ -127,6 +127,10 @@ const useStyles = makeStyles({
       backgroundColor: '#f2f2f2',
       textDecoration: 'underline',
     },
+    '&:focus-visible': {
+      outline: '3px solid #0f6cbd',
+      outlineOffset: '2px',
+    },
   },
   navLinkActive: {
     backgroundColor: '#eaf4ff',
@@ -135,7 +139,7 @@ const useStyles = makeStyles({
     textDecoration: 'underline',
   },
   feedbackLink: {
-    backgroundColor: '#e74c3c',
+    backgroundColor: '#b42318',
     color: '#ffffff',
     fontWeight: '600',
     ...shorthands.padding('0', '16px'),
@@ -144,21 +148,29 @@ const useStyles = makeStyles({
     animationDuration: '1.5s',
     animationIterationCount: 'infinite',
     '&:hover': {
-      backgroundColor: '#c0392b',
+      backgroundColor: '#8f1a12',
       textDecoration: 'none',
+    },
+    '&:focus-visible': {
+      outline: '3px solid #0f6cbd',
+      outlineOffset: '2px',
     },
     '@media (max-width: 768px)': {
       display: 'none',
     },
   },
   feedbackLinkActive: {
-    backgroundColor: '#c0392b',
+    backgroundColor: '#8f1a12',
     color: '#ffffff',
     fontWeight: '600',
     textDecoration: 'none',
     animationName: blinkAnimation,
     animationDuration: '1.5s',
     animationIterationCount: 'infinite',
+    '&:focus-visible': {
+      outline: '3px solid #0f6cbd',
+      outlineOffset: '2px',
+    },
     '@media (max-width: 768px)': {
       display: 'none',
     },
@@ -263,7 +275,7 @@ const useStyles = makeStyles({
     fontWeight: '600',
   },
   mobileMenuItemFeedback: {
-    backgroundColor: '#e74c3c',
+    backgroundColor: '#b42318',
     color: '#ffffff',
     fontWeight: '600',
     animationName: blinkAnimation,
@@ -271,7 +283,7 @@ const useStyles = makeStyles({
     animationIterationCount: 'infinite',
   },
   mobileMenuItemFeedbackActive: {
-    backgroundColor: '#c0392b',
+    backgroundColor: '#8f1a12',
     color: '#ffffff',
     fontWeight: '600',
     animationName: blinkAnimation,
