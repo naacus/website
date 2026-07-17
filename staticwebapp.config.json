@@ -1,4 +1,11 @@
 {
+  "routes": [
+    {
+      "route": "/admin",
+      "redirect": "/admin/",
+      "statusCode": 301
+    }
+  ],
   "navigationFallback": {
     "rewrite": "/index.html",
     "exclude": [

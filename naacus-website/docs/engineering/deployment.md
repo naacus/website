@@ -63,6 +63,8 @@ Azure Static Web Apps routing note:
 
 - Ensure `staticwebapp.config.json` excludes `/admin/*` (and `/*.yml`) from SPA
    fallback rewrites so Decap can load `/admin/config.yml` as YAML, not HTML.
+- Add an explicit redirect from `/admin` to `/admin/` to prevent Decap from
+   requesting `/config.yml` at the site root.
 
 ### Create Azure Static Web App
 
