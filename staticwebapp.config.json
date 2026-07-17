@@ -4,6 +4,30 @@
       "route": "/admin",
       "redirect": "/admin/",
       "statusCode": 301
+    },
+    {
+      "route": "/admin/",
+      "headers": {
+        "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0",
+        "Pragma": "no-cache",
+        "Expires": "Thu, 01 Jan 1970 00:00:00 GMT"
+      }
+    },
+    {
+      "route": "/admin/index.html",
+      "headers": {
+        "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0",
+        "Pragma": "no-cache",
+        "Expires": "Thu, 01 Jan 1970 00:00:00 GMT"
+      }
+    },
+    {
+      "route": "/admin/config.yml",
+      "headers": {
+        "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0",
+        "Pragma": "no-cache",
+        "Expires": "Thu, 01 Jan 1970 00:00:00 GMT"
+      }
     }
   ],
   "navigationFallback": {
