@@ -12,7 +12,6 @@ The website will be delivered in **6 releases** over approximately **6 months**.
 ### Principles
 
 1. **Ship what's visible first** — The frontend is already built; connect it to real services before building new UI.
-2. **One payment provider at a time** — Get Stripe fully working before adding PayPal, crypto, etc.
 3. **Progressive backend buildout** — Start with the highest-impact API endpoints (contact, newsletter, membership).
 4. **Test as you go** — Each release includes testing stories for the features it ships.
 5. **Admin tools come last** — Self-service admin requires a stable backend foundation.
@@ -91,11 +90,9 @@ The website will be delivered in **6 releases** over approximately **6 months**.
 | ID | User Story | Feature | Priority |
 |---|---|---|---|
 | F6.2-01 | Preset and custom donation amounts | Donations | High |
-| F6.2-03 | PayPal donations (full flow) | Payments | High |
 | F6.2-04 | Apple Pay donations | Payments | Medium |
 | F6.2-05 | Google Pay donations | Payments | Medium |
 | F14-02 | REST API for donations | Backend | High |
-| F14-08 | PayPal server-side order verification | Backend | High |
 | F6.3-01 | Admin can view all donations | Donations Admin | Medium |
 | F6.3-02 | Donation statistics (total, average, count) | Donations Admin | Medium |
 | F6.3-03 | Donation receipt/confirmation for donors | Donations | Medium |
@@ -106,14 +103,12 @@ The website will be delivered in **6 releases** over approximately **6 months**.
 
 **Deliverables:**
 - Backend API endpoints: `POST/GET /api/v1/donations`, `POST/GET /api/v1/volunteers`
-- PayPal order creation + capture + verification
 - Apple Pay / Google Pay via Stripe Payment Request API
 - Donation receipt generation (email or downloadable PDF)
 - Volunteer form → backend persistence
 - 15+ new tests
 
 **Definition of Done:**
-- Donor can give via Stripe card, PayPal, Apple Pay, or Google Pay → payment confirmed → receipt provided
 - Volunteer submits application → saved to database → admin can view it
 - End-to-end payment tests pass
 
@@ -247,7 +242,6 @@ Month 1        Month 2        Month 3        Month 4        Month 5        Month
 │ Release 1│  │ Release 2│  │ Release 3│  │ Release 4│  │ Release 5│  │ Release 6│
 │          │  │          │  │          │  │          │  │          │  │          │
 │ Contact  │  │Membership│  │Donations │  │ Events   │  │ AI Chat  │  │ Admin    │
-│Newsletter│  │ Stripe   │  │ PayPal   │  │ M365     │  │ Testing  │  │ Panel    │
 │ Backend  │  │ Webhooks │  │ Volunteer│  │ Auth     │  │  WCAG    │  │ CMS      │
 │ Tests    │  │  Tests   │  │  Tests   │  │ Alt Pay  │  │  E2E     │  │          │
 └──────────┘  └──────────┘  └──────────┘  └──────────┘  └──────────┘  └──────────┘

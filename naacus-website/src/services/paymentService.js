@@ -4,7 +4,6 @@
  */
 
 import stripePaymentService from './stripePaymentService';
-import paypalPaymentService from './paypalPaymentService';
 import bankTransferPaymentService from './bankTransferPaymentService';
 import cryptoPaymentService from './cryptoPaymentService';
 import cashAppPaymentService from './cashAppPaymentService';
@@ -18,7 +17,6 @@ class PaymentService {
       card: stripePaymentService,
       applePay: stripePaymentService,
       googlePay: stripePaymentService,
-      paypal: paypalPaymentService,
       bank: bankTransferPaymentService,
       crypto: cryptoPaymentService,
       cashapp: cashAppPaymentService,
@@ -36,8 +34,8 @@ class PaymentService {
     // Suppress window errors from SDK loading issues
     const originalOnError = window.onerror;
     window.onerror = (msg, url, lineNo, columnNo, error) => {
-      // Suppress errors from payment SDKs (PayPal, Square, Stripe, Coinbase)
-      if (url && (url.includes('paypal.com') || url.includes('squarecdn.com') || 
+      // Suppress errors from payment SDKs (Square, Stripe, Coinbase)
+      if (url && (url.includes('squarecdn.com') || 
                   url.includes('stripe.com') || url.includes('coinbase.com'))) {
         return true; // Prevent default error handling
       }
@@ -47,7 +45,6 @@ class PaymentService {
     try {
       const results = await Promise.allSettled([
         stripePaymentService.initialize(),
-        paypalPaymentService.initialize(),
         cryptoPaymentService.initialize(),
         cashAppPaymentService.initialize(),
       ]);
@@ -55,7 +52,7 @@ class PaymentService {
       // Only log rejected results that aren't expected (missing credentials)
       results.forEach((result, index) => {
         if (result.status === 'rejected') {
-          const services = ['Stripe', 'PayPal', 'Crypto', 'Cash App'];
+          const services = ['Stripe', 'Crypto', 'Cash App'];
           // Only log if not a credential validation error
           if (result.reason && !result.reason.message?.includes('not configured')) {
             console.debug(`${services[index]} service initialization note:`, result.reason?.message);
@@ -94,9 +91,6 @@ class PaymentService {
 
         case 'googlePay':
           return await stripePaymentService.processGooglePayment(donationData);
-
-        case 'paypal':
-          return await paypalPaymentService.createPayPalOrder(donationData);
 
         case 'bank':
           return await bankTransferPaymentService.createBankTransferPayment(donationData);
@@ -190,12 +184,6 @@ class PaymentService {
         supported: paymentConfig.stripe.features.googlePay,
         processingTime: 'Instant',
       },
-      paypal: {
-        name: 'PayPal',
-        icon: '/icons/paypal.svg',
-        supported: true,
-        processingTime: 'Instant',
-      },
       bank: {
         name: 'Bank Transfer',
         icon: '/icons/bank-transfer.svg',
@@ -227,7 +215,6 @@ class PaymentService {
       'card',
       'applePay',
       'googlePay',
-      'paypal',
       'bank',
       'crypto',
       'cashapp',

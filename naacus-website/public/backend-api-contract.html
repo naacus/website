@@ -495,7 +495,6 @@
                 <div class="overview-box">
                     <div class="service-item">✅ <strong>Google Analytics 4</strong> - Frontend calls directly via gtag.js</div>
                     <div class="service-item">✅ <strong>Stripe</strong> - Frontend calls directly via Stripe.js with publishable key</div>
-                    <div class="service-item">✅ <strong>PayPal</strong> - Frontend calls directly via PayPal SDK</div>
                     <div class="service-item">✅ <strong>Coinbase Commerce</strong> - Frontend calls directly via hosted payment link</div>
                     <div class="service-item">✅ <strong>Square</strong> - Frontend calls directly via Web Payments SDK</div>
                 </div>
@@ -536,7 +535,6 @@
                     <ul>
                         <li>✅ Google Analytics 4 (GA4) via gtag.js</li>
                         <li>✅ Stripe via Stripe.js (card collection, payment intents)</li>
-                        <li>✅ PayPal via PayPal SDK/Checkout</li>
                         <li>✅ Coinbase Commerce via hosted payment link</li>
                         <li>✅ Square Web Payments SDK</li>
                     </ul>
@@ -1465,7 +1463,6 @@ X-API-Key: {api-key}          // For service-to-service calls</code></pre>
                     Frontend processes all payments directly via:
                     <ul>
                         <li><strong>Stripe</strong> - Stripe.js with publishable key</li>
-                        <li><strong>PayPal</strong> - PayPal SDK</li>
                         <li><strong>Coinbase</strong> - Hosted payment link</li>
                         <li><strong>Square</strong> - Web Payments SDK</li>
                     </ul>
@@ -1479,11 +1476,8 @@ X-API-Key: {api-key}          // For service-to-service calls</code></pre>
                     
                     <h4>Request Body:</h4>
                     <pre><code>{
-  "transactionId": "stripe_pi_xxxxx or paypal_order_id",
   "amount": 100.00,
   "currency": "USD",
-  "paymentMethod": "card|paypal|crypto|cashapp",
-  "paymentProvider": "stripe|paypal|coinbase|square",
   "donorName": "John Doe",
   "donorEmail": "john@example.com",
   "isAnonymous": false,
@@ -1882,7 +1876,6 @@ Access-Control-Max-Age: 86400</code></pre>
     "transactionId": "string",
     "amount": 50.00,
     "donorEmail": "string",
-    "paymentMethod": "card|paypal|bank|crypto|cashapp"
   }
 }</code></pre>
 
@@ -1935,7 +1928,6 @@ Access-Control-Max-Age: 86400</code></pre>
                     <ul>
                         <li>✅ <strong>Google Analytics 4</strong> via gtag.js with property ID</li>
                         <li>✅ <strong>Stripe</strong> via Stripe.js with publishable key</li>
-                        <li>✅ <strong>PayPal</strong> via PayPal SDK with client ID</li>
                         <li>✅ <strong>Coinbase Commerce</strong> via hosted payment link</li>
                         <li>✅ <strong>Square</strong> via Web Payments SDK with app ID</li>
                         <li>✅ <strong>Backend REST APIs</strong> for business logic</li>
@@ -1979,7 +1971,6 @@ REFRESH_TOKEN_EXPIRY=30d</code></pre>
 
                 <h3>Webhook Secrets (from payment processors)</h3>
                 <pre><code>STRIPE_WEBHOOK_SECRET=whsec_xxxxx
-PAYPAL_WEBHOOK_ID=xxxxx
 COINBASE_WEBHOOK_SECRET=xxxxx
 SQUARE_WEBHOOK_SIGNATURE_KEY=xxxxx</code></pre>
 
@@ -1988,7 +1979,6 @@ SQUARE_WEBHOOK_SIGNATURE_KEY=xxxxx</code></pre>
                     <ul>
                         <li>GA4_MEASUREMENT_ID (frontend only)</li>
                         <li>STRIPE_PUBLISHABLE_KEY (frontend only)</li>
-                        <li>PAYPAL_CLIENT_ID (frontend only)</li>
                         <li>SQUARE_APP_ID (frontend only)</li>
                     </ul>
                 </div>
@@ -2064,7 +2054,6 @@ Backend can retrieve GA4 reports separately if needed</code></pre>
 - transaction_id (Text, unique)
 - amount (Decimal)
 - currency (Text)
-- payment_method (Choice: card, paypal, bank, crypto, cashapp)
 - payment_provider_transaction_id (Text)
 - status (Choice: completed, failed, refunded)
 - donor_email (Text)

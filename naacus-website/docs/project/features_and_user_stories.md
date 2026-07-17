@@ -148,7 +148,6 @@ Each **feature** groups related functionality. Under each feature, **user storie
 |---|---|---|
 | F6.2-01 | As a donor, I want to choose from preset donation amounts ($25, $50, $100, etc.) or enter a custom amount so that giving is easy. | **UI Done — Backend Needed** |
 | F6.2-02 | As a donor, I want to pay by credit/debit card so that I can donate using my card. | **Scaffolded** (needs Stripe backend) |
-| F6.2-03 | As a donor, I want to pay via PayPal so that I can use my PayPal account. | **Scaffolded** (demo mode) |
 | F6.2-04 | As a donor, I want to pay via Apple Pay so that I can donate with one tap on my iPhone. | **Scaffolded** (needs Stripe backend) |
 | F6.2-05 | As a donor, I want to pay via Google Pay so that I can donate with one tap on Android. | **Scaffolded** (needs Stripe backend) |
 | F6.2-06 | As a donor, I want to donate via bank transfer so that I can give directly from my bank. | **Scaffolded** (demo mode) |
@@ -264,7 +263,6 @@ Each **feature** groups related functionality. Under each feature, **user storie
 | F14-05 | As a developer, I want a REST API for events (CRUD) so that admins can manage events from a CMS or admin panel. | **Not Started** |
 | F14-06 | As a developer, I want a REST API for volunteer applications so that applications are persisted. | **Not Started** |
 | F14-07 | As a developer, I want Stripe webhook handling so that payment confirmations are processed server-side. | **Not Started** |
-| F14-08 | As a developer, I want PayPal server-side order verification so that donations via PayPal are confirmed. | **Not Started** |
 
 ---
 

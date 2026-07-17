@@ -441,14 +441,6 @@ export function DonationDialog() {
       hasFee: true,
       feeInfo: t('donation.googlePayFee'),
     },
-    paypal: {
-      id: 'paypal',
-      label: t('donation.paypal'),
-      iconPath: '/icons/paypal.svg',
-      processingTime: t('donation.instant'),
-      hasFee: true,
-      feeInfo: t('donation.paypalFee'),
-    },
     bank: {
       id: 'bank',
       label: t('donation.bankTransfer'),

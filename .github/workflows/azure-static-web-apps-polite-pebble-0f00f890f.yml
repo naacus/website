@@ -74,8 +74,6 @@ jobs:
           cat > .env.production.local << EOF2
           REACT_APP_STRIPE_PUBLIC_KEY=${{ env.STRIPE_PUBLIC_KEY }}
           REACT_APP_STRIPE_BUY_BUTTON_ID=${{ env.STRIPE_BUY_BUTTON_ID }}
-          REACT_APP_PAYPAL_CLIENT_ID=
-          REACT_APP_PAYPAL_ENV=sandbox
           REACT_APP_API_BASE_URL=${{ secrets.API_BASE_URL_TEST || 'http://localhost:5001' }}
           REACT_APP_DEBUG_PAYMENTS=true
           CI=true

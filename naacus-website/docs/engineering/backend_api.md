@@ -40,7 +40,6 @@ This document covers the backend API architecture, implementation guide, and ful
 |---------|---------|----------|
 | Google Analytics 4 | gtag.js | `REACT_APP_GA4_MEASUREMENT_ID` |
 | Stripe | Stripe.js | `REACT_APP_STRIPE_PUBLISHABLE_KEY` |
-| PayPal | PayPal SDK | `REACT_APP_PAYPAL_CLIENT_ID` |
 | Coinbase Commerce | Hosted link | `REACT_APP_COINBASE_PUBLIC_KEY` |
 | Square | Web Payments SDK | `REACT_APP_SQUARE_APP_ID` |
 
@@ -104,7 +103,6 @@ REACT_APP_USE_BACKEND_API=true
 REACT_APP_BACKEND_URL=https://api.naacus.org
 REACT_APP_GA4_MEASUREMENT_ID=G-XXXXXX
 REACT_APP_STRIPE_PUBLISHABLE_KEY=pk_live_xxxxx
-REACT_APP_PAYPAL_CLIENT_ID=xxxxx
 REACT_APP_COINBASE_PUBLIC_KEY=xxxxx
 REACT_APP_SQUARE_APP_ID=xxxxx
 REACT_APP_SQUARE_LOCATION_ID=xxxxx
@@ -140,7 +138,6 @@ SENTRY_DSN=xxxxx
 
 # Webhook Secrets
 STRIPE_WEBHOOK_SECRET=whsec_xxxxx
-PAYPAL_WEBHOOK_ID=xxxxx
 COINBASE_WEBHOOK_SECRET=xxxxx
 SQUARE_WEBHOOK_SIGNATURE_KEY=xxxxx
 ```
@@ -419,18 +416,14 @@ Get event registrations (admin only).
 
 ### Donations (Post-Payment Recording)
 
-Frontend processes payments directly via Stripe/PayPal/Coinbase/Square. Backend only stores records after successful payment.
 
 #### POST /v1/donations
 
 **Request:**
 ```json
 {
-  "transactionId": "stripe_pi_xxxxx or paypal_order_id",
   "amount": 100.00,
   "currency": "USD",
-  "paymentMethod": "card|paypal|crypto|cashapp",
-  "paymentProvider": "stripe|paypal|coinbase|square",
   "donorName": "John Doe",
   "donorEmail": "john@example.com",
   "isAnonymous": false,
@@ -569,7 +562,6 @@ Access-Control-Max-Age: 86400
     "transactionId": "string",
     "amount": 50.00,
     "donorEmail": "string",
-    "paymentMethod": "card|paypal|bank|crypto|cashapp"
   }
 }
 ```

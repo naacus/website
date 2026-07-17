@@ -20,10 +20,8 @@ Settings → Secrets and variables → Actions → New repository secret
 |---|---|---|
 | `STRIPE_PUBLIC_KEY_TEST` | `pk_test_...` | From Stripe Dashboard (test mode) |
 | `STRIPE_BUY_BUTTON_ID_TEST` | `buy_btn_...` | From Stripe Buy Button (test) |
-| `PAYPAL_CLIENT_ID_TEST` | `A...` or `EB...` | From PayPal Developer (sandbox) |
 | `STRIPE_PUBLIC_KEY_PROD` | `pk_live_...` | From Stripe Dashboard (live mode) |
 | `STRIPE_BUY_BUTTON_ID_PROD` | `buy_btn_...` | From Stripe Buy Button (live) |
-| `PAYPAL_CLIENT_ID_PROD` | `A...` or `EB...` | From PayPal Developer (live) |
 | `API_BASE_URL_TEST` | `https://api-test.naacus.org` | Optional - test API endpoint |
 
 ### Verify they work:
@@ -63,10 +61,8 @@ az keyvault secret set \
   --name StripeBuyButtonId \
   --value "buy_btn_YOUR_ACTUAL_ID"
 
-# PayPal
 az keyvault secret set \
   --vault-name naacus-kv-prod \
-  --name PaypalClientId \
   --value "YOUR_LIVE_CLIENT_ID"
 
 # List all secrets
@@ -142,7 +138,6 @@ The workflow has been enhanced to automatically inject GitHub Secrets during bui
 
 **For Development/Test builds (triggered by PR or push to develop):**
 - Uses `STRIPE_PUBLIC_KEY_TEST` and `STRIPE_BUY_BUTTON_ID_TEST` from GitHub Secrets
-- Sets `REACT_APP_PAYPAL_ENV=sandbox`
 - Sets `REACT_APP_DEBUG_PAYMENTS=true`
 
 **For Production deployment (automatic after PR merge to develop):**
@@ -157,7 +152,6 @@ The workflow has been enhanced to automatically inject GitHub Secrets during bui
     cat > .env << EOF
     REACT_APP_STRIPE_PUBLIC_KEY=${{ secrets.STRIPE_PUBLIC_KEY_TEST }}
     REACT_APP_STRIPE_BUY_BUTTON_ID=${{ secrets.STRIPE_BUY_BUTTON_ID_TEST }}
-    REACT_APP_PAYPAL_CLIENT_ID=${{ secrets.PAYPAL_CLIENT_ID_TEST }}
     REACT_APP_API_BASE_URL=${{ secrets.API_BASE_URL_TEST || 'http://localhost:5001' }}
     REACT_APP_DEBUG_PAYMENTS=true
     CI=true
@@ -214,7 +208,6 @@ npm run build
 ### Verify in logs:
 ```
 ✓ Build completed with test credentials
-✓ Tests passed with Stripe/PayPal test keys
 ```
 
 ### Check Azure deployment:

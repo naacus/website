@@ -2941,8 +2941,6 @@ collections:
               - label: Google Pay
                 name: googlePay
                 widget: string
-              - label: Paypal
-                name: paypal
                 widget: string
               - label: Bank Transfer
                 name: bankTransfer
@@ -3022,8 +3020,6 @@ collections:
               - label: Google Pay Fee
                 name: googlePayFee
                 widget: string
-              - label: Paypal Fee
-                name: paypalFee
                 widget: string
               - label: Crypto Fee
                 name: cryptoFee
@@ -3674,8 +3670,6 @@ collections:
               - label: Google Pay
                 name: googlePay
                 widget: string
-              - label: Paypal
-                name: paypal
                 widget: string
               - label: Bank Transfer
                 name: bankTransfer
@@ -3755,8 +3749,6 @@ collections:
               - label: Google Pay Fee
                 name: googlePayFee
                 widget: string
-              - label: Paypal Fee
-                name: paypalFee
                 widget: string
               - label: Crypto Fee
                 name: cryptoFee

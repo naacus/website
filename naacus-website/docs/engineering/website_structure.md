@@ -15,7 +15,6 @@ The NAACUS website is a **React 19** single-page application (SPA) built with:
 | **Fluent UI v9** (`@fluentui/react-components`) | Design system / component library |
 | **i18next** | Internationalization (English & French) |
 | **MSAL / Microsoft Graph** | Microsoft 365 authentication & integration |
-| **Stripe / PayPal / Apple Pay / Google Pay** | Payment processing |
 | **Microsoft Copilot Studio** | AI chatbot assistant |
 | **Google Analytics 4** | Analytics & tracking |
 | **Azure Static Web Apps** | Hosting & deployment |
@@ -211,7 +210,6 @@ Each file corresponds to a route listed in §3.2:
 | `authConfig.js` | MSAL / Azure AD auth configuration |
 | `msalConfig.js` | MSAL instance configuration |
 | `copilotStudioConfig.js` | Copilot Studio Direct Line bot integration settings |
-| `paymentConfig.js` | Payment processors config (Stripe, PayPal, Apple Pay, Google Pay, bank transfer, crypto) |
 | `membershipPricingConfig.js` | Membership plan definitions & pricing (Individual, Group Small, Group Large) |
 | `siteLinks.js` | External URLs (YouTube channel, calendar link) |
 
@@ -257,7 +255,6 @@ Business logic and API integration layer:
 |---|---|
 | `stripePaymentService.js` | Stripe payments |
 | `stripeService.js` | Stripe API integration |
-| `paypalPaymentService.js` | PayPal payments |
 | `bankTransferPaymentService.js` | Bank transfer payments |
 | `cashAppPaymentService.js` | Cash App payments |
 | `cryptoPaymentService.js` | Cryptocurrency payments |
@@ -383,7 +380,6 @@ A **Java/Maven** backend project (under development). The compiled output lives 
 | **Azure AD / MSAL** | `authConfig.js`, `msalConfig.js` | Microsoft 365 sign-in and Graph API access |
 | **Copilot Studio** | `copilotStudioConfig.js` | AI chatbot via Direct Line API |
 | **Stripe** | `paymentConfig.js` | Credit/debit, Apple Pay, Google Pay |
-| **PayPal** | `paymentConfig.js` | PayPal checkout |
 | **Google Analytics 4** | `googleAnalyticsService.js` | Event tracking, page views |
 
 ---
