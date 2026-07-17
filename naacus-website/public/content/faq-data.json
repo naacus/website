@@ -1,0 +1,40 @@
+{
+  "categories": {
+    "ABOUT": "About",
+    "MEMBERSHIP": "Membership",
+    "EVENTS": "Events",
+    "PROGRAMS": "Programs",
+    "CONTACT": "Contact",
+    "GENERAL": "General"
+  },
+  "faqs": [
+    {
+      "id": "about-1",
+      "category": "About",
+      "question": "What is NAACUS?",
+      "keywords": ["what is naacus", "about naacus", "naacus meaning", "organization"],
+      "answer": "NAACUS stands for the National Association of African Catholics in the United States. We unite African Catholic communities across the nation to promote faith and heritage, strengthen families, and cultivate leaders—ensuring full participation in the life of the Church in the U.S. while supporting the Church in Africa."
+    },
+    {
+      "id": "about-2",
+      "category": "About",
+      "question": "What is NAACUS's mission?",
+      "keywords": ["mission", "purpose", "goal", "objective"],
+      "answer": "Our mission is to gather African Catholic communities in the U.S., promote their faith, and ensure their full and active participation in the life of the Church. We work to build a vibrant and visible African Catholic community that contributes its gifts to the Church and society."
+    },
+    {
+      "id": "about-3",
+      "category": "About",
+      "question": "What is NAACUS's motto?",
+      "keywords": ["motto", "slogan", "tagline"],
+      "answer": "Our motto is \"Together with Christ\" - uniting African Catholic communities across the United States in faith and fellowship."
+    },
+    {
+      "id": "about-4",
+      "category": "About",
+      "question": "Who does NAACUS serve?",
+      "keywords": ["who serve", "community", "members", "target audience"],
+      "answer": "NAACUS serves African Catholic communities including immigrants, migrants, refugees, students, professionals, families, elders, and the African diaspora in the United States."
+    }
+  ]
+}

@@ -4215,3 +4215,76 @@ collections:
                       - label: Description Placeholder
                         name: descriptionPlaceholder
                         widget: string
+
+  - name: "static_data"
+    label: "Static Content Data"
+    editor:
+      preview: false
+    files:
+      - name: "activities_data"
+        label: "Activities & Programs (What We Do)"
+        file: "naacus-website/public/content/activities.json"
+        fields:
+          - label: "What We Do"
+            name: "whatWeDo"
+            widget: "list"
+            collapsed: false
+            fields:
+              - label: "Icon"
+                name: "icon"
+                widget: "string"
+              - label: "Title"
+                name: "title"
+                widget: "string"
+              - label: "Description"
+                name: "description"
+                widget: "text"
+      
+      - name: "faq_data"
+        label: "FAQ Data"
+        file: "naacus-website/public/content/faq-data.json"
+        fields:
+          - label: "Categories"
+            name: "categories"
+            widget: "object"
+            collapsed: true
+            fields:
+              - label: "About"
+                name: "ABOUT"
+                widget: "string"
+              - label: "Membership"
+                name: "MEMBERSHIP"
+                widget: "string"
+              - label: "Events"
+                name: "EVENTS"
+                widget: "string"
+              - label: "Programs"
+                name: "PROGRAMS"
+                widget: "string"
+              - label: "Contact"
+                name: "CONTACT"
+                widget: "string"
+              - label: "General"
+                name: "GENERAL"
+                widget: "string"
+          - label: "FAQs"
+            name: "faqs"
+            widget: "list"
+            collapsed: false
+            fields:
+              - label: "ID"
+                name: "id"
+                widget: "string"
+              - label: "Category"
+                name: "category"
+                widget: "string"
+              - label: "Question"
+                name: "question"
+                widget: "string"
+              - label: "Keywords"
+                name: "keywords"
+                widget: "list"
+                field: { label: "Keyword", name: "keyword", widget: "string" }
+              - label: "Answer"
+                name: "answer"
+                widget: "text"
