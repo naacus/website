@@ -4,17 +4,16 @@
     "learnMore": "En savoir plus sur notre",
     "privacyPolicy": "politique de confidentialité",
     "accept": "Accepter tout",
-    "reject": "Rejeter",
-    "dismiss": "Fermer"
+    "reject": "Rejeter"
   },
   "header": {
     "title": "NAACUS",
+    "tagline": "Association Nationale des Catholiques Africains aux États-Unis",
     "nav": {
       "home": "Accueil",
       "naacus2025": "2025",
       "about": "À Propos",
       "leadership": "Direction",
-      "objectives": "Objectifs",
       "ministries": "Ministères",
       "programs": "Activités",
       "events": "Événements",
@@ -28,7 +27,6 @@
       "feedback": "Commentaires",
       "prayers": "Prières"
     },
-    "searchPlaceholder": "Recherche",
     "donate": "Donner",
     "goHome": "Go to home page",
     "openNavigationMenu": "Open navigation menu"
@@ -39,13 +37,11 @@
     "membershipTeaser": "🌟 Rejoignez des milliers de catholiques africains qui construisent une communauté plus forte",
     "benefit1": "Connectez-vous avec d'autres membres",
     "benefit2": "Accédez à des événements exclusifs",
-    "benefit3": "Grandissez ensemble dans la foi",
-    "becomeMemberButton": "S'abonner au Bulletin",
-    "discoverButton": "En Savoir Plus",
-    "joinButton": "Rejoignez Notre Communauté"
+    "benefit3": "Grandissez ensemble dans la foi"
   },
   "about": {
     "title": "À Propos de NAACUS",
+    "intro": "L'Association Nationale des Catholiques Africains aux États-Unis (NAACUS) rassemble les catholiques africains et leurs familles pour promouvoir la foi, le leadership et le service au sein de l'Église à travers les États-Unis. Enracinés dans l'Évangile et notre devise \"Ensemble avec le Christ\", nous accueillons les membres dans une communauté active de fraternité, d'ateliers et de ministères collaboratifs.",
     "mission": {
       "title": "Notre Mission",
       "description": "Rassembler les communautés catholiques africaines aux États-Unis, promouvoir leur foi et assurer leur participation pleine et active à la vie de l'Église."
@@ -121,16 +117,9 @@
     "successMessage": "Consultez votre email pour confirmer votre abonnement et recevoir les dernières mises à jour.",
     "privacyNote": "Nous respectons votre vie privée. Vos informations sont sécurisées et ne seront utilisées que pour les communications NAACUS."
   },
-  "joinNowButton": {
-    "text": "S'abonner"
-  },
   "conference2027": {
     "title": "Réservez la Date : Convention Nationale NAACUS et ACCCRUS",
-    "subtitle": "Baltimore, Maryland | 2027",
-    "highlightText": "Une foi. Une famille. Une mission.",
-    "whenLabel": "Quand",
     "whenValue": "27 juillet-1 août 2027",
-    "whereLabel": "Où",
     "whereValue": "Baltimore, Maryland",
     "targetLabel": "Partenaires",
     "targetValue": "NAACUS et ACCCRUS",
@@ -169,12 +158,8 @@
     "parishName": "Nom de la Paroisse",
     "diocese": "(Arch)Diocèse",
     "community": "Communauté / Groupe Catholique Africain",
-    "parishSearchHelper": "Entrez votre code postal pour trouver des paroisses près de vous",
     "selectParish": "Sélectionner une Paroisse",
     "selectParishPlaceholder": "Choisir une paroisse dans la liste...",
-    "parishCount": "paroisses trouvées",
-    "searching": "Recherche de paroisses...",
-    "enteredParishData": "Informations Paroissiales Sélectionnées",
     "backgroundExperience": "Contexte et Expérience",
     "countryOfOrigin": "Pays d'Origine",
     "yearsInUS": "Années aux États-Unis (Optionnel)",
@@ -183,10 +168,6 @@
     "skillsPlaceholder": "Partagez vos compétences, talents ou expertise que vous apportez à la communauté...",
     "membershipDetails": "Détails de l'Adhésion",
     "membershipType": "Type d'Adhésion",
-    "membershipTypeIndividual": "Adhésion Individuelle",
-    "membershipTypeFamily": "Adhésion Familiale",
-    "membershipTypeStudent": "Adhésion Étudiante",
-    "membershipTypeSenior": "Adhésion Senior",
     "ministryInterests": "Intérêts Ministériels (Sélectionnez tous ceux qui s'appliquent)",
     "ministryYouth": "Ministère de la Jeunesse",
     "ministryMusic": "Musique et Liturgie",
@@ -234,14 +215,6 @@
     "errorLabel": "Erreur: ",
     "required": "*",
     "paymentMethod": "Méthode de Paiement",
-    "paymentOnline": "Payer en Ligne avec Carte de Crédit/Débit",
-    "paymentManual": "Paiement Manuel",
-    "membershipSummary": "Résumé de l'Adhésion",
-    "amount": "Montant",
-    "selectPlan": "Sélectionnez le Plan d'Adhésion",
-    "individualPlan": "Adhésion Individuelle",
-    "groupSmallPlan": "Adhésion de Groupe (2-100)",
-    "groupLargePlan": "Adhésion de Groupe (100+)",
     "organizationName": "Nom de l'Organisation",
     "organizationPlaceholder": "Entrez le nom de l'organisation",
     "memberCount": "Nombre de Membres",
@@ -344,13 +317,7 @@
     "partners": {
       "title": "Organisations Partenaires",
       "description": "NAACUS collabore avec diverses organisations catholiques, diocèses et ministères pour soutenir les catholiques africains aux États-Unis.",
-      "organizations": {
-        "usccb": "Conférence des Évêques Catholiques des États-Unis",
-        "dioceses": "Bureaux Diocésains Locaux",
-        "african": "Ministères Catholiques Africains et Haïtiens",
-        "national": "Organisations Catholiques Nationales",
-        "intercultural": "Programmes de Ministère Interculturel"
-      }
+      "organizations": {}
     }
   },
   "contact": {
@@ -371,20 +338,16 @@
     "parishPlaceholder": "Votre paroisse ou organisation",
     "messageLabel": "Message",
     "messagePlaceholder": "Dites-nous comment nous pouvons vous aider...",
-    "sendButton": "Envoyer le Message",
-    "required": "*"
+    "sendButton": "Envoyer le Message"
   },
   "chat": {
-    "greeting": "Bonjour! Besoin d'aide? Discutons.",
     "supportTitle": "Support NAACUS",
     "needHelp": "Besoin d'aide?",
     "letsChat": "Discutons",
     "placeholder": "Tapez votre message…",
-    "botReply": "Merci! Un membre de l'équipe NAACUS vous contactera sous peu.",
     "openAssistant": "Open chat assistant"
   },
   "footer": {
-    "copyright": "© {{year}} NAACUS. Tous droits réservés.",
     "privacyPolicy": "Politique de Confidentialité",
     "cookieSettings": "Paramètres des Cookies",
     "tagline": "Ensemble avec le Christ - Unir les communautés catholiques africaines à travers les États-Unis.",
@@ -404,8 +367,7 @@
     "getInvolved": "Participez",
     "joinCommunity": "Rejoignez notre communauté de catholiques africains",
     "participatePrograms": "Participez à nos programmes",
-    "contactUs": "Contactez-Nous →",
-    "msIntegration": "Intégration Microsoft 365 Prête"
+    "contactUs": "Contactez-Nous →"
   },
   "objectives": {
     "title": "Nos Objectifs",
@@ -425,20 +387,15 @@
   "leadership": {
     "title": "Direction",
     "intro": "Nos leaders dédiés servent la communauté NAACUS avec engagement et passion, guidant notre mission d'unir les communautés catholiques africaines à travers les États-Unis.",
-    "executiveBoard": "Conseil d'Administration",
-    "spiritualAdvisers": "Conseillers Spirituels",
     "nationalExecutiveOfficers": "Membres du Bureau Exécutif National",
     "ministryCoordinations": "Coordination Ministériel/Commissions",
     "trainingProgramsTitle": "Programmes de Formation",
     "trainingProgramsIntro": "La direction a demande une section dediee aux programmes de formation. Les details officiels seront publies des reception.",
-    "trainingProgramsPendingTitle": "Details officiels en attente",
-    "trainingProgramsPendingText": "Veuillez revenir bientot pour consulter les themes confirms, le calendrier et les informations d'inscription.",
     "ctaTitle": "Diriger et Servir avec NAACUS",
     "ctaText": "Passez a l'etape suivante dans la foi et le service en rejoignant notre communaute nationale comme membre ou benevole.",
     "ctaPrimary": "Rejoindre comme Membre",
     "ctaSecondary": "Rejoindre comme Benevole",
     "nationalAdvisoryBoard": "Conseil Consultatif National",
-    "readMore": "En Savoir Plus",
     "close": "Fermer"
   },
   "ministries": {
@@ -523,8 +480,6 @@
     "bankSuccess": "Virement bancaire initié. Consultez votre e-mail pour les instructions de paiement.",
     "cryptoSuccess": "Frais de crypto-monnaie créés. Veuillez terminer la transaction sur la page de paiement.",
     "cashappSuccess": "Paiement Cash App initié. Merci pour votre don !",
-    "bankInfo": "Vous recevrez les instructions de paiement par e-mail",
-    "cryptoInfo": "Les frais de crypto-monnaie sont traités de manière sécurisée sur la blockchain",
     "paymentInstructions": "Vous recevrez les instructions de paiement par e-mail",
     "cryptoSecure": "Les frais de crypto-monnaie sont traités de manière sécurisée sur la blockchain",
     "bankSpeed": "📅 1-5 jours",
@@ -554,23 +509,17 @@
     "authenticationRequired": "You will be redirected to authenticate your payment securely"
   },
   "events": {
-    "title": "Nos Événements",
-    "subtitle": "Des rassemblements qui renforcent notre foi, célèbrent notre héritage et unissent notre communauté",
     "upcomingEvents": "Événements à Venir",
     "pastEvents": "Événements Passés",
     "moreUpcomingEvents": "Plus d'Événements à Venir",
     "registerNow": "S'Inscrire",
     "viewDetails": "Voir les Détails",
-    "registrationNotAvailable": "L'inscription n'est pas encore disponible. Veuillez nous contacter à info@naacus.org pour plus d'informations.",
     "expectedAttendees": "Participants Attendus",
     "highlights": "Points Forts",
-    "noUpcomingEvents": "Aucun événement à venir pour le moment. Veuillez revenir bientôt !",
     "noPastEvents": "Aucun événement passé à afficher.",
-    "date": "Date",
     "dates": "Dates",
     "location": "Lieu",
     "attendees": "Participants",
-    "description": "Description",
     "more": "plus",
     "whatToExpect": "À Quoi S'attendre",
     "registerForEvent": "S'inscrire à un Événement",
@@ -581,11 +530,9 @@
     "message": "Message",
     "cancel": "Annuler",
     "submitRegistration": "Soumettre l'Inscription",
-    "close": "Fermer",
     "submitAnother": "Soumettre une Autre Inscription",
     "success": {
       "title": "Succès!",
-      "registrationSubmitted": "Inscription soumise avec succès! Votre client de messagerie s'est ouvert pour envoyer l'inscription. Vous pouvez fermer ce dialogue ou soumettre une autre inscription.",
       "registrationStored": "Registration submitted successfully! We will follow up via email."
     },
     "errors": {
@@ -608,11 +555,9 @@
     "search": "Recherche",
     "placeholder": "Rechercher des pages, événements, ministères, ressources...",
     "startTyping": "Commencez à taper pour rechercher",
-    "noResults": "Aucun résultat trouvé pour",
     "resultsFound": "{{count}} résultats trouvés",
     "close": "Fermer",
     "tooltip": "Recherche (Cmd+K)",
-    "keyboard_shortcut": "Cmd+K ou /",
     "inputLabel": "Search pages, events, and ministries"
   },
   "faq": {
@@ -640,37 +585,22 @@
     "title": "Prières Catholiques Africaines",
     "subtitle": "Une bibliothèque grandissante de prières catholiques enregistrées dans les langues africaines par les communautés à travers les États-Unis. Célébrant notre patrimoine, unissant notre foi.",
     "stats": {
-      "prayers": "Vidéos de Prières",
-      "languages": "Langues",
-      "countries": "Pays",
-      "youthFeatured": "Jeunesse en Vedette",
       "videos": "vidéos"
     },
     "tabs": {
       "videos": "Toutes les Vidéos",
       "byPrayer": "Par Prière",
-      "byCountry": "Par Pays",
       "byLanguage": "Par Langue"
     },
     "openPrayer": "Ouvrir les détails de la prière pour {{title}}",
     "filters": {
       "prayer": "Filtrer par Prière",
-      "country": "Filtrer par Pays",
       "language": "Filtrer par Langue",
       "allPrayers": "Toutes les Prières",
-      "allCountries": "Tous les Pays",
       "allLanguages": "Toutes les Langues",
       "clear": "Effacer les Filtres"
     },
-    "prayers": {
-      "signOfCross": "Signe de la Croix",
-      "ourFather": "Notre Père",
-      "hailMary": "Je Vous Salue Marie",
-      "gloryBe": "Gloire au Père",
-      "apostlesCreed": "Credo des Apôtres",
-      "hailHolyQueen": "Salve Regina",
-      "memorare": "Memorare"
-    },
+    "prayers": {},
     "comingSoon": "Bientôt Disponible",
     "youthFeatured": "★ Jeunesse en Vedette",
     "noResults": "Aucune vidéo de prière ne correspond à vos filtres actuels. Essayez d'ajuster votre sélection.",
@@ -680,18 +610,11 @@
     "submit": {
       "title": "Soumettez Votre Prière",
       "description": "Nous invitons les individus, familles et groupes paroissiaux des communautés africaines à enregistrer et soumettre des prières catholiques dans leurs langues africaines maternelles. Votre contribution aide à préserver notre patrimoine linguistique et renforce notre foi commune.",
-      "guideline1": "Enregistrez l'une des 7 prières catholiques standard listées ci-dessus",
-      "guideline2": "Portez une tenue africaine pour célébrer notre patrimoine culturel",
-      "guideline3": "Priez dans votre langue africaine maternelle",
-      "guideline4": "Mettez en vedette les jeunes autant que possible pour inspirer la prochaine génération",
-      "guideline5": "Incluez la participation de votre paroisse et communauté ecclésiale",
       "button": "Soumettre une Vidéo de Prière",
       "dialogTitle": "Soumettre Votre Vidéo de Prière",
       "thankYou": "Merci !",
       "thankYouMessage": "Votre soumission a été reçue. Notre équipe média l'examinera et vous contactera bientôt.",
       "form": {
-        "fullName": "Nom Complet",
-        "email": "Adresse E-mail",
         "parish": "Paroisse / Église",
         "country": "Pays d'Origine",
         "language": "Langue de la Prière",

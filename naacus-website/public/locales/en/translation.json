@@ -17,8 +17,7 @@
     "title": "Get In Touch",
     "spiritualDirectorLabel": "Spiritual Director",
     "sendButton": "Send Message",
-    "description": "Have questions about NAACUS or our programs? Interested in joining our community? We'd love to hear from you!",
-    "required": "*"
+    "description": "Have questions about NAACUS or our programs? Interested in joining our community? We'd love to hear from you!"
   },
   "whoWeServe": {
     "title": "Who We Serve",
@@ -29,20 +28,15 @@
     "trainingProgramsIntro": "Leadership requested a dedicated training programs section. Official program details will be published once received.",
     "ctaSecondary": "Join as Volunteer",
     "ctaTitle": "Lead and Serve with NAACUS",
-    "trainingProgramsPendingTitle": "Official program details pending",
-    "readMore": "Read More",
     "intro": "Our dedicated leaders serve the NAACUS community with commitment and passion, guiding our mission to unite African Catholic communities across the United States.",
     "trainingProgramsTitle": "Training Programs",
     "ctaPrimary": "Join as Member",
     "nationalExecutiveOfficers": "National Executive Officers",
     "close": "Close",
-    "spiritualAdvisers": "Spiritual Advisers",
     "title": "Leadership",
     "ministryCoordinations": "Ministry/Committee Coordinations",
     "nationalAdvisoryBoard": "National Advisory Board",
-    "trainingProgramsPendingText": "Please check back soon for confirmed training topics, schedule, and registration details from leadership.",
-    "ctaText": "Take your next step in faith and service by joining our national community as a member or volunteer.",
-    "executiveBoard": "Executive Board"
+    "ctaText": "Take your next step in faith and service by joining our national community as a member or volunteer."
   },
   "feedback": {
     "title": "Send Us Your Feedback",
@@ -61,11 +55,9 @@
     "inputLabel": "Search pages, events, and ministries",
     "resultsFound": "Found {{count}} results",
     "placeholder": "Search pages, events, ministries, resources...",
-    "noResults": "No results found for",
     "close": "Close",
     "title": "Search",
-    "startTyping": "Start typing to search",
-    "keyboard_shortcut": "Cmd+K or /"
+    "startTyping": "Start typing to search"
   },
   "volunteer": {
     "interestTech": "Technology & Website",
@@ -168,13 +160,11 @@
       "naacus2025": "2025",
       "membership": "Membership",
       "events": "Events",
-      "objectives": "Objectives",
       "newsletters": "Newsletters",
       "getInvolved": "Get Involved",
       "ministries": "Ministries",
       "home": "Home"
     },
-    "searchPlaceholder": "Search",
     "donate": "Donate",
     "goHome": "Go to home page",
     "openNavigationMenu": "Open navigation menu"
@@ -225,8 +215,7 @@
     "learnMore": "Learn more about our",
     "privacyPolicy": "privacy policy",
     "accept": "Accept All",
-    "reject": "Reject",
-    "dismiss": "Dismiss"
+    "reject": "Reject"
   },
   "donation": {
     "processingTime": "1-5 business days",
@@ -244,7 +233,6 @@
     "bankTransfer": "Bank Transfer",
     "paymentMethod": "Payment Method",
     "customAmount": "Enter custom amount",
-    "bankInfo": "You will receive payment instructions via email",
     "fastSpeed": "⚡ Fast",
     "paymentInstructions": "You will receive payment instructions via email",
     "bankSpeed": "📅 1-5 days",
@@ -253,7 +241,6 @@
     "phone": "Phone Number",
     "cashapp": "Cash App",
     "applePay": "Apple Pay",
-    "cryptoInfo": "Cryptocurrency charges are processed securely on blockchain",
     "cashappUsernamePlaceholder": "username",
     "donate": "Donate Now",
     "googlePay": "Google Pay",
@@ -321,49 +308,28 @@
     "partners": {
       "title": "Partner Organizations",
       "description": "NAACUS collaborates with various Catholic organizations, dioceses, and ministries to support African Catholics throughout the United States.",
-      "organizations": {
-        "usccb": "United States Conference of Catholic Bishops",
-        "dioceses": "Local Diocesan Offices",
-        "african": "African and Haitian Catholic Ministries",
-        "national": "National Catholic Organizations",
-        "intercultural": "Intercultural Ministry Programs"
-      }
+      "organizations": {}
     }
   },
   "prayerLibrary": {
     "youthFeatured": "★ Youth Featured",
     "noSubmissionsYet": "No submissions yet — be the first to contribute!",
-    "prayers": {
-      "signOfCross": "Sign of the Cross",
-      "ourFather": "Our Father",
-      "hailMary": "Hail Mary",
-      "gloryBe": "Glory Be",
-      "apostlesCreed": "Apostles' Creed",
-      "hailHolyQueen": "Hail Holy Queen",
-      "memorare": "Memorare"
-    },
+    "prayers": {},
     "availableIn": "Available in {{count}} language(s)",
     "openPrayer": "Open prayer details for {{title}}",
     "noResults": "No prayer videos match your current filters. Try adjusting your selection.",
     "submit": {
-      "guideline1": "Record one of the 7 standard Catholic prayers listed above",
-      "guideline2": "Wear African attire to celebrate our cultural heritage",
-      "guideline3": "Pray in your native African language",
       "form": {
         "prayerType": "Prayer",
         "country": "Country of Origin",
         "descriptionPlaceholder": "Tell us about your prayer video (who is participating, any special context...)",
         "submit": "Submit",
         "language": "Language of Prayer",
-        "fullName": "Full Name",
         "cancel": "Cancel",
         "languagePlaceholder": "e.g., Ewondo, Yoruba, Swahili...",
-        "email": "Email Address",
         "description": "Brief Description",
         "parish": "Parish / Church"
       },
-      "guideline4": "Feature youth whenever possible to inspire the next generation",
-      "guideline5": "Include your parish and church community participation",
       "dialogTitle": "Submit Your Prayer Video",
       "thankYouMessage": "Your submission has been received. Our media team will review it and get back to you soon.",
       "button": "Submit a Prayer Video",
@@ -375,10 +341,8 @@
     "title": "African Catholic Prayers",
     "filters": {
       "prayer": "Filter by Prayer",
-      "country": "Filter by Country",
       "language": "Filter by Language",
       "allPrayers": "All Prayers",
-      "allCountries": "All Countries",
       "allLanguages": "All Languages",
       "clear": "Clear Filters"
     },
@@ -387,14 +351,9 @@
     "tabs": {
       "videos": "All Videos",
       "byPrayer": "By Prayer",
-      "byCountry": "By Country",
       "byLanguage": "By Language"
     },
     "stats": {
-      "prayers": "Prayer Videos",
-      "languages": "Languages",
-      "countries": "Countries",
-      "youthFeatured": "Youth Featured",
       "videos": "videos"
     }
   },
@@ -454,19 +413,15 @@
   },
   "membership": {
     "organizationPlaceholder": "Enter organization name",
-    "membershipTypeSenior": "Senior Membership",
     "whyJoinPlaceholder": "Share what motivates you to become a member...",
     "lastName": "Last Name",
     "ministryCultural": "Cultural Events",
     "skills": "Skills & Expertise",
     "communicationPreferences": "Communication Preferences",
-    "individualPlan": "Individual Membership",
     "commPhone": "Phone",
     "commMail": "Mail",
     "ministryLeadership": "Leadership & Governance",
     "successMessage": "Thank you for joining the National Association of African Catholics in the United States. We've received your membership application and will be in touch within 2-3 business days to complete your registration. Check your email for confirmation and next steps.",
-    "groupLargePlan": "Group Membership (100+)",
-    "selectPlan": "Select Membership Plan",
     "ministryMusic": "Music & Liturgy",
     "relationshipOptions": {
       "spouse": "Spouse",
@@ -482,7 +437,6 @@
     "paymentMethod": "Payment Method",
     "parishName": "Parish Name",
     "ministryEducation": "Education & Catechesis",
-    "membershipTypeIndividual": "Individual Membership",
     "ministryMarriage": "Marriage & Family Life",
     "community": "Community / African Catholic Group",
     "ministryInterests": "Ministry Interests (Select all that apply)",
@@ -492,8 +446,6 @@
     "parishInfo": "Parish Information",
     "contactName": "Contact Name",
     "paymentInstructions": "You are registered as",
-    "membershipTypeStudent": "Student Membership",
-    "paymentManual": "Manual Payment",
     "membershipDetails": "Membership Details",
     "errorLabel": "Error: ",
     "zipCode": "Zip Code",
@@ -503,26 +455,20 @@
     "returnHome": "Return to Home",
     "ministryCommunityOutreach": "Community Outreach",
     "membershipType": "Membership Type",
-    "membershipSummary": "Membership Summary",
     "commEmail": "Email",
     "state": "State",
-    "groupSmallPlan": "Group Membership (2-100)",
     "streetAddress": "Street Address",
     "skillsPlaceholder": "Share any skills, talents, or expertise you bring to the community...",
     "whyJoin": "Why do you want to join NAACUS?",
-    "parishCount": "parishes found",
-    "parishSearchHelper": "Enter your zip code to find parishes near you",
     "countryOfOrigin": "Country of Origin",
     "ministrySocialJustice": "Social Justice",
     "ministryYouth": "Youth Ministry",
-    "membershipTypeFamily": "Family Membership",
     "address": "Address",
     "successTitle": "Welcome to the NAACUS Family!",
     "additionalInfo": "Additional Information",
     "memberCount": "Number of Members",
     "country": "Country",
     "subtitle": "Become part of a vibrant community dedicated to strengthening the African Catholic presence in the United States. Fill out the form below to begin your membership journey.",
-    "amount": "Amount",
     "backgroundExperience": "Background & Experience",
     "proceedPayment": "Complete Your Payment",
     "relationship": "Relationship",
@@ -530,15 +476,12 @@
     "selectParish": "Select a Parish",
     "commText": "Text Message",
     "yearsInUS": "Years in United States (Optional)",
-    "paymentOnline": "Pay Online with Credit/Debit Card",
-    "searching": "Searching parishes...",
     "dateOfBirth": "Date of Birth",
     "selectParishPlaceholder": "Choose a parish from the list...",
     "firstName": "First Name",
     "email": "Email",
     "emergencyPhone": "Emergency Phone",
     "diocese": "(Arch)Diocese",
-    "enteredParishData": "Selected Parish Information",
     "organizationName": "Organization Name",
     "memberCountPlaceholder": "Enter number of members",
     "hearAbout": "How did you hear about NAACUS?",
@@ -555,12 +498,10 @@
     "required": "*"
   },
   "chat": {
-    "greeting": "Hi there! Need help? Let's chat.",
     "supportTitle": "NAACUS Support",
     "needHelp": "Need help?",
     "letsChat": "Let's chat",
     "placeholder": "Type your message…",
-    "botReply": "Thanks! A NAACUS team member will contact you shortly.",
     "openAssistant": "Open chat assistant"
   },
   "newsletter": {
@@ -582,7 +523,6 @@
     "expectedAttendees": "Expected Attendees",
     "success": {
       "title": "Success!",
-      "registrationSubmitted": "Registration submitted successfully! Your email client has opened to send the registration. You may close this dialog or submit another registration.",
       "registrationStored": "Registration submitted successfully! We will follow up via email."
     },
     "dates": "Dates",
@@ -602,28 +542,21 @@
     "pastEvents": "Past Events",
     "noPastEvents": "No past events to display.",
     "phone": "Phone",
-    "date": "Date",
-    "registrationNotAvailable": "Registration is not yet available. Please contact us at info@naacus.org for more information.",
     "submitRegistration": "Submit Registration",
     "registerNow": "Register Now",
     "registerForEvent": "Register for Event",
     "upcomingEvents": "Upcoming Events",
     "more": "more",
     "location": "Location",
-    "noUpcomingEvents": "No upcoming events at this time. Please check back soon!",
     "warnings": {
       "title": "Warning"
     },
-    "subtitle": "Gatherings that strengthen our faith, celebrate our heritage, and unite our community",
     "whatToExpect": "What to Expect",
-    "close": "Close",
-    "title": "Our Events",
     "attendees": "Attendees",
     "closeRegistrationDialog": "Close registration dialog",
     "cancel": "Cancel",
     "firstName": "First Name",
     "email": "Email",
-    "description": "Description",
     "viewDetails": "View Details",
     "highlights": "Highlights"
   },
@@ -642,14 +575,10 @@
   },
   "hero": {
     "membershipTeaser": "🌟 Join thousands of African Catholics building a stronger community",
-    "scrollDown": "Scroll Down",
-    "becomeMemberButton": "Subscribe to Newsletter",
     "subtitle": "Uniting African Catholic Communities Across the United States",
     "title": "Together with Christ",
     "benefit1": "Connect with fellow members",
-    "discoverButton": "Learn More",
     "benefit2": "Access exclusive events",
-    "joinButton": "Join Our Community",
     "benefit3": "Grow in faith together"
   },
   "footer": {
@@ -659,11 +588,9 @@
     "leadership": "Leadership",
     "eventsActivities": "Events & Activities",
     "cookieSettings": "Cookie Settings",
-    "copyright": "© {{year}} NAACUS. All rights reserved.",
     "quickLinks": "Quick Links",
     "participatePrograms": "Participate in our programs",
     "about": "About",
-    "msIntegration": "Microsoft 365 Integration Ready",
     "nationalConference": "National Conference",
     "tagline": "Together with Christ - Uniting African Catholic communities across the United States.",
     "prayerLibrary": "Prayer Library",
@@ -687,12 +614,8 @@
     "ctaTitle": "Get Involved",
     "ctaText": "Join us in building a better church community. Your talents and expertise are needed in various ministries and committees. Together, we can make a meaningful impact in advancing the mission of NAACUS and serving African Catholics in the United States."
   },
-  "joinNowButton": {
-    "text": "Subscribe"
-  },
   "conference2027": {
     "targetValue": "NAACUS & ACCCRUS",
-    "highlightText": "One Faith. One Family. One Mission.",
     "ctaButton": "Subscribe for Updates",
     "flyerFallback": "Save-the-date flyer image will appear here once uploaded.",
     "targetLabel": "Partners",
@@ -700,11 +623,8 @@
     "scheduleLine2": "July 29-August 1, 2027 | National Convention by NAACUS and ACCCRUS",
     "flyerAlt": "NAACUS and ACCCRUS Convention 2027 save the date flyer",
     "whereValue": "Baltimore, Maryland",
-    "whereLabel": "Where",
     "contactLine": "More details: baltimore2027@naacus.org",
     "whenValue": "July 27-August 1, 2027",
-    "subtitle": "Baltimore, Maryland | 2027",
-    "title": "Save the Date: NAACUS & ACCCRUS National Convention",
-    "whenLabel": "When"
+    "title": "Save the Date: NAACUS & ACCCRUS National Convention"
   }
 }
