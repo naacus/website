@@ -45,18 +45,52 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # Create environment file with test secrets for PR/dev builds
+      # Create environment file with Stripe values for PR/dev builds
       - name: Create environment file
         run: |
-          cat > .env << EOF
-          REACT_APP_STRIPE_PUBLIC_KEY=${{ secrets.STRIPE_PUBLIC_KEY_TEST || 'pk_test_' }}
-          REACT_APP_STRIPE_BUY_BUTTON_ID=${{ secrets.STRIPE_BUY_BUTTON_ID_TEST || 'buy_btn_' }}
-          REACT_APP_PAYPAL_CLIENT_ID=${{ secrets.PAYPAL_CLIENT_ID_TEST || '' }}
+          cat > .env << EOF2
+          REACT_APP_STRIPE_PUBLIC_KEY=${{ secrets.STRIPE_PUBLIC_KEY || 'pk_test_' }}
+          REACT_APP_STRIPE_BUY_BUTTON_ID=${{ secrets.STRIPE_BUY_BUTTON_ID || 'buy_btn_' }}
+          REACT_APP_PAYPAL_CLIENT_ID=disabled
           REACT_APP_PAYPAL_ENV=sandbox
           REACT_APP_API_BASE_URL=${{ secrets.API_BASE_URL_TEST || 'http://localhost:5001' }}
           REACT_APP_DEBUG_PAYMENTS=true
           CI=true
-          EOF
+          EOF2
+
+      - name: Validate Stripe env values
+        run: |
+          set -e
+
+          STRIPE_KEY=$(grep '^REACT_APP_STRIPE_PUBLIC_KEY=' .env | cut -d= -f2-)
+          BUTTON_ID=$(grep '^REACT_APP_STRIPE_BUY_BUTTON_ID=' .env | cut -d= -f2-)
+
+          if [ -z "$STRIPE_KEY" ] || [ -z "$BUTTON_ID" ]; then
+            echo "Stripe env values are empty"
+            exit 1
+          fi
+
+          if printf '%s' "$STRIPE_KEY" | grep -Eiq 'your_|placeholder|example'; then
+            echo "Stripe public key is placeholder"
+            exit 1
+          fi
+
+          if printf '%s' "$BUTTON_ID" | grep -Eiq 'your_|placeholder|example'; then
+            echo "Stripe buy button id is placeholder"
+            exit 1
+          fi
+
+          if ! printf '%s' "$STRIPE_KEY" | grep -Eq '^pk_(test|live)_'; then
+            echo "Stripe public key format invalid"
+            exit 1
+          fi
+
+          if ! printf '%s' "$BUTTON_ID" | grep -Eq '^buy_btn_'; then
+            echo "Stripe buy button id format invalid"
+            exit 1
+          fi
+
+          echo "Stripe env validation passed"
 
       - name: Build app
         run: npm run build
@@ -92,7 +126,6 @@ jobs:
           path: ./naacus-website/build/
           retention-days: 1
 
-
   build_and_deploy_job:
     if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
     runs-on: ubuntu-latest
@@ -123,4 +156,3 @@ jobs:
           app_location: "./naacus-website"
           api_location: ""
           output_location: "build"
-
