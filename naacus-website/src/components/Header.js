@@ -336,7 +336,6 @@ function Header() {
   const [resourcesMenuOpen, setResourcesMenuOpen] = useState(false);
 
   const currentLanguage = i18n.resolvedLanguage || i18n.language || 'en';
-  const isFrench = currentLanguage.split('-')[0] === 'fr';
   const pageIntent = getPageIntent(location.pathname, currentLanguage);
   const aiNextStepLabel = pageIntent?.nextStepLabel || '';
   const aiNextStepPath = pageIntent?.nextStepPath || '';
