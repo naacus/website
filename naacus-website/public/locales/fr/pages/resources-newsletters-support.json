@@ -25,9 +25,9 @@
     "searchPlaceholder": "Rechercher dans les FAQ...",
     "noResults": "Aucune FAQ trouvée correspondant à votre recherche",
     "clearFilters": "Effacer les filtres",
-    "searchInputLabel": "Search frequently asked questions",
-    "clearSearch": "Clear FAQ search",
-    "filterByCategory": "Filter by Category"
+    "searchInputLabel": "Rechercher dans les questions fréquentes",
+    "clearSearch": "Effacer la recherche dans la FAQ",
+    "filterByCategory": "Filtrer par catégorie"
   },
   "feedback": {
     "title": "Envoyez-nous Vos Commentaires",
