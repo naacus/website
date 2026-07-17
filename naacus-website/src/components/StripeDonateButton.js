@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { makeStyles, Button, Text } from '@fluentui/react-components';
 import { DismissRegular } from '@fluentui/react-icons';
+import { paymentConfig } from '../config/paymentConfig';
 
 const useStyles = makeStyles({
   container: {
@@ -43,23 +44,20 @@ const StripeDonateButton = () => {
   const [error, setError] = useState(null);
 
   const isPlaceholder = (value) => /your_|placeholder|example/i.test(value || '');
+  const publishableKey = paymentConfig.stripe.publishableKey;
+  const buyButtonId = paymentConfig.stripe.buyButtonId;
+  const hasStripeConfig =
+    !!publishableKey &&
+    !!buyButtonId &&
+    !isPlaceholder(publishableKey) &&
+    !isPlaceholder(buyButtonId) &&
+    /^pk_(test|live)_.+/.test(publishableKey) &&
+    /^buy_btn_.+/.test(buyButtonId);
 
   useEffect(() => {
     if (scriptLoaded.current) return;
 
-    const publishableKey = process.env.REACT_APP_STRIPE_PUBLIC_KEY;
-    const buyButtonId = process.env.REACT_APP_STRIPE_BUY_BUTTON_ID;
-
-    // Validate environment variables before loading Stripe script
-    if (!publishableKey || isPlaceholder(publishableKey) || !/^pk_(test|live)_.+/.test(publishableKey)) {
-      setError('Stripe public key not configured');
-      console.error('StripeDonateButton: REACT_APP_STRIPE_PUBLIC_KEY is missing or not configured');
-      return;
-    }
-
-    if (!buyButtonId || isPlaceholder(buyButtonId) || !/^buy_btn_.+/.test(buyButtonId)) {
-      setError('Stripe buy button not configured');
-      console.error('StripeDonateButton: REACT_APP_STRIPE_BUY_BUTTON_ID is missing or not configured');
+    if (!hasStripeConfig) {
       return;
     }
 
@@ -120,6 +118,18 @@ const StripeDonateButton = () => {
           Donate via Web Link
         </Button>
       </div>
+    );
+  }
+
+  if (!hasStripeConfig) {
+    return (
+      <Button
+        appearance="primary"
+        className={styles.fallbackButton}
+        onClick={() => window.open('https://donate.naacus.org', '_blank')}
+      >
+        Donate via Web Link
+      </Button>
     );
   }
 

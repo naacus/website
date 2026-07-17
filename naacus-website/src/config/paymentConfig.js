@@ -7,6 +7,7 @@ export const paymentConfig = {
   // Stripe Configuration
   stripe: {
     publishableKey: process.env.REACT_APP_STRIPE_PUBLIC_KEY || 'pk_test_example',
+    buyButtonId: process.env.REACT_APP_STRIPE_BUY_BUTTON_ID || 'buy_btn_example',
     apiVersion: '2023-10-16',
     locale: 'en',
     features: {
