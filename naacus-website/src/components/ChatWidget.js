@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
@@ -221,11 +221,11 @@ function ChatWidget() {
   const currentLanguage = i18n.resolvedLanguage || i18n.language || 'en';
   const pageIntent = getPageIntent(location.pathname, currentLanguage);
 
-  const getMessageContext = () => ({
+  const messageContext = useMemo(() => ({
     pathname: location.pathname,
     language: currentLanguage,
     pageIntent,
-  });
+  }), [location.pathname, currentLanguage, pageIntent]);
 
   // Initialize Copilot Studio when component mounts
   useEffect(() => {
@@ -236,12 +236,12 @@ function ChatWidget() {
   useEffect(() => {
     if (open && messages.length === 0) {
       const initializeChat = async () => {
-        const greeting = await processMessage('hi', getMessageContext());
+        const greeting = await processMessage('hi', messageContext);
         setMessages([{ from: 'bot', text: greeting.text, quickActions: greeting.quickActions }]);
       };
       initializeChat();
     }
-  }, [open, messages.length, location.pathname, currentLanguage]);
+  }, [open, messages.length, messageContext]);
 
   useEffect(() => {
     if (listRef.current) {
@@ -254,7 +254,7 @@ function ChatWidget() {
     
     // Simulate typing delay for natural feel
     setTimeout(async () => {
-      const response = await processMessage(userMessage, getMessageContext());
+      const response = await processMessage(userMessage, messageContext);
       
       // Log the conversation
       logConversation(userMessage, response, 'web');

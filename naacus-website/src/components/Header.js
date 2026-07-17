@@ -336,10 +336,12 @@ function Header() {
   const [resourcesMenuOpen, setResourcesMenuOpen] = useState(false);
 
   const currentLanguage = i18n.resolvedLanguage || i18n.language || 'en';
+  const isFrench = currentLanguage.split('-')[0] === 'fr';
   const pageIntent = getPageIntent(location.pathname, currentLanguage);
   const aiNextStepLabel = pageIntent?.nextStepLabel || '';
   const aiNextStepPath = pageIntent?.nextStepPath || '';
   const showAiGuideAction = Boolean(aiNextStepPath) && aiNextStepPath !== location.pathname;
+  const nextStepPrefix = isFrench ? 'Etape Suivante' : 'Next Step';
 
   const handleNavigationHelper = (path, sectionId, label = '') => {
     if (label) {
@@ -527,9 +529,9 @@ function Header() {
             <button
               onClick={handleAINextStepClick}
               className={styles.aiGuideButton}
-              aria-label={`Recommended next step ${aiNextStepLabel}`}
+              aria-label={`${nextStepPrefix} ${aiNextStepLabel}`}
             >
-              Next Step: {aiNextStepLabel}
+              {nextStepPrefix}: {aiNextStepLabel}
             </button>
           )}
           <div className={styles.languageSwitcher}>
@@ -557,7 +559,7 @@ function Header() {
                 <MenuItem onClick={() => handleNavigationHelper(null, 'home', 'mobile_home')}>{t('header.nav.home')}</MenuItem>
                 {showAiGuideAction && (
                   <MenuItem onClick={() => handleNavigationHelper(aiNextStepPath, null, `mobile_ai_next_${aiNextStepPath}`)}>
-                    Next Step: {aiNextStepLabel}
+                    {nextStepPrefix}: {aiNextStepLabel}
                   </MenuItem>
                 )}
                 <MenuItem className={isActivePathHelper('/2025') ? styles.mobileMenuItemActive : undefined} onClick={() => handleNavigationHelper('/2025', null, 'mobile_naacus_2025')}>{t('header.nav.naacus2025')}</MenuItem>
