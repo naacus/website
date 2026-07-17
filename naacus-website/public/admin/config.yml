@@ -2219,6 +2219,9 @@ collections:
         - label: Title
           name: title
           widget: string
+        - label: Tagline
+          name: tagline
+          widget: string
         - label: Nav
           name: nav
           widget: object
