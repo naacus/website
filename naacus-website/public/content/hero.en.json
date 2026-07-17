@@ -1,12 +1,12 @@
 {
-  "title": "Together with Christ",
-  "subtitle": "Uniting African Catholic Communities Across the United States",
+  "viewCalendar": "View Our Calendar",
   "membershipTeaser": "Join thousands of African Catholics building a stronger community",
+  "learnMission": "Learn Our Mission",
+  "subtitle": "Uniting African Catholic Communities Across the United States",
+  "title": "Together with Christ",
   "benefit1": "Connect with fellow members",
   "benefit2": "Access exclusive events",
   "benefit3": "Grow in faith together",
-  "joinCommunity": "Join Our Faith Community",
-  "learnMission": "Learn Our Mission",
-  "viewCalendar": "View Calendar",
-  "getInvolved": "Get Involved"
+  "getInvolved": "Get Involved",
+  "joinCommunity": "Join Our Faith Community"
 }
