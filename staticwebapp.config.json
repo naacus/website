@@ -2,7 +2,7 @@
   "routes": [
     {
       "route": "/admin",
-      "redirect": "/admin/",
+      "redirect": "/admin/index.html",
       "statusCode": 301
     },
     {
