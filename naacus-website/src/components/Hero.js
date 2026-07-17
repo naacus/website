@@ -282,7 +282,7 @@ const useStyles = makeStyles({
 });
 
 function Hero() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const styles = useStyles();
   const navigate = useNavigate();
   const { trackMembershipCTA, trackEventCTA, trackScroll } = useAnalytics();
@@ -296,9 +296,6 @@ function Hero() {
   ];
 
   const [heroImages, setHeroImages] = useState(defaultHeroImages);
-  const [heroText, setHeroText] = useState(null);
-
-  const normalizedLanguage = (i18n.resolvedLanguage || i18n.language || 'en').split('-')[0];
 
   useEffect(() => {
     let isMounted = true;
@@ -348,37 +345,6 @@ function Hero() {
   }, []);
 
   useEffect(() => {
-    let isMounted = true;
-
-    const loadHeroText = async () => {
-      try {
-        const response = await fetch(`/content/hero.${normalizedLanguage}.json`, { cache: 'no-store' });
-        if (!response.ok) {
-          if (isMounted) {
-            setHeroText(null);
-          }
-          return;
-        }
-
-        const payload = await response.json();
-        if (isMounted && payload && typeof payload === 'object') {
-          setHeroText(payload);
-        }
-      } catch (error) {
-        if (isMounted) {
-          setHeroText(null);
-        }
-      }
-    };
-
-    loadHeroText();
-
-    return () => {
-      isMounted = false;
-    };
-  }, [normalizedLanguage]);
-
-  useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % heroImages.length);
     }, 10000); // Change image every 8 seconds
@@ -422,24 +388,24 @@ function Hero() {
         ))}
       </div>
       <div className={styles.heroContent}>
-        <Text as="h1" className={styles.heroTitle}>{heroText?.title || t('hero.title')}</Text>
+        <Text as="h1" className={styles.heroTitle}>{t('hero.title')}</Text>
         <Text as="p" className={styles.heroSubtitle}>
-          {heroText?.subtitle || t('hero.subtitle')}
+          {t('hero.subtitle')}
         </Text>
         <div className={styles.membershipHighlight}>
           <Text className={styles.membershipText}>
             <span className={styles.emojiDecorator} aria-hidden="true">✨</span>{' '}
-            {heroText?.membershipTeaser || t('hero.membershipTeaser')}
+            {t('hero.membershipTeaser')}
           </Text>
           <div className={styles.benefitsList}>
             <span className={styles.benefitItem}>
-              <span className={styles.benefitCheckmark} aria-hidden="true">✓</span> {heroText?.benefit1 || t('hero.benefit1')}
+              <span className={styles.benefitCheckmark} aria-hidden="true">✓</span> {t('hero.benefit1')}
             </span>
             <span className={styles.benefitItem}>
-              <span className={styles.benefitCheckmark} aria-hidden="true">✓</span> {heroText?.benefit2 || t('hero.benefit2')}
+              <span className={styles.benefitCheckmark} aria-hidden="true">✓</span> {t('hero.benefit2')}
             </span>
             <span className={styles.benefitItem}>
-              <span className={styles.benefitCheckmark} aria-hidden="true">✓</span> {heroText?.benefit3 || t('hero.benefit3')}
+              <span className={styles.benefitCheckmark} aria-hidden="true">✓</span> {t('hero.benefit3')}
             </span>
           </div>
         </div>
@@ -450,22 +416,22 @@ function Hero() {
               onClick={handleJoinClick}
               className={styles.primaryButton}
             >
-              <span className={styles.buttonEmoji} aria-hidden="true">✝</span> {heroText?.joinCommunity || t('heroButtons.joinCommunity')}
+              <span className={styles.buttonEmoji} aria-hidden="true">✝</span> {t('heroButtons.joinCommunity')}
             </button>
           </div>
 
           {/* Subtle secondary links — no competing buttons */}
           <div className={styles.secondaryLinks}>
             <button onClick={handleLearnMissionClick} className={styles.ghostLink}>
-              {heroText?.learnMission || t('heroButtons.learnMission')}
+              {t('heroButtons.learnMission')}
             </button>
             <span className={styles.linkDivider}>·</span>
             <button onClick={handleViewCalendarClick} className={styles.ghostLink}>
-              {heroText?.viewCalendar || t('heroButtons.viewCalendar')}
+              {t('heroButtons.viewCalendar')}
             </button>
             <span className={styles.linkDivider}>·</span>
             <button onClick={handleGetInvolvedClick} className={styles.ghostLink}>
-              {heroText?.getInvolved || t('heroButtons.getInvolved')}
+              {t('heroButtons.getInvolved')}
             </button>
           </div>
         </div>

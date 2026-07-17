@@ -39,11 +39,11 @@
     "nationalExecutiveOfficers": "Membres du Bureau Exécutif National",
     "ministryCoordinations": "Coordination Ministériel/Commissions",
     "trainingProgramsTitle": "Programmes de Formation",
-    "trainingProgramsIntro": "La direction a demande une section dediee aux programmes de formation. Les details officiels seront publies des reception.",
+    "trainingProgramsIntro": "La direction a demandé une section dédiée aux programmes de formation. Les détails officiels seront publiés dès réception.",
     "ctaTitle": "Diriger et Servir avec NAACUS",
-    "ctaText": "Passez a l'etape suivante dans la foi et le service en rejoignant notre communaute nationale comme membre ou benevole.",
+    "ctaText": "Passez à l'étape suivante dans la foi et le service en rejoignant notre communauté nationale comme membre ou bénévole.",
     "ctaPrimary": "Rejoindre comme Membre",
-    "ctaSecondary": "Rejoindre comme Benevole",
+    "ctaSecondary": "Rejoindre comme Bénévole",
     "nationalAdvisoryBoard": "Conseil Consultatif National",
     "close": "Fermer"
   },
@@ -560,9 +560,9 @@
     "searchPlaceholder": "Rechercher dans les FAQ...",
     "noResults": "Aucune FAQ trouvée correspondant à votre recherche",
     "clearFilters": "Effacer les filtres",
-    "searchInputLabel": "Search frequently asked questions",
-    "clearSearch": "Clear FAQ search",
-    "filterByCategory": "Filter by Category"
+    "searchInputLabel": "Rechercher dans les questions fréquentes",
+    "clearSearch": "Effacer la recherche dans la FAQ",
+    "filterByCategory": "Filtrer par catégorie"
   },
   "feedback": {
     "title": "Envoyez-nous Vos Commentaires",
