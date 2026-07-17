@@ -29,7 +29,9 @@
       "prayers": "Prières"
     },
     "searchPlaceholder": "Recherche",
-    "donate": "Donner"
+    "donate": "Donner",
+    "goHome": "Go to home page",
+    "openNavigationMenu": "Open navigation menu"
   },
   "hero": {
     "title": "Ensemble avec le Christ",
@@ -72,15 +74,18 @@
     },
     "community": {
       "title": "Communauté Dynamique",
-      "description": "Connectez-vous avec des milliers de familles et d'individus catholiques africains qui partagent votre foi et votre héritage."
+      "description": "Connectez-vous avec des milliers de familles et d'individus catholiques africains qui partagent votre foi et votre héritage.",
+      "youtubeCta": "Visit YouTube Channel"
     },
     "events": {
       "title": "Événements Exclusifs",
-      "description": "Accès aux conférences nationales, ateliers, célébrations culturelles et retraites spirituelles tout au long de l'année."
+      "description": "Accès aux conférences nationales, ateliers, célébrations culturelles et retraites spirituelles tout au long de l'année.",
+      "cta": "View Calendar"
     },
     "resources": {
       "title": "Ressources et Liens",
-      "description": "Accédez aux matériels éducatifs, ressources de prière et liens pour soutenir votre parcours spirituel et votre vie de famille."
+      "description": "Accédez aux matériels éducatifs, ressources de prière et liens pour soutenir votre parcours spirituel et votre vie de famille.",
+      "linksTitle": "Quick Links and Contacts"
     },
     "spiritual": {
       "title": "Croissance Spirituelle",
@@ -375,7 +380,8 @@
     "needHelp": "Besoin d'aide?",
     "letsChat": "Discutons",
     "placeholder": "Tapez votre message…",
-    "botReply": "Merci! Un membre de l'équipe NAACUS vous contactera sous peu."
+    "botReply": "Merci! Un membre de l'équipe NAACUS vous contactera sous peu.",
+    "openAssistant": "Open chat assistant"
   },
   "footer": {
     "copyright": "© {{year}} NAACUS. Tous droits réservés.",
@@ -475,7 +481,10 @@
     "contentToBeProvided": "Le contenu et le résumé seront fournis",
     "ctaTitle": "Rejoignez-nous pour NAACUS 2027 !",
     "ctaDescription": "Inspiré par le succès de NAACUS 2025 ? Faites partie du prochain chapitre à NAACUS 2027. Restez à jour avec les dernières nouvelles et détails de la conférence.",
-    "ctaButton": "S'abonner aux Mises à Jour NAACUS 2027"
+    "ctaButton": "S'abonner aux Mises à Jour NAACUS 2027",
+    "galleryTitle": "📸 Conference Photo Gallery",
+    "galleryDescription": "Relive the moments! Browse the official NAACUS 2025 Conference photos captured by our photographer.",
+    "galleryButton": "View Photo Gallery"
   },
   "newsletters": {
     "title": "Restez Informé avec NAACUS",
@@ -522,7 +531,27 @@
     "cryptoSpeed": "⛓️ Blockchain",
     "fastSpeed": "⚡ Rapide",
     "paymentMethodUnknown": "Méthode de paiement sélectionnée",
-    "paymentProcessingFailed": "Le traitement du paiement {{paymentMethod}} a échoué. Veuillez vérifier vos informations et réessayer."
+    "paymentProcessingFailed": "Le traitement du paiement {{paymentMethod}} a échoué. Veuillez vérifier vos informations et réessayer.",
+    "cardFee": "2-3% processing fee",
+    "applePayFee": "Fee depends on payment method",
+    "googlePayFee": "Fee depends on payment method",
+    "paypalFee": "2.2% + $0.30 fee",
+    "cryptoFee": "Network fees apply",
+    "cardNumber": "Card Number",
+    "cardNumberPlaceholder": "1234 5678 9012 3456",
+    "expiry": "Expiry",
+    "cvv": "CVV",
+    "accountHolder": "Account Holder Name",
+    "accountNumber": "Account Number",
+    "routingNumber": "Routing Number",
+    "walletAddress": "Wallet Address",
+    "walletAddressPlaceholder": "Enter your Bitcoin/Crypto wallet address",
+    "cashappUsername": "Cash App Username",
+    "cashappUsernamePlaceholder": "username",
+    "demoDisclaimer": "Demo only: please do not enter real payment information.",
+    "close": "Close",
+    "feeWarning": "may apply a fee",
+    "authenticationRequired": "You will be redirected to authenticate your payment securely"
   },
   "events": {
     "title": "Nos Événements",
@@ -556,7 +585,8 @@
     "submitAnother": "Soumettre une Autre Inscription",
     "success": {
       "title": "Succès!",
-      "registrationSubmitted": "Inscription soumise avec succès! Votre client de messagerie s'est ouvert pour envoyer l'inscription. Vous pouvez fermer ce dialogue ou soumettre une autre inscription."
+      "registrationSubmitted": "Inscription soumise avec succès! Votre client de messagerie s'est ouvert pour envoyer l'inscription. Vous pouvez fermer ce dialogue ou soumettre une autre inscription.",
+      "registrationStored": "Registration submitted successfully! We will follow up via email."
     },
     "errors": {
       "title": "Erreur",
@@ -569,7 +599,9 @@
     },
     "warnings": {
       "title": "Avertissement"
-    }
+    },
+    "closeRegistrationDialog": "Close registration dialog",
+    "submitting": "Submitting..."
   },
   "search": {
     "title": "Recherche",
@@ -580,19 +612,25 @@
     "resultsFound": "{{count}} résultats trouvés",
     "close": "Fermer",
     "tooltip": "Recherche (Cmd+K)",
-    "keyboard_shortcut": "Cmd+K ou /"
+    "keyboard_shortcut": "Cmd+K ou /",
+    "inputLabel": "Search pages, events, and ministries"
   },
   "faq": {
     "title": "Questions Fréquemment Posées",
     "subtitle": "Trouvez les réponses aux questions courantes sur NAACUS, l'adhésion, les événements, et plus",
     "searchPlaceholder": "Rechercher dans les FAQ...",
     "noResults": "Aucune FAQ trouvée correspondant à votre recherche",
-    "clearFilters": "Effacer les filtres"
-  },  "feedback": {
+    "clearFilters": "Effacer les filtres",
+    "searchInputLabel": "Search frequently asked questions",
+    "clearSearch": "Clear FAQ search",
+    "filterByCategory": "Filter by Category"
+  },
+  "feedback": {
     "title": "Envoyez-nous Vos Commentaires",
     "subtitle": "Nous apprécions votre opinion et aimerions entendre vos suggestions pour améliorer notre site Web et nos services. Veuillez partager vos commentaires ci-dessous.",
     "description": "Formulaire de commentaires du site Web"
-  },  "notFound": {
+  },
+  "notFound": {
     "title": "Page Non Trouvée",
     "description": "Désolé, la page que vous recherchez n'existe pas ou a été déplacée. Veuillez vérifier l'URL et réessayer.",
     "goHome": "Aller à l'Accueil",
@@ -611,7 +649,8 @@
     "tabs": {
       "videos": "Toutes les Vidéos",
       "byPrayer": "Par Prière",
-      "byCountry": "Par Pays"
+      "byCountry": "Par Pays",
+      "byLanguage": "By Language"
     },
     "filters": {
       "prayer": "Filtrer par Prière",
@@ -663,6 +702,6 @@
         "submit": "Soumettre"
       }
     }
-  }
+  },
+  "feedback_form": "start"
 }
-

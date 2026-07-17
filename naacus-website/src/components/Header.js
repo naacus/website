@@ -326,7 +326,7 @@ function Header() {
             type="button"
             className={styles.logo}
             onClick={() => handleNavigationHelper(null, 'home', 'logo_home')}
-            aria-label={t('header.goHome', 'Go to home page')}
+            aria-label={t('header.goHome')}
           >
             <img
               src="/images/naacus-logo.png"
@@ -340,7 +340,7 @@ function Header() {
               onClick={() => handleNavigationHelper('/2025', null, 'naacus_2025')}
               className={`${styles.navLink} ${isActivePathHelper('/2025') ? styles.navLinkActive : ''}`}
             >
-              {t('header.nav.naacus2025', 'NAACUS 2025')}
+              {t('header.nav.naacus2025')}
             </button>
 
             {/* About ▾ */}
@@ -493,13 +493,13 @@ function Header() {
                 appearance="subtle"
                 icon={<Navigation24Regular />}
                 className={styles.mobileMenuButton}
-                aria-label={t('header.openNavigationMenu', 'Open navigation menu')}
+                aria-label={t('header.openNavigationMenu')}
               />
             </MenuTrigger>
             <MenuPopover>
               <MenuList>
                 <MenuItem onClick={() => handleNavigationHelper(null, 'home', 'mobile_home')}>{t('header.nav.home')}</MenuItem>
-                <MenuItem className={isActivePathHelper('/2025') ? styles.mobileMenuItemActive : undefined} onClick={() => handleNavigationHelper('/2025', null, 'mobile_naacus_2025')}>{t('header.nav.naacus2025', 'NAACUS 2025')}</MenuItem>
+                <MenuItem className={isActivePathHelper('/2025') ? styles.mobileMenuItemActive : undefined} onClick={() => handleNavigationHelper('/2025', null, 'mobile_naacus_2025')}>{t('header.nav.naacus2025')}</MenuItem>
                 {/* About group */}
                 <MenuItem disabled style={{ fontWeight: 600, opacity: 0.7, fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>— {t('header.nav.about')} —</MenuItem>
                 <MenuItem className={isActivePathHelper('/about') ? styles.mobileMenuItemActive : undefined} onClick={() => handleNavigationHelper('/about', null, 'mobile_about')}>&nbsp;&nbsp;{t('header.nav.about')}</MenuItem>

@@ -30,7 +30,9 @@
       "prayers": "Prayers"
     },
     "searchPlaceholder": "Search",
-    "donate": "Donate"
+    "donate": "Donate",
+    "goHome": "Go to home page",
+    "openNavigationMenu": "Open navigation menu"
   },
   "hero": {
     "title": "Together with Christ",
@@ -407,7 +409,8 @@
     "submitAnother": "Submit Another Registration",
     "success": {
       "title": "Success!",
-      "registrationSubmitted": "Registration submitted successfully! Your email client has opened to send the registration. You may close this dialog or submit another registration."
+      "registrationSubmitted": "Registration submitted successfully! Your email client has opened to send the registration. You may close this dialog or submit another registration.",
+      "registrationStored": "Registration submitted successfully! We will follow up via email."
     },
     "errors": {
       "title": "Error",
@@ -420,7 +423,9 @@
     },
     "warnings": {
       "title": "Warning"
-    }
+    },
+    "closeRegistrationDialog": "Close registration dialog",
+    "submitting": "Submitting..."
   },
   "chat": {
     "greeting": "Hi there! Need help? Let's chat.",
@@ -428,7 +433,8 @@
     "needHelp": "Need help?",
     "letsChat": "Let's chat",
     "placeholder": "Type your message…",
-    "botReply": "Thanks! A NAACUS team member will contact you shortly."
+    "botReply": "Thanks! A NAACUS team member will contact you shortly.",
+    "openAssistant": "Open chat assistant"
   },
   "footer": {
     "copyright": "© {{year}} NAACUS. All rights reserved.",
@@ -578,7 +584,27 @@
     "cryptoSpeed": "⛓️ Blockchain",
     "fastSpeed": "⚡ Fast",
     "paymentMethodUnknown": "Selected payment method",
-    "paymentProcessingFailed": "{{paymentMethod}} payment processing failed. Please check your information and try again."
+    "paymentProcessingFailed": "{{paymentMethod}} payment processing failed. Please check your information and try again.",
+    "cardFee": "2-3% processing fee",
+    "applePayFee": "Fee depends on payment method",
+    "googlePayFee": "Fee depends on payment method",
+    "paypalFee": "2.2% + $0.30 fee",
+    "cryptoFee": "Network fees apply",
+    "cardNumber": "Card Number",
+    "cardNumberPlaceholder": "1234 5678 9012 3456",
+    "expiry": "Expiry",
+    "cvv": "CVV",
+    "accountHolder": "Account Holder Name",
+    "accountNumber": "Account Number",
+    "routingNumber": "Routing Number",
+    "walletAddress": "Wallet Address",
+    "walletAddressPlaceholder": "Enter your Bitcoin/Crypto wallet address",
+    "cashappUsername": "Cash App Username",
+    "cashappUsernamePlaceholder": "username",
+    "demoDisclaimer": "Demo only: please do not enter real payment information.",
+    "close": "Close",
+    "feeWarning": "may apply a fee",
+    "authenticationRequired": "You will be redirected to authenticate your payment securely"
   },
   "search": {
     "title": "Search",
@@ -589,14 +615,18 @@
     "resultsFound": "Found {{count}} results",
     "close": "Close",
     "tooltip": "Search (Cmd+K)",
-    "keyboard_shortcut": "Cmd+K or /"
+    "keyboard_shortcut": "Cmd+K or /",
+    "inputLabel": "Search pages, events, and ministries"
   },
   "faq": {
     "title": "Frequently Asked Questions",
     "subtitle": "Find answers to common questions about NAACUS, membership, events, and more",
     "searchPlaceholder": "Search FAQs...",
     "noResults": "No FAQs found matching your search",
-    "clearFilters": "Clear Filters"
+    "clearFilters": "Clear Filters",
+    "searchInputLabel": "Search frequently asked questions",
+    "clearSearch": "Clear FAQ search",
+    "filterByCategory": "Filter by Category"
   },
   "feedback": {
     "title": "Send Us Your Feedback",
@@ -622,7 +652,8 @@
     "tabs": {
       "videos": "All Videos",
       "byPrayer": "By Prayer",
-      "byCountry": "By Country"
+      "byCountry": "By Country",
+      "byLanguage": "By Language"
     },
     "filters": {
       "prayer": "Filter by Prayer",
@@ -674,6 +705,6 @@
         "submit": "Submit"
       }
     }
-  }
+  },
+  "feedback_form": "start"
 }
-

@@ -30,6 +30,30 @@ media_folder: "naacus-website/public/images/uploads"
 public_folder: "/images/uploads"
 
 collections:
+  - name: "site_text_locales"
+    label: "Site Text (All Locales)"
+    editor:
+      preview: false
+    files:
+      - name: "translation_en"
+        label: "All Text - English"
+        file: "naacus-website/public/locales/en/translation.json"
+        fields:
+          - label: "Translations (JSON)"
+            name: "translations"
+            widget: "code"
+            default_language: "json"
+            output_code_only: true
+      - name: "translation_fr"
+        label: "All Text - Francais"
+        file: "naacus-website/public/locales/fr/translation.json"
+        fields:
+          - label: "Traductions (JSON)"
+            name: "translations"
+            widget: "code"
+            default_language: "json"
+            output_code_only: true
+
   - name: "content_en"
     label: "Website Content (English)"
     editor:
@@ -39,26 +63,26 @@ collections:
         label: "Hero Text (EN)"
         file: "naacus-website/public/content/hero.en.json"
         fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Subtitle", name: "subtitle", widget: "text" }
-          - { label: "Membership Teaser", name: "membershipTeaser", widget: "string" }
-          - { label: "Benefit 1", name: "benefit1", widget: "string" }
-          - { label: "Benefit 2", name: "benefit2", widget: "string" }
-          - { label: "Benefit 3", name: "benefit3", widget: "string" }
-          - { label: "Join Community", name: "joinCommunity", widget: "string" }
-          - { label: "Learn Mission", name: "learnMission", widget: "string" }
-          - { label: "View Calendar", name: "viewCalendar", widget: "string" }
-          - { label: "Get Involved", name: "getInvolved", widget: "string" }
+          - { label: "Title", name: "title", widget: "string", pattern: ['^.{1,80}$', 'Max 80 characters'] }
+          - { label: "Subtitle", name: "subtitle", widget: "text", pattern: ['^[\\s\\S]{1,180}$', 'Max 180 characters'] }
+          - { label: "Membership Teaser", name: "membershipTeaser", widget: "string", pattern: ['^.{1,120}$', 'Max 120 characters'] }
+          - { label: "Benefit 1", name: "benefit1", widget: "string", pattern: ['^.{1,80}$', 'Max 80 characters'] }
+          - { label: "Benefit 2", name: "benefit2", widget: "string", pattern: ['^.{1,80}$', 'Max 80 characters'] }
+          - { label: "Benefit 3", name: "benefit3", widget: "string", pattern: ['^.{1,80}$', 'Max 80 characters'] }
+          - { label: "Join Community", name: "joinCommunity", widget: "string", pattern: ['^.{1,60}$', 'Max 60 characters'] }
+          - { label: "Learn Mission", name: "learnMission", widget: "string", pattern: ['^.{1,60}$', 'Max 60 characters'] }
+          - { label: "View Calendar", name: "viewCalendar", widget: "string", pattern: ['^.{1,40}$', 'Max 40 characters'] }
+          - { label: "Get Involved", name: "getInvolved", widget: "string", pattern: ['^.{1,40}$', 'Max 40 characters'] }
       - name: "faq_text_en"
         label: "FAQ Text (EN)"
         file: "naacus-website/public/content/faq.en.json"
         fields:
-          - { label: "Page Title", name: "title", widget: "string" }
-          - { label: "Page Subtitle", name: "subtitle", widget: "text" }
-          - { label: "Search Placeholder", name: "searchPlaceholder", widget: "string" }
-          - { label: "Search Input Label", name: "searchInputLabel", widget: "string" }
-          - { label: "Clear Search Label", name: "clearSearch", widget: "string" }
-          - { label: "Filter By Category", name: "filterByCategory", widget: "string" }
+          - { label: "Page Title", name: "title", widget: "string", pattern: ['^.{1,80}$', 'Max 80 characters'] }
+          - { label: "Page Subtitle", name: "subtitle", widget: "text", pattern: ['^[\\s\\S]{1,180}$', 'Max 180 characters'] }
+          - { label: "Search Placeholder", name: "searchPlaceholder", widget: "string", pattern: ['^.{1,80}$', 'Max 80 characters'] }
+          - { label: "Search Input Label", name: "searchInputLabel", widget: "string", pattern: ['^.{1,100}$', 'Max 100 characters'] }
+          - { label: "Clear Search Label", name: "clearSearch", widget: "string", pattern: ['^.{1,60}$', 'Max 60 characters'] }
+          - { label: "Filter By Category", name: "filterByCategory", widget: "string", pattern: ['^.{1,60}$', 'Max 60 characters'] }
 
   - name: "content_fr"
     label: "Contenu Site (Francais)"
@@ -69,26 +93,26 @@ collections:
         label: "Texte Hero (FR)"
         file: "naacus-website/public/content/hero.fr.json"
         fields:
-          - { label: "Titre", name: "title", widget: "string" }
-          - { label: "Sous-titre", name: "subtitle", widget: "text" }
-          - { label: "Texte d'adhesion", name: "membershipTeaser", widget: "string" }
-          - { label: "Avantage 1", name: "benefit1", widget: "string" }
-          - { label: "Avantage 2", name: "benefit2", widget: "string" }
-          - { label: "Avantage 3", name: "benefit3", widget: "string" }
-          - { label: "Rejoindre", name: "joinCommunity", widget: "string" }
-          - { label: "Mission", name: "learnMission", widget: "string" }
-          - { label: "Calendrier", name: "viewCalendar", widget: "string" }
-          - { label: "Participer", name: "getInvolved", widget: "string" }
+          - { label: "Titre", name: "title", widget: "string", pattern: ['^.{1,80}$', 'Max 80 characters'] }
+          - { label: "Sous-titre", name: "subtitle", widget: "text", pattern: ['^[\\s\\S]{1,180}$', 'Max 180 characters'] }
+          - { label: "Texte d'adhesion", name: "membershipTeaser", widget: "string", pattern: ['^.{1,120}$', 'Max 120 characters'] }
+          - { label: "Avantage 1", name: "benefit1", widget: "string", pattern: ['^.{1,80}$', 'Max 80 characters'] }
+          - { label: "Avantage 2", name: "benefit2", widget: "string", pattern: ['^.{1,80}$', 'Max 80 characters'] }
+          - { label: "Avantage 3", name: "benefit3", widget: "string", pattern: ['^.{1,80}$', 'Max 80 characters'] }
+          - { label: "Rejoindre", name: "joinCommunity", widget: "string", pattern: ['^.{1,60}$', 'Max 60 characters'] }
+          - { label: "Mission", name: "learnMission", widget: "string", pattern: ['^.{1,60}$', 'Max 60 characters'] }
+          - { label: "Calendrier", name: "viewCalendar", widget: "string", pattern: ['^.{1,40}$', 'Max 40 characters'] }
+          - { label: "Participer", name: "getInvolved", widget: "string", pattern: ['^.{1,40}$', 'Max 40 characters'] }
       - name: "faq_text_fr"
         label: "Texte FAQ (FR)"
         file: "naacus-website/public/content/faq.fr.json"
         fields:
-          - { label: "Titre", name: "title", widget: "string" }
-          - { label: "Sous-titre", name: "subtitle", widget: "text" }
-          - { label: "Placeholder recherche", name: "searchPlaceholder", widget: "string" }
-          - { label: "Label champ recherche", name: "searchInputLabel", widget: "string" }
-          - { label: "Label effacer", name: "clearSearch", widget: "string" }
-          - { label: "Filtrer par categorie", name: "filterByCategory", widget: "string" }
+          - { label: "Titre", name: "title", widget: "string", pattern: ['^.{1,80}$', 'Max 80 characters'] }
+          - { label: "Sous-titre", name: "subtitle", widget: "text", pattern: ['^[\\s\\S]{1,180}$', 'Max 180 characters'] }
+          - { label: "Placeholder recherche", name: "searchPlaceholder", widget: "string", pattern: ['^.{1,80}$', 'Max 80 characters'] }
+          - { label: "Label champ recherche", name: "searchInputLabel", widget: "string", pattern: ['^.{1,100}$', 'Max 100 characters'] }
+          - { label: "Label effacer", name: "clearSearch", widget: "string", pattern: ['^.{1,60}$', 'Max 60 characters'] }
+          - { label: "Filtrer par categorie", name: "filterByCategory", widget: "string", pattern: ['^.{1,60}$', 'Max 60 characters'] }
 
   - name: "assets"
     label: "Media Assets"

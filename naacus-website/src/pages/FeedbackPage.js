@@ -63,12 +63,12 @@ function FeedbackPage() {
     trackPageView('Feedback');
     
     // Track that user started feedback form
-    trackFormEvent('feedback_form', 'start');
+    trackFormEvent('feedback_form');
   }, []);
 
   const handleFormLoad = () => {
     // Track when the iframe has fully loaded
-    trackFormEvent('feedback_form', 'loaded');
+    trackFormEvent('feedback_form');
   };
 
   return (

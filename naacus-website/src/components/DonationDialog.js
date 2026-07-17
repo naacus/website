@@ -419,56 +419,56 @@ export function DonationDialog() {
   const paymentMethodsConfig = {
     card: {
       id: 'card',
-      label: t('donation.creditDebit', 'Credit/Debit Card'),
+      label: t('donation.creditDebit'),
       iconPath: '/icons/credit-card.svg',
-      processingTime: t('donation.instant', 'Instant'),
+      processingTime: t('donation.instant'),
       hasFee: true,
-      feeInfo: t('donation.cardFee', '2-3% processing fee'),
+      feeInfo: t('donation.cardFee'),
     },
     applePay: {
       id: 'applePay',
-      label: t('donation.applePay', 'Apple Pay'),
+      label: t('donation.applePay'),
       iconPath: '/icons/apple-pay.svg',
-      processingTime: t('donation.instant', 'Instant'),
+      processingTime: t('donation.instant'),
       hasFee: true,
-      feeInfo: t('donation.applePayFee', 'Fee depends on payment method'),
+      feeInfo: t('donation.applePayFee'),
     },
     googlePay: {
       id: 'googlePay',
-      label: t('donation.googlePay', 'Google Pay'),
+      label: t('donation.googlePay'),
       iconPath: '/icons/google-pay.svg',
-      processingTime: t('donation.instant', 'Instant'),
+      processingTime: t('donation.instant'),
       hasFee: true,
-      feeInfo: t('donation.googlePayFee', 'Fee depends on payment method'),
+      feeInfo: t('donation.googlePayFee'),
     },
     paypal: {
       id: 'paypal',
-      label: t('donation.paypal', 'PayPal'),
+      label: t('donation.paypal'),
       iconPath: '/icons/paypal.svg',
-      processingTime: t('donation.instant', 'Instant'),
+      processingTime: t('donation.instant'),
       hasFee: true,
-      feeInfo: t('donation.paypalFee', '2.2% + $0.30 fee'),
+      feeInfo: t('donation.paypalFee'),
     },
     bank: {
       id: 'bank',
-      label: t('donation.bankTransfer', 'Bank Transfer'),
+      label: t('donation.bankTransfer'),
       iconPath: '/icons/bank-transfer.svg',
-      processingTime: t('donation.processingTime', '1-5 business days'),
+      processingTime: t('donation.processingTime'),
       hasFee: false,
     },
     crypto: {
       id: 'crypto',
-      label: t('donation.bitcoin', 'Bitcoin/Crypto'),
+      label: t('donation.bitcoin'),
       iconPath: '/icons/bitcoin.svg',
-      processingTime: t('donation.blockchainConfirm', 'Blockchain confirmed'),
+      processingTime: t('donation.blockchainConfirm'),
       hasFee: true,
-      feeInfo: t('donation.cryptoFee', 'Network fees apply'),
+      feeInfo: t('donation.cryptoFee'),
     },
     cashapp: {
       id: 'cashapp',
-      label: t('donation.cashapp', 'Cash App'),
+      label: t('donation.cashapp'),
       iconPath: '/icons/cash-app.svg',
-      processingTime: t('donation.instant', 'Instant'),
+      processingTime: t('donation.instant'),
       hasFee: false,
     },
   };
@@ -482,7 +482,7 @@ export function DonationDialog() {
         setSupportedMethods(methods);
         // If no methods available, show warning
         if (!methods || methods.length === 0) {
-          setError(t('donation.paymentFailed', 'Payment methods not available. Please try again later.'));
+          setError(t('donation.paymentFailed'));
         }
       } catch (err) {
         console.warn('Payment initialization warning:', err);
@@ -548,7 +548,7 @@ export function DonationDialog() {
     try {
       // Validate form
       if (!formData.fullName || !formData.email || !formData.amount) {
-        setError(t('donation.requiredFields', 'Please fill in all required fields'));
+        setError(t('donation.requiredFields'));
         return;
       }
 
@@ -602,13 +602,13 @@ export function DonationDialog() {
       let successMsg = '';
 
       if (selectedPayment === 'bank') {
-        successMsg = t('donation.bankSuccess', 'Bank transfer initiated. Check your email for payment instructions.');
+        successMsg = t('donation.bankSuccess');
       } else if (selectedPayment === 'crypto') {
-        successMsg = t('donation.cryptoSuccess', 'Cryptocurrency charge created. Please complete the transaction on the payment page.');
+        successMsg = t('donation.cryptoSuccess');
       } else if (selectedPayment === 'cashapp') {
-        successMsg = t('donation.cashappSuccess', 'Cash App payment initiated. Thank you for your donation!');
+        successMsg = t('donation.cashappSuccess');
       } else {
-        successMsg = t('donation.paymentSuccess', 'Thank you! Your donation is being processed.');
+        successMsg = t('donation.paymentSuccess');
       }
 
       setSuccess(successMsg);
@@ -624,7 +624,7 @@ export function DonationDialog() {
 
       // Keep dialog open in construction mode; user can close manually when ready
     } catch (err) {
-      const errorMsg = err.message || t('donation.paymentFailed', 'Payment processing failed. Please try again.');
+      const errorMsg = err.message || t('donation.paymentFailed');
       setError(errorMsg);
       console.error('Donation error:', err);
 
@@ -671,13 +671,13 @@ export function DonationDialog() {
           <div className={styles.paymentMethodFormSection}>
             <div className={styles.formField}>
               <label className={styles.label}>
-                {t('donation.cardNumber', 'Card Number')} <span className={styles.required}>*</span>
+                {t('donation.cardNumber')} <span className={styles.required}>*</span>
               </label>
               <Input
                 name="cardNumber"
                 value={formData.cardNumber}
                 onChange={handleInputChange}
-                placeholder={t('donation.cardNumberPlaceholder', '1234 5678 9012 3456')}
+                placeholder={t('donation.cardNumberPlaceholder')}
                 disabled={loading}
                 contentBefore={cardType}
               />
@@ -685,7 +685,7 @@ export function DonationDialog() {
             <div className={styles.twoColGridEven}>
               <div className={styles.formField}>
                 <label className={styles.label}>
-                  {t('donation.expiry', 'Expiry')} <span className={styles.required}>*</span>
+                  {t('donation.expiry')} <span className={styles.required}>*</span>
                 </label>
                 <Input
                   name="cardExpiry"
@@ -698,7 +698,7 @@ export function DonationDialog() {
               </div>
               <div className={styles.formField}>
                 <label className={styles.label}>
-                  {t('donation.cvv', 'CVV')} <span className={styles.required}>*</span>
+                  {t('donation.cvv')} <span className={styles.required}>*</span>
                 </label>
                 <Input
                   name="cardCVV"
@@ -717,13 +717,13 @@ export function DonationDialog() {
           <div className={styles.paymentMethodFormSection}>
             <div className={styles.formField}>
               <label className={styles.label}>
-                {t('donation.accountHolder', 'Account Holder Name')} <span className={styles.required}>*</span>
+                {t('donation.accountHolder')} <span className={styles.required}>*</span>
               </label>
               <Input
                 name="bankAccountHolder"
                 value={formData.bankAccountHolder}
                 onChange={handleInputChange}
-                placeholder={t('donation.accountHolder', 'Account Holder Name')}
+                placeholder={t('donation.accountHolder')}
                 disabled={loading}
                 className={styles.fullWidthInput}
               />
@@ -731,33 +731,33 @@ export function DonationDialog() {
             <div className={styles.twoColGridWideNarrow}>
               <div className={styles.formField}>
                 <label className={styles.label}>
-                  {t('donation.accountNumber', 'Account Number')} <span className={styles.required}>*</span>
+                  {t('donation.accountNumber')} <span className={styles.required}>*</span>
                 </label>
                 <Input
                   name="bankAccountNumber"
                   value={formData.bankAccountNumber}
                   onChange={handleInputChange}
-                  placeholder={t('donation.accountNumber', 'Account Number')}
+                  placeholder={t('donation.accountNumber')}
                   disabled={loading}
                   className={styles.fullWidthInput}
                 />
               </div>
               <div className={styles.formField}>
                 <label className={styles.label}>
-                  {t('donation.routingNumber', 'Routing Number')} <span className={styles.required}>*</span>
+                  {t('donation.routingNumber')} <span className={styles.required}>*</span>
                 </label>
                 <Input
                   name="bankRoutingNumber"
                   value={formData.bankRoutingNumber}
                   onChange={handleInputChange}
-                  placeholder={t('donation.routingNumber', 'Routing Number')}
+                  placeholder={t('donation.routingNumber')}
                   disabled={loading}
                   className={styles.fullWidthInput}
                 />
               </div>
             </div>
             <div className={styles.infoMessage}>
-              ℹ️ {t('donation.paymentInstructions', 'You will receive payment instructions via email')}
+              ℹ️ {t('donation.paymentInstructions')}
             </div>
           </div>
         );
@@ -766,18 +766,18 @@ export function DonationDialog() {
           <div className={styles.paymentMethodFormSection}>
             <div className={styles.formField}>
               <label className={styles.label}>
-                {t('donation.walletAddress', 'Wallet Address')} <span className={styles.required}>*</span>
+                {t('donation.walletAddress')} <span className={styles.required}>*</span>
               </label>
               <Input
                 name="cryptoWalletAddress"
                 value={formData.cryptoWalletAddress}
                 onChange={handleInputChange}
-                placeholder={t('donation.walletAddressPlaceholder', 'Enter your Bitcoin/Crypto wallet address')}
+                placeholder={t('donation.walletAddressPlaceholder')}
                 disabled={loading}
               />
             </div>
             <div className={styles.infoMessage}>
-              ℹ️ {t('donation.cryptoSecure', 'Cryptocurrency charges are processed securely on blockchain')}
+              ℹ️ {t('donation.cryptoSecure')}
             </div>
           </div>
         );
@@ -786,13 +786,13 @@ export function DonationDialog() {
           <div className={styles.paymentMethodFormSection}>
             <div className={styles.formField}>
               <label className={styles.label}>
-                {t('donation.cashappUsername', 'Cash App Username')} <span className={styles.required}>*</span>
+                {t('donation.cashappUsername')} <span className={styles.required}>*</span>
               </label>
               <Input
                 name="cashappUsername"
                 value={formData.cashappUsername}
                 onChange={handleInputChange}
-                placeholder={t('donation.cashappUsernamePlaceholder', 'username')}
+                placeholder={t('donation.cashappUsernamePlaceholder')}
                 disabled={loading}
                 contentBefore="$"
               />
@@ -820,15 +820,15 @@ export function DonationDialog() {
 
   const getSpeedBadge = (methodId) => {
     if (methodId === 'bank') {
-      return t('donation.bankSpeed', '📅 1-5 days');
+      return t('donation.bankSpeed');
     } else if (methodId === 'crypto') {
-      return t('donation.cryptoSpeed', '⛓️ Blockchain');
+      return t('donation.cryptoSpeed');
     }
-    return t('donation.fastSpeed', '⚡ Fast');
+    return t('donation.fastSpeed');
   };
 
   const getPaymentLabel = (methodId) => {
-    return paymentMethodsConfig[methodId]?.label || t('donation.paymentMethodUnknown', 'Selected payment method');
+    return paymentMethodsConfig[methodId]?.label || t('donation.paymentMethodUnknown');
   };
 
   // Check if method requires authentication (no additional form)
@@ -851,7 +851,7 @@ export function DonationDialog() {
           className={styles.donateButton}
           onClick={() => setOpen(true)}
         >
-          💝 {t('header.donate', 'Donate')}
+          💝 {t('header.donate')}
         </Button>
       </div>
 
@@ -865,16 +865,16 @@ export function DonationDialog() {
           {/* Header */}
           <div className={styles.dialogHeader}>
             <div className={styles.dialogHeaderContent}>
-              <h2 className={styles.dialogTitle}>{t('donation.title', 'Make a Donation')}</h2>
+              <h2 className={styles.dialogTitle}>{t('donation.title')}</h2>
               <div className={styles.warningMessage}>
-                ⚠️ {t('donation.demoDisclaimer', 'Demo only: please do not enter real payment information.')}
+                ⚠️ {t('donation.demoDisclaimer')}
               </div>
             </div>
             <button 
               className={styles.closeButton}
               onClick={() => { setOpen(false); resetForm(); }}
               disabled={loading}
-              aria-label={t('donation.close', 'Close')}
+              aria-label={t('donation.close')}
             >
               ✕
             </button>
@@ -904,13 +904,13 @@ export function DonationDialog() {
               {/* Full Name */}
               <div className={styles.formField}>
                 <label className={styles.label}>
-                  {t('donation.fullName', 'Full Name')} <span className={styles.required}>*</span>
+                  {t('donation.fullName')} <span className={styles.required}>*</span>
                 </label>
                 <Input
                   name="fullName"
                   value={formData.fullName}
                   onChange={handleInputChange}
-                  placeholder={t('donation.fullName', 'Full Name')}
+                  placeholder={t('donation.fullName')}
                   disabled={loading}
                 />
               </div>
@@ -918,14 +918,14 @@ export function DonationDialog() {
               {/* Email */}
               <div className={styles.formField}>
                 <label className={styles.label}>
-                  {t('donation.email', 'Email')} <span className={styles.required}>*</span>
+                  {t('donation.email')} <span className={styles.required}>*</span>
                 </label>
                 <Input
                   name="email"
                   type="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  placeholder={t('donation.email', 'Email')}
+                  placeholder={t('donation.email')}
                   disabled={loading}
                 />
               </div>
@@ -933,14 +933,14 @@ export function DonationDialog() {
               {/* Phone (Optional) */}
               <div className={styles.formField}>
                 <label className={styles.label}>
-                  {t('donation.phone', 'Phone Number')} ({t('donation.optional', 'Optional')})
+                  {t('donation.phone')} ({t('donation.optional')})
                 </label>
                 <Input
                   name="phone"
                   type="tel"
                   value={formData.phone}
                   onChange={handleInputChange}
-                  placeholder={t('donation.phone', 'Phone Number')}
+                  placeholder={t('donation.phone')}
                   disabled={loading}
                 />
               </div>
@@ -948,7 +948,7 @@ export function DonationDialog() {
               {/* Amount */}
               <div className={styles.formField}>
                 <label className={styles.label}>
-                  {t('donation.selectAmount', 'Amount')} <span className={styles.required}>*</span>
+                  {t('donation.selectAmount')} <span className={styles.required}>*</span>
                 </label>
                 <div className={styles.amountPresets}>
                   {amountPresets.map(amount => (
@@ -970,7 +970,7 @@ export function DonationDialog() {
                   type="number"
                   value={formData.amount}
                   onChange={handleInputChange}
-                  placeholder={t('donation.customAmount', 'Enter custom amount')}
+                  placeholder={t('donation.customAmount')}
                   min="1"
                   disabled={loading}
                   contentBefore="$"
@@ -980,13 +980,13 @@ export function DonationDialog() {
               {/* Message (Optional) */}
               <div className={styles.formField}>
                 <label className={styles.label}>
-                  {t('donation.message', 'Message')} ({t('donation.optional', 'Optional')})
+                  {t('donation.message')} ({t('donation.optional')})
                 </label>
                 <Input
                   name="message"
                   value={formData.message}
                   onChange={handleInputChange}
-                  placeholder={t('donation.messagePlaceholder', 'Share why you support NAACUS')}
+                  placeholder={t('donation.messagePlaceholder')}
                   disabled={loading}
                   multiline
                   rows={2}
@@ -999,7 +999,7 @@ export function DonationDialog() {
               <div className={styles.paymentSection}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: themeTokens.spacing.sm, marginBottom: themeTokens.spacing.sm }}>
                   <label className={styles.label} style={{ marginBottom: 0 }}>
-                    {t('donation.paymentMethod', 'Payment Method')} <span className={styles.required}>*</span>
+                    {t('donation.paymentMethod')} <span className={styles.required}>*</span>
                   </label>
                   {selectedPayment && (
                     <div className={styles.speedBadge}>
@@ -1045,12 +1045,12 @@ export function DonationDialog() {
                 {selectedPayment && renderPaymentMethodForm(selectedPayment)}
                 {selectedPayment && getMethodFeeInfo(selectedPayment) && (
                   <div className={styles.infoMessage} style={{ marginTop: themeTokens.spacing.sm, backgroundColor: 'rgba(255, 193, 7, 0.1)', borderLeft: `3px solid ${themeTokens.colors.status.warning || '#ffc107'}`, fontSize: themeTokens.typography.fontSize.sm }}>
-                    ⚠️ {getPaymentLabel(selectedPayment)} {t('donation.feeWarning', 'may apply a fee')} - {getMethodFeeInfo(selectedPayment)}
+                    ⚠️ {getPaymentLabel(selectedPayment)} {t('donation.feeWarning')} - {getMethodFeeInfo(selectedPayment)}
                   </div>
                 )}
                 {selectedPayment && requiresAuthentication(selectedPayment) && (
                   <div className={styles.infoMessage} style={{ marginTop: themeTokens.spacing.sm }}>
-                    🔐 {t('donation.authenticationRequired', 'You will be redirected to authenticate your payment securely')}
+                    🔐 {t('donation.authenticationRequired')}
                   </div>
                 )}
               </div>
@@ -1066,7 +1066,7 @@ export function DonationDialog() {
                   appearance="secondary"
                   disabled={loading}
                 >
-                  {t('donation.cancel', 'Cancel')}
+                  {t('donation.cancel')}
                 </Button>
                 <Button
                   onClick={handleDonate}
@@ -1080,10 +1080,10 @@ export function DonationDialog() {
                   {loading ? (
                     <span className={styles.loadingSpinner}>
                       <Spinner size="tiny" />
-                      {t('donation.processing', 'Processing')}
+                      {t('donation.processing')}
                     </span>
                   ) : (
-                    t('donation.donate', 'Donate Now')
+                    t('donation.donate')
                   )}
                 </Button>
               </div>

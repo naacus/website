@@ -15,6 +15,7 @@ Last updated: July 15, 2026
 | [backend_api.md](engineering/backend_api.md) | API contracts and backend integration guide |
 | [data_persistence.md](engineering/data_persistence.md) | How data is stored, fetched, and managed |
 | [deployment.md](engineering/deployment.md) | Build, deploy, and hosting configuration |
+| [cms-content-coverage.md](engineering/cms-content-coverage.md) | Canonical plan and rules for Decap coverage of all text and images |
 | [ga4_analytics.md](engineering/ga4_analytics.md) | Google Analytics 4 setup and event tracking |
 | [payments.md](engineering/payments.md) | Stripe payment integration guide |
 | [accessibility-audit.md](engineering/accessibility-audit.md) | WCAG 2.1 a11y audit and remediation roadmap |

@@ -80,11 +80,11 @@ function SearchInput() {
         icon={<Search24Regular />}
         onClick={handleSearchOpen}
         className={styles.searchButton}
-        aria-label={t('search.inputLabel', 'Search pages, events, and ministries')}
-        title={t('search.tooltip', 'Search (Cmd+K)')}
+        aria-label={t('search.inputLabel')}
+        title={t('search.tooltip')}
       >
         <span className={styles.searchButtonText}>
-          {t('search.search', 'Search')}
+          {t('search.search')}
         </span>
         <span className={styles.keyboardShortcut}>⌘K</span>
       </Button>

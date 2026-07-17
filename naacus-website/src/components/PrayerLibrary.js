@@ -576,7 +576,7 @@ function PrayerLibrary() {
               {t('prayerLibrary.tabs.byPrayer')}
             </Tab>
             <Tab value="languages" icon={<Globe24Regular />}>
-              {t('prayerLibrary.tabs.byLanguage', 'By Language')}
+              {t('prayerLibrary.tabs.byLanguage')}
             </Tab>
           </TabList>
         </div>
@@ -649,7 +649,7 @@ function PrayerLibrary() {
                             openPrayerTextDialog(video);
                           }
                         }}
-                        aria-label={video.videoUrl ? t('prayerLibrary.openPrayer', 'Open prayer details for {{title}}', { title: video.title }) : t('prayerLibrary.comingSoon', 'Coming soon')}
+                        aria-label={video.videoUrl ? t('prayerLibrary.openPrayer', 'Open prayer details for {{title}}', { title: video.title }) : t('prayerLibrary.comingSoon')}
                       >
                         {video.thumbnailUrl && (
                           <img

@@ -261,21 +261,21 @@ export function Events() {
     setFormMessage(null);
 
     if (!registrationForm.firstName.trim()) {
-      setFormMessage({ type: 'error', message: t('events.errors.firstNameRequired', 'First name is required') });
+      setFormMessage({ type: 'error', message: t('events.errors.firstNameRequired') });
       return;
     }
     if (!registrationForm.lastName.trim()) {
-      setFormMessage({ type: 'error', message: t('events.errors.lastNameRequired', 'Last name is required') });
+      setFormMessage({ type: 'error', message: t('events.errors.lastNameRequired') });
       return;
     }
     if (!registrationForm.email.trim()) {
-      setFormMessage({ type: 'error', message: t('events.errors.emailRequired', 'Email is required') });
+      setFormMessage({ type: 'error', message: t('events.errors.emailRequired') });
       return;
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(registrationForm.email)) {
-      setFormMessage({ type: 'error', message: t('events.errors.emailInvalid', 'Please enter a valid email address') });
+      setFormMessage({ type: 'error', message: t('events.errors.emailInvalid') });
       return;
     }
 
@@ -308,7 +308,7 @@ export function Events() {
       } catch (fetchError) {
         setFormMessage({
           type: 'error',
-          message: t('events.errors.networkError', 'Network connection failed. Please check your internet connection and try again.'),
+          message: t('events.errors.networkError'),
         });
         return;
       }
@@ -317,7 +317,7 @@ export function Events() {
       if (!response || response?.__fetchError || !response?.ok) {
         setFormMessage({
           type: 'error',
-          message: t('events.errors.networkError', 'Network connection failed. Please check your internet connection and try again.'),
+          message: t('events.errors.networkError'),
         });
         return;
       }
@@ -328,7 +328,7 @@ export function Events() {
       } catch (parseError) {
         setFormMessage({
           type: 'error',
-          message: t('events.errors.submissionFailed', 'Failed to submit registration. Please try again.'),
+          message: t('events.errors.submissionFailed'),
         });
         return;
       }
@@ -336,7 +336,7 @@ export function Events() {
       if (!response.ok || !result.success) {
         setFormMessage({
           type: 'error',
-          message: result.error || t('events.errors.submissionFailed', 'Failed to submit registration. Please try again.'),
+          message: result.error || t('events.errors.submissionFailed'),
         });
         return;
       }
@@ -344,12 +344,12 @@ export function Events() {
       setSubmissionSuccess(true);
       setFormMessage({
         type: 'success',
-        message: t('events.success.registrationStored', 'Registration submitted. We will follow up via email.'),
+        message: t('events.success.registrationStored'),
       });
     } catch (error) {
       setFormMessage({ 
         type: 'error', 
-        message: t('events.errors.submissionFailed', 'Failed to submit registration. Please try again.') 
+        message: t('events.errors.submissionFailed') 
       });
     } finally {
       setIsSubmitting(false);
