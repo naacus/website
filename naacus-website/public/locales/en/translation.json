@@ -655,6 +655,7 @@
       "byCountry": "By Country",
       "byLanguage": "By Language"
     },
+    "openPrayer": "Open prayer details for {{title}}",
     "filters": {
       "prayer": "Filter by Prayer",
       "country": "Filter by Country",
