@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { makeStyles, shorthands, Card, Text, Button, tokens } from '@fluentui/react-components';
 import PageWrapper from '../components/PageWrapper';
 import { useAnalytics } from '../hooks/useAnalytics';
+import { startSpan } from '../services/telemetryService';
 
 const useStyles = makeStyles({
   section: {
@@ -122,18 +123,29 @@ function DonationPage() {
   ];
 
   const openDonationItems = donationInitiatives;
+  const donationItemsCount = openDonationItems.length;
 
   useEffect(() => {
+    const span = startSpan('donation_page.view', {
+      'page.name': 'donation',
+      'initiatives.count': donationItemsCount,
+    });
     trackCTA('donation_page', 'view_initiatives', 'donation');
-  }, [trackCTA]);
+    span.end({ code: 1 });
+  }, [trackCTA, donationItemsCount]);
 
   const handleDonateClick = (initiativeTitle) => {
     trackCTA('donation_page', 'select_initiative', initiativeTitle);
   };
 
   const openStripeLink = (initiative) => {
+    const span = startSpan('donation_page.open_stripe_link', {
+      'donation.initiative': initiative.title,
+      'donation.url': initiative.stripeUrl,
+    });
     handleDonateClick(initiative.title);
     window.open(initiative.stripeUrl, '_blank', 'noopener,noreferrer');
+    span.end({ code: 1 });
   };
 
   return (
@@ -150,7 +162,7 @@ function DonationPage() {
           <div className={styles.grid}>
             {openDonationItems.map((initiative) => (
               <Card key={initiative.id} className={styles.card}>
-                <Text as="h3" className={styles.initiativeTitle}>{initiative.title}</Text>
+                <Text as="h2" className={styles.initiativeTitle}>{initiative.title}</Text>
                 <Text as="p" className={styles.initiativeDescription}>
                   {initiative.description}
                 </Text>

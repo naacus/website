@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { makeStyles, shorthands, Card, Text, Button, tokens } from '@fluentui/react-components';
 import PageWrapper from '../components/PageWrapper';
 import { useAnalytics } from '../hooks/useAnalytics';
+import { startSpan } from '../services/telemetryService';
 
 const useStyles = makeStyles({
   section: {
@@ -125,10 +126,16 @@ function DuesRegistrationPage() {
       stripeUrl: process.env.REACT_APP_STRIPE_DONATION_LINK_MEMBERSHIP_REGISTRATION || 'https://donate.naacus.org',
     },
   ];
+  const duesItemsCount = duesItems.length;
 
   useEffect(() => {
+    const span = startSpan('dues_page.view', {
+      'page.name': 'dues_registration',
+      'dues.items.count': duesItemsCount,
+    });
     trackCTA('dues_page', 'view_dues_registration', 'dues_registration');
-  }, [trackCTA]);
+    span.end({ code: 1 });
+  }, [trackCTA, duesItemsCount]);
 
   useEffect(() => {
     if (!stripePublishableKey) {
@@ -147,8 +154,22 @@ function DuesRegistrationPage() {
   }, [stripePublishableKey]);
 
   const openStripeLink = (item) => {
+    const span = startSpan('dues_page.open_stripe_link', {
+      'dues.item': item.title,
+      'dues.url': item.stripeUrl,
+    });
     trackCTA('dues_page', 'pay_now', item.title);
     window.open(item.stripeUrl, '_blank', 'noopener,noreferrer');
+    span.end({ code: 1 });
+  };
+
+  const trackBuyButtonInteraction = (item) => {
+    const span = startSpan('dues_page.buy_button_interaction', {
+      'dues.item': item.title,
+      'dues.buy_button_id': item.buyButtonId,
+    });
+    trackCTA('dues_page', 'buy_button_interaction', item.title);
+    span.end({ code: 1 });
   };
 
   return (
@@ -160,7 +181,7 @@ function DuesRegistrationPage() {
         <div className={styles.grid}>
           {duesItems.map((item) => (
             <Card key={item.id} className={styles.card}>
-              <Text as="h3" className={styles.initiativeTitle}>{item.title}</Text>
+              <Text as="h2" className={styles.initiativeTitle}>{item.title}</Text>
               <Text as="p" className={styles.initiativeDescription}>{item.description}</Text>
               {!(item.buyButtonId && stripePublishableKey) && (
                 <Text as="span" className={styles.amountPill}>{item.amountLabel}</Text>
@@ -170,6 +191,7 @@ function DuesRegistrationPage() {
                   <stripe-buy-button
                     buy-button-id={item.buyButtonId}
                     publishable-key={stripePublishableKey}
+                    onClick={() => trackBuyButtonInteraction(item)}
                   />
                 </div>
               ) : (
