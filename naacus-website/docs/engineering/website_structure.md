@@ -230,7 +230,7 @@ Static data files consumed by components:
 | `newslettersData.js` | Newsletter archive entries |
 | `resourcesData.js` | Downloadable resources |
 | `resourcesQuickLinks.js` | Quick-link resources |
-| `testimonialData.js` | Member testimonials |
+| `testimonialData.js` *(deprecated)* | Member testimonials *(moved to Decap CMS)* |
 
 ### 4.5 Services (`src/services/`)
 

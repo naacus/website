@@ -38,7 +38,7 @@ This guide defines a Microsoft-first persistence strategy for the React app data
 | `prayerLibraryData.js` | Normalized types/languages/countries/submissions | Low-Medium | Azure SQL + Blob | Dataverse | Relationship-heavy and workflow-driven; SharePoint becomes complex quickly.
 | `resourcesData.js` | Resource cards + partners | High | SharePoint List (`Resources`, `Partners`) | Dataverse | Simple list data with ownership by comms/content team.
 | `resourcesQuickLinks.js` | Quick links and support links | High | App Configuration (primary) | SharePoint List (`QuickLinks`) if business-managed | App Configuration is fastest; SharePoint if non-dev ownership is required.
-| `testimonialData.js` | Testimonials with approval needs | High | SharePoint List with Content Approval | Dataverse or SQL | SharePoint can handle submission + approval workflow well.
+| `testimonialData.js` | Member testimonials | High | ✅ **Decap CMS** (implemented) | Legacy: SharePoint List | Now managed via Decap CMS at `public/content/testimonials.json`. See [cms-content-coverage.md](cms-content-coverage.md).
 
 ## Recommended Hybrid Architecture
 
@@ -50,7 +50,6 @@ This guide defines a Microsoft-first persistence strategy for the React app data
 - `resourcesData.js`
 - `newslettersData.js`
 - `galleryData.js`
-- `testimonialData.js` (if moderation is simple)
 
 ### Tier 2: Structured Application Data
 
