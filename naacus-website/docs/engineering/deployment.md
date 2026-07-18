@@ -124,6 +124,13 @@ To avoid GitHub Actions Node 20 action-runtime deprecation warnings, workflows
 use `actions/setup-node@v5` (while project runtime can remain Node 20 for app
 build/test compatibility).
 
+### Build Artifact Deploy Note
+
+For Azure Static Web Apps, build with injected environment variables in the
+quality-gate job, upload the `build/` artifact, and deploy that artifact with
+`skip_app_build: true` in the deploy job. This avoids a second build in the
+deploy step that can miss runtime-injected Stripe values.
+
 ### GitHub Advanced Security / Scorecard Note
 
 The DevSecOps baseline workflow uploads SARIF for Trivy and Scorecard. To keep
