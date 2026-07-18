@@ -195,6 +195,20 @@ const pageIntentConfig = {
       nextStepPath: '/donation',
     },
   },
+  '/dues-registration': {
+    en: {
+      audience: 'Members who are ready to complete annual dues and formal registration support for NAACUS.',
+      understanding: 'Dues registration helps sustain member services, ministry coordination, and accountable community operations.',
+      nextStepLabel: 'View Membership Details',
+      nextStepPath: '/membership',
+    },
+    fr: {
+      audience: 'Membres prêts à finaliser les cotisations annuelles et le soutien à l\'inscription formelle de NAACUS.',
+      understanding: 'L\'inscription aux cotisations soutient les services aux membres, la coordination des ministères et une gestion communautaire responsable.',
+      nextStepLabel: 'Voir les détails d\'adhésion',
+      nextStepPath: '/membership',
+    },
+  },
   '/faq': {
     en: {
       audience: 'New visitors and members with practical questions about NAACUS services and participation.',
