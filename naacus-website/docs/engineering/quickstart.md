@@ -51,6 +51,11 @@ trackCTA('donation', 'button_click', 'hero_section');
 **Modify ministries:**
 Edit `src/data/ministriesData.js`
 
+**Check EN/FR translation parity:**
+```bash
+npm run check:translations
+```
+
 ## Deployment
 
 Auto-deploys to **Azure Static Web Apps** on push to `develop` branch.

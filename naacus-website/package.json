@@ -33,6 +33,8 @@
   "scripts": {
     "sync:locale-sections": "node scripts/sync-locale-sections.js",
     "sync:locale-sections:bootstrap": "node scripts/sync-locale-sections.js --bootstrap",
+    "check:locale:parity": "node scripts/check-locale-parity.js",
+    "check:translations": "npm run sync:locale-sections && npm run check:locale:parity",
     "eval:ai-first": "node scripts/eval-ai-first.js",
     "eval:ai-first:html": "npm run eval:ai-first && python3 scripts/render-ai-first-report.py reports/ai-first-eval.json reports/ai-first-eval.html",
     "check:ai-first:thresholds": "node scripts/check-ai-first-thresholds.js",
