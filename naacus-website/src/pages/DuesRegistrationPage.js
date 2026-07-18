@@ -162,7 +162,9 @@ function DuesRegistrationPage() {
             <Card key={item.id} className={styles.card}>
               <Text as="h3" className={styles.initiativeTitle}>{item.title}</Text>
               <Text as="p" className={styles.initiativeDescription}>{item.description}</Text>
-              <Text as="span" className={styles.amountPill}>{item.amountLabel}</Text>
+              {!(item.buyButtonId && stripePublishableKey) && (
+                <Text as="span" className={styles.amountPill}>{item.amountLabel}</Text>
+              )}
               {item.buyButtonId && stripePublishableKey ? (
                 <div className={styles.buyButtonWrap}>
                   <stripe-buy-button
