@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { 
   makeStyles,
@@ -122,8 +122,24 @@ function Testimonials() {
   const { t } = useTranslation();
   const styles = useStyles();
 
-  // Get testimonial data from service
-  const testimonials = dataService.getTestimonials();
+  const [testimonials, setTestimonials] = useState([]);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadTestimonials = async () => {
+      const data = await dataService.getTestimonials();
+      if (isMounted) {
+        setTestimonials(Array.isArray(data) ? data : []);
+      }
+    };
+
+    loadTestimonials();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   return (
     <section id="testimonials" className={styles.testimonials}>
