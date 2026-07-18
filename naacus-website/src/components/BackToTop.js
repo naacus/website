@@ -14,6 +14,7 @@ const useStyles = makeStyles({
     bottom: themeTokens.componentPositioning.backToTop.bottom,
     right: themeTokens.componentPositioning.backToTop.right,
     zIndex: themeTokens.componentPositioning.backToTop.zIndex,
+    pointerEvents: 'none',
     opacity: 0,
     transform: 'translateY(20px)',
     visibility: 'hidden',
@@ -26,6 +27,7 @@ const useStyles = makeStyles({
     },
   },
   visible: {
+    pointerEvents: 'auto',
     opacity: 1,
     transform: 'translateY(0)',
     visibility: 'visible',
@@ -93,19 +95,7 @@ function BackToTop() {
   };
 
   return (
-    <div 
-      style={{
-        position: 'fixed',
-        bottom: '85px',
-        right: '4px',
-        zIndex: 1200,
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-        visibility: isVisible ? 'visible' : 'hidden',
-        transition: 'opacity 0.3s ease-in-out, transform 0.3s ease-in-out, visibility 0.3s ease-in-out',
-        pointerEvents: isVisible ? 'auto' : 'none',
-      }}
-    >
+    <div className={`${styles.backToTop} ${isVisible ? styles.visible : ''}`}>
       <Button
         appearance="subtle"
         icon={<ArrowUp24Regular />}

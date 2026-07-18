@@ -179,10 +179,10 @@ export const componentSpacing = {
 // Component-Specific Positioning
 export const componentPositioning = {
   backToTop: {
-    bottom: '88px',
+    bottom: '150px',
     right: '4px',
     zIndex: 1200,
-    bottomMobile: '80px',
+    bottomMobile: '140px',
   },
   chatWidget: {
     right: '4px',

@@ -11,6 +11,11 @@ const useStyles = makeStyles({
     alignItems: 'center',
     width: '100%',
   },
+  compactContainer: {
+    width: 'auto',
+    transform: 'scaleX(0.66)',
+    transformOrigin: 'right bottom',
+  },
   errorContainer: {
     display: 'flex',
     flexDirection: 'column',
@@ -37,9 +42,18 @@ const useStyles = makeStyles({
     marginTop: '8px',
     alignSelf: 'flex-start',
   },
+  compactFallbackButton: {
+    marginTop: 0,
+    minHeight: '40px',
+    paddingLeft: '18px',
+    paddingRight: '18px',
+    borderRadius: '999px',
+    fontSize: '0.95rem',
+    fontWeight: 700,
+  },
 });
 
-const StripeDonateButton = () => {
+const StripeDonateButton = ({ compact = false }) => {
   const styles = useStyles();
   const containerRef = useRef(null);
   const scriptLoaded = useRef(false);
@@ -111,7 +125,7 @@ const StripeDonateButton = () => {
           The donation button is not properly configured. Please try again later or contact support.
         </Text>
         <Button
-          className={styles.fallbackButton}
+          className={`${styles.fallbackButton} ${compact ? styles.compactFallbackButton : ''}`}
           appearance="primary"
           onClick={() => window.open('https://donate.naacus.org', '_blank')}
         >
@@ -125,7 +139,7 @@ const StripeDonateButton = () => {
     return (
       <Button
         appearance="primary"
-        className={styles.fallbackButton}
+        className={`${styles.fallbackButton} ${compact ? styles.compactFallbackButton : ''}`}
         onClick={() => window.open('https://donate.naacus.org', '_blank', 'noopener,noreferrer')}
       >
         Donate via Web Link
@@ -133,7 +147,7 @@ const StripeDonateButton = () => {
     );
   }
 
-  return <div ref={containerRef} className={styles.container} />;
+  return <div ref={containerRef} className={`${styles.container} ${compact ? styles.compactContainer : ''}`} />;
 };
 
 export default StripeDonateButton;

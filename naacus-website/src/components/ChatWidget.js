@@ -11,6 +11,7 @@ import {
   Card,
 } from '@fluentui/react-components';
 import { Chat24Regular, Dismiss24Regular, Send24Filled } from '@fluentui/react-icons';
+import StripeDonateButton from './StripeDonateButton';
 import { processMessage, logConversation, initializeCopilotStudio } from '../services/chatbotService';
 import { getPageIntent } from '../content/pageIntentConfig';
 import { themeTokens } from '../config/theme';
@@ -42,6 +43,16 @@ const useStyles = makeStyles({
     '@media (max-width: 768px)': {
       maxWidth: themeTokens.componentChat.sizes.teaserCardWidthMobile,
       ...shorthands.padding('12px'),
+    },
+  },
+  donateSlot: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    width: '100%',
+    maxWidth: themeTokens.componentChat.sizes.teaserCardWidth,
+    marginBottom: '-4px',
+    '@media (max-width: 768px)': {
+      maxWidth: themeTokens.componentChat.sizes.teaserCardWidthMobile,
     },
   },
   teaserText: {
@@ -304,16 +315,21 @@ function ChatWidget() {
   return (
     <div className={styles.container}>
       {!open && (
-        <button type="button" className={styles.teaserCard} onClick={() => setOpen(true)} aria-label={t('chat.openAssistant')}>
-          <div className={styles.avatarWrap}>
-            <div className={styles.avatarInner}>AI</div>
-            <div className={styles.avatarBadge}><Chat24Regular /></div>
+        <>
+          <div className={styles.donateSlot}>
+            <StripeDonateButton compact />
           </div>
-          <div className={styles.teaserText}>
-            <Text as="div" weight="semibold" style={{ color: '#fff', fontSize: '1.1rem' }}>{t('chat.needHelp')}</Text>
-            <Text as="div" style={{ color: '#fff', fontSize: '1.1rem' }}>{t('chat.letsChat')}</Text>
-          </div>
-        </button>
+          <button type="button" className={styles.teaserCard} onClick={() => setOpen(true)} aria-label={t('chat.openAssistant')}>
+            <div className={styles.avatarWrap}>
+              <div className={styles.avatarInner}>AI</div>
+              <div className={styles.avatarBadge}><Chat24Regular /></div>
+            </div>
+            <div className={styles.teaserText}>
+              <Text as="div" weight="semibold" style={{ color: '#fff', fontSize: '1.1rem' }}>{t('chat.needHelp')}</Text>
+              <Text as="div" style={{ color: '#fff', fontSize: '1.1rem' }}>{t('chat.letsChat')}</Text>
+            </div>
+          </button>
+        </>
       )}
 
       {open && (

@@ -13,7 +13,6 @@ import {
 } from '@fluentui/react-components';
 import { Navigation24Regular, ChevronDownFilled, ChevronUpFilled } from '@fluentui/react-icons';
 import LanguageSwitcher from './LanguageSwitcher';
-import StripeDonateButton from './StripeDonateButton';
 import SearchInput from './SearchInput';
 import { handleNavigation, isActivePath } from '../services/navigationService';
 import { useAnalytics } from '../hooks/useAnalytics';
@@ -245,29 +244,6 @@ const useStyles = makeStyles({
     ...shorthands.gap('8px'),
     '@media (max-width: 768px)': {
       ...shorthands.gap('2px'),
-    },
-  },
-  donateButton: {
-    backgroundColor: '#0067b8',
-    color: '#ffffff',
-    fontWeight: '600',
-    fontSize: '13px',
-    ...shorthands.padding('6px', '12px'),
-    border: 'none',
-    ...shorthands.borderRadius('2px'),
-    cursor: 'pointer',
-    transition: 'background-color 0.2s ease',
-    height: '28px',
-    '&:hover': {
-      backgroundColor: '#004578',
-    },
-    '@media (max-width: 768px)': {
-      padding: '2px 6px',
-      fontSize: '9px',
-      whiteSpace: 'nowrap',
-      minWidth: 'auto',
-      height: '18px',
-      lineHeight: '18px',
     },
   },
   aiGuideButton: {
@@ -523,7 +499,6 @@ function Header() {
         {/* Right Section: Search, Language, Sign In */}
         <div className={styles.rightSection}>
           <SearchInput />
-          <StripeDonateButton />
           {showAiGuideAction && (
             <button
               type="button"
