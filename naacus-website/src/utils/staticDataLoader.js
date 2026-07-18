@@ -19,3 +19,4 @@ export const loadFaqData = () => loadStaticData('faq-data');
 export const loadMinistriesData = () => loadStaticData('ministries');
 export const loadResourcesData = () => loadStaticData('resources');
 export const loadMemberBenefitsData = () => loadStaticData('member-benefits');
+export const loadLeadershipData = () => loadStaticData('leadership-data');

@@ -3837,6 +3837,65 @@ collections:
                 widget: "string"
                 hint: "Emoji or icon character"
 
+      - name: "leadership_data"
+        label: "Leadership Directory"
+        file: "naacus-website/public/content/leadership-data.json"
+        fields:
+          - label: "Executive Board"
+            name: "executiveBoard"
+            widget: "list"
+            collapsed: false
+            fields: &leadership_person_fields
+              - label: "Name"
+                name: "name"
+                widget: "string"
+              - label: "Title"
+                name: "title"
+                widget: "string"
+              - label: "Phone"
+                name: "phone"
+                widget: "string"
+                required: false
+              - label: "Email"
+                name: "email"
+                widget: "string"
+                required: false
+              - label: "Location"
+                name: "location"
+                widget: "string"
+                required: false
+              - label: "Photo Path"
+                name: "photo"
+                widget: "string"
+                required: false
+              - label: "Bio"
+                name: "bio"
+                widget: "text"
+                required: false
+          - label: "Ministry Coordinations"
+            name: "ministryCoordinations"
+            widget: "list"
+            collapsed: false
+            fields: *leadership_person_fields
+          - label: "Spiritual Advisers"
+            name: "spiritualAdvisers"
+            widget: "list"
+            collapsed: false
+            fields: *leadership_person_fields
+          - label: "Training Programs"
+            name: "trainingPrograms"
+            widget: "list"
+            collapsed: true
+            required: false
+            fields:
+              - label: "ID"
+                name: "id"
+                widget: "string"
+              - label: "Icon"
+                name: "icon"
+                widget: "string"
+                required: false
+
 
 
 

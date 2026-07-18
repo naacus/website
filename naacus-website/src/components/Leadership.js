@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { 
@@ -326,11 +326,38 @@ function Leadership() {
   const styles = useStyles();
   const navigate = useNavigate();
   const [selectedMember, setSelectedMember] = useState(null);
+  const [executiveBoard, setExecutiveBoard] = useState([]);
+  const [spiritualAdvisers, setSpiritualAdvisers] = useState([]);
+  const [ministryCoordinations, setMinistryCoordinations] = useState([]);
+  const [trainingPrograms, setTrainingPrograms] = useState([]);
 
-  const executiveBoard = dataService.getLeadershipBoard();
-  const spiritualAdvisers = dataService.getLeadershipAdvisers();
-  const ministryCoordinations = dataService.getLeadershipCoordinations();
-  const trainingPrograms = dataService.getLeadershipTrainingPrograms();
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadLeadership = async () => {
+      const [board, advisers, coordinations, programs] = await Promise.all([
+        dataService.getLeadershipBoard(),
+        dataService.getLeadershipAdvisers(),
+        dataService.getLeadershipCoordinations(),
+        dataService.getLeadershipTrainingPrograms()
+      ]);
+
+      if (!isMounted) {
+        return;
+      }
+
+      setExecutiveBoard(Array.isArray(board) ? board : []);
+      setSpiritualAdvisers(Array.isArray(advisers) ? advisers : []);
+      setMinistryCoordinations(Array.isArray(coordinations) ? coordinations : []);
+      setTrainingPrograms(Array.isArray(programs) ? programs : []);
+    };
+
+    loadLeadership();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const isProfileReady = (member) =>
     Boolean(member?.name && member.name !== 'Open' && member.photo && member.bio);

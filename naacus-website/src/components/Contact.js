@@ -12,7 +12,7 @@ import {
 } from '@fluentui/react-components';
 import { useAnalytics } from '../hooks/useAnalytics';
 import { themeTokens } from '../config/theme';
-import { leadershipData } from '../data/leadershipData';
+import { dataService } from '../services/dataService';
 
 const useStyles = makeStyles({
   contact: {
@@ -113,9 +113,7 @@ function Contact() {
   const { t } = useTranslation();
   const styles = useStyles();
   const { trackForm } = useAnalytics();
-  const spiritualDirector = leadershipData.spiritualAdvisers.find((person) =>
-    person.title?.toLowerCase().includes('spiritual') && person.email && person.phone
-  );
+  const [spiritualDirector, setSpiritualDirector] = useState(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -127,6 +125,28 @@ function Contact() {
   useEffect(() => {
     trackForm('ContactForm', 'form_start');
   }, [trackForm]);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadSpiritualDirector = async () => {
+      const advisers = await dataService.getLeadershipAdvisers();
+      if (!isMounted || !Array.isArray(advisers)) {
+        return;
+      }
+
+      const director = advisers.find((person) =>
+        person.title?.toLowerCase().includes('spiritual') && person.email && person.phone
+      );
+      setSpiritualDirector(director || null);
+    };
+
+    loadSpiritualDirector();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const handleChange = (e) => {
     setFormData({

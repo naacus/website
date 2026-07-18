@@ -27,6 +27,7 @@ import { eventsData } from '../data/eventsData';
 import { faqData as faqDataFallback } from '../data/faqData';
 import { resourcesData as resourcesDataFallback } from '../data/resourcesData';
 import { 
+  loadLeadershipData,
   loadMinistriesData, 
   loadMemberBenefitsData, 
   loadActivitiesData, 
@@ -37,8 +38,9 @@ import {
 const USE_BACKEND_API = process.env.REACT_APP_USE_BACKEND_API === 'true';
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
 
-// Cache for static data loaded from JSON
+// Cache for static data loaded from JSON (Decap-managed content)
 const staticDataCache = {
+  leadership: null,
   ministries: null,
   memberBenefits: null,
   activities: null,
@@ -46,46 +48,65 @@ const staticDataCache = {
   resources: null
 };
 
+const getLeadershipDataFromSource = async () => {
+  if (staticDataCache.leadership) {
+    return staticDataCache.leadership;
+  }
+
+  const loaded = await loadLeadershipData();
+  if (loaded && typeof loaded === 'object') {
+    staticDataCache.leadership = loaded;
+    return loaded;
+  }
+
+  // Legacy hardcoded fallback to keep UI resilient if JSON content is unavailable.
+  return leadershipData;
+};
+
 export const dataService = {
   // Leadership
-  getLeadershipBoard: () => {
+  getLeadershipBoard: async () => {
     if (USE_BACKEND_API) {
       return fetch(`${BACKEND_URL}/api/data/leadership`)
         .then(res => res.json())
         .then(data => data.data?.executiveBoard || [])
         .catch(() => leadershipData.executiveBoard);
     }
-    return leadershipData.executiveBoard;
+    const data = await getLeadershipDataFromSource();
+    return data.executiveBoard || leadershipData.executiveBoard;
   },
   
-  getLeadershipAdvisers: () => {
+  getLeadershipAdvisers: async () => {
     if (USE_BACKEND_API) {
       return fetch(`${BACKEND_URL}/api/data/leadership`)
         .then(res => res.json())
         .then(data => data.data?.spiritualAdvisers || [])
         .catch(() => leadershipData.spiritualAdvisers);
     }
-    return leadershipData.spiritualAdvisers;
+    const data = await getLeadershipDataFromSource();
+    return data.spiritualAdvisers || leadershipData.spiritualAdvisers;
   },
   
-  getLeadershipCoordinations: () => {
+  getLeadershipCoordinations: async () => {
     if (USE_BACKEND_API) {
       return fetch(`${BACKEND_URL}/api/data/leadership`)
         .then(res => res.json())
         .then(data => data.data?.ministryCoordinations || [])
         .catch(() => leadershipData.ministryCoordinations);
     }
-    return leadershipData.ministryCoordinations;
+    const data = await getLeadershipDataFromSource();
+    return data.ministryCoordinations || leadershipData.ministryCoordinations;
   },
 
-  getLeadershipTrainingPrograms: () => {
+  getLeadershipTrainingPrograms: async () => {
     if (USE_BACKEND_API) {
       return fetch(`${BACKEND_URL}/api/data/leadership`)
         .then(res => res.json())
         .then(data => data.data?.trainingPrograms || [])
         .catch(() => leadershipData.trainingPrograms || []);
     }
-    return leadershipData.trainingPrograms || [];
+    const data = await getLeadershipDataFromSource();
+    return data.trainingPrograms || leadershipData.trainingPrograms || [];
   },
 
   // Ministries

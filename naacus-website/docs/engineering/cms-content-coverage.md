@@ -23,7 +23,7 @@ Decap CMS is enabled at `/admin` and currently manages editor-facing text/data d
 	- Source-of-truth files live under `naacus-website/public/locales/<locale>/pages/*.json`
 	- Build/start sync regenerates `naacus-website/public/locales/en/translation.json` and `naacus-website/public/locales/fr/translation.json`
 - Hero slideshow image list
-- Stable static data collections (activities, FAQ data, ministries, resources, member benefits)
+- Stable static data collections (activities, FAQ data, ministries, resources, member benefits, leadership)
 
 Authentication is handled via DecapBridge PKCE + git-gateway.
 
@@ -74,6 +74,7 @@ Decap collections are organized to keep non-technical editing simple:
 	- Ministries Directory
 	- Resources Directory
 	- Member Benefits
+	- Leadership Directory
 
 3. **Media Assets**
 	- Image-focused collections (expanded in image PR)

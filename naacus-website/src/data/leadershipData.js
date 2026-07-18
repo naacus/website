@@ -1,5 +1,8 @@
 /**
  * Leadership Mock Data
+ *
+ * @deprecated Primary source is now public/content/leadership-data.json managed via Decap CMS.
+ * This file is kept as an emergency runtime fallback in dataService.
  */
 
 export const leadershipData = {
