@@ -8,6 +8,7 @@ const resources = {
       header: {
         title: "NAACUS",
         tagline: "National Association of African Catholics in the United States",
+        donate: "Donate",
         nav: {
           home: "Home",
           about: "About",
@@ -47,19 +48,22 @@ const resources = {
         copyright: "© {{year}} NAACUS. All rights reserved.",
         tagline: "Together with Christ - Uniting African Catholic communities across the United States."
       },
-      backToTop: "Back to Top"
+      backToTop: "Back to Top",
+      donate: "donate"
     }
   },
   fr: {
     translation: {
       header: {
         title: "NAACUS",
-        tagline: "Association Nationale des Catholiques Africains aux États-Unis"
+        tagline: "Association Nationale des Catholiques Africains aux États-Unis",
+        donate: "Donner"
       },
       hero: {
         title: "Ensemble avec le Christ",
         subtitle: "Unir les Communautés Catholiques Africaines à Travers les États-Unis"
-      }
+      },
+      donate: "donate"
     }
   }
 };

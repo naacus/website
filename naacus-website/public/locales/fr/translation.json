@@ -571,6 +571,18 @@
           "description": "Soutenez l'accueil et l'inscription des membres afin de garder notre communaute ouverte et accueillante.",
           "amountLabel": "20,00 $ USD",
           "buyButtonId": "buy_btn_1TueZwL5FQlMr7HPDr7xBkKv"
+        },
+        "groupMembership2to100": {
+          "title": "Adhesion de groupe (2 a 100 membres)",
+          "description": "Payez les frais uniques d'adhesion de groupe pour les organisations de 2 a 100 membres.",
+          "amountLabel": "200,00 $ paiement unique",
+          "buyButtonId": ""
+        },
+        "groupMembership100plus": {
+          "title": "Adhesion de groupe (100+ membres)",
+          "description": "Payez les frais uniques d'adhesion de groupe pour les organisations de plus de 100 membres.",
+          "amountLabel": "300,00 $ paiement unique",
+          "buyButtonId": ""
         }
       }
     }

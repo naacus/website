@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { makeStyles, Button } from '@fluentui/react-components';
+import { makeStyles, Button, mergeClasses } from '@fluentui/react-components';
 import { Heart24Regular } from '@fluentui/react-icons';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { startSpan } from '../services/telemetryService';
 import { colors, themeTokens } from '../config/theme';
 
@@ -44,6 +45,7 @@ const useStyles = makeStyles({
 const StripeDonateButton = ({ compact = false }) => {
   const styles = useStyles();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -90,11 +92,11 @@ const StripeDonateButton = ({ compact = false }) => {
     <div className={`${styles.container} ${compact ? styles.containerCompact : ''}`}>
       <Button
         appearance="primary"
-        className={`${styles.donateButton} ${compact ? styles.donateButtonCompact : ''}`}
+        className={mergeClasses(styles.donateButton, compact ? styles.donateButtonCompact : undefined)}
         icon={<Heart24Regular />}
         onClick={handleDonateClick}
         style={compactPillStyle}
-        aria-label="Donate"
+        aria-label={t('header.donate', { defaultValue: t('donate') })}
         onMouseEnter={(e) => {
           if (!compact) {
             return;
@@ -112,7 +114,7 @@ const StripeDonateButton = ({ compact = false }) => {
           e.currentTarget.style.backgroundColor = '#0067b8';
         }}
       >
-        {compact && isMobile ? '' : 'Donate'}
+        {compact && isMobile ? '' : t('header.donate', { defaultValue: t('donate') })}
       </Button>
     </div>
   );

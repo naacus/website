@@ -571,6 +571,18 @@
           "description": "Support membership onboarding and registration assistance that keeps our community open and welcoming.",
           "amountLabel": "$20.00 USD",
           "buyButtonId": "buy_btn_1TueZwL5FQlMr7HPDr7xBkKv"
+        },
+        "groupMembership2to100": {
+          "title": "Group Membership (2-100 members)",
+          "description": "Pay your one-time group membership fee for organizations with 2 to 100 members.",
+          "amountLabel": "$200.00 one-time",
+          "buyButtonId": ""
+        },
+        "groupMembership100plus": {
+          "title": "Group Membership (100+ members)",
+          "description": "Pay your one-time group membership fee for organizations with more than 100 members.",
+          "amountLabel": "$300.00 one-time",
+          "buyButtonId": ""
         }
       }
     }

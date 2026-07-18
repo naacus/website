@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { makeStyles, shorthands, Card, Text, Button, tokens } from '@fluentui/react-components';
+import { makeStyles, shorthands, Card, Text, Button, tokens, mergeClasses } from '@fluentui/react-components';
 import PageWrapper from '../components/PageWrapper';
 import { useAnalytics } from '../hooks/useAnalytics';
 import { startSpan } from '../services/telemetryService';
@@ -41,7 +41,6 @@ const useStyles = makeStyles({
     },
   },
   card: {
-    minHeight: '230px',
     display: 'flex',
     flexDirection: 'column',
     ...shorthands.padding('18px', '16px'),
@@ -83,10 +82,16 @@ const useStyles = makeStyles({
     minHeight: '40px',
     fontWeight: '700',
   },
+  paymentArea: {
+    marginTop: '14px',
+  },
   buyButtonWrap: {
     marginTop: 'auto',
+    display: 'flex',
+    justifyContent: 'center',
     '& stripe-buy-button': {
       width: '100%',
+      maxWidth: '420px',
     },
   },
   note: {
@@ -124,6 +129,24 @@ function DuesRegistrationPage() {
       buyButtonId: t('donation.duesRegistrationPage.items.membershipRegistration.buyButtonId', { defaultValue: '' }),
       accent: '#c2410c',
       stripeUrl: process.env.REACT_APP_STRIPE_DONATION_LINK_MEMBERSHIP_REGISTRATION || 'https://donate.naacus.org',
+    },
+    {
+      id: 'groupMembership2to100',
+      title: t('donation.duesRegistrationPage.items.groupMembership2to100.title'),
+      description: t('donation.duesRegistrationPage.items.groupMembership2to100.description'),
+      amountLabel: t('donation.duesRegistrationPage.items.groupMembership2to100.amountLabel'),
+      buyButtonId: t('donation.duesRegistrationPage.items.groupMembership2to100.buyButtonId', { defaultValue: '' }),
+      accent: '#0f766e',
+      stripeUrl: process.env.REACT_APP_STRIPE_DONATION_LINK_GROUP_MEMBERSHIP_2_100 || 'https://donate.naacus.org',
+    },
+    {
+      id: 'groupMembership100plus',
+      title: t('donation.duesRegistrationPage.items.groupMembership100plus.title'),
+      description: t('donation.duesRegistrationPage.items.groupMembership100plus.description'),
+      amountLabel: t('donation.duesRegistrationPage.items.groupMembership100plus.amountLabel'),
+      buyButtonId: t('donation.duesRegistrationPage.items.groupMembership100plus.buyButtonId', { defaultValue: '' }),
+      accent: '#9a3412',
+      stripeUrl: process.env.REACT_APP_STRIPE_DONATION_LINK_GROUP_MEMBERSHIP_100_PLUS || 'https://donate.naacus.org',
     },
   ];
   const duesItemsCount = duesItems.length;
@@ -182,7 +205,9 @@ function DuesRegistrationPage() {
           {duesItems.map((item) => (
             <Card key={item.id} className={styles.card}>
               <Text as="h2" className={styles.initiativeTitle}>{item.title}</Text>
-              <Text as="p" className={styles.initiativeDescription}>{item.description}</Text>
+              {!(item.buyButtonId && stripePublishableKey) && (
+                <Text as="p" className={styles.initiativeDescription}>{item.description}</Text>
+              )}
               {!(item.buyButtonId && stripePublishableKey) && (
                 <Text as="span" className={styles.amountPill}>{item.amountLabel}</Text>
               )}
@@ -197,7 +222,7 @@ function DuesRegistrationPage() {
               ) : (
                 <Button
                   appearance="primary"
-                  className={styles.cta}
+                  className={mergeClasses(styles.cta, styles.paymentArea)}
                   onClick={() => openStripeLink(item)}
                 >
                   {t('donation.duesRegistrationPage.payButton')}
