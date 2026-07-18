@@ -2,7 +2,7 @@
 
 > **Category:** Engineering | **Audience:** Developers, content admins
 > **Status:** Canonical source of truth for Decap-managed content scope
-> **Last Updated:** July 17, 2026 | [<- Docs Index](../readme.md)
+> **Last Updated:** July 18, 2026 | [<- Docs Index](../readme.md)
 
 ---
 
@@ -103,6 +103,7 @@ Locale hygiene is now enforced through periodic audits. Current baseline report:
 - `naacus-website/public/content/`: structured content JSON files
 - `naacus-website/public/locales/`: per-locale translation sources and generated translation bundles
 - `naacus-website/public/images/uploads/`: CMS-uploaded image assets
+- `naacus-website/public/images/leadership/`: leadership portraits managed from Decap `leadership_data.photo` image fields
 
 ### Component contract
 

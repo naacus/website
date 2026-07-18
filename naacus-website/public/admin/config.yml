@@ -3892,10 +3892,13 @@ collections:
                 name: "location"
                 widget: "string"
                 required: false
-              - label: "Photo Path"
+              - label: "Photo"
                 name: "photo"
-                widget: "string"
+                widget: "image"
                 required: false
+                media_folder: "naacus-website/public/images/leadership"
+                public_folder: "/images/leadership"
+                hint: "Upload or select a leadership image."
               - label: "Bio"
                 name: "bio"
                 widget: "text"
