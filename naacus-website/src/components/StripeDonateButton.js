@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { makeStyles, Button, Text } from '@fluentui/react-components';
 import { DismissRegular } from '@fluentui/react-icons';
 import { paymentConfig } from '../config/paymentConfig';
+import { startSpan, recordException } from '../services/telemetryService';
 
 const isPlaceholder = (value) => /your_|placeholder|example/i.test(value || '');
 
@@ -68,10 +69,26 @@ const StripeDonateButton = ({ compact = false }) => {
     /^pk_(test|live)_.+/.test(publishableKey) &&
     /^buy_btn_.+/.test(buyButtonId);
 
+  const handleFallbackDonateClick = () => {
+    const span = startSpan('donation.fallback_open', {
+      'donation.provider': 'stripe',
+      'donation.compact': compact,
+    });
+    span.end({ code: 1 });
+    window.open('https://donate.naacus.org', '_blank', 'noopener,noreferrer');
+  };
+
   useEffect(() => {
     if (scriptLoaded.current) return;
 
+    const loadSpan = startSpan('stripe.buy_button.load', {
+      'payment.provider': 'stripe',
+      'payment.compact': compact,
+      'payment.config_present': hasStripeConfig,
+    });
+
     if (!hasStripeConfig) {
+      loadSpan.end({ code: 1 });
       return;
     }
 
@@ -84,15 +101,24 @@ const StripeDonateButton = ({ compact = false }) => {
         script.async = true;
         script.onload = () => {
           scriptLoaded.current = true;
+          loadSpan.addEvent('stripe_script_loaded');
           createBuyButton();
         };
         script.onerror = () => {
+          const scriptError = new Error('Failed to load Stripe Buy Button script');
+          loadSpan.recordException(scriptError);
+          loadSpan.end({ code: 2, message: scriptError.message });
+          recordException(scriptError, {
+            'payment.provider': 'stripe',
+            'payment.component': 'StripeDonateButton',
+          });
           setError('Failed to load Stripe');
           console.error('Failed to load Stripe Buy Button script');
         };
         document.body.appendChild(script);
       } else {
         scriptLoaded.current = true;
+        loadSpan.addEvent('stripe_script_reused');
         createBuyButton();
       }
     };
@@ -103,6 +129,7 @@ const StripeDonateButton = ({ compact = false }) => {
         buyButton.setAttribute('buy-button-id', buyButtonId);
         buyButton.setAttribute('publishable-key', publishableKey);
         containerRef.current.appendChild(buyButton);
+        loadSpan.end({ code: 1 });
       }
     }
 
@@ -112,7 +139,7 @@ const StripeDonateButton = ({ compact = false }) => {
       // Cleanup: clear error state on unmount
       setError(null);
     };
-  }, [buyButtonId, hasStripeConfig, publishableKey]);
+  }, [buyButtonId, compact, hasStripeConfig, publishableKey]);
 
   if (error) {
     return (
@@ -127,7 +154,7 @@ const StripeDonateButton = ({ compact = false }) => {
         <Button
           className={`${styles.fallbackButton} ${compact ? styles.compactFallbackButton : ''}`}
           appearance="primary"
-          onClick={() => window.open('https://donate.naacus.org', '_blank')}
+          onClick={handleFallbackDonateClick}
         >
           Donate via Web Link
         </Button>
@@ -140,7 +167,7 @@ const StripeDonateButton = ({ compact = false }) => {
       <Button
         appearance="primary"
         className={`${styles.fallbackButton} ${compact ? styles.compactFallbackButton : ''}`}
-        onClick={() => window.open('https://donate.naacus.org', '_blank', 'noopener,noreferrer')}
+        onClick={handleFallbackDonateClick}
       >
         Donate via Web Link
       </Button>

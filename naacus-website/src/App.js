@@ -4,6 +4,7 @@ import { FluentProvider, webLightTheme } from '@fluentui/react-components';
 import './App.css';
 import { initializeGoogleAnalytics } from './services/googleAnalyticsService';
 import { trackPageRefresh, trackScrollDepth, resetScrollDepthTracking, trackPageView } from './services/analyticsService';
+import { initializeTelemetry, setTelemetryAttributes, trackRouteTelemetry, startSpan } from './services/telemetryService';
 import ErrorBoundary from './components/ErrorBoundary';
 import Header from './components/Header';
 import HomePage from './pages/HomePage';
@@ -35,6 +36,8 @@ function AppContent() {
   const location = useLocation();
 
   useEffect(() => {
+    trackRouteTelemetry(location.pathname, document.title || location.pathname);
+
     // Reset scroll depth tracking when route changes
     resetScrollDepthTracking();
     // Send a page_view for route changes
@@ -88,6 +91,12 @@ function AppContent() {
 
 function App() {
   useEffect(() => {
+    initializeTelemetry();
+    setTelemetryAttributes({
+      'app.name': 'naacus-website',
+      'app.runtime': 'browser',
+    });
+
     // Only initialize Google Analytics if user has accepted cookies
     const cookieConsent = localStorage.getItem('cookieConsent');
     if (cookieConsent === 'accepted') {
@@ -100,6 +109,11 @@ function App() {
     const navigationEntries = performance.getEntriesByType('navigation');
     if (navigationEntries.length > 0 && navigationEntries[0].type === 'reload') {
       trackPageRefresh();
+
+      const refreshSpan = startSpan('ui.page_refresh', {
+        'app.route': window.location.pathname,
+      });
+      refreshSpan.end({ code: 1 });
     }
   }, []);
 

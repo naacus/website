@@ -12,6 +12,7 @@ import { defaultResponses, quickActions } from '../data/faqData';
 import copilotStudioService from './copilotStudioService';
 import { validateConfig } from '../config/copilotStudioConfig';
 import dataService from './dataService';
+import { startSpan } from './telemetryService';
 
 // Track if Copilot Studio is available
 let copilotStudioAvailable = false;
@@ -91,7 +92,13 @@ function buildNoMatchMessage(context = {}) {
  * Call this when the app starts or when a user opens the chat
  */
 export async function initializeCopilotStudio() {
+  const span = startSpan('chatbot.initialize', {
+    'chatbot.provider': 'copilot-studio',
+  });
+
   if (copilotStudioInitialized) {
+    span.setAttribute('chatbot.already_initialized', true);
+    span.end({ code: 1 });
     return copilotStudioAvailable;
   }
 
@@ -101,15 +108,22 @@ export async function initializeCopilotStudio() {
       await copilotStudioService.startConversation();
       copilotStudioAvailable = true;
       copilotStudioInitialized = true;
+      span.setAttribute('chatbot.available', true);
+      span.end({ code: 1 });
       console.log('✅ Microsoft Copilot Studio connected successfully');
       return true;
     } catch (error) {
+      span.recordException(error);
+      span.setAttribute('chatbot.available', false);
+      span.end({ code: 2, message: error?.message || 'Copilot initialization failed' });
       warnIfNotTest('⚠️ Copilot Studio unavailable, using local FAQ fallback:', error.message);
       copilotStudioAvailable = false;
       copilotStudioInitialized = true;
       return false;
     }
   } else {
+    span.setAttribute('chatbot.config_valid', false);
+    span.end({ code: 1 });
     warnIfNotTest('⚠️ Copilot Studio not configured, using local FAQ fallback');
     copilotStudioAvailable = false;
     copilotStudioInitialized = true;
@@ -201,6 +215,12 @@ async function findBestMatch(userQuestion, faqList) {
  * @returns {Promise<object>|object} Response object with text and optional suggestions
  */
 export async function processMessage(userMessage, context = {}) {
+  const span = startSpan('chatbot.process_message', {
+    'chatbot.input_length': userMessage?.length || 0,
+    'chatbot.has_page_intent': Boolean(context?.pageIntent),
+    'chatbot.language': context?.language || 'unknown',
+  });
+
   // Try Copilot Studio first if available
   if (copilotStudioAvailable) {
     try {
@@ -235,14 +255,21 @@ export async function processMessage(userMessage, context = {}) {
               response.attachments = latestMessage.attachments;
             }
             
+            span.setAttribute('chatbot.source', 'copilot-studio');
+            span.end({ code: 1 });
             resolve(response);
           } else {
             // No response from Copilot Studio, use fallback
+            span.setAttribute('chatbot.source', 'local-fallback-no-response');
+            span.end({ code: 1 });
             resolve(processMessageLocal(userMessage, context));
           }
         }, 800); // 800ms delay for bot to process
       });
     } catch (error) {
+      span.recordException(error);
+      span.setAttribute('chatbot.source', 'local-fallback-error');
+      span.end({ code: 2, message: error?.message || 'Copilot message failure' });
       console.error('Copilot Studio error, using fallback:', error);
       copilotStudioAvailable = false; // Disable for this session
       return processMessageLocal(userMessage, context);
@@ -250,6 +277,8 @@ export async function processMessage(userMessage, context = {}) {
   }
   
   // Use local FAQ matching as fallback
+  span.setAttribute('chatbot.source', 'local-faq');
+  span.end({ code: 1 });
   return processMessageLocal(userMessage, context);
 }
 

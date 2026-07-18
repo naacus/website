@@ -19,6 +19,7 @@ Last updated: July 16, 2026
 | [github-azure-secrets-setup.md](engineering/github-azure-secrets-setup.md) | GitHub Secrets and Azure Key Vault setup guide |
 | [cms-content-coverage.md](engineering/cms-content-coverage.md) | Canonical plan and rules for Decap coverage of all text and images |
 | [ga4_analytics.md](engineering/ga4_analytics.md) | Google Analytics 4 setup and event tracking |
+| [opentelemetry-telemetry.md](engineering/opentelemetry-telemetry.md) | OpenTelemetry-aligned telemetry design, env vars, and instrumentation points |
 | [payments.md](engineering/payments.md) | Stripe payment integration guide |
 | [accessibility-audit.md](engineering/accessibility-audit.md) | WCAG 2.1 a11y audit and remediation roadmap |
 | [ai-first-evaluation.md](engineering/ai-first-evaluation.md) | AI-first implementation eval checks and CI gate |
