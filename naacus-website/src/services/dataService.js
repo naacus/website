@@ -20,7 +20,6 @@
 
 import { leadershipData } from '../data/leadershipData';
 import { ministriesData as ministriesDataFallback } from '../data/ministriesData';
-import { testimonialData } from '../data/testimonialData';
 import { memberBenefitsData as memberBenefitsDataFallback } from '../data/memberBenefitsData';
 import { activitiesData as activitiesDataFallback } from '../data/activitiesData';
 import { eventsData } from '../data/eventsData';
@@ -29,6 +28,7 @@ import { resourcesData as resourcesDataFallback } from '../data/resourcesData';
 import { 
   loadLeadershipData,
   loadMinistriesData, 
+  loadTestimonialsData,
   loadMemberBenefitsData, 
   loadActivitiesData, 
   loadFaqData, 
@@ -42,6 +42,7 @@ const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000'
 const staticDataCache = {
   leadership: null,
   ministries: null,
+  testimonials: null,
   memberBenefits: null,
   activities: null,
   faq: null,
@@ -155,15 +156,23 @@ export const dataService = {
     return resourcesDataFallback;
   },
 
-  // Testimonials
-  getTestimonials: () => {
+  // Testimonials (Decap CMS managed)
+  getTestimonials: async () => {
     if (USE_BACKEND_API) {
       return fetch(`${BACKEND_URL}/api/data/testimonials`)
         .then(res => res.json())
         .then(data => data.data || [])
-        .catch(() => testimonialData);
+        .catch(() => []);
     }
-    return testimonialData;
+    if (staticDataCache.testimonials) {
+      return staticDataCache.testimonials;
+    }
+    const data = await loadTestimonialsData();
+    if (data?.testimonials) {
+      staticDataCache.testimonials = data.testimonials;
+      return data.testimonials;
+    }
+    return [];
   },
 
   // Member Benefits

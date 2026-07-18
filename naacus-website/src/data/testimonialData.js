@@ -1,5 +1,9 @@
 /**
  * Testimonials Data
+ * 
+ * @deprecated This file is no longer used. Testimonials are now managed entirely via Decap CMS.
+ * See public/content/testimonials.json and src/services/dataService.js#getTestimonials.
+ * Scheduled for removal after full Decap migration validation (target: August 2026).
  */
 
 export const testimonialData = [
