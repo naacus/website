@@ -224,6 +224,72 @@
     "demoDisclaimer": "Demo only: please do not enter real payment information.",
     "close": "Close",
     "feeWarning": "may apply a fee",
-    "authenticationRequired": "You will be redirected to authenticate your payment securely"
+    "authenticationRequired": "You will be redirected to authenticate your payment securely",
+    "initiativesPage": {
+      "title": "Faire un don a NAACUS",
+      "subtitle": "Selectionnez une initiative ci-dessous pour donner en toute securite. Chaque don soutient l'evangelisation, le service et le leadership fonde sur la foi dans notre communaute nationale.",
+      "donateButton": "Donner en toute securite",
+      "payDuesButton": "Payer maintenant",
+      "helpText": "Besoin d'aide ou vous preferez un autre mode de don?",
+      "contactLinkText": "Contacter NAACUS",
+      "duesHelpText": "Vous devez payer une cotisation ou finaliser une inscription? Visitez",
+      "duesLinkText": "Cotisations et inscription",
+      "openSectionTitle": "Initiatives de don",
+      "openSectionSubtitle": "Choisissez le montant de votre don pour soutenir ces priorites de mission.",
+      "fixedSectionTitle": "Cotisations et inscription",
+      "fixedSectionSubtitle": "Ces options utilisent des montants fixes.",
+      "openTypeLabel": "Montant libre",
+      "fixedTypeLabel": "Montant fixe",
+      "items": {
+        "convention": {
+          "title": "Convention NAACUS-ACCCRUS 2027",
+          "description": "Aidez a financer la formation de la convention, la coordination liturgique, la participation des jeunes et les couts du rassemblement national."
+        },
+        "annualFund": {
+          "title": "Campagne annuelle de financement NAACUS",
+          "description": "Soutenez la stabilite operationnelle toute l'annee, le rayonnement evangelique et les programmes strategiques qui portent la mission de NAACUS."
+        },
+        "womenMinistry": {
+          "title": "Initiatives du ministere des femmes NAACUS",
+          "description": "Investissez dans la formation des femmes dans la foi, les cercles de mentorat, les evenements de formation et les initiatives de soin communautaire."
+        },
+        "youthPrograms": {
+          "title": "Programmes et activites des jeunes et jeunes adultes NAACUS",
+          "description": "Financez le developpement du leadership, les retraites, la formation dans la foi et les programmes qui elevent les jeunes et jeunes adultes."
+        },
+        "annualDues": {
+          "title": "Cotisations annuelles individuelles NAACUS",
+          "description": "Contribuez au soutien des cotisations annuelles pour maintenir les services aux membres et la mission tout au long de l'annee.",
+          "amountLabel": "2,00 $ USD / an"
+        },
+        "membershipRegistration": {
+          "title": "Inscription individuelle des membres NAACUS",
+          "description": "Soutenez l'accueil et l'inscription des membres afin de garder notre communaute ouverte et accueillante.",
+          "amountLabel": "20,00 $ USD"
+        }
+      }
+    },
+    "duesRegistrationPage": {
+      "title": "Cotisations et inscription",
+      "subtitle": "Utilisez cette page pour les paiements a montant fixe comme les cotisations annuelles et l'inscription des membres.",
+      "payButton": "Payer maintenant",
+      "backToDonationLinkText": "Retour aux initiatives de don",
+      "helpText": "Besoin d'aide ou vous preferez un autre mode de don?",
+      "contactLinkText": "Contacter NAACUS",
+      "items": {
+        "annualDues": {
+          "title": "Cotisations annuelles individuelles NAACUS",
+          "description": "Contribuez au soutien des cotisations annuelles pour maintenir les services aux membres et la mission tout au long de l'annee.",
+          "amountLabel": "2,00 $ USD / an",
+          "buyButtonId": "buy_btn_1TueYZL5FQlMr7HPliBQuUMh"
+        },
+        "membershipRegistration": {
+          "title": "Inscription individuelle des membres NAACUS",
+          "description": "Soutenez l'accueil et l'inscription des membres afin de garder notre communaute ouverte et accueillante.",
+          "amountLabel": "20,00 $ USD",
+          "buyButtonId": "buy_btn_1TueZwL5FQlMr7HPDr7xBkKv"
+        }
+      }
+    }
   }
 }

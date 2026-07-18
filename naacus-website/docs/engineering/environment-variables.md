@@ -36,17 +36,19 @@ For production templates (`.env.production`), keep Stripe secret values empty in
 ```bash
 # DO NOT include real credentials here
 REACT_APP_STRIPE_PUBLIC_KEY=pk_test_your_publishable_key_here
-REACT_APP_STRIPE_BUY_BUTTON_ID=buy_btn_your_buy_button_id_here
 REACT_APP_API_BASE_URL=http://localhost:5001
 REACT_APP_DEBUG_PAYMENTS=false
 ```
+
+> Donation/Dues initiatives now support many Stripe Buy Buttons. Store each initiative `buyButtonId`
+> in Decap-managed locale content (`membership-volunteer-giving.json`) instead of creating one
+> environment variable per initiative.
 
 **1b. Local overrides (`.env.local` - NEVER COMMIT)**
 ```bash
 # Add to .gitignore (already done ✓)
 # Your actual local credentials
 REACT_APP_STRIPE_PUBLIC_KEY=pk_test_ACTUAL_KEY_HERE
-REACT_APP_STRIPE_BUY_BUTTON_ID=buy_btn_ACTUAL_ID_HERE
 ```
 
 ### Verify `.gitignore` includes these:
@@ -74,7 +76,6 @@ Settings → Secrets and variables → Actions → New repository secret
 **Required secrets to add:**
 ```
 STRIPE_PUBLIC_KEY_TEST=pk_test_...
-STRIPE_BUY_BUTTON_ID_TEST=buy_btn_...
 API_BASE_URL_TEST=https://api-test.naacus.org (optional)
 ```
 
@@ -98,7 +99,6 @@ API_BASE_URL_TEST=https://api-test.naacus.org (optional)
     # and prevents placeholder values from leaking into production builds.
     cat > .env.production.local << EOF
     REACT_APP_STRIPE_PUBLIC_KEY=${{ env.STRIPE_PUBLIC_KEY }}
-    REACT_APP_STRIPE_BUY_BUTTON_ID=${{ env.STRIPE_BUY_BUTTON_ID }}
     REACT_APP_API_BASE_URL=${{ secrets.API_BASE_URL_TEST || 'http://localhost:5001' }}
     REACT_APP_DEBUG_PAYMENTS=true
     CI=true
@@ -132,10 +132,6 @@ az keyvault secret set --vault-name naacus-kv \
   --value "pk_live_YOUR_LIVE_KEY"
 
 az keyvault secret set --vault-name naacus-kv \
-  --name StripeBuyButtonIdProd \
-  --value "buy_btn_YOUR_PROD_ID"
-
-az keyvault secret set --vault-name naacus-kv \
 ```
 
 ### 3b. Configure Static Web Apps:
@@ -146,7 +142,6 @@ az keyvault secret set --vault-name naacus-kv \
 3. Add Application Settings (Frontend):
    ```
    REACT_APP_STRIPE_PUBLIC_KEY = @Microsoft.KeyVault(SecretUri=https://naacus-kv.vault.azure.net/secrets/StripePublicKeyProd/VERSION)
-   REACT_APP_STRIPE_BUY_BUTTON_ID = @Microsoft.KeyVault(SecretUri=https://naacus-kv.vault.azure.net/secrets/StripeBuyButtonIdProd/VERSION)
    ```
 
 ### 3c. CD Workflow (`.github/workflows/deploy-azure.yml`):
@@ -171,7 +166,6 @@ jobs:
         env:
           # Use production secrets from GitHub
           REACT_APP_STRIPE_PUBLIC_KEY: ${{ secrets.STRIPE_PUBLIC_KEY_PROD }}
-          REACT_APP_STRIPE_BUY_BUTTON_ID: ${{ secrets.STRIPE_BUY_BUTTON_ID_PROD }}
           REACT_APP_API_BASE_URL: https://api.naacus.org
       
       - name: Deploy to Azure Static Web Apps
@@ -207,9 +201,7 @@ naacus-website/
 ```json
 {
   "stripe": {
-    "publicKey": "__STRIPE_PUBLIC_KEY__",
-    "buyButtonId": "__STRIPE_BUY_BUTTON_ID__"
-  },
+    "publicKey": "__STRIPE_PUBLIC_KEY__"
   },
   "api": {
     "baseUrl": "__API_BASE_URL__"
@@ -226,7 +218,6 @@ const template = fs.readFileSync('public/config.template.json', 'utf8');
 
 const config = template
   .replace('__STRIPE_PUBLIC_KEY__', process.env.REACT_APP_STRIPE_PUBLIC_KEY || '')
-  .replace('__STRIPE_BUY_BUTTON_ID__', process.env.REACT_APP_STRIPE_BUY_BUTTON_ID || '')
   .replace('__API_BASE_URL__', process.env.REACT_APP_API_BASE_URL || '');
 
 fs.writeFileSync('public/config.json', config);

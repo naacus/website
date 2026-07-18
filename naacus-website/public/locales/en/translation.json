@@ -507,7 +507,73 @@
     "email": "Email Address",
     "paymentSuccess": "Thank you! Your donation is being processed.",
     "bitcoin": "Bitcoin/Crypto",
-    "demoDisclaimer": "Demo only: please do not enter real payment information."
+    "demoDisclaimer": "Demo only: please do not enter real payment information.",
+    "initiativesPage": {
+      "title": "Donate to NAACUS",
+      "subtitle": "Select an initiative below to donate securely. Every gift supports evangelization, service, and faith-centered leadership across our national community.",
+      "donateButton": "Donate Securely",
+      "payDuesButton": "Pay Now",
+      "helpText": "Need help or prefer another giving method?",
+      "contactLinkText": "Contact NAACUS",
+      "duesHelpText": "Need to pay dues or complete membership registration? Visit",
+      "duesLinkText": "Dues & Registration",
+      "openSectionTitle": "Donation Initiatives",
+      "openSectionSubtitle": "Choose any amount to support these mission priorities.",
+      "fixedSectionTitle": "Dues and Registration",
+      "fixedSectionSubtitle": "These options use fixed amounts.",
+      "openTypeLabel": "Open Amount",
+      "fixedTypeLabel": "Fixed Amount",
+      "items": {
+        "convention": {
+          "title": "NAACUS-ACCCRUS 2027 Convention",
+          "description": "Help sponsor convention formation, liturgy coordination, youth participation, and national community gathering costs."
+        },
+        "annualFund": {
+          "title": "NAACUS Annual Fund Drive Appeal",
+          "description": "Support year-round operational strength, evangelization outreach, and strategic programs that sustain NAACUS mission."
+        },
+        "womenMinistry": {
+          "title": "NAACUS Women's Ministry initiatives",
+          "description": "Invest in women-led faith development, mentorship circles, formation events, and community care initiatives."
+        },
+        "youthPrograms": {
+          "title": "NAACUS Youth and Young Adult programs and activities",
+          "description": "Fund leadership development, retreats, faith formation, and programming that uplifts youth and young adults."
+        },
+        "annualDues": {
+          "title": "NAACUS Individual Annual Dues",
+          "description": "Contribute to annual dues support that helps sustain member services and year-round mission delivery.",
+          "amountLabel": "$2.00 USD / year"
+        },
+        "membershipRegistration": {
+          "title": "NAACUS Individual Membership Registration",
+          "description": "Support membership onboarding and registration assistance that keeps our community open and welcoming.",
+          "amountLabel": "$20.00 USD"
+        }
+      }
+    },
+    "duesRegistrationPage": {
+      "title": "Dues and Registration",
+      "subtitle": "Use this page for fixed-payment items such as annual dues and membership registration.",
+      "payButton": "Pay Now",
+      "backToDonationLinkText": "Back to Donation Initiatives",
+      "helpText": "Need help or prefer another giving method?",
+      "contactLinkText": "Contact NAACUS",
+      "items": {
+        "annualDues": {
+          "title": "NAACUS Individual Annual Dues",
+          "description": "Contribute to annual dues support that helps sustain member services and year-round mission delivery.",
+          "amountLabel": "$2.00 USD / year",
+          "buyButtonId": "buy_btn_1TueYZL5FQlMr7HPliBQuUMh"
+        },
+        "membershipRegistration": {
+          "title": "NAACUS Individual Membership Registration",
+          "description": "Support membership onboarding and registration assistance that keeps our community open and welcoming.",
+          "amountLabel": "$20.00 USD",
+          "buyButtonId": "buy_btn_1TueZwL5FQlMr7HPDr7xBkKv"
+        }
+      }
+    }
   },
   "ministries": {
     "title": "Fellowship & Ministries",

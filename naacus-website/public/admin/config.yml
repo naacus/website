@@ -2900,6 +2900,201 @@ collections:
               - label: Required
                 name: required
                 widget: string
+          - label: Donation
+            name: donation
+            widget: object
+            collapsed: true
+            fields:
+              - label: Initiatives Page
+                name: initiativesPage
+                widget: object
+                collapsed: true
+                fields:
+                  - label: Page Title
+                    name: title
+                    widget: string
+                  - label: Page Subtitle
+                    name: subtitle
+                    widget: text
+                  - label: Donate Button Label
+                    name: donateButton
+                    widget: string
+                  - label: Fixed Amount Button Label
+                    name: payDuesButton
+                    widget: string
+                  - label: Help Text
+                    name: helpText
+                    widget: string
+                  - label: Contact Link Text
+                    name: contactLinkText
+                    widget: string
+                  - label: Dues Help Text
+                    name: duesHelpText
+                    widget: string
+                  - label: Dues Page Link Text
+                    name: duesLinkText
+                    widget: string
+                  - label: Free Donation Section Title
+                    name: openSectionTitle
+                    widget: string
+                  - label: Free Donation Section Subtitle
+                    name: openSectionSubtitle
+                    widget: string
+                  - label: Dues Section Title
+                    name: fixedSectionTitle
+                    widget: string
+                  - label: Dues Section Subtitle
+                    name: fixedSectionSubtitle
+                    widget: string
+                  - label: Free Donation Type Label
+                    name: openTypeLabel
+                    widget: string
+                  - label: Fixed Amount Type Label
+                    name: fixedTypeLabel
+                    widget: string
+                  - label: Items
+                    name: items
+                    widget: object
+                    collapsed: true
+                    fields:
+                      - label: Convention
+                        name: convention
+                        widget: object
+                        collapsed: true
+                        fields:
+                          - label: Title
+                            name: title
+                            widget: string
+                          - label: Description
+                            name: description
+                            widget: text
+                      - label: Annual Fund
+                        name: annualFund
+                        widget: object
+                        collapsed: true
+                        fields:
+                          - label: Title
+                            name: title
+                            widget: string
+                          - label: Description
+                            name: description
+                            widget: text
+                      - label: Women Ministry
+                        name: womenMinistry
+                        widget: object
+                        collapsed: true
+                        fields:
+                          - label: Title
+                            name: title
+                            widget: string
+                          - label: Description
+                            name: description
+                            widget: text
+                      - label: Youth Programs
+                        name: youthPrograms
+                        widget: object
+                        collapsed: true
+                        fields:
+                          - label: Title
+                            name: title
+                            widget: string
+                          - label: Description
+                            name: description
+                            widget: text
+                      - label: Annual Dues
+                        name: annualDues
+                        widget: object
+                        collapsed: true
+                        fields:
+                          - label: Title
+                            name: title
+                            widget: string
+                          - label: Description
+                            name: description
+                            widget: text
+                          - label: Amount Label
+                            name: amountLabel
+                            widget: string
+                            required: false
+                      - label: Membership Registration
+                        name: membershipRegistration
+                        widget: object
+                        collapsed: true
+                        fields:
+                          - label: Title
+                            name: title
+                            widget: string
+                          - label: Description
+                            name: description
+                            widget: text
+                          - label: Amount Label
+                            name: amountLabel
+                            widget: string
+                            required: false
+              - label: Dues Registration Page
+                name: duesRegistrationPage
+                widget: object
+                collapsed: true
+                fields:
+                  - label: Page Title
+                    name: title
+                    widget: string
+                  - label: Page Subtitle
+                    name: subtitle
+                    widget: text
+                  - label: Pay Button Label
+                    name: payButton
+                    widget: string
+                  - label: Back To Donation Link Text
+                    name: backToDonationLinkText
+                    widget: string
+                  - label: Help Text
+                    name: helpText
+                    widget: string
+                  - label: Contact Link Text
+                    name: contactLinkText
+                    widget: string
+                  - label: Items
+                    name: items
+                    widget: object
+                    collapsed: true
+                    fields:
+                      - label: Annual Dues
+                        name: annualDues
+                        widget: object
+                        collapsed: true
+                        fields:
+                          - label: Title
+                            name: title
+                            widget: string
+                          - label: Description
+                            name: description
+                            widget: text
+                          - label: Amount Label
+                            name: amountLabel
+                            widget: string
+                          - label: Stripe Buy Button ID
+                            name: buyButtonId
+                            widget: string
+                            required: false
+                      - label: Membership Registration
+                        name: membershipRegistration
+                        widget: object
+                        collapsed: true
+                        fields:
+                          - label: Title
+                            name: title
+                            widget: string
+                          - label: Description
+                            name: description
+                            widget: text
+                          - label: Amount Label
+                            name: amountLabel
+                            widget: string
+                          - label: Stripe Buy Button ID
+                            name: buyButtonId
+                            widget: string
+                            required: false
       - name: membership_volunteer_giving_fr
         label: Membership, Volunteer & Giving - Francais
         file: naacus-website/public/locales/fr/pages/membership-volunteer-giving.json
@@ -3460,6 +3655,201 @@ collections:
               - label: Required
                 name: required
                 widget: string
+          - label: Donation
+            name: donation
+            widget: object
+            collapsed: true
+            fields:
+              - label: Initiatives Page
+                name: initiativesPage
+                widget: object
+                collapsed: true
+                fields:
+                  - label: Page Title
+                    name: title
+                    widget: string
+                  - label: Page Subtitle
+                    name: subtitle
+                    widget: text
+                  - label: Donate Button Label
+                    name: donateButton
+                    widget: string
+                  - label: Fixed Amount Button Label
+                    name: payDuesButton
+                    widget: string
+                  - label: Help Text
+                    name: helpText
+                    widget: string
+                  - label: Contact Link Text
+                    name: contactLinkText
+                    widget: string
+                  - label: Dues Help Text
+                    name: duesHelpText
+                    widget: string
+                  - label: Dues Page Link Text
+                    name: duesLinkText
+                    widget: string
+                  - label: Free Donation Section Title
+                    name: openSectionTitle
+                    widget: string
+                  - label: Free Donation Section Subtitle
+                    name: openSectionSubtitle
+                    widget: string
+                  - label: Dues Section Title
+                    name: fixedSectionTitle
+                    widget: string
+                  - label: Dues Section Subtitle
+                    name: fixedSectionSubtitle
+                    widget: string
+                  - label: Free Donation Type Label
+                    name: openTypeLabel
+                    widget: string
+                  - label: Fixed Amount Type Label
+                    name: fixedTypeLabel
+                    widget: string
+                  - label: Items
+                    name: items
+                    widget: object
+                    collapsed: true
+                    fields:
+                      - label: Convention
+                        name: convention
+                        widget: object
+                        collapsed: true
+                        fields:
+                          - label: Title
+                            name: title
+                            widget: string
+                          - label: Description
+                            name: description
+                            widget: text
+                      - label: Annual Fund
+                        name: annualFund
+                        widget: object
+                        collapsed: true
+                        fields:
+                          - label: Title
+                            name: title
+                            widget: string
+                          - label: Description
+                            name: description
+                            widget: text
+                      - label: Women Ministry
+                        name: womenMinistry
+                        widget: object
+                        collapsed: true
+                        fields:
+                          - label: Title
+                            name: title
+                            widget: string
+                          - label: Description
+                            name: description
+                            widget: text
+                      - label: Youth Programs
+                        name: youthPrograms
+                        widget: object
+                        collapsed: true
+                        fields:
+                          - label: Title
+                            name: title
+                            widget: string
+                          - label: Description
+                            name: description
+                            widget: text
+                      - label: Annual Dues
+                        name: annualDues
+                        widget: object
+                        collapsed: true
+                        fields:
+                          - label: Title
+                            name: title
+                            widget: string
+                          - label: Description
+                            name: description
+                            widget: text
+                          - label: Amount Label
+                            name: amountLabel
+                            widget: string
+                            required: false
+                      - label: Membership Registration
+                        name: membershipRegistration
+                        widget: object
+                        collapsed: true
+                        fields:
+                          - label: Title
+                            name: title
+                            widget: string
+                          - label: Description
+                            name: description
+                            widget: text
+                          - label: Amount Label
+                            name: amountLabel
+                            widget: string
+                            required: false
+              - label: Dues Registration Page
+                name: duesRegistrationPage
+                widget: object
+                collapsed: true
+                fields:
+                  - label: Page Title
+                    name: title
+                    widget: string
+                  - label: Page Subtitle
+                    name: subtitle
+                    widget: text
+                  - label: Pay Button Label
+                    name: payButton
+                    widget: string
+                  - label: Back To Donation Link Text
+                    name: backToDonationLinkText
+                    widget: string
+                  - label: Help Text
+                    name: helpText
+                    widget: string
+                  - label: Contact Link Text
+                    name: contactLinkText
+                    widget: string
+                  - label: Items
+                    name: items
+                    widget: object
+                    collapsed: true
+                    fields:
+                      - label: Annual Dues
+                        name: annualDues
+                        widget: object
+                        collapsed: true
+                        fields:
+                          - label: Title
+                            name: title
+                            widget: string
+                          - label: Description
+                            name: description
+                            widget: text
+                          - label: Amount Label
+                            name: amountLabel
+                            widget: string
+                          - label: Stripe Buy Button ID
+                            name: buyButtonId
+                            widget: string
+                            required: false
+                      - label: Membership Registration
+                        name: membershipRegistration
+                        widget: object
+                        collapsed: true
+                        fields:
+                          - label: Title
+                            name: title
+                            widget: string
+                          - label: Description
+                            name: description
+                            widget: text
+                          - label: Amount Label
+                            name: amountLabel
+                            widget: string
+                          - label: Stripe Buy Button ID
+                            name: buyButtonId
+                            widget: string
+                            required: false
 
 
 

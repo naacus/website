@@ -22,6 +22,7 @@ import NewslettersPage from './pages/NewslettersPage';
 import ContactPage from './pages/ContactPage';
 import PrivacyPage from './pages/PrivacyPage';
 import DonationPage from './pages/DonationPage';
+import DuesRegistrationPage from './pages/DuesRegistrationPage';
 import FAQPage from './pages/FAQPage';
 import FeedbackPage from './pages/FeedbackPage';
 import PrayerLibraryPage from './pages/PrayerLibraryPage';
@@ -62,6 +63,7 @@ function AppContent() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/donation" element={<DonationPage />} />
+          <Route path="/dues-registration" element={<DuesRegistrationPage />} />
           <Route path="/2025" element={<Event2025Page />} />
           <Route path="/events" element={<EventsPage />} />
           <Route path="/about" element={<AboutPage />} />

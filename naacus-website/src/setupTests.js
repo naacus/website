@@ -16,4 +16,17 @@ if (typeof window !== 'undefined') {
 	if (typeof window.performance.getEntriesByType !== 'function') {
 		window.performance.getEntriesByType = () => [];
 	}
+
+	if (typeof window.matchMedia !== 'function') {
+		window.matchMedia = (query) => ({
+			matches: false,
+			media: query,
+			onchange: null,
+			addListener: () => {},
+			removeListener: () => {},
+			addEventListener: () => {},
+			removeEventListener: () => {},
+			dispatchEvent: () => false,
+		});
+	}
 }

@@ -23,7 +23,8 @@ const useStyles = makeStyles({
     transitionTimingFunction: 'ease-in-out',
     '@media (max-width: 768px)': {
       bottom: themeTokens.componentPositioning.backToTop.bottomMobile,
-      right: themeTokens.componentPositioning.backToTop.right,
+      right: '12px',
+      left: 'auto',
     },
   },
   visible: {

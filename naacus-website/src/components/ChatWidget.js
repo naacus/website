@@ -26,6 +26,11 @@ const useStyles = makeStyles({
     flexDirection: 'column',
     alignItems: 'flex-end',
     ...shorthands.gap(themeTokens.componentChat.spacing.containerGap),
+    '@media (max-width: 768px)': {
+      right: '12px',
+      bottom: '10px',
+      ...shorthands.gap('8px'),
+    },
   },
   teaserCard: {
     display: 'flex',
@@ -50,7 +55,7 @@ const useStyles = makeStyles({
     justifyContent: 'flex-end',
     width: '100%',
     maxWidth: themeTokens.componentChat.sizes.teaserCardWidth,
-    marginBottom: '-4px',
+    marginBottom: '0',
     '@media (max-width: 768px)': {
       maxWidth: themeTokens.componentChat.sizes.teaserCardWidthMobile,
     },

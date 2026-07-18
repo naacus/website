@@ -180,13 +180,13 @@ export const componentSpacing = {
 export const componentPositioning = {
   backToTop: {
     bottom: '150px',
-    right: '4px',
+    right: '16px',
     zIndex: 1200,
-    bottomMobile: '140px',
+    bottomMobile: '150px',
   },
   chatWidget: {
-    right: '4px',
-    bottom: '4px',
+    right: '16px',
+    bottom: '12px',
     zIndex: 1300,
   },
 };
