@@ -22,6 +22,7 @@ Settings → Secrets and variables → Actions → New repository secret
 | `STRIPE_BUY_BUTTON_ID_TEST` | `buy_btn_...` | From Stripe Buy Button (test) |
 | `STRIPE_PUBLIC_KEY_PROD` | `pk_live_...` | From Stripe Dashboard (live mode) |
 | `STRIPE_BUY_BUTTON_ID_PROD` | `buy_btn_...` | From Stripe Buy Button (live) |
+| `REACT_APP_RESTCOUNTRIES_API_KEY` | `rc_live_...` | Fallback key used when Azure Key Vault lookup is unavailable |
 | `API_BASE_URL_TEST` | `https://api-test.naacus.org` | Optional - test API endpoint |
 
 ### Verify they work:
@@ -60,6 +61,11 @@ az keyvault secret set \
   --vault-name naacus-kv-prod \
   --name StripeBuyButtonId \
   --value "buy_btn_YOUR_ACTUAL_ID"
+
+az keyvault secret set \
+  --vault-name naacus-kv-prod \
+  --name RestCountriesApiKey \
+  --value "rc_live_YOUR_ACTUAL_KEY"
 
 az keyvault secret set \
   --vault-name naacus-kv-prod \
@@ -138,6 +144,7 @@ The workflow has been enhanced to automatically inject GitHub Secrets during bui
 
 **For Development/Test builds (triggered by PR or push to develop):**
 - Uses `STRIPE_PUBLIC_KEY_TEST` and `STRIPE_BUY_BUTTON_ID_TEST` from GitHub Secrets
+- Resolves `REACT_APP_RESTCOUNTRIES_API_KEY` from Azure Key Vault first, then GitHub Secrets fallback
 - Sets `REACT_APP_DEBUG_PAYMENTS=true`
 
 **For Production deployment (automatic after PR merge to develop):**
@@ -152,6 +159,7 @@ The workflow has been enhanced to automatically inject GitHub Secrets during bui
     cat > .env << EOF
     REACT_APP_STRIPE_PUBLIC_KEY=${{ secrets.STRIPE_PUBLIC_KEY_TEST }}
     REACT_APP_STRIPE_BUY_BUTTON_ID=${{ secrets.STRIPE_BUY_BUTTON_ID_TEST }}
+    REACT_APP_RESTCOUNTRIES_API_KEY=${{ secrets.REACT_APP_RESTCOUNTRIES_API_KEY || secrets.RESTCOUNTRIES_API_KEY || '' }}
     REACT_APP_API_BASE_URL=${{ secrets.API_BASE_URL_TEST || 'http://localhost:5001' }}
     REACT_APP_DEBUG_PAYMENTS=true
     CI=true

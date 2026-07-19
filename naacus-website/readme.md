@@ -87,6 +87,11 @@ Stripe key policy for all contributors:
 - CI source order is Azure Key Vault first, then GitHub Secrets fallback.
 - If no valid key is available, CI logs a warning and deploys with Stripe buy buttons disabled (safe fallback).
 
+Rest Countries key policy for all contributors:
+- Do not hardcode REST Countries API keys in source files.
+- CI source order is Azure Key Vault first, then GitHub Secrets fallback.
+- If key retrieval fails, runtime country loading falls back to the public dataset.
+
 ### Copy/Paste Onboarding Prompt (for New Team Members)
 
 Use this prompt in Copilot Chat (or your AI assistant) after opening the repository:

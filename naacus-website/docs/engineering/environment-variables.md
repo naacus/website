@@ -77,6 +77,7 @@ Settings → Secrets and variables → Actions → New repository secret
 ```
 STRIPE_PUBLIC_KEY_TEST=pk_test_...
 API_BASE_URL_TEST=https://api-test.naacus.org (optional)
+REACT_APP_RESTCOUNTRIES_API_KEY=rc_live_... (fallback when Azure Key Vault is unavailable)
 ```
 
 **2b. How it works:**
@@ -98,6 +99,7 @@ API_BASE_URL_TEST=https://api-test.naacus.org (optional)
     # Use .env.development as the source of truth for develop deployments.
     cat > .env.development << EOF
     REACT_APP_STRIPE_PUBLIC_KEY=${{ secrets.REACT_APP_STRIPE_PUBLIC_KEY || secrets.STRIPE_PUBLIC_KEY_TEST || '' }}
+    REACT_APP_RESTCOUNTRIES_API_KEY=${{ secrets.REACT_APP_RESTCOUNTRIES_API_KEY || secrets.RESTCOUNTRIES_API_KEY || '' }}
     REACT_APP_API_BASE_URL=${{ secrets.API_BASE_URL_TEST || 'http://localhost:5001' }}
     REACT_APP_DEBUG_PAYMENTS=true
     CI=true
@@ -133,6 +135,10 @@ az keyvault create --resource-group naacus-rg --name naacus-kv
 az keyvault secret set --vault-name naacus-kv \
   --name StripePublicKeyProd \
   --value "pk_live_YOUR_LIVE_KEY"
+
+az keyvault secret set --vault-name naacus-kv \
+  --name RestCountriesApiKey \
+  --value "rc_live_YOUR_KEY"
 
 az keyvault secret set --vault-name naacus-kv \
 ```
@@ -271,6 +277,7 @@ export default loadConfig;
 - [ ] No hardcoded URLs/IPs in code
 - [ ] Use HTTPS for all production APIs
 - [ ] Validate env vars at runtime and fall back to the web donate link when Stripe config is missing
+- [ ] Configure `REACT_APP_RESTCOUNTRIES_API_KEY` with Azure Key Vault first and GitHub Secrets fallback
 - [ ] Add secret scanning: Enable Gitleaks in CI/CD
 
 ---

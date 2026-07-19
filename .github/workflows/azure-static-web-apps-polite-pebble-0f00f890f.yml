@@ -140,12 +140,91 @@ jobs:
             fi
           } >> "$GITHUB_STEP_SUMMARY"
 
+      - name: Load Rest Countries API key from Azure Key Vault
+        id: kv_fetch_restcountries
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          KV_NAME='${{ secrets.AZURE_KEY_VAULT_NAME }}'
+          SECRET_NAME='${{ secrets.AZURE_RESTCOUNTRIES_API_KEY_SECRET_NAME }}'
+
+          if [ -z "$KV_NAME" ]; then
+            echo "AZURE_KEY_VAULT_NAME is not configured; skipping Azure Key Vault lookup for Rest Countries key."
+            exit 0
+          fi
+
+          if [ -z "$SECRET_NAME" ]; then
+            SECRET_NAME='RestCountriesApiKey'
+          fi
+
+          RESTCOUNTRIES_KEY="$(az keyvault secret show \
+            --vault-name "$KV_NAME" \
+            --name "$SECRET_NAME" \
+            --query value \
+            -o tsv)"
+
+          if [ -z "$RESTCOUNTRIES_KEY" ]; then
+            echo "Rest Countries key from Key Vault is empty or unavailable."
+            exit 1
+          fi
+
+          echo "::add-mask::$RESTCOUNTRIES_KEY"
+          echo "restcountries_key=$RESTCOUNTRIES_KEY" >> "$GITHUB_OUTPUT"
+
+      - name: Resolve Rest Countries API key (Azure first, GitHub fallback)
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          KV_NAME='${{ secrets.AZURE_KEY_VAULT_NAME }}'
+          RESTCOUNTRIES_KEY=''
+          RESTCOUNTRIES_KEY_SOURCE='none'
+          RESTCOUNTRIES_KEY_STATUS='warning'
+
+          if [ -n "$KV_NAME" ]; then
+            if [ '${{ steps.azure_login.outcome }}' = 'success' ] && [ '${{ steps.kv_fetch_restcountries.outcome }}' = 'success' ]; then
+              RESTCOUNTRIES_KEY='${{ steps.kv_fetch_restcountries.outputs.restcountries_key }}'
+              RESTCOUNTRIES_KEY_SOURCE='azure-key-vault'
+              RESTCOUNTRIES_KEY_STATUS='ok'
+            else
+              echo "Azure Key Vault is configured but Rest Countries key retrieval failed; trying GitHub fallback."
+            fi
+          fi
+
+          if [ -z "$RESTCOUNTRIES_KEY" ]; then
+            RESTCOUNTRIES_KEY='${{ secrets.REACT_APP_RESTCOUNTRIES_API_KEY || secrets.RESTCOUNTRIES_API_KEY || '' }}'
+            if [ -n "$RESTCOUNTRIES_KEY" ]; then
+              RESTCOUNTRIES_KEY_SOURCE='github-secrets'
+              RESTCOUNTRIES_KEY_STATUS='ok'
+            fi
+          fi
+
+          if [ -n "$RESTCOUNTRIES_KEY" ]; then
+            echo "::add-mask::$RESTCOUNTRIES_KEY"
+          fi
+          echo "REACT_APP_RESTCOUNTRIES_API_KEY=$RESTCOUNTRIES_KEY" >> "$GITHUB_ENV"
+          echo "RESTCOUNTRIES_KEY_SOURCE=$RESTCOUNTRIES_KEY_SOURCE" >> "$GITHUB_ENV"
+          echo "RESTCOUNTRIES_KEY_STATUS=$RESTCOUNTRIES_KEY_STATUS" >> "$GITHUB_ENV"
+
+          echo "Rest Countries key source: $RESTCOUNTRIES_KEY_SOURCE"
+          {
+            echo "### Rest Countries Key Source"
+            echo "- Source: $RESTCOUNTRIES_KEY_SOURCE"
+            echo "- Status: $RESTCOUNTRIES_KEY_STATUS"
+            if [ "$RESTCOUNTRIES_KEY_SOURCE" = 'none' ]; then
+              echo "- Note: Key unavailable. Build continues with public fallback country dataset."
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
       # Create .env.development for develop quality gates.
       # Stripe public key is resolved from Azure Key Vault or GitHub secrets fallback in the previous step.
       - name: Create development environment file
         run: |
           cat > .env.development << EOF2
           REACT_APP_STRIPE_PUBLIC_KEY=${REACT_APP_STRIPE_PUBLIC_KEY}
+          REACT_APP_RESTCOUNTRIES_API_KEY=${REACT_APP_RESTCOUNTRIES_API_KEY}
           REACT_APP_API_BASE_URL=${{ secrets.API_BASE_URL_TEST || 'http://localhost:5001' }}
           REACT_APP_DEBUG_PAYMENTS=true
           CI=true
@@ -163,6 +242,10 @@ jobs:
 
           if [ -n "$REACT_APP_STRIPE_PUBLIC_KEY" ] && [[ ! "$REACT_APP_STRIPE_PUBLIC_KEY" =~ ^pk_(test|live)_[A-Za-z0-9]{10,}$ ]]; then
             echo "Invalid REACT_APP_STRIPE_PUBLIC_KEY format detected. Stripe should be disabled by resolver step."
+          fi
+
+          if [ -z "$REACT_APP_RESTCOUNTRIES_API_KEY" ]; then
+            echo "Rest Countries API key not set. Country service will use fallback dataset."
           fi
 
       - name: Build app with development environment
