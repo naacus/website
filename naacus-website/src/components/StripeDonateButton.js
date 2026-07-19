@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles, Button, mergeClasses } from '@fluentui/react-components';
 import { Heart24Regular } from '@fluentui/react-icons';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { handleNavigation } from '../services/navigationService';
 import { startSpan } from '../services/telemetryService';
 import { colors, themeTokens } from '../config/theme';
 
@@ -45,6 +46,7 @@ const useStyles = makeStyles({
 const StripeDonateButton = ({ compact = false }) => {
   const styles = useStyles();
   const navigate = useNavigate();
+  const location = useLocation();
   const { t } = useTranslation();
   const [isMobile, setIsMobile] = useState(false);
 
@@ -85,7 +87,12 @@ const StripeDonateButton = ({ compact = false }) => {
       'donation.compact': compact,
     });
     span.end({ code: 1 });
-    navigate('/donation');
+    handleNavigation({
+      path: '/donation',
+      sectionId: null,
+      currentPathname: location.pathname,
+      navigate,
+    });
   };
 
   return (
