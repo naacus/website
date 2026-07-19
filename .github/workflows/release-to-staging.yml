@@ -1,13 +1,9 @@
-name: Azure Static Web Apps CI/CD
+name: Release Branch to Staging
 
 on:
   push:
     branches:
-      - develop
-  pull_request:
-    types: [opened, synchronize, reopened]
-    branches:
-      - develop
+      - release/*
   workflow_dispatch:
 
 permissions:
@@ -16,7 +12,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: azure-swa-${{ github.ref }}
+  group: release-staging-${{ github.ref }}
   cancel-in-progress: true
 
 env:
@@ -24,9 +20,9 @@ env:
 
 jobs:
   quality_gate_job:
-    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && github.event.action != 'closed')
+if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
-    name: Quality Gate Job
+    name: Release Quality Gate Job
     defaults:
       run:
         working-directory: ./naacus-website
@@ -46,7 +42,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # Create production-local environment file so values override .env.production placeholders
       - name: Create environment file
         run: |
           cat > .env.production.local << EOF2
@@ -63,15 +58,6 @@ jobs:
       - name: Run AI-first intent evals
         run: npm run eval:ai-first:html
 
-      - name: Upload AI-first eval report
-        uses: actions/upload-artifact@v4
-        with:
-          name: ai-first-eval-report
-          path: |
-            naacus-website/reports/ai-first-eval.json
-            naacus-website/reports/ai-first-eval.md
-            naacus-website/reports/ai-first-eval.html
-
       - name: Run mission threshold check (when metrics are provided)
         run: |
           if [ -f reports/ai-first-metrics.json ]; then
@@ -83,20 +69,19 @@ jobs:
       - name: Run accessibility checks
         run: npm run check:a11y
 
-      # Store build for deployment job
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: build-${{ github.run_id }}
+          name: release-build-${{ github.run_id }}
           path: ./naacus-website/build/
           retention-days: 1
 
-  build_and_deploy_job:
-    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/develop'
+  deploy_staging_job:
+if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && startsWith(github.ref, 'refs/heads/release/')
     runs-on: ubuntu-latest
-    name: Build and Deploy Job
+    name: Deploy Staging Job
     needs: quality_gate_job
-environment: development
+    environment: staging
     defaults:
       run:
         working-directory: ./naacus-website
@@ -109,14 +94,14 @@ environment: development
       - name: Download build artifacts
         uses: actions/download-artifact@v4
         with:
-          name: build-${{ github.run_id }}
+          name: release-build-${{ github.run_id }}
           path: ./naacus-website/build/
 
-      - name: Build And Deploy
-        id: builddeploy
+      - name: Build And Deploy to Staging
+        id: builddeploy_staging
         uses: Azure/static-web-apps-deploy@v1
         with:
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_POLITE_PEBBLE_0F00F890F }}
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_STAGING }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
           app_location: "./naacus-website/build"

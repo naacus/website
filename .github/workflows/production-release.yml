@@ -1,0 +1,137 @@
+name: Production Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: Release tag to deploy (example v1.14.0)
+        required: true
+        type: string
+      source_ref:
+        description: Release or hotfix ref to deploy (example release/2026-08-01)
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  id-token: write
+
+env:
+  NODE_VERSION: '22'
+
+jobs:
+  validate_source_ref:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate source_ref input
+        run: |
+          REF='${{ inputs.source_ref }}'
+          if [[ "$REF" == release/* ]] || [[ "$REF" == hotfix/* ]]; then
+            echo "Valid promotion source: $REF"
+            exit 0
+          fi
+          echo "Invalid source_ref: $REF"
+          echo "source_ref must start with release/ or hotfix/."
+          exit 1
+
+  pre_deploy_checks:
+    runs-on: ubuntu-latest
+    needs: validate_source_ref
+    defaults:
+      run:
+        working-directory: ./naacus-website
+    steps:
+      - name: Checkout source ref
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.source_ref }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: ./naacus-website/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build app
+        run: npm run build
+
+      - name: Translation parity gate
+        run: npm run check:translations
+
+      - name: Accessibility gate
+        run: npm run check:a11y
+
+      - name: Upload production build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-build-${{ github.run_id }}
+          path: ./naacus-website/build/
+          retention-days: 1
+
+  deploy_production:
+    runs-on: ubuntu-latest
+    needs: pre_deploy_checks
+    environment: production
+    defaults:
+      run:
+        working-directory: ./naacus-website
+    steps:
+      - name: Checkout source ref
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.source_ref }}
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: production-build-${{ github.run_id }}
+          path: ./naacus-website/build/
+
+      - name: Deploy to Azure Static Web Apps (production)
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_PRODUCTION }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          action: upload
+          app_location: ./naacus-website/build
+          api_location: ''
+          output_location: ''
+          skip_app_build: true
+
+  tag_release:
+    runs-on: ubuntu-latest
+    needs: deploy_production
+    if: ${{ success() }}
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout source ref
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.source_ref }}
+
+      - name: Create release tag
+run: |
+  set -euo pipefail
+  TAG="${{ inputs.release_tag }}"
+
+  # Basic tag validation (adjust pattern to your release policy)
+  if ! [[ "$TAG" =~ ^v?[0-9]+\.[0-9]+\.[0-9]+([-.][0-9A-Za-z.-]+)?$ ]]; then
+    echo "Invalid release_tag: $TAG"
+    exit 1
+  fi
+
+  git fetch --tags --force
+  if git rev-parse -q --verify "refs/tags/$TAG" >/dev/null; then
+    echo "Tag already exists: $TAG"
+    exit 1
+  fi
+
+  git config user.name github-actions
+  git config user.email github-actions@github.com
+  git tag "$TAG"
+  git push origin "$TAG"
