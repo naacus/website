@@ -1,6 +1,6 @@
 ---
 name: Release Checklist
-about: Track weekly release readiness and staging to prod promotion
+about: Track weekly release readiness and staging to production promotion
 title: "Release YYYY-MM-DD"
 labels: ["release"]
 assignees: []
@@ -28,7 +28,7 @@ assignees: []
 
 ## Deployment Readiness
 
-- [ ] Prod environment approval obtained after 1 week staging validation
+- [ ] Production environment approval obtained after 1 week staging validation
 - [ ] Rollback version/tag identified
 - [ ] Rollback owner assigned
 
