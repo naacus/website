@@ -6,7 +6,7 @@
 export const paymentConfig = {
   // Stripe Configuration
   stripe: {
-    publishableKey: process.env.REACT_APP_STRIPE_PUBLIC_KEY || 'pk_test_example',
+    publishableKey: process.env.REACT_APP_STRIPE_PUBLIC_KEY || '',
     buyButtonId: process.env.REACT_APP_STRIPE_BUY_BUTTON_ID || 'buy_btn_example',
     apiVersion: '2023-10-16',
     locale: 'en',
@@ -34,7 +34,7 @@ export const paymentConfig = {
     merchantName: 'NAACUS',
     environment: process.env.REACT_APP_GOOGLE_PAY_ENV || 'TEST', // 'TEST' or 'PRODUCTION'
     gatewayId: 'stripe',
-    gatewayMerchantId: process.env.REACT_APP_STRIPE_PUBLIC_KEY || 'pk_test_example',
+    gatewayMerchantId: process.env.REACT_APP_STRIPE_PUBLIC_KEY || '',
   },
 
   // Bank Transfer Configuration

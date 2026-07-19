@@ -24,6 +24,7 @@ Decap CMS is enabled at `/admin` and currently manages editor-facing text/data d
 	- Build/start sync regenerates `naacus-website/public/locales/en/translation.json` and `naacus-website/public/locales/fr/translation.json`
 	- Stripe donation and dues content is now CMS-managed in locale page files, including `initiativesPage.itemsList` and `duesRegistrationPage.itemsList`
 	- For Stripe buy-button entries, card `title` should be left empty in CMS/locales because Stripe renders the checkout title
+	- Stripe publishable key must come from Azure App Settings (`REACT_APP_STRIPE_PUBLIC_KEY`) and should not be stored in CMS or locale files
 - Hero slideshow image list
 - Stable static data collections (activities, FAQ data, ministries, resources, member benefits, leadership)
  - Stable static data collections (activities, FAQ data, ministries, resources, member benefits, leadership, testimonials)
