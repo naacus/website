@@ -172,6 +172,8 @@ function DuesRegistrationPage() {
     trackCTA('dues_page', 'pay_now', label);
     if (isAllowedStripeUrl(item.stripeUrl)) {
       window.open(item.stripeUrl, '_blank', 'noopener,noreferrer');
+    } else {
+      console.warn(`Blocked navigation to disallowed URL: ${item.stripeUrl}`);
     }
     span.end({ code: 1 });
   };
