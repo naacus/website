@@ -77,7 +77,7 @@ if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
           retention-days: 1
 
   deploy_staging_job:
-    if: github.event_name == 'push' && startsWith(github.ref, 'refs/heads/release/')
+if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && startsWith(github.ref, 'refs/heads/release/')
     runs-on: ubuntu-latest
     name: Deploy Staging Job
     needs: quality_gate_job
