@@ -26,7 +26,6 @@ function PaymentItemCard({
 
   return (
     <Card
-      key={item.id}
       className={mergeClasses(
         cardClassName,
         hasBuyButton ? stripeCardClassName : null,
