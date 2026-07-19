@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { makeStyles, shorthands, Text, tokens } from '@fluentui/react-components';
 import PageWrapper from '../components/PageWrapper';
@@ -7,7 +7,6 @@ import PaymentItemCard from '../components/PaymentItemCard';
 import paymentConfig from '../config/paymentConfig';
 import { useAnalytics } from '../hooks/useAnalytics';
 import useStripeBuyButtonScript from '../hooks/useStripeBuyButtonScript';
-import { handleNavigation } from '../services/navigationService';
 import { startSpan } from '../services/telemetryService';
 
 const useStyles = makeStyles({
@@ -48,7 +47,10 @@ const useStyles = makeStyles({
     },
   },
   sectionWrap: {
-    marginBottom: '18px',
+    marginBottom: '36px',
+    '@media (max-width: 768px)': {
+      marginBottom: '24px',
+    },
   },
   card: {
     minHeight: '230px',
@@ -80,7 +82,8 @@ const useStyles = makeStyles({
     color: tokens.colorNeutralForeground2,
     fontSize: '0.98rem',
     lineHeight: '1.5',
-    margin: '0',
+    margin: '12px 0 0',
+    textAlign: 'center',
     display: 'block',
   },
   cta: {
@@ -99,7 +102,8 @@ const useStyles = makeStyles({
     },
   },
   note: {
-    marginTop: '20px',
+    marginTop: '0',
+    paddingTop: '0',
     color: tokens.colorNeutralForeground2,
     fontSize: '0.95rem',
     textAlign: 'center',
@@ -112,8 +116,6 @@ const useStyles = makeStyles({
 function DonationPage() {
   const styles = useStyles();
   const { t } = useTranslation();
-  const navigate = useNavigate();
-  const location = useLocation();
   const { trackCTA } = useAnalytics();
   const stripePublishableKey = paymentConfig.stripe.publishableKey;
 
@@ -186,16 +188,6 @@ function DonationPage() {
     span.end({ code: 1 });
   };
 
-  const handleDuesLinkClick = (event) => {
-    event.preventDefault();
-    handleNavigation({
-      path: '/dues-registration',
-      sectionId: null,
-      currentPathname: location.pathname,
-      navigate,
-    });
-  };
-
   return (
     <PageWrapper>
       <section className={styles.section}>
@@ -222,6 +214,7 @@ function DonationPage() {
                 fallbackButtonText={t('donation.initiativesPage.donateButton')}
                 onFallbackClick={openStripeLink}
                 onBuyButtonClick={trackBuyButtonInteraction}
+                descriptionAfterAction
               />
             ))}
           </div>
@@ -230,9 +223,6 @@ function DonationPage() {
         <Text as="p" className={styles.note}>
           <span className={styles.noteLine}>
             {t('donation.initiativesPage.helpText')} <Link to="/contact">{t('donation.initiativesPage.contactLinkText')}</Link>.
-          </span>
-          <span className={styles.noteLine}>
-            {t('donation.initiativesPage.duesHelpText')} <Link to="/dues-registration" onClick={handleDuesLinkClick}>{t('donation.initiativesPage.duesLinkText')}</Link>.
           </span>
         </Text>
       </section>

@@ -11,12 +11,11 @@ import {
   MenuItem,
   Button
 } from '@fluentui/react-components';
-import { Navigation24Regular, ChevronDownFilled, ChevronUpFilled } from '@fluentui/react-icons';
+import { Navigation24Regular, ChevronDownFilled, ChevronUpFilled, Heart16Regular } from '@fluentui/react-icons';
 import LanguageSwitcher from './LanguageSwitcher';
 import SearchInput from './SearchInput';
 import { handleNavigation, isActivePath } from '../services/navigationService';
 import { useAnalytics } from '../hooks/useAnalytics';
-import { getPageIntent } from '../content/pageIntentConfig';
 
 const blinkAnimation = {
   '0%': {
@@ -175,6 +174,61 @@ const useStyles = makeStyles({
       display: 'none',
     },
   },
+  donateCta: {
+    backgroundColor: '#0067b8',
+    color: '#ffffff',
+    fontWeight: '600',
+    fontSize: '13px',
+    height: '32px',
+    ...shorthands.padding('0', '14px'),
+    ...shorthands.borderRadius('999px'),
+    border: 'none',
+    cursor: 'pointer',
+    whiteSpace: 'nowrap',
+    display: 'inline-flex',
+    alignItems: 'center',
+    ...shorthands.gap('6px'),
+    boxShadow: '0 6px 16px rgba(0, 103, 184, 0.35)',
+    '&:hover': {
+      backgroundColor: '#005a9e',
+      textDecoration: 'none',
+    },
+    '&:focus-visible': {
+      outline: '3px solid #0f6cbd',
+      outlineOffset: '2px',
+    },
+    '@media (max-width: 768px)': {
+      display: 'none',
+    },
+  },
+  donateCtaActive: {
+    backgroundColor: '#0067b8',
+    color: '#ffffff',
+    fontWeight: '600',
+    fontSize: '13px',
+    height: '32px',
+    ...shorthands.padding('0', '14px'),
+    ...shorthands.borderRadius('999px'),
+    border: 'none',
+    cursor: 'pointer',
+    whiteSpace: 'nowrap',
+    display: 'inline-flex',
+    alignItems: 'center',
+    ...shorthands.gap('6px'),
+    boxShadow: '0 6px 16px rgba(0, 103, 184, 0.35)',
+    textDecoration: 'none',
+    '&:hover': {
+      backgroundColor: '#005a9e',
+      textDecoration: 'none',
+    },
+    '&:focus-visible': {
+      outline: '3px solid #0f6cbd',
+      outlineOffset: '2px',
+    },
+    '@media (max-width: 768px)': {
+      display: 'none',
+    },
+  },
   rightSection: {
     display: 'flex',
     alignItems: 'center',
@@ -246,37 +300,6 @@ const useStyles = makeStyles({
       ...shorthands.gap('2px'),
     },
   },
-  aiGuideButton: {
-    backgroundColor: '#0067b8',
-    color: '#ffffff',
-    fontWeight: '600',
-    fontSize: '12px',
-    ...shorthands.padding('6px', '10px'),
-    border: 'none',
-    ...shorthands.borderRadius('14px'),
-    cursor: 'pointer',
-    transition: 'background-color 0.2s ease',
-    height: '28px',
-    maxWidth: '220px',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap',
-    '&:hover': {
-      backgroundColor: '#004578',
-    },
-    '@media (max-width: 1024px)': {
-      fontSize: '11px',
-      ...shorthands.padding('4px', '8px'),
-      height: '24px',
-      maxWidth: '180px',
-    },
-    '@media (max-width: 768px)': {
-      fontSize: '10px',
-      ...shorthands.padding('2px', '6px'),
-      height: '20px',
-      maxWidth: '140px',
-    },
-  },
   mobileMenuItemActive: {
     backgroundColor: '#eaf4ff',
     color: '#0067b8',
@@ -301,7 +324,7 @@ const useStyles = makeStyles({
 });
 
 function Header() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const styles = useStyles();
   const navigate = useNavigate();
   const location = useLocation();
@@ -310,13 +333,6 @@ function Header() {
   const [communityMenuOpen, setCommunityMenuOpen] = useState(false);
   const [getInvolvedMenuOpen, setGetInvolvedMenuOpen] = useState(false);
   const [resourcesMenuOpen, setResourcesMenuOpen] = useState(false);
-
-  const currentLanguage = i18n.resolvedLanguage || i18n.language || 'en';
-  const pageIntent = getPageIntent(location.pathname, currentLanguage);
-  const aiNextStepLabel = pageIntent?.nextStepLabel || '';
-  const aiNextStepPath = pageIntent?.nextStepPath || '';
-  const showAiGuideAction = Boolean(aiNextStepPath) && aiNextStepPath !== location.pathname;
-  const nextStepPrefix = t('header.aiNextStepPrefix');
 
   const handleNavigationHelper = (path, sectionId, label = '') => {
     if (label) {
@@ -331,15 +347,6 @@ function Header() {
   };
 
   const isActivePathHelper = (path) => isActivePath(path, location.pathname);
-
-  const handleAINextStepClick = () => {
-    if (!showAiGuideAction) {
-      return;
-    }
-
-    trackCTA('ai_navigation', 'header_next_step', aiNextStepPath);
-    handleNavigationHelper(aiNextStepPath, null, `ai_next_${aiNextStepPath}`);
-  };
 
   return (
     <header className={styles.header}>
@@ -431,7 +438,7 @@ function Header() {
             <Menu open={getInvolvedMenuOpen} onOpenChange={(_, data) => setGetInvolvedMenuOpen(data.open)}>
               <MenuTrigger disableButtonEnhancement>
                 <button
-                  className={`${styles.navLink} ${(isActivePathHelper('/membership') || isActivePathHelper('/volunteer')) ? styles.navLinkActive : ''}`}
+                  className={`${styles.navLink} ${(isActivePathHelper('/membership') || isActivePathHelper('/volunteer') || isActivePathHelper('/dues-registration') || isActivePathHelper('/donation')) ? styles.navLinkActive : ''}`}
                 >
                   {t('header.nav.getInvolved')} {getInvolvedMenuOpen ? <ChevronUpFilled /> : <ChevronDownFilled />}
                 </button>
@@ -449,6 +456,18 @@ function Header() {
                     onClick={() => handleNavigationHelper('/volunteer', null, 'volunteer')}
                   >
                     {t('header.nav.volunteer')}
+                  </MenuItem>
+                  <MenuItem
+                    className={isActivePathHelper('/dues-registration') ? styles.mobileMenuItemActive : undefined}
+                    onClick={() => handleNavigationHelper('/dues-registration', null, 'dues_registration')}
+                  >
+                    {t('header.nav.duesRegistration')}
+                  </MenuItem>
+                  <MenuItem
+                    className={isActivePathHelper('/donation') ? styles.mobileMenuItemActive : undefined}
+                    onClick={() => handleNavigationHelper('/donation', null, 'donation')}
+                  >
+                    {t('header.donate')}
                   </MenuItem>
                 </MenuList>
               </MenuPopover>
@@ -499,16 +518,13 @@ function Header() {
         {/* Right Section: Search, Language, Sign In */}
         <div className={styles.rightSection}>
           <SearchInput />
-          {showAiGuideAction && (
-            <button
-              type="button"
-              onClick={handleAINextStepClick}
-              className={styles.aiGuideButton}
-              aria-label={`${nextStepPrefix} ${aiNextStepLabel}`}
-            >
-              {nextStepPrefix}: {aiNextStepLabel}
-            </button>
-          )}
+          <button
+            onClick={() => handleNavigationHelper('/donation', null, 'donate')}
+            className={isActivePathHelper('/donation') ? styles.donateCtaActive : styles.donateCta}
+          >
+            <Heart16Regular />
+            {t('header.donate')}
+          </button>
           <div className={styles.languageSwitcher}>
             <LanguageSwitcher />
           </div>
@@ -532,11 +548,6 @@ function Header() {
             <MenuPopover>
               <MenuList>
                 <MenuItem onClick={() => handleNavigationHelper(null, 'home', 'mobile_home')}>{t('header.nav.home')}</MenuItem>
-                {showAiGuideAction && (
-                  <MenuItem onClick={() => handleNavigationHelper(aiNextStepPath, null, `mobile_ai_next_${aiNextStepPath}`)}>
-                    {nextStepPrefix}: {aiNextStepLabel}
-                  </MenuItem>
-                )}
                 <MenuItem className={isActivePathHelper('/2025') ? styles.mobileMenuItemActive : undefined} onClick={() => handleNavigationHelper('/2025', null, 'mobile_naacus_2025')}>{t('header.nav.naacus2025')}</MenuItem>
                 {/* About group */}
                 <MenuItem disabled style={{ fontWeight: 600, opacity: 0.7, fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>— {t('header.nav.about')} —</MenuItem>
@@ -551,6 +562,8 @@ function Header() {
                 <MenuItem disabled style={{ fontWeight: 600, opacity: 0.7, fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>— {t('header.nav.getInvolved')} —</MenuItem>
                 <MenuItem className={isActivePathHelper('/membership') ? styles.mobileMenuItemActive : undefined} onClick={() => handleNavigationHelper('/membership', null, 'mobile_membership')}>&nbsp;&nbsp;{t('header.nav.membership')}</MenuItem>
                 <MenuItem className={isActivePathHelper('/volunteer') ? styles.mobileMenuItemActive : undefined} onClick={() => handleNavigationHelper('/volunteer', null, 'mobile_volunteer')}>&nbsp;&nbsp;{t('header.nav.volunteer')}</MenuItem>
+                <MenuItem className={isActivePathHelper('/dues-registration') ? styles.mobileMenuItemActive : undefined} onClick={() => handleNavigationHelper('/dues-registration', null, 'mobile_dues_registration')}>&nbsp;&nbsp;{t('header.nav.duesRegistration')}</MenuItem>
+                <MenuItem className={isActivePathHelper('/donation') ? styles.mobileMenuItemActive : undefined} onClick={() => handleNavigationHelper('/donation', null, 'mobile_donation')}>&nbsp;&nbsp;{t('header.donate')}</MenuItem>
                 {/* Resources group */}
                 <MenuItem disabled style={{ fontWeight: 600, opacity: 0.7, fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>— {t('header.nav.resources')} —</MenuItem>
                 <MenuItem className={isActivePathHelper('/resources') ? styles.mobileMenuItemActive : undefined} onClick={() => handleNavigationHelper('/resources', null, 'mobile_resources')}>&nbsp;&nbsp;{t('header.nav.resources')}</MenuItem>
