@@ -96,7 +96,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and Deploy Job
     needs: quality_gate_job
-    environment: development
+    environment: ${{ github.ref_name == 'develop' && 'development' || 'development' }}
     defaults:
       run:
         working-directory: ./naacus-website
