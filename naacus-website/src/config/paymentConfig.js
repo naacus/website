@@ -4,7 +4,7 @@
  */
 
 function isValidStripePublishableKey(key) {
-  return typeof key === 'string' && /^(pk_test_|pk_live_)/.test(key.trim());
+  return typeof key === 'string' && /^pk_(test|live)_[A-Za-z0-9]{10,}$/.test(key.trim());
 }
 
 const resolvedStripePublishableKey = isValidStripePublishableKey(process.env.REACT_APP_STRIPE_PUBLIC_KEY)
