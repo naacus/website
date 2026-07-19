@@ -119,7 +119,7 @@ jobs:
           } >> "$GITHUB_STEP_SUMMARY"
 
       # Create .env.development for develop quality gates.
-      # Stripe public key is pulled from Azure Key Vault in the previous step.
+      # Stripe public key is resolved from Azure Key Vault or GitHub secrets fallback in the previous step.
       - name: Create development environment file
         run: |
           cat > .env.development << EOF2
