@@ -18,7 +18,7 @@ function StripePaymentAction({
         <stripe-buy-button
           buy-button-id={item.buyButtonId}
           publishable-key={stripePublishableKey}
-          onClick={() => onBuyButtonClick(item)}
+          onClick={() => onBuyButtonClick?.(item)}
         />
       </div>
     );
