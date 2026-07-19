@@ -63,9 +63,9 @@ jobs:
           set +a
 
           if [ -z "$REACT_APP_STRIPE_PUBLIC_KEY" ]; then
-            echo "Missing REACT_APP_STRIPE_PUBLIC_KEY for development build."
-            echo "Set GitHub secret REACT_APP_STRIPE_PUBLIC_KEY (or STRIPE_PUBLIC_KEY_TEST)."
-            exit 1
+            echo "::warning::Missing REACT_APP_STRIPE_PUBLIC_KEY for development build."
+            echo "::warning::Set GitHub secret REACT_APP_STRIPE_PUBLIC_KEY (or STRIPE_PUBLIC_KEY_TEST). Falling back to non-sensitive placeholder key for CI build."
+            echo "REACT_APP_STRIPE_PUBLIC_KEY=pk_test_ci_placeholder" >> ./.env.development
           fi
 
       - name: Build app with development environment
