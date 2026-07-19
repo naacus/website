@@ -2916,6 +2916,10 @@ collections:
                   - label: Page Subtitle
                     name: subtitle
                     widget: text
+                  - label: Stripe Publishable Key
+                    name: stripePublishableKey
+                    widget: string
+                    required: false
                   - label: Donate Button Label
                     name: donateButton
                     widget: string
@@ -2952,6 +2956,29 @@ collections:
                   - label: Fixed Amount Type Label
                     name: fixedTypeLabel
                     widget: string
+                  - label: Initiatives List
+                    name: itemsList
+                    widget: list
+                    collapsed: true
+                    summary: '{{fields.id}} - {{fields.title}}'
+                    fields:
+                      - label: Initiative ID
+                        name: id
+                        widget: string
+                      - label: Title
+                        name: title
+                        widget: string
+                      - label: Description
+                        name: description
+                        widget: text
+                      - label: Stripe Buy Button ID
+                        name: buyButtonId
+                        widget: string
+                        required: false
+                      - label: Stripe Link URL
+                        name: stripeUrl
+                        widget: string
+                        required: false
                   - label: Items
                     name: items
                     widget: object
@@ -2968,6 +2995,10 @@ collections:
                           - label: Description
                             name: description
                             widget: text
+                          - label: Stripe Buy Button ID
+                            name: buyButtonId
+                            widget: string
+                            required: false
                       - label: Annual Fund
                         name: annualFund
                         widget: object
@@ -2979,6 +3010,10 @@ collections:
                           - label: Description
                             name: description
                             widget: text
+                          - label: Stripe Buy Button ID
+                            name: buyButtonId
+                            widget: string
+                            required: false
                       - label: Women Ministry
                         name: womenMinistry
                         widget: object
@@ -2990,6 +3025,10 @@ collections:
                           - label: Description
                             name: description
                             widget: text
+                          - label: Stripe Buy Button ID
+                            name: buyButtonId
+                            widget: string
+                            required: false
                       - label: Youth Programs
                         name: youthPrograms
                         widget: object
@@ -3001,6 +3040,10 @@ collections:
                           - label: Description
                             name: description
                             widget: text
+                          - label: Stripe Buy Button ID
+                            name: buyButtonId
+                            widget: string
+                            required: false
                       - label: Annual Dues
                         name: annualDues
                         widget: object
@@ -3054,6 +3097,32 @@ collections:
                   - label: Contact Link Text
                     name: contactLinkText
                     widget: string
+                  - label: Dues Items List
+                    name: itemsList
+                    widget: list
+                    collapsed: true
+                    summary: '{{fields.id}} - {{fields.title}}'
+                    fields:
+                      - label: Item ID
+                        name: id
+                        widget: string
+                      - label: Title
+                        name: title
+                        widget: string
+                      - label: Description
+                        name: description
+                        widget: text
+                      - label: Amount Label
+                        name: amountLabel
+                        widget: string
+                      - label: Stripe Buy Button ID
+                        name: buyButtonId
+                        widget: string
+                        required: false
+                      - label: Stripe Link URL
+                        name: stripeUrl
+                        widget: string
+                        required: false
                   - label: Items
                     name: items
                     widget: object
@@ -3707,6 +3776,10 @@ collections:
                   - label: Page Subtitle
                     name: subtitle
                     widget: text
+                  - label: Stripe Publishable Key
+                    name: stripePublishableKey
+                    widget: string
+                    required: false
                   - label: Donate Button Label
                     name: donateButton
                     widget: string
@@ -3743,6 +3816,29 @@ collections:
                   - label: Fixed Amount Type Label
                     name: fixedTypeLabel
                     widget: string
+                  - label: Initiatives List
+                    name: itemsList
+                    widget: list
+                    collapsed: true
+                    summary: '{{fields.id}} - {{fields.title}}'
+                    fields:
+                      - label: Initiative ID
+                        name: id
+                        widget: string
+                      - label: Title
+                        name: title
+                        widget: string
+                      - label: Description
+                        name: description
+                        widget: text
+                      - label: Stripe Buy Button ID
+                        name: buyButtonId
+                        widget: string
+                        required: false
+                      - label: Stripe Link URL
+                        name: stripeUrl
+                        widget: string
+                        required: false
                   - label: Items
                     name: items
                     widget: object
@@ -3759,6 +3855,10 @@ collections:
                           - label: Description
                             name: description
                             widget: text
+                          - label: Stripe Buy Button ID
+                            name: buyButtonId
+                            widget: string
+                            required: false
                       - label: Annual Fund
                         name: annualFund
                         widget: object
@@ -3770,6 +3870,10 @@ collections:
                           - label: Description
                             name: description
                             widget: text
+                          - label: Stripe Buy Button ID
+                            name: buyButtonId
+                            widget: string
+                            required: false
                       - label: Women Ministry
                         name: womenMinistry
                         widget: object
@@ -3781,6 +3885,10 @@ collections:
                           - label: Description
                             name: description
                             widget: text
+                          - label: Stripe Buy Button ID
+                            name: buyButtonId
+                            widget: string
+                            required: false
                       - label: Youth Programs
                         name: youthPrograms
                         widget: object
@@ -3792,6 +3900,10 @@ collections:
                           - label: Description
                             name: description
                             widget: text
+                          - label: Stripe Buy Button ID
+                            name: buyButtonId
+                            widget: string
+                            required: false
                       - label: Annual Dues
                         name: annualDues
                         widget: object
@@ -3845,6 +3957,32 @@ collections:
                   - label: Contact Link Text
                     name: contactLinkText
                     widget: string
+                  - label: Dues Items List
+                    name: itemsList
+                    widget: list
+                    collapsed: true
+                    summary: '{{fields.id}} - {{fields.title}}'
+                    fields:
+                      - label: Item ID
+                        name: id
+                        widget: string
+                      - label: Title
+                        name: title
+                        widget: string
+                      - label: Description
+                        name: description
+                        widget: text
+                      - label: Amount Label
+                        name: amountLabel
+                        widget: string
+                      - label: Stripe Buy Button ID
+                        name: buyButtonId
+                        widget: string
+                        required: false
+                      - label: Stripe Link URL
+                        name: stripeUrl
+                        widget: string
+                        required: false
                   - label: Items
                     name: items
                     widget: object

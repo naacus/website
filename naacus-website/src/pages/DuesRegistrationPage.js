@@ -109,46 +109,23 @@ function DuesRegistrationPage() {
   const styles = useStyles();
   const { t } = useTranslation();
   const { trackCTA } = useAnalytics();
-  const stripePublishableKey = process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY || process.env.REACT_APP_STRIPE_PUBLIC_KEY || '';
+  const stripePublishableKey = t('donation.initiativesPage.stripePublishableKey', { defaultValue: '' });
 
-  const duesItems = [
-    {
-      id: 'annualDues',
-      title: t('donation.duesRegistrationPage.items.annualDues.title'),
-      description: t('donation.duesRegistrationPage.items.annualDues.description'),
-      amountLabel: t('donation.duesRegistrationPage.items.annualDues.amountLabel'),
-      buyButtonId: t('donation.duesRegistrationPage.items.annualDues.buyButtonId', { defaultValue: '' }),
-      accent: '#1f8a70',
-      stripeUrl: process.env.REACT_APP_STRIPE_DONATION_LINK_ANNUAL_DUES || 'https://donate.naacus.org',
-    },
-    {
-      id: 'membershipRegistration',
-      title: t('donation.duesRegistrationPage.items.membershipRegistration.title'),
-      description: t('donation.duesRegistrationPage.items.membershipRegistration.description'),
-      amountLabel: t('donation.duesRegistrationPage.items.membershipRegistration.amountLabel'),
-      buyButtonId: t('donation.duesRegistrationPage.items.membershipRegistration.buyButtonId', { defaultValue: '' }),
-      accent: '#c2410c',
-      stripeUrl: process.env.REACT_APP_STRIPE_DONATION_LINK_MEMBERSHIP_REGISTRATION || 'https://donate.naacus.org',
-    },
-    {
-      id: 'groupMembership2to100',
-      title: t('donation.duesRegistrationPage.items.groupMembership2to100.title'),
-      description: t('donation.duesRegistrationPage.items.groupMembership2to100.description'),
-      amountLabel: t('donation.duesRegistrationPage.items.groupMembership2to100.amountLabel'),
-      buyButtonId: t('donation.duesRegistrationPage.items.groupMembership2to100.buyButtonId', { defaultValue: '' }),
-      accent: '#0f766e',
-      stripeUrl: process.env.REACT_APP_STRIPE_DONATION_LINK_GROUP_MEMBERSHIP_2_100 || 'https://donate.naacus.org',
-    },
-    {
-      id: 'groupMembership100plus',
-      title: t('donation.duesRegistrationPage.items.groupMembership100plus.title'),
-      description: t('donation.duesRegistrationPage.items.groupMembership100plus.description'),
-      amountLabel: t('donation.duesRegistrationPage.items.groupMembership100plus.amountLabel'),
-      buyButtonId: t('donation.duesRegistrationPage.items.groupMembership100plus.buyButtonId', { defaultValue: '' }),
-      accent: '#9a3412',
-      stripeUrl: process.env.REACT_APP_STRIPE_DONATION_LINK_GROUP_MEMBERSHIP_100_PLUS || 'https://donate.naacus.org',
-    },
-  ];
+  const duesItemsFromCms = t('donation.duesRegistrationPage.itemsList', {
+    returnObjects: true,
+    defaultValue: [],
+  });
+
+  const duesItems = Array.isArray(duesItemsFromCms)
+    ? duesItemsFromCms.map((item, index) => ({
+      id: item.id || `dues-item-${index + 1}`,
+      title: item.title || '',
+      description: item.description || '',
+      amountLabel: item.amountLabel || '',
+      buyButtonId: item.buyButtonId || '',
+      stripeUrl: item.stripeUrl || 'https://donate.naacus.org',
+    }))
+    : [];
   const duesItemsCount = duesItems.length;
 
   useEffect(() => {

@@ -75,6 +75,15 @@ const useStyles = makeStyles({
     minHeight: '40px',
     fontWeight: '700',
   },
+  buyButtonWrap: {
+    marginTop: 'auto',
+    display: 'flex',
+    justifyContent: 'center',
+    '& stripe-buy-button': {
+      width: '100%',
+      maxWidth: '420px',
+    },
+  },
   note: {
     marginTop: '20px',
     color: tokens.colorNeutralForeground2,
@@ -90,40 +99,41 @@ function DonationPage() {
   const styles = useStyles();
   const { t } = useTranslation();
   const { trackCTA } = useAnalytics();
+  const stripePublishableKey = t('donation.initiativesPage.stripePublishableKey', { defaultValue: '' });
 
-  const donationInitiatives = [
-    {
-      id: 1,
-      title: t('donation.initiativesPage.items.convention.title'),
-      description: t('donation.initiativesPage.items.convention.description'),
-      accent: '#0ea5e9',
-      stripeUrl: process.env.REACT_APP_STRIPE_DONATION_LINK_CONVENTION_2027 || 'https://donate.naacus.org',
-    },
-    {
-      id: 2,
-      title: t('donation.initiativesPage.items.annualFund.title'),
-      description: t('donation.initiativesPage.items.annualFund.description'),
-      accent: '#f97316',
-      stripeUrl: process.env.REACT_APP_STRIPE_DONATION_LINK_ANNUAL_FUND || 'https://donate.naacus.org',
-    },
-    {
-      id: 3,
-      title: t('donation.initiativesPage.items.womenMinistry.title'),
-      description: t('donation.initiativesPage.items.womenMinistry.description'),
-      accent: '#16a34a',
-      stripeUrl: process.env.REACT_APP_STRIPE_DONATION_LINK_WOMEN_MINISTRY || 'https://donate.naacus.org',
-    },
-    {
-      id: 4,
-      title: t('donation.initiativesPage.items.youthPrograms.title'),
-      description: t('donation.initiativesPage.items.youthPrograms.description'),
-      accent: '#7c3aed',
-      stripeUrl: process.env.REACT_APP_STRIPE_DONATION_LINK_YOUTH_PROGRAMS || 'https://donate.naacus.org',
-    },
-  ];
+  const donationInitiativesFromCms = t('donation.initiativesPage.itemsList', {
+    returnObjects: true,
+    defaultValue: [],
+  });
+
+  const donationInitiatives = Array.isArray(donationInitiativesFromCms)
+    ? donationInitiativesFromCms.map((item, index) => ({
+      id: item.id || `initiative-${index + 1}`,
+      title: item.title || '',
+      description: item.description || '',
+      buyButtonId: item.buyButtonId || '',
+      stripeUrl: item.stripeUrl || 'https://donate.naacus.org',
+    }))
+    : [];
 
   const openDonationItems = donationInitiatives;
   const donationItemsCount = openDonationItems.length;
+
+  useEffect(() => {
+    if (!(stripePublishableKey && openDonationItems.some((item) => item.buyButtonId))) {
+      return;
+    }
+
+    const scriptSrc = 'https://js.stripe.com/v3/buy-button.js';
+    if (document.querySelector(`script[src="${scriptSrc}"]`)) {
+      return;
+    }
+
+    const script = document.createElement('script');
+    script.src = scriptSrc;
+    script.async = true;
+    document.body.appendChild(script);
+  }, [openDonationItems, stripePublishableKey]);
 
   useEffect(() => {
     const span = startSpan('donation_page.view', {
@@ -148,6 +158,15 @@ function DonationPage() {
     span.end({ code: 1 });
   };
 
+  const trackBuyButtonInteraction = (initiative) => {
+    const span = startSpan('donation_page.buy_button_interaction', {
+      'donation.initiative': initiative.title,
+      'donation.buy_button_id': initiative.buyButtonId,
+    });
+    trackCTA('donation_page', 'buy_button_interaction', initiative.title);
+    span.end({ code: 1 });
+  };
+
   return (
     <PageWrapper>
       <section className={styles.section}>
@@ -166,13 +185,23 @@ function DonationPage() {
                 <Text as="p" className={styles.initiativeDescription}>
                   {initiative.description}
                 </Text>
-                <Button
-                  appearance="primary"
-                  className={styles.cta}
-                  onClick={() => openStripeLink(initiative)}
-                >
-                  {t('donation.initiativesPage.donateButton')}
-                </Button>
+                {initiative.buyButtonId && stripePublishableKey ? (
+                  <div className={styles.buyButtonWrap}>
+                    <stripe-buy-button
+                      buy-button-id={initiative.buyButtonId}
+                      publishable-key={stripePublishableKey}
+                      onClick={() => trackBuyButtonInteraction(initiative)}
+                    />
+                  </div>
+                ) : (
+                  <Button
+                    appearance="primary"
+                    className={styles.cta}
+                    onClick={() => openStripeLink(initiative)}
+                  >
+                    {t('donation.initiativesPage.donateButton')}
+                  </Button>
+                )}
               </Card>
             ))}
           </div>

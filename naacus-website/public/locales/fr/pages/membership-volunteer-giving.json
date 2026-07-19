@@ -228,6 +228,7 @@
     "initiativesPage": {
       "title": "Faire un don a NAACUS",
       "subtitle": "Selectionnez une initiative ci-dessous pour donner en toute securite. Chaque don soutient l'evangelisation, le service et le leadership fonde sur la foi dans notre communaute nationale.",
+      "stripePublishableKey": "pk_live_51Sk9xsL5FQlMr7HPulQzQr9HJCrdMoJFs7HL8l0j3UHsLfBmMs1wcgQRzESLTgkwg6pPAMfa5tVbsEz1CzVizYGl00xjdhrqjH",
       "donateButton": "Donner en toute securite",
       "payDuesButton": "Payer maintenant",
       "helpText": "Besoin d'aide ou vous preferez un autre mode de don?",
@@ -240,22 +241,56 @@
       "fixedSectionSubtitle": "Ces options utilisent des montants fixes.",
       "openTypeLabel": "Montant libre",
       "fixedTypeLabel": "Montant fixe",
+      "itemsList": [
+        {
+          "id": "convention",
+          "title": "Convention NAACUS-ACCCRUS 2027",
+          "description": "Aidez a financer la formation de la convention, la coordination liturgique, la participation des jeunes et les couts du rassemblement national.",
+          "buyButtonId": "",
+          "stripeUrl": "https://donate.naacus.org"
+        },
+        {
+          "id": "annualFund",
+          "title": "Campagne annuelle de financement NAACUS",
+          "description": "Soutenez la stabilite operationnelle toute l'annee, le rayonnement evangelique et les programmes strategiques qui portent la mission de NAACUS.",
+          "buyButtonId": "",
+          "stripeUrl": "https://donate.naacus.org"
+        },
+        {
+          "id": "womenMinistry",
+          "title": "Initiatives du ministere des femmes NAACUS",
+          "description": "Investissez dans la formation des femmes dans la foi, les cercles de mentorat, les evenements de formation et les initiatives de soin communautaire.",
+          "buyButtonId": "",
+          "stripeUrl": "https://donate.naacus.org"
+        },
+        {
+          "id": "youthPrograms",
+          "title": "Programmes et activites des jeunes et jeunes adultes NAACUS",
+          "description": "Financez le developpement du leadership, les retraites, la formation dans la foi et les programmes qui elevent les jeunes et jeunes adultes.",
+          "buyButtonId": "buy_btn_1Tum37L5FQlMr7HPw7YUFabM",
+          "stripeUrl": "https://donate.naacus.org"
+        }
+      ],
       "items": {
         "convention": {
           "title": "Convention NAACUS-ACCCRUS 2027",
-          "description": "Aidez a financer la formation de la convention, la coordination liturgique, la participation des jeunes et les couts du rassemblement national."
+          "description": "Aidez a financer la formation de la convention, la coordination liturgique, la participation des jeunes et les couts du rassemblement national.",
+          "buyButtonId": ""
         },
         "annualFund": {
           "title": "Campagne annuelle de financement NAACUS",
-          "description": "Soutenez la stabilite operationnelle toute l'annee, le rayonnement evangelique et les programmes strategiques qui portent la mission de NAACUS."
+          "description": "Soutenez la stabilite operationnelle toute l'annee, le rayonnement evangelique et les programmes strategiques qui portent la mission de NAACUS.",
+          "buyButtonId": ""
         },
         "womenMinistry": {
           "title": "Initiatives du ministere des femmes NAACUS",
-          "description": "Investissez dans la formation des femmes dans la foi, les cercles de mentorat, les evenements de formation et les initiatives de soin communautaire."
+          "description": "Investissez dans la formation des femmes dans la foi, les cercles de mentorat, les evenements de formation et les initiatives de soin communautaire.",
+          "buyButtonId": ""
         },
         "youthPrograms": {
           "title": "Programmes et activites des jeunes et jeunes adultes NAACUS",
-          "description": "Financez le developpement du leadership, les retraites, la formation dans la foi et les programmes qui elevent les jeunes et jeunes adultes."
+          "description": "Financez le developpement du leadership, les retraites, la formation dans la foi et les programmes qui elevent les jeunes et jeunes adultes.",
+          "buyButtonId": "buy_btn_1Tum37L5FQlMr7HPw7YUFabM"
         },
         "annualDues": {
           "title": "Cotisations annuelles individuelles NAACUS",
@@ -276,6 +311,40 @@
       "backToDonationLinkText": "Retour aux initiatives de don",
       "helpText": "Besoin d'aide ou vous preferez un autre mode de don?",
       "contactLinkText": "Contacter NAACUS",
+      "itemsList": [
+        {
+          "id": "annualDues",
+          "title": "Cotisations annuelles individuelles NAACUS",
+          "description": "Contribuez au soutien des cotisations annuelles pour maintenir les services aux membres et la mission tout au long de l'annee.",
+          "amountLabel": "2,00 $ USD / an",
+          "buyButtonId": "buy_btn_1TueYZL5FQlMr7HPliBQuUMh",
+          "stripeUrl": "https://donate.naacus.org"
+        },
+        {
+          "id": "membershipRegistration",
+          "title": "Inscription individuelle des membres NAACUS",
+          "description": "Soutenez l'accueil et l'inscription des membres afin de garder notre communaute ouverte et accueillante.",
+          "amountLabel": "20,00 $ USD",
+          "buyButtonId": "buy_btn_1TueZwL5FQlMr7HPDr7xBkKv",
+          "stripeUrl": "https://donate.naacus.org"
+        },
+        {
+          "id": "groupMembership2to100",
+          "title": "Adhesion de groupe (2 a 100 membres)",
+          "description": "Payez les frais uniques d'adhesion de groupe pour les organisations de 2 a 100 membres.",
+          "amountLabel": "200,00 $ paiement unique",
+          "buyButtonId": "",
+          "stripeUrl": "https://donate.naacus.org"
+        },
+        {
+          "id": "groupMembership100plus",
+          "title": "Adhesion de groupe (100+ membres)",
+          "description": "Payez les frais uniques d'adhesion de groupe pour les organisations de plus de 100 membres.",
+          "amountLabel": "300,00 $ paiement unique",
+          "buyButtonId": "",
+          "stripeUrl": "https://donate.naacus.org"
+        }
+      ],
       "items": {
         "annualDues": {
           "title": "Cotisations annuelles individuelles NAACUS",
