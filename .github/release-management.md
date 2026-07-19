@@ -1,5 +1,8 @@
 # Weekly Release Management
 
+Canonical cadence source: see .github/deployment-cadence.md.
+Release visibility board: see .github/release-train.md.
+
 This repository uses a weekly release-train model with three environments:
 
 - development
