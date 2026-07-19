@@ -75,7 +75,7 @@ jobs:
   deploy_production:
     runs-on: ubuntu-latest
     needs: pre_deploy_checks
-    environment: prod
+    environment: production
     defaults:
       run:
         working-directory: ./naacus-website
