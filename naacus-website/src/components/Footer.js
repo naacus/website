@@ -16,9 +16,9 @@ const useStyles = makeStyles({
   footer: {
     backgroundColor: colors.ui.footerBg,
     color: tokens.colorNeutralForegroundInverted,
-    ...shorthands.padding('64px', '20px', '24px'),
+    ...shorthands.padding('10px', '20px', '24px'),
     '@media (max-width: 768px)': {
-      ...shorthands.padding('48px', '20px', '24px'),
+      ...shorthands.padding('5px', '20px', '24px'),
     },
   },
   footerContent: {

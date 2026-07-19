@@ -161,6 +161,10 @@ Example integration code is available in the configuration files.
 ### Updating Content
 
 - **Header/Logo**: Edit `src/components/Header.js`
+- **Header Navigation / Donate CTA**: Edit `src/components/Header.js` (top-level nav links, mobile menu groups, and right-side Donate pill button)
+- **Donation & Dues Card Layout**: Edit `src/components/PaymentItemCard.js`, `src/pages/DonationPage.js`, and `src/pages/DuesRegistrationPage.js`
+- **Footer Links & Spacing**: Edit `src/components/Footer.js`
+- **Menu/Label Text (EN/FR)**: Update `public/locales/en/translation.json` and `public/locales/fr/translation.json`
 - **Hero Section**: Modify `src/components/Hero.js`
 - **About Section**: Update `src/components/About.js`
 - **Conference Details**: Edit `src/components/Conference.js`

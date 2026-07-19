@@ -18,6 +18,7 @@ function PaymentItemCard({
   hideDetailsWhenStripe = false,
   hideTitleWhenStripe = true,
   showAmountLabel = false,
+  descriptionAfterAction = false,
 }) {
   const hasBuyButton = Boolean(item.buyButtonId && stripePublishableKey);
   const showTitle = Boolean(item.title) && !(hideTitleWhenStripe && hasBuyButton);
@@ -34,7 +35,7 @@ function PaymentItemCard({
       {showTitle && (
         <Text as="h2" className={titleClassName}>{item.title}</Text>
       )}
-      {showDescription && (
+      {showDescription && !descriptionAfterAction && (
         <Text as="p" className={descriptionClassName}>{item.description}</Text>
       )}
       {showAmount && (
@@ -49,6 +50,9 @@ function PaymentItemCard({
         onFallbackClick={onFallbackClick}
         onBuyButtonClick={onBuyButtonClick}
       />
+      {showDescription && descriptionAfterAction && (
+        <Text as="p" className={descriptionClassName}>{item.description}</Text>
+      )}
     </Card>
   );
 }

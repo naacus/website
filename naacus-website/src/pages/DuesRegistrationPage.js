@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { makeStyles, shorthands, Text, tokens, mergeClasses } from '@fluentui/react-components';
 import PageWrapper from '../components/PageWrapper';
@@ -7,7 +7,6 @@ import PaymentItemCard from '../components/PaymentItemCard';
 import paymentConfig from '../config/paymentConfig';
 import { useAnalytics } from '../hooks/useAnalytics';
 import useStripeBuyButtonScript from '../hooks/useStripeBuyButtonScript';
-import { handleNavigation } from '../services/navigationService';
 import { startSpan } from '../services/telemetryService';
 
 const useStyles = makeStyles({
@@ -39,9 +38,11 @@ const useStyles = makeStyles({
     display: 'grid',
     gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
     ...shorthands.gap('20px'),
+    marginBottom: '36px',
     '@media (max-width: 768px)': {
       gridTemplateColumns: '1fr',
       ...shorthands.gap('14px'),
+      marginBottom: '24px',
     },
   },
   card: {
@@ -106,7 +107,8 @@ const useStyles = makeStyles({
     },
   },
   note: {
-    marginTop: '20px',
+    marginTop: '0',
+    paddingTop: '0',
     color: tokens.colorNeutralForeground2,
     fontSize: '0.95rem',
     textAlign: 'center',
@@ -119,8 +121,6 @@ const useStyles = makeStyles({
 function DuesRegistrationPage() {
   const styles = useStyles();
   const { t } = useTranslation();
-  const navigate = useNavigate();
-  const location = useLocation();
   const { trackCTA } = useAnalytics();
   const stripePublishableKey = paymentConfig.stripe.publishableKey;
 
@@ -188,16 +188,6 @@ function DuesRegistrationPage() {
     span.end({ code: 1 });
   };
 
-  const handleBackToDonationClick = (event) => {
-    event.preventDefault();
-    handleNavigation({
-      path: '/donation',
-      sectionId: null,
-      currentPathname: location.pathname,
-      navigate,
-    });
-  };
-
   return (
     <PageWrapper>
       <section className={styles.section}>
@@ -227,9 +217,6 @@ function DuesRegistrationPage() {
         </div>
 
         <Text as="p" className={styles.note}>
-          <span className={styles.noteLine}>
-            <Link to="/donation" onClick={handleBackToDonationClick}>{t('donation.duesRegistrationPage.backToDonationLinkText')}</Link>.
-          </span>
           <span className={styles.noteLine}>
             {t('donation.duesRegistrationPage.helpText')} <Link to="/contact">{t('donation.duesRegistrationPage.contactLinkText')}</Link>.
           </span>
