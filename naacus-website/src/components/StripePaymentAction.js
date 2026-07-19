@@ -28,7 +28,7 @@ function StripePaymentAction({
     <Button
       appearance="primary"
       className={fallbackButtonClassName}
-      onClick={() => onFallbackClick(item)}
+      onClick={() => onFallbackClick?.(item)}
     >
       {fallbackButtonText}
     </Button>
