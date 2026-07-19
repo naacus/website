@@ -56,6 +56,18 @@ jobs:
           CI=true
           EOF2
 
+      - name: Validate required development env vars
+        run: |
+          set -a
+          . ./.env.development
+          set +a
+
+          if [ -z "$REACT_APP_STRIPE_PUBLIC_KEY" ]; then
+            echo "Missing REACT_APP_STRIPE_PUBLIC_KEY for development build."
+            echo "Set GitHub secret REACT_APP_STRIPE_PUBLIC_KEY (or STRIPE_PUBLIC_KEY_TEST)."
+            exit 1
+          fi
+
       - name: Build app with development environment
         run: |
           set -a
