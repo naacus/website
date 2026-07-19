@@ -161,11 +161,12 @@ function DonationPage() {
   };
 
   const trackBuyButtonInteraction = (initiative) => {
+    const label = initiative.title || initiative.id || 'donation_item';
     const span = startSpan('donation_page.buy_button_interaction', {
-      'donation.initiative': initiative.title,
+      'donation.initiative': label,
       'donation.buy_button_id': initiative.buyButtonId,
     });
-    trackCTA('donation_page', 'buy_button_interaction', initiative.title);
+    trackCTA('donation_page', 'buy_button_interaction', label);
     span.end({ code: 1 });
   };
 
