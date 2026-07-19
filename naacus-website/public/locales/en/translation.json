@@ -511,7 +511,6 @@
     "initiativesPage": {
       "title": "Donate to NAACUS",
       "subtitle": "Select an initiative below to donate securely. Every gift supports evangelization, service, and faith-centered leadership across our national community.",
-      "stripePublishableKey": "pk_live_51Sk9xsL5FQlMr7HPulQzQr9HJCrdMoJFs7HL8l0j3UHsLfBmMs1wcgQRzESLTgkwg6pPAMfa5tVbsEz1CzVizYGl00xjdhrqjH",
       "donateButton": "Donate Securely",
       "payDuesButton": "Pay Now",
       "helpText": "Need help or prefer another giving method?",

@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { makeStyles, shorthands, Text, tokens } from '@fluentui/react-components';
 import PageWrapper from '../components/PageWrapper';
 import PaymentItemCard from '../components/PaymentItemCard';
+import paymentConfig from '../config/paymentConfig';
 import { useAnalytics } from '../hooks/useAnalytics';
 import useStripeBuyButtonScript from '../hooks/useStripeBuyButtonScript';
 import { handleNavigation } from '../services/navigationService';
@@ -114,7 +115,7 @@ function DonationPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const { trackCTA } = useAnalytics();
-  const stripePublishableKey = t('donation.initiativesPage.stripePublishableKey', { defaultValue: '' });
+  const stripePublishableKey = paymentConfig.stripe.publishableKey;
 
   const donationInitiativesFromCms = t('donation.initiativesPage.itemsList', {
     returnObjects: true,

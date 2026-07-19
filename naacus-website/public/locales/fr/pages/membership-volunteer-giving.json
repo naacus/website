@@ -228,7 +228,6 @@
     "initiativesPage": {
       "title": "Faire un don a NAACUS",
       "subtitle": "Selectionnez une initiative ci-dessous pour donner en toute securite. Chaque don soutient l'evangelisation, le service et le leadership fonde sur la foi dans notre communaute nationale.",
-      "stripePublishableKey": "pk_live_51Sk9xsL5FQlMr7HPulQzQr9HJCrdMoJFs7HL8l0j3UHsLfBmMs1wcgQRzESLTgkwg6pPAMfa5tVbsEz1CzVizYGl00xjdhrqjH",
       "donateButton": "Donner en toute securite",
       "payDuesButton": "Payer maintenant",
       "helpText": "Besoin d'aide ou vous preferez un autre mode de don?",

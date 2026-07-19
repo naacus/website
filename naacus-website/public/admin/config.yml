@@ -2916,10 +2916,6 @@ collections:
                   - label: Page Subtitle
                     name: subtitle
                     widget: text
-                  - label: Stripe Publishable Key
-                    name: stripePublishableKey
-                    widget: string
-                    required: false
                   - label: Donate Button Label
                     name: donateButton
                     widget: string
@@ -3780,10 +3776,6 @@ collections:
                   - label: Page Subtitle
                     name: subtitle
                     widget: text
-                  - label: Stripe Publishable Key
-                    name: stripePublishableKey
-                    widget: string
-                    required: false
                   - label: Donate Button Label
                     name: donateButton
                     widget: string
@@ -4498,7 +4490,6 @@ collections:
                 name: "icon"
                 widget: "string"
                 required: false
-
 
 
 
