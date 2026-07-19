@@ -152,22 +152,37 @@ function DuesRegistrationPage() {
 
   useStripeBuyButtonScript({ stripePublishableKey, items: duesItems });
 
+  const ALLOWED_STRIPE_HOSTS = ['donate.naacus.org', 'buy.stripe.com'];
+
+  const isAllowedStripeUrl = (url) => {
+    try {
+      const parsed = new URL(url);
+      return parsed.protocol === 'https:' && ALLOWED_STRIPE_HOSTS.includes(parsed.hostname);
+    } catch {
+      return false;
+    }
+  };
+
   const openStripeLink = (item) => {
+    const label = item.title || item.id;
     const span = startSpan('dues_page.open_stripe_link', {
-      'dues.item': item.title,
+      'dues.item': label,
       'dues.url': item.stripeUrl,
     });
-    trackCTA('dues_page', 'pay_now', item.title);
-    window.open(item.stripeUrl, '_blank', 'noopener,noreferrer');
+    trackCTA('dues_page', 'pay_now', label);
+    if (isAllowedStripeUrl(item.stripeUrl)) {
+      window.open(item.stripeUrl, '_blank', 'noopener,noreferrer');
+    }
     span.end({ code: 1 });
   };
 
   const trackBuyButtonInteraction = (item) => {
+    const label = item.title || item.id;
     const span = startSpan('dues_page.buy_button_interaction', {
-      'dues.item': item.title,
+      'dues.item': label,
       'dues.buy_button_id': item.buyButtonId,
     });
-    trackCTA('dues_page', 'buy_button_interaction', item.title);
+    trackCTA('dues_page', 'buy_button_interaction', label);
     span.end({ code: 1 });
   };
 
