@@ -34,17 +34,17 @@ assignees: []
 
 ## Release Actions
 
-- [ ] Merge release branch into main
+- [ ] Open/complete release sign-off PR from release branch into develop
 - [ ] Run production release workflow
 - [ ] Verify production smoke tests
 - [ ] Create and publish release tag
-- [ ] Back-merge release changes into develop
+- [ ] Merge any release-branch fixes into develop
 
 ## Hotfix Handling
 
 - [ ] Staging-only bug fixed on release branch
-- [ ] Production bug fixed on hotfix branch from main
-- [ ] Hotfix merged back to both main and develop
+- [ ] Production bug fixed on hotfix branch from release baseline
+- [ ] Hotfix merged back to develop
 
 ## Post-Release Notes
 
