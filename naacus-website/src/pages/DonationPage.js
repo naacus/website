@@ -150,13 +150,29 @@ function DonationPage() {
     trackCTA('donation_page', 'select_initiative', initiativeTitle);
   };
 
+  const ALLOWED_STRIPE_HOSTS = ['donate.naacus.org', 'buy.stripe.com'];
+
+  const isAllowedStripeUrl = (url) => {
+    try {
+      const parsed = new URL(url);
+      return parsed.protocol === 'https:' && ALLOWED_STRIPE_HOSTS.includes(parsed.hostname);
+    } catch {
+      return false;
+    }
+  };
+
   const openStripeLink = (initiative) => {
+    const label = initiative.title || initiative.id;
     const span = startSpan('donation_page.open_stripe_link', {
-      'donation.initiative': initiative.title,
+      'donation.initiative': label,
       'donation.url': initiative.stripeUrl,
     });
-    handleDonateClick(initiative.title);
-    window.open(initiative.stripeUrl, '_blank', 'noopener,noreferrer');
+    handleDonateClick(label);
+    if (isAllowedStripeUrl(initiative.stripeUrl)) {
+      window.open(initiative.stripeUrl, '_blank', 'noopener,noreferrer');
+    } else {
+      console.warn(`Blocked navigation to disallowed URL: ${initiative.stripeUrl}`);
+    }
     span.end({ code: 1 });
   };
 
