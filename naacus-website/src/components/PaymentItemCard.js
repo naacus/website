@@ -20,7 +20,7 @@ function PaymentItemCard({
   showAmountLabel = false,
 }) {
   const hasBuyButton = Boolean(item.buyButtonId && stripePublishableKey);
-  const showTitle = !(hideTitleWhenStripe && hasBuyButton);
+  const showTitle = Boolean(item.title) && !(hideTitleWhenStripe && hasBuyButton);
   const showDescription = Boolean(item.description) && !(hideDetailsWhenStripe && hasBuyButton);
   const showAmount = Boolean(item.amountLabel) && showAmountLabel && !(hideDetailsWhenStripe && hasBuyButton);
 
