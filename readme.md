@@ -29,6 +29,29 @@ Visit http://localhost:3000
 
 ---
 
+## New Developer Start Here
+
+If this is your first time on the project, start with:
+
+1. [Day 0 to Day 2 Onboarding](naacus-website/docs/engineering/quickstart.md)
+2. [AI-First Evaluation Guide](naacus-website/docs/engineering/ai-first-evaluation.md)
+3. [Environment Variables and Security](naacus-website/docs/engineering/environment-variables.md)
+
+Required local checks before opening a PR (run in `naacus-website/`):
+
+```bash
+npm run check:translations
+npm run eval:ai-first
+npm run eval:ai-first:html
+```
+
+Stripe key policy:
+- Never store the Stripe public key in CMS or locale content.
+- CI resolves key source in this order: Azure Key Vault, then GitHub Secrets fallback.
+- If no valid key is available, CI reports a warning and deploys with Stripe buy buttons disabled (safe fallback).
+
+---
+
 ## Documentation
 
 Primary docs index: [readme.md](naacus-website/docs/readme.md)

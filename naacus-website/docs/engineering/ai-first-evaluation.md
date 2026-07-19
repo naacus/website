@@ -15,6 +15,24 @@ This guide defines how to verify the website is implementing AI-first intent cor
 - Assistant behavior remains context-aware by route and language
 - Users are guided to meaningful next actions across the entire site
 
+## New Team Member Onboarding
+
+Before implementing features, each new contributor should complete this sequence:
+
+1. Run AI-first checks locally from `naacus-website/`:
+
+```bash
+npm run eval:ai-first
+npm run eval:ai-first:html
+```
+
+2. Open `reports/ai-first-eval.md` and confirm no failed checks.
+3. Confirm your change preserves EN/FR route intent and next-step metadata.
+4. For payment-related changes, verify Stripe key sourcing remains secure:
+	- Key is not stored in CMS content.
+	- CI source order is Azure Key Vault first, GitHub Secrets fallback.
+	- If key is unavailable or invalid, Stripe buy buttons are disabled and fallback buttons remain available.
+
 ---
 
 ## Local Evaluation Command

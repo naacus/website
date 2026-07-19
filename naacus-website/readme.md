@@ -65,6 +65,50 @@ npm start
 
 The application will open in your browser at `http://localhost:3000`
 
+## New Developer Start Here
+
+If you are new to the project, follow this path first:
+
+1. [Day 0 to Day 2 Onboarding](docs/engineering/quickstart.md)
+2. [AI-First Evaluation Guide](docs/engineering/ai-first-evaluation.md)
+3. [Environment Variables and Security](docs/engineering/environment-variables.md)
+4. [GitHub + Azure Secrets Setup](docs/engineering/github-azure-secrets-setup.md)
+
+Before opening your first PR, run:
+
+```bash
+npm run check:translations
+npm run eval:ai-first
+npm run eval:ai-first:html
+```
+
+Stripe key policy for all contributors:
+- Do not store Stripe keys in CMS or locale content.
+- CI source order is Azure Key Vault first, then GitHub Secrets fallback.
+- If no valid key is available, CI logs a warning and deploys with Stripe buy buttons disabled (safe fallback).
+
+### Copy/Paste Onboarding Prompt (for New Team Members)
+
+Use this prompt in Copilot Chat (or your AI assistant) after opening the repository:
+
+```text
+I am new to this NAACUS project and I know nothing about the codebase yet.
+
+Please onboard me step-by-step using this repo only:
+1) Explain the product goal, main user journeys, and what AI-first means in this project.
+2) Give me a map of where key things live (routes, pages, services, CMS content, env/security config).
+3) Tell me exactly what commands to run first for setup and baseline validation.
+4) Make me run and interpret these checks: translations parity, AI-first eval, AI-first HTML report, tests, and build.
+5) Explain the Stripe key security policy and CI behavior:
+   - never in CMS/locales,
+   - Azure Key Vault first,
+   - GitHub Secrets fallback,
+   - if unavailable/invalid, Stripe buy buttons are disabled and fallback buttons remain available.
+6) Suggest one low-risk first contribution and define done criteria for my first PR.
+
+Use concise steps, include exact file paths, and pause after each step for confirmation.
+```
+
 ## Build for Production
 
 Create an optimized production build:
