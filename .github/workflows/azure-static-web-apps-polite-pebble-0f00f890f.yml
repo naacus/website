@@ -46,15 +46,99 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Azure login (OIDC)
+        id: azure_login
+        continue-on-error: true
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Load Stripe public key from Azure Key Vault
+        id: kv_fetch
+        if: steps.azure_login.outcome == 'success'
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          KV_NAME='${{ secrets.AZURE_KEY_VAULT_NAME }}'
+          SECRET_NAME='${{ secrets.AZURE_STRIPE_PUBLIC_KEY_SECRET_NAME }}'
+
+          if [ -z "$SECRET_NAME" ]; then
+            SECRET_NAME='StripePublicKey'
+          fi
+
+          if [ -z "$KV_NAME" ]; then
+            echo "AZURE_KEY_VAULT_NAME is not set. Skipping Azure Key Vault lookup."
+            exit 0
+          fi
+
+          STRIPE_KEY="$(az keyvault secret show \
+            --vault-name "$KV_NAME" \
+            --name "$SECRET_NAME" \
+            --query value \
+            -o tsv)"
+
+          if [ -z "$STRIPE_KEY" ]; then
+            echo "Stripe key from Key Vault is empty or unavailable."
+            exit 0
+          fi
+
+          echo "::add-mask::$STRIPE_KEY"
+          echo "stripe_key=$STRIPE_KEY" >> "$GITHUB_OUTPUT"
+
+      - name: Resolve Stripe public key (Azure first, GitHub fallback)
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          STRIPE_KEY='${{ steps.kv_fetch.outputs.stripe_key }}'
+          STRIPE_KEY_SOURCE='azure-key-vault'
+          if [ -z "$STRIPE_KEY" ]; then
+            STRIPE_KEY='${{ secrets.REACT_APP_STRIPE_PUBLIC_KEY || secrets.STRIPE_PUBLIC_KEY_TEST || '' }}'
+            STRIPE_KEY_SOURCE='github-secrets'
+          fi
+
+          if [ -z "$STRIPE_KEY" ]; then
+            echo "Stripe public key missing from both Azure Key Vault and GitHub secrets."
+            echo "Build is blocked until one source is configured."
+            echo "Stripe key source: none"
+            exit 1
+          fi
+
+          echo "::add-mask::$STRIPE_KEY"
+          echo "REACT_APP_STRIPE_PUBLIC_KEY=$STRIPE_KEY" >> "$GITHUB_ENV"
+          echo "STRIPE_KEY_SOURCE=$STRIPE_KEY_SOURCE" >> "$GITHUB_ENV"
+
+          echo "Stripe key source: $STRIPE_KEY_SOURCE"
+          {
+            echo "### Stripe Key Source"
+            echo "- Source: $STRIPE_KEY_SOURCE"
+          } >> "$GITHUB_STEP_SUMMARY"
+
       # Create .env.development for develop quality gates.
-      # Stripe public key is supplied by Azure app settings.
+      # Stripe public key is pulled from Azure Key Vault in the previous step.
       - name: Create development environment file
         run: |
           cat > .env.development << EOF2
+          REACT_APP_STRIPE_PUBLIC_KEY=${REACT_APP_STRIPE_PUBLIC_KEY}
           REACT_APP_API_BASE_URL=${{ secrets.API_BASE_URL_TEST || 'http://localhost:5001' }}
           REACT_APP_DEBUG_PAYMENTS=true
           CI=true
           EOF2
+
+      - name: Validate required development env vars
+        run: |
+          set -a
+          . ./.env.development
+          set +a
+
+          if [ -z "$REACT_APP_STRIPE_PUBLIC_KEY" ]; then
+            echo "Missing REACT_APP_STRIPE_PUBLIC_KEY after Key Vault injection."
+            exit 1
+          fi
 
       - name: Build app with development environment
         run: |
