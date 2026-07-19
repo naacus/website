@@ -116,7 +116,7 @@ jobs:
             fi
           fi
 
-          if [ -n "$STRIPE_KEY" ] && [[ ! "$STRIPE_KEY" =~ ^pk_(test|live)_ ]]; then
+          if [ -n "$STRIPE_KEY" ] && [[ ! "$STRIPE_KEY" =~ ^pk_(test|live)_[A-Za-z0-9]{10,}$ ]]; then
             echo "Resolved Stripe key is invalid format; disabling Stripe buy buttons for this build."
             STRIPE_KEY=''
             STRIPE_KEY_SOURCE='none'
