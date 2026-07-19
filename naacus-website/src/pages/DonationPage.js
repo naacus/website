@@ -1,15 +1,22 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { makeStyles, shorthands, Card, Text, Button, tokens } from '@fluentui/react-components';
+import { makeStyles, shorthands, Text, tokens } from '@fluentui/react-components';
 import PageWrapper from '../components/PageWrapper';
+import PaymentItemCard from '../components/PaymentItemCard';
+import paymentConfig from '../config/paymentConfig';
 import { useAnalytics } from '../hooks/useAnalytics';
+import useStripeBuyButtonScript from '../hooks/useStripeBuyButtonScript';
+import { handleNavigation } from '../services/navigationService';
 import { startSpan } from '../services/telemetryService';
 
 const useStyles = makeStyles({
   section: {
     backgroundColor: tokens.colorNeutralBackground1,
     ...shorthands.padding('40px', '20px', '24px'),
+    '@media (min-width: 769px)': {
+      ...shorthands.padding('72px', '20px', '24px'),
+    },
   },
   heading: {
     display: 'block',
@@ -56,11 +63,16 @@ const useStyles = makeStyles({
       boxShadow: tokens.shadow8,
     },
   },
+  stripeCard: {
+    textAlign: 'center',
+    alignItems: 'center',
+  },
   initiativeTitle: {
     fontSize: '1.18rem',
     fontWeight: '600',
     color: tokens.colorNeutralForeground1,
     lineHeight: '1.3',
+    marginTop: '0',
     marginBottom: '8px',
     display: 'block',
   },
@@ -68,12 +80,23 @@ const useStyles = makeStyles({
     color: tokens.colorNeutralForeground2,
     fontSize: '0.98rem',
     lineHeight: '1.5',
+    margin: '0',
     display: 'block',
   },
   cta: {
     marginTop: 'auto',
     minHeight: '40px',
     fontWeight: '700',
+  },
+  buyButtonWrap: {
+    marginTop: '14px',
+    width: '100%',
+    display: 'grid',
+    placeItems: 'center',
+    '& > stripe-buy-button': {
+      width: 'min(100%, 420px)',
+      justifySelf: 'center',
+    },
   },
   note: {
     marginTop: '20px',
@@ -89,41 +112,30 @@ const useStyles = makeStyles({
 function DonationPage() {
   const styles = useStyles();
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const location = useLocation();
   const { trackCTA } = useAnalytics();
+  const stripePublishableKey = paymentConfig.stripe.publishableKey;
 
-  const donationInitiatives = [
-    {
-      id: 1,
-      title: t('donation.initiativesPage.items.convention.title'),
-      description: t('donation.initiativesPage.items.convention.description'),
-      accent: '#0ea5e9',
-      stripeUrl: process.env.REACT_APP_STRIPE_DONATION_LINK_CONVENTION_2027 || 'https://donate.naacus.org',
-    },
-    {
-      id: 2,
-      title: t('donation.initiativesPage.items.annualFund.title'),
-      description: t('donation.initiativesPage.items.annualFund.description'),
-      accent: '#f97316',
-      stripeUrl: process.env.REACT_APP_STRIPE_DONATION_LINK_ANNUAL_FUND || 'https://donate.naacus.org',
-    },
-    {
-      id: 3,
-      title: t('donation.initiativesPage.items.womenMinistry.title'),
-      description: t('donation.initiativesPage.items.womenMinistry.description'),
-      accent: '#16a34a',
-      stripeUrl: process.env.REACT_APP_STRIPE_DONATION_LINK_WOMEN_MINISTRY || 'https://donate.naacus.org',
-    },
-    {
-      id: 4,
-      title: t('donation.initiativesPage.items.youthPrograms.title'),
-      description: t('donation.initiativesPage.items.youthPrograms.description'),
-      accent: '#7c3aed',
-      stripeUrl: process.env.REACT_APP_STRIPE_DONATION_LINK_YOUTH_PROGRAMS || 'https://donate.naacus.org',
-    },
-  ];
+  const donationInitiativesFromCms = t('donation.initiativesPage.itemsList', {
+    returnObjects: true,
+    defaultValue: [],
+  });
+
+  const donationInitiatives = Array.isArray(donationInitiativesFromCms)
+    ? donationInitiativesFromCms.map((item, index) => ({
+      id: item.id || `initiative-${index + 1}`,
+      title: item.title || '',
+      description: item.description || '',
+      buyButtonId: item.buyButtonId || '',
+      stripeUrl: item.stripeUrl || 'https://donate.naacus.org',
+    }))
+    : [];
 
   const openDonationItems = donationInitiatives;
   const donationItemsCount = openDonationItems.length;
+
+  useStripeBuyButtonScript({ stripePublishableKey, items: openDonationItems });
 
   useEffect(() => {
     const span = startSpan('donation_page.view', {
@@ -138,14 +150,50 @@ function DonationPage() {
     trackCTA('donation_page', 'select_initiative', initiativeTitle);
   };
 
+  const ALLOWED_STRIPE_HOSTS = ['donate.naacus.org', 'buy.stripe.com'];
+
+  const isAllowedStripeUrl = (url) => {
+    try {
+      const parsed = new URL(url);
+      return parsed.protocol === 'https:' && ALLOWED_STRIPE_HOSTS.includes(parsed.hostname);
+    } catch {
+      return false;
+    }
+  };
+
   const openStripeLink = (initiative) => {
+    const label = initiative.title || initiative.id;
     const span = startSpan('donation_page.open_stripe_link', {
-      'donation.initiative': initiative.title,
+      'donation.initiative': label,
       'donation.url': initiative.stripeUrl,
     });
-    handleDonateClick(initiative.title);
-    window.open(initiative.stripeUrl, '_blank', 'noopener,noreferrer');
+    handleDonateClick(label);
+    if (isAllowedStripeUrl(initiative.stripeUrl)) {
+      window.open(initiative.stripeUrl, '_blank', 'noopener,noreferrer');
+    } else {
+      console.warn(`Blocked navigation to disallowed URL: ${initiative.stripeUrl}`);
+    }
     span.end({ code: 1 });
+  };
+
+  const trackBuyButtonInteraction = (initiative) => {
+    const label = initiative.title || initiative.id || 'donation_item';
+    const span = startSpan('donation_page.buy_button_interaction', {
+      'donation.initiative': label,
+      'donation.buy_button_id': initiative.buyButtonId,
+    });
+    trackCTA('donation_page', 'buy_button_interaction', label);
+    span.end({ code: 1 });
+  };
+
+  const handleDuesLinkClick = (event) => {
+    event.preventDefault();
+    handleNavigation({
+      path: '/dues-registration',
+      sectionId: null,
+      currentPathname: location.pathname,
+      navigate,
+    });
   };
 
   return (
@@ -161,19 +209,20 @@ function DonationPage() {
         <div className={styles.sectionWrap}>
           <div className={styles.grid}>
             {openDonationItems.map((initiative) => (
-              <Card key={initiative.id} className={styles.card}>
-                <Text as="h2" className={styles.initiativeTitle}>{initiative.title}</Text>
-                <Text as="p" className={styles.initiativeDescription}>
-                  {initiative.description}
-                </Text>
-                <Button
-                  appearance="primary"
-                  className={styles.cta}
-                  onClick={() => openStripeLink(initiative)}
-                >
-                  {t('donation.initiativesPage.donateButton')}
-                </Button>
-              </Card>
+              <PaymentItemCard
+                key={initiative.id}
+                item={initiative}
+                stripePublishableKey={stripePublishableKey}
+                cardClassName={styles.card}
+                stripeCardClassName={styles.stripeCard}
+                titleClassName={styles.initiativeTitle}
+                descriptionClassName={styles.initiativeDescription}
+                buyButtonWrapClassName={styles.buyButtonWrap}
+                fallbackButtonClassName={styles.cta}
+                fallbackButtonText={t('donation.initiativesPage.donateButton')}
+                onFallbackClick={openStripeLink}
+                onBuyButtonClick={trackBuyButtonInteraction}
+              />
             ))}
           </div>
         </div>
@@ -183,7 +232,7 @@ function DonationPage() {
             {t('donation.initiativesPage.helpText')} <Link to="/contact">{t('donation.initiativesPage.contactLinkText')}</Link>.
           </span>
           <span className={styles.noteLine}>
-            {t('donation.initiativesPage.duesHelpText')} <Link to="/dues-registration">{t('donation.initiativesPage.duesLinkText')}</Link>.
+            {t('donation.initiativesPage.duesHelpText')} <Link to="/dues-registration" onClick={handleDuesLinkClick}>{t('donation.initiativesPage.duesLinkText')}</Link>.
           </span>
         </Text>
       </section>

@@ -523,22 +523,56 @@
       "fixedSectionSubtitle": "These options use fixed amounts.",
       "openTypeLabel": "Open Amount",
       "fixedTypeLabel": "Fixed Amount",
+      "itemsList": [
+        {
+          "id": "convention",
+          "title": "",
+          "description": "Help sponsor convention formation, liturgy coordination, youth participation, and national community gathering costs.",
+          "buyButtonId": "buy_btn_1TumHEL5FQlMr7HPsf4vAey5",
+          "stripeUrl": "https://donate.naacus.org"
+        },
+        {
+          "id": "annualFund",
+          "title": "",
+          "description": "Support year-round operational strength, evangelization outreach, and strategic programs that sustain NAACUS mission.",
+          "buyButtonId": "buy_btn_1TumFeL5FQlMr7HPz4dvHflZ",
+          "stripeUrl": "https://donate.naacus.org"
+        },
+        {
+          "id": "womenMinistry",
+          "title": "",
+          "description": "Invest in women-led faith development, mentorship circles, formation events, and community care initiatives.",
+          "buyButtonId": "buy_btn_1TumDNL5FQlMr7HPP17dbTjr",
+          "stripeUrl": "https://donate.naacus.org"
+        },
+        {
+          "id": "youthPrograms",
+          "title": "",
+          "description": "Fund leadership development, retreats, faith formation, and programming that uplifts youth and young adults.",
+          "buyButtonId": "buy_btn_1Tum37L5FQlMr7HPw7YUFabM",
+          "stripeUrl": "https://donate.naacus.org"
+        }
+      ],
       "items": {
         "convention": {
-          "title": "NAACUS-ACCCRUS 2027 Convention",
-          "description": "Help sponsor convention formation, liturgy coordination, youth participation, and national community gathering costs."
+          "title": "",
+          "description": "Help sponsor convention formation, liturgy coordination, youth participation, and national community gathering costs.",
+          "buyButtonId": "buy_btn_1TumHEL5FQlMr7HPsf4vAey5"
         },
         "annualFund": {
-          "title": "NAACUS Annual Fund Drive Appeal",
-          "description": "Support year-round operational strength, evangelization outreach, and strategic programs that sustain NAACUS mission."
+          "title": "",
+          "description": "Support year-round operational strength, evangelization outreach, and strategic programs that sustain NAACUS mission.",
+          "buyButtonId": "buy_btn_1TumFeL5FQlMr7HPz4dvHflZ"
         },
         "womenMinistry": {
-          "title": "NAACUS Women's Ministry initiatives",
-          "description": "Invest in women-led faith development, mentorship circles, formation events, and community care initiatives."
+          "title": "",
+          "description": "Invest in women-led faith development, mentorship circles, formation events, and community care initiatives.",
+          "buyButtonId": "buy_btn_1TumDNL5FQlMr7HPP17dbTjr"
         },
         "youthPrograms": {
-          "title": "NAACUS Youth and Young Adult programs and activities",
-          "description": "Fund leadership development, retreats, faith formation, and programming that uplifts youth and young adults."
+          "title": "",
+          "description": "Fund leadership development, retreats, faith formation, and programming that uplifts youth and young adults.",
+          "buyButtonId": "buy_btn_1Tum37L5FQlMr7HPw7YUFabM"
         },
         "annualDues": {
           "title": "NAACUS Individual Annual Dues",
@@ -559,15 +593,49 @@
       "backToDonationLinkText": "Back to Donation Initiatives",
       "helpText": "Need help or prefer another giving method?",
       "contactLinkText": "Contact NAACUS",
+      "itemsList": [
+        {
+          "id": "annualDues",
+          "title": "",
+          "description": "Contribute to annual dues support that helps sustain member services and year-round mission delivery.",
+          "amountLabel": "$2.00 USD / year",
+          "buyButtonId": "buy_btn_1TueYZL5FQlMr7HPliBQuUMh",
+          "stripeUrl": "https://donate.naacus.org"
+        },
+        {
+          "id": "membershipRegistration",
+          "title": "",
+          "description": "Support membership onboarding and registration assistance that keeps our community open and welcoming.",
+          "amountLabel": "$20.00 USD",
+          "buyButtonId": "buy_btn_1TueZwL5FQlMr7HPDr7xBkKv",
+          "stripeUrl": "https://donate.naacus.org"
+        },
+        {
+          "id": "groupMembership2to100",
+          "title": "Group Membership (2-100 members)",
+          "description": "Pay your one-time group membership fee for organizations with 2 to 100 members.",
+          "amountLabel": "$200.00 one-time",
+          "buyButtonId": "",
+          "stripeUrl": "https://donate.naacus.org"
+        },
+        {
+          "id": "groupMembership100plus",
+          "title": "Group Membership (100+ members)",
+          "description": "Pay your one-time group membership fee for organizations with more than 100 members.",
+          "amountLabel": "$300.00 one-time",
+          "buyButtonId": "",
+          "stripeUrl": "https://donate.naacus.org"
+        }
+      ],
       "items": {
         "annualDues": {
-          "title": "NAACUS Individual Annual Dues",
+          "title": "",
           "description": "Contribute to annual dues support that helps sustain member services and year-round mission delivery.",
           "amountLabel": "$2.00 USD / year",
           "buyButtonId": "buy_btn_1TueYZL5FQlMr7HPliBQuUMh"
         },
         "membershipRegistration": {
-          "title": "NAACUS Individual Membership Registration",
+          "title": "",
           "description": "Support membership onboarding and registration assistance that keeps our community open and welcoming.",
           "amountLabel": "$20.00 USD",
           "buyButtonId": "buy_btn_1TueZwL5FQlMr7HPDr7xBkKv"

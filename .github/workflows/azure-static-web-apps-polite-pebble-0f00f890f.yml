@@ -46,16 +46,22 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # Create production-local environment file so values override .env.production placeholders
-      - name: Create environment file
+      # Create .env.development for develop deployments
+      - name: Create development environment file
         run: |
-          cat > .env.production.local << EOF2
+          cat > .env.development << EOF2
+          REACT_APP_STRIPE_PUBLIC_KEY=${{ secrets.REACT_APP_STRIPE_PUBLIC_KEY || secrets.STRIPE_PUBLIC_KEY_TEST || '' }}
           REACT_APP_API_BASE_URL=${{ secrets.API_BASE_URL_TEST || 'http://localhost:5001' }}
+          REACT_APP_DEBUG_PAYMENTS=true
           CI=true
           EOF2
 
-      - name: Build app
-        run: npm run build
+      - name: Build app with development environment
+        run: |
+          set -a
+          . ./.env.development
+          set +a
+          npm run build
 
       - name: Run translation parity gate
         run: npm run check:translations

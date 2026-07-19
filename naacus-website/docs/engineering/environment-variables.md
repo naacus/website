@@ -93,19 +93,22 @@ API_BASE_URL_TEST=https://api-test.naacus.org (optional)
 
 **Example from updated workflow:**
 ```yaml
-- name: Create environment file
+- name: Create development environment file
   run: |
-    # .env.production.local has higher precedence than committed .env.production
-    # and prevents placeholder values from leaking into production builds.
-    cat > .env.production.local << EOF
-    REACT_APP_STRIPE_PUBLIC_KEY=${{ env.STRIPE_PUBLIC_KEY }}
+    # Use .env.development as the source of truth for develop deployments.
+    cat > .env.development << EOF
+    REACT_APP_STRIPE_PUBLIC_KEY=${{ secrets.REACT_APP_STRIPE_PUBLIC_KEY || secrets.STRIPE_PUBLIC_KEY_TEST || '' }}
     REACT_APP_API_BASE_URL=${{ secrets.API_BASE_URL_TEST || 'http://localhost:5001' }}
     REACT_APP_DEBUG_PAYMENTS=true
     CI=true
     EOF
 
-- name: Build app
-  run: npm run build  # Now builds with actual test credentials
+- name: Build app with development environment
+  run: |
+    set -a
+    . ./.env.development
+    set +a
+    npm run build  # Build uses only .env.development values
 ```
 
 ---

@@ -2952,6 +2952,31 @@ collections:
                   - label: Fixed Amount Type Label
                     name: fixedTypeLabel
                     widget: string
+                  - label: Initiatives List
+                    name: itemsList
+                    widget: list
+                    collapsed: true
+                    summary: '{{fields.id}} - {{fields.buyButtonId}}'
+                    fields:
+                      - label: Initiative ID
+                        name: id
+                        widget: string
+                      - label: Title
+                        name: title
+                        widget: string
+                        required: false
+                        hint: Leave empty when Stripe Buy Button ID is provided.
+                      - label: Description
+                        name: description
+                        widget: text
+                      - label: Stripe Buy Button ID
+                        name: buyButtonId
+                        widget: string
+                        required: false
+                      - label: Stripe Link URL
+                        name: stripeUrl
+                        widget: string
+                        required: false
                   - label: Items
                     name: items
                     widget: object
@@ -2968,6 +2993,10 @@ collections:
                           - label: Description
                             name: description
                             widget: text
+                          - label: Stripe Buy Button ID
+                            name: buyButtonId
+                            widget: string
+                            required: false
                       - label: Annual Fund
                         name: annualFund
                         widget: object
@@ -2979,6 +3008,10 @@ collections:
                           - label: Description
                             name: description
                             widget: text
+                          - label: Stripe Buy Button ID
+                            name: buyButtonId
+                            widget: string
+                            required: false
                       - label: Women Ministry
                         name: womenMinistry
                         widget: object
@@ -2990,6 +3023,10 @@ collections:
                           - label: Description
                             name: description
                             widget: text
+                          - label: Stripe Buy Button ID
+                            name: buyButtonId
+                            widget: string
+                            required: false
                       - label: Youth Programs
                         name: youthPrograms
                         widget: object
@@ -3001,6 +3038,10 @@ collections:
                           - label: Description
                             name: description
                             widget: text
+                          - label: Stripe Buy Button ID
+                            name: buyButtonId
+                            widget: string
+                            required: false
                       - label: Annual Dues
                         name: annualDues
                         widget: object
@@ -3054,6 +3095,34 @@ collections:
                   - label: Contact Link Text
                     name: contactLinkText
                     widget: string
+                  - label: Dues Items List
+                    name: itemsList
+                    widget: list
+                    collapsed: true
+                    summary: '{{fields.id}} - {{fields.buyButtonId}}'
+                    fields:
+                      - label: Item ID
+                        name: id
+                        widget: string
+                      - label: Title
+                        name: title
+                        widget: string
+                        required: false
+                        hint: Fallback only. Leave empty when Stripe Buy Button ID is provided.
+                      - label: Description
+                        name: description
+                        widget: text
+                      - label: Amount Label
+                        name: amountLabel
+                        widget: string
+                      - label: Stripe Buy Button ID
+                        name: buyButtonId
+                        widget: string
+                        required: false
+                      - label: Stripe Link URL
+                        name: stripeUrl
+                        widget: string
+                        required: false
                   - label: Items
                     name: items
                     widget: object
@@ -3743,6 +3812,31 @@ collections:
                   - label: Fixed Amount Type Label
                     name: fixedTypeLabel
                     widget: string
+                  - label: Initiatives List
+                    name: itemsList
+                    widget: list
+                    collapsed: true
+                    summary: '{{fields.id}} - {{fields.buyButtonId}}'
+                    fields:
+                      - label: Initiative ID
+                        name: id
+                        widget: string
+                      - label: Title
+                        name: title
+                        widget: string
+                        required: false
+                        hint: Leave empty when Stripe Buy Button ID is provided.
+                      - label: Description
+                        name: description
+                        widget: text
+                      - label: Stripe Buy Button ID
+                        name: buyButtonId
+                        widget: string
+                        required: false
+                      - label: Stripe Link URL
+                        name: stripeUrl
+                        widget: string
+                        required: false
                   - label: Items
                     name: items
                     widget: object
@@ -3759,6 +3853,10 @@ collections:
                           - label: Description
                             name: description
                             widget: text
+                          - label: Stripe Buy Button ID
+                            name: buyButtonId
+                            widget: string
+                            required: false
                       - label: Annual Fund
                         name: annualFund
                         widget: object
@@ -3770,6 +3868,10 @@ collections:
                           - label: Description
                             name: description
                             widget: text
+                          - label: Stripe Buy Button ID
+                            name: buyButtonId
+                            widget: string
+                            required: false
                       - label: Women Ministry
                         name: womenMinistry
                         widget: object
@@ -3781,6 +3883,10 @@ collections:
                           - label: Description
                             name: description
                             widget: text
+                          - label: Stripe Buy Button ID
+                            name: buyButtonId
+                            widget: string
+                            required: false
                       - label: Youth Programs
                         name: youthPrograms
                         widget: object
@@ -3792,6 +3898,10 @@ collections:
                           - label: Description
                             name: description
                             widget: text
+                          - label: Stripe Buy Button ID
+                            name: buyButtonId
+                            widget: string
+                            required: false
                       - label: Annual Dues
                         name: annualDues
                         widget: object
@@ -3845,6 +3955,34 @@ collections:
                   - label: Contact Link Text
                     name: contactLinkText
                     widget: string
+                  - label: Dues Items List
+                    name: itemsList
+                    widget: list
+                    collapsed: true
+                    summary: '{{fields.id}} - {{fields.buyButtonId}}'
+                    fields:
+                      - label: Item ID
+                        name: id
+                        widget: string
+                      - label: Title
+                        name: title
+                        widget: string
+                        required: false
+                        hint: Fallback only. Leave empty when Stripe Buy Button ID is provided.
+                      - label: Description
+                        name: description
+                        widget: text
+                      - label: Amount Label
+                        name: amountLabel
+                        widget: string
+                      - label: Stripe Buy Button ID
+                        name: buyButtonId
+                        widget: string
+                        required: false
+                      - label: Stripe Link URL
+                        name: stripeUrl
+                        widget: string
+                        required: false
                   - label: Items
                     name: items
                     widget: object
@@ -4352,7 +4490,6 @@ collections:
                 name: "icon"
                 widget: "string"
                 required: false
-
 
 
 
