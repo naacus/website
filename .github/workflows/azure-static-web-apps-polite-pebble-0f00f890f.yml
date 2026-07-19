@@ -136,7 +136,7 @@ jobs:
           set +a
 
           if [ -z "$REACT_APP_STRIPE_PUBLIC_KEY" ]; then
-            echo "Missing REACT_APP_STRIPE_PUBLIC_KEY after Key Vault injection."
+            echo "Missing REACT_APP_STRIPE_PUBLIC_KEY after resolving environment variables."
             exit 1
           fi
 
