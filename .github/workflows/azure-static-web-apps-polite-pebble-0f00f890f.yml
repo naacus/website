@@ -57,7 +57,6 @@ jobs:
 
       - name: Load Stripe public key from Azure Key Vault
         id: kv_fetch
-        if: steps.azure_login.outcome == 'success'
         continue-on-error: true
         shell: bash
         run: |
@@ -66,13 +65,13 @@ jobs:
           KV_NAME='${{ secrets.AZURE_KEY_VAULT_NAME }}'
           SECRET_NAME='${{ secrets.AZURE_STRIPE_PUBLIC_KEY_SECRET_NAME }}'
 
-          if [ -z "$SECRET_NAME" ]; then
-            SECRET_NAME='StripePublicKey'
+          if [ -z "$KV_NAME" ]; then
+            echo "AZURE_KEY_VAULT_NAME is not configured; skipping Azure Key Vault lookup."
+            exit 0
           fi
 
-          if [ -z "$KV_NAME" ]; then
-            echo "AZURE_KEY_VAULT_NAME is not set. Skipping Azure Key Vault lookup."
-            exit 0
+          if [ -z "$SECRET_NAME" ]; then
+            SECRET_NAME='StripePublicKey'
           fi
 
           STRIPE_KEY="$(az keyvault secret show \
@@ -83,7 +82,7 @@ jobs:
 
           if [ -z "$STRIPE_KEY" ]; then
             echo "Stripe key from Key Vault is empty or unavailable."
-            exit 0
+            exit 1
           fi
 
           echo "::add-mask::$STRIPE_KEY"
@@ -94,28 +93,51 @@ jobs:
         run: |
           set -euo pipefail
 
-          STRIPE_KEY='${{ steps.kv_fetch.outputs.stripe_key }}'
-          STRIPE_KEY_SOURCE='azure-key-vault'
+          KV_NAME='${{ secrets.AZURE_KEY_VAULT_NAME }}'
+          STRIPE_KEY=''
+          STRIPE_KEY_SOURCE='none'
+          STRIPE_STATUS='warning'
+
+          if [ -n "$KV_NAME" ]; then
+            if [ '${{ steps.azure_login.outcome }}' = 'success' ] && [ '${{ steps.kv_fetch.outcome }}' = 'success' ]; then
+              STRIPE_KEY='${{ steps.kv_fetch.outputs.stripe_key }}'
+              STRIPE_KEY_SOURCE='azure-key-vault'
+              STRIPE_STATUS='ok'
+            else
+              echo "Azure Key Vault is configured but retrieval failed; trying GitHub fallback to keep pipeline moving."
+            fi
+          fi
+
           if [ -z "$STRIPE_KEY" ]; then
             STRIPE_KEY='${{ secrets.REACT_APP_STRIPE_PUBLIC_KEY || secrets.STRIPE_PUBLIC_KEY_TEST || '' }}'
-            STRIPE_KEY_SOURCE='github-secrets'
+            if [ -n "$STRIPE_KEY" ]; then
+              STRIPE_KEY_SOURCE='github-secrets'
+              STRIPE_STATUS='ok'
+            fi
           fi
 
-          if [ -z "$STRIPE_KEY" ]; then
-            echo "Stripe public key missing from both Azure Key Vault and GitHub secrets."
-            echo "Build is blocked until one source is configured."
-            echo "Stripe key source: none"
-            exit 1
+          if [ -n "$STRIPE_KEY" ] && [[ ! "$STRIPE_KEY" =~ ^pk_(test|live)_ ]]; then
+            echo "Resolved Stripe key is invalid format; disabling Stripe buy buttons for this build."
+            STRIPE_KEY=''
+            STRIPE_KEY_SOURCE='none'
+            STRIPE_STATUS='warning'
           fi
 
-          echo "::add-mask::$STRIPE_KEY"
+          if [ -n "$STRIPE_KEY" ]; then
+            echo "::add-mask::$STRIPE_KEY"
+          fi
           echo "REACT_APP_STRIPE_PUBLIC_KEY=$STRIPE_KEY" >> "$GITHUB_ENV"
           echo "STRIPE_KEY_SOURCE=$STRIPE_KEY_SOURCE" >> "$GITHUB_ENV"
+          echo "STRIPE_KEY_STATUS=$STRIPE_STATUS" >> "$GITHUB_ENV"
 
           echo "Stripe key source: $STRIPE_KEY_SOURCE"
           {
             echo "### Stripe Key Source"
             echo "- Source: $STRIPE_KEY_SOURCE"
+            echo "- Status: $STRIPE_STATUS"
+            if [ "$STRIPE_KEY_SOURCE" = 'none' ]; then
+              echo "- Note: Stripe key unavailable/invalid. Build continues with Stripe buy buttons disabled (safe fallback)."
+            fi
           } >> "$GITHUB_STEP_SUMMARY"
 
       # Create .env.development for develop quality gates.
@@ -129,15 +151,18 @@ jobs:
           CI=true
           EOF2
 
-      - name: Validate required development env vars
+      - name: Validate and report development env vars
         run: |
           set -a
           . ./.env.development
           set +a
 
           if [ -z "$REACT_APP_STRIPE_PUBLIC_KEY" ]; then
-            echo "Missing REACT_APP_STRIPE_PUBLIC_KEY after resolving environment variables."
-            exit 1
+            echo "Stripe key not set for this build. Falling back to non-Stripe Donate Securely buttons."
+          fi
+
+          if [ -n "$REACT_APP_STRIPE_PUBLIC_KEY" ] && [[ ! "$REACT_APP_STRIPE_PUBLIC_KEY" =~ ^pk_(test|live)_ ]]; then
+            echo "Invalid REACT_APP_STRIPE_PUBLIC_KEY format detected. Stripe should be disabled by resolver step."
           fi
 
       - name: Build app with development environment

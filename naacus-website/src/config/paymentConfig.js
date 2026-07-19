@@ -3,10 +3,18 @@
  * Centralized configuration for all payment processors and integrations
  */
 
+function isValidStripePublishableKey(key) {
+  return typeof key === 'string' && /^(pk_test_|pk_live_)/.test(key.trim());
+}
+
+const resolvedStripePublishableKey = isValidStripePublishableKey(process.env.REACT_APP_STRIPE_PUBLIC_KEY)
+  ? process.env.REACT_APP_STRIPE_PUBLIC_KEY.trim()
+  : '';
+
 export const paymentConfig = {
   // Stripe Configuration
   stripe: {
-    publishableKey: process.env.REACT_APP_STRIPE_PUBLIC_KEY || '',
+    publishableKey: resolvedStripePublishableKey,
     buyButtonId: process.env.REACT_APP_STRIPE_BUY_BUTTON_ID || 'buy_btn_example',
     apiVersion: '2023-10-16',
     locale: 'en',
@@ -34,7 +42,7 @@ export const paymentConfig = {
     merchantName: 'NAACUS',
     environment: process.env.REACT_APP_GOOGLE_PAY_ENV || 'TEST', // 'TEST' or 'PRODUCTION'
     gatewayId: 'stripe',
-    gatewayMerchantId: process.env.REACT_APP_STRIPE_PUBLIC_KEY || '',
+    gatewayMerchantId: resolvedStripePublishableKey,
   },
 
   // Bank Transfer Configuration
