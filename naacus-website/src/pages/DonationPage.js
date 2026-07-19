@@ -1,15 +1,21 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { makeStyles, shorthands, Card, Text, Button, tokens } from '@fluentui/react-components';
+import { makeStyles, shorthands, Text, tokens } from '@fluentui/react-components';
 import PageWrapper from '../components/PageWrapper';
+import PaymentItemCard from '../components/PaymentItemCard';
 import { useAnalytics } from '../hooks/useAnalytics';
+import useStripeBuyButtonScript from '../hooks/useStripeBuyButtonScript';
+import { handleNavigation } from '../services/navigationService';
 import { startSpan } from '../services/telemetryService';
 
 const useStyles = makeStyles({
   section: {
     backgroundColor: tokens.colorNeutralBackground1,
     ...shorthands.padding('40px', '20px', '24px'),
+    '@media (min-width: 769px)': {
+      ...shorthands.padding('72px', '20px', '24px'),
+    },
   },
   heading: {
     display: 'block',
@@ -56,11 +62,16 @@ const useStyles = makeStyles({
       boxShadow: tokens.shadow8,
     },
   },
+  stripeCard: {
+    textAlign: 'center',
+    alignItems: 'center',
+  },
   initiativeTitle: {
     fontSize: '1.18rem',
     fontWeight: '600',
     color: tokens.colorNeutralForeground1,
     lineHeight: '1.3',
+    marginTop: '0',
     marginBottom: '8px',
     display: 'block',
   },
@@ -68,6 +79,7 @@ const useStyles = makeStyles({
     color: tokens.colorNeutralForeground2,
     fontSize: '0.98rem',
     lineHeight: '1.5',
+    margin: '0',
     display: 'block',
   },
   cta: {
@@ -76,12 +88,13 @@ const useStyles = makeStyles({
     fontWeight: '700',
   },
   buyButtonWrap: {
-    marginTop: 'auto',
-    display: 'flex',
-    justifyContent: 'center',
-    '& stripe-buy-button': {
-      width: '100%',
-      maxWidth: '420px',
+    marginTop: '14px',
+    width: '100%',
+    display: 'grid',
+    placeItems: 'center',
+    '& > stripe-buy-button': {
+      width: 'min(100%, 420px)',
+      justifySelf: 'center',
     },
   },
   note: {
@@ -98,6 +111,8 @@ const useStyles = makeStyles({
 function DonationPage() {
   const styles = useStyles();
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const location = useLocation();
   const { trackCTA } = useAnalytics();
   const stripePublishableKey = t('donation.initiativesPage.stripePublishableKey', { defaultValue: '' });
 
@@ -119,21 +134,7 @@ function DonationPage() {
   const openDonationItems = donationInitiatives;
   const donationItemsCount = openDonationItems.length;
 
-  useEffect(() => {
-    if (!(stripePublishableKey && openDonationItems.some((item) => item.buyButtonId))) {
-      return;
-    }
-
-    const scriptSrc = 'https://js.stripe.com/v3/buy-button.js';
-    if (document.querySelector(`script[src="${scriptSrc}"]`)) {
-      return;
-    }
-
-    const script = document.createElement('script');
-    script.src = scriptSrc;
-    script.async = true;
-    document.body.appendChild(script);
-  }, [openDonationItems, stripePublishableKey]);
+  useStripeBuyButtonScript({ stripePublishableKey, items: openDonationItems });
 
   useEffect(() => {
     const span = startSpan('donation_page.view', {
@@ -167,6 +168,16 @@ function DonationPage() {
     span.end({ code: 1 });
   };
 
+  const handleDuesLinkClick = (event) => {
+    event.preventDefault();
+    handleNavigation({
+      path: '/dues-registration',
+      sectionId: null,
+      currentPathname: location.pathname,
+      navigate,
+    });
+  };
+
   return (
     <PageWrapper>
       <section className={styles.section}>
@@ -180,29 +191,20 @@ function DonationPage() {
         <div className={styles.sectionWrap}>
           <div className={styles.grid}>
             {openDonationItems.map((initiative) => (
-              <Card key={initiative.id} className={styles.card}>
-                <Text as="h2" className={styles.initiativeTitle}>{initiative.title}</Text>
-                <Text as="p" className={styles.initiativeDescription}>
-                  {initiative.description}
-                </Text>
-                {initiative.buyButtonId && stripePublishableKey ? (
-                  <div className={styles.buyButtonWrap}>
-                    <stripe-buy-button
-                      buy-button-id={initiative.buyButtonId}
-                      publishable-key={stripePublishableKey}
-                      onClick={() => trackBuyButtonInteraction(initiative)}
-                    />
-                  </div>
-                ) : (
-                  <Button
-                    appearance="primary"
-                    className={styles.cta}
-                    onClick={() => openStripeLink(initiative)}
-                  >
-                    {t('donation.initiativesPage.donateButton')}
-                  </Button>
-                )}
-              </Card>
+              <PaymentItemCard
+                key={initiative.id}
+                item={initiative}
+                stripePublishableKey={stripePublishableKey}
+                cardClassName={styles.card}
+                stripeCardClassName={styles.stripeCard}
+                titleClassName={styles.initiativeTitle}
+                descriptionClassName={styles.initiativeDescription}
+                buyButtonWrapClassName={styles.buyButtonWrap}
+                fallbackButtonClassName={styles.cta}
+                fallbackButtonText={t('donation.initiativesPage.donateButton')}
+                onFallbackClick={openStripeLink}
+                onBuyButtonClick={trackBuyButtonInteraction}
+              />
             ))}
           </div>
         </div>
@@ -212,7 +214,7 @@ function DonationPage() {
             {t('donation.initiativesPage.helpText')} <Link to="/contact">{t('donation.initiativesPage.contactLinkText')}</Link>.
           </span>
           <span className={styles.noteLine}>
-            {t('donation.initiativesPage.duesHelpText')} <Link to="/dues-registration">{t('donation.initiativesPage.duesLinkText')}</Link>.
+            {t('donation.initiativesPage.duesHelpText')} <Link to="/dues-registration" onClick={handleDuesLinkClick}>{t('donation.initiativesPage.duesLinkText')}</Link>.
           </span>
         </Text>
       </section>

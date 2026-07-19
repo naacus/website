@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { makeStyles, shorthands, Card, Text, Button, tokens, mergeClasses } from '@fluentui/react-components';
+import { makeStyles, shorthands, Text, tokens, mergeClasses } from '@fluentui/react-components';
 import PageWrapper from '../components/PageWrapper';
+import PaymentItemCard from '../components/PaymentItemCard';
 import { useAnalytics } from '../hooks/useAnalytics';
+import useStripeBuyButtonScript from '../hooks/useStripeBuyButtonScript';
+import { handleNavigation } from '../services/navigationService';
 import { startSpan } from '../services/telemetryService';
 
 const useStyles = makeStyles({
@@ -52,11 +55,16 @@ const useStyles = makeStyles({
       boxShadow: tokens.shadow8,
     },
   },
+  stripeCard: {
+    textAlign: 'center',
+    alignItems: 'center',
+  },
   initiativeTitle: {
     fontSize: '1.18rem',
     fontWeight: '600',
     color: tokens.colorNeutralForeground1,
     lineHeight: '1.3',
+    marginTop: '0',
     marginBottom: '8px',
     display: 'block',
   },
@@ -64,6 +72,7 @@ const useStyles = makeStyles({
     color: tokens.colorNeutralForeground2,
     fontSize: '0.98rem',
     lineHeight: '1.5',
+    margin: '0',
     display: 'block',
   },
   amountPill: {
@@ -86,12 +95,13 @@ const useStyles = makeStyles({
     marginTop: '14px',
   },
   buyButtonWrap: {
-    marginTop: 'auto',
-    display: 'flex',
-    justifyContent: 'center',
-    '& stripe-buy-button': {
-      width: '100%',
-      maxWidth: '420px',
+    marginTop: '14px',
+    width: '100%',
+    display: 'grid',
+    placeItems: 'center',
+    '& > stripe-buy-button': {
+      width: 'min(100%, 420px)',
+      justifySelf: 'center',
     },
   },
   note: {
@@ -108,6 +118,8 @@ const useStyles = makeStyles({
 function DuesRegistrationPage() {
   const styles = useStyles();
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const location = useLocation();
   const { trackCTA } = useAnalytics();
   const stripePublishableKey = t('donation.initiativesPage.stripePublishableKey', { defaultValue: '' });
 
@@ -137,21 +149,7 @@ function DuesRegistrationPage() {
     span.end({ code: 1 });
   }, [trackCTA, duesItemsCount]);
 
-  useEffect(() => {
-    if (!stripePublishableKey) {
-      return;
-    }
-
-    const scriptSrc = 'https://js.stripe.com/v3/buy-button.js';
-    if (document.querySelector(`script[src="${scriptSrc}"]`)) {
-      return;
-    }
-
-    const script = document.createElement('script');
-    script.src = scriptSrc;
-    script.async = true;
-    document.body.appendChild(script);
-  }, [stripePublishableKey]);
+  useStripeBuyButtonScript({ stripePublishableKey, items: duesItems });
 
   const openStripeLink = (item) => {
     const span = startSpan('dues_page.open_stripe_link', {
@@ -172,6 +170,16 @@ function DuesRegistrationPage() {
     span.end({ code: 1 });
   };
 
+  const handleBackToDonationClick = (event) => {
+    event.preventDefault();
+    handleNavigation({
+      path: '/donation',
+      sectionId: null,
+      currentPathname: location.pathname,
+      navigate,
+    });
+  };
+
   return (
     <PageWrapper>
       <section className={styles.section}>
@@ -180,38 +188,29 @@ function DuesRegistrationPage() {
 
         <div className={styles.grid}>
           {duesItems.map((item) => (
-            <Card key={item.id} className={styles.card}>
-              <Text as="h2" className={styles.initiativeTitle}>{item.title}</Text>
-              {!(item.buyButtonId && stripePublishableKey) && (
-                <Text as="p" className={styles.initiativeDescription}>{item.description}</Text>
-              )}
-              {!(item.buyButtonId && stripePublishableKey) && (
-                <Text as="span" className={styles.amountPill}>{item.amountLabel}</Text>
-              )}
-              {item.buyButtonId && stripePublishableKey ? (
-                <div className={styles.buyButtonWrap}>
-                  <stripe-buy-button
-                    buy-button-id={item.buyButtonId}
-                    publishable-key={stripePublishableKey}
-                    onClick={() => trackBuyButtonInteraction(item)}
-                  />
-                </div>
-              ) : (
-                <Button
-                  appearance="primary"
-                  className={mergeClasses(styles.cta, styles.paymentArea)}
-                  onClick={() => openStripeLink(item)}
-                >
-                  {t('donation.duesRegistrationPage.payButton')}
-                </Button>
-              )}
-            </Card>
+            <PaymentItemCard
+              key={item.id}
+              item={item}
+              stripePublishableKey={stripePublishableKey}
+              cardClassName={styles.card}
+              stripeCardClassName={styles.stripeCard}
+              titleClassName={styles.initiativeTitle}
+              descriptionClassName={styles.initiativeDescription}
+              amountClassName={styles.amountPill}
+              buyButtonWrapClassName={styles.buyButtonWrap}
+              fallbackButtonClassName={mergeClasses(styles.cta, styles.paymentArea)}
+              fallbackButtonText={t('donation.duesRegistrationPage.payButton')}
+              onFallbackClick={openStripeLink}
+              onBuyButtonClick={trackBuyButtonInteraction}
+              hideDetailsWhenStripe
+              showAmountLabel
+            />
           ))}
         </div>
 
         <Text as="p" className={styles.note}>
           <span className={styles.noteLine}>
-            <Link to="/donation">{t('donation.duesRegistrationPage.backToDonationLinkText')}</Link>.
+            <Link to="/donation" onClick={handleBackToDonationClick}>{t('donation.duesRegistrationPage.backToDonationLinkText')}</Link>.
           </span>
           <span className={styles.noteLine}>
             {t('donation.duesRegistrationPage.helpText')} <Link to="/contact">{t('donation.duesRegistrationPage.contactLinkText')}</Link>.
