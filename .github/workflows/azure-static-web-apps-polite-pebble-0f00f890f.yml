@@ -161,7 +161,7 @@ jobs:
             echo "Stripe key not set for this build. Falling back to non-Stripe Donate Securely buttons."
           fi
 
-          if [ -n "$REACT_APP_STRIPE_PUBLIC_KEY" ] && [[ ! "$REACT_APP_STRIPE_PUBLIC_KEY" =~ ^pk_(test|live)_ ]]; then
+          if [ -n "$REACT_APP_STRIPE_PUBLIC_KEY" ] && [[ ! "$REACT_APP_STRIPE_PUBLIC_KEY" =~ ^pk_(test|live)_[A-Za-z0-9]{10,}$ ]]; then
             echo "Invalid REACT_APP_STRIPE_PUBLIC_KEY format detected. Stripe should be disabled by resolver step."
           fi
 
