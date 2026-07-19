@@ -3113,42 +3113,6 @@ collections:
                             name: buyButtonId
                             widget: string
                             required: false
-                      - label: Group Membership (2-100 members)
-                        name: groupMembership2to100
-                        widget: object
-                        collapsed: true
-                        fields:
-                          - label: Title
-                            name: title
-                            widget: string
-                          - label: Description
-                            name: description
-                            widget: text
-                          - label: Amount Label
-                            name: amountLabel
-                            widget: string
-                          - label: Stripe Buy Button ID
-                            name: buyButtonId
-                            widget: string
-                            required: false
-                      - label: Group Membership (100+ members)
-                        name: groupMembership100plus
-                        widget: object
-                        collapsed: true
-                        fields:
-                          - label: Title
-                            name: title
-                            widget: string
-                          - label: Description
-                            name: description
-                            widget: text
-                          - label: Amount Label
-                            name: amountLabel
-                            widget: string
-                          - label: Stripe Buy Button ID
-                            name: buyButtonId
-                            widget: string
-                            required: false
                       - label: Membership Registration
                         name: membershipRegistration
                         widget: object
