@@ -6,8 +6,9 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   issues: write
+  workflows: write
 
 jobs:
   cut_weekly_release_branch:
