@@ -325,7 +325,7 @@
           "description": "Support membership onboarding and registration assistance that keeps our community open and welcoming.",
           "amountLabel": "$20.00 USD",
           "buyButtonId": "buy_btn_1TueZwL5FQlMr7HPDr7xBkKv",
-          "stripeUrl": "https://donate.naacus.org"
+          "stripeLinkId": "4gM9AU93bd7bfIb0KTcQU00"
         },
         {
           "id": "groupMembership2to100",

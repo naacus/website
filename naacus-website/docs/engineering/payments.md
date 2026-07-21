@@ -1,7 +1,7 @@
 # Payment Integration Guide
 
 > **Category:** 🔧 Engineering | **Audience:** Developers & IT Team
-> **Last Updated:** July 15, 2026 | [← Docs Index](../readme.md)
+> **Last Updated:** July 21, 2026 | [← Docs Index](../readme.md)
 
 ---
 
@@ -122,10 +122,18 @@ Features: user info collection, membership type selection, plan selection with p
 ### Registration Data Flow
 
 1. User fills registration form (name, email, phone, organization)
-2. Data validated and stored in `sessionStorage`
-3. On checkout, data sent to backend with Stripe session
-4. Backend stores in Dataverse with `status: pending_payment`
-5. Stripe webhook confirms payment → status updated
+2. Form data is submitted to SharePoint via Microsoft Graph
+3. If save fails, checkout does not start and the user sees an error
+4. If save succeeds, data is stored in `sessionStorage` for post-checkout flows
+5. A success message is shown briefly, then the user is redirected to Stripe hosted checkout
+
+### Membership Hosted Checkout Link Configuration
+
+- Membership checkout links are configured in locale content under `donation.duesRegistrationPage.itemsList`.
+- Use `stripeLinkId` for membership plans (for example `4gM9AU93bd7bfIb0KTcQU00`).
+- Full URLs are optional; when an ID is provided, the app resolves it to `https://buy.stripe.com/<stripeLinkId>`.
+- Membership form availability is filtered by `stripeLinkId` so only configured plans are selectable.
+- Donation and dues listing pages are not filtered by `stripeLinkId` and continue to support legacy `stripeUrl` entries.
 
 ### Backend Stripe Routes
 

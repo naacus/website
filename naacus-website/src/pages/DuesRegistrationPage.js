@@ -136,7 +136,7 @@ function DuesRegistrationPage() {
       description: item.description || '',
       amountLabel: item.amountLabel || '',
       buyButtonId: item.buyButtonId || '',
-      stripeUrl: item.stripeUrl || 'https://donate.naacus.org',
+      stripeLinkId: item.stripeLinkId || item.stripeUrl || 'https://donate.naacus.org',
     }))
     : [];
   const duesItemsCount = duesItems.length;
@@ -163,17 +163,25 @@ function DuesRegistrationPage() {
     }
   };
 
+  const resolveStripeUrl = (value) => {
+    const raw = typeof value === 'string' ? value.trim() : '';
+    if (!raw) return '';
+    if (/^https?:\/\//i.test(raw)) return raw;
+    return `https://buy.stripe.com/${raw.replace(/^\/+/, '')}`;
+  };
+
   const openStripeLink = (item) => {
     const label = item.title || item.id;
+    const resolvedStripeUrl = resolveStripeUrl(item.stripeLinkId);
     const span = startSpan('dues_page.open_stripe_link', {
       'dues.item': label,
-      'dues.url': item.stripeUrl,
+      'dues.url': resolvedStripeUrl,
     });
     trackCTA('dues_page', 'pay_now', label);
-    if (isAllowedStripeUrl(item.stripeUrl)) {
-      window.open(item.stripeUrl, '_blank', 'noopener,noreferrer');
+    if (isAllowedStripeUrl(resolvedStripeUrl)) {
+      window.open(resolvedStripeUrl, '_blank', 'noopener,noreferrer');
     } else {
-      console.warn(`Blocked navigation to disallowed URL: ${item.stripeUrl}`);
+      console.warn(`Blocked navigation to disallowed URL: ${resolvedStripeUrl}`);
     }
     span.end({ code: 1 });
   };

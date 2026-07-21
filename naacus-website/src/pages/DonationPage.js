@@ -130,7 +130,7 @@ function DonationPage() {
       title: item.title || '',
       description: item.description || '',
       buyButtonId: item.buyButtonId || '',
-      stripeUrl: item.stripeUrl || 'https://donate.naacus.org',
+      stripeLinkId: item.stripeLinkId || item.stripeUrl || 'https://donate.naacus.org',
     }))
     : [];
 
@@ -163,17 +163,25 @@ function DonationPage() {
     }
   };
 
+  const resolveStripeUrl = (value) => {
+    const raw = typeof value === 'string' ? value.trim() : '';
+    if (!raw) return '';
+    if (/^https?:\/\//i.test(raw)) return raw;
+    return `https://buy.stripe.com/${raw.replace(/^\/+/, '')}`;
+  };
+
   const openStripeLink = (initiative) => {
     const label = initiative.title || initiative.id;
+    const resolvedStripeUrl = resolveStripeUrl(initiative.stripeLinkId);
     const span = startSpan('donation_page.open_stripe_link', {
       'donation.initiative': label,
-      'donation.url': initiative.stripeUrl,
+      'donation.url': resolvedStripeUrl,
     });
     handleDonateClick(label);
-    if (isAllowedStripeUrl(initiative.stripeUrl)) {
-      window.open(initiative.stripeUrl, '_blank', 'noopener,noreferrer');
+    if (isAllowedStripeUrl(resolvedStripeUrl)) {
+      window.open(resolvedStripeUrl, '_blank', 'noopener,noreferrer');
     } else {
-      console.warn(`Blocked navigation to disallowed URL: ${initiative.stripeUrl}`);
+      console.warn(`Blocked navigation to disallowed URL: ${resolvedStripeUrl}`);
     }
     span.end({ code: 1 });
   };

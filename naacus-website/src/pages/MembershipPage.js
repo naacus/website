@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   makeStyles,
@@ -156,10 +156,19 @@ function MembershipPage() {
   const { trackPageViewEvent } = useAnalytics();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(null);
+  const [showSuccessBeforeRedirect, setShowSuccessBeforeRedirect] = useState(false);
+  const redirectTimeoutRef = useRef(null);
 
   useEffect(() => {
     trackPageViewEvent('MembershipPage');
   }, [trackPageViewEvent]);
+
+  useEffect(() => () => {
+    if (redirectTimeoutRef.current) {
+      window.clearTimeout(redirectTimeoutRef.current);
+    }
+  }, []);
+
   const [formData, setFormData] = useState({
     // Essential fields only
     firstName: '',
@@ -201,6 +210,29 @@ function MembershipPage() {
   const [loadingCountries, setLoadingCountries] = useState(false);
   const [countrySearch, setCountrySearch] = useState('');
 
+  const duesItemsForCheckout = t('donation.duesRegistrationPage.itemsList', {
+    returnObjects: true,
+    defaultValue: [],
+  });
+
+  const checkoutItemsWithStripeLinkId = useMemo(() => (
+    Array.isArray(duesItemsForCheckout)
+      ? duesItemsForCheckout.filter((item) => typeof item?.stripeLinkId === 'string' && item.stripeLinkId.trim())
+      : []
+  ), [duesItemsForCheckout]);
+
+  const hasIndividualCheckout = checkoutItemsWithStripeLinkId.some((item) => item.id === 'membershipRegistration');
+  const hasGroupSmallCheckout = checkoutItemsWithStripeLinkId.some((item) => item.id === 'groupMembership2to100');
+  const hasGroupLargeCheckout = checkoutItemsWithStripeLinkId.some((item) => item.id === 'groupMembership100plus');
+
+  const availableMembershipTypes = useMemo(() => ([
+    hasIndividualCheckout ? 'individual' : null,
+    hasGroupSmallCheckout ? 'group_small' : null,
+    hasGroupLargeCheckout ? 'group_large' : null,
+  ].filter(Boolean)), [hasIndividualCheckout, hasGroupSmallCheckout, hasGroupLargeCheckout]);
+
+  const defaultAvailableMembershipType = availableMembershipTypes[0] || 'individual';
+
   // Filter countries based on search input
   const filteredCountries = countrySearch
     ? countryOptions.filter(option =>
@@ -227,6 +259,30 @@ function MembershipPage() {
 
     loadCountries();
   }, []);
+
+  useEffect(() => {
+    // Do not auto-update while checkout options are unavailable (e.g., translations still loading).
+    if (availableMembershipTypes.length === 0) {
+      return;
+    }
+
+    if (!availableMembershipTypes.includes(formData.membershipType)) {
+      setFormData((prev) => {
+        if (
+          prev.membershipType === defaultAvailableMembershipType
+          && prev.planId === defaultAvailableMembershipType
+        ) {
+          return prev;
+        }
+
+        return {
+          ...prev,
+          membershipType: defaultAvailableMembershipType,
+          planId: defaultAvailableMembershipType,
+        };
+      });
+    }
+  }, [availableMembershipTypes, defaultAvailableMembershipType, formData.membershipType]);
 
   const ministryOptions = [
     { key: 'Youth Ministry', label: t('membership.ministryYouth') },
@@ -292,18 +348,19 @@ function MembershipPage() {
   };
 
   const openStripePaymentLink = (planId) => {
-    const duesItems = t('donation.duesRegistrationPage.itemsList', { returnObjects: true, defaultValue: [] });
     const planToItemId = {
-      individual: 'individualMembership',
+      individual: 'membershipRegistration',
       group_small: 'groupMembership2to100',
       group_large: 'groupMembership100plus',
     };
 
     const targetItemId = planToItemId[planId] || planToItemId.individual;
-    const targetItem = Array.isArray(duesItems)
-      ? duesItems.find((item) => item?.id === targetItemId)
-      : null;
-    const targetUrl = targetItem?.stripeUrl || '';
+    const targetItem = checkoutItemsWithStripeLinkId.find((item) => item?.id === targetItemId);
+    const targetLink = (targetItem?.stripeLinkId || '').trim();
+
+    const targetUrl = /^https?:\/\//i.test(targetLink)
+      ? targetLink
+      : `https://buy.stripe.com/${targetLink.replace(/^\/+/, '')}`;
 
     try {
       const parsed = new URL(targetUrl);
@@ -321,24 +378,32 @@ function MembershipPage() {
     e.preventDefault();
     setIsSubmitting(true);
     setError(null);
+    setShowSuccessBeforeRedirect(false);
 
     try {
+      // Save to backend first; redirect only when persistence succeeds.
+      const result = await submitMembershipToSharePoint(formData);
+      if (!result?.success) {
+        throw new Error(result?.error || 'Unable to save membership application. Please try again.');
+      }
+
       // Persist submitted form details for post-checkout flows.
       sessionStorage.setItem('membershipData', JSON.stringify(formData));
 
-      // Best-effort backend persistence before redirecting to checkout.
-      try {
-        const result = await submitMembershipToSharePoint(formData);
-        if (!result.success) {
-          console.warn('Membership save warning:', result.error || 'Unknown submission warning');
+      // Show confirmation feedback briefly before sending users to checkout.
+      setShowSuccessBeforeRedirect(true);
+      redirectTimeoutRef.current = window.setTimeout(() => {
+        try {
+          openStripePaymentLink(formData.planId);
+        } catch (redirectError) {
+          console.error('Error redirecting to payment:', redirectError);
+          setShowSuccessBeforeRedirect(false);
+          setError(redirectError.message || 'Unable to redirect to payment. Please try again.');
         }
-      } catch (submissionError) {
-        console.warn('Membership save warning:', submissionError);
-      }
-
-      openStripePaymentLink(formData.planId);
+      }, 1800);
     } catch (err) {
       console.error('Error submitting membership form:', err);
+      setShowSuccessBeforeRedirect(false);
       setError(err.message || 'An error occurred while submitting the form. Please try again.');
     } finally {
       setIsSubmitting(false);
@@ -565,9 +630,9 @@ function MembershipPage() {
                     handleInputChange('planId', planMapping[membershipType] || 'individual');
                   }}
                 >
-                  <Radio value="individual" label="INDIVIDUAL MEMBERSHIP REGISTRATION = $20.00 per person" />
-                  <Radio value="group_small" label="GROUP MEMBERSHIP REGISTRATION: 2 to 100 members = $200.00 (one time fee)" />
-                  <Radio value="group_large" label="GROUP MEMBERSHIP REGISTRATION: 100+ members = $300.00 (one time fee)" />
+                  {hasIndividualCheckout && <Radio value="individual" label="INDIVIDUAL MEMBERSHIP REGISTRATION = $20.00 per person" />}
+                  {hasGroupSmallCheckout && <Radio value="group_small" label="GROUP MEMBERSHIP REGISTRATION: 2 to 100 members = $200.00 (one time fee)" />}
+                  {hasGroupLargeCheckout && <Radio value="group_large" label="GROUP MEMBERSHIP REGISTRATION: 100+ members = $300.00 (one time fee)" />}
                 </RadioGroup>
               </div>
               
@@ -697,17 +762,27 @@ function MembershipPage() {
             size="large"
             type="submit"
             className={styles.submitButton}
-            disabled={isSubmitting}
+            disabled={isSubmitting || showSuccessBeforeRedirect}
           >
             {isSubmitting ? (
               <>
                 <Spinner size="tiny" style={{ marginRight: '8px' }} />
                 {t('membership.submitting')}
               </>
+            ) : showSuccessBeforeRedirect ? (
+              t('membership.proceedPayment')
             ) : (
               t('membership.submitButton')
             )}
           </Button>
+
+          {showSuccessBeforeRedirect && (
+            <div className={styles.successMessage}>
+              <Text className={styles.successTitle}>{t('membership.successTitle')}</Text>
+              <Text className={styles.successText}>{t('membership.successMessage')}</Text>
+              <Text className={styles.successText}>{t('membership.proceedPayment')}...</Text>
+            </div>
+          )}
 
           {error && (
             <div style={{
