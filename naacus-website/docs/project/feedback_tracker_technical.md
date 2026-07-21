@@ -218,6 +218,12 @@
   - `public/locales/en/pages/website-shell.json` + `public/locales/fr/pages/website-shell.json` → new `meta.*` route metadata keys for all routes including `leadership`, `fellowshipMinistries`, `programsActivities`, `duesRegistration`, `naacus2025`, `ministryDetail`.  
   **Validation:** Production build succeeded and no compile errors in modified files.
 
+- ✅ **[FB-22a]** Ad Grants submitted-domain crawl signal alignment *(Jul 21, 2026)*  
+  Aligned crawl discovery files to match submitted review domain `https://test.naacus.org` to remove domain mismatch risk during Google for Nonprofits/Ad Grants review.  
+  **Files changed:**
+  - `public/sitemap.xml` → added route sitemap with `https://test.naacus.org/*` URLs.
+  - `public/robots.txt` → added and aligned `Sitemap: https://test.naacus.org/sitemap.xml`.
+
 ---
 
 ## Low Priority — Nice to Have
