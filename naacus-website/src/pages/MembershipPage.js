@@ -19,8 +19,6 @@ import {
 } from '@fluentui/react-components';
 import PageWrapper from '../components/PageWrapper';
 import ParishFinder from '../components/ParishFinder';
-import StripeCheckout from '../components/StripeCheckout';
-import PaymentMethodSelector from '../components/PaymentMethodSelector';
 import { submitMembershipToSharePoint } from '../services/m365Service';
 import { useAnalytics } from '../hooks/useAnalytics';
 import { fetchCountries, formatCountriesForDropdown } from '../services/countryService';
@@ -140,48 +138,6 @@ const useStyles = makeStyles({
     lineHeight: '1.6',
     display: 'block',
   },
-  pricingCard: {
-    ...shorthands.padding('24px', '32px'),
-    marginBottom: '24px',
-    backgroundColor: '#e6f5d0',
-    ...shorthands.border('2px', 'solid', '#4a9900'),
-    ...shorthands.borderRadius('12px'),
-  },
-  pricingTitle: {
-    fontSize: '1.2rem',
-    fontWeight: '700',
-    color: '#0d196b',
-    display: 'block',
-    marginBottom: '12px',
-  },
-  pricingList: {
-    display: 'flex',
-    flexDirection: 'column',
-    ...shorthands.gap('8px'),
-  },
-  pricingRow: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    ...shorthands.padding('8px', '12px'),
-    backgroundColor: tokens.colorNeutralBackground1,
-    ...shorthands.borderRadius('8px'),
-  },
-  pricingLabel: {
-    fontWeight: '600',
-    color: tokens.colorNeutralForeground1,
-  },
-  pricingAmount: {
-    fontWeight: '700',
-    color: '#4a9900',
-    fontSize: '1.05rem',
-  },
-  pricingNote: {
-    fontSize: '0.875rem',
-    color: tokens.colorNeutralForeground2,
-    marginTop: '10px',
-    display: 'block',
-  },
   formGridWithTopMargin: {
     display: 'grid',
     gridTemplateColumns: 'repeat(2, 1fr)',
@@ -198,7 +154,6 @@ function MembershipPage() {
   const { t } = useTranslation();
   const styles = useStyles();
   const { trackPageViewEvent } = useAnalytics();
-  const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(null);
 
@@ -259,10 +214,12 @@ function MembershipPage() {
       setLoadingCountries(true);
       try {
         const allCountries = await fetchCountries();
-        const options = formatCountriesForDropdown(allCountries);
+        const safeCountries = Array.isArray(allCountries) ? allCountries : [];
+        const options = formatCountriesForDropdown(safeCountries);
         setCountryOptions(options);
       } catch (error) {
         console.error('Failed to load countries:', error);
+        setCountryOptions([]);
       } finally {
         setLoadingCountries(false);
       }
@@ -334,30 +291,52 @@ function MembershipPage() {
     }));
   };
 
+  const openStripePaymentLink = (planId) => {
+    const duesItems = t('donation.duesRegistrationPage.itemsList', { returnObjects: true, defaultValue: [] });
+    const planToItemId = {
+      individual: 'individualMembership',
+      group_small: 'groupMembership2to100',
+      group_large: 'groupMembership100plus',
+    };
+
+    const targetItemId = planToItemId[planId] || planToItemId.individual;
+    const targetItem = Array.isArray(duesItems)
+      ? duesItems.find((item) => item?.id === targetItemId)
+      : null;
+    const targetUrl = targetItem?.stripeUrl || '';
+
+    try {
+      const parsed = new URL(targetUrl);
+      const isAllowed = parsed.protocol === 'https:' && ['donate.naacus.org', 'buy.stripe.com'].includes(parsed.hostname);
+      if (!isAllowed) {
+        throw new Error('Invalid Stripe payment URL configuration');
+      }
+      window.location.href = targetUrl;
+    } catch (_urlError) {
+      throw new Error('Payment link is not configured for this membership plan. Please contact support.');
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     setError(null);
 
     try {
-      // If paying with Stripe, save data and show checkout
-      if (formData.paymentMethod === 'stripe') {
-        sessionStorage.setItem('membershipData', JSON.stringify(formData));
-        setSubmitted(true);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        return;
+      // Persist submitted form details for post-checkout flows.
+      sessionStorage.setItem('membershipData', JSON.stringify(formData));
+
+      // Best-effort backend persistence before redirecting to checkout.
+      try {
+        const result = await submitMembershipToSharePoint(formData);
+        if (!result.success) {
+          console.warn('Membership save warning:', result.error || 'Unknown submission warning');
+        }
+      } catch (submissionError) {
+        console.warn('Membership save warning:', submissionError);
       }
 
-      // Otherwise, submit to Microsoft 365 SharePoint
-      const result = await submitMembershipToSharePoint(formData);
-      
-      if (result.success) {
-        console.log('Membership form submitted successfully to SharePoint:', result.data);
-        setSubmitted(true);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else {
-        throw new Error(result.error || 'Failed to submit form');
-      }
+      openStripePaymentLink(formData.planId);
     } catch (err) {
       console.error('Error submitting membership form:', err);
       setError(err.message || 'An error occurred while submitting the form. Please try again.');
@@ -365,45 +344,6 @@ function MembershipPage() {
       setIsSubmitting(false);
     }
   };
-
-  if (submitted) {
-    // If paying with Stripe, show checkout
-    if (formData.paymentMethod === 'stripe') {
-      return (
-        <PageWrapper>
-          <div className={styles.container}>
-            <div style={{ marginBottom: '40px', textAlign: 'center' }}>
-              <h1 className={styles.title}>{t('membership.proceedPayment') || 'Complete Your Payment'}</h1>
-              <p style={{ fontSize: '1.05rem', color: tokens.colorNeutralForeground2 }}>
-                {t('membership.paymentInstructions') || 'You are registered as ' + formData.firstName + ' ' + formData.lastName}
-              </p>
-            </div>
-            <StripeCheckout planId={formData.planId} />
-          </div>
-        </PageWrapper>
-      );
-    }
-
-    // Otherwise show success message
-    return (
-      <PageWrapper>
-        <div className={styles.successMessage}>
-          <Text className={styles.successTitle}>{t('membership.successTitle')}</Text>
-          <Text className={styles.successText}>
-            {t('membership.successMessage')}
-          </Text>
-          <Button
-            appearance="primary"
-            size="large"
-            onClick={() => window.location.href = '/'}
-            style={{ marginTop: '24px' }}
-          >
-            {t('membership.returnHome')}
-          </Button>
-        </div>
-      </PageWrapper>
-    );
-  }
 
   return (
     <PageWrapper>
@@ -414,30 +354,6 @@ function MembershipPage() {
             {t('membership.subtitle')}
           </Text>
         </div>
-
-        {/* Membership Pricing Overview */}
-        <Card className={styles.pricingCard}>
-          <Text className={styles.pricingTitle}>
-            💳 Membership Dues
-          </Text>
-          <div className={styles.pricingList}>
-            <div className={styles.pricingRow}>
-              <span className={styles.pricingLabel}>Individual Membership</span>
-              <span className={styles.pricingAmount}>$20.00 / person</span>
-            </div>
-            <div className={styles.pricingRow}>
-              <span className={styles.pricingLabel}>Group Membership (2–100 members)</span>
-              <span className={styles.pricingAmount}>$200.00 one-time</span>
-            </div>
-            <div className={styles.pricingRow}>
-              <span className={styles.pricingLabel}>Group Membership (100+ members)</span>
-              <span className={styles.pricingAmount}>$300.00 one-time</span>
-            </div>
-          </div>
-          <Text className={styles.pricingNote}>
-            A one-time registration fee applies to new members. Secure online payment via credit/debit card (Stripe) is available, or choose manual payment and we will contact you with instructions.
-          </Text>
-        </Card>
 
         <form onSubmit={handleSubmit}>
           {/* Simplified Essential Information Only */}
@@ -699,26 +615,6 @@ function MembershipPage() {
                 </div>
               </div>
             </div>
-          </Card>
-
-          {/* Payment Method Selection */}
-          <Card className={styles.formCard}>
-            <PaymentMethodSelector
-              value={formData.paymentMethod}
-              onChange={(value) => handleInputChange('paymentMethod', value)}
-              options={[
-                {
-                  id: 'stripe',
-                  label: 'Pay Online with Credit/Debit Card',
-                  description: 'Fast, secure payment via Stripe',
-                },
-                {
-                  id: 'manual',
-                  label: 'Manual Payment',
-                  description: 'We will contact you with payment instructions',
-                },
-              ]}
-            />
           </Card>
 
           {/* Emergency Contact - Hidden */}

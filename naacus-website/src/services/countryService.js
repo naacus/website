@@ -79,38 +79,14 @@ export const fetchCountries = async () => {
     return countriesCache;
   }
 
-  try {
-    const response = await fetch('https://restcountries.com/v3.1/all?fields=name,cca2,cca3,region,subregion,currency');
-    
-    if (!response.ok) {
-      throw new Error(`Failed to fetch countries: ${response.statusText}`);
-    }
+  const sortedCountries = [...FALLBACK_COUNTRIES].sort((a, b) => {
+    const nameA = a.name?.common || '';
+    const nameB = b.name?.common || '';
+    return nameA.localeCompare(nameB);
+  });
 
-    const data = await response.json();
-    
-    // Sort countries by common name
-    const sortedCountries = data.sort((a, b) => {
-      const nameA = a.name?.common || a.name || '';
-      const nameB = b.name?.common || b.name || '';
-      return nameA.localeCompare(nameB);
-    });
-
-    // Cache the data
-    countriesCache = sortedCountries;
-    
-    return sortedCountries;
-  } catch (error) {
-    console.warn('Country API unavailable, using fallback country list:', error);
-
-    const fallbackSorted = [...FALLBACK_COUNTRIES].sort((a, b) => {
-      const nameA = a.name?.common || '';
-      const nameB = b.name?.common || '';
-      return nameA.localeCompare(nameB);
-    });
-
-    countriesCache = fallbackSorted;
-    return fallbackSorted;
-  }
+  countriesCache = sortedCountries;
+  return sortedCountries;
 };
 
 /**

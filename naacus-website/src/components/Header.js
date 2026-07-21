@@ -321,6 +321,35 @@ const useStyles = makeStyles({
     animationDuration: '1.5s',
     animationIterationCount: 'infinite',
   },
+  mobileMenuItemDonate: {
+    backgroundColor: '#0067b8',
+    color: '#ffffff',
+    fontWeight: '700',
+  },
+  mobileMenuItemDonateActive: {
+    backgroundColor: '#005a9e',
+    color: '#ffffff',
+    fontWeight: '700',
+  },
+  mobileDonateCta: {
+    display: 'none',
+    '@media (max-width: 768px)': {
+      display: 'inline-flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      height: '28px',
+      ...shorthands.padding('0', '10px'),
+      ...shorthands.borderRadius('999px'),
+      border: 'none',
+      backgroundColor: '#0067b8',
+      color: '#ffffff',
+      fontSize: '12px',
+      fontWeight: '700',
+      whiteSpace: 'nowrap',
+      cursor: 'pointer',
+      ...shorthands.gap('4px'),
+    },
+  },
 });
 
 function Header() {
@@ -519,6 +548,14 @@ function Header() {
         <div className={styles.rightSection}>
           <SearchInput />
           <button
+            onClick={() => handleNavigationHelper('/donation', null, 'mobile_header_donate')}
+            className={styles.mobileDonateCta}
+            aria-label={t('header.donate')}
+          >
+            <Heart16Regular />
+            {t('header.donate')}
+          </button>
+          <button
             onClick={() => handleNavigationHelper('/donation', null, 'donate')}
             className={isActivePathHelper('/donation') ? styles.donateCtaActive : styles.donateCta}
           >
@@ -548,6 +585,12 @@ function Header() {
             <MenuPopover>
               <MenuList>
                 <MenuItem onClick={() => handleNavigationHelper(null, 'home', 'mobile_home')}>{t('header.nav.home')}</MenuItem>
+                <MenuItem
+                  className={isActivePathHelper('/donation') ? styles.mobileMenuItemDonateActive : styles.mobileMenuItemDonate}
+                  onClick={() => handleNavigationHelper('/donation', null, 'mobile_donation_primary')}
+                >
+                  {t('header.donate')}
+                </MenuItem>
                 <MenuItem className={isActivePathHelper('/2025') ? styles.mobileMenuItemActive : undefined} onClick={() => handleNavigationHelper('/2025', null, 'mobile_naacus_2025')}>{t('header.nav.naacus2025')}</MenuItem>
                 {/* About group */}
                 <MenuItem disabled style={{ fontWeight: 600, opacity: 0.7, fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>— {t('header.nav.about')} —</MenuItem>
@@ -563,7 +606,6 @@ function Header() {
                 <MenuItem className={isActivePathHelper('/membership') ? styles.mobileMenuItemActive : undefined} onClick={() => handleNavigationHelper('/membership', null, 'mobile_membership')}>&nbsp;&nbsp;{t('header.nav.membership')}</MenuItem>
                 <MenuItem className={isActivePathHelper('/volunteer') ? styles.mobileMenuItemActive : undefined} onClick={() => handleNavigationHelper('/volunteer', null, 'mobile_volunteer')}>&nbsp;&nbsp;{t('header.nav.volunteer')}</MenuItem>
                 <MenuItem className={isActivePathHelper('/dues-registration') ? styles.mobileMenuItemActive : undefined} onClick={() => handleNavigationHelper('/dues-registration', null, 'mobile_dues_registration')}>&nbsp;&nbsp;{t('header.nav.duesRegistration')}</MenuItem>
-                <MenuItem className={isActivePathHelper('/donation') ? styles.mobileMenuItemActive : undefined} onClick={() => handleNavigationHelper('/donation', null, 'mobile_donation')}>&nbsp;&nbsp;{t('header.donate')}</MenuItem>
                 {/* Resources group */}
                 <MenuItem disabled style={{ fontWeight: 600, opacity: 0.7, fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>— {t('header.nav.resources')} —</MenuItem>
                 <MenuItem className={isActivePathHelper('/resources') ? styles.mobileMenuItemActive : undefined} onClick={() => handleNavigationHelper('/resources', null, 'mobile_resources')}>&nbsp;&nbsp;{t('header.nav.resources')}</MenuItem>
