@@ -2,6 +2,36 @@
   "events": {
     "lastName": "Last Name",
     "expectedAttendees": "Expected Attendees",
+    "landing": {
+      "title": "Conferences, Retreats, and Formation Events",
+      "subtitle": "Explore upcoming NAACUS events with clear schedules, locations, and registration opportunities designed to strengthen faith, leadership, and family life across African Catholic communities.",
+      "cards": {
+        "expect": {
+          "title": "What You Can Expect",
+          "body": "Each listing includes date range, location, event format, and highlights so families, parish teams, and ministry leaders can plan with confidence."
+        },
+        "registration": {
+          "title": "How Registration Works",
+          "body": "Open an event card and submit the registration form to express interest. Our team follows up with details, confirmations, and next steps."
+        },
+        "audience": {
+          "title": "Who These Events Serve",
+          "body": "Programs support youth, young adults, families, clergy partners, and chapter volunteers through practical formation and community building."
+        }
+      },
+      "actions": {
+        "primary": "Register for Membership First",
+        "secondary": "Ask an Event Question"
+      }
+    },
+    "support": {
+      "title": "Planning a Chapter-Level Event?",
+      "body": "Contact NAACUS for chapter support on speakers, formation tracks, youth engagement, and partnership with local diocesan communities.",
+      "actions": {
+        "primary": "Join Event Volunteer Teams",
+        "secondary": "Contact Event Coordination"
+      }
+    },
     "success": {
       "title": "Success!",
       "registrationStored": "Registration submitted successfully! We will follow up via email."

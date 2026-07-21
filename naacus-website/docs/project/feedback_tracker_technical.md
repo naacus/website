@@ -2,7 +2,7 @@
 
 > **Category:** 📋 Project Management | **Audience:** Developers & IT Team | [← Docs Index](../readme.md)
 > **Companion:** [Stakeholder version](../stakeholders/feedback_tracker_stakeholders.md)
-> **Source:** Pre-Launch Website Review Survey | **Branch:** `develop` | **Last Updated:** July 15, 2026
+> **Source:** Pre-Launch Website Review Survey | **Branch:** `develop` | **Last Updated:** July 21, 2026
 
 ---
 
@@ -205,6 +205,18 @@
 - ✅ **[FB-21a]** Add end-of-page CTA to About page *(Jul 15, 2026)*  
   "Ready to Join?" CTA section added at the bottom of About, linking to `/membership`.  
   **Files changed:** `src/components/About.js` — added `ctaSection`/`ctaTitle`/`ctaText`/`ctaButton` styles + JSX section; `public/locales/en/translation.json` + `public/locales/fr/translation.json` → `about.ctaTitle`, `about.ctaText`, `about.ctaButton` keys added.  
+
+- ✅ **[FB-22]** Ad Grants destination-quality remediation *(Jul 21, 2026)*  
+  Improved reliability and destination quality for key landing pages while preserving locale and CMS workflows.  
+  **Files changed:**
+  - `src/services/countryService.js` → added fallback country dataset + graceful API failure fallback for membership form reliability.
+  - `src/pages/ResourcesPage.js` and `src/pages/EventsPage.js` → added richer top/bottom value sections and clear next-step CTAs, now sourced from locale keys.
+  - `src/App.js` → route title/meta description now resolve from locale keys (EN/FR) for consistent localization; missing routes (`/leadership`, `/fellowship-ministries`, `/programs-activities`, `/dues-registration`, `/2025`) wired in; dynamic `/ministries/:id` route handled with regex match.
+  - `package.json` + `package-lock.json` → added `react-snap` pre-render step (`postbuild`) to generate static HTML snapshots for high-value routes without SSR migration.
+  - `public/locales/en/pages/resources-newsletters-support.json` + `public/locales/fr/pages/resources-newsletters-support.json` → new `resourcesPage.landing.*` keys.
+  - `public/locales/en/pages/events-prayer-library.json` + `public/locales/fr/pages/events-prayer-library.json` → new `events.landing.*` and `events.support.*` keys.
+  - `public/locales/en/pages/website-shell.json` + `public/locales/fr/pages/website-shell.json` → new `meta.*` route metadata keys for all routes including `leadership`, `fellowshipMinistries`, `programsActivities`, `duesRegistration`, `naacus2025`, `ministryDetail`.  
+  **Validation:** Production build succeeded and no compile errors in modified files.
 
 ---
 

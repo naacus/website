@@ -28,6 +28,7 @@
     "ajv-keywords": "^5.1.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "jest-axe": "^10.0.0",
+    "react-snap": "^1.23.0",
     "typescript": "^4.9.5"
   },
   "scripts": {
@@ -44,6 +45,7 @@
     "prebuild": "npm run sync:locale-sections",
     "start": "react-scripts start",
     "build": "react-scripts build && cp ../staticwebapp.config.json build/",
+    "postbuild": "react-snap",
     "test": "react-scripts test",
     "lint": "eslint src/**/*.js",
     "lint:a11y": "eslint src/**/*.js --max-warnings=0",
@@ -51,6 +53,33 @@
     "check:a11y": "npm run lint:a11y && npm run test:a11y -- --watch=false",
     "start:api": "node server/api-server.js",
     "eject": "react-scripts eject"
+  },
+  "reactSnap": {
+    "source": "build",
+    "include": [
+      "/",
+      "/about",
+      "/events",
+      "/resources",
+      "/membership",
+      "/contact",
+      "/leadership",
+      "/fellowship-ministries",
+      "/programs-activities",
+      "/volunteer",
+      "/donation",
+      "/newsletters",
+      "/prayer-library",
+      "/faq",
+      "/feedback",
+      "/dues-registration",
+      "/2025"
+    ],
+    "skipThirdPartyRequests": true,
+    "puppeteerArgs": [
+      "--no-sandbox",
+      "--disable-setuid-sandbox"
+    ]
   },
   "eslintConfig": {
     "extends": [

@@ -7,12 +7,13 @@ import {
 
 const useStyles = makeStyles({
   page: {
-    paddingTop: '114px',
-    backgroundColor: tokens.colorNeutralBackground1,
+    // Header logo extends below the fixed menu; this keeps page titles fully visible.
     ...shorthands.padding('0', '20px', '0'),
+    paddingTop: '64px',
+    backgroundColor: tokens.colorNeutralBackground1,
     '@media (max-width: 768px)': {
-      paddingTop: '100px',
       ...shorthands.padding('0', '12px', '40px'),
+      paddingTop: '64px',
     },
   },
   container: {

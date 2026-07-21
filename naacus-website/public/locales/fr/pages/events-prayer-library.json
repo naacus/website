@@ -2,6 +2,36 @@
   "events": {
     "upcomingEvents": "Événements à Venir",
     "pastEvents": "Événements Passés",
+    "landing": {
+      "title": "Conferences, retraites et evenements de formation",
+      "subtitle": "Decouvrez les prochains evenements NAACUS avec des horaires clairs, des lieux precis et des options d'inscription concues pour renforcer la foi, le leadership et la vie familiale des communautes catholiques africaines.",
+      "cards": {
+        "expect": {
+          "title": "Ce que vous trouverez",
+          "body": "Chaque fiche presente la plage de dates, le lieu, le format de l'evenement et les points forts pour permettre aux familles, equipes paroissiales et responsables ministeriels de bien planifier."
+        },
+        "registration": {
+          "title": "Comment fonctionne l'inscription",
+          "body": "Ouvrez une fiche evenement et envoyez le formulaire d'inscription pour manifester votre interet. Notre equipe vous recontacte avec les details, confirmations et prochaines etapes."
+        },
+        "audience": {
+          "title": "Public concerne",
+          "body": "Les programmes servent les jeunes, jeunes adultes, familles, partenaires du clerge et benevoles de chapitre a travers des parcours pratiques de formation et de vie communautaire."
+        }
+      },
+      "actions": {
+        "primary": "Commencer par l'adhesion",
+        "secondary": "Poser une question sur un evenement"
+      }
+    },
+    "support": {
+      "title": "Vous planifiez un evenement de chapitre ?",
+      "body": "Contactez NAACUS pour un appui de chapitre sur les intervenants, parcours de formation, mobilisation des jeunes et partenariat avec les communautes diocesaines locales.",
+      "actions": {
+        "primary": "Rejoindre les equipes benevoles",
+        "secondary": "Contacter la coordination des evenements"
+      }
+    },
     "moreUpcomingEvents": "Plus d'Événements à Venir",
     "registerNow": "S'Inscrire",
     "viewDetails": "Voir les Détails",

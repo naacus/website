@@ -7,10 +7,10 @@ export const resourcesData = [
     id: 1,
     iconType: 'document',
     title: 'NAACUS Brochure',
-    description: 'Download our brochure to learn more about NAACUS mission, objectives, and how to get involved.',
-    buttonText: 'Request Brochure',
-    actionType: 'section',
-    actionTarget: 'contact'
+    description: 'Learn about NAACUS mission, objectives, and ministry opportunities through our about and membership information.',
+    buttonText: 'View About & Membership',
+    actionType: 'route',
+    actionTarget: '/about'
   },
   {
     id: 2,
@@ -25,10 +25,10 @@ export const resourcesData = [
     id: 3,
     iconType: 'document',
     title: 'Advocacy Documents',
-    description: 'Access our advocacy resources supporting African Catholics and promoting social justice.',
-    buttonText: 'Request Documents',
-    actionType: 'section',
-    actionTarget: 'contact'
+    description: 'Explore advocacy priorities and connect with our leadership team for ministry and social justice collaboration.',
+    buttonText: 'Contact Advocacy Team',
+    actionType: 'route',
+    actionTarget: '/contact'
   },
   {
     id: 4,

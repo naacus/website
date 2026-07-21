@@ -50,6 +50,36 @@
   "events": {
     "lastName": "Last Name",
     "expectedAttendees": "Expected Attendees",
+    "landing": {
+      "title": "Conferences, Retreats, and Formation Events",
+      "subtitle": "Explore upcoming NAACUS events with clear schedules, locations, and registration opportunities designed to strengthen faith, leadership, and family life across African Catholic communities.",
+      "cards": {
+        "expect": {
+          "title": "What You Can Expect",
+          "body": "Each listing includes date range, location, event format, and highlights so families, parish teams, and ministry leaders can plan with confidence."
+        },
+        "registration": {
+          "title": "How Registration Works",
+          "body": "Open an event card and submit the registration form to express interest. Our team follows up with details, confirmations, and next steps."
+        },
+        "audience": {
+          "title": "Who These Events Serve",
+          "body": "Programs support youth, young adults, families, clergy partners, and chapter volunteers through practical formation and community building."
+        }
+      },
+      "actions": {
+        "primary": "Register for Membership First",
+        "secondary": "Ask an Event Question"
+      }
+    },
+    "support": {
+      "title": "Planning a Chapter-Level Event?",
+      "body": "Contact NAACUS for chapter support on speakers, formation tracks, youth engagement, and partnership with local diocesan communities.",
+      "actions": {
+        "primary": "Join Event Volunteer Teams",
+        "secondary": "Contact Event Coordination"
+      }
+    },
     "success": {
       "title": "Success!",
       "registrationStored": "Registration submitted successfully! We will follow up via email."
@@ -681,6 +711,29 @@
   "resourcesPage": {
     "title": "Resources & Links",
     "subtitle": "Access brochures, newsletters, membership forms, and advocacy documents that support the mission of NAACUS and empower African Catholic communities.",
+    "landing": {
+      "title": "Practical Resources for African Catholic Families and Ministries",
+      "subtitle": "This page connects you to formation tools, ministry contacts, and support pathways you can use immediately for parish life, family faith formation, and community outreach.",
+      "outcomes": {
+        "formation": {
+          "title": "Formation and Prayer Support",
+          "body": "Access prayer resources and Catholic tools that help individuals, families, and youth leaders build consistent spiritual practices."
+        },
+        "contacts": {
+          "title": "Direct Ministry Contacts",
+          "body": "Reach women and youth ministry coordinators directly for local collaboration, mentorship, and service opportunities."
+        },
+        "support": {
+          "title": "Safe and Trusted Help Paths",
+          "body": "Find vetted external support links, including immediate crisis help, alongside NAACUS pastoral and community connection options."
+        }
+      },
+      "actions": {
+        "primary": "Join as a Member",
+        "events": "Browse Upcoming Events",
+        "support": "Request Ministry Support"
+      }
+    },
     "ctaTitle": "Ready to Take the Next Step?",
     "ctaText": "Join NAACUS as a member or volunteer and help strengthen African Catholic communities across the United States.",
     "ctaPrimary": "Become a Member",
@@ -792,5 +845,89 @@
     "description": "Sorry, the page you are looking for does not exist or has been moved. Please check the URL and try again.",
     "goHome": "Go to Home",
     "goBack": "Go Back"
+  },
+  "meta": {
+    "default": {
+      "title": "NAACUS | National Association of African Catholics in the United States",
+      "description": "NAACUS serves African Catholic communities in the United States through faith, fellowship, and service."
+    },
+    "routes": {
+      "home": {
+        "title": "NAACUS | National Association of African Catholics in the United States",
+        "description": "NAACUS unites African Catholic communities across the U.S. through faith formation, events, leadership development, and service."
+      },
+      "about": {
+        "title": "About NAACUS | Mission, Vision, and Objectives",
+        "description": "Learn about NAACUS mission, vision, objectives, and pastoral commitment to African Catholic communities in the United States."
+      },
+      "events": {
+        "title": "NAACUS Events | Conferences, Retreats, and Community Programs",
+        "description": "Explore upcoming NAACUS conferences, retreats, and formation events serving African Catholic families and ministries nationwide."
+      },
+      "resources": {
+        "title": "NAACUS Resources | Newsletters, Ministry Contacts, and Support",
+        "description": "Access NAACUS resources including newsletters, ministry contacts, pastoral support links, and Catholic community tools."
+      },
+      "membership": {
+        "title": "Join NAACUS | Membership Registration",
+        "description": "Register for NAACUS membership and connect with African Catholic communities, ministries, and national faith-based programs."
+      },
+      "contact": {
+        "title": "Contact NAACUS | Connect With Our Team",
+        "description": "Contact NAACUS for membership support, ministry coordination, pastoral guidance, and partnership opportunities."
+      },
+      "privacy": {
+        "title": "Privacy Policy | NAACUS",
+        "description": "Read the NAACUS Privacy Policy to understand how we collect, use, and protect your personal information."
+      },
+      "volunteer": {
+        "title": "Volunteer With NAACUS | Serve African Catholic Communities",
+        "description": "Discover volunteer opportunities with NAACUS and support evangelization, community outreach, and ministry programs."
+      },
+      "donation": {
+        "title": "Donate to NAACUS | Support the Mission",
+        "description": "Support NAACUS programs through secure giving and help strengthen African Catholic communities across the United States."
+      },
+      "prayerLibrary": {
+        "title": "Prayer Library | NAACUS",
+        "description": "Explore NAACUS prayer resources, reflections, and spiritual content rooted in Catholic and African traditions."
+      },
+      "newsletters": {
+        "title": "NAACUS Newsletters | Community Updates and Reflections",
+        "description": "Read NAACUS newsletters featuring ministry updates, upcoming programs, and reflections for African Catholic communities."
+      },
+      "faq": {
+        "title": "Frequently Asked Questions | NAACUS",
+        "description": "Find answers about NAACUS membership, events, ministries, and how to connect with our national and local community efforts."
+      },
+      "feedback": {
+        "title": "Share Feedback | NAACUS",
+        "description": "Send feedback to help NAACUS improve member experience, event quality, and ministry support across the United States."
+      },
+      "leadership": {
+        "title": "NAACUS Leadership | Executive Board and Ministry Coordinators",
+        "description": "Meet the NAACUS executive board, ministry coordinators, and spiritual director guiding African Catholic communities across the United States."
+      },
+      "fellowshipMinistries": {
+        "title": "NAACUS Ministries | Women, Youth, Men, Young Adults, and More",
+        "description": "Explore NAACUS fellowship and ministry groups including Women, Youth, Men, Young Adults, Fundraising, and Media ministries."
+      },
+      "programsActivities": {
+        "title": "Programs & Activities | NAACUS",
+        "description": "Discover NAACUS programs and activities supporting African Catholic formation, community engagement, and national conference events."
+      },
+      "duesRegistration": {
+        "title": "Dues Registration | NAACUS Membership",
+        "description": "Complete your NAACUS annual dues registration and stay active as a member of the national African Catholic community."
+      },
+      "naacus2025": {
+        "title": "NAACUS 2025 National Conference | Columbus, OH",
+        "description": "Relive the NAACUS 2025 National Conference in Columbus, Ohio — schedule, keynotes, workshops, and highlights from the gathering."
+      },
+      "ministryDetail": {
+        "title": "Ministry | NAACUS",
+        "description": "Learn about NAACUS ministry programs, leadership contacts, and how to get involved with African Catholic community service."
+      }
+    }
   }
 }

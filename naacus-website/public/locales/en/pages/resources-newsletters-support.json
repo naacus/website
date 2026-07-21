@@ -2,6 +2,29 @@
   "resourcesPage": {
     "title": "Resources & Links",
     "subtitle": "Access brochures, newsletters, membership forms, and advocacy documents that support the mission of NAACUS and empower African Catholic communities.",
+    "landing": {
+      "title": "Practical Resources for African Catholic Families and Ministries",
+      "subtitle": "This page connects you to formation tools, ministry contacts, and support pathways you can use immediately for parish life, family faith formation, and community outreach.",
+      "outcomes": {
+        "formation": {
+          "title": "Formation and Prayer Support",
+          "body": "Access prayer resources and Catholic tools that help individuals, families, and youth leaders build consistent spiritual practices."
+        },
+        "contacts": {
+          "title": "Direct Ministry Contacts",
+          "body": "Reach women and youth ministry coordinators directly for local collaboration, mentorship, and service opportunities."
+        },
+        "support": {
+          "title": "Safe and Trusted Help Paths",
+          "body": "Find vetted external support links, including immediate crisis help, alongside NAACUS pastoral and community connection options."
+        }
+      },
+      "actions": {
+        "primary": "Join as a Member",
+        "events": "Browse Upcoming Events",
+        "support": "Request Ministry Support"
+      }
+    },
     "ctaTitle": "Ready to Take the Next Step?",
     "ctaText": "Join NAACUS as a member or volunteer and help strengthen African Catholic communities across the United States.",
     "ctaPrimary": "Become a Member",

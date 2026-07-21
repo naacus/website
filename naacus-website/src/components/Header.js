@@ -79,10 +79,10 @@ const useStyles = makeStyles({
     objectFit: 'contain',
     ...shorthands.margin('0', '12px', '0', '0'),
     borderRadius: '50%',
-    '@media (max-width: 768px)': {
-      // height: '40px',
+    '@media (max-width: 1024px)': {
+      height: '53px',
       width: '53px',
-      // marginRight: '8px',
+      ...shorthands.margin('0', '8px', '0', '0'),
       top: '0',
     },
   },

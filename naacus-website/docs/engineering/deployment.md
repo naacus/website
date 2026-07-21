@@ -1,7 +1,7 @@
 # Deployment Guide
 
 > **Category:** 🔧 Engineering | **Audience:** Developers & IT Team
-> **Last Updated:** July 16, 2026 | [← Docs Index](../readme.md)
+> **Last Updated:** July 21, 2026 | [← Docs Index](../readme.md)
 
 ---
 
@@ -130,6 +130,32 @@ For Azure Static Web Apps, build with injected environment variables in the
 quality-gate job, upload the `build/` artifact, and deploy that artifact with
 `skip_app_build: true` in the deploy job. This avoids a second build in the
 deploy step that can miss runtime-injected Stripe values.
+
+### Pre-rendering (No SSR Required)
+
+This app uses route pre-rendering during `npm run build` via `react-snap`.
+
+- No server-side rendering framework migration is required.
+- Static HTML snapshots are generated for key marketing and conversion routes.
+- This improves crawlability and destination quality for ad landing pages.
+
+Configured routes include:
+
+- `/`, `/about`, `/events`, `/resources`, `/membership`, `/contact`
+- `/leadership`, `/fellowship-ministries`, `/programs-activities`
+- `/volunteer`, `/donation`, `/newsletters`, `/prayer-library`
+- `/faq`, `/feedback`, `/dues-registration`, `/2025`
+
+Build command remains:
+
+```bash
+npm run build
+```
+
+If you see `Failed to fetch` logs during pre-render, this is typically from
+optional runtime integrations (for example chatbot endpoints) being unavailable
+in the local snapshot crawler context; pre-render still succeeds when route
+crawling completes.
 
 ### GitHub Advanced Security / Scorecard Note
 

@@ -50,6 +50,36 @@
   "events": {
     "upcomingEvents": "Événements à Venir",
     "pastEvents": "Événements Passés",
+    "landing": {
+      "title": "Conferences, retraites et evenements de formation",
+      "subtitle": "Decouvrez les prochains evenements NAACUS avec des horaires clairs, des lieux precis et des options d'inscription concues pour renforcer la foi, le leadership et la vie familiale des communautes catholiques africaines.",
+      "cards": {
+        "expect": {
+          "title": "Ce que vous trouverez",
+          "body": "Chaque fiche presente la plage de dates, le lieu, le format de l'evenement et les points forts pour permettre aux familles, equipes paroissiales et responsables ministeriels de bien planifier."
+        },
+        "registration": {
+          "title": "Comment fonctionne l'inscription",
+          "body": "Ouvrez une fiche evenement et envoyez le formulaire d'inscription pour manifester votre interet. Notre equipe vous recontacte avec les details, confirmations et prochaines etapes."
+        },
+        "audience": {
+          "title": "Public concerne",
+          "body": "Les programmes servent les jeunes, jeunes adultes, familles, partenaires du clerge et benevoles de chapitre a travers des parcours pratiques de formation et de vie communautaire."
+        }
+      },
+      "actions": {
+        "primary": "Commencer par l'adhesion",
+        "secondary": "Poser une question sur un evenement"
+      }
+    },
+    "support": {
+      "title": "Vous planifiez un evenement de chapitre ?",
+      "body": "Contactez NAACUS pour un appui de chapitre sur les intervenants, parcours de formation, mobilisation des jeunes et partenariat avec les communautes diocesaines locales.",
+      "actions": {
+        "primary": "Rejoindre les equipes benevoles",
+        "secondary": "Contacter la coordination des evenements"
+      }
+    },
     "moreUpcomingEvents": "Plus d'Événements à Venir",
     "registerNow": "S'Inscrire",
     "viewDetails": "Voir les Détails",
@@ -681,6 +711,29 @@
   "resourcesPage": {
     "title": "Ressources et Liens",
     "subtitle": "Accédez aux brochures, bulletins d'information, formulaires d'adhésion et documents de plaidoyer qui soutiennent la mission de NAACUS et autonomisent les communautés catholiques africaines.",
+    "landing": {
+      "title": "Ressources pratiques pour les familles et les ministeres catholiques africains",
+      "subtitle": "Cette page vous relie a des outils de formation, des contacts ministeriels et des parcours de soutien que vous pouvez utiliser immediatement pour la vie paroissiale, la formation de foi en famille et l'action communautaire.",
+      "outcomes": {
+        "formation": {
+          "title": "Soutien a la formation et a la priere",
+          "body": "Accedez a des ressources de priere et a des outils catholiques qui aident les personnes, les familles et les responsables jeunesse a maintenir des pratiques spirituelles regulieres."
+        },
+        "contacts": {
+          "title": "Contacts ministeriels directs",
+          "body": "Contactez directement les coordinatrices et coordinateurs des ministeres, notamment femmes et jeunesse, pour la collaboration locale, le mentorat et le service."
+        },
+        "support": {
+          "title": "Parcours d'aide fiables",
+          "body": "Retrouvez des liens externes verifies, y compris l'aide immediate en situation de crise, ainsi que les options d'accompagnement pastoral et communautaire de NAACUS."
+        }
+      },
+      "actions": {
+        "primary": "Adherer comme membre",
+        "events": "Voir les evenements a venir",
+        "support": "Demander un soutien ministeriel"
+      }
+    },
     "ctaTitle": "Pret a Passer a l'Etape Suivante ?",
     "ctaText": "Rejoignez NAACUS comme membre ou benevole pour renforcer les communautes catholiques africaines a travers les Etats-Unis.",
     "ctaPrimary": "Devenir Membre",
@@ -792,5 +845,89 @@
     "description": "Désolé, la page que vous recherchez n'existe pas ou a été déplacée. Veuillez vérifier l'URL et réessayer.",
     "goHome": "Aller à l'Accueil",
     "goBack": "Retour"
+  },
+  "meta": {
+    "default": {
+      "title": "NAACUS | Association Nationale des Catholiques Africains aux États-Unis",
+      "description": "NAACUS sert les communautes catholiques africaines aux Etats-Unis a travers la foi, la fraternite et le service."
+    },
+    "routes": {
+      "home": {
+        "title": "NAACUS | Association Nationale des Catholiques Africains aux États-Unis",
+        "description": "NAACUS unit les communautes catholiques africaines aux Etats-Unis par la formation de foi, les evenements, le leadership et le service."
+      },
+      "about": {
+        "title": "A Propos de NAACUS | Mission, vision et objectifs",
+        "description": "Decouvrez la mission, la vision, les objectifs et l'engagement pastoral de NAACUS envers les communautes catholiques africaines aux Etats-Unis."
+      },
+      "events": {
+        "title": "Evenements NAACUS | Conferences, retraites et programmes communautaires",
+        "description": "Explorez les conferences, retraites et evenements de formation NAACUS au service des familles et ministeres catholiques africains."
+      },
+      "resources": {
+        "title": "Ressources NAACUS | Bulletins, contacts ministeriels et soutien",
+        "description": "Accedez aux ressources NAACUS, y compris bulletins, contacts ministeriels, liens de soutien pastoral et outils communautaires catholiques."
+      },
+      "membership": {
+        "title": "Adherer a NAACUS | Inscription des membres",
+        "description": "Inscrivez-vous a NAACUS pour rejoindre les communautes catholiques africaines, les ministeres et les programmes nationaux de foi."
+      },
+      "contact": {
+        "title": "Contacter NAACUS | Echanger avec notre equipe",
+        "description": "Contactez NAACUS pour l'adhesion, la coordination ministerielle, l'accompagnement pastoral et les partenariats."
+      },
+      "privacy": {
+        "title": "Politique de confidentialite | NAACUS",
+        "description": "Consultez la politique de confidentialite NAACUS pour comprendre la collecte, l'utilisation et la protection de vos informations personnelles."
+      },
+      "volunteer": {
+        "title": "Benevolat avec NAACUS | Servir les communautes catholiques africaines",
+        "description": "Decouvrez les opportunites de benevolat NAACUS pour soutenir l'evangelisation, l'action communautaire et les programmes ministeriels."
+      },
+      "donation": {
+        "title": "Faire un don a NAACUS | Soutenir la mission",
+        "description": "Soutenez les programmes NAACUS par un don securise et aidez a renforcer les communautes catholiques africaines aux Etats-Unis."
+      },
+      "prayerLibrary": {
+        "title": "Bibliotheque de prieres | NAACUS",
+        "description": "Explorez les ressources de priere, meditations et contenus spirituels NAACUS enracinés dans les traditions catholiques et africaines."
+      },
+      "newsletters": {
+        "title": "Bulletins NAACUS | Nouvelles communautaires et reflexions",
+        "description": "Consultez les bulletins NAACUS avec mises a jour ministerielles, programmes a venir et reflexions pour les communautes catholiques africaines."
+      },
+      "faq": {
+        "title": "Questions frequentes | NAACUS",
+        "description": "Trouvez des reponses sur l'adhesion NAACUS, les evenements, les ministeres et les moyens de vous connecter a notre communaute nationale et locale."
+      },
+      "feedback": {
+        "title": "Partager vos commentaires | NAACUS",
+        "description": "Envoyez vos commentaires pour aider NAACUS a ameliorer l'experience des membres, la qualite des evenements et le soutien ministeriel."
+      },
+      "leadership": {
+        "title": "Direction NAACUS | Bureau executif et coordonnateurs ministeriels",
+        "description": "Rencontrez le bureau executif, les coordonnateurs ministeriels et le directeur spirituel guidant les communautes catholiques africaines aux Etats-Unis."
+      },
+      "fellowshipMinistries": {
+        "title": "Ministeres NAACUS | Femmes, Jeunesse, Hommes, Jeunes adultes et plus",
+        "description": "Explorez les groupes de fraternite et de ministere NAACUS incluant Femmes, Jeunesse, Hommes, Jeunes adultes, Collecte de fonds et Medias."
+      },
+      "programsActivities": {
+        "title": "Programmes et activites | NAACUS",
+        "description": "Decouvrez les programmes et activites NAACUS soutenant la formation catholique africaine, l'engagement communautaire et les evenements de conference nationale."
+      },
+      "duesRegistration": {
+        "title": "Enregistrement des cotisations | Adhesion NAACUS",
+        "description": "Completez votre enregistrement de cotisation annuelle NAACUS et restez actif en tant que membre de la communaute catholique africaine nationale."
+      },
+      "naacus2025": {
+        "title": "Conference nationale NAACUS 2025 | Columbus, OH",
+        "description": "Revivez la Conference nationale NAACUS 2025 a Columbus, Ohio — programme, conferenciers, ateliers et points forts du rassemblement."
+      },
+      "ministryDetail": {
+        "title": "Ministere | NAACUS",
+        "description": "Decouvrez les programmes ministeriels NAACUS, les contacts de direction et comment s'impliquer dans le service communautaire catholique africain."
+      }
+    }
   }
 }

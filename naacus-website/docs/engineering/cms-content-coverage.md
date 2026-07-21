@@ -2,7 +2,7 @@
 
 > **Category:** Engineering | **Audience:** Developers, content admins
 > **Status:** Canonical source of truth for Decap-managed content scope
-> **Last Updated:** July 18, 2026 | [<- Docs Index](../readme.md)
+> **Last Updated:** July 21, 2026 | [<- Docs Index](../readme.md)
 
 ---
 
@@ -23,6 +23,8 @@ Decap CMS is enabled at `/admin` and currently manages editor-facing text/data d
 	- Source-of-truth files live under `naacus-website/public/locales/<locale>/pages/*.json`
 	- Build/start sync regenerates `naacus-website/public/locales/en/translation.json` and `naacus-website/public/locales/fr/translation.json`
 	- Stripe donation and dues content is now CMS-managed in locale page files, including `initiativesPage.itemsList` and `duesRegistrationPage.itemsList`
+	- Route metadata (page titles and descriptions) is now locale-managed via `website-shell` `meta.*` keys (EN/FR)
+	- Events and Resources destination intro/support copy is locale-managed via page collections (`events-prayer-library`, `resources-newsletters-support`)
 	- For Stripe buy-button entries, card `title` should be left empty in CMS/locales because Stripe renders the checkout title
 	- Stripe publishable key must come from Azure App Settings (`REACT_APP_STRIPE_PUBLIC_KEY`) and should not be stored in CMS or locale files
 - Hero slideshow image list

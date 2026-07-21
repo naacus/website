@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { FluentProvider, webLightTheme } from '@fluentui/react-components';
+import { useTranslation } from 'react-i18next';
 import './App.css';
 import { initializeGoogleAnalytics } from './services/googleAnalyticsService';
 import { trackPageRefresh, trackScrollDepth, resetScrollDepthTracking, trackPageView } from './services/analyticsService';
@@ -32,18 +33,59 @@ import BackToTop from './components/BackToTop';
 import ChatWidget from './components/ChatWidget';
 import CookieConsent from './components/CookieConsent';
 
+const routeMetaKeys = {
+  '/': 'meta.routes.home',
+  '/about': 'meta.routes.about',
+  '/events': 'meta.routes.events',
+  '/resources': 'meta.routes.resources',
+  '/membership': 'meta.routes.membership',
+  '/contact': 'meta.routes.contact',
+  '/privacy': 'meta.routes.privacy',
+  '/volunteer': 'meta.routes.volunteer',
+  '/donation': 'meta.routes.donation',
+  '/prayer-library': 'meta.routes.prayerLibrary',
+  '/newsletters': 'meta.routes.newsletters',
+  '/faq': 'meta.routes.faq',
+  '/feedback': 'meta.routes.feedback',
+  '/leadership': 'meta.routes.leadership',
+  '/fellowship-ministries': 'meta.routes.fellowshipMinistries',
+  '/programs-activities': 'meta.routes.programsActivities',
+  '/dues-registration': 'meta.routes.duesRegistration',
+  '/2025': 'meta.routes.naacus2025',
+};
+
 // Component to handle scroll tracking and page changes
 function AppContent() {
+  const { t, i18n } = useTranslation();
   const location = useLocation();
 
   useEffect(() => {
+    const isMinistryDetail = /^\/ministries\//.test(location.pathname);
+    const keyBase = isMinistryDetail
+      ? 'meta.routes.ministryDetail'
+      : (routeMetaKeys[location.pathname] || 'meta.default');
+    const currentMeta = {
+      title: t(`${keyBase}.title`, { defaultValue: 'NAACUS | National Association of African Catholics in the United States' }),
+      description: t(`${keyBase}.description`, { defaultValue: 'NAACUS serves African Catholic communities in the United States through faith, fellowship, and service.' }),
+    };
+
+    document.title = currentMeta.title;
+
+    let descriptionTag = document.querySelector('meta[name="description"]');
+    if (!descriptionTag) {
+      descriptionTag = document.createElement('meta');
+      descriptionTag.setAttribute('name', 'description');
+      document.head.appendChild(descriptionTag);
+    }
+    descriptionTag.setAttribute('content', currentMeta.description);
+
     trackRouteTelemetry(location.pathname, document.title || location.pathname);
 
     // Reset scroll depth tracking when route changes
     resetScrollDepthTracking();
     // Send a page_view for route changes
     trackPageView(document.title || location.pathname);
-  }, [location.pathname]);
+  }, [location.pathname, t, i18n.language]);
 
   useEffect(() => {
     // Track scroll depth

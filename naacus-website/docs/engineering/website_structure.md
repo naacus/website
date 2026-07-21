@@ -1,7 +1,7 @@
 # NAACUS Website — Structure Documentation
 
 > **Category:** 🔧 Engineering | **Audience:** Developers & IT Team
-> **Last Updated:** July 15, 2026 | [← Docs Index](../readme.md)
+> **Last Updated:** July 21, 2026 | [← Docs Index](../readme.md)
 
 ---
 
@@ -55,7 +55,7 @@ The NAACUS website is a **React 19** single-page application (SPA) built with:
 | File | Description |
 |---|---|
 | `src/index.js` | ReactDOM render entry, imports `App` and `i18n` |
-| `src/App.js` | Root component — sets up `FluentProvider`, `Router`, analytics, and global layout |
+| `src/App.js` | Root component — sets up `FluentProvider`, `Router`, analytics, global layout, and locale-driven route metadata (title/description) |
 | `src/i18n.js` | i18next initialization (language detection, HTTP backend for JSON translations) |
 
 ### 3.2 Routes (defined in `App.js`)
@@ -312,8 +312,10 @@ public/
 │   ├── leadership/            # Leadership team photos
 │   └── naacus-logo.png        # Organization logo
 ├── locales/
-│   ├── en/translation.json    # English translations
-│   └── fr/translation.json    # French translations
+│   ├── en/translation.json    # Generated English translation bundle
+│   ├── en/pages/*.json        # English page-section source files (CMS-editable)
+│   ├── fr/translation.json    # Generated French translation bundle
+│   └── fr/pages/*.json        # French page-section source files (CMS-editable)
 └── naacus2025/
     ├── photos/                # 2025 conference photos
     ├── testimonials/          # 2025 testimonial media
@@ -352,9 +354,11 @@ A **Java/Maven** backend project (under development). The compiled output lives 
 
 ## 9. Internationalization (i18n)
 
-- **Supported Languages:** English (`en`), French (`fr`)
-- **Library:** i18next with `react-i18next`
-- **Translation Files:** `public/locales/{lang}/translation.json`
+- Runtime translations load from `public/locales/<lang>/translation.json`.
+- Canonical editable locale sources are page files under `public/locales/<lang>/pages/*.json` (Decap-managed).
+- `npm run sync:locale-sections` rebuilds `translation.json` from page-section source files and runs automatically in `prestart` and `prebuild`.
+- Supported locales: English (`en`) and French (`fr`).
+- Language preference is stored in localStorage.
 - **Detection:** `localStorage` → browser `navigator` language
 - **Switcher:** `LanguageSwitcher` component in the header
 

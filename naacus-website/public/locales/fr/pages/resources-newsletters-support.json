@@ -2,6 +2,29 @@
   "resourcesPage": {
     "title": "Ressources et Liens",
     "subtitle": "Accédez aux brochures, bulletins d'information, formulaires d'adhésion et documents de plaidoyer qui soutiennent la mission de NAACUS et autonomisent les communautés catholiques africaines.",
+    "landing": {
+      "title": "Ressources pratiques pour les familles et les ministeres catholiques africains",
+      "subtitle": "Cette page vous relie a des outils de formation, des contacts ministeriels et des parcours de soutien que vous pouvez utiliser immediatement pour la vie paroissiale, la formation de foi en famille et l'action communautaire.",
+      "outcomes": {
+        "formation": {
+          "title": "Soutien a la formation et a la priere",
+          "body": "Accedez a des ressources de priere et a des outils catholiques qui aident les personnes, les familles et les responsables jeunesse a maintenir des pratiques spirituelles regulieres."
+        },
+        "contacts": {
+          "title": "Contacts ministeriels directs",
+          "body": "Contactez directement les coordinatrices et coordinateurs des ministeres, notamment femmes et jeunesse, pour la collaboration locale, le mentorat et le service."
+        },
+        "support": {
+          "title": "Parcours d'aide fiables",
+          "body": "Retrouvez des liens externes verifies, y compris l'aide immediate en situation de crise, ainsi que les options d'accompagnement pastoral et communautaire de NAACUS."
+        }
+      },
+      "actions": {
+        "primary": "Adherer comme membre",
+        "events": "Voir les evenements a venir",
+        "support": "Demander un soutien ministeriel"
+      }
+    },
     "ctaTitle": "Pret a Passer a l'Etape Suivante ?",
     "ctaText": "Rejoignez NAACUS comme membre ou benevole pour renforcer les communautes catholiques africaines a travers les Etats-Unis.",
     "ctaPrimary": "Devenir Membre",
