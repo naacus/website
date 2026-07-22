@@ -60,12 +60,16 @@ function AppContent() {
   const location = useLocation();
 
   useEffect(() => {
+    const isKnownRoute = Boolean(routeMetaKeys[location.pathname]) || /^\/ministries\//.test(location.pathname);
+    const isNotFoundRoute = location.pathname === '/404.html' || !isKnownRoute;
     const isMinistryDetail = /^\/ministries\//.test(location.pathname);
     const keyBase = isMinistryDetail
       ? 'meta.routes.ministryDetail'
-      : (routeMetaKeys[location.pathname] || 'meta.default');
+      : (isNotFoundRoute ? 'meta.routes.notFound' : (routeMetaKeys[location.pathname] || 'meta.default'));
     const currentMeta = {
-      title: t(`${keyBase}.title`, { defaultValue: 'NAACUS | National Association of African Catholics in the United States' }),
+      title: isNotFoundRoute
+        ? t('meta.routes.notFound.title', { defaultValue: '404 - Page Not Found | NAACUS' })
+        : t(`${keyBase}.title`, { defaultValue: 'NAACUS | National Association of African Catholics in the United States' }),
       description: t(`${keyBase}.description`, { defaultValue: 'NAACUS serves African Catholic communities in the United States through faith, fellowship, and service.' }),
     };
 

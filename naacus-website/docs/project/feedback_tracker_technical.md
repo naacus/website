@@ -224,6 +224,12 @@
   - `public/sitemap.xml` → added route sitemap with `https://test.naacus.org/*` URLs.
   - `public/robots.txt` → added and aligned `Sitemap: https://test.naacus.org/sitemap.xml`.
 
+- ✅ **[FB-22b]** Ad Grants 404 title normalization *(Jul 22, 2026)*  
+  Updated the route shell and 404 page so the generated `/404.html` snapshot and unknown routes resolve to a title that explicitly includes `404`, clearing the react-snap warning during build verification.  
+  **Files changed:**
+  - `src/App.js` → unknown routes and `/404.html` now use `meta.routes.notFound.title` with `404 - Page Not Found | NAACUS` as the default.
+  - `src/pages/NotFoundPage.js` → sets the document title to `404 - Page Not Found | NAACUS` on render.
+
 ---
 
 ## Low Priority — Nice to Have

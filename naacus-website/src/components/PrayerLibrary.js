@@ -491,15 +491,16 @@ function PrayerLibrary() {
   const allPrayerTypes = getPrayerTypes();
   const allCountries = getAfricanCountries();
   const allLanguages = getLanguagesWithPrayers();
+  const publishedVideos = useMemo(() => allVideos.filter((video) => Boolean(video.videoUrl)), [allVideos]);
 
   // Filtered videos
   const filteredVideos = useMemo(() => {
-    return allVideos.filter((video) => {
+    return publishedVideos.filter((video) => {
       if (filterPrayer !== 'all' && video.prayerTypeId !== filterPrayer) return false;
       if (filterLanguage !== 'all' && video.language !== filterLanguage) return false;
       return true;
     });
-  }, [allVideos, filterPrayer, filterLanguage]);
+  }, [publishedVideos, filterPrayer, filterLanguage]);
 
   const clearFilters = () => {
     setFilterPrayer('all');
@@ -524,8 +525,8 @@ function PrayerLibrary() {
   };
 
   // Count videos per prayer type
-  const videosPerPrayer = (prayerTypeId) => allVideos.filter((v) => v.prayerTypeId === prayerTypeId).length;
-  const videosPerLanguage = (language) => allVideos.filter((v) => v.language === language).length;
+  const videosPerPrayer = (prayerTypeId) => publishedVideos.filter((v) => v.prayerTypeId === prayerTypeId).length;
+  const videosPerLanguage = (language) => publishedVideos.filter((v) => v.language === language).length;
 
   const handleSubmitOpen = () => {
     setSubmitDialogOpen(true);

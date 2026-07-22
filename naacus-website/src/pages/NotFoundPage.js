@@ -86,6 +86,10 @@ function NotFoundPage() {
   const { trackCTA } = useAnalytics();
   const styles = useStyles();
 
+  React.useEffect(() => {
+    document.title = `404 - ${t('notFound.title') || 'Page Not Found'} | NAACUS`;
+  }, [t]);
+
   // Track 404 event in Google Analytics
   React.useEffect(() => {
     // Track the 404 page view
