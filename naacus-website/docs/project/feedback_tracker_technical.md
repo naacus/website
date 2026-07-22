@@ -219,10 +219,10 @@
   **Validation:** Production build succeeded and no compile errors in modified files.
 
 - ✅ **[FB-22a]** Ad Grants submitted-domain crawl signal alignment *(Jul 21, 2026)*  
-  Aligned crawl discovery files to match submitted review domain `https://test.naacus.org` to remove domain mismatch risk during Google for Nonprofits/Ad Grants review.  
+  Aligned crawl discovery files to match submitted review domain `https://www.naacus.org` to remove domain mismatch risk during Google for Nonprofits/Ad Grants review.  
   **Files changed:**
-  - `public/sitemap.xml` → added route sitemap with `https://test.naacus.org/*` URLs.
-  - `public/robots.txt` → added and aligned `Sitemap: https://test.naacus.org/sitemap.xml`.
+  - `public/sitemap.xml` → added route sitemap with `https://www.naacus.org/*` URLs.
+  - `public/robots.txt` → added and aligned `Sitemap: https://www.naacus.org/sitemap.xml`.
 
 - ✅ **[FB-22b]** Ad Grants 404 title normalization *(Jul 22, 2026)*  
   Updated the route shell and 404 page so the generated `/404.html` snapshot and unknown routes resolve to a title that explicitly includes `404`, clearing the react-snap warning during build verification.  

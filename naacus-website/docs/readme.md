@@ -51,7 +51,7 @@ Last updated: July 21, 2026
 
 ## Quick Links
 
-- 🌐 Test site: https://test.naacus.org
+- 🌐 Site: https://www.naacus.org
 - 📦 Repository: https://github.com/naacus/website
 - 📧 IT contact: celestin.mbuyamba@naacus.org
 
