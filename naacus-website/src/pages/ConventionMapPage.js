@@ -703,7 +703,7 @@ function ConventionMapPage() {
     return () => {
       canceled = true;
     };
-  }, [mapsState, searchQuery, venueAnchor]);
+  }, [mapsState, searchQuery, venueAnchor, t]);
 
   useEffect(() => {
     const maps = window.google && window.google.maps;
@@ -818,7 +818,18 @@ function ConventionMapPage() {
     return () => {
       delete window.__naacusDirs;
     };
-  }, [displayedLocations, mapsState, center]);
+  }, [
+    displayedLocations,
+    mapsState,
+    center,
+    t,
+    styles.infoWindowAddress,
+    styles.infoWindowButton,
+    styles.infoWindowCategory,
+    styles.infoWindowContent,
+    styles.infoWindowDescription,
+    styles.infoWindowTitle,
+  ]);
 
   return (
     <PageWrapper>
