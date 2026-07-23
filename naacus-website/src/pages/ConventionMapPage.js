@@ -102,6 +102,22 @@ const useStyles = makeStyles({
     color: tokens.colorNeutralForeground2,
     textAlign: 'center',
   },
+  directionsPanel: {
+    ...shorthands.margin('12px', '0', '0'),
+    ...shorthands.padding('12px'),
+    ...shorthands.border('1px', 'solid', '#d9d9d9'),
+    ...shorthands.borderRadius('8px'),
+    backgroundColor: '#fff',
+    maxHeight: '280px',
+    overflowY: 'auto',
+    fontSize: '0.9rem',
+  },
+  directionsHint: {
+    display: 'block',
+    color: tokens.colorNeutralForeground2,
+    fontSize: '0.88rem',
+    marginTop: '8px',
+  },
 });
 
 function normalizeLocations(payload) {
@@ -149,6 +165,7 @@ function ConventionMapPage() {
   const markersRef = useRef([]);
   const directionsServiceRef = useRef(null);
   const directionsRendererRef = useRef(null);
+  const directionsPanelRef = useRef(null);
 
   const [locations, setLocations] = useState([]);
   const [center, setCenter] = useState(getDefaultMapCenter());
@@ -157,6 +174,7 @@ function ConventionMapPage() {
   const [mapsState, setMapsState] = useState('loading');
   const [mapsError, setMapsError] = useState('');
   const [directionsActive, setDirectionsActive] = useState(false);
+  const [activeRoute, setActiveRoute] = useState(null);
 
   const apiKey = useMemo(() => getMapsApiKey(), []);
 
@@ -172,6 +190,26 @@ function ConventionMapPage() {
     const available = new Set(locations.map((location) => location.category));
     return ['all', ...Object.keys(CATEGORY_META).filter((key) => key !== 'all' && available.has(key))];
   }, [locations]);
+
+  const openExternalNavigation = () => {
+    if (!activeRoute || !activeRoute.destination) {
+      return;
+    }
+
+    const destination = `${activeRoute.destination.lat},${activeRoute.destination.lng}`;
+    const origin = activeRoute.origin
+      ? `&origin=${activeRoute.origin.lat},${activeRoute.origin.lng}`
+      : '';
+    const navigationUrl = `https://www.google.com/maps/dir/?api=1&destination=${destination}${origin}&travelmode=driving&dir_action=navigate`;
+
+    trackCTA('start_navigation_click', 'convention_map', activeRoute.name || 'unknown');
+    window.open(navigationUrl, '_blank', 'noopener,noreferrer');
+  };
+
+  const guideMeHere = () => {
+    trackCTA('guide_me_here_click', 'convention_map', activeRoute?.name || 'unknown');
+    directionsPanelRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  };
 
   useEffect(() => {
     trackPageViewEvent('ConventionMapPage');
@@ -251,6 +289,7 @@ function ConventionMapPage() {
           polylineOptions: { strokeColor: '#0f6cbd', strokeWeight: 5 },
         });
         directionsRendererRef.current.setMap(mapInstanceRef.current);
+        directionsRendererRef.current.setPanel(directionsPanelRef.current);
 
         setMapsState('ready');
       })
@@ -283,6 +322,7 @@ function ConventionMapPage() {
     if (directionsRendererRef.current) {
       directionsRendererRef.current.setDirections({ routes: [] });
       setDirectionsActive(false);
+      setActiveRoute(null);
     }
 
     if (!filteredLocations.length) {
@@ -306,6 +346,11 @@ function ConventionMapPage() {
             if (status === 'OK') {
               directionsRendererRef.current.setDirections(result);
               setDirectionsActive(true);
+              setActiveRoute({
+                name,
+                origin,
+                destination,
+              });
             } else {
               // Directions API failed — fall back to external Google Maps
               window.open(
@@ -422,9 +467,44 @@ function ConventionMapPage() {
           {directionsActive && (
             <div style={{ position: 'absolute', top: '10px', left: '10px', zIndex: 2 }}>
               <button
+                onClick={guideMeHere}
+                style={{
+                  padding: '7px 14px',
+                  background: '#0f6cbd',
+                  color: '#fff',
+                  border: '1px solid #0f6cbd',
+                  borderRadius: '4px',
+                  cursor: 'pointer',
+                  fontFamily: 'Segoe UI, Arial, sans-serif',
+                  fontSize: '0.88rem',
+                  boxShadow: '0 2px 6px rgba(0,0,0,.2)',
+                  marginRight: '8px',
+                }}
+              >
+                Guide Me Here
+              </button>
+              <button
+                onClick={openExternalNavigation}
+                style={{
+                  padding: '7px 14px',
+                  background: '#fff',
+                  color: '#0f6cbd',
+                  border: '1px solid #0f6cbd',
+                  borderRadius: '4px',
+                  cursor: 'pointer',
+                  fontFamily: 'Segoe UI, Arial, sans-serif',
+                  fontSize: '0.88rem',
+                  boxShadow: '0 2px 6px rgba(0,0,0,.2)',
+                  marginRight: '8px',
+                }}
+              >
+                Open in Google Maps
+              </button>
+              <button
                 onClick={() => {
                   directionsRendererRef.current.setDirections({ routes: [] });
                   setDirectionsActive(false);
+                  setActiveRoute(null);
                 }}
                 style={{
                   padding: '7px 14px',
@@ -455,6 +535,19 @@ function ConventionMapPage() {
             </div>
           )}
         </div>
+
+        <div
+          ref={directionsPanelRef}
+          className={styles.directionsPanel}
+          style={{ display: directionsActive ? 'block' : 'none' }}
+          aria-live="polite"
+        />
+
+        {directionsActive && (
+          <Text className={styles.directionsHint}>
+            Follow these steps to stay on NAACUS map, or use "Open in Google Maps" for native navigation.
+          </Text>
+        )}
       </Card>
 
     </PageWrapper>
