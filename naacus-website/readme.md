@@ -165,6 +165,7 @@ Example integration code is available in the configuration files.
 - **Donation & Dues Card Layout**: Edit `src/components/PaymentItemCard.js`, `src/pages/DonationPage.js`, and `src/pages/DuesRegistrationPage.js`
 - **Footer Links & Spacing**: Edit `src/components/Footer.js`
 - **Menu/Label Text (EN/FR)**: Update `public/locales/en/translation.json` and `public/locales/fr/translation.json`
+- **Convention Map Text (EN/FR)**: Update `public/locales/en/pages/events-prayer-library.json` and `public/locales/fr/pages/events-prayer-library.json` under `events.mapHub`
 - **Hero Section**: Modify `src/components/Hero.js`
 - **About Section**: Update `src/components/About.js`
 - **Conference Details**: Edit `src/components/Conference.js`

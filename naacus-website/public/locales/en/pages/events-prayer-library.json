@@ -24,6 +24,56 @@
         "secondary": "Ask an Event Question"
       }
     },
+    "mapHub": {
+      "title": "Convention Map Hub",
+      "subtitle": "Find convention venues, nearby churches, hotels, airports, parking, transit, and essential services. Use category filters to focus your planning and open turn-by-turn directions instantly.",
+      "actions": {
+        "registerMembership": "Register Membership",
+        "backToEvents": "Back to Events"
+      },
+      "categories": {
+        "all": "All",
+        "search": "Search Results",
+        "venue": "Venues",
+        "church": "Churches",
+        "hotel": "Hotels",
+        "airport": "Airports",
+        "parking": "Parking",
+        "transport": "Transit",
+        "service": "Services"
+      },
+      "search": {
+        "placeholder": "Search nearby places around the main venue",
+        "ariaLabel": "Search convention map locations",
+        "hintBase": "Search uses Google Places and stays focused near the main convention venue.",
+        "loading": "Searching nearby places...",
+        "empty": "No nearby matches found.",
+        "error": "Nearby search is unavailable right now.",
+        "nearbyResultName": "Nearby result",
+        "resultNearVenue": "Search result near {{venueName}}"
+      },
+      "map": {
+        "sectionLabel": "Interactive Venue Area Map",
+        "showingCount_one": "Showing {{count}} location",
+        "showingCount_other": "Showing {{count}} locations",
+        "ariaLabel": "Convention locations map",
+        "loadingLocations": "Loading map locations...",
+        "initializing": "Initializing map..."
+      },
+      "directions": {
+        "getDirections": "Get Directions",
+        "guideMeHere": "Guide Me Here",
+        "openInGoogleMaps": "Open in Google Maps",
+        "clearDirections": "Clear Directions",
+        "hint": "Follow these steps to stay on NAACUS map, or use \"Open in Google Maps\" for native navigation."
+      },
+      "errors": {
+        "missingApiKey": "Google Maps key is missing. Set REACT_APP_GOOGLE_MAPS_API_KEY and environment-specific keys for www/test.",
+        "mapsScriptLoadFailed": "Google Maps script failed to load.",
+        "mapsInitFailed": "Google Maps failed to initialize.",
+        "mapDataLoadFailed": "Unable to load convention map data."
+      }
+    },
     "support": {
       "title": "Planning a Chapter-Level Event?",
       "body": "Contact NAACUS for chapter support on speakers, formation tracks, youth engagement, and partnership with local diocesan communities.",
