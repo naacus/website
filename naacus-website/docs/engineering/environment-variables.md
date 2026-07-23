@@ -259,6 +259,39 @@ export default loadConfig;
 
 ## 6. Security Checklist
 
+---
+
+## 7. Google Maps Platform Keys (Convention Map Hub)
+
+The Convention Map Hub route (`/convention-map`) uses hostname-aware key selection:
+
+```bash
+# Shared fallback (optional)
+REACT_APP_GOOGLE_MAPS_API_KEY=
+
+# Production domain key (www.naacus.org)
+REACT_APP_GOOGLE_MAPS_API_KEY_PROD=
+
+# Test domain key (test.naacus.org)
+REACT_APP_GOOGLE_MAPS_API_KEY_DEV=
+```
+
+### Key behavior
+- `www.naacus.org` uses `REACT_APP_GOOGLE_MAPS_API_KEY_PROD` first, then fallback.
+- `test.naacus.org` uses `REACT_APP_GOOGLE_MAPS_API_KEY_DEV` first, then fallback.
+- Local development uses `REACT_APP_GOOGLE_MAPS_API_KEY_DEV` first.
+
+### Required Google Cloud restrictions
+- Add HTTP referrer restrictions for each key:
+  - `https://www.naacus.org/*`
+  - `https://test.naacus.org/*`
+- Restrict API usage to only required APIs (for now):
+  - Maps JavaScript API
+
+### Data source for map points
+- Location pins are content-driven in `public/content/convention-map-locations.json`.
+- This file can be updated without changing map component logic.
+
 - [ ] `.env` file is in `.gitignore` ✓
 - [ ] `.env.local` is in `.gitignore` ✓
 - [ ] Never commit files with `pk_live_` or actual secrets

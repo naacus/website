@@ -116,7 +116,7 @@ export const leadershipData = {
       phone: '',
       email: 'stella.bello@naacus.org',
       location: '',
-      photo: ''
+      photo: '/images/leadership/fundraising-coordinator.jpeg'
     },
     {
       name: 'Mary Monney',

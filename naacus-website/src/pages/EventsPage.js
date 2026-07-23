@@ -132,6 +132,9 @@ function EventsPage() {
 
         <div className={styles.actionRow}>
           <Button appearance="primary" onClick={() => navigate('/membership')}>{t('events.landing.actions.primary')}</Button>
+          <Button appearance="secondary" onClick={() => navigate('/convention-map')}>
+            {t('events.landing.actions.mapHub', { defaultValue: 'Open Convention Map Hub' })}
+          </Button>
           <Button appearance="secondary" onClick={() => navigate('/contact')}>{t('events.landing.actions.secondary')}</Button>
         </div>
       </section>

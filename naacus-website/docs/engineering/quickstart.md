@@ -102,6 +102,21 @@ npm run eval:ai-first:html
 npm run build
 ```
 
+## Leadership Photos (Decap)
+
+- Leadership photos edited in Decap (`/admin`) are stored under `naacus-website/public/images/leadership/`.
+- Filenames are normalized to member-name slugs (common prefixes like Mr/Mrs/Dr/Rev/Fr/Sr removed, for example `stella-bello.jpeg` and `benoit-mukamba-cssp.png`) by `scripts/normalize-leadership-photos.js`.
+- This normalization runs automatically on:
+	- `npm start` (`prestart`)
+	- `npm run build` (`prebuild`)
+
+Manual commands:
+
+```bash
+npm run sync:leadership:photos
+npm run check:leadership:photos
+```
+
 ## Key Services
 
 | Service | Purpose |

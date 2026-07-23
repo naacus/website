@@ -4474,7 +4474,8 @@ collections:
                 required: false
                 media_folder: "naacus-website/public/images/leadership"
                 public_folder: "/images/leadership"
-                hint: "Upload or select a leadership image."
+                choose_url: false
+                hint: "Upload/select a leadership image. Filenames are normalized from member names (common prefixes removed) by scripts/normalize-leadership-photos.js."
               - label: "Bio"
                 name: "bio"
                 widget: "text"

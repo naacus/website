@@ -109,6 +109,7 @@ Locale hygiene is now enforced through periodic audits. Current baseline report:
 - `naacus-website/public/locales/`: per-locale translation sources and generated translation bundles
 - `naacus-website/public/images/uploads/`: CMS-uploaded image assets
 - `naacus-website/public/images/leadership/`: leadership portraits managed from Decap `leadership_data.photo` image fields
+- `naacus-website/scripts/normalize-leadership-photos.js`: normalizes leadership photo filenames/paths to role/title slugs and repairs misplaced image references
 
 ### Component contract
 

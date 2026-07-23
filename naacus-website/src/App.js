@@ -11,6 +11,7 @@ import Header from './components/Header';
 import HomePage from './pages/HomePage';
 import Event2025Page from './pages/Event2025Page';
 import EventsPage from './pages/EventsPage';
+import ConventionMapPage from './pages/ConventionMapPage';
 import MembershipPage from './pages/MembershipPage';
 import VolunteerPage from './pages/VolunteerPage';
 import AboutPage from './pages/AboutPage';
@@ -37,6 +38,7 @@ const routeMetaKeys = {
   '/': 'meta.routes.home',
   '/about': 'meta.routes.about',
   '/events': 'meta.routes.events',
+  '/convention-map': 'meta.routes.conventionMap',
   '/resources': 'meta.routes.resources',
   '/membership': 'meta.routes.membership',
   '/contact': 'meta.routes.contact',
@@ -112,6 +114,7 @@ function AppContent() {
           <Route path="/dues-registration" element={<DuesRegistrationPage />} />
           <Route path="/2025" element={<Event2025Page />} />
           <Route path="/events" element={<EventsPage />} />
+          <Route path="/convention-map" element={<ConventionMapPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/leadership" element={<LeadershipPage />} />
           <Route path="/fellowship-ministries" element={<FellowshipMinistriesPage />} />

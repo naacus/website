@@ -1,0 +1,81 @@
+{
+  "lastUpdated": "2026-07-22",
+  "center": {
+    "lat": 39.9612,
+    "lng": -82.9988
+  },
+  "locations": [
+    {
+      "id": "venue-main",
+      "name": "St. Francis DeSales Parish Campus",
+      "category": "venue",
+      "lat": 39.9657,
+      "lng": -82.9548,
+      "address": "4212 Karl Rd, Columbus, OH 43224",
+      "description": "Primary convention sessions, liturgy, and major gatherings."
+    },
+    {
+      "id": "church-nearby",
+      "name": "St. Joseph Cathedral",
+      "category": "church",
+      "lat": 39.9625,
+      "lng": -82.9987,
+      "address": "212 E Broad St, Columbus, OH 43215",
+      "description": "Nearby Catholic church for additional prayer and mass options."
+    },
+    {
+      "id": "hotel-downtown",
+      "name": "Hilton Columbus Downtown",
+      "category": "hotel",
+      "lat": 39.969,
+      "lng": -83.0042,
+      "address": "402 N High St, Columbus, OH 43215",
+      "description": "Recommended hotel option with central access to city amenities."
+    },
+    {
+      "id": "airport-cmh",
+      "name": "John Glenn Columbus International Airport",
+      "category": "airport",
+      "lat": 39.998,
+      "lng": -82.8919,
+      "address": "4600 International Gateway, Columbus, OH 43219",
+      "description": "Primary airport for attendees traveling into Columbus."
+    },
+    {
+      "id": "parking-garage",
+      "name": "Convention Parking Garage",
+      "category": "parking",
+      "lat": 39.9668,
+      "lng": -82.9534,
+      "address": "4205 Karl Rd, Columbus, OH 43224",
+      "description": "Overflow parking area for conference and worship sessions."
+    },
+    {
+      "id": "transport-hub",
+      "name": "COTA Transit Center",
+      "category": "transport",
+      "lat": 39.9632,
+      "lng": -82.9998,
+      "address": "33 N High St, Columbus, OH 43215",
+      "description": "Downtown transit connection point for buses and local routes."
+    },
+    {
+      "id": "service-pharmacy",
+      "name": "CVS Pharmacy - Downtown",
+      "category": "service",
+      "lat": 39.9618,
+      "lng": -82.9999,
+      "address": "68 E Spring St, Columbus, OH 43215",
+      "description": "Nearby pharmacy for health and travel essentials."
+    },
+    {
+      "id": "service-atm",
+      "name": "Chase Bank ATM - High Street",
+      "category": "service",
+      "lat": 39.9651,
+      "lng": -83.0012,
+      "address": "150 N High St, Columbus, OH 43215",
+      "description": "Convenient ATM access near key event and hotel zones."
+    }
+  ]
+}
