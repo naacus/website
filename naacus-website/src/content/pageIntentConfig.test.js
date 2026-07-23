@@ -10,4 +10,14 @@ describe('page intent config', () => {
       nextStepPath: '/membership',
     });
   });
+
+  it('provides EN/FR intent metadata for /convention-map', () => {
+    expect(getPageIntent('/convention-map', 'en')).toMatchObject({
+      nextStepPath: '/membership',
+    });
+
+    expect(getPageIntent('/convention-map', 'fr')).toMatchObject({
+      nextStepPath: '/membership',
+    });
+  });
 });
