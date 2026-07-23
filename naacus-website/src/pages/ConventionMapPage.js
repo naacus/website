@@ -14,7 +14,6 @@ import { useAnalytics } from '../hooks/useAnalytics';
 import {
   getMapsApiKey,
   getDefaultMapCenter,
-  buildGoogleDirectionsUrl,
 } from '../config/mapsConfig';
 
 const CATEGORY_META = {
@@ -103,34 +102,6 @@ const useStyles = makeStyles({
     color: tokens.colorNeutralForeground2,
     textAlign: 'center',
   },
-  listGrid: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
-    ...shorthands.gap('12px'),
-    '@media (max-width: 960px)': {
-      gridTemplateColumns: '1fr',
-    },
-  },
-  locationCard: {
-    ...shorthands.padding('16px'),
-  },
-  locationTitle: {
-    display: 'block',
-    fontWeight: '700',
-    marginBottom: '4px',
-  },
-  locationMeta: {
-    display: 'block',
-    color: tokens.colorNeutralForeground2,
-    fontSize: '0.9rem',
-    marginBottom: '8px',
-  },
-  locationDescription: {
-    display: 'block',
-    color: tokens.colorNeutralForeground2,
-    lineHeight: '1.5',
-    marginBottom: '12px',
-  },
 });
 
 function normalizeLocations(payload) {
@@ -176,6 +147,8 @@ function ConventionMapPage() {
   const mapRef = useRef(null);
   const mapInstanceRef = useRef(null);
   const markersRef = useRef([]);
+  const directionsServiceRef = useRef(null);
+  const directionsRendererRef = useRef(null);
 
   const [locations, setLocations] = useState([]);
   const [center, setCenter] = useState(getDefaultMapCenter());
@@ -183,6 +156,7 @@ function ConventionMapPage() {
   const [loadingLocations, setLoadingLocations] = useState(true);
   const [mapsState, setMapsState] = useState('loading');
   const [mapsError, setMapsError] = useState('');
+  const [directionsActive, setDirectionsActive] = useState(false);
 
   const apiKey = useMemo(() => getMapsApiKey(), []);
 
@@ -271,6 +245,13 @@ function ConventionMapPage() {
           fullscreenControl: true,
         });
 
+        directionsServiceRef.current = new maps.DirectionsService();
+        directionsRendererRef.current = new maps.DirectionsRenderer({
+          suppressMarkers: false,
+          polylineOptions: { strokeColor: '#0f6cbd', strokeWeight: 5 },
+        });
+        directionsRendererRef.current.setMap(mapInstanceRef.current);
+
         setMapsState('ready');
       })
       .catch((error) => {
@@ -298,6 +279,12 @@ function ConventionMapPage() {
     markersRef.current.forEach((marker) => marker.setMap(null));
     markersRef.current = [];
 
+    // Clear any active directions when filter changes
+    if (directionsRendererRef.current) {
+      directionsRendererRef.current.setDirections({ routes: [] });
+      setDirectionsActive(false);
+    }
+
     if (!filteredLocations.length) {
       map.setCenter(center);
       map.setZoom(10);
@@ -307,6 +294,40 @@ function ConventionMapPage() {
     const bounds = new maps.LatLngBounds();
     const infoWindow = new maps.InfoWindow();
 
+    // Global handler invoked by the "Get Directions" button inside the info window HTML
+    window.__naacusDirs = (lat, lng, name) => {
+      infoWindow.close();
+      const destination = { lat, lng };
+
+      const renderRoute = (origin) => {
+        directionsServiceRef.current.route(
+          { origin, destination, travelMode: maps.TravelMode.DRIVING },
+          (result, status) => {
+            if (status === 'OK') {
+              directionsRendererRef.current.setDirections(result);
+              setDirectionsActive(true);
+            } else {
+              // Directions API failed — fall back to external Google Maps
+              window.open(
+                `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`,
+                '_blank',
+                'noopener,noreferrer'
+              );
+            }
+          }
+        );
+      };
+
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (pos) => renderRoute({ lat: pos.coords.latitude, lng: pos.coords.longitude }),
+          () => renderRoute(destination)
+        );
+      } else {
+        renderRoute(destination);
+      }
+    };
+
     filteredLocations.forEach((location) => {
       const marker = new maps.Marker({
         position: { lat: location.lat, lng: location.lng },
@@ -315,12 +336,18 @@ function ConventionMapPage() {
       });
 
       marker.addListener('click', () => {
-        const directionUrl = buildGoogleDirectionsUrl(location);
+        const categoryLabel = (CATEGORY_META[location.category] || {}).label || location.category;
+        const safeName = location.name.replace(/'/g, "\\'");
         infoWindow.setContent(`
-          <div style="max-width:260px;font-family:Segoe UI, Arial, sans-serif;">
-            <strong>${location.name}</strong><br/>
-            <span>${location.address || ''}</span><br/>
-            <a href="${directionUrl}" target="_blank" rel="noopener noreferrer">Get directions</a>
+          <div style="max-width:280px;font-family:Segoe UI,Arial,sans-serif;line-height:1.55;">
+            <strong style="font-size:1rem;display:block;margin-bottom:2px;">${location.name}</strong>
+            <span style="color:#555;font-size:0.82rem;">${categoryLabel}</span><br/>
+            ${location.address ? `<span style="font-size:0.9rem;">${location.address}</span><br/>` : ''}
+            ${location.description ? `<p style="margin:6px 0 8px;font-size:0.88rem;color:#333;">${location.description}</p>` : ''}
+            <button
+              onclick="window.__naacusDirs(${location.lat}, ${location.lng}, '${safeName}')"
+              style="margin-top:6px;padding:6px 14px;background:#0f6cbd;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:0.88rem;"
+            >Get Directions</button>
           </div>
         `);
         infoWindow.open(map, marker);
@@ -340,6 +367,10 @@ function ConventionMapPage() {
 
     // Trigger resize in case the container became visible after map init
     window.google.maps.event.trigger(map, 'resize');
+
+    return () => {
+      delete window.__naacusDirs;
+    };
   }, [filteredLocations, mapsState, center]);
 
   return (
@@ -387,6 +418,30 @@ function ConventionMapPage() {
             aria-label="Convention locations map"
           />
 
+          {/* Clear directions button shown while a route is active */}
+          {directionsActive && (
+            <div style={{ position: 'absolute', top: '10px', left: '10px', zIndex: 2 }}>
+              <button
+                onClick={() => {
+                  directionsRendererRef.current.setDirections({ routes: [] });
+                  setDirectionsActive(false);
+                }}
+                style={{
+                  padding: '7px 14px',
+                  background: '#fff',
+                  border: '1px solid #ccc',
+                  borderRadius: '4px',
+                  cursor: 'pointer',
+                  fontFamily: 'Segoe UI, Arial, sans-serif',
+                  fontSize: '0.88rem',
+                  boxShadow: '0 2px 6px rgba(0,0,0,.2)',
+                }}
+              >
+                ✕ Clear Directions
+              </button>
+            </div>
+          )}
+
           {/* Overlays on top while loading or on error */}
           {loadingLocations && (
             <div className={styles.mapOverlay}>
@@ -402,25 +457,6 @@ function ConventionMapPage() {
         </div>
       </Card>
 
-      <div className={styles.listGrid}>
-        {filteredLocations.map((location) => (
-          <Card key={location.id} className={styles.locationCard}>
-            <Text className={styles.locationTitle}>{location.name}</Text>
-            <Text className={styles.locationMeta}>Category: {(CATEGORY_META[location.category] || {}).label || location.category}</Text>
-            <Text className={styles.locationMeta}>{location.address}</Text>
-            <Text className={styles.locationDescription}>{location.description}</Text>
-            <Button
-              appearance="primary"
-              onClick={() => {
-                trackCTA('directions_click', 'convention_map', location.id);
-                window.open(buildGoogleDirectionsUrl(location), '_blank', 'noopener,noreferrer');
-              }}
-            >
-              Get Directions
-            </Button>
-          </Card>
-        ))}
-      </div>
     </PageWrapper>
   );
 }

@@ -148,6 +148,8 @@ jobs:
           REACT_APP_STRIPE_PUBLIC_KEY=${REACT_APP_STRIPE_PUBLIC_KEY}
           REACT_APP_API_BASE_URL=${{ secrets.API_BASE_URL_TEST || 'http://localhost:5001' }}
           REACT_APP_DEBUG_PAYMENTS=true
+          REACT_APP_GOOGLE_MAPS_API_KEY_PROD=${{ secrets.REACT_APP_GOOGLE_MAPS_API_KEY_PROD }}
+          REACT_APP_GOOGLE_MAPS_API_KEY_DEV=${{ secrets.REACT_APP_GOOGLE_MAPS_API_KEY_DEV }}
           CI=true
           EOF2
 

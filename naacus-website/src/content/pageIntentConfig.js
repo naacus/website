@@ -55,6 +55,20 @@ const pageIntentConfig = {
       nextStepPath: '/2025',
     },
   },
+  '/convention-map': {
+    en: {
+      audience: 'Convention attendees and families planning travel, lodging, worship, and local logistics.',
+      understanding: 'The convention map helps participants navigate venues, hotels, transit, and essential services with confidence.',
+      nextStepLabel: 'Register Membership',
+      nextStepPath: '/membership',
+    },
+    fr: {
+      audience: 'Participants à la convention et familles qui planifient leurs déplacements, logement, culte et aspects logistiques.',
+      understanding: 'La carte de la convention aide les participants à repérer les lieux, hôtels, transports et services essentiels en toute confiance.',
+      nextStepLabel: 'S’inscrire comme membre',
+      nextStepPath: '/membership',
+    },
+  },
   '/2025': {
     en: {
       audience: 'Attendees and families planning for the NAACUS annual conference.',
