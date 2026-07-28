@@ -140,8 +140,13 @@ jobs:
             fi
           } >> "$GITHUB_STEP_SUMMARY"
 
+      - name: Mask sensitive secrets
+        run: |
+          echo "::add-mask::${{ secrets.REACT_APP_AZURE_CLIENT_SECRET }}"
+
       # Create .env.development for develop quality gates.
       # Stripe public key is resolved from Azure Key Vault or GitHub secrets fallback in the previous step.
+      # Azure credentials are injected for M365 (member/volunteer registration, analytics) integration.
       - name: Create development environment file
         run: |
           cat > .env.development << EOF2
@@ -150,6 +155,20 @@ jobs:
           REACT_APP_DEBUG_PAYMENTS=true
           REACT_APP_GOOGLE_MAPS_API_KEY_PROD=${{ secrets.REACT_APP_GOOGLE_MAPS_API_KEY_PROD }}
           REACT_APP_GOOGLE_MAPS_API_KEY_DEV=${{ secrets.REACT_APP_GOOGLE_MAPS_API_KEY_DEV }}
+          
+          # Azure AD & Microsoft 365 Integration
+          REACT_APP_AZURE_CLIENT_ID=${{ secrets.REACT_APP_AZURE_CLIENT_ID }}
+          REACT_APP_AZURE_TENANT_ID=${{ secrets.REACT_APP_AZURE_TENANT_ID }}
+          REACT_APP_AZURE_CLIENT_SECRET=${{ secrets.REACT_APP_AZURE_CLIENT_SECRET }}
+          REACT_APP_REDIRECT_URI=https://www.naacus.org
+          
+          # SharePoint Configuration
+          REACT_APP_SHAREPOINT_SITE_URL=${{ secrets.REACT_APP_SHAREPOINT_SITE_URL }}
+          REACT_APP_MEMBERSHIP_LIST_ID=${{ secrets.REACT_APP_MEMBERSHIP_LIST_ID }}
+          REACT_APP_VOLUNTEER_LIST_ID=${{ secrets.REACT_APP_VOLUNTEER_LIST_ID }}
+          REACT_APP_EVENT_REGISTRATION_LIST_ID=${{ secrets.REACT_APP_EVENT_REGISTRATION_LIST_ID }}
+          REACT_APP_ANALYTICS_LIST_ID=${{ secrets.REACT_APP_ANALYTICS_LIST_ID }}
+          
           CI=true
           EOF2
 
