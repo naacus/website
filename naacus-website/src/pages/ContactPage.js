@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { PageHeader, Section } from '../components/PageLayout';
 import Contact from '../components/Contact';
 import PageWrapper from '../components/PageWrapper';
 import { useAnalytics } from '../hooks/useAnalytics';
@@ -9,9 +10,16 @@ export default function ContactPage() {
   useEffect(() => {
     trackPageViewEvent('ContactPage');
   }, [trackPageViewEvent]);
+
   return (
     <PageWrapper>
-      <Contact />
+      <PageHeader 
+        title="Contact Us"
+        subtitle="Get in touch with NAACUS"
+      />
+      <Section>
+        <Contact />
+      </Section>
     </PageWrapper>
   );
 }

@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { PageHeader, Section } from '../components/PageLayout';
 import Newsletters from '../components/Newsletters';
 import { useAnalytics } from '../hooks/useAnalytics';
 
@@ -9,7 +10,17 @@ function NewslettersPage() {
     trackPageViewEvent('NewslettersPage');
   }, [trackPageViewEvent]);
 
-  return <Newsletters />;
+  return (
+    <>
+      <PageHeader 
+        title="Newsletters"
+        subtitle="Stay connected with NAACUS updates"
+      />
+      <Section>
+        <Newsletters />
+      </Section>
+    </>
+  );
 }
 
 export default NewslettersPage;
