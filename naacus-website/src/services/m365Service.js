@@ -148,11 +148,20 @@ async function getAppGraphClient() {
 
 /**
  * Get SharePoint site ID from site URL
+ * Graph API requires format: hostname:/sites/sitename
+ * e.g. naacus.sharepoint.com:/sites/naacus-2027
  */
 async function getSiteId(graphClient, siteUrl) {
   try {
+    // Normalize URL: strip https://, trailing slashes, then convert
+    // "naacus.sharepoint.com/sites/foo" → "naacus.sharepoint.com:/sites/foo"
+    const normalized = siteUrl
+      .replace(/^https?:\/\//i, '')
+      .replace(/\/$/, '')
+      .replace(/^([^/]+)(\/.+)$/, '$1:$2');
+
     const site = await graphClient
-      .api(`/sites/${siteUrl}`)
+      .api(`/sites/${normalized}`)
       .get();
     return site.id;
   } catch (error) {
