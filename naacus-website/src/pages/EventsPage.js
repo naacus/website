@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@fluentui/react-components';
-import { PageHeader, Section, CardGrid, StandardCard, CTAButtonGroup } from '../components/PageLayout';
+import { PageHeader, Section, CardGrid, StandardCard } from '../components/PageLayout';
 import { Events } from '../components/events/Events';
 import { useAnalytics } from '../hooks/useAnalytics';
 
