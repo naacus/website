@@ -80,56 +80,6 @@
         "secondary": "Contacter la coordination des evenements"
       }
     },
-    "mapHub": {
-      "title": "Hub de Carte du Congres",
-      "subtitle": "Trouvez les lieux du congres, les eglises, hotels, aeroports, stationnements, transports et services essentiels a proximite. Utilisez les filtres de categorie pour mieux planifier et ouvrir instantanement un itineraire detaille.",
-      "actions": {
-        "registerMembership": "Inscrire l'adhesion",
-        "backToEvents": "Retour aux evenements"
-      },
-      "categories": {
-        "all": "Tous",
-        "search": "Resultats de recherche",
-        "venue": "Lieux",
-        "church": "Eglises",
-        "hotel": "Hotels",
-        "airport": "Aeroports",
-        "parking": "Stationnements",
-        "transport": "Transport",
-        "service": "Services"
-      },
-      "search": {
-        "placeholder": "Rechercher des lieux a proximite du lieu principal",
-        "ariaLabel": "Rechercher des lieux sur la carte du congres",
-        "hintBase": "La recherche utilise Google Places et reste centree sur le lieu principal du congres.",
-        "loading": "Recherche des lieux a proximite...",
-        "empty": "Aucun resultat a proximite.",
-        "error": "La recherche a proximite est indisponible pour le moment.",
-        "nearbyResultName": "Resultat a proximite",
-        "resultNearVenue": "Resultat de recherche pres de {{venueName}}"
-      },
-      "map": {
-        "sectionLabel": "Carte interactive de la zone des lieux",
-        "showingCount_one": "{{count}} lieu affiche",
-        "showingCount_other": "{{count}} lieux affiches",
-        "ariaLabel": "Carte des lieux du congres",
-        "loadingLocations": "Chargement des lieux sur la carte...",
-        "initializing": "Initialisation de la carte..."
-      },
-      "directions": {
-        "getDirections": "Obtenir l'itineraire",
-        "guideMeHere": "Guidez-moi ici",
-        "openInGoogleMaps": "Ouvrir dans Google Maps",
-        "clearDirections": "Effacer l'itineraire",
-        "hint": "Suivez ces etapes pour rester sur la carte NAACUS, ou utilisez \"Ouvrir dans Google Maps\" pour la navigation native."
-      },
-      "errors": {
-        "missingApiKey": "La cle Google Maps est manquante. Definissez REACT_APP_GOOGLE_MAPS_API_KEY et les cles specifiques aux environnements www/test.",
-        "mapsScriptLoadFailed": "Le script Google Maps n'a pas pu etre charge.",
-        "mapsInitFailed": "Google Maps n'a pas pu etre initialise.",
-        "mapDataLoadFailed": "Impossible de charger les donnees de la carte du congres."
-      }
-    },
     "moreUpcomingEvents": "Plus d'Événements à Venir",
     "registerNow": "S'Inscrire",
     "viewDetails": "Voir les Détails",

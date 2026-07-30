@@ -17,7 +17,6 @@ import {
   RadioGroup,
   Radio,
 } from '@fluentui/react-components';
-import { PageHeader, Section, Alert } from '../components/PageLayout';
 import PageWrapper from '../components/PageWrapper';
 import ParishFinder from '../components/ParishFinder';
 import { submitMembershipToSharePoint } from '../services/m365Service';
@@ -25,34 +24,58 @@ import { useAnalytics } from '../hooks/useAnalytics';
 import { fetchCountries, formatCountriesForDropdown } from '../services/countryService';
 
 const useStyles = makeStyles({
+  wrapper: {
+    width: '100%',
+  },
   container: {
     maxWidth: '900px',
     ...shorthands.margin('0', 'auto'),
-    ...shorthands.padding('0', '20px'),
   },
-  formCard: {
-    ...shorthands.padding('32px'),
-    marginBottom: '24px',
-    ...shorthands.borderRadius('8px'),
-    backgroundColor: tokens.colorNeutralBackground2,
+  header: {
+    textAlign: 'center',
+    ...shorthands.padding('40px', '0'),
+  },
+  title: {
+    fontSize: '2rem',
+    fontWeight: '600',
+    color: tokens.colorBrandBackground,
+    marginBottom: '16px',
+    display: 'block',
+    letterSpacing: '-0.02em',
     '@media (max-width: 768px)': {
-      ...shorthands.padding('20px'),
-      marginBottom: '18px',
+      fontSize: '1.5rem',
     },
   },
-  formSectionTitle: {
-    fontSize: '1.2rem',
-    fontWeight: '700',
-    color: tokens.colorBrandBackground,
-    marginBottom: '20px',
+  subtitle: {
+    fontSize: '1.1rem',
+    color: tokens.colorNeutralForeground2,
+    lineHeight: '1.6',
     display: 'block',
-    paddingBottom: '8px',
+  },
+  formCard: {
+    ...shorthands.padding('40px'),
+    marginBottom: '30px',
+    '@media (max-width: 768px)': {
+      ...shorthands.padding('24px'),
+    },
+  },
+  sectionTitle: {
+    fontSize: '1.4rem',
+    fontWeight: '600',
+    color: tokens.colorBrandBackground,
+    marginBottom: '24px',
+    display: 'block',
+    paddingBottom: '12px',
+    borderBottom: `2px solid ${tokens.colorBrandBackground}`,
+    '@media (max-width: 768px)': {
+      fontSize: '1.2rem',
+    },
   },
   formGrid: {
     display: 'grid',
     gridTemplateColumns: 'repeat(2, 1fr)',
-    ...shorthands.gap('16px'),
-    marginBottom: '16px',
+    ...shorthands.gap('20px'),
+    marginBottom: '24px',
     '@media (max-width: 768px)': {
       gridTemplateColumns: '1fr',
     },
@@ -60,13 +83,13 @@ const useStyles = makeStyles({
   formField: {
     display: 'flex',
     flexDirection: 'column',
-    ...shorthands.gap('6px'),
+    ...shorthands.gap('8px'),
   },
   formFieldFull: {
     gridColumn: '1 / -1',
   },
   label: {
-    fontSize: '0.9rem',
+    fontSize: '0.95rem',
     fontWeight: '600',
     color: tokens.colorNeutralForeground1,
   },
@@ -76,10 +99,10 @@ const useStyles = makeStyles({
   checkboxGroup: {
     display: 'grid',
     gridTemplateColumns: 'repeat(3, 1fr)',
-    ...shorthands.gap('10px'),
+    ...shorthands.gap('12px'),
     ...shorthands.padding('12px'),
-    backgroundColor: tokens.colorNeutralBackground1,
-    ...shorthands.borderRadius('6px'),
+    backgroundColor: tokens.colorNeutralBackground2,
+    ...shorthands.borderRadius('8px'),
     '@media (max-width: 1024px)': {
       gridTemplateColumns: 'repeat(2, 1fr)',
     },
@@ -88,19 +111,39 @@ const useStyles = makeStyles({
     },
   },
   submitButton: {
-    marginTop: '28px',
-    marginBottom: '24px',
+    marginTop: '32px',
+    marginBottom: '30px',
     width: '100%',
-    height: '48px',
-    fontSize: '1.05rem',
+    height: '56px',
+    fontSize: '1.15rem',
     fontWeight: '600',
+  },
+  successMessage: {
+    ...shorthands.padding('24px'),
+    backgroundColor: '#dff6dd',
+    ...shorthands.borderRadius('8px'),
+    textAlign: 'center',
+    marginTop: '24px',
+  },
+  successTitle: {
+    fontSize: '1.5rem',
+    fontWeight: '600',
+    color: '#107c10',
+    marginBottom: '12px',
+    display: 'block',
+  },
+  successText: {
+    fontSize: '1.05rem',
+    color: tokens.colorNeutralForeground1,
+    lineHeight: '1.6',
+    display: 'block',
   },
   formGridWithTopMargin: {
     display: 'grid',
     gridTemplateColumns: 'repeat(2, 1fr)',
-    ...shorthands.gap('16px'),
-    marginBottom: '16px',
-    marginTop: '12px',
+    ...shorthands.gap('20px'),
+    marginBottom: '24px',
+    marginTop: '20px',
     '@media (max-width: 768px)': {
       gridTemplateColumns: '1fr',
     },
@@ -369,14 +412,15 @@ function MembershipPage() {
 
   return (
     <PageWrapper>
-      <PageHeader 
-        title={t('membership.title')}
-        subtitle={t('membership.subtitle')}
-      />
+      <div className={styles.container}>
+        <div className={styles.header}>
+          <Text as="h1" className={styles.title}>{t('membership.title')}</Text>
+          <Text className={styles.subtitle}>
+            {t('membership.subtitle')}
+          </Text>
+        </div>
 
-      <Section>
-        <div className={styles.container}>
-          <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
           {/* Simplified Essential Information Only */}
           <Card className={styles.formCard}>
             <Text className={styles.sectionTitle}>{t('membership.personalInfo')}</Text>
@@ -733,26 +777,30 @@ function MembershipPage() {
           </Button>
 
           {showSuccessBeforeRedirect && (
-            <Alert 
-              type="success"
-              title={t('membership.successTitle')}
-              message={`${t('membership.successMessage')} ${t('membership.proceedPayment')}...`}
-            />
+            <div className={styles.successMessage}>
+              <Text className={styles.successTitle}>{t('membership.successTitle')}</Text>
+              <Text className={styles.successText}>{t('membership.successMessage')}</Text>
+              <Text className={styles.successText}>{t('membership.proceedPayment')}...</Text>
+            </div>
           )}
 
           {error && (
-            <Alert 
-              type="error"
-              title={t('membership.errorLabel')}
-              message={error}
-              onClose={() => setError(null)}
-            />
+            <div style={{
+              marginTop: '24px',
+              padding: '16px',
+              backgroundColor: '#fde7e9',
+              borderRadius: '8px',
+              color: '#d13438',
+              textAlign: 'center',
+            }}>
+              <Text style={{ fontWeight: '600' }}>{t('membership.errorLabel')}</Text>
+              <Text>{error}</Text>
+            </div>
           )}
         </form>
-        </div>
-      </Section>
+      </div>
     </PageWrapper>
-  );
+    );
   }
 
 export default MembershipPage;

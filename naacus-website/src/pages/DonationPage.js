@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { makeStyles, shorthands, Text, tokens } from '@fluentui/react-components';
-import { PageHeader, Section, CardGrid } from '../components/PageLayout';
 import PageWrapper from '../components/PageWrapper';
 import PaymentItemCard from '../components/PaymentItemCard';
 import paymentConfig from '../config/paymentConfig';
@@ -11,6 +10,48 @@ import useStripeBuyButtonScript from '../hooks/useStripeBuyButtonScript';
 import { startSpan } from '../services/telemetryService';
 
 const useStyles = makeStyles({
+  section: {
+    backgroundColor: tokens.colorNeutralBackground1,
+    ...shorthands.padding('40px', '20px', '24px'),
+    '@media (min-width: 769px)': {
+      ...shorthands.padding('72px', '20px', '24px'),
+    },
+  },
+  heading: {
+    display: 'block',
+    fontSize: '2rem',
+    textAlign: 'center',
+    marginBottom: '12px',
+    color: tokens.colorNeutralForeground1,
+    fontWeight: '600',
+    '@media (max-width: 768px)': {
+      fontSize: '1.5rem',
+    },
+  },
+  subheading: {
+    display: 'block',
+    fontSize: '1rem',
+    color: tokens.colorNeutralForeground2,
+    textAlign: 'center',
+    maxWidth: '820px',
+    margin: '0 auto 28px',
+    lineHeight: '1.5',
+  },
+  grid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+    ...shorthands.gap('20px'),
+    '@media (max-width: 768px)': {
+      gridTemplateColumns: '1fr',
+      ...shorthands.gap('14px'),
+    },
+  },
+  sectionWrap: {
+    marginBottom: '36px',
+    '@media (max-width: 768px)': {
+      marginBottom: '24px',
+    },
+  },
   card: {
     minHeight: '230px',
     display: 'flex',
@@ -61,10 +102,14 @@ const useStyles = makeStyles({
     },
   },
   note: {
-    marginTop: '16px',
+    marginTop: '0',
+    paddingTop: '0',
     color: tokens.colorNeutralForeground2,
     fontSize: '0.95rem',
     textAlign: 'center',
+  },
+  noteLine: {
+    display: 'block',
   },
 });
 
@@ -153,38 +198,42 @@ function DonationPage() {
 
   return (
     <PageWrapper>
-      <PageHeader
-        title={t('donation.initiativesPage.title')}
-        subtitle={t('donation.initiativesPage.subtitle')}
-      />
-
-      <Section>
-        <CardGrid columns={2}>
-          {openDonationItems.map((initiative) => (
-            <PaymentItemCard
-              key={initiative.id}
-              item={initiative}
-              stripePublishableKey={stripePublishableKey}
-              cardClassName={styles.card}
-              stripeCardClassName={styles.stripeCard}
-              titleClassName={styles.initiativeTitle}
-              descriptionClassName={styles.initiativeDescription}
-              buyButtonWrapClassName={styles.buyButtonWrap}
-              fallbackButtonClassName={styles.cta}
-              fallbackButtonText={t('donation.initiativesPage.donateButton')}
-              onFallbackClick={openStripeLink}
-              onBuyButtonClick={trackBuyButtonInteraction}
-              descriptionAfterAction
-            />
-          ))}
-        </CardGrid>
-      </Section>
-
-      <Section>
-        <Text as="p" className={styles.note}>
-          {t('donation.initiativesPage.helpText')} <Link to="/contact">{t('donation.initiativesPage.contactLinkText')}</Link>.
+      <section className={styles.section}>
+        <Text as="h1" className={styles.heading}>
+          {t('donation.initiativesPage.title')}
         </Text>
-      </Section>
+        <Text as="p" className={styles.subheading}>
+          {t('donation.initiativesPage.subtitle')}
+        </Text>
+
+        <div className={styles.sectionWrap}>
+          <div className={styles.grid}>
+            {openDonationItems.map((initiative) => (
+              <PaymentItemCard
+                key={initiative.id}
+                item={initiative}
+                stripePublishableKey={stripePublishableKey}
+                cardClassName={styles.card}
+                stripeCardClassName={styles.stripeCard}
+                titleClassName={styles.initiativeTitle}
+                descriptionClassName={styles.initiativeDescription}
+                buyButtonWrapClassName={styles.buyButtonWrap}
+                fallbackButtonClassName={styles.cta}
+                fallbackButtonText={t('donation.initiativesPage.donateButton')}
+                onFallbackClick={openStripeLink}
+                onBuyButtonClick={trackBuyButtonInteraction}
+                descriptionAfterAction
+              />
+            ))}
+          </div>
+        </div>
+
+        <Text as="p" className={styles.note}>
+          <span className={styles.noteLine}>
+            {t('donation.initiativesPage.helpText')} <Link to="/contact">{t('donation.initiativesPage.contactLinkText')}</Link>.
+          </span>
+        </Text>
+      </section>
     </PageWrapper>
   );
 }
