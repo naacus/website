@@ -101,24 +101,12 @@ export default function ImageGallery({ images = [] }) {
       </div>
 
       {selectedIdx !== null && (
-        <button
-          className={styles.lightbox} 
-          onClick={() => setSelectedIdx(null)}
-          onKeyDown={(e) => e.key === 'Escape' && setSelectedIdx(null)}
-          type="button"
-          aria-label="Close image gallery"
-          style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', width: '100%', height: '100%', position: 'fixed', top: 0, left: 0 }}
-        >
-          <div 
-            className={styles.lightboxContent} 
-            onClick={(e) => e.stopPropagation()}
-            role="presentation"
-          >
+        <div className={styles.lightbox} onClick={() => setSelectedIdx(null)}>
+          <div className={styles.lightboxContent} onClick={(e) => e.stopPropagation()}>
             <button
               className={styles.closeButton}
               onClick={() => setSelectedIdx(null)}
               aria-label="Close"
-              type="button"
             >
               <Dismiss20Regular />
             </button>
@@ -128,7 +116,7 @@ export default function ImageGallery({ images = [] }) {
               alt={images[selectedIdx].alt || 'Full size image'}
             />
           </div>
-        </button>
+        </div>
       )}
     </>
   );

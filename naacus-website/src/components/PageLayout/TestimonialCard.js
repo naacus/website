@@ -5,6 +5,7 @@
 
 import React from 'react';
 import { makeStyles, shorthands, tokens, Card, Text } from '@fluentui/react-components';
+import { Quote20Filled } from '@fluentui/react-icons';
 
 const useStyles = makeStyles({
   card: {
@@ -29,7 +30,6 @@ const useStyles = makeStyles({
     color: tokens.colorBrandBackground,
     marginBottom: '12px',
     opacity: '0.7',
-    lineHeight: '1',
   },
   quote: {
     display: 'block',
@@ -78,7 +78,7 @@ export default function TestimonialCard({
 
   return (
     <Card className={styles.card}>
-      <div className={styles.quoteIcon}>&quot;</div>
+      <Quote20Filled className={styles.quoteIcon} />
       {quote && <Text as="blockquote" className={styles.quote}>{quote}</Text>}
       <div className={styles.authorSection}>
         {author && <Text as="cite" className={styles.author}>{author}</Text>}

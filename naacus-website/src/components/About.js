@@ -1,9 +1,17 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Section, SectionHeader, StandardCard, CardGrid } from './PageLayout';
+import { useNavigate } from 'react-router-dom';
+import { Text, tokens } from '@fluentui/react-components';
+import { Section, SectionHeader, StandardCard, CardGrid, CTASection } from './PageLayout';
+import { handleNavigation } from '../services/navigationService';
 
 function About() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+
+  const handleJoinClick = () => {
+    handleNavigation({ path: '/membership', sectionId: null, currentPathname: '/about', navigate });
+  };
 
   return (
     <Section id="about">
