@@ -14,7 +14,6 @@ import {
   Card,
   Spinner,
 } from '@fluentui/react-components';
-import { PageHeader, Section } from '../components/PageLayout';
 import PageWrapper from '../components/PageWrapper';
 import { submitVolunteerToSharePoint } from '../services/m365Service';
 import { useAnalytics } from '../hooks/useAnalytics';
@@ -259,40 +258,37 @@ function VolunteerPage() {
   if (submitted) {
     return (
       <PageWrapper>
-        <PageHeader 
-          title={t('volunteer.title')}
-          subtitle={t('volunteer.subtitle')}
-        />
-        <Section>
-          <div className={styles.successMessage}>
-            <Text className={styles.successTitle}>{t('volunteer.successTitle')}</Text>
-            <Text className={styles.successText}>
-              {t('volunteer.successMessage')}
-            </Text>
-            <Button
-              appearance="primary"
-              size="large"
-              onClick={() => window.location.href = '/'}
-              style={{ 
-                marginTop: '24px',
-                backgroundColor: '#d83b01',
-              }}
-            >
-              {t('volunteer.returnHome')}
-            </Button>
-          </div>
-        </Section>
+        <div className={styles.successMessage}>
+          <Text className={styles.successTitle}>{t('volunteer.successTitle')}</Text>
+          <Text className={styles.successText}>
+            {t('volunteer.successMessage')}
+          </Text>
+          <Button
+            appearance="primary"
+            size="large"
+            onClick={() => window.location.href = '/'}
+            style={{ 
+              marginTop: '24px',
+              backgroundColor: '#d83b01',
+            }}
+          >
+            {t('volunteer.returnHome')}
+          </Button>
+        </div>
       </PageWrapper>
     );
   }
 
   return (
     <PageWrapper>
-      <PageHeader 
-        title={t('volunteer.title')}
-        subtitle={t('volunteer.subtitle')}
-      />
-      <Section>
+      <div className={styles.container}>
+        <div className={styles.header}>
+          <Text as="h1" className={styles.title}>{t('volunteer.title')}</Text>
+          <Text className={styles.subtitle}>
+            {t('volunteer.subtitle')}
+          </Text>
+        </div>
+
         <form onSubmit={handleSubmit}>
           {/* Personal Information */}
           <Card className={styles.formCard}>
@@ -594,7 +590,7 @@ function VolunteerPage() {
             </div>
           )}
         </form>
-      </Section>
+      </div>
     </PageWrapper>
   );
 }
