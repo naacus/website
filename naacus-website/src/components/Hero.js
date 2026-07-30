@@ -290,9 +290,9 @@ function Hero() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const defaultHeroImages = [
-    '/images/hero/0cddcc4.jpg',
-    '/images/hero/1ece201.jpg',
-    '/images/hero/2074c6e.jpg',
+    '/images/hero/0cddcc4.webp',
+    '/images/hero/1ece201.webp',
+    '/images/hero/2074c6e.webp',
   ];
 
   const [heroImages, setHeroImages] = useState(defaultHeroImages);
@@ -375,17 +375,17 @@ function Hero() {
   return (
     <section id="home" className={styles.hero} ref={heroRef}>
       <div className={styles.backgroundSlideshow}>
-        {heroImages.map((image, index) => (
-          <img
-            key={index}
-            src={image}
-            alt=""
-            aria-hidden="true"
-            className={`${styles.backgroundImage} ${
-              index === currentImageIndex ? styles.backgroundImageActive : ''
-            }`}
-          />
-        ))}
+        <img
+          src={heroImages[currentImageIndex]}
+          alt=""
+          aria-hidden="true"
+          width="1920"
+          height="1080"
+          decoding="async"
+          loading="eager"
+          fetchPriority="high"
+          className={`${styles.backgroundImage} ${styles.backgroundImageActive}`}
+        />
       </div>
       <div className={styles.heroContent}>
         <Text as="h1" className={styles.heroTitle}>{t('hero.title')}</Text>

@@ -187,6 +187,9 @@ jobs:
             echo "Invalid REACT_APP_STRIPE_PUBLIC_KEY format detected. Stripe should be disabled by resolver step."
           fi
 
+      - name: Optimize images (WebP conversion)
+        run: npm run optimize:images
+
       - name: Build app with development environment
         run: |
           set -a

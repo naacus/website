@@ -389,7 +389,7 @@ function Header() {
             aria-label={t('header.goHome')}
           >
             <img
-              src="/images/naacus-logo.png"
+              src="/images/naacus-logo.webp"
               alt={t('header.title')}
               className={styles.logoImage}
             />

@@ -1,7 +1,60 @@
 # Deployment Guide
 
 > **Category:** 🔧 Engineering | **Audience:** Developers & IT Team
-> **Last Updated:** July 21, 2026 | [← Docs Index](../readme.md)
+> **Last Updated:** July 30, 2026 | [← Docs Index](../readme.md)
+
+---
+
+## Image Optimization Pipeline
+
+All images in `public/images/` must have a `.webp` sibling file before the app
+can build. This is enforced automatically — no manual step required.
+
+### How it works
+
+1. `npm run build` triggers `prebuild`, which runs `optimize:images`.
+2. `optimize:images` (`scripts/optimize-images.js`) scans `public/images/` for
+   any `.jpg`, `.jpeg`, or `.png` that does not yet have a corresponding `.webp`.
+3. It converts each found file using [sharp](https://sharp.pixelplumbing.com/)
+   with the following size/quality caps:
+
+   | Folder | Max width | Quality |
+   |---|---|---|
+   | `hero/` | 1920 px | 82 |
+   | `leadership/` | 800 px | 82 |
+   | `naacus2027/` | 1200 px | 82 |
+   | Root (`images/`) | 1200 px | 85 |
+
+4. Original files are kept as-is. Only the `.webp` variants are served by the
+   React app.
+5. The script is **idempotent** — running it twice is safe and fast (skips
+   already-converted files).
+
+### CI enforcement
+
+The Azure Static Web Apps workflow runs `optimize:images` as a dedicated step
+before `Build app`. If the step fails (e.g. `sharp` can't process a file),
+the build fails and the deploy is blocked.
+
+To verify locally without converting:
+
+```bash
+npm run optimize:images:check   # exits 1 if any image is missing a .webp sibling
+```
+
+### Adding new images
+
+1. Drop your `.jpg`, `.jpeg`, or `.png` into the appropriate `public/images/`
+   subfolder.
+2. Run `npm run optimize:images` (or just `npm run build` — it runs
+   automatically via `prebuild`).
+3. Update the `src` attribute in your component/JSON to point to the `.webp`
+   version.
+4. Commit **both** the original and the `.webp` file.
+
+> **Why keep originals?** Originals serve as the Decap CMS source of truth and
+> provide a fallback for rare browsers without WebP support. Git LFS is
+> recommended for files over 5 MB.
 
 ---
 

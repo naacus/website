@@ -307,12 +307,12 @@ function Conference2027Teaser() {
   const styles = useStyles();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [hasFlyerError, setHasFlyerError] = useState(false);
-  const flyerSrc = '/images/naacus2027/save-the-date.jpg';
+  const flyerSrc = '/images/naacus2027/save-the-date.webp';
 
   const heroImages = [
-    '/images/hero/82b9252.jpg',
-    '/images/hero/921e3ed.jpg',
-    '/images/hero/2074c6e.jpg'
+    '/images/hero/82b9252.webp',
+    '/images/hero/921e3ed.webp',
+    '/images/hero/2074c6e.webp'
   ];
 
   useEffect(() => {
@@ -333,17 +333,17 @@ function Conference2027Teaser() {
   return (
     <section className={styles.teaser}>
       <div className={styles.backgroundSlideshow}>
-        {heroImages.map((image, index) => (
-          <img
-            key={index}
-            src={image}
-            alt=""
-            aria-hidden="true"
-            className={`${styles.backgroundImage} ${
-              index === currentImageIndex ? styles.backgroundImageActive : ''
-            }`}
-          />
-        ))}
+        <img
+          src={heroImages[currentImageIndex]}
+          alt=""
+          aria-hidden="true"
+          width="1920"
+          height="1080"
+          decoding="async"
+          loading="eager"
+          fetchPriority="high"
+          className={`${styles.backgroundImage} ${styles.backgroundImageActive}`}
+        />
       </div>
       <div className={styles.glowOrbOne}></div>
       <div className={styles.glowOrbTwo}></div>
@@ -396,7 +396,11 @@ function Conference2027Teaser() {
                     src={flyerSrc}
                     alt={t('conference2027.flyerAlt')}
                     className={styles.flyerImage}
+                    width="1080"
+                    height="1350"
+                    decoding="async"
                     loading="lazy"
+                    fetchPriority="low"
                     onError={() => setHasFlyerError(true)}
                   />
                 ) : (

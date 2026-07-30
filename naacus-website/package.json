@@ -29,6 +29,7 @@
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "jest-axe": "^10.0.0",
     "react-snap": "^1.23.0",
+    "sharp": "^0.35.3",
     "typescript": "^4.9.5"
   },
   "scripts": {
@@ -44,7 +45,9 @@
     "check:ai-first:thresholds": "node scripts/check-ai-first-thresholds.js",
     "check:ai-first:thresholds:example": "mkdir -p reports && cp scripts/fixtures/ai-first-metrics.example.json reports/ai-first-metrics.json && node scripts/check-ai-first-thresholds.js",
     "prestart": "npm run sync:leadership:photos && npm run sync:locale-sections",
-    "prebuild": "npm run sync:leadership:photos && npm run sync:locale-sections",
+    "optimize:images": "node scripts/optimize-images.js",
+    "optimize:images:check": "node scripts/optimize-images.js --check",
+    "prebuild": "npm run sync:leadership:photos && npm run sync:locale-sections && npm run optimize:images",
     "start": "react-scripts start",
     "build": "react-scripts build && cp ../staticwebapp.config.json build/",
     "postbuild": "react-snap",

@@ -383,7 +383,16 @@ function Leadership() {
           {readyExecutiveBoard.map((member) => (
             <Card key={member.name} className={styles.boardMember}>
               {member.photo ? (
-                <img src={member.photo} alt={member.name} className={styles.photo} />
+                <img
+                  src={member.photo}
+                  alt={member.name}
+                  className={styles.photo}
+                  width="400"
+                  height="400"
+                  loading="lazy"
+                  decoding="async"
+                  fetchPriority="low"
+                />
               ) : (
                 <div className={styles.photoPlaceholder} />
               )}
@@ -408,7 +417,16 @@ function Leadership() {
           {readyMinistryCoordinations.map((member) => (
             <Card key={`${member.title}-${member.name}`} className={styles.boardMember}>
               {member.photo ? (
-                <img src={member.photo} alt={member.name} className={styles.photo} />
+                <img
+                  src={member.photo}
+                  alt={member.name}
+                  className={styles.photo}
+                  width="400"
+                  height="400"
+                  loading="lazy"
+                  decoding="async"
+                  fetchPriority="low"
+                />
               ) : (
                 <div className={styles.photoPlaceholder} />
               )}
@@ -458,7 +476,16 @@ function Leadership() {
           {readySpiritualAdvisers.map((member) => (
             <Card key={member.name} className={styles.boardMember}>
               {member.photo ? (
-                <img src={member.photo} alt={member.name} className={styles.photo} />
+                <img
+                  src={member.photo}
+                  alt={member.name}
+                  className={styles.photo}
+                  width="400"
+                  height="400"
+                  loading="lazy"
+                  decoding="async"
+                  fetchPriority="low"
+                />
               ) : (
                 <div className={styles.photoPlaceholder} />
               )}
