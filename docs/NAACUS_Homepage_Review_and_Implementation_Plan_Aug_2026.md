@@ -19,7 +19,16 @@ The current NAACUS homepage already has a strong technical and content foundatio
 
 The requested work is therefore a targeted reorganization and content improvement, not a complete rebuild.
 
-Implementation can begin for confirmed structural and copy changes. Where facts, assets, links, or integrations are unavailable, IT should retain verified content, hide incomplete elements, or render only configured items. IT must not invent statistics, dates, social accounts, testimonials, photographs, ministry ownership, or successful form delivery.
+Implementation can begin for confirmed structural and copy changes. Every section, item, or integration that is not publication-ready should be implemented behind an explicit conditional rendering flag and remain off by default. IT must not invent statistics, dates, social accounts, testimonials, photographs, ministry ownership, or successful form delivery.
+
+### Conditional rendering policy
+
+- Add a named feature or readiness flag for every incomplete homepage capability.
+- Default incomplete capabilities to `false`.
+- Render a capability only when its required content, links, permissions, and integrations are complete.
+- Prefer item-level configuration for social links, events, testimonials, and gallery media so approved items can appear without exposing incomplete ones.
+- Keep direct, verified alternatives available where appropriate, such as contact email addresses when the contact form is disabled.
+- Enabling a flag requires satisfying that capability's acceptance criteria and completing content-owner approval.
 
 ### What success looks like
 
@@ -61,7 +70,7 @@ The current homepage composition in `src/pages/HomePage.js` is:
 | Ministries | Rich CMS-backed content exists on the ministries page. | Add a curated homepage preview with useful descriptions and links. | Mostly ready |
 | Testimonials | Seven named testimonials exist, concentrated in Women's Ministry, with no portraits. | Add approved young-adult and broader voices. | Partially ready |
 | Events | Events UI and data exist, but no homepage preview. Some records conflict with the review or are incomplete. | Add a date-aware homepage events section using verified records only. | Partially ready |
-| Gallery | Component exists but is disabled and displays generic icon placeholders. | Replace placeholders with approved, captioned photographs before enabling. | Not content-ready |
+| Gallery | Component exists but is disabled and displays generic icon placeholders. | Replace placeholders with approved, captioned photographs; keep its readiness flag off until complete. | Not content-ready |
 | Newsletter | A visible form logs locally and claims confirmation behavior that is not integrated. | Connect a real endpoint or avoid success claims. | Integration needed |
 | Contact | A visible form alerts and logs rather than reliably delivering. | Connect a real endpoint and expose direct contact alternatives. | Integration needed |
 | Donation | Donation route, Stripe flow, and header CTA already exist. | Add a homepage mission-support callout linking to the existing flow. | Ready to implement |
@@ -225,7 +234,7 @@ The homepage should follow this order:
 - Replace icon placeholders with CMS-backed photographs.
 - Require image, category, caption, meaningful alt text, source, and permission.
 - Seek 2025 Convention photographs from the identified content owner.
-- Keep the gallery disabled until a publication-ready set is available.
+- Keep the gallery readiness flag off until a publication-ready set is available.
 - Use qualitative impact stories rather than unverified numeric impact claims.
 
 **Acceptance criteria:**
@@ -373,17 +382,17 @@ Missing inputs do not need to block the entire project. IT should implement conf
 |---|---|---|---|
 | Logo master and variants | Confirm the current logo and provide horizontal or light variants if available. | Continue using the existing deployed logo; make replacement configurable. | Medium |
 | Convention record | Confirm title, July 27-August 1 schedule, destination link, and registration status. | Use flyer-supported dates as working content; remove conflicting data, attendee count, and placeholder link. | High |
-| Photographs | Provide approved images with category, caption, alt text, source, and consent. | Reuse current approved site imagery where appropriate; keep gallery disabled. | High |
+| Photographs | Provide approved images with category, caption, alt text, source, and consent. | Reuse current approved site imagery where appropriate; keep the gallery flag off. | High |
 | Young-adult testimonials | Provide approved text, attribution, optional portrait, and consent. | Keep existing testimonials and prepare the data model for additional voices. | High |
 | September and December events | Provide exact date, time zone, location, organizer, and public link. | Do not publish incomplete event cards. | High |
 | Prayer meetings | Provide recurrence, time zone, audience, and public/private access policy. | Build recurrence support but do not fabricate occurrences. | High |
 | Social accounts | Provide official Facebook, Instagram, WhatsApp, LinkedIn, and confirmed YouTube URLs. | Render only verified and configured platforms. | Medium |
 | Clergy and Religious | Confirm whether this is a NAACUS ministry, ACCCRUS partnership, or Convention audience. | Do not label it a NAACUS ministry until confirmed. | Medium |
-| Newsletter endpoint | Select service, consent language, confirmation behavior, and owner. | Do not claim subscription or confirmation email success; hide or disable submission if necessary. | High |
-| Contact endpoint | Confirm delivery service, recipient, spam protection, privacy, and error handling. | Show direct email options; do not claim delivery from logging or mock behavior. | High |
+| Newsletter endpoint | Select service, consent language, confirmation behavior, and owner. | Keep newsletter submission behind a disabled-by-default readiness flag; do not claim subscription or confirmation email success. | High |
+| Contact endpoint | Confirm delivery service, recipient, spam protection, privacy, and error handling. | Keep contact form submission behind a disabled-by-default readiness flag and show direct email options. | High |
 | French approval | Assign a reviewer for revised French content. | Keep locale structures aligned and hold revised translations for review before publication. | Medium |
 
-> **Publication safeguard:** Unavailable content must be omitted or conditionally rendered. IT will not invent dates, attendance, social accounts, testimonials, photographs, ministry ownership, or successful form delivery.
+> **Publication safeguard:** Every unavailable or incomplete capability must remain behind an explicit conditional rendering flag that defaults to off. IT will not invent dates, attendance, social accounts, testimonials, photographs, ministry ownership, or successful form delivery.
 
 ## Ordered Implementation Phases and Acceptance Criteria
 
@@ -458,7 +467,7 @@ Missing inputs do not need to block the entire project. IT should implement conf
 
 **Work:**
 
-- Replace gallery placeholders and enable only with approved media.
+- Replace gallery placeholders and enable its readiness flag only with approved media.
 - Connect newsletter and contact services.
 - Add the donation mission callout.
 
@@ -469,6 +478,7 @@ Missing inputs do not need to block the entire project. IT should implement conf
 - Published media is accessible and permissioned.
 - Forms persist real submissions and report honest outcomes.
 - Donate reaches the existing secure flow.
+- Each incomplete engagement capability remains hidden through its explicit readiness flag.
 
 ### Phase 5 - Footer, social, About, and localization
 
@@ -583,6 +593,8 @@ Names may be adjusted to match repository conventions during implementation.
 - [ ] Mission, Why Join, benefits, motto, and vision do not unnecessarily repeat one another.
 - [ ] Only complete future or approved recurring events appear.
 - [ ] Only verified social platforms render.
+- [ ] Every incomplete capability has a named, disabled-by-default rendering flag.
+- [ ] Each enabled capability satisfies its documented readiness criteria.
 - [ ] Every published photograph has meaningful alt text, caption, source, and permission.
 - [ ] Newsletter and contact forms report real delivery outcomes.
 - [ ] Donation actions use the existing secure donation route.
@@ -632,7 +644,7 @@ Names may be adjusted to match repository conventions during implementation.
 - Do **not** label Clergy and Religious as a NAACUS ministry until organizational ownership is confirmed.
 - Do **not** report newsletter or contact success while current behavior only logs, stores locally, or falls back to mock data.
 - Do **not** retain the conflicting July 1-5 Convention record or a placeholder registration link.
-- Do **not** activate the gallery merely to satisfy section order when approved media and metadata are unavailable.
+- Do **not** activate the gallery flag merely to satisfy section order when approved media and metadata are unavailable.
 - Do **not** introduce a second donation payment implementation when the secure donation route already exists.
 
 ## Recommended Approval
