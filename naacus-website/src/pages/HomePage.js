@@ -29,7 +29,7 @@ function HomePage() {
       <Testimonials />
       {featureFlags.showHomeGallery && <Gallery />}
       {featureFlags.showHomeNewsletter && <Newsletter />}
-      {featureFlags.showHomeContactForm && <Contact />}
+      <Contact showForm={featureFlags.showHomeContactForm} />
     </>
   );
 }

@@ -11,6 +11,7 @@ import {
   Location24Regular,
   ChevronRight24Regular,
 } from '@fluentui/react-icons';
+import { getUpdatesMailto, getValidRegistrationUrl } from './eventActions';
 
 const useStyles = makeStyles({
   eventCard: {
@@ -121,15 +122,11 @@ const useStyles = makeStyles({
   },
 });
 
-export default function EventCard({ event, isUpcoming, onRegister }) {
+export default function EventCard({ event, isUpcoming }) {
   const { t } = useTranslation();
   const styles = useStyles();
-
-  const handleRegisterNow = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    onRegister(event);
-  };
+  const registrationUrl = getValidRegistrationUrl(event.registrationUrl);
+  const updatesMailto = getUpdatesMailto(event);
 
   const handleViewDetails = () => {
     // For past events, could show more details or a modal
@@ -164,7 +161,7 @@ export default function EventCard({ event, isUpcoming, onRegister }) {
           <ul className={styles.highlightsList}>
             {event.highlights.slice(0, 3).map((highlight, index) => (
               <li key={index} className={styles.highlightItem}>
-                {highlight}
+                {t(highlight, { defaultValue: highlight })}
               </li>
             ))}
             {event.highlights.length > 3 && (
@@ -176,22 +173,36 @@ export default function EventCard({ event, isUpcoming, onRegister }) {
         </div>
       )}
 
-      {isUpcoming ? (
+      {isUpcoming && registrationUrl ? (
         <Button
+          as="a"
           className={styles.ctaButton}
           appearance="primary"
-          onClick={handleRegisterNow}
+          href={registrationUrl}
+          target="_blank"
+          rel="noopener noreferrer"
         >
           {t('events.registerNow')} <ChevronRight24Regular />
         </Button>
-      ) : (
+      ) : isUpcoming && updatesMailto ? (
         <Button
+          as="a"
           className={styles.ctaButton}
-          appearance="secondary"
-          onClick={handleViewDetails}
+          appearance="primary"
+          href={updatesMailto}
         >
-          {t('events.viewDetails')} <ChevronRight24Regular />
+          {t('events.emailForUpdates')} <ChevronRight24Regular />
         </Button>
+      ) : (
+        !isUpcoming && (
+          <Button
+            className={styles.ctaButton}
+            appearance="secondary"
+            onClick={handleViewDetails}
+          >
+            {t('events.viewDetails')} <ChevronRight24Regular />
+          </Button>
+        )
       )}
     </div>
   );

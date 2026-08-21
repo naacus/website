@@ -29,9 +29,18 @@ test('renders the three approved hero actions without unsupported scale claims',
   expect(await within(hero).findByRole('button', { name: 'Become a Member' })).toBeInTheDocument();
   expect(within(hero).getByRole('button', { name: 'Explore Our Ministries' })).toBeInTheDocument();
   expect(within(hero).getByRole('button', { name: 'Convention 2027' })).toBeInTheDocument();
+  expect(screen.getByRole('link', { name: /email for convention updates/i })).toHaveAttribute(
+    'href',
+    'mailto:baltimore2027@naacus.org?subject=NAACUS%20Convention%202027%20updates',
+  );
   expect(screen.queryByText(/thousands|10,000\+|50\+|100\+|25\+/i)).not.toBeInTheDocument();
   expect(screen.queryByRole('heading', { name: /stay updated/i })).not.toBeInTheDocument();
-  expect(screen.queryByRole('heading', { name: /get in touch/i })).not.toBeInTheDocument();
+  expect(screen.getByRole('heading', { name: /get in touch/i })).toBeInTheDocument();
+  expect(screen.getAllByRole('link', { name: 'info@naacus.org' })).not.toHaveLength(0);
+  screen.getAllByRole('link', { name: 'info@naacus.org' }).forEach((link) => {
+    expect(link).toHaveAttribute('href', 'mailto:info@naacus.org');
+  });
+  expect(screen.queryByRole('button', { name: /send message/i })).not.toBeInTheDocument();
 });
 
 test('renders website title', async () => {

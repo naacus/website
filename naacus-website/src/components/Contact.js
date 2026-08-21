@@ -108,7 +108,7 @@ const useStyles = makeStyles({
   }
 });
 
-function Contact() {
+function Contact({ showForm = true }) {
   const { t } = useTranslation();
   const styles = useStyles();
   const { trackForm } = useAnalytics();
@@ -121,8 +121,10 @@ function Contact() {
 
   // Track form open event
   useEffect(() => {
-    trackForm('ContactForm', 'form_start');
-  }, [trackForm]);
+    if (showForm) {
+      trackForm('ContactForm', 'form_start');
+    }
+  }, [showForm, trackForm]);
 
   const handleChange = (e) => {
     setFormData({
@@ -156,7 +158,11 @@ function Contact() {
               <div className={styles.contactIcon}>📧</div>
               <div>
                 <Text className={styles.contactItemTitle}>{t('contact.emailLabel')}</Text>
-                <Text className={styles.contactItemText}>{t('contact.emailValue')}</Text>
+                <Text className={styles.contactItemText}>
+                  <a href={`mailto:${t('contact.emailValue')}`} className={styles.contactLink}>
+                    {t('contact.emailValue')}
+                  </a>
+                </Text>
               </div>
             </div>
             <div className={styles.contactItem}>
@@ -186,7 +192,7 @@ function Contact() {
             </div>
           </div>
         </div>
-        <div className={styles.formContainer}>
+        {showForm && <div className={styles.formContainer}>
           <Field label={t('contact.nameLabel')} required>
             <Input
               name="name"
@@ -232,7 +238,7 @@ function Contact() {
           >
             {t('contact.sendButton')}
           </Button>
-        </div>
+        </div>}
       </div>
     </section>
   );

@@ -11,6 +11,7 @@ import {
   Location24Regular,
   ChevronRight24Regular,
 } from '@fluentui/react-icons';
+import { getUpdatesMailto, getValidRegistrationUrl } from './eventActions';
 
 const useStyles = makeStyles({
   featuredEventSection: {
@@ -199,17 +200,13 @@ const useStyles = makeStyles({
   },
 });
 
-export default function FeaturedEventCard({ event, onRegister }) {
+export default function FeaturedEventCard({ event }) {
   const { t } = useTranslation();
   const styles = useStyles();
 
   if (!event) return null;
-
-  const handleRegisterNow = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    onRegister(event);
-  };
+  const registrationUrl = getValidRegistrationUrl(event.registrationUrl);
+  const updatesMailto = getUpdatesMailto(event);
 
   return (
     <div className={styles.featuredEventSection}>
@@ -228,11 +225,13 @@ export default function FeaturedEventCard({ event, onRegister }) {
             <span className={styles.featuredEventLabel}>{t('events.location')}</span>
             <span className={styles.featuredEventValue}>{event.location}</span>
           </div>
-          <div className={styles.featuredEventInfoItem}>
-            <ChevronRight24Regular className={styles.featuredInfoIcon} />
-            <span className={styles.featuredEventLabel}>{t('events.attendees')}</span>
-            <span className={styles.featuredEventValue}>{event.attendees}</span>
-          </div>
+          {event.attendees && (
+            <div className={styles.featuredEventInfoItem}>
+              <ChevronRight24Regular className={styles.featuredInfoIcon} />
+              <span className={styles.featuredEventLabel}>{t('events.attendees')}</span>
+              <span className={styles.featuredEventValue}>{event.attendees}</span>
+            </div>
+          )}
         </div>
 
         {event.highlights && event.highlights.length > 0 && (
@@ -241,22 +240,28 @@ export default function FeaturedEventCard({ event, onRegister }) {
             <ul className={styles.featuredHighlightsList}>
               {event.highlights.map((highlight, index) => (
                 <li key={index} className={styles.featuredHighlightItem}>
-                  {highlight}
+                  {t(highlight, { defaultValue: highlight })}
                 </li>
               ))}
             </ul>
           </div>
         )}
 
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <Button
-            className={styles.featuredCtaButton}
-            onClick={handleRegisterNow}
-            appearance="primary"
-          >
-            {t('events.registerNow')} <ChevronRight24Regular style={{ fontSize: '1.2rem' }} />
-          </Button>
-        </div>
+        {(registrationUrl || updatesMailto) && (
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <Button
+              as="a"
+              className={styles.featuredCtaButton}
+              href={registrationUrl || updatesMailto}
+              target={registrationUrl ? '_blank' : undefined}
+              rel={registrationUrl ? 'noopener noreferrer' : undefined}
+              appearance="primary"
+            >
+              {t(registrationUrl ? 'events.registerNow' : 'events.emailForUpdates')}
+              <ChevronRight24Regular style={{ fontSize: '1.2rem' }} />
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );

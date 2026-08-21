@@ -330,13 +330,6 @@ function Conference2027Teaser() {
     return () => clearInterval(interval);
   }, [heroImages.length]);
 
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
     <section id="convention-2027" className={styles.teaser}>
       <div className={styles.backgroundSlideshow}>
@@ -392,9 +385,10 @@ function Conference2027Teaser() {
                   </Text>
                 </div>
                 <div className={styles.ctaRow}>
-                  <Button 
+                  <Button
+                    as="a"
                     className={styles.ctaButton}
-                    onClick={() => scrollToSection('newsletter')}
+                    href={`mailto:${convention2027.contactEmail}?subject=${encodeURIComponent('NAACUS Convention 2027 updates')}`}
                   >
                     {t('conference2027.ctaButton')}
                   </Button>

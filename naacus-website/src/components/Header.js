@@ -78,13 +78,12 @@ const useStyles = makeStyles({
     top: '30px',
     objectFit: 'contain',
     ...shorthands.margin('0', '12px', '0', '0'),
-    // borderRadius: '50%',
-    // '@media (max-width: 1024px)': {
-    //   height: '53px',
-    //   width: '53px',
-    //   ...shorthands.margin('0', '8px', '0', '0'),
-    //   top: '0',
-    // },
+    '@media (max-width: 1024px)': {
+      height: '53px',
+      width: '53px',
+      ...shorthands.margin('0', '8px', '0', '0'),
+      top: '0',
+    },
   },
   logoTitle: {
     fontSize: '15px',

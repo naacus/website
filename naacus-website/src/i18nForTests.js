@@ -31,6 +31,9 @@ const resources = {
         exploreMinistries: "Explore Our Ministries",
         convention2027: "Convention 2027"
       },
+      conference2027: {
+        ctaButton: "Email for Convention Updates"
+      },
       mission: {
         title: "Our Mission",
         description: "NAACUS exists to unite African Catholics across the United States through faith formation, leadership development, cultural celebration, evangelization, and service to the Church and society.",
@@ -60,6 +63,18 @@ const resources = {
       testimonials: {
         title: "What Our Members Say",
         subtitle: "Hear from members who have found community, faith, and purpose through NAACUS."
+      },
+      contact: {
+        title: "Get In Touch",
+        description: "Have questions about NAACUS or our programs?",
+        emailLabel: "Email",
+        emailValue: "info@naacus.org",
+        joinUsLabel: "Join Us",
+        joinUsValue: "Become a member or volunteer",
+        communityLabel: "Community",
+        communityValue: "Connect with African Catholics nationwide",
+        spiritualDirectorLabel: "Spiritual Advisers",
+        sendButton: "Send Message"
       },
       about: {
         title: "About NAACUS",
