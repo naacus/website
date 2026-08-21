@@ -1,30 +1,45 @@
 {
   "hero": {
-    "membershipTeaser": "🌟 Join thousands of African Catholics building a stronger community",
-    "subtitle": "Uniting African Catholic Communities Across the United States",
+    "subtitle": "National Association of African Catholics in the United States",
     "title": "Together with Christ ",
-    "benefit1": "Connect with fellow members",
-    "benefit2": "Access exclusive events",
-    "benefit3": "Grow in faith together"
+    "description": "The National Association of African Catholics in the United States (NAACUS) brings together individuals, families, clergy, religious, and communities to grow in faith, celebrate our rich cultural heritage, develop leaders, and serve the Church and society."
   },
   "heroButtons": {
-    "joinCommunity": "Join Our Faith Community",
-    "learnMission": "Learn Our Mission",
-    "viewCalendar": "View Calendar",
-    "getInvolved": "Get Involved"
+    "becomeMember": "Become a Member",
+    "exploreMinistries": "Explore Our Ministries",
+    "convention2027": "Convention 2027"
   },
   "conference2027": {
     "targetValue": "NAACUS & ACCCRUS",
     "ctaButton": "Subscribe for Updates",
     "flyerFallback": "Save-the-date flyer image will appear here once uploaded.",
     "targetLabel": "Partners",
-    "scheduleLine1": "July 27-29, 2027 | Clergy and Religious Gathering by ACCCRUS",
-    "scheduleLine2": "July 29-August 1, 2027 | National Convention by NAACUS and ACCCRUS",
+    "schedule": {
+      "clergyReligious": "{{date}} | Clergy and Religious Gathering by ACCCRUS",
+      "nationalConvention": "{{date}} | National Convention by NAACUS and ACCCRUS"
+    },
     "flyerAlt": "NAACUS and ACCCRUS Convention 2027 save the date flyer",
     "whereValue": "Baltimore, Maryland",
-    "contactLine": "More details: baltimore2027@naacus.org",
+    "contactLine": "More details: {{email}}",
     "whenValue": "July 27-August 1, 2027",
     "title": "NAACUS & ACCCRUS National Convention"
+  },
+  "mission": {
+    "title": "Our Mission",
+    "description": "NAACUS exists to unite African Catholics across the United States through faith formation, leadership development, cultural celebration, evangelization, and service to the Church and society.",
+    "cta": "Learn More About NAACUS"
+  },
+  "whyJoin": {
+    "title": "Why Join NAACUS",
+    "description": "Become part of a vibrant national community of African Catholics dedicated to growing in faith, supporting one another, and serving the Church.",
+    "outcomes": {
+      "faith": "Grow in faith",
+      "connection": "Build connections",
+      "heritage": "Celebrate heritage",
+      "leadership": "Develop leadership",
+      "service": "Serve the Church"
+    },
+    "cta": "Become a Member"
   },
   "memberBenefits": {
     "resources": {
@@ -38,12 +53,12 @@
     },
     "community": {
       "title": "Vibrant Community",
-      "description": "Connect with thousands of African Catholic families and individuals who share your faith and heritage.",
+      "description": "Connect with African Catholic families and individuals who share your faith and heritage.",
       "youtubeCta": "Visit YouTube Channel"
     },
     "network": {
       "title": "National Network",
-      "description": "Build relationships with African Catholic communities across all 50 states and strengthen the Church."
+      "description": "Build relationships with African Catholic communities across the United States and strengthen the Church."
     },
     "spiritual": {
       "title": "Spiritual Growth",
@@ -59,11 +74,35 @@
       "description": "Access to national conferences, workshops, cultural celebrations, and spiritual retreats throughout the year.",
       "cta": "View Calendar"
     },
-    "stats": {
-      "members": "Active Members",
-      "communities": "Communities Nationwide",
-      "events": "Annual Events",
-      "states": "States Represented"
+    "indicators": {
+      "network": "National Network of African Catholic Communities",
+      "membership": "Growing Membership Across the United States",
+      "events": "Regional and National Events",
+      "ministries": "Ministries for All Ages"
+    }
+  },
+  "homeMinistries": {
+    "title": "Ministries",
+    "subtitle": "Find a community where you can grow in faith, build relationships, and serve.",
+    "viewDetails": "View Ministry",
+    "viewAll": "Explore All Ministries",
+    "items": {
+      "women": {
+        "title": "Women's Ministry",
+        "description": "Empowering women through retreats, workshops, and fellowship activities."
+      },
+      "youth": {
+        "title": "Youth Ministry",
+        "description": "Nurturing young Catholics through faith formation, activities, and leadership development."
+      },
+      "youngAdults": {
+        "title": "Young Adults Ministry",
+        "description": "Supporting young adults in their spiritual journey and community life."
+      },
+      "men": {
+        "title": "Men's Ministry",
+        "description": "Building brotherhood and strengthening faith among African Catholic men."
+      }
     }
   },
   "testimonials": {

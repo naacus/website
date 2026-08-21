@@ -11,7 +11,7 @@ const PAGE_GROUPS = [
   },
   {
     fileName: 'home-page.json',
-    sections: ['hero', 'heroButtons', 'conference2027', 'memberBenefits', 'testimonials', 'newsletter', 'contact'],
+    sections: ['hero', 'heroButtons', 'conference2027', 'mission', 'whyJoin', 'homeMinistries', 'homeEvents', 'memberBenefits', 'testimonials', 'newsletter', 'contact'],
   },
   {
     fileName: 'about-leadership.json',

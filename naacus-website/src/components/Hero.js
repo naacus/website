@@ -285,7 +285,7 @@ function Hero() {
   const { t } = useTranslation();
   const styles = useStyles();
   const navigate = useNavigate();
-  const { trackMembershipCTA, trackEventCTA, trackScroll } = useAnalytics();
+  const { trackMembershipCTA, trackEventCTA, trackMinistryCTA } = useAnalytics();
   const heroRef = useRef(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -357,19 +357,14 @@ function Hero() {
     handleNavigation({ path: '/membership', sectionId: null, currentPathname: '/', navigate });
   };
 
-  const handleLearnMissionClick = () => {
-    trackScroll('about');
-    handleNavigation({ path: '/about', sectionId: null, currentPathname: '/', navigate });
+  const handleMinistriesClick = () => {
+    trackMinistryCTA('Explore Our Ministries', 'hero_secondary_cta');
+    handleNavigation({ path: '/fellowship-ministries', sectionId: null, currentPathname: '/', navigate });
   };
 
-  const handleGetInvolvedClick = () => {
-    trackMembershipCTA('Get Involved', 'hero_secondary_cta');
-    handleNavigation({ path: '/volunteer', sectionId: null, currentPathname: '/', navigate });
-  };
-
-  const handleViewCalendarClick = () => {
-    trackEventCTA('View Calendar', 'hero_secondary_cta');
-    handleNavigation({ path: '/events', sectionId: 'more-upcoming-events', currentPathname: '/', navigate });
+  const handleConventionClick = () => {
+    trackEventCTA('Convention 2027', 'hero_secondary_cta');
+    document.getElementById('convention-2027')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -392,22 +387,7 @@ function Hero() {
         <Text as="p" className={styles.heroSubtitle}>
           {t('hero.subtitle')}
         </Text>
-        <div className={styles.membershipHighlight}>
-          <Text className={styles.membershipText}>
-            {t('hero.membershipTeaser')}
-          </Text>
-          <div className={styles.benefitsList}>
-            <span className={styles.benefitItem}>
-              <span className={styles.benefitCheckmark} aria-hidden="true">✓</span> {t('hero.benefit1')}
-            </span>
-            <span className={styles.benefitItem}>
-              <span className={styles.benefitCheckmark} aria-hidden="true">✓</span> {t('hero.benefit2')}
-            </span>
-            <span className={styles.benefitItem}>
-              <span className={styles.benefitCheckmark} aria-hidden="true">✓</span> {t('hero.benefit3')}
-            </span>
-          </div>
-        </div>
+        <Text as="p" className={styles.heroDescription}>{t('hero.description')}</Text>
 
         <div className={styles.heroButtons}>
           <div className={styles.primaryCTA}>
@@ -415,22 +395,15 @@ function Hero() {
               onClick={handleJoinClick}
               className={styles.primaryButton}
             >
-              <span className={styles.buttonEmoji} aria-hidden="true">✝</span> {t('heroButtons.joinCommunity')}
+              {t('heroButtons.becomeMember')}
             </button>
           </div>
-
-          {/* Subtle secondary links — no competing buttons */}
-          <div className={styles.secondaryLinks}>
-            <button onClick={handleLearnMissionClick} className={styles.ghostLink}>
-              {t('heroButtons.learnMission')}
+          <div className={styles.secondaryActions}>
+            <button onClick={handleMinistriesClick} className={styles.secondaryButton}>
+              {t('heroButtons.exploreMinistries')}
             </button>
-            <span className={styles.linkDivider}>·</span>
-            <button onClick={handleViewCalendarClick} className={styles.ghostLink}>
-              {t('heroButtons.viewCalendar')}
-            </button>
-            <span className={styles.linkDivider}>·</span>
-            <button onClick={handleGetInvolvedClick} className={styles.ghostLink}>
-              {t('heroButtons.getInvolved')}
+            <button onClick={handleConventionClick} className={styles.secondaryButton}>
+              {t('heroButtons.convention2027')}
             </button>
           </div>
         </div>

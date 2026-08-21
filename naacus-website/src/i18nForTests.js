@@ -23,10 +23,43 @@ const resources = {
       },
       hero: {
         title: "Together with Christ",
-        subtitle: "Uniting African Catholic Communities Across the United States",
-        description: "A vibrant community of faith, heritage, and service—where African Catholics participate fully in the life of the Church while celebrating their cultural identity.",
-        discoverButton: "Discover Our Mission",
-        joinButton: "Join Our Community"
+        subtitle: "National Association of African Catholics in the United States",
+        description: "The National Association of African Catholics in the United States (NAACUS) brings together individuals, families, clergy, religious, and communities to grow in faith, celebrate our rich cultural heritage, develop leaders, and serve the Church and society."
+      },
+      heroButtons: {
+        becomeMember: "Become a Member",
+        exploreMinistries: "Explore Our Ministries",
+        convention2027: "Convention 2027"
+      },
+      mission: {
+        title: "Our Mission",
+        description: "NAACUS exists to unite African Catholics across the United States through faith formation, leadership development, cultural celebration, evangelization, and service to the Church and society.",
+        cta: "Learn More About NAACUS"
+      },
+      whyJoin: {
+        title: "Why Join NAACUS",
+        description: "Become part of a vibrant national community of African Catholics dedicated to growing in faith, supporting one another, and serving the Church.",
+        outcomes: {
+          faith: "Grow in faith",
+          connection: "Build connections",
+          heritage: "Celebrate heritage",
+          leadership: "Develop leadership",
+          service: "Serve the Church"
+        },
+        cta: "Become a Member"
+      },
+      memberBenefits: {
+        title: "Membership Benefits"
+      },
+      homeMinistries: {
+        title: "Ministries",
+        subtitle: "Find a community where you can grow in faith, build relationships, and serve.",
+        viewDetails: "View Ministry",
+        viewAll: "Explore All Ministries"
+      },
+      testimonials: {
+        title: "What Our Members Say",
+        subtitle: "Hear from members who have found community, faith, and purpose through NAACUS."
       },
       about: {
         title: "About NAACUS",

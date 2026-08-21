@@ -1,17 +1,13 @@
 {
   "hero": {
     "title": "Ensemble avec le Christ",
-    "subtitle": "Unir les Communautés Catholiques Africaines à Travers les États-Unis",
-    "membershipTeaser": "🌟 Rejoignez des milliers de catholiques africains qui construisent une communauté plus forte",
-    "benefit1": "Connectez-vous avec d'autres membres",
-    "benefit2": "Accédez à des événements exclusifs",
-    "benefit3": "Grandissez ensemble dans la foi"
+    "subtitle": "Association Nationale des Catholiques Africains aux États-Unis",
+    "description": "L'Association Nationale des Catholiques Africains aux États-Unis (NAACUS) rassemble les personnes, les familles, le clergé, les religieux et les communautés pour grandir dans la foi, célébrer notre riche patrimoine culturel, former des dirigeants et servir l'Église et la société."
   },
   "heroButtons": {
-    "joinCommunity": "Rejoignez Notre Communauté de Foi",
-    "learnMission": "Découvrez Notre Mission",
-    "viewCalendar": "Voir le Calendrier",
-    "getInvolved": "Participez"
+    "becomeMember": "Devenir Membre",
+    "exploreMinistries": "Découvrir Nos Ministères",
+    "convention2027": "Convention 2027"
   },
   "conference2027": {
     "title": "Réservez la Date : Convention Nationale NAACUS et ACCCRUS",
@@ -19,36 +15,55 @@
     "whereValue": "Baltimore, Maryland",
     "targetLabel": "Partenaires",
     "targetValue": "NAACUS et ACCCRUS",
-    "scheduleLine1": "27-29 juillet 2027 | Rencontre du clergé et des religieux par ACCCRUS",
-    "scheduleLine2": "29 juillet-1 août 2027 | Convention nationale par NAACUS et ACCCRUS",
-    "contactLine": "Plus de détails : baltimore2027@naacus.org",
+    "schedule": {
+      "clergyReligious": "{{date}} | Rencontre du clergé et des religieux par ACCCRUS",
+      "nationalConvention": "{{date}} | Convention nationale par NAACUS et ACCCRUS"
+    },
+    "contactLine": "Plus de détails : {{email}}",
     "flyerAlt": "Affiche reservez la date de la convention NAACUS et ACCCRUS 2027",
     "flyerFallback": "L'affiche reservez la date apparaîtra ici après le téléversement.",
     "ctaButton": "S'abonner aux Mises à Jour"
   },
+  "mission": {
+    "title": "Notre Mission",
+    "description": "NAACUS existe pour unir les catholiques africains à travers les États-Unis par la formation dans la foi, le développement du leadership, la célébration culturelle, l'évangélisation et le service à l'Église et à la société.",
+    "cta": "En Savoir Plus sur NAACUS"
+  },
+  "whyJoin": {
+    "title": "Pourquoi Rejoindre NAACUS",
+    "description": "Faites partie d'une communauté nationale dynamique de catholiques africains qui grandissent dans la foi, se soutiennent mutuellement et servent l'Église.",
+    "outcomes": {
+      "faith": "Grandir dans la foi",
+      "connection": "Créer des liens",
+      "heritage": "Célébrer le patrimoine",
+      "leadership": "Développer le leadership",
+      "service": "Servir l'Église"
+    },
+    "cta": "Devenir Membre"
+  },
   "memberBenefits": {
     "title": "Devenir Membre de NAACUS",
     "subtitle": "Rejoignez une communauté florissante de catholiques africains unis dans la foi, la culture et le service à travers les États-Unis.",
-    "stats": {
-      "members": "Membres Actifs",
-      "communities": "Communautés Nationales",
-      "events": "Événements Annuels",
-      "states": "États Représentés"
+    "indicators": {
+      "network": "Réseau National de Communautés Catholiques Africaines",
+      "membership": "Une Communauté en Croissance aux États-Unis",
+      "events": "Événements Régionaux et Nationaux",
+      "ministries": "Ministères pour Tous les Âges"
     },
     "community": {
       "title": "Communauté Dynamique",
-      "description": "Connectez-vous avec des milliers de familles et d'individus catholiques africains qui partagent votre foi et votre héritage.",
-      "youtubeCta": "Visit YouTube Channel"
+      "description": "Connectez-vous avec des familles et des personnes catholiques africaines qui partagent votre foi et votre héritage.",
+      "youtubeCta": "Visiter la Chaîne YouTube"
     },
     "events": {
       "title": "Événements Exclusifs",
       "description": "Accès aux conférences nationales, ateliers, célébrations culturelles et retraites spirituelles tout au long de l'année.",
-      "cta": "View Calendar"
+      "cta": "Voir le Calendrier"
     },
     "resources": {
       "title": "Ressources et Liens",
       "description": "Accédez aux matériels éducatifs, ressources de prière et liens pour soutenir votre parcours spirituel et votre vie de famille.",
-      "linksTitle": "Quick Links and Contacts"
+      "linksTitle": "Liens Rapides et Contacts"
     },
     "spiritual": {
       "title": "Croissance Spirituelle",
@@ -56,7 +71,7 @@
     },
     "network": {
       "title": "Réseau National",
-      "description": "Établissez des relations avec les communautés catholiques africaines dans les 50 états et renforcez l'Église."
+      "description": "Établissez des relations avec les communautés catholiques africaines aux États-Unis et renforcez l'Église."
     },
     "leadership": {
       "title": "Développement du Leadership",
@@ -65,6 +80,30 @@
     "cta": "Prêt à rejoindre notre communauté?",
     "becomeMemberButton": "Devenir un Membre",
     "becomeVolunteerButton": "Devenir Bénévole"
+  },
+  "homeMinistries": {
+    "title": "Ministères",
+    "subtitle": "Trouvez une communauté où vous pouvez grandir dans la foi, créer des liens et servir.",
+    "viewDetails": "Voir le Ministère",
+    "viewAll": "Découvrir Tous les Ministères",
+    "items": {
+      "women": {
+        "title": "Ministère des Femmes",
+        "description": "Soutenir les femmes par des retraites, des ateliers et des activités fraternelles."
+      },
+      "youth": {
+        "title": "Ministère des Jeunes",
+        "description": "Accompagner les jeunes catholiques par la formation dans la foi, des activités et le développement du leadership."
+      },
+      "youngAdults": {
+        "title": "Ministère des Jeunes Adultes",
+        "description": "Soutenir les jeunes adultes dans leur cheminement spirituel et leur vie communautaire."
+      },
+      "men": {
+        "title": "Ministère des Hommes",
+        "description": "Développer la fraternité et fortifier la foi des hommes catholiques africains."
+      }
+    }
   },
   "testimonials": {
     "title": "Ce Que Disent Nos Membres",

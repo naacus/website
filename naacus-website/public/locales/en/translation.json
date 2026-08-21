@@ -258,31 +258,46 @@
     }
   },
   "hero": {
-    "membershipTeaser": "🌟 Join thousands of African Catholics building a stronger community",
-    "subtitle": "Uniting African Catholic Communities Across the United States",
+    "subtitle": "National Association of African Catholics in the United States",
     "title": "Together with Christ ",
-    "benefit1": "Connect with fellow members",
-    "benefit2": "Access exclusive events",
-    "benefit3": "Grow in faith together"
+    "description": "The National Association of African Catholics in the United States (NAACUS) brings together individuals, families, clergy, religious, and communities to grow in faith, celebrate our rich cultural heritage, develop leaders, and serve the Church and society."
   },
   "heroButtons": {
-    "joinCommunity": "Join Our Faith Community",
-    "learnMission": "Learn Our Mission",
-    "viewCalendar": "View Calendar",
-    "getInvolved": "Get Involved"
+    "becomeMember": "Become a Member",
+    "exploreMinistries": "Explore Our Ministries",
+    "convention2027": "Convention 2027"
   },
   "conference2027": {
     "targetValue": "NAACUS & ACCCRUS",
     "ctaButton": "Subscribe for Updates",
     "flyerFallback": "Save-the-date flyer image will appear here once uploaded.",
     "targetLabel": "Partners",
-    "scheduleLine1": "July 27-29, 2027 | Clergy and Religious Gathering by ACCCRUS",
-    "scheduleLine2": "July 29-August 1, 2027 | National Convention by NAACUS and ACCCRUS",
+    "schedule": {
+      "clergyReligious": "{{date}} | Clergy and Religious Gathering by ACCCRUS",
+      "nationalConvention": "{{date}} | National Convention by NAACUS and ACCCRUS"
+    },
     "flyerAlt": "NAACUS and ACCCRUS Convention 2027 save the date flyer",
     "whereValue": "Baltimore, Maryland",
-    "contactLine": "More details: baltimore2027@naacus.org",
+    "contactLine": "More details: {{email}}",
     "whenValue": "July 27-August 1, 2027",
     "title": "NAACUS & ACCCRUS National Convention"
+  },
+  "mission": {
+    "title": "Our Mission",
+    "description": "NAACUS exists to unite African Catholics across the United States through faith formation, leadership development, cultural celebration, evangelization, and service to the Church and society.",
+    "cta": "Learn More About NAACUS"
+  },
+  "whyJoin": {
+    "title": "Why Join NAACUS",
+    "description": "Become part of a vibrant national community of African Catholics dedicated to growing in faith, supporting one another, and serving the Church.",
+    "outcomes": {
+      "faith": "Grow in faith",
+      "connection": "Build connections",
+      "heritage": "Celebrate heritage",
+      "leadership": "Develop leadership",
+      "service": "Serve the Church"
+    },
+    "cta": "Become a Member"
   },
   "memberBenefits": {
     "resources": {
@@ -296,12 +311,12 @@
     },
     "community": {
       "title": "Vibrant Community",
-      "description": "Connect with thousands of African Catholic families and individuals who share your faith and heritage.",
+      "description": "Connect with African Catholic families and individuals who share your faith and heritage.",
       "youtubeCta": "Visit YouTube Channel"
     },
     "network": {
       "title": "National Network",
-      "description": "Build relationships with African Catholic communities across all 50 states and strengthen the Church."
+      "description": "Build relationships with African Catholic communities across the United States and strengthen the Church."
     },
     "spiritual": {
       "title": "Spiritual Growth",
@@ -317,11 +332,35 @@
       "description": "Access to national conferences, workshops, cultural celebrations, and spiritual retreats throughout the year.",
       "cta": "View Calendar"
     },
-    "stats": {
-      "members": "Active Members",
-      "communities": "Communities Nationwide",
-      "events": "Annual Events",
-      "states": "States Represented"
+    "indicators": {
+      "network": "National Network of African Catholic Communities",
+      "membership": "Growing Membership Across the United States",
+      "events": "Regional and National Events",
+      "ministries": "Ministries for All Ages"
+    }
+  },
+  "homeMinistries": {
+    "title": "Ministries",
+    "subtitle": "Find a community where you can grow in faith, build relationships, and serve.",
+    "viewDetails": "View Ministry",
+    "viewAll": "Explore All Ministries",
+    "items": {
+      "women": {
+        "title": "Women's Ministry",
+        "description": "Empowering women through retreats, workshops, and fellowship activities."
+      },
+      "youth": {
+        "title": "Youth Ministry",
+        "description": "Nurturing young Catholics through faith formation, activities, and leadership development."
+      },
+      "youngAdults": {
+        "title": "Young Adults Ministry",
+        "description": "Supporting young adults in their spiritual journey and community life."
+      },
+      "men": {
+        "title": "Men's Ministry",
+        "description": "Building brotherhood and strengthening faith among African Catholic men."
+      }
     }
   },
   "testimonials": {
@@ -364,15 +403,19 @@
   },
   "membership": {
     "organizationPlaceholder": "Enter organization name",
+    "membershipTypeSenior": "Senior",
     "whyJoinPlaceholder": "Share what motivates you to become a member...",
     "lastName": "Last Name",
     "ministryCultural": "Cultural Events",
     "skills": "Skills & Expertise",
     "communicationPreferences": "Communication Preferences",
+    "individualPlan": "Individual Plan",
     "commPhone": "Phone",
     "commMail": "Mail",
     "ministryLeadership": "Leadership & Governance",
     "successMessage": "Thank you for joining the National Association of African Catholics in the United States. We've received your membership application and will be in touch within 2-3 business days to complete your registration. Check your email for confirmation and next steps.",
+    "groupLargePlan": "Group Large Plan",
+    "selectPlan": "Select Plan",
     "ministryMusic": "Music & Liturgy",
     "relationshipOptions": {
       "spouse": "Spouse",
@@ -388,6 +431,7 @@
     "paymentMethod": "Payment Method",
     "parishName": "Parish Name",
     "ministryEducation": "Education & Catechesis",
+    "membershipTypeIndividual": "Individual",
     "ministryMarriage": "Marriage & Family Life",
     "community": "Community / African Catholic Group",
     "ministryInterests": "Ministry Interests (Select all that apply)",
@@ -397,6 +441,8 @@
     "parishInfo": "Parish Information",
     "contactName": "Contact Name",
     "paymentInstructions": "You are registered as",
+    "membershipTypeStudent": "Student",
+    "paymentManual": "Payment Manual",
     "membershipDetails": "Membership Details",
     "errorLabel": "Error: ",
     "zipCode": "Zip Code",
@@ -406,20 +452,26 @@
     "returnHome": "Return to Home",
     "ministryCommunityOutreach": "Community Outreach",
     "membershipType": "Membership Type",
+    "membershipSummary": "Membership Summary",
     "commEmail": "Email",
     "state": "State",
+    "groupSmallPlan": "Group Small Plan",
     "streetAddress": "Street Address",
     "skillsPlaceholder": "Share any skills, talents, or expertise you bring to the community...",
     "whyJoin": "Why do you want to join NAACUS?",
+    "parishCount": "Parish Count",
+    "parishSearchHelper": "Parish Search Helper",
     "countryOfOrigin": "Country of Origin",
     "ministrySocialJustice": "Social Justice",
     "ministryYouth": "Youth Ministry",
+    "membershipTypeFamily": "Family",
     "address": "Address",
     "successTitle": "Welcome to the NAACUS Family!",
     "additionalInfo": "Additional Information",
     "memberCount": "Number of Members",
     "country": "Country",
     "subtitle": "Become part of a vibrant community dedicated to strengthening the African Catholic presence in the United States. Fill out the form below to begin your membership journey.",
+    "amount": "Amount",
     "backgroundExperience": "Background & Experience",
     "proceedPayment": "Complete Your Payment",
     "relationship": "Relationship",
@@ -427,12 +479,15 @@
     "selectParish": "Select a Parish",
     "commText": "Text Message",
     "yearsInUS": "Years in United States (Optional)",
+    "paymentOnline": "Payment Online",
+    "searching": "Searching",
     "dateOfBirth": "Date of Birth",
     "selectParishPlaceholder": "Choose a parish from the list...",
     "firstName": "First Name",
     "email": "Email",
     "emergencyPhone": "Emergency Phone",
     "diocese": "(Arch)Diocese",
+    "enteredParishData": "Enter Parish Data",
     "organizationName": "Organization Name",
     "memberCountPlaceholder": "Enter number of members",
     "hearAbout": "How did you hear about NAACUS?",
@@ -545,6 +600,74 @@
     "cryptoFee": "Network fees apply",
     "cryptoSpeed": "⛓️ Blockchain",
     "message": "Message",
+    "duesRegistrationPage": {
+      "title": "Dues and Registration",
+      "subtitle": "Use this page for fixed-payment items such as annual dues and membership registration.",
+      "payButton": "Pay Now",
+      "backToDonationLinkText": "Back to Donation Initiatives",
+      "helpText": "Need help or prefer another giving method?",
+      "contactLinkText": "Contact NAACUS",
+      "itemsList": [
+        {
+          "id": "annualDues",
+          "title": "",
+          "description": "Contribute to annual dues support that helps sustain member services and year-round mission delivery.",
+          "amountLabel": "$10.00 USD / year",
+          "buyButtonId": "buy_btn_1TueYZL5FQlMr7HPliBQuUMh",
+          "stripeUrl": "https://donate.naacus.org"
+        },
+        {
+          "id": "membershipRegistration",
+          "title": "",
+          "description": "Support membership onboarding and registration assistance that keeps our community open and welcoming.",
+          "amountLabel": "$10.00 USD",
+          "buyButtonId": "buy_btn_1TueZwL5FQlMr7HPDr7xBkKv",
+          "stripeLinkId": "4gM9AU93bd7bfIb0KTcQU00"
+        },
+        {
+          "id": "groupMembership2to100",
+          "title": "Group Membership (2-100 members)",
+          "description": "Pay your one-time group membership fee for organizations with 2 to 100 members.",
+          "amountLabel": "$200.00 one-time",
+          "buyButtonId": "",
+          "stripeUrl": "https://donate.naacus.org"
+        },
+        {
+          "id": "groupMembership100plus",
+          "title": "Group Membership (100+ members)",
+          "description": "Pay your one-time group membership fee for organizations with more than 100 members.",
+          "amountLabel": "$300.00 one-time",
+          "buyButtonId": "",
+          "stripeUrl": "https://donate.naacus.org"
+        }
+      ],
+      "items": {
+        "annualDues": {
+          "title": "Annual Dues",
+          "description": "Contribute to annual dues support that helps sustain member services and year-round mission delivery.",
+          "amountLabel": "$10.00 USD / year",
+          "buyButtonId": "buy_btn_1TueYZL5FQlMr7HPliBQuUMh"
+        },
+        "membershipRegistration": {
+          "title": "Membership Registration",
+          "description": "Support membership onboarding and registration assistance that keeps our community open and welcoming.",
+          "amountLabel": "$20.00 USD",
+          "buyButtonId": "buy_btn_1TueZwL5FQlMr7HPDr7xBkKv"
+        },
+        "groupMembership2to100": {
+          "title": "Group Membership (2-100 members)",
+          "description": "Pay your one-time group membership fee for organizations with 2 to 100 members.",
+          "amountLabel": "$200.00 one-time",
+          "buyButtonId": ""
+        },
+        "groupMembership100plus": {
+          "title": "Group Membership (100+ members)",
+          "description": "Pay your one-time group membership fee for organizations with more than 100 members.",
+          "amountLabel": "$300.00 one-time",
+          "buyButtonId": ""
+        }
+      }
+    },
     "bankSuccess": "Bank transfer initiated. Check your email for payment instructions.",
     "bankTransfer": "Bank Transfer",
     "paymentMethod": "Payment Method",
@@ -568,41 +691,53 @@
     "cashappSuccess": "Cash App payment initiated. Thank you for your donation!",
     "feeWarning": "may apply a fee",
     "cardFee": "2-3% processing fee",
-    "paymentProcessingFailed": "{{paymentMethod}} payment processing failed. Please check your information and try again.",
-    "accountNumber": "Account Number",
-    "googlePayFee": "Fee depends on payment method",
-    "authenticationRequired": "You will be redirected to authenticate your payment securely",
-    "walletAddressPlaceholder": "Enter your Bitcoin/Crypto wallet address",
-    "applePayFee": "Fee depends on payment method",
-    "close": "Close",
-    "title": "Make a Donation",
-    "requiredFields": "Please fill in all required fields",
-    "cryptoSecure": "Cryptocurrency charges are processed securely on blockchain",
-    "accountHolder": "Account Holder Name",
-    "cardNumber": "Card Number",
-    "cardNumberPlaceholder": "1234 5678 9012 3456",
-    "fullName": "Full Name",
-    "cancel": "Cancel",
-    "walletAddress": "Wallet Address",
-    "email": "Email Address",
-    "paymentSuccess": "Thank you! Your donation is being processed.",
-    "bitcoin": "Bitcoin/Crypto",
-    "demoDisclaimer": "Demo only: please do not enter real payment information.",
     "initiativesPage": {
-      "title": "Donate to NAACUS",
-      "subtitle": "Select an initiative below to donate securely. Every gift supports evangelization, service, and faith-centered leadership across our national community.",
+      "items": {
+        "convention": {
+          "title": "Convention",
+          "description": "Help sponsor convention formation, liturgy coordination, youth participation, and national community gathering costs.",
+          "buyButtonId": "buy_btn_1TumHEL5FQlMr7HPsf4vAey5"
+        },
+        "annualFund": {
+          "title": "Annual Fund",
+          "description": "Support year-round operational strength, evangelization outreach, and strategic programs that sustain NAACUS mission.",
+          "buyButtonId": "buy_btn_1TumFeL5FQlMr7HPz4dvHflZ"
+        },
+        "womenMinistry": {
+          "title": "Women Ministry",
+          "description": "Invest in women-led faith development, mentorship circles, formation events, and community care initiatives.",
+          "buyButtonId": "buy_btn_1TumDNL5FQlMr7HPP17dbTjr"
+        },
+        "youthPrograms": {
+          "title": "Youth and Young Adults Programs",
+          "description": "Fund leadership development, retreats, faith formation, and programming that uplifts youth and young adults.",
+          "buyButtonId": "buy_btn_1Tum37L5FQlMr7HPw7YUFabM"
+        },
+        "annualDues": {
+          "title": "NAACUS Individual Annual Dues",
+          "description": "Contribute to annual dues support that helps sustain member services and year-round mission delivery.",
+          "amountLabel": "$10.00 USD / year"
+        },
+        "membershipRegistration": {
+          "title": "NAACUS Individual Membership Registration",
+          "description": "Support membership onboarding and registration assistance that keeps our community open and welcoming.",
+          "amountLabel": "$20.00 USD"
+        }
+      },
       "donateButton": "Donate Securely",
-      "payDuesButton": "Pay Now",
-      "helpText": "Need help or prefer another giving method?",
-      "contactLinkText": "Contact NAACUS",
-      "duesHelpText": "Need to pay dues or complete membership registration? Visit",
       "duesLinkText": "Dues & Registration",
-      "openSectionTitle": "Donation Initiatives",
-      "openSectionSubtitle": "Choose any amount to support these mission priorities.",
-      "fixedSectionTitle": "Dues and Registration",
-      "fixedSectionSubtitle": "These options use fixed amounts.",
-      "openTypeLabel": "Open Amount",
       "fixedTypeLabel": "Fixed Amount",
+      "fixedSectionTitle": "Dues and Registration",
+      "contactLinkText": "Contact NAACUS",
+      "fixedSectionSubtitle": "These options use fixed amounts.",
+      "duesHelpText": "Need to pay dues or complete membership registration? Visit",
+      "helpText": "Need help or prefer another giving method?",
+      "openTypeLabel": "Open Amount",
+      "openSectionSubtitle": "Choose any amount to support these mission priorities.",
+      "subtitle": "Select an initiative below to donate securely. Every gift supports evangelization, service, and faith-centered leadership across our national community.",
+      "title": "Donate to NAACUS",
+      "payDuesButton": "Pay Now",
+      "openSectionTitle": "Donation Initiatives",
       "itemsList": [
         {
           "id": "convention",
@@ -632,108 +767,28 @@
           "buyButtonId": "buy_btn_1Tum37L5FQlMr7HPw7YUFabM",
           "stripeUrl": "https://donate.naacus.org"
         }
-      ],
-      "items": {
-        "convention": {
-          "title": "",
-          "description": "Help sponsor convention formation, liturgy coordination, youth participation, and national community gathering costs.",
-          "buyButtonId": "buy_btn_1TumHEL5FQlMr7HPsf4vAey5"
-        },
-        "annualFund": {
-          "title": "",
-          "description": "Support year-round operational strength, evangelization outreach, and strategic programs that sustain NAACUS mission.",
-          "buyButtonId": "buy_btn_1TumFeL5FQlMr7HPz4dvHflZ"
-        },
-        "womenMinistry": {
-          "title": "",
-          "description": "Invest in women-led faith development, mentorship circles, formation events, and community care initiatives.",
-          "buyButtonId": "buy_btn_1TumDNL5FQlMr7HPP17dbTjr"
-        },
-        "youthPrograms": {
-          "title": "",
-          "description": "Fund leadership development, retreats, faith formation, and programming that uplifts youth and young adults.",
-          "buyButtonId": "buy_btn_1Tum37L5FQlMr7HPw7YUFabM"
-        },
-        "annualDues": {
-          "title": "NAACUS Individual Annual Dues",
-          "description": "Contribute to annual dues support that helps sustain member services and year-round mission delivery.",
-          "amountLabel": "$2.00 USD / year"
-        },
-        "membershipRegistration": {
-          "title": "NAACUS Individual Membership Registration",
-          "description": "Support membership onboarding and registration assistance that keeps our community open and welcoming.",
-          "amountLabel": "$20.00 USD"
-        }
-      }
+      ]
     },
-    "duesRegistrationPage": {
-      "title": "Dues and Registration",
-      "subtitle": "Use this page for fixed-payment items such as annual dues and membership registration.",
-      "payButton": "Pay Now",
-      "backToDonationLinkText": "Back to Donation Initiatives",
-      "helpText": "Need help or prefer another giving method?",
-      "contactLinkText": "Contact NAACUS",
-      "itemsList": [
-        {
-          "id": "annualDues",
-          "title": "",
-          "description": "Contribute to annual dues support that helps sustain member services and year-round mission delivery.",
-          "amountLabel": "$2.00 USD / year",
-          "buyButtonId": "buy_btn_1TueYZL5FQlMr7HPliBQuUMh",
-          "stripeUrl": "https://donate.naacus.org"
-        },
-        {
-          "id": "membershipRegistration",
-          "title": "",
-          "description": "Support membership onboarding and registration assistance that keeps our community open and welcoming.",
-          "amountLabel": "$20.00 USD",
-          "buyButtonId": "buy_btn_1TueZwL5FQlMr7HPDr7xBkKv",
-          "stripeLinkId": "4gM9AU93bd7bfIb0KTcQU00"
-        },
-        {
-          "id": "groupMembership2to100",
-          "title": "Group Membership (2-100 members)",
-          "description": "Pay your one-time group membership fee for organizations with 2 to 100 members.",
-          "amountLabel": "$200.00 one-time",
-          "buyButtonId": "",
-          "stripeUrl": "https://donate.naacus.org"
-        },
-        {
-          "id": "groupMembership100plus",
-          "title": "Group Membership (100+ members)",
-          "description": "Pay your one-time group membership fee for organizations with more than 100 members.",
-          "amountLabel": "$300.00 one-time",
-          "buyButtonId": "",
-          "stripeUrl": "https://donate.naacus.org"
-        }
-      ],
-      "items": {
-        "annualDues": {
-          "title": "",
-          "description": "Contribute to annual dues support that helps sustain member services and year-round mission delivery.",
-          "amountLabel": "$2.00 USD / year",
-          "buyButtonId": "buy_btn_1TueYZL5FQlMr7HPliBQuUMh"
-        },
-        "membershipRegistration": {
-          "title": "",
-          "description": "Support membership onboarding and registration assistance that keeps our community open and welcoming.",
-          "amountLabel": "$20.00 USD",
-          "buyButtonId": "buy_btn_1TueZwL5FQlMr7HPDr7xBkKv"
-        },
-        "groupMembership2to100": {
-          "title": "Group Membership (2-100 members)",
-          "description": "Pay your one-time group membership fee for organizations with 2 to 100 members.",
-          "amountLabel": "$200.00 one-time",
-          "buyButtonId": ""
-        },
-        "groupMembership100plus": {
-          "title": "Group Membership (100+ members)",
-          "description": "Pay your one-time group membership fee for organizations with more than 100 members.",
-          "amountLabel": "$300.00 one-time",
-          "buyButtonId": ""
-        }
-      }
-    }
+    "paymentProcessingFailed": "{{paymentMethod}} payment processing failed. Please check your information and try again.",
+    "accountNumber": "Account Number",
+    "googlePayFee": "Fee depends on payment method",
+    "authenticationRequired": "You will be redirected to authenticate your payment securely",
+    "walletAddressPlaceholder": "Enter your Bitcoin/Crypto wallet address",
+    "applePayFee": "Fee depends on payment method",
+    "close": "Close",
+    "title": "Make a Donation",
+    "requiredFields": "Please fill in all required fields",
+    "cryptoSecure": "Cryptocurrency charges are processed securely on blockchain",
+    "accountHolder": "Account Holder Name",
+    "cardNumber": "Card Number",
+    "cardNumberPlaceholder": "1234 5678 9012 3456",
+    "fullName": "Full Name",
+    "cancel": "Cancel",
+    "walletAddress": "Wallet Address",
+    "email": "Email Address",
+    "paymentSuccess": "Thank you! Your donation is being processed.",
+    "bitcoin": "Bitcoin/Crypto",
+    "demoDisclaimer": "Demo only: please do not enter real payment information."
   },
   "ministries": {
     "title": "Fellowship & Ministries",

@@ -10,6 +10,7 @@ import {
 } from '@fluentui/react-components';
 import { CalendarLtr24Regular, Location24Regular } from '@fluentui/react-icons';
 import { themeTokens, colors } from '../config/theme';
+import { convention2027, formatConventionDateRange } from '../data/convention2027';
 
 const useStyles = makeStyles({
   teaser: {
@@ -303,11 +304,17 @@ const useStyles = makeStyles({
 });
 
 function Conference2027Teaser() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const styles = useStyles();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [hasFlyerError, setHasFlyerError] = useState(false);
   const flyerSrc = '/images/naacus2027/save-the-date.webp';
+  const locale = i18n.resolvedLanguage === 'fr' ? 'fr-FR' : 'en-US';
+  const scheduleLines = convention2027.schedule.map((item) =>
+    t(item.translationKey, {
+      date: formatConventionDateRange(item.startDate, item.endDate, locale),
+    })
+  );
 
   const heroImages = [
     '/images/hero/82b9252.webp',
@@ -331,7 +338,7 @@ function Conference2027Teaser() {
   };
 
   return (
-    <section className={styles.teaser}>
+    <section id="convention-2027" className={styles.teaser}>
       <div className={styles.backgroundSlideshow}>
         <img
           src={heroImages[currentImageIndex]}
@@ -360,13 +367,15 @@ function Conference2027Teaser() {
                   <div className={styles.detailIconWrap}>
                     <CalendarLtr24Regular className={styles.detailIcon} />
                   </div>
-                  <span className={styles.detailValue}>{t('conference2027.whenValue')}</span>
+                  <span className={styles.detailValue}>
+                    {formatConventionDateRange(convention2027.startDate, convention2027.endDate, locale)}
+                  </span>
                 </div>
                 <div className={styles.detailCard}>
                   <div className={styles.detailIconWrap}>
                     <Location24Regular className={styles.detailIcon} />
                   </div>
-                  <span className={styles.detailValue}>{t('conference2027.whereValue')}</span>
+                  <span className={styles.detailValue}>{convention2027.location}</span>
                 </div>
               </div>
               <div className={styles.schedulePanel}>
@@ -375,9 +384,12 @@ function Conference2027Teaser() {
                     <span className={styles.organizerLabel}>{t('conference2027.targetLabel')}</span>
                     <span className={styles.organizerValue}>{t('conference2027.targetValue')}</span>
                   </div>
-                  <Text className={styles.scheduleLine}>{t('conference2027.scheduleLine1')}</Text>
-                  <Text className={styles.scheduleLine}>{t('conference2027.scheduleLine2')}</Text>
-                  <Text className={styles.contactLine}>{t('conference2027.contactLine')}</Text>
+                  {scheduleLines.map((line, index) => (
+                    <Text key={convention2027.schedule[index].id} className={styles.scheduleLine}>{line}</Text>
+                  ))}
+                  <Text className={styles.contactLine}>
+                    {t('conference2027.contactLine', { email: convention2027.contactEmail })}
+                  </Text>
                 </div>
                 <div className={styles.ctaRow}>
                   <Button 

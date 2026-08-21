@@ -38,6 +38,16 @@ All project documentation lives in the [docs/](docs/readme.md) folder, organized
 - **Community Information**: Comprehensive sections about mission, programs, and activities
 - **Contact Form**: Interactive contact form ready for backend integration
 
+### Homepage Implementation
+
+The published homepage flow is Hero, Convention 2027, Mission, Why Join, Membership Benefits, Ministries, and Testimonials.
+
+- Convention dates, location, schedule, contact, and registration availability come from `src/data/convention2027.js`.
+- The ministries preview reuses verified records from `public/content/ministries.json`.
+- Homepage copy is maintained in matching English and French structures under `public/locales/{en,fr}/pages/home-page.json`.
+- Incomplete homepage gallery, events, newsletter, contact form, and social-link capabilities remain disabled by default in `src/config/featureFlags.js` until their required content or integrations are verified.
+- Unsupported attendance, membership, event-count, and geographic claims must not be added without owner approval and a recorded source.
+
 ## Quick Start
 
 ### Prerequisites

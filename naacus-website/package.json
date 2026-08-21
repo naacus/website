@@ -50,7 +50,7 @@
     "prebuild": "npm run sync:leadership:photos && npm run sync:locale-sections && npm run optimize:images",
     "start": "react-scripts start",
     "build": "react-scripts build && cp ../staticwebapp.config.json build/",
-    "postbuild": "react-snap",
+    "postbuild": "node scripts/run-react-snap.js",
     "test": "react-scripts test",
     "lint": "eslint src/**/*.js",
     "lint:a11y": "eslint src/**/*.js --max-warnings=0",

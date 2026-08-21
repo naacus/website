@@ -3,6 +3,8 @@
  * Automatically categorizes events into past or upcoming based on start/end dates.
  */
 
+import { convention2027 } from './convention2027';
+
 const allEventsSource = [
   {
     id: 'past-2023-summit',
@@ -200,25 +202,10 @@ const allEventsSource = [
     status: 'upcoming',
   },
   {
-    id: 'upcoming-2027-conference',
-    title: 'The National Conference: "Together with Christ 2027"',
-    startDate: '2027-07-01',
-    endDate: '2027-07-05',
-    location: 'Baltimore, Maryland',
-    format: 'in-person',
-    description:
-      'A historic gathering that will bring together African Catholics from across America. This unprecedented event will be our largest conference to date.',
-    highlights: [
-      'Five-day comprehensive program',
-      'Multiple cultural and spiritual tracks',
-      'International speakers and leaders',
-      'Youth and young adult programs',
-      'Family activities and workshops',
-      'Historic closing celebration',
-    ],
-    attendees: '5,000+',
+    ...convention2027,
+    description: 'Gather with NAACUS and ACCCRUS in Baltimore for prayer, fellowship, and the national convention.',
+    highlights: convention2027.schedule.map((item) => item.translationKey),
     status: 'upcoming',
-    registrationLink: '#',
   },
 ];
 

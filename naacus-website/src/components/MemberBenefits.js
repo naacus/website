@@ -201,23 +201,15 @@ const useStyles = makeStyles({
   statItem: {
     textAlign: 'center',
   },
-  statNumber: {
-    fontSize: '3rem',
-    fontWeight: '700',
+  statValue: {
+    fontSize: '1.1rem',
+    fontWeight: '600',
     color: tokens.colorBrandBackground,
     display: 'block',
-    lineHeight: '1',
+    lineHeight: '1.4',
+    maxWidth: '220px',
     '@media (max-width: 768px)': {
-      fontSize: '2.25rem',
-    },
-  },
-  statLabel: {
-    fontSize: '1rem',
-    color: tokens.colorNeutralForeground2,
-    marginTop: '8px',
-    display: 'block',
-    '@media (max-width: 768px)': {
-      fontSize: '0.875rem',
+      fontSize: '1rem',
     },
   },
 });
@@ -293,22 +285,11 @@ function MemberBenefits() {
         </Text>
 
         <div className={styles.statsSection}>
-          <div className={styles.statItem}>
-            <Text className={styles.statNumber}>10,000+</Text>
-            <Text className={styles.statLabel}>{t('memberBenefits.stats.members')}</Text>
-          </div>
-          <div className={styles.statItem}>
-            <Text className={styles.statNumber}>50+</Text>
-            <Text className={styles.statLabel}>{t('memberBenefits.stats.communities')}</Text>
-          </div>
-          <div className={styles.statItem}>
-            <Text className={styles.statNumber}>100+</Text>
-            <Text className={styles.statLabel}>{t('memberBenefits.stats.events')}</Text>
-          </div>
-          <div className={styles.statItem}>
-            <Text className={styles.statNumber}>25+</Text>
-            <Text className={styles.statLabel}>{t('memberBenefits.stats.states')}</Text>
-          </div>
+          {['network', 'membership', 'events', 'ministries'].map((indicator) => (
+            <div key={indicator} className={styles.statItem}>
+              <Text className={styles.statValue}>{t(`memberBenefits.indicators.${indicator}`)}</Text>
+            </div>
+          ))}
         </div>
 
         <div className={styles.benefitsGrid}>

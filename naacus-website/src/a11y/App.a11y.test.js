@@ -9,7 +9,7 @@ describe('App accessibility baseline', () => {
     async () => {
       const { container } = render(<App />);
 
-      const heroTexts = await screen.findAllByText(/Uniting African Catholic Communities Across the United States/i);
+      const heroTexts = await screen.findAllByText(/National Association of African Catholics in the United States/i);
       expect(heroTexts.length).toBeGreaterThan(0);
 
       const results = await axe(container, {
