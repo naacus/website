@@ -1,7 +1,7 @@
 # NAACUS Website — Documentation Index
 
 All project documentation is organized into three categories below.  
-Last updated: July 21, 2026
+Last updated: August 20, 2026
 
 ---
 
@@ -34,6 +34,7 @@ Last updated: July 21, 2026
 | Document | Description |
 |----------|-------------|
 | [features_and_user_stories.md](project/features_and_user_stories.md) | Feature inventory and user stories |
+| [homepage-review-implementation-plan-aug-2026.md](project/homepage-review-implementation-plan-aug-2026.md) | Homepage review, phased implementation plan, ownership decisions, and acceptance criteria |
 | [release_schedule.md](project/release_schedule.md) | Milestones, release plan, and go-live checklist |
 | [feedback_tracker_technical.md](project/feedback_tracker_technical.md) | Pre-launch review feedback — technical implementation status |
 
