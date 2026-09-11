@@ -29,7 +29,7 @@
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "jest-axe": "^10.0.0",
     "react-snap": "^1.23.0",
-    "sharp": "^0.35.3",
+    "sharp": "^0.35.4",
     "typescript": "^4.9.5"
   },
   "scripts": {
